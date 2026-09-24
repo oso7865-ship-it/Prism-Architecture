@@ -20,3 +20,5 @@ Config는 환경을 읽는 기술 기반이다. Repository별 Rule threshold·Wo
 미정 Provider/API version을 코드에서 임의 추정하지 않는다. GitHub API version은 구현 때 검증한 값을 명시하고 adapter contract test와 함께 올린다.
 
 필수 검증: 비밀 누락·잘못된 URL/환경 조합·AI ON인데 예산 미설정·허용하지 않은 origin·설정 repr 마스킹. 실제 값 없이 단위 테스트 가능하게 환경 로더와 검증 함수를 분리한다.
+
+구현 저장소의 안전한 설정 예시는 `config/development.example`이다. 부착 HARNESS가 `.env.*` 추적을 금지하므로 이 파일을 로컬 `.env`로 복사한다. 예시에는 로컬 개발용 값만 두며 실제 `.env`는 Git에 올리지 않는다.

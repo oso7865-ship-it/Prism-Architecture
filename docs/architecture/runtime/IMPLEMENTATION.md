@@ -13,3 +13,5 @@
 현재 업무 도메인·로그인·PR·분석·AI는 미구현이다. 실제 서비스 배포는 하지 않았다. 기본 앱 테스트·빌드와 실제 PostgreSQL 검증은 구분하며 최신 명령·결과·CI 링크는 구현 저장소의 README와 최신 프로젝트 Report를 따른다. 로컬 Docker는 아직 사용할 수 없어 Compose 실행 검증이 남아 있다.
 
 다음 구현은 TESTING의 단계에 따라 로그인·User·Workspace 흐름으로 진행한다. 실제 GitHub 등록·DeepSeek 모델/예산·도메인·운영 DB 호스팅·백업은 미정이다.
+
+검증 증거: [백엔드 CI](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36039579708)는 PostgreSQL 17 마이그레이션 왕복과 테스트 5개 통과, [프론트 CI](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36039823516)는 빌드·타입 검사와 제품 테스트 3개 통과다. 실제 제품 배포는 아니다.
