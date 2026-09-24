@@ -1,0 +1,1085 @@
+{
+  "schema_version": 1,
+  "document_version": "0.1.0",
+  "base_documents": [
+    "AGENTS.md",
+    "docs/architecture/CORE.md"
+  ],
+  "edit_documents": [
+    "docs/architecture/PACKAGE_RULES.md",
+    "docs/architecture/CODE_CONVENTIONS.md"
+  ],
+  "documents": [
+    {
+      "path": "docs/architecture/CODE_CONVENTIONS.md",
+      "id": "CONVENTIONS",
+      "owner": "architecture",
+      "read_when": "백엔드 코드를 작성·리뷰할 때"
+    },
+    {
+      "path": "docs/architecture/CORE.md",
+      "id": "CORE",
+      "owner": "architecture",
+      "read_when": "모든 작업 시작"
+    },
+    {
+      "path": "docs/architecture/DIRECTORY_MAP.md",
+      "id": "DIRECTORY-MAP",
+      "owner": "architecture",
+      "read_when": "최초 scaffold·폴더 구조 변경을 수행할 때"
+    },
+    {
+      "path": "docs/architecture/INDEX.md",
+      "id": "INDEX",
+      "owner": "documentation",
+      "read_when": "작업에 맞는 문서를 찾거나 읽기 경로를 수정할 때"
+    },
+    {
+      "path": "docs/architecture/PACKAGE_RULES.md",
+      "id": "PACKAGE-RULES",
+      "owner": "architecture",
+      "read_when": "파일 배치·import·공개 계약을 수정할 때"
+    },
+    {
+      "path": "docs/architecture/contracts/DATA_MODEL.md",
+      "id": "DATA-MODEL",
+      "owner": "data-contracts",
+      "read_when": "테이블 관계·FK·유일성·조회 스코프를 설계할 때"
+    },
+    {
+      "path": "docs/architecture/contracts/HTTP_API.md",
+      "id": "HTTP-API",
+      "owner": "http-contracts",
+      "read_when": "endpoint·직렬화·오류 응답의 외부 계약을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/decisions/DECISIONS.md",
+      "id": "DECISIONS",
+      "owner": "architecture-decisions",
+      "read_when": "설계 배경·기존 설명 정정·큰 결정 변경을 검토할 때"
+    },
+    {
+      "path": "docs/architecture/decisions/OPEN_ITEMS.md",
+      "id": "OPEN-ITEMS",
+      "owner": "architecture-decisions",
+      "read_when": "외부 서비스 선택·공개 전 준비 상태를 확인할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/CONTRACTS.md",
+      "id": "ANALYSIS-CONTRACTS",
+      "owner": "backend/app/domain/analysis/contracts.py",
+      "read_when": "상태·Finding·중간 모델·멱등 실행 키를 수정할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/LANGUAGES.md",
+      "id": "LANGUAGES",
+      "owner": "backend/app/domain/analysis/analyzer",
+      "read_when": "지원 확장자·grammar·구조 추출을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/PIPELINE.md",
+      "id": "ANALYSIS-PIPELINE",
+      "owner": "backend/app/domain/analysis/pipeline.py",
+      "read_when": "파일 취득·Diff·자원 제한·분석 순서를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/README.md",
+      "id": "ANALYSIS",
+      "owner": "backend/app/domain/analysis",
+      "read_when": "분석 접수·상태·결과 API를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/RULE_ENGINE.md",
+      "id": "RULE-ENGINE",
+      "owner": "backend/app/domain/analysis/rule",
+      "read_when": "Rule 계약·등록·Severity·규칙 버전을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/rules/COMMON.md",
+      "id": "RULES-COMMON",
+      "owner": "backend/app/domain/analysis/rule/common",
+      "read_when": "공통 Rule을 구현·변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/rules/JAVA.md",
+      "id": "RULES-JAVA",
+      "owner": "backend/app/domain/analysis/rule/java",
+      "read_when": "Java 전용 Rule을 구현·변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/rules/JS_TS.md",
+      "id": "RULES-JS-TS",
+      "owner": "backend/app/domain/analysis/rule/javascript|typescript",
+      "read_when": "JavaScript·TypeScript Rule을 구현·변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/analysis/rules/PYTHON.md",
+      "id": "RULES-PYTHON",
+      "owner": "backend/app/domain/analysis/rule/python",
+      "read_when": "Python 전용 Rule을 구현·변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/auth/README.md",
+      "id": "AUTH",
+      "owner": "backend/app/domain/auth",
+      "read_when": "로그인·세션·인증 의존성을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/pull_request/README.md",
+      "id": "PULL-REQUEST",
+      "owner": "backend/app/domain/pull_request",
+      "read_when": "PR 목록·상세·과거 리뷰 조회를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/pull_request/SYNC_POLICY.md",
+      "id": "PR-SYNC",
+      "owner": "backend/app/domain/pull_request/sync_service.py",
+      "read_when": "PR 동기화·Webhook 이벤트 정책을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/repository/README.md",
+      "id": "REPOSITORY",
+      "owner": "backend/app/domain/repository",
+      "read_when": "저장소 연결·설정·설치 권한을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/review/README.md",
+      "id": "REVIEW",
+      "owner": "backend/app/domain/review",
+      "read_when": "LangChain·Provider·Prompt·AI 결과를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/user/README.md",
+      "id": "USER",
+      "owner": "backend/app/domain/user",
+      "read_when": "사용자 식별·프로필·활성 상태를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/webhook/README.md",
+      "id": "WEBHOOK",
+      "owner": "backend/app/domain/webhook",
+      "read_when": "Webhook 수신·서명·이벤트 handler를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/workspace/README.md",
+      "id": "WORKSPACE",
+      "owner": "backend/app/domain/workspace",
+      "read_when": "멤버십·RBAC·테넌트 접근을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/frontend/README.md",
+      "id": "FRONTEND",
+      "owner": "frontend",
+      "read_when": "화면·프론트 API·Cookie 프록시를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/operations/RENDER.md",
+      "id": "RENDER",
+      "owner": "deployment",
+      "read_when": "Render·Docker·CI/CD·DB 호스팅을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/operations/SECURITY_PRIVACY.md",
+      "id": "PRIVACY",
+      "owner": "cross-cutting-security",
+      "read_when": "소스 처리·외부 반출·보관·삭제·테넌트 방어를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/quality/TESTING.md",
+      "id": "TESTING",
+      "owner": "tests",
+      "read_when": "테스트·릴리스 게이트·개발 순서를 정할 때"
+    },
+    {
+      "path": "docs/architecture/reference/SOURCES.md",
+      "id": "SOURCES",
+      "owner": "external-references",
+      "read_when": "외부 기술 사실·라이브러리/서비스 제약을 재검증할 때"
+    },
+    {
+      "path": "docs/architecture/runtime/BOOTSTRAP.md",
+      "id": "BOOTSTRAP",
+      "owner": "backend/app/main.py|bootstrap.py|workflows.py|worker.py",
+      "read_when": "앱 조립·도메인 흐름 연결·Worker 배치를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/README.md",
+      "id": "SHARED",
+      "owner": "backend/app/shared",
+      "read_when": "Global/Shared 코드의 위치를 판단할 때"
+    },
+    {
+      "path": "docs/architecture/shared/config/README.md",
+      "id": "CONFIG",
+      "owner": "backend/app/shared/config",
+      "read_when": "환경 변수·앱 설정·시작 검증을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/database/README.md",
+      "id": "DATABASE",
+      "owner": "backend/app/shared/database",
+      "read_when": "DB 세션·트랜잭션·Migration을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/exception/README.md",
+      "id": "EXCEPTION",
+      "owner": "backend/app/shared/exception",
+      "read_when": "예외 상속·오류 응답·실패 노출을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/github/README.md",
+      "id": "GITHUB-ADAPTER",
+      "owner": "backend/app/shared/github",
+      "read_when": "GitHub HTTP·OAuth·설치 token adapter를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/jobs/README.md",
+      "id": "JOBS",
+      "owner": "backend/app/shared/jobs",
+      "read_when": "비동기 실행·재시도·lease·복구를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/observability/README.md",
+      "id": "OBSERVABILITY",
+      "owner": "backend/app/shared/observability",
+      "read_when": "로그·trace·health·민감 필드 마스킹을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/shared/security/README.md",
+      "id": "SECURITY",
+      "owner": "backend/app/shared/security",
+      "read_when": "token codec·비밀 값 처리 기술을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/templates/PACKAGE_TEMPLATE.md",
+      "id": "PACKAGE-TEMPLATE",
+      "owner": "documentation",
+      "read_when": "새 패키지 문서를 추가/분리할 때"
+    },
+    {
+      "path": "docs/architecture/adr/analysis/ADR-ANALYSIS-001-static-snapshot-analysis.md",
+      "id": "ADR-ANALYSIS-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md",
+      "id": "ADR-ARCH-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/data/ADR-DATA-001-postgresql.md",
+      "id": "ADR-DATA-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-001-render-real-deployment.md",
+      "id": "ADR-DEPLOY-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/documentation/ADR-DOCS-001-selective-reading.md",
+      "id": "ADR-DOCS-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/documentation/ADR-DOCS-002-area-adrs.md",
+      "id": "ADR-DOCS-002",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/frontend/ADR-FRONTEND-001-vue-vercel.md",
+      "id": "ADR-FRONTEND-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/integration/ADR-INTEGRATION-001-github-pr-sync.md",
+      "id": "ADR-INTEGRATION-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/product/ADR-PRODUCT-001-prism-name.md",
+      "id": "ADR-PRODUCT-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/product/ADR-PRODUCT-002-staged-public-access.md",
+      "id": "ADR-PRODUCT-002",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/README.md",
+      "id": "ADR-GUIDE",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-001-optional-explanations.md",
+      "id": "ADR-REVIEW-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md",
+      "id": "ADR-REVIEW-002",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/runtime/ADR-RUNTIME-001-durable-jobs.md",
+      "id": "ADR-RUNTIME-001",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/TEMPLATE.md",
+      "id": "ADR-TEMPLATE",
+      "owner": "architecture-decisions",
+      "read_when": "해당 영역 ADR 작성·변경 검토"
+    }
+  ],
+  "tasks": {
+    "auth": {
+      "description": "로그인·OAuth·세션",
+      "documents": [
+        "docs/architecture/domain/auth/README.md",
+        "docs/architecture/shared/security/README.md",
+        "docs/architecture/frontend/README.md"
+      ]
+    },
+    "user": {
+      "description": "사용자 프로필",
+      "documents": [
+        "docs/architecture/domain/user/README.md"
+      ]
+    },
+    "workspace": {
+      "description": "Workspace·RBAC",
+      "documents": [
+        "docs/architecture/domain/workspace/README.md"
+      ]
+    },
+    "repository": {
+      "description": "저장소 연결·설정",
+      "documents": [
+        "docs/architecture/domain/repository/README.md",
+        "docs/architecture/shared/github/README.md",
+        "docs/architecture/runtime/BOOTSTRAP.md"
+      ]
+    },
+    "pr": {
+      "description": "PR 목록·동기화·기존 리뷰",
+      "documents": [
+        "docs/architecture/domain/pull_request/README.md",
+        "docs/architecture/domain/pull_request/SYNC_POLICY.md",
+        "docs/architecture/shared/github/README.md"
+      ]
+    },
+    "analysis": {
+      "description": "분석 접수·상태·결과",
+      "documents": [
+        "docs/architecture/domain/analysis/README.md",
+        "docs/architecture/domain/analysis/CONTRACTS.md",
+        "docs/architecture/shared/jobs/README.md"
+      ]
+    },
+    "pipeline": {
+      "description": "소스 취득·Diff·Parser Pipeline",
+      "documents": [
+        "docs/architecture/domain/analysis/PIPELINE.md",
+        "docs/architecture/domain/analysis/CONTRACTS.md",
+        "docs/architecture/domain/analysis/LANGUAGES.md",
+        "docs/architecture/operations/SECURITY_PRIVACY.md"
+      ]
+    },
+    "rule-engine": {
+      "description": "Rule 인터페이스·등록·결과",
+      "documents": [
+        "docs/architecture/domain/analysis/RULE_ENGINE.md",
+        "docs/architecture/domain/analysis/CONTRACTS.md",
+        "docs/architecture/domain/analysis/LANGUAGES.md"
+      ]
+    },
+    "common-rule": {
+      "description": "언어 공통 Rule",
+      "documents": [
+        "docs/architecture/domain/analysis/RULE_ENGINE.md",
+        "docs/architecture/domain/analysis/LANGUAGES.md",
+        "docs/architecture/domain/analysis/rules/COMMON.md"
+      ]
+    },
+    "java-rule": {
+      "description": "Java Rule",
+      "documents": [
+        "docs/architecture/domain/analysis/RULE_ENGINE.md",
+        "docs/architecture/domain/analysis/LANGUAGES.md",
+        "docs/architecture/domain/analysis/rules/JAVA.md"
+      ]
+    },
+    "python-rule": {
+      "description": "Python Rule",
+      "documents": [
+        "docs/architecture/domain/analysis/RULE_ENGINE.md",
+        "docs/architecture/domain/analysis/LANGUAGES.md",
+        "docs/architecture/domain/analysis/rules/PYTHON.md"
+      ]
+    },
+    "js-ts-rule": {
+      "description": "JavaScript·TypeScript Rule",
+      "documents": [
+        "docs/architecture/domain/analysis/RULE_ENGINE.md",
+        "docs/architecture/domain/analysis/LANGUAGES.md",
+        "docs/architecture/domain/analysis/rules/JS_TS.md"
+      ]
+    },
+    "review": {
+      "description": "LangChain·Provider·AI 설명",
+      "documents": [
+        "docs/architecture/domain/review/README.md",
+        "docs/architecture/operations/SECURITY_PRIVACY.md"
+      ]
+    },
+    "webhook": {
+      "description": "Webhook 서명·수신·후속 처리",
+      "documents": [
+        "docs/architecture/domain/webhook/README.md",
+        "docs/architecture/domain/pull_request/SYNC_POLICY.md",
+        "docs/architecture/shared/jobs/README.md"
+      ]
+    },
+    "jobs": {
+      "description": "Job·재시도·lease·복구",
+      "documents": [
+        "docs/architecture/shared/jobs/README.md",
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/runtime/BOOTSTRAP.md"
+      ]
+    },
+    "database": {
+      "description": "DB·트랜잭션·관계",
+      "documents": [
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/contracts/DATA_MODEL.md"
+      ]
+    },
+    "github": {
+      "description": "GitHub HTTP adapter",
+      "documents": [
+        "docs/architecture/shared/github/README.md"
+      ]
+    },
+    "exception": {
+      "description": "예외·공개 오류",
+      "documents": [
+        "docs/architecture/shared/exception/README.md"
+      ]
+    },
+    "config": {
+      "description": "환경 변수·시작 설정",
+      "documents": [
+        "docs/architecture/shared/config/README.md"
+      ]
+    },
+    "security": {
+      "description": "보안·반출·비밀정보 처리",
+      "documents": [
+        "docs/architecture/operations/SECURITY_PRIVACY.md",
+        "docs/architecture/shared/security/README.md",
+        "docs/architecture/domain/workspace/README.md"
+      ]
+    },
+    "observability": {
+      "description": "로그·trace·health",
+      "documents": [
+        "docs/architecture/shared/observability/README.md",
+        "docs/architecture/operations/SECURITY_PRIVACY.md"
+      ]
+    },
+    "frontend": {
+      "description": "화면·API 프록시·UI 정책",
+      "documents": [
+        "docs/architecture/frontend/README.md",
+        "docs/architecture/contracts/HTTP_API.md",
+        "docs/architecture/domain/workspace/README.md"
+      ]
+    },
+    "http": {
+      "description": "외부 API 계약",
+      "documents": [
+        "docs/architecture/contracts/HTTP_API.md",
+        "docs/architecture/shared/exception/README.md"
+      ]
+    },
+    "deploy": {
+      "description": "Render·CI/CD·런타임 배치",
+      "documents": [
+        "docs/architecture/operations/RENDER.md",
+        "docs/architecture/runtime/BOOTSTRAP.md",
+        "docs/architecture/shared/config/README.md",
+        "docs/architecture/frontend/README.md"
+      ]
+    },
+    "bootstrap": {
+      "description": "조립·UseCase 연결",
+      "documents": [
+        "docs/architecture/runtime/BOOTSTRAP.md",
+        "docs/architecture/PACKAGE_RULES.md"
+      ]
+    },
+    "tests": {
+      "description": "테스트·릴리스 기준",
+      "documents": [
+        "docs/architecture/quality/TESTING.md"
+      ]
+    },
+    "architecture": {
+      "description": "전체 구조·소유권 변경",
+      "documents": [
+        "docs/architecture/PACKAGE_RULES.md",
+        "docs/architecture/DIRECTORY_MAP.md",
+        "docs/architecture/runtime/BOOTSTRAP.md",
+        "docs/architecture/decisions/DECISIONS.md",
+        "docs/architecture/adr/README.md"
+      ]
+    },
+    "docs": {
+      "description": "문서 추가·선택 매핑",
+      "documents": [
+        "docs/architecture/INDEX.md",
+        "docs/architecture/templates/PACKAGE_TEMPLATE.md",
+        "docs/architecture/decisions/DECISIONS.md",
+        "docs/architecture/adr/README.md"
+      ]
+    },
+    "adr": {
+      "description": "ADR 작성 규칙·영역 맵",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/adr/TEMPLATE.md",
+        "docs/architecture/decisions/DECISIONS.md"
+      ]
+    },
+    "adr-arch": {
+      "description": "전체 구조·의존성·언어 스택 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/PACKAGE_RULES.md",
+        "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md"
+      ]
+    },
+    "adr-docs": {
+      "description": "문서·ADR 관리 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/INDEX.md",
+        "docs/architecture/adr/documentation/ADR-DOCS-001-selective-reading.md",
+        "docs/architecture/adr/documentation/ADR-DOCS-002-area-adrs.md"
+      ]
+    },
+    "adr-analysis": {
+      "description": "지원 언어·파이프라인·규칙 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/domain/analysis/README.md",
+        "docs/architecture/adr/analysis/ADR-ANALYSIS-001-static-snapshot-analysis.md"
+      ]
+    },
+    "adr-review": {
+      "description": "AI 모델·설명·비용 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/domain/review/README.md",
+        "docs/architecture/adr/review/ADR-REVIEW-001-optional-explanations.md",
+        "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md"
+      ]
+    },
+    "adr-integration": {
+      "description": "GitHub·PR 동기화·Webhook 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/domain/pull_request/SYNC_POLICY.md",
+        "docs/architecture/adr/integration/ADR-INTEGRATION-001-github-pr-sync.md"
+      ]
+    },
+    "adr-runtime": {
+      "description": "Job·Worker·복구 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/shared/jobs/README.md",
+        "docs/architecture/adr/runtime/ADR-RUNTIME-001-durable-jobs.md"
+      ]
+    },
+    "adr-data": {
+      "description": "DB·스키마·트랜잭션 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/adr/data/ADR-DATA-001-postgresql.md"
+      ]
+    },
+    "adr-deploy": {
+      "description": "호스팅·도메인·배포 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/operations/RENDER.md",
+        "docs/architecture/adr/deployment/ADR-DEPLOY-001-render-real-deployment.md"
+      ]
+    },
+    "adr-security": {
+      "description": "인증·인가·테넌트·개인정보 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/operations/SECURITY_PRIVACY.md"
+      ]
+    },
+    "adr-frontend": {
+      "description": "화면·클라이언트·프록시 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/frontend/README.md",
+        "docs/architecture/adr/frontend/ADR-FRONTEND-001-vue-vercel.md"
+      ]
+    },
+    "adr-product": {
+      "description": "이름·제품 범위·공개 대상 결정 이력",
+      "documents": [
+        "docs/architecture/adr/README.md",
+        "docs/architecture/CORE.md",
+        "docs/architecture/adr/product/ADR-PRODUCT-001-prism-name.md",
+        "docs/architecture/adr/product/ADR-PRODUCT-002-staged-public-access.md"
+      ]
+    }
+  },
+  "path_routes": [
+    {
+      "prefix": "docs/architecture/adr",
+      "task": "adr"
+    },
+    {
+      "prefix": "docs/architecture/adr/product",
+      "task": "adr-product"
+    },
+    {
+      "prefix": "docs/architecture/adr/frontend",
+      "task": "adr-frontend"
+    },
+    {
+      "prefix": "docs/architecture/adr/security",
+      "task": "adr-security"
+    },
+    {
+      "prefix": "docs/architecture/adr/deployment",
+      "task": "adr-deploy"
+    },
+    {
+      "prefix": "docs/architecture/adr/data",
+      "task": "adr-data"
+    },
+    {
+      "prefix": "docs/architecture/adr/runtime",
+      "task": "adr-runtime"
+    },
+    {
+      "prefix": "docs/architecture/adr/integration",
+      "task": "adr-integration"
+    },
+    {
+      "prefix": "docs/architecture/adr/review",
+      "task": "adr-review"
+    },
+    {
+      "prefix": "docs/architecture/adr/analysis",
+      "task": "adr-analysis"
+    },
+    {
+      "prefix": "docs/architecture/adr/documentation",
+      "task": "adr-docs"
+    },
+    {
+      "prefix": "docs/architecture/adr/architecture",
+      "task": "adr-arch"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/rule/javascript",
+      "task": "js-ts-rule"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/rule/typescript",
+      "task": "js-ts-rule"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/pipeline.py",
+      "task": "pipeline"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/rule/common",
+      "task": "common-rule"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/rule/python",
+      "task": "python-rule"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/rule/java",
+      "task": "java-rule"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/analyzer",
+      "task": "pipeline"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/detector",
+      "task": "pipeline"
+    },
+    {
+      "prefix": "backend/app/domain/analysis/rule",
+      "task": "rule-engine"
+    },
+    {
+      "prefix": "backend/app/shared/observability",
+      "task": "observability"
+    },
+    {
+      "prefix": "backend/app/domain/pull_request",
+      "task": "pr"
+    },
+    {
+      "prefix": "backend/app/domain/repository",
+      "task": "repository"
+    },
+    {
+      "prefix": "backend/app/domain/workspace",
+      "task": "workspace"
+    },
+    {
+      "prefix": "backend/app/shared/exception",
+      "task": "exception"
+    },
+    {
+      "prefix": "backend/app/domain/analysis",
+      "task": "analysis"
+    },
+    {
+      "prefix": "backend/app/shared/database",
+      "task": "database"
+    },
+    {
+      "prefix": "backend/app/shared/security",
+      "task": "security"
+    },
+    {
+      "prefix": "backend/app/domain/webhook",
+      "task": "webhook"
+    },
+    {
+      "prefix": "backend/app/domain/review",
+      "task": "review"
+    },
+    {
+      "prefix": "backend/app/shared/config",
+      "task": "config"
+    },
+    {
+      "prefix": "backend/app/shared/github",
+      "task": "github"
+    },
+    {
+      "prefix": "scripts/context_select.py",
+      "task": "docs"
+    },
+    {
+      "prefix": "backend/app/bootstrap.py",
+      "task": "bootstrap"
+    },
+    {
+      "prefix": "backend/app/workflows.py",
+      "task": "bootstrap"
+    },
+    {
+      "prefix": "scripts/validate_docs.py",
+      "task": "docs"
+    },
+    {
+      "prefix": "backend/app/domain/auth",
+      "task": "auth"
+    },
+    {
+      "prefix": "backend/app/domain/user",
+      "task": "user"
+    },
+    {
+      "prefix": "backend/app/shared/jobs",
+      "task": "jobs"
+    },
+    {
+      "prefix": "backend/pyproject.toml",
+      "task": "architecture"
+    },
+    {
+      "prefix": "backend/app/worker.py",
+      "task": "jobs"
+    },
+    {
+      "prefix": "backend/.env.example",
+      "task": "config"
+    },
+    {
+      "prefix": "frontend/vercel.json",
+      "task": "deploy"
+    },
+    {
+      "prefix": "backend/alembic.ini",
+      "task": "database"
+    },
+    {
+      "prefix": "backend/app/main.py",
+      "task": "bootstrap"
+    },
+    {
+      "prefix": "backend/Dockerfile",
+      "task": "deploy"
+    },
+    {
+      "prefix": "backend/migrations",
+      "task": "database"
+    },
+    {
+      "prefix": ".github/workflows",
+      "task": "deploy"
+    },
+    {
+      "prefix": "docs/architecture",
+      "task": "docs"
+    },
+    {
+      "prefix": "backend/tests",
+      "task": "tests"
+    },
+    {
+      "prefix": "AGENTS.md",
+      "task": "docs"
+    },
+    {
+      "prefix": "README.md",
+      "task": "docs"
+    },
+    {
+      "prefix": "frontend",
+      "task": "frontend"
+    },
+    {
+      "prefix": "scripts/check_helpers.py",
+      "task": "docs"
+    }
+  ],
+  "notes": [
+    "링크 재귀 로딩 금지",
+    "실제 코드 변경 시 --mode edit 사용",
+    "동일 세션에서 이미 읽은 불변 문서 재전송 불필요",
+    "글자 수는 토큰 수가 아님"
+  ],
+  "adr_areas": {
+    "ARCH": {
+      "directory": "docs/architecture/adr/architecture",
+      "owner_document": "docs/architecture/PACKAGE_RULES.md"
+    },
+    "DOCS": {
+      "directory": "docs/architecture/adr/documentation",
+      "owner_document": "docs/architecture/INDEX.md"
+    },
+    "ANALYSIS": {
+      "directory": "docs/architecture/adr/analysis",
+      "owner_document": "docs/architecture/domain/analysis/README.md"
+    },
+    "REVIEW": {
+      "directory": "docs/architecture/adr/review",
+      "owner_document": "docs/architecture/domain/review/README.md"
+    },
+    "INTEGRATION": {
+      "directory": "docs/architecture/adr/integration",
+      "owner_document": "docs/architecture/domain/pull_request/SYNC_POLICY.md"
+    },
+    "RUNTIME": {
+      "directory": "docs/architecture/adr/runtime",
+      "owner_document": "docs/architecture/shared/jobs/README.md"
+    },
+    "DATA": {
+      "directory": "docs/architecture/adr/data",
+      "owner_document": "docs/architecture/shared/database/README.md"
+    },
+    "DEPLOY": {
+      "directory": "docs/architecture/adr/deployment",
+      "owner_document": "docs/architecture/operations/RENDER.md"
+    },
+    "SECURITY": {
+      "directory": "docs/architecture/adr/security",
+      "owner_document": "docs/architecture/operations/SECURITY_PRIVACY.md"
+    },
+    "FRONTEND": {
+      "directory": "docs/architecture/adr/frontend",
+      "owner_document": "docs/architecture/frontend/README.md"
+    },
+    "PRODUCT": {
+      "directory": "docs/architecture/adr/product",
+      "owner_document": "docs/architecture/CORE.md"
+    }
+  },
+  "adr_records": [
+    {
+      "id": "ADR-ARCH-001",
+      "area": "ARCH",
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-001",
+        "D-005",
+        "C-001",
+        "C-006"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DOCS-001",
+      "area": "DOCS",
+      "path": "docs/architecture/adr/documentation/ADR-DOCS-001-selective-reading.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-006"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-ANALYSIS-001",
+      "area": "ANALYSIS",
+      "path": "docs/architecture/adr/analysis/ADR-ANALYSIS-001-static-snapshot-analysis.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-003",
+        "C-004",
+        "C-005",
+        "D-012"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-001",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-001-optional-explanations.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-007",
+        "C-007"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-002",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-009"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-INTEGRATION-001",
+      "area": "INTEGRATION",
+      "path": "docs/architecture/adr/integration/ADR-INTEGRATION-001-github-pr-sync.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-004",
+        "C-003",
+        "D-010"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-RUNTIME-001",
+      "area": "RUNTIME",
+      "path": "docs/architecture/adr/runtime/ADR-RUNTIME-001-durable-jobs.md",
+      "status": "BASELINE",
+      "legacy_ids": [
+        "C-002"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DEPLOY-001",
+      "area": "DEPLOY",
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-001-render-real-deployment.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-002",
+        "D-010"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-PRODUCT-001",
+      "area": "PRODUCT",
+      "path": "docs/architecture/adr/product/ADR-PRODUCT-001-prism-name.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-008"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-PRODUCT-002",
+      "area": "PRODUCT",
+      "path": "docs/architecture/adr/product/ADR-PRODUCT-002-staged-public-access.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [
+        "D-011"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DATA-001",
+      "area": "DATA",
+      "path": "docs/architecture/adr/data/ADR-DATA-001-postgresql.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-FRONTEND-001",
+      "area": "FRONTEND",
+      "path": "docs/architecture/adr/frontend/ADR-FRONTEND-001-vue-vercel.md",
+      "status": "BASELINE",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DOCS-002",
+      "area": "DOCS",
+      "path": "docs/architecture/adr/documentation/ADR-DOCS-002-area-adrs.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    }
+  ]
+}

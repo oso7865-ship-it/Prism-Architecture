@@ -1,0 +1,46 @@
+# Frontend: 화면·API·로그인 경계
+
+> ID: `FRONTEND` · 소유: `frontend` · 기준: `v0.1.0 / 2026-09-25`
+> 읽는 때: 화면·프론트 API·Cookie 프록시를 변경할 때
+
+기존 논의의 Vue/Vercel을 설계 기본값으로 유지한다. 세부 조합은 Vue 3 + TypeScript + Vite + Vue Router를 제안한다. 실제 의존성 버전은 bootstrap 단계에서 고정한다.
+
+```text
+frontend/src/
+├─ app/                 router·앱 초기화
+├─ features/
+│  ├─ auth/
+│  ├─ workspace/
+│  ├─ repository/
+│  ├─ pull-request/
+│  ├─ analysis/
+│  └─ review/
+└─ shared/
+   ├─ api/              HTTP client·오류 변환·refresh single-flight
+   ├─ ui/               도메인 중립 표시 컴포넌트
+   └─ types/            기술 공통 타입
+```
+
+각 feature에는 `api.ts`, `types.ts`, `components/`, `views/`를 필요한 만큼 둔다. 다른 feature의 내부 Store를 직접 수정하지 않는다. WorkspaceRole은 workspace feature 소유로 유지하고 사용 횟수 때문에 shared로 이동하지 않는다.
+
+## 화면 흐름
+
+로그인 → Workspace 선택 → 저장소 연결/목록 → PR 목록/상세 → 분석 접수 → 상태/검사 범위 → Finding 상세 → 선택적 AI 설명. GitHub 기존 리뷰와 우리 분석/AI 결과는 다른 영역으로 표시한다.
+
+PENDING/RUNNING 중에는 3초 간격 상태 조회를 기본으로 하고 오류/대기 장기화 시 backoff한다. 탭이 숨겨지거나 terminal 상태가 되면 멈춘다. 서버를 깨워두기 위한 인위적 상시 polling은 만들지 않는다. WebSocket/SSE는 MVP 필수 기능이 아니다.
+
+## API 프록시
+
+브라우저는 동일 출처 `/api/v1/...`를 호출하고 Vercel external rewrite가 Render의 `/api/v1/...`로 전달하는 구성을 제안한다. Vercel은 외부 origin으로 요청을 프록시하는 rewrite를 제공한다. [S-VERCEL-REWRITE](../reference/SOURCES.md#s-vercel-rewrite)
+
+OAuth Callback도 고정된 프론트 출처의 `/api/v1/auth/github/callback`을 프록시한다. Refresh 쿠키에는 backend 도메인을 Domain으로 지정하지 않는다. Set-Cookie 전달, path, Secure, SameSite, redirect, Origin 검증은 실제 배포 환경에서 확인한다. Preview URL마다 운영 OAuth callback을 넓게 허용하지 않는다.
+
+인증/API 응답은 `Cache-Control: private, no-store`로 응답하고 Vercel API rewrite caching도 비활성화한다. 팀 데이터가 CDN에서 다른 사용자에게 재사용되지 않는지 두 계정으로 테스트한다. GitHub Webhook은 프론트가 아니라 Render의 직접 `/webhooks/github`로 보낸다.
+
+## 금지와 표시 기준
+
+GitHub Secret·LLM key·Refresh 원문을 localStorage 또는 프론트 env에 넣지 않는다. 버튼 숨김은 인가가 아니다. 모든 최종 권한은 백엔드가 검사한다.
+
+외부 PR 본문/코멘트/AI 설명의 HTML은 그대로 실행하지 않는다. AI OFF·데이터 오래됨·PARTIAL·NONE·지원하지 않는 언어·재시도 대기를 명확히 표시한다. COMPLETED/Finding 0을 '이 코드는 안전하다'로 표시하지 않는다.
+
+필수 E2E: 로그인과 refresh, 타 Workspace 접근 거부, PR 동기화 실패 표시, 분석 202 이후 polling, 부분 검사 표시, AI 실패 분리, CDN cache 비공유, 악성 Markdown/HTML 렌더링.

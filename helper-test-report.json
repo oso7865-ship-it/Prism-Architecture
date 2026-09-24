@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "documentation_helpers_only",
+  "task_mode_combinations": 80,
+  "adr_path_routes": 13,
+  "path_routes": 55,
+  "negative_adr_checks": [
+    "duplicate_id",
+    "unknown_area",
+    "missing_migration",
+    "missing_successor",
+    "self_replacement",
+    "wrong_filename",
+    "missing_route"
+  ],
+  "invalid_path_checks": 4,
+  "not_verified": [
+    "application implementation",
+    "live integrations"
+  ]
+}
