@@ -39,6 +39,10 @@
 | [ADR-FRONTEND-001](../adr/frontend/ADR-FRONTEND-001-vue-vercel.md) | Vue와 Vercel 프론트 구성 | BASELINE | — |
 | [ADR-DOCS-002](../adr/documentation/ADR-DOCS-002-area-adrs.md) | 영역별 ADR과 변경 이력 관리 | ACCEPTED | — |
 
+| [ADR-ARCH-002](../adr/architecture/ADR-ARCH-002-independent-repositories.md) | 독립 저장소와 프로젝트별 하네스 | ACCEPTED | — |
+
+| [ADR-DATA-002](../adr/data/ADR-DATA-002-local-postgres-foundation.md) | PostgreSQL 17 로컬 개발 기반 | ACCEPTED | — |
+
 D-010은 실제 연동과 배포 두 책임으로 나누어 이관했다. D-001의 LangChain 선택은 REVIEW-001에서 함께 설명한다. SECURITY 영역은 번호만 예약하며 별도 ADR은 아직 없다.
 
 ## 이관한 설계 기본값의 범위

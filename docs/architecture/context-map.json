@@ -345,6 +345,24 @@
       "id": "ADR-TEMPLATE",
       "owner": "architecture-decisions",
       "read_when": "해당 영역 ADR 작성·변경 검토"
+    },
+    {
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md",
+      "id": "ADR-ARCH-002",
+      "owner": "ARCH",
+      "read_when": "개발 기반 변경 시"
+    },
+    {
+      "path": "docs/architecture/adr/data/ADR-DATA-002-local-postgres-foundation.md",
+      "id": "ADR-DATA-002",
+      "owner": "DATA",
+      "read_when": "개발 기반 변경 시"
+    },
+    {
+      "path": "docs/architecture/runtime/IMPLEMENTATION.md",
+      "id": "IMPLEMENTATION",
+      "owner": "architecture",
+      "read_when": "구현 진행·재개"
     }
   ],
   "tasks": {
@@ -548,7 +566,8 @@
         "docs/architecture/DIRECTORY_MAP.md",
         "docs/architecture/runtime/BOOTSTRAP.md",
         "docs/architecture/decisions/DECISIONS.md",
-        "docs/architecture/adr/README.md"
+        "docs/architecture/adr/README.md",
+        "docs/architecture/runtime/IMPLEMENTATION.md"
       ]
     },
     "docs": {
@@ -573,7 +592,8 @@
       "documents": [
         "docs/architecture/adr/README.md",
         "docs/architecture/PACKAGE_RULES.md",
-        "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md"
+        "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md",
+        "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md"
       ]
     },
     "adr-docs": {
@@ -623,7 +643,8 @@
       "documents": [
         "docs/architecture/adr/README.md",
         "docs/architecture/shared/database/README.md",
-        "docs/architecture/adr/data/ADR-DATA-001-postgresql.md"
+        "docs/architecture/adr/data/ADR-DATA-001-postgresql.md",
+        "docs/architecture/adr/data/ADR-DATA-002-local-postgres-foundation.md"
       ]
     },
     "adr-deploy": {
@@ -1076,6 +1097,24 @@
       "id": "ADR-DOCS-002",
       "area": "DOCS",
       "path": "docs/architecture/adr/documentation/ADR-DOCS-002-area-adrs.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-ARCH-002",
+      "area": "ARCH",
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DATA-002",
+      "area": "DATA",
+      "path": "docs/architecture/adr/data/ADR-DATA-002-local-postgres-foundation.md",
       "status": "ACCEPTED",
       "legacy_ids": [],
       "supersedes": [],

@@ -69,3 +69,5 @@ python scripts/context_select.py --path backend/app/domain/review/provider.py
 ## ADR 선택 경로
 
 아키텍처 변경은 [ADR 규칙](adr/README.md)과 [영역 맵](decisions/DECISIONS.md)을 확인한다. `--task adr`는 작성 안내, `--task adr-review`·`--task adr-data` 등은 해당 영역의 이력만 선택한다. ADR 파일 경로도 영역별 작업으로 연결한다.
+
+구현 진행·독립 저장소 경로·하네스 연결은 [IMPLEMENTATION](runtime/IMPLEMENTATION.md)을 확인한다.
