@@ -40,3 +40,5 @@ PR은 `(repository_connection_id, pr_number)`로 유일하게 식별한다. 저�
 ## 테스트
 
 PR 번호가 저장소마다 중복되는 상황, 열린/닫힌/머지 PR 구별, 필드 누락, 중복 이벤트, PR 삭제/접근 불가, 코멘트의 악성 HTML/비밀 문자열, 외부 pagination과 결과 제한을 검증한다.
+
+물리 컬럼·제약·인덱스와 논리 참조 검증은 [스키마 계약](../../contracts/schema/GITHUB.md)을 따른다. 물리 FK는 생성하지 않는다.

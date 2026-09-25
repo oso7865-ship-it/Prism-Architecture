@@ -12,6 +12,7 @@ GitHub PR을 정적 규칙으로 분석하고 선택적으로 AI 설명을 제�
 |---|---|
 | 백엔드 | Python / FastAPI, 업무별 domain과 기술 공통 shared |
 | 데이터베이스 | PostgreSQL 17 개발 Compose 구성. 로컬 구동·운영 호스팅은 후속 작업 |
+| DB 설계 | [17개 테이블 컬럼·타입·인덱스](docs/architecture/contracts/schema/README.md), 물리 FK 미사용. 업무 migration은 구현 전 |
 | 분석 언어 | Java / JavaScript / TypeScript / Python |
 | 분석 방식 | 고정 commit SHA의 정적 규칙 분석. 대상 코드 실행·의존성 설치 없음 |
 | AI | LangChain + DeepSeek. 세부 모델·예산 미정, 기본 OFF |
@@ -49,7 +50,7 @@ AI와 작업할 때는 다음처럼 요청할 수 있습니다.
 
 1. [패키지 규칙](docs/architecture/PACKAGE_RULES.md), [코드 컨벤션](docs/architecture/CODE_CONVENTIONS.md), [실행 조립](docs/architecture/runtime/BOOTSTRAP.md)을 기준으로 최소 백엔드·프론트 골격을 만듭니다.
 2. 의존성 버전을 검증하여 고정하고 환경 변수 예시·로컬 실행 안내를 추가합니다.
-3. PostgreSQL 버전과 로컬 실행 방식을 확정한 뒤 DB 연결·마이그레이션·테스트 기반을 구성합니다. Docker/HeidiSQL 사용을 논의했지만 아직 설치·구성하지 않았습니다.
+3. DB 연결·마이그레이션·테스트 기반을 확인합니다. 로컬 Docker PostgreSQL 17과 인증·팀 6개 테이블을 구성·검증했습니다. HeidiSQL 접속 방법은 백엔드 문서를 따릅니다.
 4. 문서·구조·기초 테스트를 CI에 연결합니다. 이후 구현 순서는 [테스트 및 구현 기준](docs/architecture/quality/TESTING.md)을 따릅니다.
 
 실제 GitHub OAuth/App 등록, DeepSeek 세부 모델·비용, 도메인, DB 호스팅·백업, 분석 정확도·자원 측정, 외부 공개 운영 정책은 [미정 사항](docs/architecture/decisions/OPEN_ITEMS.md)에 남아 있습니다. 현재 저장소는 아키텍처 관리, Prism-Backend와 Prism-Frontend는 각각 구현 코드를 관리합니다.

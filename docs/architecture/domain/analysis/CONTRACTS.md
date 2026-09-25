@@ -56,8 +56,12 @@ fingerprint는 rule_id + normalized path + safe range/structural key로 만든�
 
 Severity = INFO/WARNING/ERROR/CRITICAL, Category와 confidence는 [Rule Engine](RULE_ENGINE.md)이 소유한다. UI는 이 세 축을 혼동하지 않는다.
 
+Pipeline이 허용한 미지원 텍스트의 Secret 등 언어 중립 Finding은 language=NULL로 저장한다. 이를 네 언어 Parser 지원 확대로 해석하지 않는다. 파일별 Finding 상한에 도달하면 analysis_file_results.finding_limit_reached를 표시하고 coverage를 PARTIAL로 계산한다.
+
 ## 통계와 실패
 
 발견 수뿐 아니라 검사 대상 수·제외 수·Parser 실패 수·미평가 Rule 수를 반환한다. 분석 실패 메시지는 공개 code와 trace_id만 포함한다. GitHub 404가 비공개 권한 부족일 수 있으므로 '존재하지 않음'을 단정하지 않는다.
 
 필수 테스트는 상태 전이, execution_key 구성 필드 변경, 중복 동시 insert, run/attempt 분리, 1-based 위치, partial/none 표시, secret-free serialization이다.
+
+물리 저장은 [분석 스키마](../../contracts/schema/RESULTS.md)를 따른다. config_version은 물리 컬럼 config_version_id로 불변 설정 행을 참조한다. 연결 세대도 execution_key에 포함하고, 기본 generation=0 및 명시적 재분석 증가를 Workspace 잠금 아래 처리한다. 파일별 RuleOutcome은 analysis_file_results의 제한 JSON 배열로 기록한다.

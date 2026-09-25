@@ -21,6 +21,8 @@ shared/jobs/
 
 Job에는 `id, workspace_id, kind, aggregate_id, dedupe_key, state, attempts, max_attempts, available_at, lease_until, lease_generation, claimed_by, created_at, completed_at, error_code`를 둔다. payload가 필요하면 검증된 식별자·설정 버전만 포함한다. token/source/ORM 객체/Session을 저장하지 않는다.
 
+MVP 물리 모델은 범용 payload 없이 aggregate에서 입력을 조회한다. 제한된 attempt_history와 claim 인덱스·상태 CHECK는 [실행 스키마](../../contracts/schema/EXECUTION.md)를 따른다. 전역 설치 이벤트 처리만 workspace_id NULL을 허용하고, 실제 업무 변경은 등록된 연결에서 팀을 찾아 검증한다.
+
 업무 레코드와 Job을 같은 PostgreSQL transaction에서 생성하고 commit 후 접수를 응답한다. 현재 구조에는 외부 Redis/Kafka가 없으므로 DB와 broker 이중 기록을 만들지 않는다.
 
 ## Claim·lease·fencing
@@ -30,6 +32,8 @@ Worker는 READY이고 실행 시각이 지난 Job을 `SELECT ... FOR UPDATE SKIP
 MVP 기본값: 전체 동시 Job 1개, claim loop 2초, lease 60초, heartbeat 15초. 하나의 embedded runner만 실행한다. 분석 CPU 작업은 subprocess에 두어 heartbeat와 HTTP loop를 막지 않는다. SQLAlchemy Session은 단계마다 새로 만든다.
 
 claim마다 lease_generation을 증가시킨다. 결과 저장 시 job_id + 현재 generation + lease 소유/만료 조건을 다시 확인한다. 만료된 이전 worker가 돌아와도 결과를 덮어쓰지 못한다. 이 확인과 domain 결과 저장·Job 완료 표시를 같은 DB transaction에서 처리한다.
+
+claim transaction은 Job만 잠그고 종료한다. domain RUNNING 전환은 다음 짧은 transaction에서 Workspace→업무 행→Job 순서로 재검증한다. 이 사이의 PENDING/LEASED 조합은 복구 가능한 시작 구간이다. 결과 저장·reclaim·cleanup은 [공통 무결성 프로토콜](../../contracts/schema/README.md)을 따른다. Job 잠금을 유지한 채 반대 순서로 Workspace를 잠그지 않는다.
 
 ## 상태와 재시도
 

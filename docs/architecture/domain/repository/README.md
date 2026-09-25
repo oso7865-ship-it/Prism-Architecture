@@ -28,6 +28,8 @@ GitHub 로그인과 별도로 GitHub App을 설치하여 선택된 저장소만 
 
 MVP에서는 하나의 GitHub repository ID를 하나의 활성 Workspace 연결에만 배정한다. 중복 연결 시 409로 처리한다. 계정/저장소 이름이 바뀌어도 GitHub 숫자 ID로 식별한다. 설치 제거·권한 철회 시 `SUSPENDED`로 바꾸고 새 분석과 비밀 접근을 막는다.
 
+배정 유일성에서 SUSPENDED도 기존 Workspace의 점유를 유지한다. DISCONNECTED일 때만 다른 팀에 새 연결을 허용한다. 설치용 state는 auth 공개 계약의 목적별 LoginAttempt를 사용한다. 물리 컬럼·정책 snapshot·연결 세대는 [GitHub 스키마](../../contracts/schema/GITHUB.md)를 따른다.
+
 ## 상태와 설정
 
 연결 상태: `ACTIVE / SUSPENDED / DISCONNECTED`. 영구 삭제 대신 `DISCONNECTED`로 새 작업을 막고 기존 결과는 보관 정책에 따라 제한적으로 유지한다. 재연결은 권한을 다시 확인하고 같은 ID에 새로운 연결 세대를 부여한다.

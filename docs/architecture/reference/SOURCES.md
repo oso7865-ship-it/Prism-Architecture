@@ -196,3 +196,9 @@ https://vercel.com/docs/routing/rewrites
 ```
 
 사용 근거: 외부 origin 프록시와 rewrite cache 동작/비활성화.
+
+## S-PG-RELATIONS
+
+[PostgreSQL 17 Constraints](https://www.postgresql.org/docs/17/ddl-constraints.html), [Explicit Locking](https://www.postgresql.org/docs/17/explicit-locking.html).
+
+2026-09-25 확인. 사용 근거: 행 내부 CHECK와 UNIQUE의 범위, row lock 충돌 및 transaction 종료 시 해제. FK 미사용·Workspace별 쓰기 직렬화는 PRism 설계 선택이며 PostgreSQL이 강제하는 정책이 아니다.

@@ -27,6 +27,8 @@ UUID 같은 내부 ID와 GitHub 외부 bigint ID를 분리한다. 생성/변경 
 
 리소스 쿼리는 workspace_id 스코프를 포함하고 유일성은 DB 제약으로 보장한다. 역할 확인은 도메인에서 따로 한다. SELECT-then-INSERT만으로 중복을 막지 않는다. 목록은 keyset pagination과 최대 page size 100을 기본 정책으로 제안한다.
 
+물리 FK·참조 강제 트리거·자동 CASCADE는 사용하지 않는다. PK/UNIQUE/NOT NULL/행 내부 CHECK는 유지한다. 부모 존재·테넌트·세대 검증과 Workspace별 짧은 쓰기 직렬화, cleanup 잠금 순서는 [물리 스키마](../../contracts/schema/README.md)의 공통 규칙을 따른다. FOR KEY SHARE만으로 부모의 비키 상태 변경까지 차단한다고 가정하지 않는다. [ADR-DATA-003](../../adr/data/ADR-DATA-003-logical-relations-schema.md)
+
 DB pool은 무료/저용량 환경에 맞춰 초기 `pool_size=2, max_overflow=1`로 제한하고 HTTP/worker 동시 세션 수를 측정한다. 이 값은 서비스 처리량 보장이 아니다. transaction pooler 사용 시 driver/session 기능 호환성을 확인한다.
 
 ## Migration

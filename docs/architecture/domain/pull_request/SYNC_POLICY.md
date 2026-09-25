@@ -34,6 +34,8 @@ GitHub는 실패한 Webhook을 자동 재전송하지 않는다. Render 무료 �
 
 같은 저장소의 활성 동기화는 한 건으로 합친다. `ETag/If-None-Match`, pagination, rate-limit 응답을 처리한다. Retry-After/한도 복구 시각을 Job available_at에 반영하고 장시간 sleep하지 않는다. 401/403은 무조건 재시도하지 말고 토큰 만료·권한 철회·rate limit을 구별한다. [S-GH-RATE](../../reference/SOURCES.md#s-gh-rate)
 
+합치기는 같은 모드·대상·cursor·연결 세대 요청에 한정한다. 다른 범위를 요청하면 409 SYNC_IN_PROGRESS로 현재 작업 종료 후 재시도를 안내한다. PR metadata는 확인한 연결 세대를 함께 저장하며 재연결 뒤 이전 세대 metadata로 바로 분석을 접수하지 않는다. [물리 저장 계약](../../contracts/schema/GITHUB.md)
+
 동기화 실패가 기존 PR 목록을 지우지 않는다. UI에 마지막 성공 시각과 오래된 데이터 경고를 보여준다. 기존 PR 전체를 자동 LLM 처리하는 기능은 없다.
 
 ## 필수 검증

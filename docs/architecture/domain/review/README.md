@@ -51,6 +51,8 @@ LangChain의 모델/구조화 출력 기능을 사용하되 선택 Provider의 �
 
 실제 API 호출은 Provider 선택·예산 상한 설정 전 차단한다. `review_key = analysis_id + prompt_version + provider/model + policy_version`으로 중복을 제어한다. timeout 후 실제 외부 과금이 발생했는지 알 수 없는 경우가 있으므로 정확히 한 번 과금을 보장하지 않는다.
 
+MVP의 설명 대상은 서버가 Secret을 제외하고 Severity 내림차순·fingerprint 오름차순으로 최대 10개를 고정한다. 요청자가 임의 부분집합을 지정하지 않으며 선택 방식 변경 시 prompt_version을 올린다. 비용 예약·실제 호출 횟수·과금 미확인 상태 및 결과 컬럼은 [분석·AI 스키마](../../contracts/schema/RESULTS.md)를 따른다. Workspace 잠금 아래 예산 검사와 예약을 처리하고 실제 외부 호출 전에 현재 권한·동의를 다시 확인한다.
+
 DB에는 검증·마스킹된 설명과 실행 metadata만 저장한다. Prompt/응답 원문 trace와 외부 tracing은 기본 OFF다. 예시 코드 생성은 MVP 출력에서 제외하고 텍스트 개선 방향만 제공한다.
 
 ## 검증

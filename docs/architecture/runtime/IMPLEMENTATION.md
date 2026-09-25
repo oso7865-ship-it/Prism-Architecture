@@ -10,8 +10,10 @@
 
 논리 경로 backend/app/...는 Prism-Backend의 app/...로, frontend/src/...는 Prism-Frontend의 src/...로 매핑한다. 기존 context_select.py에는 논리 경로를 전달한다. architecture.json이 각 구현 저장소의 설계 기준 커밋을 고정한다. 설계 변경 후 소비 저장소의 기준 커밋을 명시적으로 갱신한다.
 
-현재 업무 도메인·로그인·PR·분석·AI는 미구현이다. 실제 서비스 배포는 하지 않았다. 기본 앱 테스트·빌드와 실제 PostgreSQL 검증은 구분하며 최신 명령·결과·CI 링크는 구현 저장소의 README와 최신 프로젝트 Report를 따른다. 로컬 Docker는 아직 사용할 수 없어 Compose 실행 검증이 남아 있다.
+인증·팀 6개 ORM과 Alembic 0002는 구현했다. 로그인·Workspace 서비스/API·PR·분석·AI는 미구현이다. 실제 서비스 배포는 하지 않았다. 기본 앱 테스트·빌드와 실제 PostgreSQL 검증은 구분하며 최신 명령·결과·CI 링크는 구현 저장소의 README와 최신 프로젝트 Report를 따른다. 로컬 Docker PostgreSQL 17에서 migration 왕복·drift 검사·테스트 28개·실제 API readiness 200을 확인했다.
 
 다음 구현은 TESTING의 단계에 따라 로그인·User·Workspace 흐름으로 진행한다. 실제 GitHub 등록·DeepSeek 모델/예산·도메인·운영 DB 호스팅·백업은 미정이다.
+
+2026-09-25 DB 설계 구체화: [17개 물리 테이블 설계](../contracts/schema/README.md)와 [ADR-DATA-003](../adr/data/ADR-DATA-003-logical-relations-schema.md)에 컬럼·타입·인덱스·물리 FK 미사용·애플리케이션 관계 검증을 기록했다. 로그인·팀 6개 테이블을 백엔드에서 구현·로컬 검증했다. 나머지 11개와 서비스 논리 참조 검증은 후속 단계다. 이 설계를 게시한 커밋으로 백엔드 architecture.json을 연결하며 하네스 동기화는 보류한다.
 
 검증 증거: [백엔드 CI](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36039579708)는 PostgreSQL 17 마이그레이션 왕복과 테스트 5개 통과, [프론트 CI](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36039823516)는 빌드·타입 검사와 제품 테스트 3개 통과다. 실제 제품 배포는 아니다.

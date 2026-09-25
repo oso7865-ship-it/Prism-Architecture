@@ -44,7 +44,8 @@ python scripts/context_select.py --path backend/app/domain/review/provider.py
 | [DIRECTORY_MAP](DIRECTORY_MAP.md) | 전체 소스 scaffold/패키지 이동 |
 | [BOOTSTRAP](runtime/BOOTSTRAP.md) | 조립·Workflow·Worker 배치 |
 | [HTTP_API](contracts/HTTP_API.md) | 외부 API/Response 변경 |
-| [DATA_MODEL](contracts/DATA_MODEL.md) | DB 관계/FK/유일성 변경 |
+| [DATA_MODEL](contracts/DATA_MODEL.md) | 논리 관계·소유권·유일성 변경 |
+| [DB-SCHEMA](contracts/schema/README.md) | 17개 테이블 컬럼·타입·인덱스·물리 FK 미사용 규칙 |
 | [FRONTEND](frontend/README.md) | 화면·Cookie/API 프록시 |
 | [RENDER](operations/RENDER.md) | 배포·무료 환경 한계 |
 | [PRIVACY](operations/SECURITY_PRIVACY.md) | 소스 반출·보관·삭제 |
@@ -57,6 +58,8 @@ python scripts/context_select.py --path backend/app/domain/review/provider.py
 ## 4. 주제의 유일한 기준
 
 역할/Permission → Workspace. PR event 정책 → PR Sync. Run/Finding 필드 → Analysis Contracts. 자원 상한 → Pipeline. 기술 queue/lease → Shared Jobs. AI 모델 입력/출력 → Review. 보관/삭제 → Privacy. 외부 endpoint → HTTP_API.
+
+DB 컬럼·타입·인덱스 → contracts/schema. 스키마 수정은 `--task database-identity`, `database-github`, `database-results`, `database-execution` 중 해당 묶음만 선택한다.
 
 다른 문서는 위 정의를 복제하지 않는다. 구현 중 계약이 바뀌면 소유 문서 + 직접 소비자 + 테스트만 함께 갱신한다. `context-map.json`은 읽기 경로의 기계용 지도이며 비즈니스 정책을 정의하지 않는다.
 

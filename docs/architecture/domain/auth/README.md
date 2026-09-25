@@ -42,6 +42,8 @@ JWT의 알고리즘 allowlist·issuer·audience·exp를 검증한다. 역할을 
 
 `LoginAttempt(state_hash, expires_at, consumed_at)` 및 `RefreshSession(user_id, token_hash, family_id, expires_at, revoked_at)`는 auth 소유다. 개인정보 프로필은 user 소유다. 요청/로그에 code·state·token 원문을 남기지 않는다.
 
+물리 컬럼·인덱스는 [인증 스키마](../../contracts/schema/IDENTITY.md)를 따른다. LoginAttempt는 purpose로 로그인/설치 state를 분리하고 브라우저 바인딩 해시를 검증한다. 설치 목적에는 사용자·Workspace를 바인딩하며 repository는 auth 공개 계약으로 생성·소비한다. Refresh 계열은 최초 발급 시 정한 절대 만료를 유지하고 rotation으로 연장하지 않는다. 재사용 판별을 위해 교체된 행도 계열 만료/보관 정책까지 유지한다.
+
 ## 검증
 
 state 재사용·만료·위조, Callback URL 변조, 같은 GitHub ID의 동시 로그인, Refresh 재사용, 동시 갱신, 로그아웃, cookie 속성, cross-workspace 권한 차이를 테스트한다. Provider 연동 실패를 내부 500 원문 노출로 처리하지 않는다.

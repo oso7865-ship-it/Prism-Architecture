@@ -24,6 +24,7 @@ frontend/tests/e2e/
 |---|---|
 | 구조 | shared→domain 금지, 다른 domain 내부 import 금지, Service의 HTTP 스키마/SQL 직접 의존 검사 |
 | Auth/RBAC | 변조/만료 세션, state 재사용, 타 팀 리소스, OWNER 이전 경쟁 |
+| DB 관계 | 물리 FK 0개·PK/UQ/CHECK 존재, 부모 없는 insert 거부, 다른 팀 부모 ID 주입, 자식 생성/cleanup 경쟁, 비활성화/결과 저장 경쟁, 고아 참조 점검 |
 | PR | 최초 30개 metadata-only, pagination, 업데이트 역순, 과거 SHA 불가 |
 | Webhook | raw bytes HMAC, duplicate 동시 insert, commit 실패, 내부 retry |
 | Job | claim 경쟁, 강제 종료, lease 복구, stale result fence, 재시도 소진 |
@@ -46,6 +47,8 @@ Rule별 fixture 개수와 활성화 조건은 [Rule Engine](../domain/analysis/R
 8. Render 재기동·메모리·OAuth proxy·보안·cleanup을 검증하고 데모 공개.
 
 단계를 구현할 때마다 관련 소유 문서만 읽고 코드와 함께 갱신한다. 모든 설계를 한 번에 AI에 넣어 전체 구현을 요청하지 않는다. 네 언어 모두 범위에 포함하지만 완료 여부는 테스트로 표시한다.
+
+17개 테이블의 컬럼 설계는 [물리 스키마](../contracts/schema/README.md)를 기준으로 한다. 첫 업무 migration은 users/login_attempts/refresh_sessions/workspaces/workspace_members/invitations 6개부터 구현한다. 나머지는 해당 기능 단계에 도입한다. 물리 FK 없는 무결성은 실제 PostgreSQL에서 두 개 이상의 독립 세션으로 경쟁 시나리오를 실행해 확인한다.
 
 ## 증거 남기기
 

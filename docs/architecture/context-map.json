@@ -363,6 +363,48 @@
       "id": "IMPLEMENTATION",
       "owner": "architecture",
       "read_when": "구현 진행·재개"
+    },
+    {
+      "path": "docs/architecture/contracts/schema/README.md",
+      "id": "DB-SCHEMA",
+      "owner": "data-contracts",
+      "read_when": "물리 스키마 공통 기준·무결성"
+    },
+    {
+      "path": "docs/architecture/contracts/schema/IDENTITY.md",
+      "id": "DB-IDENTITY",
+      "owner": "data-contracts",
+      "read_when": "인증·팀 컬럼·인덱스"
+    },
+    {
+      "path": "docs/architecture/contracts/schema/GITHUB.md",
+      "id": "DB-GITHUB",
+      "owner": "data-contracts",
+      "read_when": "GitHub·PR 컬럼·인덱스"
+    },
+    {
+      "path": "docs/architecture/contracts/schema/RESULTS.md",
+      "id": "DB-RESULTS",
+      "owner": "data-contracts",
+      "read_when": "분석·AI 컬럼·인덱스"
+    },
+    {
+      "path": "docs/architecture/contracts/schema/EXECUTION.md",
+      "id": "DB-EXECUTION",
+      "owner": "data-contracts",
+      "read_when": "실행·웹훅 컬럼·인덱스"
+    },
+    {
+      "path": "docs/architecture/adr/data/ADR-DATA-003-logical-relations-schema.md",
+      "id": "ADR-DATA-003",
+      "owner": "DATA",
+      "read_when": "물리 스키마·관계 정책 변경"
+    },
+    {
+      "path": "docs/architecture/contracts/schema/RELATIONS.md",
+      "id": "DB-RELATIONS",
+      "owner": "data-contracts",
+      "read_when": "테이블 용도·참조 컬럼·관계 설명 확인"
     }
   ],
   "tasks": {
@@ -486,7 +528,8 @@
       "description": "DB·트랜잭션·관계",
       "documents": [
         "docs/architecture/shared/database/README.md",
-        "docs/architecture/contracts/DATA_MODEL.md"
+        "docs/architecture/contracts/DATA_MODEL.md",
+        "docs/architecture/contracts/schema/README.md"
       ]
     },
     "github": {
@@ -644,7 +687,8 @@
         "docs/architecture/adr/README.md",
         "docs/architecture/shared/database/README.md",
         "docs/architecture/adr/data/ADR-DATA-001-postgresql.md",
-        "docs/architecture/adr/data/ADR-DATA-002-local-postgres-foundation.md"
+        "docs/architecture/adr/data/ADR-DATA-002-local-postgres-foundation.md",
+        "docs/architecture/adr/data/ADR-DATA-003-logical-relations-schema.md"
       ]
     },
     "adr-deploy": {
@@ -677,6 +721,54 @@
         "docs/architecture/CORE.md",
         "docs/architecture/adr/product/ADR-PRODUCT-001-prism-name.md",
         "docs/architecture/adr/product/ADR-PRODUCT-002-staged-public-access.md"
+      ]
+    },
+    "database-identity": {
+      "description": "identity 물리 스키마",
+      "documents": [
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/contracts/schema/README.md",
+        "docs/architecture/contracts/schema/IDENTITY.md",
+        "docs/architecture/domain/auth/README.md",
+        "docs/architecture/domain/user/README.md",
+        "docs/architecture/domain/workspace/README.md"
+      ]
+    },
+    "database-github": {
+      "description": "github 물리 스키마",
+      "documents": [
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/contracts/schema/README.md",
+        "docs/architecture/contracts/schema/GITHUB.md",
+        "docs/architecture/domain/repository/README.md",
+        "docs/architecture/domain/pull_request/README.md"
+      ]
+    },
+    "database-results": {
+      "description": "results 물리 스키마",
+      "documents": [
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/contracts/schema/README.md",
+        "docs/architecture/contracts/schema/RESULTS.md",
+        "docs/architecture/domain/analysis/README.md",
+        "docs/architecture/domain/review/README.md"
+      ]
+    },
+    "database-execution": {
+      "description": "execution 물리 스키마",
+      "documents": [
+        "docs/architecture/shared/database/README.md",
+        "docs/architecture/contracts/schema/README.md",
+        "docs/architecture/contracts/schema/EXECUTION.md",
+        "docs/architecture/domain/webhook/README.md"
+      ]
+    },
+    "database-relations": {
+      "description": "테이블 설명과 논리 참조 안내",
+      "documents": [
+        "docs/architecture/contracts/DATA_MODEL.md",
+        "docs/architecture/contracts/schema/README.md",
+        "docs/architecture/contracts/schema/RELATIONS.md"
       ]
     }
   },
@@ -900,6 +992,30 @@
     {
       "prefix": "scripts/check_helpers.py",
       "task": "docs"
+    },
+    {
+      "prefix": "docs/architecture/contracts/schema/IDENTITY.md",
+      "task": "database-identity"
+    },
+    {
+      "prefix": "docs/architecture/contracts/schema/GITHUB.md",
+      "task": "database-github"
+    },
+    {
+      "prefix": "docs/architecture/contracts/schema/RESULTS.md",
+      "task": "database-results"
+    },
+    {
+      "prefix": "docs/architecture/contracts/schema/EXECUTION.md",
+      "task": "database-execution"
+    },
+    {
+      "prefix": "docs/architecture/contracts/schema/README.md",
+      "task": "database"
+    },
+    {
+      "prefix": "docs/architecture/contracts/schema/RELATIONS.md",
+      "task": "database-relations"
     }
   ],
   "notes": [
@@ -1115,6 +1231,15 @@
       "id": "ADR-DATA-002",
       "area": "DATA",
       "path": "docs/architecture/adr/data/ADR-DATA-002-local-postgres-foundation.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DATA-003",
+      "area": "DATA",
+      "path": "docs/architecture/adr/data/ADR-DATA-003-logical-relations-schema.md",
       "status": "ACCEPTED",
       "legacy_ids": [],
       "supersedes": [],
