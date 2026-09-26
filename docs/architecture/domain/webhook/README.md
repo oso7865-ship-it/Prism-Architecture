@@ -52,3 +52,9 @@ Job 시작과 마지막 결과 저장 전에 설치·연결 상태를 다시 확
 본문 한 바이트 변조, 원문 공백 차이, 서명 누락, body 상한, 중복 동시 수신, DB commit 실패, 재전송, 역순 이벤트, 위조 설치 ID, 내부 실패 뒤 재시도를 통합 테스트한다.
 
 물리 컬럼·제약·인덱스와 논리 참조 검증은 [스키마 계약](../../contracts/schema/EXECUTION.md)을 따른다. 물리 FK는 생성하지 않는다.
+
+## 현재 구현 단계 (2026-09-26)
+
+수신 상한1 MiB, PR7개 action과 installation deleted/suspend·installation_repositories removed를 구현했다. 서명·입력·저장 이후 이벤트는 원자적 Worker에서 처리하므로 PROCESSING 상태는 현재 별도 commit하지 않는다. PR 이벤트의 PROCESSED는 후속 SYSTEM SyncRun/Job 접수가 완료됐다는 뜻이며 취득 완료는 SyncRun에서 확인한다. 동기화 실행 중이면30초 지연, 총3회 이후 FAILED로 남긴다.
+수신 시각 이후 다시 연결한 저장소는 이전 설치 철회 처리 대상에서 제외한다. added/unsuspend로 연결을 자동 복원하지 않는다. 자동 분석 계약은 분석 실행기 구현 후 연결하며 현재 비활성이다. 원래 GitHub 발생보다 늦게 도착한 제거 이벤트는 보수적으로 차단할 수 있다.
+공개 수신 주소 미정으로 GitHub의 실제 delivery 검증은 후속이다. 로컬 서명 이벤트와 실제 GitHub 단건 취득을 연결한 검증은 통과했다.

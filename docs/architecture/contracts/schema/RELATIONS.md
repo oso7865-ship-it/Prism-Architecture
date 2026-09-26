@@ -3,7 +3,7 @@
 > ID: `DB-RELATIONS` · 소유: `data-contracts` · 기준: `2026-09-25`
 > 읽는 때: 테이블의 용도·컬럼 설명 위치·테이블 사이의 참조를 확인할 때
 
-현재 설계는 **17개 테이블**이다. 이 문서는 기존 설계를 쉽게 읽기 위한 지도이며, 컬럼의 정확한 타입·NULL·제약은 아래에 연결한 상세 명세가 기준이다. 실제 DB 테이블 생성은 아직 하지 않았다.
+현재 설계는 **16개 테이블**이다. 이 문서는 기존 설계를 쉽게 읽기 위한 지도이며, 컬럼의 정확한 타입·NULL·제약은 아래에 연결한 상세 명세가 기준이다. 0006까지 로컬 DB에 적용되었다.
 
 ## 먼저 알아둘 표기
 
@@ -31,8 +31,7 @@
 | [analysis_runs](RESULTS.md#table-analysis_runs) | 고정 commit·규칙·설정으로 접수한 분석 한 번 | execution_key: 중복 실행 식별, config_version_id: 당시 설정, status: 실행 상태, coverage_status: 검사 범위 |
 | [analysis_file_results](RESULTS.md#table-analysis_file_results) | 한 분석에서 파일 하나를 처리한 결과 | file_path: 경로, status: 포함·제외·실패, rule_outcomes: 규칙별 평가 여부, finding_limit_reached: 결과 상한 도달 |
 | [findings](RESULTS.md#table-findings) | 정적 분석이 발견한 항목 하나 | rule_id: 규칙, severity: 중요도, confidence: 근거 확실성, start_line/end_line: 위치, fingerprint: 분석 내 중복 식별 |
-| [review_runs](RESULTS.md#table-review_runs) | 정적 분석 결과에 대한 AI 설명 요청 한 번 | analysis_id: 대상 분석, model: 모델, selected_finding_ids: 설명 대상, call_count: 실제 호출 횟수, 비용 예약·정산 정보 |
-| [finding_explanations](RESULTS.md#table-finding_explanations) | 특정 AI 실행이 Finding 하나에 작성한 설명 | review_run_id/finding_id: 대상 관계, explanation: 설명, suggestion_text: 개선 방향, limitations: 한계 |
+| [review_runs](RESULTS.md#table-review_runs) | 제한된 코드 문맥의 AI 리뷰 요청 한 번 | analysis_id: 대상 분석, model: 모델, result: 검증된 결과, call_attempts: 호출 시도, 토큰 사용량 |
 | [jobs](EXECUTION.md#table-jobs) | 백그라운드에서 처리할 작업 하나 | kind: 작업 종류, aggregate_id: 업무 대상, state: 대기·실행·종료, lease_generation: 오래된 실행의 저장 차단 |
 | [webhook_deliveries](EXECUTION.md#table-webhook_deliveries) | 검증 후 접수한 GitHub 이벤트 하나 | delivery_id: 전달 식별자, event/action: 사건 종류, body_digest: 본문 지문, status: 처리 상태 |
 
@@ -82,11 +81,8 @@ PR 번호는 전역 고유값이 아니다. 예를 들어 저장소 A의 PR #12�
 | findings.analysis_id | analysis_runs.id | 1:N, 분석이 발견한 항목들 |
 | review_runs.analysis_id | analysis_runs.id | 1:N, 모델·Prompt·정책 버전별 AI 요청들 |
 | review_runs.requested_by | users.id | 1:N, AI 요청 사용자 |
-| review_runs.selected_finding_ids의 각 UUID | findings.id | 배열 안의 논리 참조; 같은 분석의 설명 대상으로 고정한 목록 |
-| finding_explanations.review_run_id | review_runs.id | 1:N, AI 실행에서 생성한 설명들 |
-| finding_explanations.finding_id | findings.id | 1:N, 하나의 Finding에 여러 AI 실행의 설명 가능 |
 
-이 다섯 테이블의 **workspace_id는 모두 workspaces.id를 참조**한다. 모든 부모가 같은 팀인지 확인한다. 설명의 Finding은 Review가 가리키는 Analysis 소속이며 selected_finding_ids 안에 있어야 한다. `(review_run_id,finding_id)`는 중복 불가다.
+이 네 테이블의 **workspace_id는 모두 workspaces.id를 참조**한다. 모든 부모가 같은 팀인지 확인한다. AI 결과는 review_runs.result에 검증된 JSON으로 보관한다.
 
 analysis_file_results와 findings는 둘 다 Analysis의 자식이다. Finding에 file_result_id는 없으며 경로·side와 분석 ID로 파일 맥락을 대응시킨다. 정적 Finding과 AI 설명은 별도 행이므로 AI 실패가 기존 Finding을 삭제하거나 판정을 바꾸지 않는다.
 
@@ -119,7 +115,7 @@ GitHub 이벤트 하나에서 PR 갱신과 분석 접수가 이어질 수 있다
 
 ## 관계를 따라 읽는 예
 
-사용자가 팀의 PR 분석 결과를 보는 경우: 사용자 인증 → workspace_members에서 소속/권한 확인 → pull_requests에서 팀·저장소 확인 → analysis_runs 선택 → findings와 analysis_file_results 조회 → 필요하면 review_runs와 finding_explanations 조회.
+사용자가 팀의 PR 분석 결과를 보는 경우: 사용자 인증 → workspace_members에서 소속/권한 확인 → pull_requests에서 팀·저장소 확인 → analysis_runs 선택 → findings와 analysis_file_results 조회 → 필요하면 review_runs 결과 조회.
 
 예를 들어 `findings.analysis_id=A`이면 analysis_runs.id=A의 결과다. 그러나 A라는 ID를 안다는 것만으로 조회 권한이 생기지 않는다. API는 현재 사용자에게 해당 Workspace 접근 권한이 있는지 확인하고, 조회에도 workspace_id 조건을 함께 적용한다.
 

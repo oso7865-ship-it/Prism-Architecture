@@ -3,11 +3,11 @@
 > ID: `ADR-REVIEW-001` · 소유: `REVIEW` · 기준: `2026-09-25`
 > 읽는 때: 이 영역의 결정 배경이나 대체 여부를 검토할 때
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-25`
 - 근거: D-007, C-007
 - 대체하는 ADR: 없음
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-REVIEW-003](ADR-REVIEW-003-bounded-manual-code-review.md)
 
 ## 배경
 

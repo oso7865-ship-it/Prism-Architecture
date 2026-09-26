@@ -41,3 +41,5 @@ GitHub는 실패한 Webhook을 자동 재전송하지 않는다. Render 무료 �
 ## 필수 검증
 
 최초 30개 분석 미생성, synchronize 중복 분석 방지, 업데이트 역순, draft 전환, 머지 상태, 304, rate limit, 실패 뒤 기존 데이터 유지, 수동 재동기화, 접근 불가능한 과거 SHA를 확인한다.
+
+현재 구현의 페이지 입력과 cursor 저장 형식은 [ADR-INTEGRATION-002](../../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md)를 따른다. 단건/페이지 scope별 ETag 재사용은 같은 연결 세대의 성공 기록으로만 제한한다.

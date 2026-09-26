@@ -42,3 +42,7 @@ PR은 `(repository_connection_id, pr_number)`로 유일하게 식별한다. 저�
 PR 번호가 저장소마다 중복되는 상황, 열린/닫힌/머지 PR 구별, 필드 누락, 중복 이벤트, PR 삭제/접근 불가, 코멘트의 악성 HTML/비밀 문자열, 외부 pagination과 결과 제한을 검증한다.
 
 물리 컬럼·제약·인덱스와 논리 참조 검증은 [스키마 계약](../../contracts/schema/GITHUB.md)을 따른다. 물리 FK는 생성하지 않는다.
+
+## 현재 단계의 안전한 조회 범위
+
+[ADR-INTEGRATION-002](../../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md)에 따라 기존 리뷰는 작성자·상태·커밋 식별자와 GitHub 링크만 반환한다. 코멘트 원문·Diff·커밋 메시지 표시와 선별 마스킹은 확장 작업이며 현재 구현 완료 범위가 아니다. 위 원문 조회 원칙은 그 확장 시 적용한다.

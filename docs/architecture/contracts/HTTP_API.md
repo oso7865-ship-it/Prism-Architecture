@@ -22,10 +22,15 @@ Base path는 `/api/v1`. JSON은 snake_case, ID는 문자열 UUID, 시각은 UTC 
 | GET /workspaces | 내 멤버십에 속한 팀만 | 200 |
 | GET /workspaces/{w}/members | workspace | 200 |
 | POST /workspaces/{w}/invitations | workspace | 201 |
+| GET /workspaces/{w}/invitations | 대기 초대 목록(토큰 미포함) | 200 |
+| DELETE /workspaces/{w}/invitations/{i} | 초대 철회 | 204 |
+| DELETE /workspaces/{w}/members/{u} | 멤버 제거 또는 본인 탈퇴 | 204 |
 | POST /invitations/accept | 대상 ID 확인·일회성 소비 | 200 |
 | PATCH /workspaces/{w}/members/{u} | workspace, 역할 변경 | 200 |
 | POST /workspaces/{w}/transfer-ownership | workspace | 200 |
-| POST /workspaces/{w}/repositories | 연결 + 최초 sync 접수 | 201 |
+| GET /github-app | App 설정 상태·설치 링크 | 200 |
+| POST /workspaces/{w}/repositories/connect | 인증된 팀 관리자 연결 시작, state/PKCE 쿠키·GitHub 인증 URL | 200 |
+| GET /github-app/callback | 검증 후 연결 + 최초 sync 원자적 접수, SPA 복귀 | 302 |
 | GET /workspaces/{w}/repositories | repository | 200 |
 | PATCH /workspaces/{w}/repositories/{r}/settings | 설정 새 버전 | 200 |
 | DELETE /workspaces/{w}/repositories/{r} | 논리적 연결 해제 | 204 |
@@ -36,7 +41,9 @@ Base path는 `/api/v1`. JSON은 snake_case, ID는 문자열 UUID, 시각은 UTC 
 | GET /workspaces/{w}/pull-requests/{p}/github-reviews | 기존 리뷰 on-demand | 200 |
 | POST /workspaces/{w}/analyses | analysis Job | 202 |
 | GET /workspaces/{w}/analyses/{a} | 상태·coverage | 200 |
-| GET /workspaces/{w}/analyses/{a}/findings | 정적 Finding | 200 |
+| GET /workspaces/{w}/analyses/{a}/findings | 정적 Finding (중요도/ID cursor, 100개) | 200 |
+| GET /workspaces/{w}/analyses/{a}/files | 파일별 상태·규칙 평가 (cursor, 100개) | 200 |
+| GET /workspaces/{w}/pull-requests/{p}/analyses | 최근 분석 50개·활성 규칙·runner 상태 | 200 |
 | POST /workspaces/{w}/analyses/{a}/cancel | 취소 요청 | 202 |
 | POST /workspaces/{w}/analyses/{a}/reviews | 별도 AI Job | 202 |
 | GET /workspaces/{w}/reviews/{review_id} | AI 실행/결과 | 200 |
@@ -60,3 +67,5 @@ Webhook은 API prefix 밖 `POST /webhooks/github`. health는 `/health/live`, `/h
 ## 공개 계약과 승인
 
 API response_model은 반환 필드를 allowlist로 제한한다. ORM 전체를 자동 직렬화하지 않는다. private 응답에는 no-store를 적용한다. 기능별 permission 상세는 [Workspace](../domain/workspace/README.md)를 따른다. DELETE Workspace·회원 탈퇴·자동 GitHub 댓글은 이 초기 API 표에 포함하지 않는다.
+
+현재 구현의 연결·PR 리뷰 응답 범위는 [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md)를 따른다. 설정 PATCH·AI 리뷰 경로는 후속 구현이다. 분석과 Webhook은 현재 working-tree에서 구현했으며 검증 범위는 IMPLEMENTATION을 따른다. Sync POST는 page(기본1) 또는 pr_number를 받고, 외부 리뷰 GET은 kind(reviews/comments/review_comments/commits)와 page를 받는다.

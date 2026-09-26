@@ -1,60 +1,49 @@
-# Review: LangChain 기반 선택적 설명
+# Review: 수동 DeepSeek 코드 리뷰
 
-> ID: `REVIEW` · 소유: `backend/app/domain/review` · 기준: `v0.1.0 / 2026-09-25`
-> 읽는 때: LangChain·Provider·Prompt·AI 결과를 변경할 때
+> ID: `REVIEW` · 소유: `backend/app/domain/review` · 기준: `2026-09-26`
+> 읽는 때: LangChain·전송 정책·AI 결과·비용을 변경할 때
 
-## 소유권과 구조
+## 실행과 소유권
 
-정적 Finding을 설명하고 사람이 판단할 수 있는 개선 방향을 제시한다. AI는 규칙 엔진의 판정자나 자동 수정 실행기가 아니다.
+[ADR-REVIEW-003](../../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md)이 초기 FINDINGS_ONLY 설계를 대체한다. 정적 Finding은 변경하지 않는다. `review`가 router/service/models/policy/provider/worker를 소유하며 analysis/repository/pull_request/workspace의 공개 API만 사용한다. LangChain ChatDeepSeek의 JSON mode와 Pydantic strict 검증을 사용한다. 서버 기본 OFF이며 로컬 검증 설정에서만 명시적으로 켠다. 기본 모델은 deepseek-flash, API 모델 목록에서 가용성을 확인한다.
 
-```text
-review/
-├─ api.py
-├─ router.py                 설명 요청/조회
-├─ service.py                동의·예산·중복 검사 및 Job 접수
-├─ repository.py
-├─ models.py                 ReviewRun·FindingExplanation
-├─ provider.py               LangChain 모델 생성; 현재 review 전용
-├─ policy.py                 전송 허용·예산·대상 선택
-├─ jobs/explain_findings.py
-├─ chain/explain.py          Prompt → model → 구조 검증
-├─ prompt/explain.py         업무 Prompt
-├─ output.py                 FindingExplanationOutput
-├─ dto.py
-├─ exceptions.py
-└─ schema/{request,response}.py
-```
+완료된 정적 분석에서 OWNER가 매 요청에 외부 코드 전송에 동의하고 수동 실행한다. 팀 멤버는 결과를 조회한다. 접수·전송 직전·저장 시 현재 권한과 연결 세대를 다시 확인한다. 요청자 권한 상실·연결 변경 시 결과를 폐기한다. 자동 리뷰, GitHub 게시, 코드 적용/실행은 없다.
 
-현재 소비 도메인이 review뿐이므로 provider factory도 여기 둔다. 다수 Chain이 쓴다는 이유로 shared로 이동하지 않는다.
+## 입력과 출력
 
-LLM Provider는 사용자 선택에 따라 **DeepSeek**를 사용한다. 세부 모델과 API 비용 상한은 아직 미정이며, 설정과 검증을 마치기 전에는 실제 호출하지 않는다.
+BOUNDED_CODE_V1: GitHub PR의 첫 100개 변경 파일 중 지원 언어 최대 8개, patch당 8KiB, 전체 JSON 입력 24KiB. 고정 base/head를 취득 전후 확인하며 HEAD 변경·주변 줄만 전송한다. 삭제 줄·전체 파일·PR 본문·사람 코멘트는 보내지 않는다. 제외 경로·비밀 의심 파일을 걸러내며 실제 경로 대신 f1… ID를 사용한다. 비밀 탐지는 완전하지 않다. 기밀 코드 전송 권한은 요청자가 판단해야 한다.
 
-## 실행 정책
+정적 Finding은 SECURITY를 제외하고 중요도와 fingerprint 기준 최대 10개 서버 메시지·규칙·언어를 제공한다. 코드 주석·문자열은 불신 데이터로 취급한다. LLM 도구와 DB/GitHub 쓰기 권한은 없다. 외부 tracing·환경 프록시·redirect·자동 재시도를 끈다.
 
-AI 기본 상태는 `OFF`. OWNER가 저장소 단위로 외부 전송 Provider와 범위를 승인한 뒤 멤버가 명시적으로 요청한다. MVP는 정적 분석 완료 후 별도의 `POST .../analyses/{id}/reviews`로 요청하며 자동 AI 실행은 하지 않는다. analysis → review 의존성을 만들지 않는다.
+출력은 summary, issues(file_id,line,severity,title,evidence,suggestion), limitations. unknown field·과도한 길이·비밀 패턴·전송하지 않은 파일/줄 참조는 거부한다. AI severity는 정적 Finding을 변경하지 않는다. 서버가 경로를 복원하고 Vue는 HTML 실행 없이 텍스트로 렌더링한다. 요약/한계 각 1600자, 발견 최대 10개, 제목160자, 근거/제안 각800자. 검증된 결과만 review_runs.result에 보관하고 원문 prompt/diff/모델응답은 저장하지 않는다.
 
-`ReviewRun.status = PENDING / RUNNING / COMPLETED / FAILED / CANCELED`. 분석 자체의 상태와 완전히 분리한다. 외부 요청 직전 현재 멤버십·저장소 동의·예산을 재확인한다. 동의 철회로 이미 외부에 전송된 요청을 소급 취소할 수는 없다는 한계를 표시한다.
+## 실행·한도·이력
 
-## LLM 입력/출력
+PENDING → RUNNING → COMPLETED/FAILED/CANCELED. EXPLAIN_FINDINGS 영속 Job으로 처리한다. analysis·model·prompt·policy·연결 세대·generation digest가 동일하면 기존 실행을 반환한다. 명시 재실행은 새 generation이다.
 
-MVP 전송 모드는 `FINDINGS_ONLY`다. 원문 코드·Diff·PR 본문·사람 리뷰·실제 파일 경로·조직명·개인정보는 보내지 않는다. rule_id, 정제된 규칙 설명, 언어, Severity, 검증된 비민감 구조 수치와 익명 Finding ID만 전송한다. Secret Finding은 원문/일부분도 보내지 않고 별도 고정 보안 안내로 대체한다.
+한 실행 외부 호출1회, 출력2000token, 모델60초/취득 포함90초 제한. Workspace UTC 접수일 기준 최대5회(설정으로 축소 가능), 동시1개. 실패/취소도 접수 한도를 소비한다. Workspace 잠금 아래 예약한다. 외부 요청 전에 call_attempts를 커밋하며 lease 만료는 자동 재호출 없이 실패 처리한다. 모델 설정 변경 시 대기 실행을 다른 모델로 보내지 않는다.
 
-코드 문맥이 없으므로 답변의 구체성에는 한계가 있다. 결과 화면에 '일반 개선 설명이며 코드 실행/타입 검증 결과가 아님'을 표시한다. 최소 코드 조각 전송은 별도 동의/반출 통제 후 확장 후보로만 둔다. 마스킹만으로 기업 코드 기밀 문제가 해결됐다고 주장하지 않는다.
+토큰 관측값과 usage_uncertain을 기록한다. 금액 보장은 하지 않으며 정확한 청구는 DeepSeek 기준이다. 취소는 이미 전송된 요청의 과금을 되돌리지 않는다. 원문 소스 보관 없이 한정된 문맥만 검토하므로 실행 검증·전체 시스템 정합성·결함 부재를 보장하지 않는다.
 
-출력 모델은 `{finding_id, explanation, suggestion_text, limitations}`이다. 입력에 없던 finding_id·unknown field·과도한 길이는 거부한다. Severity/Rule 변경 필드는 받지 않는다. Prompt는 정적 서버 템플릿으로만 구성한다. LLM에게 실행 도구·DB·GitHub 쓰기 권한을 주지 않는다.
+## HTTP 계약
 
-LangChain의 모델/구조화 출력 기능을 사용하되 선택 Provider의 지원 여부를 테스트한다. JSON처럼 보인다는 이유만으로 유효한 업무 결과로 저장하지 않는다. [S-LC-MODEL](../../reference/SOURCES.md#s-lc-model), [S-LC-STRUCTURED](../../reference/SOURCES.md#s-lc-structured)
+모든 경로는 `/api/v1/workspaces/{wid}` 하위다.
 
-## 비용과 보관 — 설계 기본값
-
-한 요청당 최대 Finding 10개, 출력 2,000 token 상한, 모델 호출 30초 timeout을 초기값으로 제안한다. Provider tokenizer/limit와의 호환성은 구현 시 검증한다. 재시도 최대 총 2회, Provider 자체 재시도는 끄거나 같은 예산에 포함한다. 429/일시 장애만 재시도하고 잘못된 출력은 1회 보정 범위 안에서 제한한다. 전체 호출 횟수는 항상 총 2회 이하다.
-
-실제 API 호출은 Provider 선택·예산 상한 설정 전 차단한다. `review_key = analysis_id + prompt_version + provider/model + policy_version`으로 중복을 제어한다. timeout 후 실제 외부 과금이 발생했는지 알 수 없는 경우가 있으므로 정확히 한 번 과금을 보장하지 않는다.
-
-MVP의 설명 대상은 서버가 Secret을 제외하고 Severity 내림차순·fingerprint 오름차순으로 최대 10개를 고정한다. 요청자가 임의 부분집합을 지정하지 않으며 선택 방식 변경 시 prompt_version을 올린다. 비용 예약·실제 호출 횟수·과금 미확인 상태 및 결과 컬럼은 [분석·AI 스키마](../../contracts/schema/RESULTS.md)를 따른다. Workspace 잠금 아래 예산 검사와 예약을 처리하고 실제 외부 호출 전에 현재 권한·동의를 다시 확인한다.
-
-DB에는 검증·마스킹된 설명과 실행 metadata만 저장한다. Prompt/응답 원문 trace와 외부 tracing은 기본 OFF다. 예시 코드 생성은 MVP 출력에서 제외하고 텍스트 개선 방향만 제공한다.
+- POST `/analyses/{aid}/reviews`: `{consent:true, rerun_of?: UUID}`, 202 실행 응답.
+- GET `/analyses/{aid}/reviews`: 최근50개 items, enabled, model, daily_limit.
+- GET `/reviews/{rid}`: 검증된 결과·상태·토큰·오류코드.
+- POST `/reviews/{rid}/cancel`: 소유자의 중단 요청, 202.
 
 ## 검증
 
-AI OFF에서 외부 호출 0회, Secret 전송 금지, 입력 ID 밖 결과 거부, timeout/429/출력 오류, 결과 속 악성 HTML, 중복 요청, 예산 초과, 사용자 권한 철회, AI 실패 후 정적 Finding 유지가 필수다.
+AI OFF/동의/권한·테넌트, 중복/일 한도, 비밀/제외 경로/크기 제한, schema·줄 검증, timeout·lease 만료 재호출0, 취소·접근 철회, 정적 분석 보존, 실제 PR 호출을 확인한다. FK 없는 컬럼 계약은 [결과 스키마](../../contracts/schema/RESULTS.md)를 따른다.
+
+## 검토 범위 metadata — 2026-09-26
+
+새 성공 결과의 result.coverage는 서버가 files(file_id,file_path,provided_lines), excluded(file_path 또는 null,reason), unfetched_files(수 또는 null)를 기록한다. 모델 입력에는 경로/coverage를 추가하지 않는다. 비밀 의심 내용이나 원문 patch는 보관하지 않으며 유효하지 않거나 민감 패턴이 있는 경로는 null로 숨긴다. 제외 사유와 첫100개 밖 미취득 수를 구분한다. 과거 결과는 coverage 필드가 없고 상세 미기록 안내만 표시한다. 기존 결과 역추정·수정과 DB migration은 없다. UI는 고정 HEAD 파일 링크와 텍스트 사유를 표시한다.
+
+## 리뷰 하네스
+
+[ADR-REVIEW-004](../../adr/review/ADR-REVIEW-004-versioned-review-harness.md). review/harness의 core/checks/output와 실제 입력 언어 모듈을 조합한다. 서버만 지침을 선택하고 저장소 코드·문서는 불신 데이터다. SystemMessage는 최대24KiB, 기존 코드 입력24KiB와 별도다. 전체 문서/schema/조합 revision hash로 prompt_version(rh1-16hex)을 기록한다. 성공 result.harness는 version/modules/system_digest를 포함한다. 원문 prompt는 미보관이다.
+
+새 issue.basis는 SUPPORTED/NEEDS_CONTEXT이며 NEEDS_CONTEXT+ERROR는 거부한다. 전자는 모델이 코드 근거를 찾았다는 뜻이지 실제 동작 검증이 아니다. 구체적 근거가 없는 추측은 limitations에 둔다. 이전 결과는 basis/harness 없이도 조회한다. 모델 품질은 고정된 합성 corpus와 사람이 읽는 rubric으로 별도 평가한다. scorer 테스트 통과를 실제 LLM 정확도로 보고하지 않는다.

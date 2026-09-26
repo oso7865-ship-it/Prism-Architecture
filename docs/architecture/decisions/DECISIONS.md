@@ -28,9 +28,12 @@
 | [ADR-ARCH-001](../adr/architecture/ADR-ARCH-001-python-domain-boundaries.md) | Python과 업무 소유권 중심 구조 | ACCEPTED | D-001, D-005, C-001, C-006 |
 | [ADR-DOCS-001](../adr/documentation/ADR-DOCS-001-selective-reading.md) | 패키지별 선택 읽기 | ACCEPTED | D-006 |
 | [ADR-ANALYSIS-001](../adr/analysis/ADR-ANALYSIS-001-static-snapshot-analysis.md) | 네 언어의 고정 Snapshot 정적 분석 | ACCEPTED | D-003, C-004, C-005, D-012 |
-| [ADR-REVIEW-001](../adr/review/ADR-REVIEW-001-optional-explanations.md) | 정적 Finding과 선택적 AI 설명 분리 | ACCEPTED | D-007, C-007 |
+| [ADR-REVIEW-001](../adr/review/ADR-REVIEW-001-optional-explanations.md) | 정적 Finding과 선택적 AI 설명 분리 | SUPERSEDED | D-007, C-007 |
 | [ADR-REVIEW-002](../adr/review/ADR-REVIEW-002-deepseek-provider.md) | DeepSeek Provider 선택 | ACCEPTED | D-009 |
+| [ADR-REVIEW-003](../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md) | 제한된 코드 문맥 수동 AI 리뷰·실행 한도 | ACCEPTED | REVIEW-001 대체 |
+| [ADR-REVIEW-004](../adr/review/ADR-REVIEW-004-versioned-review-harness.md) | DeepSeek 리뷰 하네스·버전·평가 | ACCEPTED | REVIEW-003 확장 |
 | [ADR-INTEGRATION-001](../adr/integration/ADR-INTEGRATION-001-github-pr-sync.md) | 실제 GitHub 연동과 PR 동기화 | ACCEPTED | D-004, C-003, D-010 |
+| [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | ACCEPTED | — |
 | [ADR-RUNTIME-001](../adr/runtime/ADR-RUNTIME-001-durable-jobs.md) | PostgreSQL 영속 Job과 복구 | BASELINE | C-002 |
 | [ADR-DEPLOY-001](../adr/deployment/ADR-DEPLOY-001-render-real-deployment.md) | Render 배포와 실제 주소 사용 | ACCEPTED | D-002, D-010 |
 | [ADR-PRODUCT-001](../adr/product/ADR-PRODUCT-001-prism-name.md) | PRism 프로젝트명 | ACCEPTED | D-008 |

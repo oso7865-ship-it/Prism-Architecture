@@ -405,6 +405,24 @@
       "id": "DB-RELATIONS",
       "owner": "data-contracts",
       "read_when": "테이블 용도·참조 컬럼·관계 설명 확인"
+    },
+    {
+      "path": "docs/architecture/adr/integration/ADR-INTEGRATION-002-verified-app-connection.md",
+      "id": "ADR-INTEGRATION-002",
+      "owner": "INTEGRATION",
+      "read_when": "GitHub App 연결·콜백·PR 조회 구현을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-003-bounded-manual-code-review.md",
+      "id": "ADR-REVIEW-003",
+      "owner": "architecture-decisions",
+      "read_when": "제한 코드 문맥의 수동 AI 리뷰 구현·변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md",
+      "id": "ADR-REVIEW-004",
+      "owner": "architecture-decisions",
+      "read_when": "DeepSeek 리뷰 지침·버전·평가 변경"
     }
   ],
   "tasks": {
@@ -662,7 +680,9 @@
         "docs/architecture/adr/README.md",
         "docs/architecture/domain/review/README.md",
         "docs/architecture/adr/review/ADR-REVIEW-001-optional-explanations.md",
-        "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md"
+        "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md",
+        "docs/architecture/adr/review/ADR-REVIEW-003-bounded-manual-code-review.md",
+        "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md"
       ]
     },
     "adr-integration": {
@@ -670,7 +690,8 @@
       "documents": [
         "docs/architecture/adr/README.md",
         "docs/architecture/domain/pull_request/SYNC_POLICY.md",
-        "docs/architecture/adr/integration/ADR-INTEGRATION-001-github-pr-sync.md"
+        "docs/architecture/adr/integration/ADR-INTEGRATION-001-github-pr-sync.md",
+        "docs/architecture/adr/integration/ADR-INTEGRATION-002-verified-app-connection.md"
       ]
     },
     "adr-runtime": {
@@ -1114,13 +1135,15 @@
       "id": "ADR-REVIEW-001",
       "area": "REVIEW",
       "path": "docs/architecture/adr/review/ADR-REVIEW-001-optional-explanations.md",
-      "status": "ACCEPTED",
+      "status": "SUPERSEDED",
       "legacy_ids": [
         "D-007",
         "C-007"
       ],
       "supersedes": [],
-      "superseded_by": []
+      "superseded_by": [
+        "ADR-REVIEW-003"
+      ]
     },
     {
       "id": "ADR-REVIEW-002",
@@ -1240,6 +1263,35 @@
       "id": "ADR-DATA-003",
       "area": "DATA",
       "path": "docs/architecture/adr/data/ADR-DATA-003-logical-relations-schema.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-INTEGRATION-002",
+      "area": "INTEGRATION",
+      "path": "docs/architecture/adr/integration/ADR-INTEGRATION-002-verified-app-connection.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-003",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-003-bounded-manual-code-review.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-001"
+      ],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-004",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md",
       "status": "ACCEPTED",
       "legacy_ids": [],
       "supersedes": [],

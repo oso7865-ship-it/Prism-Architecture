@@ -4,15 +4,15 @@ GitHub PR을 정적 규칙으로 분석하고 선택적으로 AI 설명을 제�
 
 **현재 단계: 설계 기준 v0.1.0 / 별도 저장소의 개발 기반·초기 CI 검증 완료**
 
-기준일: 2026-09-25. 이 저장소에는 설계 문서, 영역별 ADR, 문서 선택·검증 스크립트가 있습니다. 백엔드·프론트 개발 기반은 별도 저장소에 구성했습니다. 실제 업무 기능과 외부 서비스 연동은 아직 구현하지 않았습니다. [구현 저장소·현재 단계](docs/architecture/runtime/IMPLEMENTATION.md)를 확인하세요.
+기준일: 2026-09-25. 이 저장소에는 설계 문서, 영역별 ADR, 문서 선택·검증 스크립트가 있습니다. 백엔드·프론트 개발 기반은 별도 저장소에 구성했습니다. 로그인 구현·사용자 테스트는 완료했으며 팀·GitHub App 연결·PR 동기화·정적 분석 23개 규칙과 결과 화면은 구현 저장소 dev working-tree에서 검증했습니다. [구현 저장소·현재 단계](docs/architecture/runtime/IMPLEMENTATION.md)를 확인하세요.
 
 ## 제품과 기술 방향
 
 | 구분 | 방향 |
 |---|---|
 | 백엔드 | Python / FastAPI, 업무별 domain과 기술 공통 shared |
-| 데이터베이스 | PostgreSQL 17 개발 Compose 구성. 로컬 구동·운영 호스팅은 후속 작업 |
-| DB 설계 | [17개 테이블 컬럼·타입·인덱스](docs/architecture/contracts/schema/README.md), 물리 FK 미사용. 업무 migration은 구현 전 |
+| 데이터베이스 | PostgreSQL 17 개발 Compose 구성. 로컬 구동 확인 완료, 운영 호스팅은 후속 작업 |
+| DB 설계 | [17개 테이블 컬럼·타입·인덱스](docs/architecture/contracts/schema/README.md), 물리 FK 미사용. 15개 업무 테이블 구현·검증, AI Review 2개는 후속 |
 | 분석 언어 | Java / JavaScript / TypeScript / Python |
 | 분석 방식 | 고정 commit SHA의 정적 규칙 분석. 대상 코드 실행·의존성 설치 없음 |
 | AI | LangChain + DeepSeek. 세부 모델·예산 미정, 기본 OFF |
@@ -53,7 +53,7 @@ AI와 작업할 때는 다음처럼 요청할 수 있습니다.
 3. DB 연결·마이그레이션·테스트 기반을 확인합니다. 로컬 Docker PostgreSQL 17과 인증·팀 6개 테이블을 구성·검증했습니다. HeidiSQL 접속 방법은 백엔드 문서를 따릅니다.
 4. 문서·구조·기초 테스트를 CI에 연결합니다. 이후 구현 순서는 [테스트 및 구현 기준](docs/architecture/quality/TESTING.md)을 따릅니다.
 
-실제 GitHub OAuth/App 등록, DeepSeek 세부 모델·비용, 도메인, DB 호스팅·백업, 분석 정확도·자원 측정, 외부 공개 운영 정책은 [미정 사항](docs/architecture/decisions/OPEN_ITEMS.md)에 남아 있습니다. 현재 저장소는 아키텍처 관리, Prism-Backend와 Prism-Frontend는 각각 구현 코드를 관리합니다.
+로컬 OAuth/App 연결과 DeepSeek 실제 호출은 확인했습니다. 공개 운영 비용, 도메인, DB 호스팅·백업, 분석 정확도·자원 측정, 외부 공개 운영 정책은 [미정 사항](docs/architecture/decisions/OPEN_ITEMS.md)에 남아 있습니다. 현재 저장소는 아키텍처 관리, Prism-Backend와 Prism-Frontend는 각각 구현 코드를 관리합니다.
 
 ## 필요한 문서만 읽기
 

@@ -47,3 +47,7 @@ MVP에서는 하나의 GitHub repository ID를 하나의 활성 Workspace 연결
 ## 테스트
 
 타인의 installation_id 제출, 설치에는 없는 저장소, 권한 철회, 중복 연결 경쟁, 설정 버전 고정, 연결 해제 직후 진행 중 Job, 악성 경로/설정, 토큰이 DB/로그에 남지 않는지 확인한다.
+
+## 연결 흐름 구체화
+
+[ADR-INTEGRATION-002](../../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md): GitHub App은 Metadata·Contents·Pull requests·Issues 읽기 권한을 사용한다. Issues read는 일반 PR 대화 코멘트 조회용이다. 설치 후 owner/repository 입력→App OAuth state/PKCE→사용자 ID·admin 권한·설치 허용 목록 검증→팀 권한 재검증→연결 및 첫 sync 접수를 수행한다.

@@ -84,39 +84,38 @@ UQ(analysis_id,fingerprint). IDX(workspace_id,analysis_id,id), IDX(analysis_id,s
 
 ## review_runs
 
-| 컬럼 | 타입 | NULL | 기본값·의미 |
+ADR-REVIEW-003에 따른 0006 구현 계약. 공통 id/created_at 및 updated_at을 갖는다. 물리 FK 없음.
+
+| 컬럼 | 타입 | NULL | 의미 |
 |---|---|---|---|
-| workspace_id / analysis_id / requested_by | uuid | N | 같은 팀 분석 및 요청 user 논리 참조 |
-| provider | varchar(16) | N | DEEPSEEK CHECK |
-| model | varchar(128) | N | 실제 설정 모델, 미정 기본값 없음 |
-| prompt_version | varchar(64) | N | 정적 Prompt 버전 |
-| policy_version | integer | N | > 0, 접수 당시 연결의 ai_policy_version |
-| selected_finding_ids | jsonb | N | 검증·정렬된 내부 Finding UUID 배열 |
-| review_key | H256 | N | 분석·Prompt·Provider/model·정책 버전 digest |
-| status | varchar(16) | N | PENDING 기본; PENDING/RUNNING/COMPLETED/FAILED/CANCELED CHECK |
-| call_count | smallint | N | 0 기본, 0~2 CHECK |
-| input_tokens / output_tokens | integer | Y | 관측된 총 사용량 >=0, 모르면 NULL |
-| budget_date | date | N | UTC 예산 예약일 |
-| reserved_cost_usd | numeric(18,6) | N | >=0, 설정된 가격/상한으로 예약 |
-| actual_cost_usd | numeric(18,6) | Y | >=0, 확인된 비용만 |
-| cost_state | varchar(16) | N | RESERVED/CONFIRMED/UNKNOWN/RELEASED CHECK |
-| started_at / finished_at | timestamptz | Y | 시작/terminal 시각 |
-| error_code | varchar(64) | Y | 정제 실패 코드 |
-| updated_at | timestamptz | N | now() |
+| workspace_id / analysis_id / requested_by | uuid | N | 팀·완료 분석·요청 사용자 논리 참조 |
+| pr_id / repository_connection_id | uuid | N | 분석과 동일한 PR·연결 논리 참조 |
+| connection_generation | integer | N | 접수 당시 연결 세대 >0 |
+| head_sha | varchar(40) | N | 검증된 40자리 HEAD SHA |
+| model | varchar(80) | N | 실제 DeepSeek 모델 |
+| prompt_version / policy_version | varchar(32) | N | rh1-16hex 하네스 digest / BOUNDED_CODE_V1 |
+| generation | integer | N | 0 기본, 명시 재실행 세대 >=0 |
+| execution_key | varchar(64) | N | 실행 입력 digest UNIQUE |
+| status | varchar(16) | N | PENDING 기본; RUNNING/COMPLETED/FAILED/CANCELED |
+| consented_at | timestamptz | N | 소유자의 이번 요청 동의 시각 |
+| started_at / finished_at | timestamptz | Y | 시작/종료 시각 |
+| call_attempts | integer | N | 0 기본, 0~1 CHECK; 외부 호출 전 commit |
+| input_tokens / output_tokens | integer | N | 0 기본, 관측 사용량 >=0; 미확인은 usage_uncertain과 함께 읽음 |
+| usage_uncertain | boolean | N | false 기본; 호출 후 실패/취소 때 청구 미확인 |
+| error_code | varchar(64) | Y | 정제된 실패 코드 |
+| result | jsonb | Y | 검증된 summary/issues/limitations/scope/reviewed_files/omitted_files |
+| updated_at | timestamptz | N | now(), 애플리케이션 갱신 |
 
-UQ(review_key). IDX(workspace_id,analysis_id,created_at DESC,id DESC), IDX(workspace_id,budget_date), IDX(finished_at) WHERE finished_at IS NOT NULL. selected_finding_ids는 array 및 길이 1~10 CHECK, 원소 UUID·중복 없음·동일 analysis 소속은 서비스 검증. terminal↔finished_at CHECK.
-
-MVP는 호출자가 Finding 부분집합을 지정하지 않는다. 서버가 Severity 내림차순→fingerprint 오름차순으로 Secret을 제외한 최대 10개를 선택·고정하며, 선택 대상이 없으면 run/외부 호출을 만들지 않는다. 따라서 기존 review_key에 선택 집합을 별도 추가하지 않는다. 선택 알고리즘 변경은 prompt_version을 올린다. Secret에는 저장된 LLM 설명 대신 서버의 고정 안내를 표시한다.
-
-Workspace 잠금 아래 budget_date별 기존 예약/확정/불명 비용을 합산해 비용 상한을 검사하고 run+Job+예약을 원자적으로 만든다. RESERVED/UNKNOWN은 reserved_cost_usd, CONFIRMED는 actual_cost_usd, RELEASED는 0으로 집계한다. CONFIRMED일 때만 actual_cost_usd NOT NULL인 CHECK를 둔다. 예약은 최대 2회 호출과 입력/출력 상한을 포함한 보수적 비용이며 상한/모델/가격 설정 전 접수를 차단한다. 호출 전 call_count 증가를 commit하고, timeout 과금 미확인은 UNKNOWN으로 예약을 유지한다. 확정 후 실제 비용으로 정산하고 미호출 취소만 RELEASED로 반환한다. Provider와 내부 재시도를 합쳐 최대 2회이며 Job attempts만으로 LLM 호출 횟수를 계산하지 않는다. 예산은 UTC 접수일별 예약 기준이며 다음 날 실행해도 원 예약일로 계산한다. 외부 과금의 정확한 상한 보장은 Provider 한도 설정·통합 검증도 필요하다.
+terminal↔finished_at, COMPLETED이면 result 존재, SHA/digest 형식 CHECK. IDX(workspace_id,analysis_id,created_at,id), IDX(workspace_id,created_at). API/worker가 JSON strict schema와 파일·줄을 검증한다. 금액 예약/정산 대신 UTC 접수일별 최대5회와 출력 상한을 적용한다. 실패·취소도 한도를 소비한다. 원문 코드·diff·prompt·응답 원문은 저장하지 않는다.
 
 <a id="table-finding_explanations"></a>
 
-## finding_explanations
+## finding_explanations — 초기 구현에서 제외
 
-| 컬럼 | 타입 | NULL | 기본값·의미 |
-|---|---|---|---|
-| workspace_id / review_run_id / finding_id | uuid | N | 동일 팀, 같은 analysis의 Review/Finding 논리 참조 |
-| explanation / suggestion_text / limitations | text | N | 검증·마스킹된 결과, 각 1~8,000자 CHECK |
+ADR-REVIEW-003에서 검증된 review_runs.result JSON으로 대체했다. 별도 테이블이나 Finding 외래 참조를 만들지 않는다. 정적 findings는 불변이며 AI 실패와 독립적이다.
 
-UQ(review_run_id,finding_id), IDX(finding_id,review_run_id), IDX(workspace_id,review_run_id,id). Review에 고정된 selected_finding_ids 안의 ID만 저장한다. 설명끼리 중복·미요청 ID·Secret ID를 거부한다. 결과 집합 검증 후 설명 insert와 Review/Job terminal을 같은 transaction에서 commit한다. 원본 response/prompt·코드 예시 컬럼은 없고 불변 결과다.
+## 검토 범위 metadata — 2026-09-26
+
+새 성공 결과의 result.coverage는 서버가 files(file_id,file_path,provided_lines), excluded(file_path 또는 null,reason), unfetched_files(수 또는 null)를 기록한다. 모델 입력에는 경로/coverage를 추가하지 않는다. 비밀 의심 내용이나 원문 patch는 보관하지 않으며 유효하지 않거나 민감 패턴이 있는 경로는 null로 숨긴다. 제외 사유와 첫100개 밖 미취득 수를 구분한다. 과거 결과는 coverage 필드가 없고 상세 미기록 안내만 표시한다. 기존 결과 역추정·수정과 DB migration은 없다. UI는 고정 HEAD 파일 링크와 텍스트 사유를 표시한다.
+
+ADR-REVIEW-004: 새 result.harness는 version/modules/system_digest를 포함한다. issues.basis는 SUPPORTED/NEEDS_CONTEXT이며 서버 schema와 중요도 조합을 검증한다. 기존 JSON에는 없을 수 있다. prompt_version에 하네스 패키지+schema digest를 사용하므로 DB 컬럼 추가는 없다.

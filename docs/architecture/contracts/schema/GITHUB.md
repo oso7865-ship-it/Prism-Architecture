@@ -33,7 +33,7 @@ UQ(workspace_id,github_repository_id). UQ(github_repository_id) WHERE status IN 
 
 초기 연결과 설정 v1을 한 트랜잭션에 생성한다(두 UUID를 먼저 생성해 순환 논리 참조를 채움). 같은 Workspace 재연결은 같은 연결 행의 generation을 증가시키고 새 권한 확인·현재 설정을 기록한다. 다른 Workspace 연결은 새 행이며 과거 결과를 옮기지 않는다. Workspace 동시 연결 경쟁은 전역 partial UQ로 처리한다.
 
-현재 정책 컬럼은 매 실행 직전 차단 판단용이다. 설정 버전에도 당시 정책을 snapshot으로 남기며 같은 트랜잭션에 맞춘다. 예전 config의 허용 값으로 현재 철회를 무시하지 않는다. AI 정책 변경은 OWNER만 가능하고 ai_policy_version을 증가시킨다. private key·installation token은 저장하지 않는다.
+ADR-REVIEW-003의 수동 AI 리뷰는 서버 AI_ENABLED 및 매 요청 OWNER 동의(consented_at)로 제어한다. ai_mode/ai_policy_version은 이전 FINDINGS_ONLY 설계의 예약 컬럼이며 현재 수동 실행의 승인·철회 스위치로 노출하지 않는다. 아래 저장소 정책 변경 설계는 향후 설정 API 구현 때 적용한다. 설정 버전에도 당시 정책을 snapshot으로 남기며 같은 트랜잭션에 맞춘다. 예전 config의 허용 값으로 현재 철회를 무시하지 않는다. AI 정책 변경은 OWNER만 가능하고 ai_policy_version을 증가시킨다. private key·installation token은 저장하지 않는다.
 
 <a id="table-rule_config_versions"></a>
 
