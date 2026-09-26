@@ -44,3 +44,7 @@ GitHub Secret·LLM key·Refresh 원문을 localStorage 또는 프론트 env에 �
 외부 PR 본문/코멘트/AI 설명의 HTML은 그대로 실행하지 않는다. AI OFF·데이터 오래됨·PARTIAL·NONE·지원하지 않는 언어·재시도 대기를 명확히 표시한다. COMPLETED/Finding 0을 '이 코드는 안전하다'로 표시하지 않는다.
 
 필수 E2E: 로그인과 refresh, 타 Workspace 접근 거부, PR 동기화 실패 표시, 분석 202 이후 polling, 부분 검사 표시, AI 실패 분리, CDN cache 비공유, 악성 Markdown/HTML 렌더링.
+
+## 배포 설정 구현
+
+[ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md)의 동일 출처 HTTPS 계약을 따른다. frontend deployment/vercel.template.json과 scripts/prepare-deployment.mjs가 API/health rewrite, SPA fallback, no-store와 보안 헤더를 준비한다. 실제 API 주소를 확정한 뒤 설정 파일을 생성하며 외부 OAuth·쿠키 proxy는 공개 환경에서 별도 확인한다.

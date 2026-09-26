@@ -38,3 +38,7 @@ GitHub App 등록·실계정 저장소 연결·Draft PR #1 메타데이터 동�
 백엔드 전체134 tests, Ruff/mypy, 0005 왕복·drift, 프론트 build/23 tests를 통과했다. 실제 조직 chapchap-customer-service의 병합 PR #47에서 Java 1파일 FULL_SCOPE, COM-002 1건(46–137줄)을 확인했다. 최초 분석과 재분석 generation1이 완료됐고 모바일375px/필터/완료 후 버튼을 확인했다. Windows Psycopg 관련 기존 네이티브 access violation 진단은 테스트 exit0과 별개로 원인 미해결이다.
 
 계획·검증·트러블슈팅 상세는 각 구현 저장소 reports/2026-09-26_static-analysis_report.md를 따른다. 이번 작업은 미커밋·미푸시이며 consumer architecture revision은 게시 후 갱신한다. 다음은 DeepSeek 설명/Review, 남은 고급 규칙, 공개 HTTPS Webhook 실전송, 배포/운영이며 하네스 동기화는 계속 보류한다.
+
+## 규칙 확장 (static-1.1.0)
+
+기존23개에 COM-003(조건/반복 깊이>4), PY-004/005(내장 eval/exec 직접 호출), PY-008(포괄 except), JS-005/006(eval/Function 동적 코드 생성)을 추가한29개다. 이름 바인딩·동적 변경을 확신할 수 없으면 해당 규칙 NOT_EVALUATED/BINDING_UNRESOLVED, 파일 범위 PARTIAL이다. 파일 안의 다른 이름 사용까지 보수적으로 제외하며 전역 타입/심볼 해석은 하지 않는다. 런타임 monkey patch와 외부 주입은 검증하지 않는다. PY-003과 PY-008 중복은 제외한다. 함수 경계에서 깊이를 초기화하며 else-if/elif는 같은 깊이로 취급한다. 새6규칙은 version1.0.0이고 기존 규칙 버전은 유지한다. 나머지9개 후보는 비활성이다.

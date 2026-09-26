@@ -47,3 +47,7 @@ AI OFF/동의/권한·테넌트, 중복/일 한도, 비밀/제외 경로/크기 
 [ADR-REVIEW-004](../../adr/review/ADR-REVIEW-004-versioned-review-harness.md). review/harness의 core/checks/output와 실제 입력 언어 모듈을 조합한다. 서버만 지침을 선택하고 저장소 코드·문서는 불신 데이터다. SystemMessage는 최대24KiB, 기존 코드 입력24KiB와 별도다. 전체 문서/schema/조합 revision hash로 prompt_version(rh1-16hex)을 기록한다. 성공 result.harness는 version/modules/system_digest를 포함한다. 원문 prompt는 미보관이다.
 
 새 issue.basis는 SUPPORTED/NEEDS_CONTEXT이며 NEEDS_CONTEXT+ERROR는 거부한다. 전자는 모델이 코드 근거를 찾았다는 뜻이지 실제 동작 검증이 아니다. 구체적 근거가 없는 추측은 limitations에 둔다. 이전 결과는 basis/harness 없이도 조회한다. 모델 품질은 고정된 합성 corpus와 사람이 읽는 rubric으로 별도 평가한다. scorer 테스트 통과를 실제 LLM 정확도로 보고하지 않는다.
+
+## AI 근거 계약 보강 (2026-09-26)
+
+ADR-REVIEW-005: 새 issue는 evidence_lines(제공 줄 1~8개, 중복 금지·대표 line과 변경 줄 포함), trigger/consequence(각1~400자), assumptions(최대3개, 각1~400자)를 포함한다. SUPPORTED는 빈 assumptions, NEEDS_CONTEXT는 명시한 미확인 전제가 필요하다. 구조 위반은 응답 전체를 거부하며 지적을 조용히 제거하지 않는다. 구조 검증이 자연어 근거의 진실성을 보장하지 않는다. 과거 결과는 그대로 읽고 신규 UI 필드는 선택적이다. 원문 소스 인용 필드는 없으며 DB migration은 없다.

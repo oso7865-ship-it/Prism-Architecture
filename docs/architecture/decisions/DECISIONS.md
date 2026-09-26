@@ -32,10 +32,12 @@
 | [ADR-REVIEW-002](../adr/review/ADR-REVIEW-002-deepseek-provider.md) | DeepSeek Provider 선택 | ACCEPTED | D-009 |
 | [ADR-REVIEW-003](../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md) | 제한된 코드 문맥 수동 AI 리뷰·실행 한도 | ACCEPTED | REVIEW-001 대체 |
 | [ADR-REVIEW-004](../adr/review/ADR-REVIEW-004-versioned-review-harness.md) | DeepSeek 리뷰 하네스·버전·평가 | ACCEPTED | REVIEW-003 확장 |
+| [ADR-REVIEW-005](../adr/review/ADR-REVIEW-005-evidence-admission.md) | AI 근거 줄·조건·결과·가정 검증 | ACCEPTED | REVIEW-004 확장 |
 | [ADR-INTEGRATION-001](../adr/integration/ADR-INTEGRATION-001-github-pr-sync.md) | 실제 GitHub 연동과 PR 동기화 | ACCEPTED | D-004, C-003, D-010 |
 | [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | ACCEPTED | — |
 | [ADR-RUNTIME-001](../adr/runtime/ADR-RUNTIME-001-durable-jobs.md) | PostgreSQL 영속 Job과 복구 | BASELINE | C-002 |
 | [ADR-DEPLOY-001](../adr/deployment/ADR-DEPLOY-001-render-real-deployment.md) | Render 배포와 실제 주소 사용 | ACCEPTED | D-002, D-010 |
+| [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md) | Production 설정·배포 전 검증 경계 | ACCEPTED | DEPLOY-001 확장 |
 | [ADR-PRODUCT-001](../adr/product/ADR-PRODUCT-001-prism-name.md) | PRism 프로젝트명 | ACCEPTED | D-008 |
 | [ADR-PRODUCT-002](../adr/product/ADR-PRODUCT-002-staged-public-access.md) | 초기 내부 사용과 향후 외부 가입 | ACCEPTED | D-011 |
 | [ADR-DATA-001](../adr/data/ADR-DATA-001-postgresql.md) | PostgreSQL 사용 | ACCEPTED | — |

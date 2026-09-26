@@ -423,6 +423,18 @@
       "id": "ADR-REVIEW-004",
       "owner": "architecture-decisions",
       "read_when": "DeepSeek 리뷰 지침·버전·평가 변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-005-evidence-admission.md",
+      "id": "ADR-REVIEW-005",
+      "owner": "architecture-decisions",
+      "read_when": "AI 출력 근거·가정 계약 변경"
+    },
+    {
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-002-production-boundary.md",
+      "id": "ADR-DEPLOY-002",
+      "owner": "DEPLOY",
+      "read_when": "production 설정과 배포 전 검증 경계를 변경할 때"
     }
   ],
   "tasks": {
@@ -682,7 +694,8 @@
         "docs/architecture/adr/review/ADR-REVIEW-001-optional-explanations.md",
         "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md",
         "docs/architecture/adr/review/ADR-REVIEW-003-bounded-manual-code-review.md",
-        "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md"
+        "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md",
+        "docs/architecture/adr/review/ADR-REVIEW-005-evidence-admission.md"
       ]
     },
     "adr-integration": {
@@ -717,7 +730,8 @@
       "documents": [
         "docs/architecture/adr/README.md",
         "docs/architecture/operations/RENDER.md",
-        "docs/architecture/adr/deployment/ADR-DEPLOY-001-render-real-deployment.md"
+        "docs/architecture/adr/deployment/ADR-DEPLOY-001-render-real-deployment.md",
+        "docs/architecture/adr/deployment/ADR-DEPLOY-002-production-boundary.md"
       ]
     },
     "adr-security": {
@@ -1292,6 +1306,24 @@
       "id": "ADR-REVIEW-004",
       "area": "REVIEW",
       "path": "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-005",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-005-evidence-admission.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DEPLOY-002",
+      "area": "DEPLOY",
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-002-production-boundary.md",
       "status": "ACCEPTED",
       "legacy_ids": [],
       "supersedes": [],

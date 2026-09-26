@@ -119,3 +119,7 @@ ADR-REVIEW-003에서 검증된 review_runs.result JSON으로 대체했다. 별�
 새 성공 결과의 result.coverage는 서버가 files(file_id,file_path,provided_lines), excluded(file_path 또는 null,reason), unfetched_files(수 또는 null)를 기록한다. 모델 입력에는 경로/coverage를 추가하지 않는다. 비밀 의심 내용이나 원문 patch는 보관하지 않으며 유효하지 않거나 민감 패턴이 있는 경로는 null로 숨긴다. 제외 사유와 첫100개 밖 미취득 수를 구분한다. 과거 결과는 coverage 필드가 없고 상세 미기록 안내만 표시한다. 기존 결과 역추정·수정과 DB migration은 없다. UI는 고정 HEAD 파일 링크와 텍스트 사유를 표시한다.
 
 ADR-REVIEW-004: 새 result.harness는 version/modules/system_digest를 포함한다. issues.basis는 SUPPORTED/NEEDS_CONTEXT이며 서버 schema와 중요도 조합을 검증한다. 기존 JSON에는 없을 수 있다. prompt_version에 하네스 패키지+schema digest를 사용하므로 DB 컬럼 추가는 없다.
+
+## AI 근거 계약 보강 (2026-09-26)
+
+ADR-REVIEW-005: 새 issue는 evidence_lines(제공 줄 1~8개, 중복 금지·대표 line과 변경 줄 포함), trigger/consequence(각1~400자), assumptions(최대3개, 각1~400자)를 포함한다. SUPPORTED는 빈 assumptions, NEEDS_CONTEXT는 명시한 미확인 전제가 필요하다. 구조 위반은 응답 전체를 거부하며 지적을 조용히 제거하지 않는다. 구조 검증이 자연어 근거의 진실성을 보장하지 않는다. 과거 결과는 그대로 읽고 신규 UI 필드는 선택적이다. 원문 소스 인용 필드는 없으며 DB migration은 없다.

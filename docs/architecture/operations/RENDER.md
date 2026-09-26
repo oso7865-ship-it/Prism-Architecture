@@ -17,7 +17,7 @@
 GitHub Webhook → Render 직접 HTTPS endpoint
 ```
 
-Python 모듈형 모놀리스 한 개로 시작한다. Redis/Kafka/Kubernetes/MSA는 요구하지 않는다. Parser가 있는 Docker 이미지를 제안하며 앱 entrypoint는 `uvicorn app.main:app --host 0.0.0.0 --port "$PORT" --workers 1`이다. 실제 Dockerfile/Render 설정은 이 문서에 따라 구현해야 한다.
+Python 모듈형 모놀리스 한 개로 시작한다. Redis/Kafka/Kubernetes/MSA는 요구하지 않는다. Parser가 있는 Docker 이미지를 제안하며 앱 entrypoint는 `uvicorn app.main:create_app --factory --host 0.0.0.0 --port "$PORT" --workers 1`이다. 구현 저장소의 Dockerfile과 deployment/render.example.yaml을 사용하며 실배포 여부는 최신 구현 Report로 확인한다.
 
 ## 외부 서비스 사실 — 2026-09-25 확인
 
@@ -41,4 +41,12 @@ PR: docs validate → lint/type → unit → PostgreSQL integration → Docker b
 
 ## 배포 완료 판정
 
-네 언어 fixture와 100파일 상한 입력의 실제 피크 메모리, Parser timeout kill, 동시 HTTP 응답, 강제 재시작 Job 복구, HMAC Webhook, OAuth Cookie 프록시, DB 지속성을 측정/검증한다. 문서만 작성된 현재는 어느 항목도 통과했다고 간주하지 않는다.
+네 언어 fixture와 100파일 상한 입력의 실제 피크 메모리, Parser timeout kill, 동시 HTTP 응답, 강제 재시작 Job 복구, HMAC Webhook, OAuth Cookie 프록시, DB 지속성을 측정/검증한다. 로컬/CI 결과와 실제 공개 환경 검증을 구분한다.
+
+## 배포 전 production 계약
+
+[ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md)에 따라 production은 동일한 HTTPS frontend origin을 PUBLIC_APP_ORIGIN과 PUBLIC_API_ORIGIN에 사용한다. DB는 sslmode=verify-full, 앱 쿠키는 Secure·HttpOnly, API 응답은 CDN을 포함한 no-store를 적용한다. 운영 키는 로컬 개발 키와 분리한다. 비밀값을 이미지·Git·프론트 변수에 포함하지 않는다.
+
+Docker는 비root·단일 worker·접근로그 OFF·PORT·health를 지원한다. migration은 별도 단계이며 실패하면 rollout 중지, schema 호환성이 확인된 이전 이미지로만 복귀한다. 백업은 별도 DB에 복원해 검증한 뒤 전환한다. 실제 주소/플랜/DB/CA 확정과 최초 배포는 사용자 후속 결정이다.
+
+설정 근거: [Render Blueprint](https://render.com/docs/blueprint-spec), [Vercel rewrites](https://vercel.com/docs/routing/rewrites), [Vercel cache headers](https://vercel.com/docs/caching/cache-control-headers). 2026-09-27 문서 확인; 클라우드에서의 실행 검증은 별도다.
