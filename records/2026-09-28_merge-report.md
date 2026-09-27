@@ -1,7 +1,7 @@
 # 전체 변경 병합 및 문서 저장소 분리
 
 - 요청: 누적 작업 전체 병합, 프론트·백엔드 Git에는 문서를 게시하지 않음.
-- 상태: 사용자의 신속 병합 요청에 따라 추가 전체 테스트·원격 CI 대기는 후속 작업으로 남기고 게시한다. 원격 병합 결과는 아래에 기록한다.
+- 상태: 전체 병합·원격 게시 완료. 사용자의 신속 병합 요청에 따라 추가 전체 테스트·원격 CI 결과 확인은 후속 작업으로 남겼다.
 - 설계: [병합 계획](2026-09-28_merge-plan.md), [ADR-ARCH-003](../docs/architecture/adr/architecture/ADR-ARCH-003-central-documentation.md).
 - 배포: 수행하지 않음. 추가 유료 모델 호출: 0회.
 
@@ -46,3 +46,14 @@
 ## 원격 통합 기록
 
 아키텍처의 검증된 문서 스냅샷을 먼저 게시하고 구현 저장소에서 해당 커밋을 고정한다. 사용자의 후속 지시(빨리 병합, 테스트는 나중에)에 따라 CI 완료 대기는 생략한다. fast-forward로 main을 갱신하고 로컬 작업 브랜치는 dev에 유지한다. 최종 커밋·CI 링크는 완료 후 아래에 기록한다. 이후 보고서만 갱신한 아키텍처 커밋 때문에 구현의 검증된 문서 pin을 불필요하게 변경하지 않는다.
+
+
+| 저장소 | 커밋 | 결과 |
+|---|---|---|
+| 백엔드 | [a7b9792](https://github.com/oso7865-ship-it/Prism-Backend/commit/a7b9792576e37ac85a67b58a2b7f80f8adbd0043) | main 및 dev 게시 완료, 로컬 dev 유지, 현재 문서 0개 |
+| 프론트엔드 | [c33ec96](https://github.com/oso7865-ship-it/Prism-Frontend/commit/c33ec96ad0fbb6359b0bfa39826e8303bb7c3c79) | main 및 dev 게시 완료, 로컬 dev 유지, 현재 문서 0개 |
+| 아키텍처 문서 스냅샷 | [2c4b743](https://github.com/oso7865-ship-it/Prism-Architecture/commit/2c4b743d55a2624cbb84f99525dcff238116043a) | main 게시 완료, 두 구현 저장소가 이 커밋에 고정 |
+
+- 구현의 원격 main·dev를 atomic push로 함께 갱신했다. fast-forward이며 force push나 역사 재작성은 하지 않았다. 로컬 main도 동일 커밋이며 체크아웃은 dev를 유지했다.
+- 현재 코드 트리에서 문서 확장자와 docs/reports/개발 하네스 디렉터리가 0개임을 확인했다. 기존 로컬 문서는 남아 있고 ignore 대상이다.
+- 후속 확인: GitHub Actions 결과, 백엔드 전체 테스트 최종 재실행, 다른 PC 문서 복원 실사용 검증. CI 자동 실행 자체는 유지하며 이번 요청에 따라 완료를 기다리지 않았다.
