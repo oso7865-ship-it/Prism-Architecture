@@ -3,7 +3,7 @@
 > ID: `DATA-MODEL` · 소유: `data-contracts` · 기준: `v0.1.0 / 2026-09-25`
 > 읽는 때: 테이블 관계·FK·유일성·조회 스코프를 설계할 때
 
-이 문서는 16개 테이블의 논리 관계와 소유권 지도다. 컬럼·타입·NULL·기본값·PK/UNIQUE/CHECK·조회 인덱스는 [물리 스키마 설계](schema/README.md)를 따른다. **물리 FK는 사용하지 않는다.** 0006까지 16개 업무 테이블이 구현되었다. finding_explanations는 ADR-REVIEW-003에 따라 review_runs.result로 대체했다.
+이 문서는 17개 테이블의 논리 관계와 소유권 지도다. 컬럼·타입·NULL·기본값·PK/UNIQUE/CHECK·조회 인덱스는 [물리 스키마 설계](schema/README.md)를 따른다. **물리 FK는 사용하지 않는다.** 0007까지 17개 업무 테이블을 정의한다. 새 피드백 테이블의 적용 증거는 구현 보고서를 따른다. finding_explanations는 ADR-REVIEW-003에 따라 review_runs.result로 대체했다.
 
 각 테이블의 목적과 참조 컬럼별 대상은 [테이블 설명·관계표](schema/RELATIONS.md)에 정리되어 있다.
 
@@ -32,7 +32,7 @@ User ──< WorkspaceMember >── Workspace
 | repository | repository_connections, rule_config_versions | ACTIVE/SUSPENDED github_repository_id UNIQUE; config(repo_id,version) UNIQUE |
 | pull_request | pull_requests, pull_request_sync_runs | (repository_connection_id,pr_number) UNIQUE |
 | analysis | analysis_runs, findings, analysis_file_results | execution_key UNIQUE; finding(analysis_id,fingerprint) UNIQUE |
-| review | review_runs | execution_key UNIQUE; 결과 JSON 검증 |
+| review | review_runs, review_feedback | execution_key UNIQUE; feedback(review_id,user_id,issue_key) UNIQUE |
 | webhook | webhook_deliveries | (provider,delivery_id) UNIQUE |
 | shared/jobs | jobs | dedupe_key UNIQUE |
 

@@ -1,0 +1,33 @@
+{
+  "health": 200,
+  "too_many_documents": 400,
+  "oversized_document": 400,
+  "oversized_body": 413,
+  "maximum_batch": {
+    "status": 200,
+    "seconds": 2.047,
+    "scores_count": 24,
+    "truncated_documents": 24
+  },
+  "bounded_client_maximum_batch": {
+    "mode": "local_reranker",
+    "candidate_count": 24,
+    "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "truncated_documents": 24,
+    "duration_ms": 1922.0
+  },
+  "stopped_service_fallback": {
+    "mode": "rules",
+    "candidate_count": 1,
+    "fallback": "RERANK_TIMEOUT",
+    "duration_ms": 2015.0
+  },
+  "api_ready": 200,
+  "frontend_http": 200,
+  "policy_version": "BOUNDED_CODE_V3",
+  "prompt_version": "rh1-30cb0c02dda36caf",
+  "reranker_enabled": false,
+  "ai_enabled": true,
+  "verified_at": "2026-09-27T18:29:53.314686+09:00"
+}

@@ -1,0 +1,3331 @@
+{
+  "started_at": "2026-09-27T15:15:31.815656+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "verification_enabled": true,
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "rh1-00c123b960588a9a",
+  "policy_version": "BOUNDED_CODE_V4",
+  "corpus_sha256": "42d3da76e0b578e0d47ced5c97be0d55f6f27fb1f84c3f1af1af9503f7b4ac34",
+  "max_calls": 96,
+  "repeats": 2,
+  "cases": [
+    {
+      "id": "python-short-circuit-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4710,
+      "output_tokens": 69,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4708,
+      "output_tokens": 88,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "values의 실제 호출부와 타입 계약(예: undefined 전달 가능성)은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.266
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4717,
+      "output_tokens": 89,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.078
+    },
+    {
+      "id": "java-disjunction-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4862,
+      "output_tokens": 70,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.063
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4829,
+      "output_tokens": 97,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 메서드의 호출부와 반환 배열의 사용 방식(변경 여부, 공유 여부)은 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.36
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4666,
+      "output_tokens": 77,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 사용 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.844
+    },
+    {
+      "id": "python-short-circuit-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7588,
+      "output_tokens": 336,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 TypeError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              4
+            ],
+            "trigger": "`values`가 None인 상태로 `size(None)`을 호출할 때",
+            "consequence": "`values is None`이 True이므로 `and`의 오른쪽 `len(values)`가 평가되고, None에 `len()`을 적용해 TypeError가 발생합니다. 3줄의 `return 0`에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "1줄의 타입 힌트가 `list[int] | None`을 허용하고, 2줄은 `values is None and len(values) == 0`으로 단축 평가되어 None일 때 오른쪽 피연산자를 실행합니다.",
+            "suggestion": "None을 먼저 반환하도록 분리하세요. 예: `if values is None: return 0` 후 `return len(values)`.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 TypeError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              4
+            ],
+            "trigger": "`values`가 None인 상태로 `size(None)`을 호출할 때",
+            "consequence": "`values is None`이 True이므로 `and`의 오른쪽 `len(values)`가 평가되고, None에 `len()`을 적용해 TypeError가 발생합니다. 3줄의 `return 0`에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "1줄의 타입 힌트가 `list[int] | None`을 허용하고, 2줄은 `values is None and len(values) == 0`으로 단축 평가되어 None일 때 오른쪽 피연산자를 실행합니다.",
+            "suggestion": "None을 먼저 반환하도록 분리하세요. 예: `if values is None: return 0` 후 `return len(values)`.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.313
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7604,
+      "output_tokens": 357,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "values === null이 참이므로 &&의 오른쪽 피연산자 values.length가 평가되어 TypeError가 발생합니다. 또한 null이 아닌 빈 배열은 2줄 조건을 통과하지 못하고 3줄에서 0을 반환하므로 조기 반환의 의도도 달성되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+            "evidence": "2줄은 values === null일 때 오른쪽 피연산자 values.length를 평가하므로 null 역참조가 일어납니다. 3줄의 values.length도 그대로 남아 있어 빈 배열 처리는 이 조건에 의존하지 않습니다.",
+            "suggestion": "null과 빈 배열을 각각 처리하도록 조건을 분리하세요. 예를 들어 values가 null이거나 values.length가 0이면 0을 반환하도록 바꾸면 두 경로 모두 안전해집니다.",
+            "file_path": "size.js",
+            "key": "ecde496b8b51ce4ccbcbb803b1524c1f709aa423b4afa99f84dc69439c09460f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "values === null이 참이므로 &&의 오른쪽 피연산자 values.length가 평가되어 TypeError가 발생합니다. 또한 null이 아닌 빈 배열은 2줄 조건을 통과하지 못하고 3줄에서 0을 반환하므로 조기 반환의 의도도 달성되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+            "evidence": "2줄은 values === null일 때 오른쪽 피연산자 values.length를 평가하므로 null 역참조가 일어납니다. 3줄의 values.length도 그대로 남아 있어 빈 배열 처리는 이 조건에 의존하지 않습니다.",
+            "suggestion": "null과 빈 배열을 각각 처리하도록 조건을 분리하세요. 예를 들어 values가 null이거나 values.length가 0이면 0을 반환하도록 바꾸면 두 경로 모두 안전해집니다.",
+            "file_path": "size.js",
+            "key": "ecde496b8b51ce4ccbcbb803b1524c1f709aa423b4afa99f84dc69439c09460f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.11
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7585,
+      "output_tokens": 319,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null일 때 조건이 단락되지 않아 null 역참조가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "values !== null이 false이므로 ||의 오른쪽 피연산자 values.length가 평가되고, null에서 length를 읽어 TypeError가 발생합니다. 3줄의 return 0은 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null일 때 조건이 단락되지 않아 null 역참조가 발생합니다",
+            "evidence": "1줄에서 values는 string | null을 받습니다. 2줄은 values !== null || values.length > 0이므로 null일 때 왼쪽이 false가 되어 오른쪽의 values.length가 평가됩니다.",
+            "suggestion": "의도가 null을 걸러내는 것이라면 조건을 values !== null && values.length > 0으로 바꾸어 null일 때 3줄의 0 반환이 실행되게 하세요.",
+            "file_path": "size.ts",
+            "key": "acf97f1d72b0c920d426df9d181a062a42262c50c25e2dbd2fd5fbcf217643e6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null일 때 조건이 단락되지 않아 null 역참조가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "values !== null이 false이므로 ||의 오른쪽 피연산자 values.length가 평가되고, null에서 length를 읽어 TypeError가 발생합니다. 3줄의 return 0은 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null일 때 조건이 단락되지 않아 null 역참조가 발생합니다",
+            "evidence": "1줄에서 values는 string | null을 받습니다. 2줄은 values !== null || values.length > 0이므로 null일 때 왼쪽이 false가 되어 오른쪽의 values.length가 평가됩니다.",
+            "suggestion": "의도가 null을 걸러내는 것이라면 조건을 values !== null && values.length > 0으로 바꾸어 null일 때 3줄의 0 반환이 실행되게 하세요.",
+            "file_path": "size.ts",
+            "key": "acf97f1d72b0c920d426df9d181a062a42262c50c25e2dbd2fd5fbcf217643e6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.797
+    },
+    {
+      "id": "java-disjunction-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7827,
+      "output_tokens": 273,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 입력에서 length() 호출로 NullPointerException이 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "size(null)을 호출하는 경우",
+            "consequence": "value != null이 false이므로 ||의 오른쪽 value.length()가 평가되어 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 입력에서 length() 호출로 NullPointerException이 발생합니다",
+            "evidence": "3줄의 조건은 value != null이 false일 때 오른쪽 피연산자 value.length()를 평가하므로 null 역참조가 발생합니다.",
+            "suggestion": "의도가 null을 0으로 처리하는 것이라면 조건을 value != null && value.length() > 0으로 바꾸고, null일 때 0을 반환하도록 하세요.",
+            "file_path": "Size.java",
+            "key": "aa8703ed131b7672eb66191802d401ddbefce6d1132b295be0a0a82da796e9d3"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 입력에서 length() 호출로 NullPointerException이 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "size(null)을 호출하는 경우",
+            "consequence": "value != null이 false이므로 ||의 오른쪽 value.length()가 평가되어 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 입력에서 length() 호출로 NullPointerException이 발생합니다",
+            "evidence": "3줄의 조건은 value != null이 false일 때 오른쪽 피연산자 value.length()를 평가하므로 null 역참조가 발생합니다.",
+            "suggestion": "의도가 null을 0으로 처리하는 것이라면 조건을 value != null && value.length() > 0으로 바꾸고, null일 때 0을 반환하도록 하세요.",
+            "file_path": "Size.java",
+            "key": "aa8703ed131b7672eb66191802d401ddbefce6d1132b295be0a0a82da796e9d3"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.672
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7707,
+      "output_tokens": 219,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 음수 길이 배열 생성으로 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 길이 배열 생성이므로 NegativeArraySizeException이 발생합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 음수 리터럴 -2를 사용하고 있습니다.",
+            "suggestion": "빈 배열을 반환하려면 길이 0을 사용하세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 음수 길이 배열 생성으로 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 길이 배열 생성이므로 NegativeArraySizeException이 발생합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 음수 리터럴 -2를 사용하고 있습니다.",
+            "suggestion": "빈 배열을 반환하려면 길이 0을 사용하세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.187
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7477,
+      "output_tokens": 314,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: range의 step이 0이라 호출 시 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range(0, 0, 0)는 step 인자가 0이므로 ValueError('range() arg 3 must not be zero')를 발생시키고, 함수는 리스트를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "range의 step이 0이라 호출 시 ValueError가 발생합니다",
+            "evidence": "2줄에서 range(0, 0, 0)의 세 번째 인자 step이 0입니다. Python의 range는 step 0을 허용하지 않으므로 빈 리스트를 만들려는 의도와 달리 예외가 발생합니다.",
+            "suggestion": "빈 리스트가 목적이라면 range(0, 0) 또는 list()를 사용하고, step이 필요한 경우 0이 아닌 값을 사용하세요.",
+            "file_path": "empty.py",
+            "key": "ed7e0054c4bfe21451b73c3fb104d396c10b07064145426231d662a318409576"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: range의 step이 0이라 호출 시 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range(0, 0, 0)는 step 인자가 0이므로 ValueError('range() arg 3 must not be zero')를 발생시키고, 함수는 리스트를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "range의 step이 0이라 호출 시 ValueError가 발생합니다",
+            "evidence": "2줄에서 range(0, 0, 0)의 세 번째 인자 step이 0입니다. Python의 range는 step 0을 허용하지 않으므로 빈 리스트를 만들려는 의도와 달리 예외가 발생합니다.",
+            "suggestion": "빈 리스트가 목적이라면 range(0, 0) 또는 list()를 사용하고, step이 필요한 경우 0이 아닌 값을 사용하세요.",
+            "file_path": "empty.py",
+            "key": "ed7e0054c4bfe21451b73c3fb104d396c10b07064145426231d662a318409576"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.375
+    },
+    {
+      "id": "py-int-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4657,
+      "output_tokens": 103,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다. 리터럴 \"12\"는 int()의 유효한 인자이므로 변환 실패 경로는 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "py-int-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7465,
+      "output_tokens": 318,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: parse가 항상 ValueError로 실패합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "parse()를 호출하는 모든 경우",
+            "consequence": "int(\"twelve\")가 ValueError를 발생시켜 parse가 정상 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "parse가 항상 ValueError로 실패합니다",
+            "evidence": "2줄에서 정수로 해석할 수 없는 리터럴 \"twelve\"를 int()에 전달하며, 이를 막는 조건 분기나 예외 처리가 제공된 범위에 없습니다.",
+            "suggestion": "의도한 숫자 리터럴을 사용하거나, 외부 입력을 파싱하려는 것이라면 입력을 인자로 받고 변환 실패 시 반환할 값을 정해 처리하세요.",
+            "file_path": "parse.py",
+            "key": "dccf9a500bb3d61261c5e2bfc9cafd6ba17bb78f878c2de25246678bbf1323de"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: parse가 항상 ValueError로 실패합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "parse()를 호출하는 모든 경우",
+            "consequence": "int(\"twelve\")가 ValueError를 발생시켜 parse가 정상 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "parse가 항상 ValueError로 실패합니다",
+            "evidence": "2줄에서 정수로 해석할 수 없는 리터럴 \"twelve\"를 int()에 전달하며, 이를 막는 조건 분기나 예외 처리가 제공된 범위에 없습니다.",
+            "suggestion": "의도한 숫자 리터럴을 사용하거나, 외부 입력을 파싱하려는 것이라면 입력을 인자로 받고 변환 실패 시 반환할 값을 정해 처리하세요.",
+            "file_path": "parse.py",
+            "key": "dccf9a500bb3d61261c5e2bfc9cafd6ba17bb78f878c2de25246678bbf1323de"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.453
+    },
+    {
+      "id": "py-min-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4658,
+      "output_tokens": 69,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.828
+    },
+    {
+      "id": "py-min-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7393,
+      "output_tokens": 256,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])은 빈 시퀀스에 대해 ValueError를 발생시키므로 함수가 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 빈 시퀀스에서 ValueError를 발생시킵니다.",
+            "suggestion": "빈 입력일 때 반환할 값을 정하고(예: None 또는 기본값) min 호출 전에 빈 리스트를 처리하세요.",
+            "file_path": "smallest.py",
+            "key": "205f40af2b8b5664c50864b0a18044fe440a8f2d57515661a5f7455da3c8742b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])은 빈 시퀀스에 대해 ValueError를 발생시키므로 함수가 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 빈 시퀀스에서 ValueError를 발생시킵니다.",
+            "suggestion": "빈 입력일 때 반환할 값을 정하고(예: None 또는 기본값) min 호출 전에 빈 리스트를 처리하세요.",
+            "file_path": "smallest.py",
+            "key": "205f40af2b8b5664c50864b0a18044fe440a8f2d57515661a5f7455da3c8742b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.563
+    },
+    {
+      "id": "js-json-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4681,
+      "output_tokens": 86,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 반환값 사용처가 제공되지 않아 파싱 결과의 사용 방식은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.344
+    },
+    {
+      "id": "js-json-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7473,
+      "output_tokens": 285,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: JSON.parse가 항상 SyntaxError를 던집니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출하면 항상 실행되는 경로",
+            "consequence": "'{oops}'는 유효한 JSON이 아니므로 JSON.parse가 SyntaxError를 던져 parse()가 값을 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "JSON.parse가 항상 SyntaxError를 던집니다",
+            "evidence": "2줄에서 리터럴 '{oops}'를 JSON.parse에 전달하며, 이 문자열은 JSON 문법을 만족하지 않습니다.",
+            "suggestion": "의도한 데이터를 담은 유효한 JSON 리터럴로 바꾸거나, 외부 입력을 파싱하려면 입력을 인자로 받아 파싱 실패를 처리하세요.",
+            "file_path": "parse.js",
+            "key": "1cbc576e31c0489ce8b039a42181de0fd3867d363dc81838683eb6dbf07359aa"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: JSON.parse가 항상 SyntaxError를 던집니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출하면 항상 실행되는 경로",
+            "consequence": "'{oops}'는 유효한 JSON이 아니므로 JSON.parse가 SyntaxError를 던져 parse()가 값을 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "JSON.parse가 항상 SyntaxError를 던집니다",
+            "evidence": "2줄에서 리터럴 '{oops}'를 JSON.parse에 전달하며, 이 문자열은 JSON 문법을 만족하지 않습니다.",
+            "suggestion": "의도한 데이터를 담은 유효한 JSON 리터럴로 바꾸거나, 외부 입력을 파싱하려면 입력을 인자로 받아 파싱 실패를 처리하세요.",
+            "file_path": "parse.js",
+            "key": "1cbc576e31c0489ce8b039a42181de0fd3867d363dc81838683eb6dbf07359aa"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.484
+    },
+    {
+      "id": "ts-date-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4699,
+      "output_tokens": 89,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 반환값 사용 방식이 제공되지 않아 고정 날짜가 의도된 것인지, 테스트 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.391
+    },
+    {
+      "id": "ts-date-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7553,
+      "output_tokens": 344,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 유효하지 않은 날짜로 toISOString 호출 시 RangeError 발생",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "date()를 호출하면 항상 실행되는 경로",
+            "consequence": "new Date(\"not-a-date\")는 Invalid Date가 되어 toISOString()이 RangeError: Invalid time value를 던지므로 date()는 문자열을 반환하지 못하고 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜로 toISOString 호출 시 RangeError 발생",
+            "evidence": "2줄에서 파싱 불가능한 리터럴 \"not-a-date\"로 Date를 만들고 그 결과에 toISOString()을 호출합니다. Invalid Date에 대한 toISOString은 RangeError를 던진다는 표준 동작이 그대로 적용됩니다.",
+            "suggestion": "의도한 시각을 나타내는 유효한 날짜 입력(예: 실제 타임스탬프나 ISO 문자열)을 사용하고, 외부 입력에서 온 값이라면 유효성 검사 후 처리하세요.",
+            "file_path": "date.ts",
+            "key": "f0e0a6a7d13a7a91d9064cbf38b29561fbd5ff8d8ad1cb54ab63f3a575b4fb55"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 유효하지 않은 날짜로 toISOString 호출 시 RangeError 발생",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "date()를 호출하면 항상 실행되는 경로",
+            "consequence": "new Date(\"not-a-date\")는 Invalid Date가 되어 toISOString()이 RangeError: Invalid time value를 던지므로 date()는 문자열을 반환하지 못하고 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜로 toISOString 호출 시 RangeError 발생",
+            "evidence": "2줄에서 파싱 불가능한 리터럴 \"not-a-date\"로 Date를 만들고 그 결과에 toISOString()을 호출합니다. Invalid Date에 대한 toISOString은 RangeError를 던진다는 표준 동작이 그대로 적용됩니다.",
+            "suggestion": "의도한 시각을 나타내는 유효한 날짜 입력(예: 실제 타임스탬프나 ISO 문자열)을 사용하고, 외부 입력에서 온 값이라면 유효성 검사 후 처리하세요.",
+            "file_path": "date.ts",
+            "key": "f0e0a6a7d13a7a91d9064cbf38b29561fbd5ff8d8ad1cb54ab63f3a575b4fb55"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.344
+    },
+    {
+      "id": "java-int-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4830,
+      "output_tokens": 71,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄 외의 호출부와 실행 검증 결과는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.875
+    },
+    {
+      "id": "java-int-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7797,
+      "output_tokens": 305,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 숫자가 아닌 리터럴 파싱으로 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄이 실행될 때",
+            "consequence": "Integer.parseInt(\"twelve\")는 숫자가 아닌 문자열을 받아 NumberFormatException을 던지므로 parse()가 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 Integer.parseInt에 숫자로 해석될 수 없는 리터럴 \"twelve\"를 전달합니다.",
+            "suggestion": "의도한 숫자 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 입력 검증과 NumberFormatException 처리 방침을 추가하세요.",
+            "file_path": "Parse.java",
+            "key": "464821f7a7a114b78cd76188e27b982b70173b1f243d9668a82d58375dde1eee"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트 실행 여부는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 숫자가 아닌 리터럴 파싱으로 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄이 실행될 때",
+            "consequence": "Integer.parseInt(\"twelve\")는 숫자가 아닌 문자열을 받아 NumberFormatException을 던지므로 parse()가 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 Integer.parseInt에 숫자로 해석될 수 없는 리터럴 \"twelve\"를 전달합니다.",
+            "suggestion": "의도한 숫자 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 입력 검증과 NumberFormatException 처리 방침을 추가하세요.",
+            "file_path": "Parse.java",
+            "key": "464821f7a7a114b78cd76188e27b982b70173b1f243d9668a82d58375dde1eee"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.172
+    },
+    {
+      "id": "java-substring-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4835,
+      "output_tokens": 89,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄 외의 호출부와 계약은 확인하지 못했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.375
+    },
+    {
+      "id": "java-substring-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7803,
+      "output_tokens": 303,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: substring 종료 인덱스가 문자열 길이를 초과합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2이므로 substring(0, 9)는 endIndex가 길이를 초과하여 StringIndexOutOfBoundsException을 던집니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과합니다",
+            "evidence": "3줄은 길이 2인 리터럴 \"ab\"에 대해 endIndex 9를 사용하며, 이는 String.substring의 유효 범위(0..length)를 벗어납니다.",
+            "suggestion": "의도한 접두사 길이를 정하고 endIndex를 문자열 길이 이하로 제한하거나, 길이를 초과하는 경우를 처리하는 로직을 추가하세요.",
+            "file_path": "Prefix.java",
+            "key": "df479d4f39f1e1863ed67a6e7cfc6a794fc72fb2da65134ce88a1cfc07048479"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: substring 종료 인덱스가 문자열 길이를 초과합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2이므로 substring(0, 9)는 endIndex가 길이를 초과하여 StringIndexOutOfBoundsException을 던집니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과합니다",
+            "evidence": "3줄은 길이 2인 리터럴 \"ab\"에 대해 endIndex 9를 사용하며, 이는 String.substring의 유효 범위(0..length)를 벗어납니다.",
+            "suggestion": "의도한 접두사 길이를 정하고 endIndex를 문자열 길이 이하로 제한하거나, 길이를 초과하는 경우를 처리하는 로직을 추가하세요.",
+            "file_path": "Prefix.java",
+            "key": "df479d4f39f1e1863ed67a6e7cfc6a794fc72fb2da65134ce88a1cfc07048479"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.765
+    },
+    {
+      "id": "python-short-circuit-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4710,
+      "output_tokens": 69,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.093
+    },
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4708,
+      "output_tokens": 96,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "values의 실제 호출부와 입력 계약(예: undefined 전달 가능성)은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.094
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4717,
+      "output_tokens": 97,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약, 테스트 실행 결과는 제공되지 않았습니다. 제공된 4개 라인만 정적으로 검토했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "java-disjunction-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4862,
+      "output_tokens": 70,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.235
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4829,
+      "output_tokens": 109,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 메서드의 호출부와 반환 배열의 사용 방식이 제공되지 않아, 반환된 빈 배열을 호출자가 수정하거나 공유하는지는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.282
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4666,
+      "output_tokens": 66,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 사용 의도는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.86
+    },
+    {
+      "id": "python-short-circuit-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7584,
+      "output_tokens": 332,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 TypeError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              4
+            ],
+            "trigger": "values가 None인 상태로 size를 호출할 때",
+            "consequence": "and의 왼쪽이 참이 되어 오른쪽 len(values)가 평가되고, None에 len()을 적용해 TypeError가 발생합니다. 3줄의 return 0에 도달하지 못하며, 4줄의 len(values)도 None 경로에서는 실행되지 않습니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "1줄의 타입 표기가 None을 허용하고, 2줄은 values is None일 때 and의 오른쪽 len(values)를 평가합니다.",
+            "suggestion": "None을 먼저 분리해 처리하세요. 예를 들어 values is None이면 0을 반환하고, 그렇지 않으면 len(values)를 반환하도록 조건을 나누면 빈 리스트도 0으로 처리됩니다.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 TypeError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              4
+            ],
+            "trigger": "values가 None인 상태로 size를 호출할 때",
+            "consequence": "and의 왼쪽이 참이 되어 오른쪽 len(values)가 평가되고, None에 len()을 적용해 TypeError가 발생합니다. 3줄의 return 0에 도달하지 못하며, 4줄의 len(values)도 None 경로에서는 실행되지 않습니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "1줄의 타입 표기가 None을 허용하고, 2줄은 values is None일 때 and의 오른쪽 len(values)를 평가합니다.",
+            "suggestion": "None을 먼저 분리해 처리하세요. 예를 들어 values is None이면 0을 반환하고, 그렇지 않으면 len(values)를 반환하도록 조건을 나누면 빈 리스트도 0으로 처리됩니다.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.765
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7610,
+      "output_tokens": 363,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "values === null이 참이므로 &&의 오른쪽 피연산자 values.length가 평가되어 TypeError가 발생합니다. 또한 null이 아닌 빈 배열은 2줄 조건을 통과하지 못하고 3줄에서 0을 반환할 뿐이라 2줄의 0 반환 분기는 실질적으로 동작하지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+            "evidence": "2줄은 values === null일 때 &&의 오른쪽에서 values.length를 평가하므로 null 역참조가 일어납니다. 3줄도 동일하게 values.length를 사용합니다.",
+            "suggestion": "null과 빈 배열을 각각 처리하도록 조건을 분리하세요. 예를 들어 values가 null이거나 values.length가 0이면 0을 반환하고, 그 외에는 length를 반환하도록 작성하면 두 경로 모두 안전합니다.",
+            "file_path": "size.js",
+            "key": "ecde496b8b51ce4ccbcbb803b1524c1f709aa423b4afa99f84dc69439c09460f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 본문만 검토했으며 호출부와 실제 입력 유형, 테스트 실행 결과는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "values === null이 참이므로 &&의 오른쪽 피연산자 values.length가 평가되어 TypeError가 발생합니다. 또한 null이 아닌 빈 배열은 2줄 조건을 통과하지 못하고 3줄에서 0을 반환할 뿐이라 2줄의 0 반환 분기는 실질적으로 동작하지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사에서 곧바로 null을 역참조해 예외가 발생합니다",
+            "evidence": "2줄은 values === null일 때 &&의 오른쪽에서 values.length를 평가하므로 null 역참조가 일어납니다. 3줄도 동일하게 values.length를 사용합니다.",
+            "suggestion": "null과 빈 배열을 각각 처리하도록 조건을 분리하세요. 예를 들어 values가 null이거나 values.length가 0이면 0을 반환하고, 그 외에는 length를 반환하도록 작성하면 두 경로 모두 안전합니다.",
+            "file_path": "size.js",
+            "key": "ecde496b8b51ce4ccbcbb803b1524c1f709aa423b4afa99f84dc69439c09460f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.312
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7562,
+      "output_tokens": 297,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null일 때 length 접근으로 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "values가 null인 상태에서 size를 호출할 때",
+            "consequence": "`values !== null`이 false이므로 `||`의 오른쪽 `values.length > 0`이 평가되고, null에서 length를 읽어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "null일 때 length 접근으로 예외가 발생합니다",
+            "evidence": "1줄에서 values는 string | null을 허용합니다. 2줄의 조건은 `values !== null || values.length > 0`이므로 null 입력 시 오른쪽 피연산자가 평가됩니다.",
+            "suggestion": "`values !== null && values.length > 0`으로 바꾸거나, null을 먼저 반환하도록 분기해 null 경로에서 length에 접근하지 않게 하세요.",
+            "file_path": "size.ts",
+            "key": "c672d2151185386b2b04249103da4681bfca3953b2c29772d18f317c9dd8dbaf"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null일 때 length 접근으로 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "values가 null인 상태에서 size를 호출할 때",
+            "consequence": "`values !== null`이 false이므로 `||`의 오른쪽 `values.length > 0`이 평가되고, null에서 length를 읽어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "null일 때 length 접근으로 예외가 발생합니다",
+            "evidence": "1줄에서 values는 string | null을 허용합니다. 2줄의 조건은 `values !== null || values.length > 0`이므로 null 입력 시 오른쪽 피연산자가 평가됩니다.",
+            "suggestion": "`values !== null && values.length > 0`으로 바꾸거나, null을 먼저 반환하도록 분기해 null 경로에서 length에 접근하지 않게 하세요.",
+            "file_path": "size.ts",
+            "key": "c672d2151185386b2b04249103da4681bfca3953b2c29772d18f317c9dd8dbaf"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.657
+    },
+    {
+      "id": "java-disjunction-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7854,
+      "output_tokens": 300,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null일 때 length() 호출로 NullPointerException이 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 null인 상태로 size(value)를 호출할 때",
+            "consequence": "value != null이 false이므로 || 우변의 value.length()가 평가되고 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null일 때 length() 호출로 NullPointerException이 발생합니다",
+            "evidence": "3줄의 조건은 value != null || value.length() > 0 구조로, 좌변이 false인 null 입력에서 우변 호출이 실행됩니다.",
+            "suggestion": "좌변을 value == null로 바꾸어 null을 먼저 반환하거나, value != null && value.length() > 0 형태로 단축 평가가 우변 호출을 막도록 수정하세요.",
+            "file_path": "Size.java",
+            "key": "82db7a9c00dd4701ce17e24ca5fb8263b053d2dddbf64900780a8303864321b2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null일 때 length() 호출로 NullPointerException이 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 null인 상태로 size(value)를 호출할 때",
+            "consequence": "value != null이 false이므로 || 우변의 value.length()가 평가되고 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null일 때 length() 호출로 NullPointerException이 발생합니다",
+            "evidence": "3줄의 조건은 value != null || value.length() > 0 구조로, 좌변이 false인 null 입력에서 우변 호출이 실행됩니다.",
+            "suggestion": "좌변을 value == null로 바꾸어 null을 먼저 반환하거나, value != null && value.length() > 0 형태로 단축 평가가 우변 호출을 막도록 수정하세요.",
+            "file_path": "Size.java",
+            "key": "82db7a9c00dd4701ce17e24ca5fb8263b053d2dddbf64900780a8303864321b2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.953
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7743,
+      "output_tokens": 255,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 음수 크기로 배열을 생성해 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 배열 크기이므로 NegativeArraySizeException이 발생해 메서드가 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "음수 크기로 배열을 생성해 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 음수 리터럴 -2를 사용하고 있으며, 이는 Java 배열 생성 계약을 위반합니다.",
+            "suggestion": "의도한 길이가 0이라면 new byte[0]으로, 다른 길이라면 음수가 아닌 값을 사용하세요.",
+            "file_path": "Empty.java",
+            "key": "819dd5b22c0e6de81aa731567620a17ab0879585d9f6cd5ed590b85981373525"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 음수 크기로 배열을 생성해 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 배열 크기이므로 NegativeArraySizeException이 발생해 메서드가 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "음수 크기로 배열을 생성해 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 음수 리터럴 -2를 사용하고 있으며, 이는 Java 배열 생성 계약을 위반합니다.",
+            "suggestion": "의도한 길이가 0이라면 new byte[0]으로, 다른 길이라면 음수가 아닌 값을 사용하세요.",
+            "file_path": "Empty.java",
+            "key": "819dd5b22c0e6de81aa731567620a17ab0879585d9f6cd5ed590b85981373525"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.375
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7467,
+      "output_tokens": 304,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: range의 step이 0이라 호출 시 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range(0, 0, 0)는 step 인자가 0이므로 ValueError('range() arg 3 must not be zero')를 발생시키고, 함수는 리스트를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "range의 step이 0이라 호출 시 ValueError가 발생합니다",
+            "evidence": "2줄에서 range(0, 0, 0)의 세 번째 인자(step)가 0입니다. Python의 range는 step 0을 허용하지 않으므로 start/stop 값과 무관하게 예외가 발생합니다.",
+            "suggestion": "빈 리스트를 반환하려는 의도라면 range(0, 0) 또는 그냥 []를 사용하세요.",
+            "file_path": "empty.py",
+            "key": "ed7e0054c4bfe21451b73c3fb104d396c10b07064145426231d662a318409576"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: range의 step이 0이라 호출 시 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range(0, 0, 0)는 step 인자가 0이므로 ValueError('range() arg 3 must not be zero')를 발생시키고, 함수는 리스트를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "range의 step이 0이라 호출 시 ValueError가 발생합니다",
+            "evidence": "2줄에서 range(0, 0, 0)의 세 번째 인자(step)가 0입니다. Python의 range는 step 0을 허용하지 않으므로 start/stop 값과 무관하게 예외가 발생합니다.",
+            "suggestion": "빈 리스트를 반환하려는 의도라면 range(0, 0) 또는 그냥 []를 사용하세요.",
+            "file_path": "empty.py",
+            "key": "ed7e0054c4bfe21451b73c3fb104d396c10b07064145426231d662a318409576"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.094
+    },
+    {
+      "id": "py-int-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4657,
+      "output_tokens": 103,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다. 리터럴 \"12\"는 int()의 유효한 인수이므로 변환 실패 경로는 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.141
+    },
+    {
+      "id": "py-int-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7447,
+      "output_tokens": 300,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: parse가 항상 ValueError로 실패합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "parse()를 호출할 때",
+            "consequence": "int(\"twelve\")는 10진 정수로 해석할 수 없어 ValueError가 발생하고, 함수는 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "parse가 항상 ValueError로 실패합니다",
+            "evidence": "2줄에서 리터럴 문자열 \"twelve\"를 int()에 전달하는데, 이는 정수 리터럴이 아니므로 변환이 실패합니다.",
+            "suggestion": "의도한 값이 12라면 정수 리터럴 12를 사용하고, 외부 입력을 파싱하려는 것이라면 입력을 인자로 받아 실패 시 처리 방침을 정하세요.",
+            "file_path": "parse.py",
+            "key": "dccf9a500bb3d61261c5e2bfc9cafd6ba17bb78f878c2de25246678bbf1323de"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: parse가 항상 ValueError로 실패합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "parse()를 호출할 때",
+            "consequence": "int(\"twelve\")는 10진 정수로 해석할 수 없어 ValueError가 발생하고, 함수는 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "parse가 항상 ValueError로 실패합니다",
+            "evidence": "2줄에서 리터럴 문자열 \"twelve\"를 int()에 전달하는데, 이는 정수 리터럴이 아니므로 변환이 실패합니다.",
+            "suggestion": "의도한 값이 12라면 정수 리터럴 12를 사용하고, 외부 입력을 파싱하려는 것이라면 입력을 인자로 받아 실패 시 처리 방침을 정하세요.",
+            "file_path": "parse.py",
+            "key": "dccf9a500bb3d61261c5e2bfc9cafd6ba17bb78f878c2de25246678bbf1323de"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.578
+    },
+    {
+      "id": "py-min-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4658,
+      "output_tokens": 80,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.0
+    },
+    {
+      "id": "py-min-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7411,
+      "output_tokens": 274,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])은 빈 시퀀스에 대해 ValueError를 발생시키므로 함수가 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 빈 iterable에 대해 ValueError를 발생시킵니다.",
+            "suggestion": "빈 입력일 때 반환할 값을 정하고(예: None 또는 기본값) 빈 경우를 먼저 처리하거나, 실제 데이터 소스를 인자로 받아 비어 있지 않을 때만 min을 적용하세요.",
+            "file_path": "smallest.py",
+            "key": "205f40af2b8b5664c50864b0a18044fe440a8f2d57515661a5f7455da3c8742b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])은 빈 시퀀스에 대해 ValueError를 발생시키므로 함수가 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 빈 iterable에 대해 ValueError를 발생시킵니다.",
+            "suggestion": "빈 입력일 때 반환할 값을 정하고(예: None 또는 기본값) 빈 경우를 먼저 처리하거나, 실제 데이터 소스를 인자로 받아 비어 있지 않을 때만 min을 적용하세요.",
+            "file_path": "smallest.py",
+            "key": "205f40af2b8b5664c50864b0a18044fe440a8f2d57515661a5f7455da3c8742b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.578
+    },
+    {
+      "id": "js-json-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4681,
+      "output_tokens": 72,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 반환값 사용처가 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.235
+    },
+    {
+      "id": "js-json-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7474,
+      "output_tokens": 286,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: JSON.parse가 항상 SyntaxError를 던집니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출하면 항상 실행되는 경로",
+            "consequence": "'{oops}'는 유효한 JSON이 아니므로 JSON.parse가 SyntaxError를 던져 parse()가 값을 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "JSON.parse가 항상 SyntaxError를 던집니다",
+            "evidence": "2줄에서 리터럴 '{oops}'를 JSON.parse에 전달하며, 이 문자열은 JSON 문법을 만족하지 않습니다.",
+            "suggestion": "의도한 데이터를 담은 유효한 JSON 리터럴로 바꾸거나, 외부 입력을 파싱하려면 입력을 인자로 받아 파싱 실패를 처리하세요.",
+            "file_path": "parse.js",
+            "key": "1cbc576e31c0489ce8b039a42181de0fd3867d363dc81838683eb6dbf07359aa"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: JSON.parse가 항상 SyntaxError를 던집니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출하면 항상 실행되는 경로",
+            "consequence": "'{oops}'는 유효한 JSON이 아니므로 JSON.parse가 SyntaxError를 던져 parse()가 값을 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "JSON.parse가 항상 SyntaxError를 던집니다",
+            "evidence": "2줄에서 리터럴 '{oops}'를 JSON.parse에 전달하며, 이 문자열은 JSON 문법을 만족하지 않습니다.",
+            "suggestion": "의도한 데이터를 담은 유효한 JSON 리터럴로 바꾸거나, 외부 입력을 파싱하려면 입력을 인자로 받아 파싱 실패를 처리하세요.",
+            "file_path": "parse.js",
+            "key": "1cbc576e31c0489ce8b039a42181de0fd3867d363dc81838683eb6dbf07359aa"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.016
+    },
+    {
+      "id": "ts-date-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4699,
+      "output_tokens": 89,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 사용 의도(고정 날짜가 의도된 값인지)는 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.359
+    },
+    {
+      "id": "ts-date-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7556,
+      "output_tokens": 348,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 유효하지 않은 날짜로 인해 항상 RangeError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`date()`를 호출하면 항상 실행되는 경로",
+            "consequence": "`new Date(\"not-a-date\")`는 Invalid Date가 되고, 그 상태에서 `toISOString()`을 호출하면 `RangeError: Invalid time value`가 발생해 함수가 문자열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜로 인해 항상 RangeError가 발생합니다",
+            "evidence": "2줄에서 파싱 불가능한 리터럴 문자열로 Date를 생성하고 곧바로 toISOString()을 호출합니다. Invalid Date에 대한 toISOString()은 RangeError를 던지는 표준 동작입니다.",
+            "suggestion": "유효한 날짜 소스(예: 인자 또는 `Date.now()`)를 사용하거나, 파싱 실패 시 반환할 값을 정하고 `Number.isNaN(date.getTime())` 검사 후 처리하세요.",
+            "file_path": "date.ts",
+            "key": "eb7f25838717ebed3627f1c7a3f87a109e3059551324c634caf52b9cf99d9776"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 유효하지 않은 날짜로 인해 항상 RangeError가 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`date()`를 호출하면 항상 실행되는 경로",
+            "consequence": "`new Date(\"not-a-date\")`는 Invalid Date가 되고, 그 상태에서 `toISOString()`을 호출하면 `RangeError: Invalid time value`가 발생해 함수가 문자열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜로 인해 항상 RangeError가 발생합니다",
+            "evidence": "2줄에서 파싱 불가능한 리터럴 문자열로 Date를 생성하고 곧바로 toISOString()을 호출합니다. Invalid Date에 대한 toISOString()은 RangeError를 던지는 표준 동작입니다.",
+            "suggestion": "유효한 날짜 소스(예: 인자 또는 `Date.now()`)를 사용하거나, 파싱 실패 시 반환할 값을 정하고 `Number.isNaN(date.getTime())` 검사 후 처리하세요.",
+            "file_path": "date.ts",
+            "key": "eb7f25838717ebed3627f1c7a3f87a109e3059551324c634caf52b9cf99d9776"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.265
+    },
+    {
+      "id": "java-int-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4830,
+      "output_tokens": 69,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.296
+    },
+    {
+      "id": "java-int-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7838,
+      "output_tokens": 346,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 숫자가 아닌 리터럴 파싱으로 항상 NumberFormatException이 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄의 Integer.parseInt(\"twelve\")가 실행될 때",
+            "consequence": "\"twelve\"는 정수 형식이 아니므로 NumberFormatException이 발생하고 parse()가 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 NumberFormatException이 발생합니다",
+            "evidence": "3줄에서 정수 형식이 아닌 리터럴 \"twelve\"를 Integer.parseInt에 전달합니다. Integer.parseInt는 숫자 형식이 아닌 문자열에 NumberFormatException을 던지는 것이 표준 계약입니다.",
+            "suggestion": "의도한 숫자 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 NumberFormatException 처리 방침을 정해 기본값 또는 오류 전파를 명시하세요.",
+            "file_path": "Parse.java",
+            "key": "cb4e4889f438e24925f3c9902fd2b7d190944a3e287f8123792b2115511f3bc5"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 예외 처리 방침, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 숫자가 아닌 리터럴 파싱으로 항상 NumberFormatException이 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄의 Integer.parseInt(\"twelve\")가 실행될 때",
+            "consequence": "\"twelve\"는 정수 형식이 아니므로 NumberFormatException이 발생하고 parse()가 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 NumberFormatException이 발생합니다",
+            "evidence": "3줄에서 정수 형식이 아닌 리터럴 \"twelve\"를 Integer.parseInt에 전달합니다. Integer.parseInt는 숫자 형식이 아닌 문자열에 NumberFormatException을 던지는 것이 표준 계약입니다.",
+            "suggestion": "의도한 숫자 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 NumberFormatException 처리 방침을 정해 기본값 또는 오류 전파를 명시하세요.",
+            "file_path": "Parse.java",
+            "key": "cb4e4889f438e24925f3c9902fd2b7d190944a3e287f8123792b2115511f3bc5"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.218
+    },
+    {
+      "id": "java-substring-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4835,
+      "output_tokens": 84,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.031
+    },
+    {
+      "id": "java-substring-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7856,
+      "output_tokens": 356,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: substring 종료 인덱스가 문자열 길이를 초과해 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()를 호출하면 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2이므로 substring(0, 9)는 StringIndexOutOfBoundsException을 던지고, prefix()는 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과해 항상 예외가 발생합니다",
+            "evidence": "3줄에서 길이 2인 리터럴 \"ab\"에 대해 종료 인덱스 9를 사용하는데, 이는 String.substring의 유효 범위(beginIndex 이상, length 이하)를 벗어납니다.",
+            "suggestion": "의도한 접두사 길이를 정하고, 리터럴 길이를 넘지 않는 종료 인덱스를 사용하거나 더 긴 리터럴로 바꾸세요.",
+            "file_path": "Prefix.java",
+            "key": "00356b8ec2323325f5dd4f9a347632993723786c303d0cd1c4c8b2cf3f39ec39"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 곳만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: substring 종료 인덱스가 문자열 길이를 초과해 항상 예외가 발생합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()를 호출하면 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2이므로 substring(0, 9)는 StringIndexOutOfBoundsException을 던지고, prefix()는 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과해 항상 예외가 발생합니다",
+            "evidence": "3줄에서 길이 2인 리터럴 \"ab\"에 대해 종료 인덱스 9를 사용하는데, 이는 String.substring의 유효 범위(beginIndex 이상, length 이하)를 벗어납니다.",
+            "suggestion": "의도한 접두사 길이를 정하고, 리터럴 길이를 넘지 않는 종료 인덱스를 사용하거나 더 긴 리터럴로 바꾸세요.",
+            "file_path": "Prefix.java",
+            "key": "00356b8ec2323325f5dd4f9a347632993723786c303d0cd1c4c8b2cf3f39ec39"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.344
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "ba81026633132d9d05625d666a2ebcc5c972ee73cd64e8db585f0e60c9848ebf",
+    "app/domain/review/provider.py": "086a41d0b622704f58b30030e8e86c13819afee11ca8f29f42fb94161f2d8e67",
+    "app/domain/review/retrieval.py": "11f96976b85b1eac1e7bef15ba9ac4288a632582d345daf6127a2e6a43fcb9ac",
+    "app/domain/review/context_selection.py": "e2796ffe4a942be1e482f371588f67cfb645766fb3c492acaaea0d7fd60abf12",
+    "app/domain/review/context_plan.py": "cf2e1d03ac8a3686f620098c1cabc56ddf28652a6d199dc93c9d0b5c5dc79777",
+    "app/domain/review/verification.py": "8727e5b8d776ee7a5919a2ae6832e7f0536dfc03e6c910aa029c298567260302",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186"
+  },
+  "finished_at": "2026-09-27T15:17:11.182588+00:00",
+  "summary": {
+    "attempts": 72,
+    "reviews": 48,
+    "validated": 48,
+    "automatic_passed": 48,
+    "input_tokens": 296378,
+    "output_tokens": 9391,
+    "authorized_attempts_used": 936
+  }
+}

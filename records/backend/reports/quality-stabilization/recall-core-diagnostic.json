@@ -1,0 +1,226 @@
+{
+  "started_at": "2026-09-27T16:54:50.134335+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "verification_enabled": false,
+  "verification_only": false,
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "diagnostic-0af5fe2b6d34a356",
+  "prompt_profile": "diagnostic",
+  "frozen_baseline_manifest": null,
+  "policy_version": "BOUNDED_CODE_V4",
+  "corpus_sha256": "ea1bfd85c034839cd0a0fcfb2c0ecc2da12d682ecf6b48cefdfa9d4e9222c91a",
+  "max_calls": 6,
+  "repeats": 1,
+  "cases": [
+    {
+      "id": "length-before",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "9dd794ec6e755a4dee4c55ac1d55bbe1cbb70e86a8de7108638cf160391d2ec6",
+      "payload_bytes": 999,
+      "input_tokens": 876,
+      "output_tokens": 101,
+      "candidate_diagnostic": {
+        "candidates": [
+          {
+            "file_id": "f1",
+            "line": 2,
+            "observed_effect": "content_length returns len(body) in characters for str input, while prepare encodes str to UTF-8 bytes; for non-ASCII bodies the Content-Length header undercounts the wire byte length, violating the test assertion at line 11.",
+            "disposition": "REPORT",
+            "reason": "CONTRACT_MISMATCH",
+            "missing_contract": null
+          }
+        ]
+      },
+      "seconds": 1.0
+    },
+    {
+      "id": "length-after",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4df51f31477fcdd877b7feacdb996c025a27fda89ceb4b2bd250bfd69b9777e2",
+      "payload_bytes": 1052,
+      "input_tokens": 892,
+      "output_tokens": 90,
+      "candidate_diagnostic": {
+        "candidates": [
+          {
+            "file_id": "f1",
+            "line": 2,
+            "observed_effect": "content_length returns the UTF-8 byte length for str input, but for bytes input returns len(body) directly; both branches agree with len(wire) in prepare, so the test assertion holds.",
+            "disposition": "REJECT",
+            "reason": "NO_DEFECT",
+            "missing_contract": null
+          }
+        ]
+      },
+      "seconds": 0.797
+    },
+    {
+      "id": "ca-before",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b2958de7c0151e6adbb7ec8d13da05f741e21d0dfb40a4443cd395005d12c476",
+      "payload_bytes": 1727,
+      "input_tokens": 1101,
+      "output_tokens": 373,
+      "candidate_diagnostic": {
+        "candidates": [
+          {
+            "file_id": "f1",
+            "line": 10,
+            "observed_effect": "When verify is True/None and env has no CA bundle keys, env.get returns None, so verify becomes None; merge_setting then returns session_verify (default True), which happens to satisfy the tests but silently discards the caller's explicit verify=True.",
+            "disposition": "REPORT",
+            "reason": "CONTRACT_MISMATCH",
+            "missing_contract": null
+          },
+          {
+            "file_id": "f1",
+            "line": 15,
+            "observed_effect": "Test asserts environment_settings({\"CURL_CA_BUNDLE\": \"\"}, True) is True; with line 10, empty string is falsy so verify becomes None, then merge_setting returns session_verify=True, so the assertion passes.",
+            "disposition": "REJECT",
+            "reason": "NO_DEFECT",
+            "missing_contract": null
+          },
+          {
+            "file_id": "f1",
+            "line": 16,
+            "observed_effect": "Test asserts both CA bundle keys empty yields True; empty strings are falsy, verify becomes None, merge_setting returns session_verify=True, so assertion passes.",
+            "disposition": "REJECT",
+            "reason": "NO_DEFECT",
+            "missing_contract": null
+          },
+          {
+            "file_id": "f1",
+            "line": 18,
+            "observed_effect": "Test asserts environment_settings({\"CURL_CA_BUNDLE\": \"/ca.pem\"}, False) is False; verify is False so line 9 is skipped, merge_setting(False, True) returns False, so assertion passes.",
+            "disposition": "REJECT",
+            "reason": "NO_DEFECT",
+            "missing_contract": null
+          }
+        ]
+      },
+      "seconds": 1.844
+    },
+    {
+      "id": "ca-after",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4b35b062cca3fc3e0ef0385fa7f3f70345823ebe221f8b94198bb87f000216fc",
+      "payload_bytes": 1737,
+      "input_tokens": 1103,
+      "output_tokens": 280,
+      "candidate_diagnostic": {
+        "candidates": [
+          {
+            "file_id": "f1",
+            "line": 10,
+            "observed_effect": "When verify is True and env has REQUESTS_CA_BUNDLE or CURL_CA_BUNDLE set to a non-empty string, verify becomes that string; test line 18 expects False to be preserved when verify is False, but line 9 guard skips the env lookup for False, so that case is guarded.",
+            "disposition": "REJECT",
+            "reason": "GUARDED",
+            "missing_contract": null
+          },
+          {
+            "file_id": "f1",
+            "line": 10,
+            "observed_effect": "Empty-string env values are falsy, so `or` falls through to verify, preserving True; consistent with tests at lines 15-16.",
+            "disposition": "REJECT",
+            "reason": "NO_DEFECT",
+            "missing_contract": null
+          },
+          {
+            "file_id": "f1",
+            "line": 6,
+            "observed_effect": "merge_setting returns request_value when both are non-None, ignoring session_value; no supplied contract or test specifies precedence for this case.",
+            "disposition": "DEFER",
+            "reason": "MISSING_CONTRACT",
+            "missing_contract": "Precedence rule when both request_value and session_value are non-None."
+          }
+        ]
+      },
+      "seconds": 1.515
+    },
+    {
+      "id": "length-bytes-normal",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "a8f6abc15d4d18ed7bf5140f897f1f3598747aab619f6f62230f422178e471c4",
+      "payload_bytes": 808,
+      "input_tokens": 814,
+      "output_tokens": 6,
+      "candidate_diagnostic": {
+        "candidates": []
+      },
+      "seconds": 0.688
+    },
+    {
+      "id": "ca-explicit-false-normal",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b8685ae33be93d587091c61e0a6ef1edb26c091baf8410f6ef73084313da5417",
+      "payload_bytes": 1978,
+      "input_tokens": 1182,
+      "output_tokens": 280,
+      "candidate_diagnostic": {
+        "candidates": [
+          {
+            "file_id": "f1",
+            "line": 9,
+            "observed_effect": "When verify is None, the condition is true and verify is reassigned from env CA bundle variables or falls back to None; merge_setting then returns session_verify instead of preserving the explicit None.",
+            "disposition": "DEFER",
+            "reason": "MISSING_CONTRACT",
+            "missing_contract": "Whether verify=None should be treated as 'use default CA bundle' or as an explicit value to preserve."
+          },
+          {
+            "file_id": "f1",
+            "line": 10,
+            "observed_effect": "Empty-string env values are falsy, so `or` skips them and falls back to verify; test at line 15 expects True, which holds only because verify is True.",
+            "disposition": "REJECT",
+            "reason": "NO_DEFECT",
+            "missing_contract": null
+          },
+          {
+            "file_id": "f1",
+            "line": 18,
+            "observed_effect": "With verify=False, line 9 is false, so env CA bundle is ignored and merge_setting(False, session_verify=True) returns True, contradicting the assertion that the result is False.",
+            "disposition": "REPORT",
+            "reason": "CONTRACT_MISMATCH",
+            "missing_contract": null
+          }
+        ]
+      },
+      "seconds": 1.516
+    }
+  ],
+  "scope": "authored synthetic/public-PR-derived evaluation; no product DB writes or retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "ba81026633132d9d05625d666a2ebcc5c972ee73cd64e8db585f0e60c9848ebf",
+    "app/domain/review/provider.py": "086a41d0b622704f58b30030e8e86c13819afee11ca8f29f42fb94161f2d8e67",
+    "app/domain/review/retrieval.py": "11f96976b85b1eac1e7bef15ba9ac4288a632582d345daf6127a2e6a43fcb9ac",
+    "app/domain/review/context_selection.py": "bdb75bd074a3ad2ec17256c56c9f66fd928e5e2881e2015a6b5d800cf4b569f9",
+    "app/domain/review/context_plan.py": "cf2e1d03ac8a3686f620098c1cabc56ddf28652a6d199dc93c9d0b5c5dc79777",
+    "app/domain/review/verification.py": "1bfe49a3b64c944ba1f6fa864a075dfcef566fd8036aa1b2988bd65f04649fe4",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186",
+    "scripts/recall_evaluation.py": "59b2bce2e615f0ad912c7dee3b965d4766d3b8f7e1ff564add6b79fef6b0e099",
+    "scripts/stabilize_review_quality.py": "15e15b7dcdd8e40b0a0a815d0cb2e2f9b8ff74646dd78e8318f3266696f3ae85"
+  },
+  "temperature": 0,
+  "finished_at": "2026-09-27T16:54:57.590217+00:00",
+  "summary": {
+    "attempts": 6,
+    "reviews": 6,
+    "validated": 6,
+    "automatic_passed": 0,
+    "input_tokens": 5968,
+    "output_tokens": 1130,
+    "authorized_attempts_used": 1101
+  }
+}

@@ -35,6 +35,8 @@ Webhook body, GitHub 파일, 파서 프로세스 출력, PR comment, LLM 입력/
 
 Secret Finding은 raw match를 저장·전송하지 않는다. 코드/PR/로그를 통해 들어온 테스트 canary가 DB·HTTP·관측·AI 네트워크로 새지 않는지 검사한다. AI 정책의 구체적 범위는 [Review](../domain/review/README.md)를 따른다.
 
+선택적 로컬 리랭커도 안전한 소스 후보만 메모리에서 처리한다. 모델 데이터는 설치 시 공식 revision/해시로 고정하고 요청 중 다운로드·원격 Python 실행을 하지 않는다. 원문 로그/질의 저장/외부 tracing을 끄고 별도 CPU 컨테이너·loopback 포트·입출력/자원/동시성 한도를 적용한다. loopback 공개 범위와 컨테이너 외부 통신 차단은 다른 통제이며, 별도 egress 차단을 검증하지 않았다면 네트워크 격리를 보장한다고 말하지 않는다. 점수는 사실성·코드 보안 검증이 아니다.
+
 ## 테넌트와 남는 위험
 
 UI·API·Job·cache/dedupe key에 Workspace 경계를 적용한다. Worker도 권한/설치 상태를 다시 확인한다. 팀 결과 공유는 GitHub 개인 권한과 별개 정책임을 고지한다.
@@ -44,3 +46,5 @@ HMAC이 유효해도 replay/업무 권한 검사를 생략하지 않는다. deli
 ## 검증과 운영
 
 secret 유출, 소스 오보관, cross-tenant 접근이 발견되면 관련 기능/외부 호출을 먼저 차단하고 접근 키/로그/저장 자료의 영향 범위를 조사한다. 사용자를 안심시키기 위한 근거 없는 '유출 없음' 선언을 하지 않는다. 감사 기록은 최소 식별자와 변경 종류만 남긴다.
+
+현재 AI 전송 예산/두 단계 검증은 [ADR-REVIEW-010](../adr/review/ADR-REVIEW-010-evidence-first-verified-review.md)을 따른다. 최대16KiB/파일·48KiB 코드 JSON과 검증용 초안 최대24,000byte를 전송할 수 있다. 각 호출 직전 동의된 리뷰 권한·연결 세대·취소·lease를 확인하고 예약한다. 원문/초안/검증 응답을 로그/DB에 보관하지 않는다. 검증도 같은 외부 제공자를 사용하며 화면 동의·사용 한도에 두 번의 전송을 명시한다.

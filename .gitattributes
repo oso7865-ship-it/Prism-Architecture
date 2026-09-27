@@ -4,3 +4,7 @@
 *.json text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+
+# Preserve imported records byte-for-byte against the archive manifest.
+records/backend/** -text -whitespace
+records/frontend/** -text -whitespace

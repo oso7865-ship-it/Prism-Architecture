@@ -3,11 +3,11 @@
 > ID: `ADR-ARCH-002` · 소유: `ARCH` · 기준: `2026-09-25`
 > 읽는 때: 구현 저장소와 개발 기반 변경 시
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-25`
 - 근거: 사용자 요청과 위임된 개발 기반 구성
 - 대체하는 ADR: 없음 (기존 결정 보완)
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-ARCH-003](ADR-ARCH-003-central-documentation.md)
 
 ## 배경
 

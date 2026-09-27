@@ -3,7 +3,7 @@
 > ID: `DB-SCHEMA` · 소유: `data-contracts` · 기준: `2026-09-25`
 > 읽는 때: 컬럼·타입·인덱스·마이그레이션을 구체화할 때
 
-**0006까지 16개 업무 테이블의 ORM·마이그레이션이 구현되었다. AI 설명은 review_runs.result에 저장한다.** PostgreSQL 17을 기준으로 한다. 기존 Alembic 버전 관리 테이블은 16개에 포함하지 않는다. 업무 의미는 각 도메인, 저장 타입·키·인덱스는 이 패키지가 소유한다.
+**0007까지 17개 업무 테이블의 ORM·마이그레이션을 정의한다. AI 설명은 review_runs.result에 저장한다.** PostgreSQL 17을 기준으로 한다. 기존 Alembic 버전 관리 테이블은 17개에 포함하지 않는다. 업무 의미는 각 도메인, 저장 타입·키·인덱스는 이 패키지가 소유한다.
 
 처음 읽는다면 [테이블 설명과 관계 참조 안내](RELATIONS.md)에서 각 테이블의 용도와 `자식 컬럼 → 부모 테이블` 관계를 확인한 뒤 아래 상세 컬럼 명세로 이동한다.
 
@@ -11,7 +11,7 @@
 |---|---|---:|---|
 | [인증·팀](IDENTITY.md) | users, login_attempts, refresh_sessions, workspaces, workspace_members, invitations | 6 | 첫 로그인·Workspace 수직 기능 |
 | [GitHub·PR](GITHUB.md) | repository_connections, rule_config_versions, pull_requests, pull_request_sync_runs | 4 | 저장소 연결·PR 동기화 |
-| [분석·AI](RESULTS.md) | analysis_runs, findings, analysis_file_results, review_runs | 4 | 정적 분석 후 선택적 AI |
+| [분석·AI](RESULTS.md) | analysis_runs, findings, analysis_file_results, review_runs, review_feedback | 5 | 정적 분석 후 선택적 AI |
 | [실행·웹훅](EXECUTION.md) | jobs, webhook_deliveries | 2 | PR 동기화 시 jobs, 자동 접수 시 webhook |
 
 ## 공통 표기와 타입

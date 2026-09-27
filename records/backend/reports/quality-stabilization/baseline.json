@@ -1,0 +1,345 @@
+{
+  "started_at": "2026-09-27T13:16:48.230093+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-30cb0c02dda36caf",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "59eff6055cefa472c171ff30b7c3bfe361bf0bd550ba987ef8a8d3d52bb24e42",
+  "max_calls": 12,
+  "repeats": 1,
+  "cases": [
+    {
+      "id": "python-guarded-null",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1064,
+        "retrieval_seconds": 0.422,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.328
+    },
+    {
+      "id": "python-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1066,
+        "retrieval_seconds": 0.343,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.031
+    },
+    {
+      "id": "python-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 918,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.015
+    },
+    {
+      "id": "java-guarded-null",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1220,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.016
+    },
+    {
+      "id": "java-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1189,
+        "retrieval_seconds": 0.469,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.016
+    },
+    {
+      "id": "java-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1139,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.016
+    },
+    {
+      "id": "javascript-guarded-null",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.031
+    },
+    {
+      "id": "javascript-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1034,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.016
+    },
+    {
+      "id": "javascript-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 977,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.031
+    },
+    {
+      "id": "typescript-guarded-null",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1082,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.032
+    },
+    {
+      "id": "typescript-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.343,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.016
+    },
+    {
+      "id": "typescript-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1001,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "error_type": "OpenAIConnectionError",
+      "error_code": "UNCLASSIFIED_ERROR",
+      "error_stage": "provider",
+      "seconds": 0.031
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "finished_at": "2026-09-27T13:16:48.962732+00:00",
+  "summary": {
+    "attempts": 12,
+    "validated": 0,
+    "automatic_passed": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "authorized_attempts_used": 12
+  }
+}

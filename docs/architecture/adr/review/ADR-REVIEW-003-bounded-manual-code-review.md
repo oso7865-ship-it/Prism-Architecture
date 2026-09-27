@@ -3,11 +3,11 @@
 > ID: `ADR-REVIEW-003` · 소유: `REVIEW` · 기준: `2026-09-26`
 > 읽는 때: AI 코드 전송·접수·예산·응답 계약을 구현할 때
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-26`
 - 근거: 사용자가 설계 후 1~6 단계 전체 구현과 PR 실제 검증을 승인함.
 - 대체하는 ADR: [ADR-REVIEW-001](ADR-REVIEW-001-optional-explanations.md)
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-REVIEW-006](ADR-REVIEW-006-review-workflow.md)
 
 ## 배경
 

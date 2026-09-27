@@ -1,0 +1,162 @@
+{
+  "reviewer": "agent",
+  "scope": "all9 final known-claim outputs inspected; not independent human review",
+  "cases": [
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "typescript-guarded-null",
+      "repeat": 1,
+      "semantic_pass": true,
+      "reason": "오탐 삭제; 정상 가드/가상의 빈문자열 계약을 새 결함으로 만들지 않음"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "js-short-circuit-bug",
+      "repeat": 1,
+      "semantic_pass": true,
+      "reason": "실제 null 역참조는 보존하고 빈배열에서0 반환한다는 올바른 결과로 부연 정정"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "requests-6074-explicit-false",
+      "repeat": 1,
+      "semantic_pass": true,
+      "reason": "오탐 삭제; 정상 가드/가상의 빈문자열 계약을 새 결함으로 만들지 않음"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "typescript-guarded-null",
+      "repeat": 2,
+      "semantic_pass": true,
+      "reason": "오탐 삭제; 정상 가드/가상의 빈문자열 계약을 새 결함으로 만들지 않음"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "js-short-circuit-bug",
+      "repeat": 2,
+      "semantic_pass": true,
+      "reason": "실제 null 역참조는 보존하고 빈배열에서0 반환한다는 올바른 결과로 부연 정정"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "requests-6074-explicit-false",
+      "repeat": 2,
+      "semantic_pass": true,
+      "reason": "오탐 삭제; 정상 가드/가상의 빈문자열 계약을 새 결함으로 만들지 않음"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "typescript-guarded-null",
+      "repeat": 3,
+      "semantic_pass": true,
+      "reason": "오탐 삭제; 정상 가드/가상의 빈문자열 계약을 새 결함으로 만들지 않음"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "js-short-circuit-bug",
+      "repeat": 3,
+      "semantic_pass": true,
+      "reason": "실제 null 역참조는 보존하고 빈배열에서0 반환한다는 올바른 결과로 부연 정정"
+    },
+    {
+      "run": "evidence-known-claims-v2",
+      "id": "requests-6074-explicit-false",
+      "repeat": 3,
+      "semantic_pass": true,
+      "reason": "오탐 삭제; 정상 가드/가상의 빈문자열 계약을 새 결함으로 만들지 않음"
+    }
+  ],
+  "earlier_failures": [
+    {
+      "run": "evidence-boundaries",
+      "id": "js-short-circuit-bug",
+      "repeat": 1,
+      "reason": "초기 검증도 저자의 조기 반환 의도를 추정하는 부연을 유지함"
+    },
+    {
+      "run": "evidence-known-claims",
+      "id": "js-short-circuit-bug",
+      "repeats": [
+        1,
+        2,
+        3
+      ],
+      "reason": "위치 자동 통과에도 기존 잘못된 부연이 유지됨; checked_consequence 이후 교정됨"
+    }
+  ],
+  "final_regression_review": {
+    "runs": [
+      "evidence-regression-final",
+      "evidence-boundaries-final"
+    ],
+    "reviews": 46,
+    "automatic_passed": 46,
+    "agent_semantic_check": "Inspected conditions, outcomes and suggestions for defect outputs; normal cases have no findings.",
+    "independent_human_review": false
+  },
+  "final_gold_review": {
+    "run": "evidence-gold-final",
+    "reviews": 18,
+    "passed": 11,
+    "semantic_gate": "FAIL",
+    "independent_human_review": false,
+    "failures": [
+      {
+        "id": "requests-6589-before",
+        "repeat": 1,
+        "missed": 1,
+        "unexpected": 0,
+        "reason": "Expected defect absent from draft and final output"
+      },
+      {
+        "id": "requests-6074-before",
+        "repeat": 1,
+        "missed": 1,
+        "unexpected": 0,
+        "reason": "Expected defect absent from draft and final output"
+      },
+      {
+        "id": "requests-6589-before",
+        "repeat": 2,
+        "missed": 1,
+        "unexpected": 0,
+        "reason": "Expected defect absent from draft and final output"
+      },
+      {
+        "id": "requests-6074-before",
+        "repeat": 2,
+        "missed": 1,
+        "unexpected": 0,
+        "reason": "Expected defect absent from draft and final output"
+      },
+      {
+        "id": "requests-6074-explicit-false",
+        "repeat": 2,
+        "missed": 0,
+        "unexpected": 1,
+        "reason": "Invented requirement that verification parameter must return bool rather than accepted CA path/string"
+      },
+      {
+        "id": "requests-6589-before",
+        "repeat": 3,
+        "missed": 1,
+        "unexpected": 0,
+        "reason": "Expected defect absent from draft and final output"
+      },
+      {
+        "id": "requests-6074-before",
+        "repeat": 3,
+        "missed": 1,
+        "unexpected": 0,
+        "reason": "Expected defect absent from draft and final output"
+      }
+    ]
+  },
+  "budget_comparison": {
+    "run": "evidence-budget",
+    "scope": "single synthetic long-function normal/defect pair repeated3; not general accuracy",
+    "bug_8k_detected": 0,
+    "bug_16k_detected": 3,
+    "normal_false_positives_both": 0
+  }
+}

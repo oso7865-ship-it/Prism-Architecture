@@ -1,0 +1,118 @@
+{
+  "recorded_at": "2026-09-28T00:37:20.773467+09:00",
+  "scope": "synthetic_and_public_pr_derived; not representative accuracy",
+  "runs": {
+    "evidence-gold-v1": {
+      "attempts": 20,
+      "reviews": 18,
+      "validated": 18,
+      "automatic_passed": 14,
+      "input_tokens": 89533,
+      "output_tokens": 2519,
+      "authorized_attempts_used": 777
+    },
+    "evidence-gold-contracts": {
+      "attempts": 19,
+      "reviews": 18,
+      "validated": 18,
+      "automatic_passed": 11,
+      "input_tokens": 88442,
+      "output_tokens": 2023,
+      "authorized_attempts_used": 796
+    },
+    "evidence-regression": {
+      "attempts": 68,
+      "reviews": 44,
+      "validated": 44,
+      "automatic_passed": 44,
+      "input_tokens": 294648,
+      "output_tokens": 9623,
+      "authorized_attempts_used": 864
+    },
+    "evidence-boundaries": {
+      "attempts": 72,
+      "reviews": 48,
+      "validated": 48,
+      "automatic_passed": 48,
+      "input_tokens": 296378,
+      "output_tokens": 9391,
+      "authorized_attempts_used": 936
+    },
+    "evidence-known-claims": {
+      "attempts": 9,
+      "reviews": 9,
+      "validated": 9,
+      "automatic_passed": 9,
+      "input_tokens": 27744,
+      "output_tokens": 303,
+      "authorized_attempts_used": 945
+    },
+    "evidence-known-claims-v2": {
+      "attempts": 9,
+      "reviews": 9,
+      "validated": 9,
+      "automatic_passed": 9,
+      "input_tokens": 29157,
+      "output_tokens": 527,
+      "authorized_attempts_used": 954
+    },
+    "evidence-budget": {
+      "attempts": 15,
+      "reviews": 12,
+      "validated": 12,
+      "automatic_passed": 9,
+      "input_tokens": 88074,
+      "output_tokens": 1976,
+      "authorized_attempts_used": 969
+    },
+    "evidence-gold-final": {
+      "attempts": 20,
+      "reviews": 18,
+      "validated": 18,
+      "automatic_passed": 11,
+      "input_tokens": 91987,
+      "output_tokens": 2836,
+      "authorized_attempts_used": 989
+    },
+    "evidence-regression-final": {
+      "attempts": 34,
+      "reviews": 22,
+      "validated": 22,
+      "automatic_passed": 22,
+      "input_tokens": 150047,
+      "output_tokens": 5296,
+      "authorized_attempts_used": 1023
+    },
+    "evidence-boundaries-final": {
+      "attempts": 36,
+      "reviews": 24,
+      "validated": 24,
+      "automatic_passed": 24,
+      "input_tokens": 150878,
+      "output_tokens": 5240,
+      "authorized_attempts_used": 1059
+    }
+  },
+  "totals": {
+    "attempts": 302,
+    "reviews": 222,
+    "validated": 222,
+    "automatic_passed": 201,
+    "input_tokens": 1306888,
+    "output_tokens": 39734
+  },
+  "approved_limit": 3000,
+  "approved_attempts_used": 1059,
+  "approved_remaining": 1941,
+  "engineering_gate": "PASS",
+  "semantic_quality_gate": "FAIL",
+  "gold_status": "provisional_agent_curated_not_independent_human_approved",
+  "reranker_enabled": false,
+  "final_model_prompt_version": "rh1-d634ca5b77229914",
+  "notes": [
+    "Same-model verification can preserve false claims.",
+    "Zero-finding drafts skip verification and can miss defects.",
+    "Cases used during tuning are not independent holdout.",
+    "Per-run automatic score is not semantic approval."
+  ]
+}

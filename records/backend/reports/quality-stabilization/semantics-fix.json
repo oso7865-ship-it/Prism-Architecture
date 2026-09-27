@@ -1,0 +1,3525 @@
+{
+  "started_at": "2026-09-27T13:42:27.220559+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-d927e0b9a90199c6",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "8c249edc2ab452ecf039d0c0b3024fd99b9f236d33c023b3e56bfc3279418103",
+  "max_calls": 60,
+  "repeats": 5,
+  "cases": [
+    {
+      "id": "py-dict-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 349,
+      "result": {
+        "summary": "가변 기본 인자 `entries={}`를 사용해 호출 간 상태가 공유되는 함수를 검토했습니다. 제공된 3줄만으로도 동일 인자 생략 호출 시 이전 호출의 항목이 누적되는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "`entries`를 전달하지 않고 `tags`를 두 번 이상 호출할 때",
+            "consequence": "기본 인자 딕셔너리가 함수 정의 시 한 번만 생성되어 호출 간에 공유되므로, 두 번째 호출의 반환값에 첫 번째 호출에서 추가한 키가 함께 포함됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 호출 간 상태가 누적됩니다",
+            "evidence": "1줄에서 기본값 `entries={}`가 정의 시점에 한 번 생성되고, 2줄에서 그 객체에 `key`를 추가한 뒤 3줄에서 그대로 반환합니다.",
+            "suggestion": "기본값을 `None`으로 두고 함수 내부에서 `if entries is None: entries = {}`로 새 딕셔너리를 만들거나, 호출자가 항상 딕셔너리를 넘기도록 시그니처를 바꾸세요.",
+            "file_path": "src/tags.py",
+            "key": "d9a221c72483b039e0e0fb0311ea4694fd0e8c6b2da5eaa48803c04c156eede4"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 3줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.578
+    },
+    {
+      "id": "py-dict-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4466,
+      "output_tokens": 128,
+      "result": {
+        "summary": "`tags` 함수가 `entries` 인자를 기본값 `None`으로 받아 호출 시 새 딕셔너리를 생성하도록 변경된 코드를 검토했습니다. 가변 기본 인자 문제를 회피하는 일반적인 패턴이며, 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 `entries`에 전달되는 값의 계약이 제공되지 않아 공유 상태나 동시성 영향은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.547
+    },
+    {
+      "id": "java-null-guard-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 76,
+      "result": {
+        "summary": "null 및 빈 리스트를 0으로 처리하는 길이 반환 메서드 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "java-null-guard-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 328,
+      "result": {
+        "summary": "리스트 길이를 반환하는 변경에서 null 검사와 빈 리스트 검사가 `&&`로 연결되어 있습니다. `values`가 null이면 왼쪽 조건이 참이 되어 `values.isEmpty()`가 평가되므로 NullPointerException이 발생합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              5
+            ],
+            "trigger": "length에 null 리스트를 전달할 때",
+            "consequence": "`values == null`이 참이 되어 `&&`의 오른쪽 `values.isEmpty()`가 평가되고, null 역참조로 NullPointerException이 발생합니다. null을 0으로 처리하려는 의도가 실행되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사가 `&&`로 연결되어 null 입력에서 NPE가 발생합니다",
+            "evidence": "4줄은 `values == null && values.isEmpty()`로 되어 있어 null일 때 오른쪽 피연산자가 평가됩니다. 5줄의 `values.size()`는 이 조건이 거짓일 때만 도달합니다.",
+            "suggestion": "null을 0으로 처리하려면 `values == null || values.isEmpty()`로 바꾸세요. 두 경우 모두 0을 반환하므로 5줄의 동작과 일관됩니다.",
+            "file_path": "src/Lengths.java",
+            "key": "393903931e14886cf568332160ab4881051e407bfe736313fac6be42a07031dc"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.422
+    },
+    {
+      "id": "js-map-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 99,
+      "result": {
+        "summary": "배열의 각 값을 2배로 만드는 doubled 함수 변경을 검토했습니다. 제공된 범위에서 map 호출은 배열에 대해 정상 동작하며, 보고할 만한 구체적 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 values의 입력 계약(배열 여부, 원소 타입)이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.563
+    },
+    {
+      "id": "js-map-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4430,
+      "output_tokens": 287,
+      "result": {
+        "summary": "`doubled`가 각 원소를 2배로 만드는 대신 `undefined`를 반환하는 변경입니다. 화살표 함수 본문이 블록으로 작성되어 계산 결과가 반환되지 않습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`doubled`를 호출하면 `values.map`이 각 원소에 대해 콜백을 실행합니다.",
+            "consequence": "콜백이 `value * 2`를 계산만 하고 반환하지 않으므로 결과 배열의 모든 원소가 `undefined`가 됩니다.",
+            "assumptions": [],
+            "title": "map 콜백이 값을 반환하지 않아 모든 결과가 undefined입니다",
+            "evidence": "2줄의 화살표 함수는 중괄호 블록을 사용하지만 `return`이 없어 `value * 2`의 결과가 버려집니다.",
+            "suggestion": "블록 중괄호를 제거해 식 본문으로 만들거나 `return value * 2;`로 계산 결과를 반환하세요.",
+            "file_path": "src/doubled.js",
+            "key": "64880939dc9293f7fffe0ff0f548c76021f75730bdc00e3a88d1726e0bf6d009"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.25
+    },
+    {
+      "id": "ts-promise-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4568,
+      "output_tokens": 122,
+      "result": {
+        "summary": "비동기 정책 검사 결과를 await로 기다린 뒤 false일 때 거부하고 true를 반환하는 permit 함수를 검토했습니다. 제공된 관련 구현과 함께 보면 동작 경로가 일관되며, 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 구현은 관련 파일 c2의 고정 반환값만 제공되어 다른 분기나 예외 경로는 확인하지 못했으며, 테스트 실행이나 호출부 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.375
+    },
+    {
+      "id": "ts-promise-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 685,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4567,
+      "output_tokens": 321,
+      "result": {
+        "summary": "`permit`가 `check()`의 Promise를 await하지 않고 truthy 검사하므로, 관련 구현이 항상 `false`를 반환해도 조건이 항상 거짓이 되어 `true`를 반환합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "`permit()`를 호출할 때",
+            "consequence": "`check()`가 반환한 Promise 객체는 항상 truthy이므로 `!check()`는 항상 false가 되고, 4줄에서 `true`가 반환됩니다. c2:2가 `false`를 반환하는 구현이어도 허가가 거부되지 않습니다.",
+            "assumptions": [],
+            "title": "await 누락으로 정책 검사 결과가 무시됩니다",
+            "evidence": "f1:3은 `check()` 호출 결과를 await 없이 부정합니다. c2:1-3에서 `check`는 `Promise<boolean>`을 반환하며 c2:2는 `false`를 반환합니다. Promise 객체는 truthy이므로 조건이 성립하지 않습니다.",
+            "suggestion": "`if (!(await check())) return false;`로 await하여 해석된 boolean 값을 검사하세요.",
+            "file_path": "src/permit.ts",
+            "key": "87d00d3654520c094f7fabbc79307af34c4f65238cceb20e73d03da63d9c6c95"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`check`의 실제 호출 경로와 다른 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.484
+    },
+    {
+      "id": "py-sequence-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "47719f7288687ec655f55a091f9a2c5c464fb4adc5559ac67446df56b3e36300",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 696,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4561,
+      "output_tokens": 120,
+      "result": {
+        "summary": "first_value 호출 결과에 upper()를 적용하는 변경을 검토했습니다. 관련 구현(c2)은 음수 인덱스에서 예외를 던지고 그 외 경로에서는 문자열을 반환하므로, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "first_value의 실제 구현은 관련 파일 c2로만 제공되었고, title의 호출부와 인덱스 계약은 제공되지 않았습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.579
+    },
+    {
+      "id": "py-sequence-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "65739d52a8d607f29e9248f902c7677689cfe0989433f3f013245acc2c80bb25",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 684,
+        "retrieval_seconds": 0.484,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4558,
+      "output_tokens": 281,
+      "result": {
+        "summary": "f1의 title이 first_value(index) 결과에 바로 upper()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 index < 0일 때 None을 반환하는 경로가 확인되어, 해당 입력에서 AttributeError가 발생하는 실패 경로가 있습니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "index가 음수인 값으로 title을 호출할 때",
+            "consequence": "first_value가 None을 반환하고, 그 결과에 upper()를 호출하는 4줄에서 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "음수 index에서 None 반환값을 바로 참조합니다",
+            "evidence": "f1:4는 first_value(index)의 반환값에 곧바로 upper()를 적용합니다. 관련 구현 c2:2-3은 index < 0이면 None을 반환합니다.",
+            "suggestion": "음수 index에 대한 반환 정책을 정하고, upper() 호출 전에 None 여부를 확인하거나 기본 문자열을 사용하세요.",
+            "file_path": "src/first.py",
+            "key": "13e0825df1a956de0f3e2aa4e29f2feab83c21881a3479ef0c8a572f89c26444"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "title의 호출부와 index 입력 계약은 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.86
+    },
+    {
+      "id": "java-capacity-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "038cd9ab72eefe13e3a63be60970be080b11067f59ccf3e447ae087ecf0c61e9",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 709,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4691,
+      "output_tokens": 150,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value를 통해 크기를 0 이상으로 보정한 뒤 byte 배열을 생성하는 변경을 검토했습니다. 제공된 관련 구현상 음수 크기는 0으로 클램프되어 예외 없이 유효한 배열이 반환되며, 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value가 항상 0 이상을 반환한다는 점은 관련 파일 c2:3에서 확인했으나, allocate 호출부와 size의 실제 계약(0 허용 여부)은 제공되지 않았습니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.391
+    },
+    {
+      "id": "java-capacity-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "acc7eb1552e24c8695d097e4cc7e33a319fdcea7524a5e6f50fa966d2de4562e",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 694,
+        "retrieval_seconds": 0.469,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4687,
+      "output_tokens": 277,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value(size)를 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2가 항상 -1을 반환하므로 모든 호출에서 음수 크기 배열 생성이 시도됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate(size)를 어떤 size 값으로 호출할 때",
+            "consequence": "Capacity.value가 -1을 반환하므로 new byte[-1]에서 NegativeArraySizeException이 발생해 배열 할당이 항상 실패합니다.",
+            "assumptions": [],
+            "title": "배열 길이가 항상 -1이라 할당이 실패합니다",
+            "evidence": "f1:3은 Capacity.value(size)를 배열 길이로 사용하고, c2:3은 항상 -1을 반환합니다.",
+            "suggestion": "Capacity.value가 유효한 비음수 길이를 반환하도록 구현을 수정하고, 0도 허용되는 합법적 길이임을 고려해 음수만 거부하세요.",
+            "file_path": "src/Buffer.java",
+            "key": "4f77849b13584777145806c0efaec971395a75d93b070acc523469ade4cd9204"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value의 실제 의도된 계약과 allocate 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.344
+    },
+    {
+      "id": "py-dict-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 331,
+      "result": {
+        "summary": "함수 기본 인자로 가변 딕셔너리(entries={})를 사용하고, 호출마다 그 딕셔너리에 값을 누적해 반환하는 변경입니다. 기본 인자는 정의 시 한 번만 생성되므로 호출 간 상태가 공유됩니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "entries 인자를 생략한 채 tags를 두 번 이상 호출할 때",
+            "consequence": "첫 호출에서 저장한 키-값이 두 번째 호출의 반환 딕셔너리에도 남아, 호출자는 자신이 넣지 않은 항목까지 포함된 결과를 받습니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 인해 호출 간 상태가 누적됩니다",
+            "evidence": "1줄의 entries={}는 함수 정의 시 한 번만 평가되는 기본 인자이고, 2줄에서 그 객체에 key를 추가한 뒤 3줄에서 그대로 반환하므로 생략 호출들이 같은 딕셔너리를 공유합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 안에서 entries가 None이면 새 딕셔너리를 만들도록 바꾸세요.",
+            "file_path": "src/tags.py",
+            "key": "fd93db652caca9ebd44d8bb9913042dc1f8bdf87653c14c9159a2317bdec107d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 본문만 검토했으며 호출부와 테스트는 제공되지 않아 실제 호출 패턴은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.515
+    },
+    {
+      "id": "py-dict-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4466,
+      "output_tokens": 128,
+      "result": {
+        "summary": "`tags` 함수가 `entries` 인자를 기본값 `None`으로 받아 호출 시 새 딕셔너리를 생성하도록 변경된 코드를 검토했습니다. 가변 기본 인자 문제를 회피하는 일반적인 패턴이며, 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 `entries`에 전달되는 값의 계약이 제공되지 않아 공유 상태나 동시성 영향은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.609
+    },
+    {
+      "id": "java-null-guard-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 88,
+      "result": {
+        "summary": "null 및 빈 리스트를 0으로 처리하는 길이 계산 변경을 검토했습니다. 4줄의 단락 평가 순서가 올바르고, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.172
+    },
+    {
+      "id": "java-null-guard-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 287,
+      "result": {
+        "summary": "리스트 길이를 반환하는 변경에서 null 검사 조건의 단락 평가가 의도와 반대로 동작합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              5
+            ],
+            "trigger": "values가 null인 상태에서 length를 호출할 때",
+            "consequence": "values == null이 true이므로 &&의 오른쪽 values.isEmpty()가 평가되어 NullPointerException이 발생합니다. null을 0으로 처리하려던 의도가 실현되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사가 &&로 연결되어 null 입력에서 NPE가 발생합니다",
+            "evidence": "4줄은 values == null && values.isEmpty()로 되어 있어 왼쪽이 true일 때 오른쪽 호출이 평가됩니다. 5줄의 values.size()는 null이 아닌 경우에만 도달합니다.",
+            "suggestion": "null을 0으로 처리하려면 조건을 values == null || values.isEmpty()로 바꾸세요. null을 허용하지 않는 계약이라면 null 검사를 제거하고 계약을 명확히 하세요.",
+            "file_path": "src/Lengths.java",
+            "key": "4efd8fc11511947255bc32533ee4bbefad5f95fbfacea1a5cd535f028001f092"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.281
+    },
+    {
+      "id": "js-map-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 98,
+      "result": {
+        "summary": "배열 값을 두 배로 만드는 map 기반 함수 변경을 검토했습니다. 제공된 범위에서 구체적인 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "values의 실제 호출 형태와 원소 타입 계약이 제공되지 않아 비배열 입력이나 숫자가 아닌 원소에 대한 동작은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "js-map-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4430,
+      "output_tokens": 291,
+      "result": {
+        "summary": "`doubled`가 각 원소를 두 배로 만드는 대신 `undefined`를 반환하는 변경입니다. 화살표 함수 본문이 블록으로 작성되어 `value * 2`의 결과가 반환되지 않습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`doubled`를 호출해 결과 배열을 사용할 때",
+            "consequence": "`map` 콜백이 값을 반환하지 않아 결과가 원소 수만큼의 `undefined`로 채워집니다. 두 배 값은 계산만 되고 버려집니다.",
+            "assumptions": [],
+            "title": "map 콜백이 값을 반환하지 않아 undefined 배열이 생성됩니다",
+            "evidence": "2줄의 화살표 함수는 중괄호 블록을 사용하지만 `return`이 없어 `value * 2`의 결과가 콜백 반환값이 되지 않습니다.",
+            "suggestion": "`value => value * 2`처럼 표현식 본문으로 바꾸거나 블록 안에서 `return value * 2;`를 사용하세요.",
+            "file_path": "src/doubled.js",
+            "key": "1bbd105c5e620dadc861608f7c42368e5393e79c14869c4e550e7a7e7af9cb0f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 세 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.218
+    },
+    {
+      "id": "ts-promise-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4568,
+      "output_tokens": 130,
+      "result": {
+        "summary": "정책 확인 결과를 반환하는 비동기 함수 변경을 검토했습니다. 제공된 관련 구현에서 check가 항상 false를 반환하므로 permit은 항상 false를 반환하지만, 이는 관련 파일의 고정 구현에 따른 결과이며 변경된 코드 자체의 결함은 확인되지 않았습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 운영 구현과 호출부는 제공되지 않았으며, 관련 파일 c2의 구현이 실제 배포본과 동일한지 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.469
+    },
+    {
+      "id": "ts-promise-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 685,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4567,
+      "output_tokens": 302,
+      "result": {
+        "summary": "f1의 permit 함수가 async인데도 c2의 check가 반환하는 Promise를 await 없이 조건으로 사용합니다. check는 항상 Promise 객체를 반환하므로 Promise는 truthy로 평가되어 permit이 항상 true를 반환합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "permit()를 호출할 때",
+            "consequence": "check()가 Promise<boolean>을 반환하므로 !check()는 항상 false가 되어 3줄의 조건이 절대 성립하지 않고, permit은 check의 실제 결과와 무관하게 항상 true를 반환합니다.",
+            "assumptions": [],
+            "title": "await 없는 Promise 조건으로 인해 permit이 항상 true를 반환합니다",
+            "evidence": "f1:3은 check()의 반환값을 await 없이 부정 조건으로 사용합니다. c2:1-2에서 check는 async 함수로 Promise<boolean>을 반환하므로 Promise 객체는 항상 truthy입니다.",
+            "suggestion": "3줄을 `if (!(await check())) return false;`로 바꿔 실제 boolean 결과를 평가하도록 하세요.",
+            "file_path": "src/permit.ts",
+            "key": "b5594b17209ac23c1dd7f11f28d1cfbe34e72169246b4e5d2582e01b4a9f65cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 정책 로직과 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.5
+    },
+    {
+      "id": "py-sequence-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "47719f7288687ec655f55a091f9a2c5c464fb4adc5559ac67446df56b3e36300",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 696,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4561,
+      "output_tokens": 137,
+      "result": {
+        "summary": "f1의 title 함수가 first_value(index) 결과에 upper()를 적용하는 변경을 검토했습니다. 관련 구현 c2는 음수 인덱스에서 예외를 던지고 그 외 경로에서는 문자열을 반환하므로, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "first_value의 실제 호출부와 index 값의 출처는 제공되지 않았으며, 실행 검증은 하지 않았습니다. c2의 구현만으로 반환 계약을 확인했고 다른 구현이나 오버로드는 보지 못했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.75
+    },
+    {
+      "id": "py-sequence-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "65739d52a8d607f29e9248f902c7677689cfe0989433f3f013245acc2c80bb25",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 684,
+        "retrieval_seconds": 0.484,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4558,
+      "output_tokens": 286,
+      "result": {
+        "summary": "f1의 title이 first_value(index) 결과에 바로 upper()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 index < 0일 때 None을 반환하는 경로가 확인되어, 해당 입력에서 AttributeError가 발생하는 경로가 있습니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "index가 음수인 값으로 title을 호출할 때",
+            "consequence": "first_value가 None을 반환하고, 4줄에서 None.upper()를 호출해 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "음수 index에서 None을 upper()로 호출해 실패합니다",
+            "evidence": "f1:4는 first_value(index)의 반환값에 바로 upper()를 적용합니다. c2:2-3에서 index < 0이면 None을 반환합니다.",
+            "suggestion": "first_value가 None을 반환하는 경우의 반환값(예: 빈 문자열 또는 명시적 예외)을 정하고, upper() 호출 전에 None 여부를 처리하세요.",
+            "file_path": "src/first.py",
+            "key": "927b0763f5b1ab1bb02796f1d040753227238a49d77e514dfe64c7fc0d6301cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "title의 호출부와 index 입력 계약은 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.281
+    },
+    {
+      "id": "java-capacity-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "038cd9ab72eefe13e3a63be60970be080b11067f59ccf3e447ae087ecf0c61e9",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 709,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4691,
+      "output_tokens": 123,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value를 통해 크기를 0 이상으로 보정한 뒤 byte 배열을 생성하는 변경을 검토했습니다. 제공된 관련 구현상 음수 크기는 0으로 클램프되어 예외 경로가 없으며, 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value 구현은 관련 파일로만 제공되었고, allocate 호출부와 size의 실제 계약(0 허용 여부)은 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.579
+    },
+    {
+      "id": "java-capacity-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "acc7eb1552e24c8695d097e4cc7e33a319fdcea7524a5e6f50fa966d2de4562e",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 694,
+        "retrieval_seconds": 0.469,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4687,
+      "output_tokens": 268,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value(size)를 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2가 항상 -1을 반환하므로 모든 호출에서 음수 크기 배열 생성이 시도됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate를 어떤 size로 호출하든",
+            "consequence": "Capacity.value가 -1을 반환하므로 new byte[-1]에서 NegativeArraySizeException이 발생해 배열 할당이 실패합니다.",
+            "assumptions": [],
+            "title": "배열 길이가 항상 음수여서 할당이 실패합니다",
+            "evidence": "f1:3은 Capacity.value(size)를 배열 길이로 사용하고, c2:3은 항상 -1을 반환합니다.",
+            "suggestion": "Capacity.value가 유효한 비음수 길이를 반환하도록 구현을 채우거나, allocate에서 반환값을 검증해 0 이상일 때만 배열을 생성하세요.",
+            "file_path": "src/Buffer.java",
+            "key": "862f07f0d2902068ef751869f7b4553cc1b98cfe9f328dfe63cc1e8060cebdfd"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value의 실제 구현 의도와 allocate 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.297
+    },
+    {
+      "id": "py-dict-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 331,
+      "result": {
+        "summary": "함수 기본 인자로 가변 딕셔너리(entries={})를 사용하고, 호출마다 그 딕셔너리에 값을 누적해 반환하는 변경입니다. 기본 인자가 호출 간에 공유되므로 상태가 축적되는 결함이 보입니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "entries 인자를 생략한 채 tags를 두 번 이상 호출할 때",
+            "consequence": "기본 딕셔너리 객체가 호출 간에 공유되어 이전 호출에서 저장한 키-값이 이후 반환값에 그대로 남고, 같은 key를 다시 넘기면 이전 값이 덮어써집니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 인해 호출 간 상태가 누적됩니다",
+            "evidence": "1줄의 entries={}는 함수 정의 시 한 번만 생성되어 모든 기본 호출이 같은 객체를 공유하고, 2줄에서 그 객체에 값을 쓰고 3줄에서 그대로 반환합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 entries가 None이면 새 딕셔너리를 만들도록 바꾸세요.",
+            "file_path": "src/tags.py",
+            "key": "fd93db652caca9ebd44d8bb9913042dc1f8bdf87653c14c9159a2317bdec107d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트는 제공되지 않아 실제 호출 패턴은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.625
+    },
+    {
+      "id": "py-dict-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4466,
+      "output_tokens": 128,
+      "result": {
+        "summary": "`tags` 함수가 `entries` 인자를 기본값 `None`으로 받아 호출 시 새 딕셔너리를 생성하도록 변경된 코드를 검토했습니다. 가변 기본 인자 문제를 회피하는 일반적인 패턴이며, 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 `entries`에 전달되는 값의 계약이 제공되지 않아 공유 상태나 동시성 영향은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.547
+    },
+    {
+      "id": "java-null-guard-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 95,
+      "result": {
+        "summary": "null 및 빈 리스트를 0으로 처리하는 길이 계산 메서드 변경을 검토했습니다. 4줄의 단축 평가 조건은 null일 때 isEmpty()를 호출하지 않으므로 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.266
+    },
+    {
+      "id": "java-null-guard-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 305,
+      "result": {
+        "summary": "리스트 길이를 반환하는 변경에서 null 검사 조건의 단락 평가가 의도와 반대로 동작합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              5
+            ],
+            "trigger": "values가 null인 상태로 length를 호출할 때",
+            "consequence": "values == null이 true이므로 &&의 오른쪽 values.isEmpty()가 평가되어 NullPointerException이 발생합니다. null을 방어하려는 조건이 오히려 null 역참조를 유발합니다.",
+            "assumptions": [],
+            "title": "null 검사가 &&로 연결되어 null일 때 오히려 NPE가 발생합니다",
+            "evidence": "4줄은 values == null && values.isEmpty()로 되어 있어 왼쪽이 true인 null 입력에서 오른쪽 isEmpty() 호출이 실행됩니다. 5줄의 size() 호출은 그 이후 도달하지 못합니다.",
+            "suggestion": "null을 0으로 처리하려는 의도라면 조건을 values == null || values.isEmpty()로 바꾸세요. null을 허용하지 않는 계약이라면 null 검사를 제거하고 호출자 계약을 명확히 하세요.",
+            "file_path": "src/Lengths.java",
+            "key": "90b1a5ab20d184dcd7b35c27434a10b7acff1fb1d4a7f31d643ede1078d65ef2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.125
+    },
+    {
+      "id": "js-map-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 74,
+      "result": {
+        "summary": "배열 값을 두 배로 만드는 map 기반 함수 변경을 검토했습니다. 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "values의 타입/호출 계약과 호출부가 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.969
+    },
+    {
+      "id": "js-map-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4430,
+      "output_tokens": 291,
+      "result": {
+        "summary": "`doubled`가 각 원소를 두 배로 만드는 대신 `undefined`를 반환하는 변경입니다. 화살표 함수 본문이 블록으로 작성되어 `value * 2`의 결과가 반환되지 않습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`doubled`를 호출해 결과 배열을 사용할 때",
+            "consequence": "`map` 콜백이 값을 반환하지 않아 결과가 원소 수만큼의 `undefined`로 채워집니다. 두 배 값은 계산만 되고 버려집니다.",
+            "assumptions": [],
+            "title": "map 콜백이 값을 반환하지 않아 undefined 배열이 생성됩니다",
+            "evidence": "2줄의 화살표 함수는 중괄호 블록을 사용하지만 `return`이 없어 `value * 2`의 결과가 콜백 반환값이 되지 않습니다.",
+            "suggestion": "`value => value * 2`처럼 표현식 본문으로 바꾸거나 블록 안에서 `return value * 2;`를 사용하세요.",
+            "file_path": "src/doubled.js",
+            "key": "1bbd105c5e620dadc861608f7c42368e5393e79c14869c4e550e7a7e7af9cb0f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 세 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.344
+    },
+    {
+      "id": "ts-promise-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4568,
+      "output_tokens": 146,
+      "result": {
+        "summary": "정책 확인 결과를 반전해 반환하는 permit 함수 변경을 검토했습니다. 관련 구현 c2의 check가 항상 false를 반환하므로 permit은 항상 false를 반환하지만, 이는 관련 파일의 고정 구현에 따른 결과이며 제공된 변경 코드 자체에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 정책 판단 로직과 호출부는 제공되지 않았고, c2는 항상 false를 반환하는 축약된 구현으로 보여 실제 런타임 동작을 확인할 수 없습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.891
+    },
+    {
+      "id": "ts-promise-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 685,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4567,
+      "output_tokens": 302,
+      "result": {
+        "summary": "f1의 permit 함수가 async인데도 c2의 check가 반환하는 Promise를 await 없이 조건으로 사용합니다. check는 항상 Promise 객체를 반환하므로 Promise는 truthy로 평가되어 permit이 항상 true를 반환합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "permit()를 호출할 때",
+            "consequence": "check()가 Promise<boolean>을 반환하므로 !check()는 항상 false가 되어 3줄의 조건이 절대 성립하지 않고, permit은 check의 실제 결과와 무관하게 항상 true를 반환합니다.",
+            "assumptions": [],
+            "title": "await 없는 Promise 조건으로 인해 permit이 항상 true를 반환합니다",
+            "evidence": "f1:3은 check()의 반환값을 await 없이 부정 조건으로 사용합니다. c2:1-2에서 check는 async 함수로 Promise<boolean>을 반환하므로 Promise 객체는 항상 truthy입니다.",
+            "suggestion": "3줄을 `if (!(await check())) return false;`로 바꿔 실제 boolean 결과를 평가하도록 하세요.",
+            "file_path": "src/permit.ts",
+            "key": "b5594b17209ac23c1dd7f11f28d1cfbe34e72169246b4e5d2582e01b4a9f65cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 정책 로직과 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.406
+    },
+    {
+      "id": "py-sequence-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "47719f7288687ec655f55a091f9a2c5c464fb4adc5559ac67446df56b3e36300",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 696,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4561,
+      "output_tokens": 137,
+      "result": {
+        "summary": "f1의 title 함수가 first_value(index) 결과에 upper()를 적용하는 변경을 검토했습니다. 관련 구현 c2는 음수 인덱스에서 예외를 던지고 그 외 경로에서는 문자열을 반환하므로, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "first_value의 실제 호출부와 index 값의 출처는 제공되지 않았으며, 실행 검증은 하지 않았습니다. c2의 구현만으로 반환 계약을 확인했고 다른 구현이나 오버로드는 보지 못했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.532
+    },
+    {
+      "id": "py-sequence-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "65739d52a8d607f29e9248f902c7677689cfe0989433f3f013245acc2c80bb25",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 684,
+        "retrieval_seconds": 0.484,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4558,
+      "output_tokens": 307,
+      "result": {
+        "summary": "f1의 title이 first_value(index) 결과에 바로 upper()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 index < 0일 때 None을 반환하는 경로가 확인되어, 해당 입력에서 AttributeError가 발생하는 실패 경로가 있습니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "index가 음수인 값으로 title을 호출할 때",
+            "consequence": "c2:3에서 first_value가 None을 반환하고, f1:4에서 None.upper()를 호출해 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "음수 index에서 None을 upper()로 호출해 실패합니다",
+            "evidence": "f1:4는 first_value(index)의 반환값에 곧바로 upper()를 적용합니다. c2:1-3은 index < 0일 때 None을 반환합니다.",
+            "suggestion": "first_value가 None을 반환하는 경우의 반환값(예: 빈 문자열 또는 명시적 예외)을 정하고, upper() 호출 전에 None 여부를 처리하세요.",
+            "file_path": "src/first.py",
+            "key": "927b0763f5b1ab1bb02796f1d040753227238a49d77e514dfe64c7fc0d6301cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 f1과 관련 구현 c2만 검토했으며, title의 실제 호출부와 index 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.969
+    },
+    {
+      "id": "java-capacity-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "038cd9ab72eefe13e3a63be60970be080b11067f59ccf3e447ae087ecf0c61e9",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 709,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4691,
+      "output_tokens": 140,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value를 통해 크기를 0 이상으로 보정한 뒤 byte 배열을 생성하는 변경을 검토했습니다. 관련 구현(c2:3)이 Math.max(0, size)로 음수를 0으로 만들므로 음수 길이로 인한 NegativeArraySizeException 경로는 보이지 않으며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value 외 다른 호출부나 size의 실제 입력 계약, 대용량 size에 대한 상한 처리는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "java-capacity-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "acc7eb1552e24c8695d097e4cc7e33a319fdcea7524a5e6f50fa966d2de4562e",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 694,
+        "retrieval_seconds": 0.469,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4687,
+      "output_tokens": 277,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value(size)를 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2가 항상 -1을 반환하므로 모든 호출에서 음수 크기 배열 생성이 시도됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate(size)를 어떤 size 값으로 호출할 때",
+            "consequence": "Capacity.value가 -1을 반환하므로 new byte[-1]에서 NegativeArraySizeException이 발생해 배열 할당이 항상 실패합니다.",
+            "assumptions": [],
+            "title": "배열 길이가 항상 -1이라 할당이 실패합니다",
+            "evidence": "f1:3은 Capacity.value(size)를 배열 길이로 사용하고, c2:3은 항상 -1을 반환합니다.",
+            "suggestion": "Capacity.value가 유효한 비음수 길이를 반환하도록 구현을 수정하고, 0도 허용되는 합법적 길이임을 고려해 음수만 거부하세요.",
+            "file_path": "src/Buffer.java",
+            "key": "4f77849b13584777145806c0efaec971395a75d93b070acc523469ade4cd9204"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value의 실제 의도된 계약과 allocate 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.875
+    },
+    {
+      "id": "py-dict-bug",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 331,
+      "result": {
+        "summary": "함수 기본 인자로 가변 딕셔너리(entries={})를 사용하고, 호출마다 그 딕셔너리에 값을 누적해 반환하는 변경입니다. 기본 인자가 호출 간에 공유되므로 상태가 축적되는 결함이 보입니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "entries 인자를 생략한 채 tags를 두 번 이상 호출할 때",
+            "consequence": "기본 딕셔너리 객체가 호출 간에 공유되어 이전 호출에서 저장한 키-값이 이후 반환값에 그대로 남고, 같은 key를 다시 넘기면 이전 값이 덮어써집니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 인해 호출 간 상태가 누적됩니다",
+            "evidence": "1줄의 entries={}는 함수 정의 시 한 번만 생성되어 모든 기본 호출이 같은 객체를 공유하고, 2줄에서 그 객체에 값을 쓰고 3줄에서 그대로 반환합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 entries가 None이면 새 딕셔너리를 만들도록 바꾸세요.",
+            "file_path": "src/tags.py",
+            "key": "fd93db652caca9ebd44d8bb9913042dc1f8bdf87653c14c9159a2317bdec107d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트는 제공되지 않아 실제 호출 패턴은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.531
+    },
+    {
+      "id": "py-dict-safe",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4466,
+      "output_tokens": 128,
+      "result": {
+        "summary": "`tags` 함수가 `entries` 인자를 기본값 `None`으로 받아 호출 시 새 딕셔너리를 생성하도록 변경된 코드를 검토했습니다. 가변 기본 인자 문제를 회피하는 일반적인 패턴이며, 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 `entries`에 전달되는 값의 계약이 제공되지 않아 공유 상태나 동시성 영향은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.625
+    },
+    {
+      "id": "java-null-guard-safe",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 75,
+      "result": {
+        "summary": "null 및 빈 리스트를 먼저 처리한 뒤 크기를 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.0
+    },
+    {
+      "id": "java-null-guard-bug",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 287,
+      "result": {
+        "summary": "리스트 길이를 반환하는 변경에서 null 검사 조건의 단락 평가가 의도와 반대로 동작합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              5
+            ],
+            "trigger": "values가 null인 상태에서 length를 호출할 때",
+            "consequence": "values == null이 true이므로 &&의 오른쪽 values.isEmpty()가 평가되어 NullPointerException이 발생합니다. null을 0으로 처리하려던 의도가 실현되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사가 &&로 연결되어 null 입력에서 NPE가 발생합니다",
+            "evidence": "4줄은 values == null && values.isEmpty()로 되어 있어 왼쪽이 true일 때 오른쪽 호출이 평가됩니다. 5줄의 values.size()는 null이 아닌 경우에만 도달합니다.",
+            "suggestion": "null을 0으로 처리하려면 조건을 values == null || values.isEmpty()로 바꾸세요. null을 허용하지 않는 계약이라면 null 검사를 제거하고 계약을 명확히 하세요.",
+            "file_path": "src/Lengths.java",
+            "key": "4efd8fc11511947255bc32533ee4bbefad5f95fbfacea1a5cd535f028001f092"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.171
+    },
+    {
+      "id": "js-map-safe",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 104,
+      "result": {
+        "summary": "배열의 각 값을 2배로 만드는 doubled 함수 변경을 검토했습니다. 제공된 범위에서 map 호출은 배열에 대해 정상 동작하며, 보고할 구체적 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 values의 실제 타입/입력 계약이 제공되지 않아 비배열 입력 여부는 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "js-map-bug",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4430,
+      "output_tokens": 287,
+      "result": {
+        "summary": "`doubled`가 각 원소를 2배로 만드는 대신 `undefined`를 반환하는 변경입니다. 화살표 함수 본문이 블록으로 작성되어 계산 결과가 반환되지 않습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`doubled`를 호출하면 `values.map`이 각 원소에 대해 콜백을 실행합니다.",
+            "consequence": "콜백이 `value * 2`를 계산만 하고 반환하지 않으므로 결과 배열의 모든 원소가 `undefined`가 됩니다.",
+            "assumptions": [],
+            "title": "map 콜백이 값을 반환하지 않아 모든 결과가 undefined입니다",
+            "evidence": "2줄의 화살표 함수는 중괄호 블록을 사용하지만 `return`이 없어 `value * 2`의 결과가 버려집니다.",
+            "suggestion": "블록 중괄호를 제거해 식 본문으로 만들거나 `return value * 2;`로 계산 결과를 반환하세요.",
+            "file_path": "src/doubled.js",
+            "key": "64880939dc9293f7fffe0ff0f548c76021f75730bdc00e3a88d1726e0bf6d009"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.0
+    },
+    {
+      "id": "ts-promise-safe",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4568,
+      "output_tokens": 146,
+      "result": {
+        "summary": "정책 확인 결과를 반전해 반환하는 permit 함수 변경을 검토했습니다. 관련 구현 c2의 check가 항상 false를 반환하므로 permit은 항상 false를 반환하지만, 이는 관련 파일의 고정 구현에 따른 결과이며 제공된 변경 코드 자체에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 정책 판단 로직과 호출부는 제공되지 않았고, c2는 항상 false를 반환하는 축약된 구현으로 보여 실제 런타임 동작을 확인할 수 없습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.453
+    },
+    {
+      "id": "ts-promise-bug",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 685,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4567,
+      "output_tokens": 369,
+      "result": {
+        "summary": "f1의 permit은 async 함수이지만 c2의 check가 Promise<boolean>을 반환하므로, 3줄의 !check()는 Promise 객체의 truthiness를 평가합니다. Promise는 항상 truthy이므로 !check()는 항상 false가 되어 3줄의 조기 반환이 절대 실행되지 않고 permit은 항상 true를 반환합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "permit()를 호출할 때",
+            "consequence": "check()가 Promise<boolean>을 반환하므로 !check()는 Promise 객체를 부정해 항상 false가 되고, 3줄의 return false가 실행되지 않아 check()가 false를 반환하는 경우에도 permit()이 true를 반환합니다.",
+            "assumptions": [],
+            "title": "await 없는 Promise 부정으로 인해 permit이 항상 true를 반환합니다",
+            "evidence": "f1:2는 permit을 async로 선언하고, f1:3은 check()의 결과를 await 없이 부정합니다. c2:1-2에서 check는 Promise<boolean>을 반환하며 false를 resolve합니다. Promise 객체는 truthy이므로 !check()는 항상 false입니다.",
+            "suggestion": "3줄을 `if (!(await check())) return false;`로 변경해 resolve된 boolean 값을 평가하도록 하세요.",
+            "file_path": "src/permit.ts",
+            "key": "40e06db14c42d81a42b476c42ccde495db1d9513c804dec2316edd513602691e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 런타임 동작과 호출부는 제공되지 않았으며, 정적 분석 결과만으로 판단했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.407
+    },
+    {
+      "id": "py-sequence-safe",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "47719f7288687ec655f55a091f9a2c5c464fb4adc5559ac67446df56b3e36300",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 696,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4561,
+      "output_tokens": 129,
+      "result": {
+        "summary": "f1의 title 함수가 first_value(index) 결과에 upper()를 적용하는 변경을 검토했습니다. 관련 구현 c2의 first_value는 음수 인덱스에서 ValueError를 던지고 그 외 경로에서는 문자열을 반환하므로, 제공된 범위에서 null 역참조나 반환 계약 위반은 확인되지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "first_value의 실제 호출부와 index 값의 출처는 제공되지 않았으며, 테스트를 실행하거나 저장소 구현 전체를 확인하지는 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.61
+    },
+    {
+      "id": "py-sequence-bug",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "65739d52a8d607f29e9248f902c7677689cfe0989433f3f013245acc2c80bb25",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 684,
+        "retrieval_seconds": 0.484,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4558,
+      "output_tokens": 292,
+      "result": {
+        "summary": "f1의 title이 first_value(index) 결과에 바로 upper()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 index < 0일 때 None을 반환하는 경로가 확인되어, 해당 입력에서 AttributeError가 발생하는 실패 경로가 있습니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "index가 음수인 값으로 title을 호출할 때",
+            "consequence": "first_value가 None을 반환하고, 그 결과에 upper()를 호출하는 4줄에서 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "음수 index에서 None 반환값을 바로 참조합니다",
+            "evidence": "f1:4는 first_value(index)의 반환값에 곧바로 upper()를 호출합니다. 관련 구현 c2:2-3은 index < 0이면 None을 반환합니다.",
+            "suggestion": "first_value가 None을 반환하는 경우의 반환값(예: 기본 문자열 또는 명시적 예외)을 정하고, upper() 호출 전에 None 여부를 처리하세요.",
+            "file_path": "src/first.py",
+            "key": "13e0825df1a956de0f3e2aa4e29f2feab83c21881a3479ef0c8a572f89c26444"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "title의 호출부와 index 입력 계약은 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.797
+    },
+    {
+      "id": "java-capacity-safe",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "038cd9ab72eefe13e3a63be60970be080b11067f59ccf3e447ae087ecf0c61e9",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 709,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4691,
+      "output_tokens": 127,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value를 통해 음수 크기를 0으로 보정한 뒤 byte 배열을 생성하는 변경을 검토했습니다. 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value가 Math.max(0, size)로 음수를 0으로 보정하므로 new byte[0]은 유효한 배열 생성입니다. allocate 호출부와 size의 실제 입력 범위는 제공되지 않아 상위 계약은 확인하지 못했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.641
+    },
+    {
+      "id": "java-capacity-bug",
+      "repeat": 4,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "acc7eb1552e24c8695d097e4cc7e33a319fdcea7524a5e6f50fa966d2de4562e",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 694,
+        "retrieval_seconds": 0.469,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4687,
+      "output_tokens": 277,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value(size)를 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2가 항상 -1을 반환하므로 모든 호출에서 음수 크기 배열 생성이 시도됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate(size)를 어떤 size 값으로 호출할 때",
+            "consequence": "Capacity.value가 -1을 반환하므로 new byte[-1]에서 NegativeArraySizeException이 발생해 배열 할당이 항상 실패합니다.",
+            "assumptions": [],
+            "title": "배열 길이가 항상 -1이라 할당이 실패합니다",
+            "evidence": "f1:3은 Capacity.value(size)를 배열 길이로 사용하고, c2:3은 항상 -1을 반환합니다.",
+            "suggestion": "Capacity.value가 유효한 비음수 길이를 반환하도록 구현을 수정하고, 0도 허용되는 합법적 길이임을 고려해 음수만 거부하세요.",
+            "file_path": "src/Buffer.java",
+            "key": "4f77849b13584777145806c0efaec971395a75d93b070acc523469ade4cd9204"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value의 실제 의도된 계약과 allocate 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.296
+    },
+    {
+      "id": "py-dict-bug",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 317,
+      "result": {
+        "summary": "가변 기본 인자 `entries={}`를 사용하는 `tags` 함수가 추가되었습니다. 호출 간에 동일한 딕셔너리가 공유되어 이전 호출의 항목이 누적되는 동작 결함이 있습니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "`entries` 인자를 생략한 채 `tags`를 두 번 이상 호출할 때",
+            "consequence": "기본 인자 딕셔너리가 호출 간에 공유되어 두 번째 호출의 반환값에 이전 호출에서 저장한 키-값이 함께 포함됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 인해 호출 간 상태가 누적됩니다",
+            "evidence": "1줄의 기본값 `entries={}`는 함수 정의 시 한 번만 생성되고, 2줄에서 그 객체에 값을 대입한 뒤 3줄에서 그대로 반환하므로 호출이 상태를 공유합니다.",
+            "suggestion": "기본값을 `None`으로 두고 함수 내부에서 `entries is None`일 때 새 딕셔너리를 생성하도록 변경하세요.",
+            "file_path": "src/tags.py",
+            "key": "fd93db652caca9ebd44d8bb9913042dc1f8bdf87653c14c9159a2317bdec107d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트는 제공되지 않아 실제 호출 패턴은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.125
+    },
+    {
+      "id": "py-dict-safe",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4466,
+      "output_tokens": 130,
+      "result": {
+        "summary": "`tags` 함수가 `entries` 인자를 기본값 `None`으로 받아 호출마다 새 딕셔너리를 생성하도록 변경된 코드를 검토했습니다. 가변 기본 인자 문제를 회피하는 일반적인 패턴이며, 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 `entries`에 전달되는 값의 계약이 제공되지 않아 공유 상태나 동시성 여부는 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tags.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.406
+    },
+    {
+      "id": "java-null-guard-safe",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 88,
+      "result": {
+        "summary": "null 및 빈 리스트를 0으로 처리하는 길이 계산 변경을 검토했습니다. 4줄의 단락 평가 순서가 올바르고, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.125
+    },
+    {
+      "id": "java-null-guard-bug",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4628,
+      "output_tokens": 287,
+      "result": {
+        "summary": "리스트 길이를 반환하는 변경에서 null 검사 조건의 단락 평가가 의도와 반대로 동작합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              5
+            ],
+            "trigger": "values가 null인 상태에서 length를 호출할 때",
+            "consequence": "values == null이 true이므로 &&의 오른쪽 values.isEmpty()가 평가되어 NullPointerException이 발생합니다. null을 0으로 처리하려던 의도가 실현되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사가 &&로 연결되어 null 입력에서 NPE가 발생합니다",
+            "evidence": "4줄은 values == null && values.isEmpty()로 되어 있어 왼쪽이 true일 때 오른쪽 호출이 평가됩니다. 5줄의 values.size()는 null이 아닌 경우에만 도달합니다.",
+            "suggestion": "null을 0으로 처리하려면 조건을 values == null || values.isEmpty()로 바꾸세요. null을 허용하지 않는 계약이라면 null 검사를 제거하고 계약을 명확히 하세요.",
+            "file_path": "src/Lengths.java",
+            "key": "4efd8fc11511947255bc32533ee4bbefad5f95fbfacea1a5cd535f028001f092"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Lengths.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.156
+    },
+    {
+      "id": "js-map-safe",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4427,
+      "output_tokens": 98,
+      "result": {
+        "summary": "배열 값을 두 배로 만드는 map 기반 함수 변경을 검토했습니다. 제공된 범위에서 구체적인 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "values의 실제 호출 형태와 원소 타입 계약이 제공되지 않아 비배열 입력이나 숫자가 아닌 원소에 대한 동작은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.235
+    },
+    {
+      "id": "js-map-bug",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4430,
+      "output_tokens": 287,
+      "result": {
+        "summary": "`doubled`가 각 원소를 2배로 만드는 대신 `undefined`를 반환하는 변경입니다. 화살표 함수 본문이 블록으로 작성되어 계산 결과가 반환되지 않습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "`doubled`를 호출하면 `values.map`이 각 원소에 대해 콜백을 실행합니다.",
+            "consequence": "콜백이 `value * 2`를 계산만 하고 반환하지 않으므로 결과 배열의 모든 원소가 `undefined`가 됩니다.",
+            "assumptions": [],
+            "title": "map 콜백이 값을 반환하지 않아 모든 결과가 undefined입니다",
+            "evidence": "2줄의 화살표 함수는 중괄호 블록을 사용하지만 `return`이 없어 `value * 2`의 결과가 버려집니다.",
+            "suggestion": "블록 중괄호를 제거해 식 본문으로 만들거나 `return value * 2;`로 계산 결과를 반환하세요.",
+            "file_path": "src/doubled.js",
+            "key": "64880939dc9293f7fffe0ff0f548c76021f75730bdc00e3a88d1726e0bf6d009"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/doubled.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.234
+    },
+    {
+      "id": "ts-promise-safe",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4568,
+      "output_tokens": 96,
+      "result": {
+        "summary": "`permit`가 `check`의 비동기 결과를 await하여 false이면 false를 반환하고, 그 외에는 true를 반환하는 변경을 검토했습니다. 제공된 코드에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`check`의 실제 정책 구현과 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.438
+    },
+    {
+      "id": "ts-promise-bug",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "424c4dddeef339422d4e1cfde44453c981bdeefe16b015f1266732391f6e8522",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/policy.ts"
+        ],
+        "input_bytes": 685,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4567,
+      "output_tokens": 332,
+      "result": {
+        "summary": "f1의 permit 함수가 c2의 check를 호출하지만, check는 async 함수로 Promise<boolean>을 반환합니다. f1:3에서 `!check()`는 Promise 객체의 truthiness를 검사하므로 항상 false가 되어 `return false`가 실행되고, f1:4의 `return true`는 도달하지 않습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "permit()를 호출할 때",
+            "consequence": "check()가 Promise 객체를 반환하므로 `!check()`는 항상 false가 되어 3줄에서 즉시 false를 반환합니다. 4줄의 `return true`는 도달할 수 없어 permit은 항상 false를 반환합니다.",
+            "assumptions": [],
+            "title": "async 함수의 Promise를 await 없이 검사해 permit이 항상 false를 반환합니다",
+            "evidence": "f1:3은 `!check()`로 검사하지만, c2:1-3에서 check는 async 함수로 Promise<boolean>을 반환합니다. Promise 객체는 항상 truthy이므로 부정은 항상 false입니다.",
+            "suggestion": "`if (!(await check())) return false;`로 변경해 Promise가 해소된 boolean 값을 검사하세요.",
+            "file_path": "src/permit.ts",
+            "key": "a1fa5dfb48b214ff33415857fffe2096cb0e149cb611795ef59bc52872ac3e6f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "check의 실제 구현과 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/permit.ts",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/policy.ts",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.109
+    },
+    {
+      "id": "py-sequence-safe",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "47719f7288687ec655f55a091f9a2c5c464fb4adc5559ac67446df56b3e36300",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 696,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4561,
+      "output_tokens": 142,
+      "result": {
+        "summary": "f1의 title 함수가 first_value(index) 결과에 upper()를 적용하는 변경을 검토했습니다. 관련 구현 c2는 음수 인덱스에서 예외를 던지고 그 외 경로에서는 문자열을 반환하므로, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "first_value의 실제 호출부와 index 값의 출처는 제공되지 않았으며, 실행 검증은 하지 않았습니다. c2가 관련 파일로 제공되어 반환 계약은 확인했지만 그 외 저장소 동작은 검토 범위 밖입니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.61
+    },
+    {
+      "id": "py-sequence-bug",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "65739d52a8d607f29e9248f902c7677689cfe0989433f3f013245acc2c80bb25",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/storage.py"
+        ],
+        "input_bytes": 684,
+        "retrieval_seconds": 0.484,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4558,
+      "output_tokens": 304,
+      "result": {
+        "summary": "f1의 title이 first_value(index) 결과에 바로 upper()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 index < 0일 때 None을 반환하는 경로가 확인되어, 해당 입력에서 AttributeError가 발생하는 실패 경로가 있습니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "index가 음수인 값으로 title을 호출할 때",
+            "consequence": "first_value가 None을 반환하고, 그 결과에 upper()를 호출하는 4줄에서 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "음수 index에서 None 반환값을 바로 참조합니다",
+            "evidence": "f1:4는 first_value(index)의 반환값에 곧바로 upper()를 적용합니다. 관련 구현 c2:2-3은 index < 0이면 None을 반환합니다.",
+            "suggestion": "first_value가 None을 반환하는 경우의 반환값(예: 빈 문자열 또는 명시적 예외)을 정하고, upper() 호출 전에 None 여부를 처리하세요.",
+            "file_path": "src/first.py",
+            "key": "13e0825df1a956de0f3e2aa4e29f2feab83c21881a3479ef0c8a572f89c26444"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 f1과 관련 구현 c2만 검토했으며, title의 실제 호출부와 index 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/first.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/storage.py",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.359
+    },
+    {
+      "id": "java-capacity-safe",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "038cd9ab72eefe13e3a63be60970be080b11067f59ccf3e447ae087ecf0c61e9",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 709,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4691,
+      "output_tokens": 127,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value를 통해 음수 크기를 0으로 보정한 뒤 byte 배열을 생성하는 변경을 검토했습니다. 제공된 범위에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value가 Math.max(0, size)로 음수를 0으로 보정하므로 new byte[0]은 유효한 배열 생성입니다. allocate 호출부와 size의 실제 입력 범위는 제공되지 않아 상위 계약은 확인하지 못했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.719
+    },
+    {
+      "id": "java-capacity-bug",
+      "repeat": 5,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "acc7eb1552e24c8695d097e4cc7e33a319fdcea7524a5e6f50fa966d2de4562e",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Capacity.java"
+        ],
+        "input_bytes": 694,
+        "retrieval_seconds": 0.469,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4687,
+      "output_tokens": 273,
+      "result": {
+        "summary": "Buffer.allocate가 Capacity.value(size)를 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2가 항상 -1을 반환하므로 모든 호출에서 음수 크기 배열 생성이 시도됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate를 어떤 size로 호출하든",
+            "consequence": "Capacity.value가 -1을 반환하므로 new byte[-1]에서 NegativeArraySizeException이 발생해 배열 할당이 실패합니다.",
+            "assumptions": [],
+            "title": "배열 길이가 항상 -1이라 모든 할당이 실패합니다",
+            "evidence": "f1:3은 Capacity.value(size)를 배열 길이로 사용하고, c2:3은 항상 -1을 반환합니다.",
+            "suggestion": "Capacity.value가 0 이상의 유효한 길이를 반환하도록 수정하고, 반환값이 음수일 때의 처리 방침(예외 또는 0 처리)을 명시하세요.",
+            "file_path": "src/Buffer.java",
+            "key": "54df93e7bf52ef6d8e2ff2e73d3847b66d5ed282f293060acf38a4f31877398a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Capacity.value의 실제 의도된 구현과 allocate 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Buffer.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Capacity.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.922
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "f22c651f30c77e181ee8617650a3436c720bf06030ab044ce2156e5b1aa9ca9a",
+    "app/domain/review/provider.py": "0cb06770d5e520c8db30cdd5a3e93721e2da578b1faa34db5352cf1053c47d5b",
+    "app/domain/review/retrieval.py": "8b9f48545988bada2bebf2ea489bdd60286e5d20d0acb505da21441fb11baa7c",
+    "app/domain/review/context_selection.py": "ecfe0e0054290456ced1c5896a8b9612c4f5a1477b86f306766cd0b694f6f196"
+  },
+  "finished_at": "2026-09-27T13:44:19.182167+00:00",
+  "summary": {
+    "attempts": 60,
+    "validated": 60,
+    "automatic_passed": 60,
+    "input_tokens": 273190,
+    "output_tokens": 12573,
+    "authorized_attempts_used": 397
+  }
+}

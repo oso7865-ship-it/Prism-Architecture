@@ -77,3 +77,7 @@ Service가 같은 도메인의 Repository를 호출하는 것은 정상이다. �
 ## 5. 크기와 분리
 
 작은 도메인은 파일형으로 시작한다. `service.py`가 서로 다른 UseCase를 많이 갖게 되면 `service/connect_repository.py`처럼 책임별로 나눈다. 줄 수만으로 자동 분할하지 않는다. 같은 이름의 `service.py`와 `service/`를 동시에 두지 않는다. 빈 폴더·한 클래스당 무조건 파일 생성·무의미한 Utils를 금지한다.
+
+## 문서 게시 경계
+
+[ADR-ARCH-003](adr/architecture/ADR-ARCH-003-central-documentation.md)에 따라 README/설계/작업기록/개발 하네스는 Prism-Architecture records에서 관리하고 구현 저장소에는 코드·설정·테스트·.prompt 실행 리소스만 게시한다. architecture.json의 고정 커밋과 복원 스크립트로 로컬 문서를 되살린다. 과거 이력은 재작성하지 않는다.

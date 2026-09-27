@@ -8,7 +8,7 @@
 | ID | 아직 정하지 않은 것 | 그전의 동작 | 결정 시점 |
 |---|---|---|---|
 | OPEN-01 | 장기 PostgreSQL 호스팅/리전/백업 | 로컬 PostgreSQL + fixture; 무료 Render DB의 30일 제한을 장기 보존으로 오인하지 않음 | 최초 지속 배포 전 |
-| OPEN-02 | 공개 운영 금액 예산/알림 | 로컬 deepseek-flash 실제 검증 완료. 팀 UTC 일5회·호출1회·출력2000token 제한; 금액 상한은 미보장 | 외부 공개 전 |
+| OPEN-02 | 공개 운영 금액 예산/알림 | 로컬 deepseek-flash 실제 검증 완료. 팀 UTC 일30회·호출1회·출력2000token 제한; 금액 상한은 미보장 | 외부 공개 전 |
 | OPEN-03 | 해결: 로컬 GitHub OAuth/App 등록 및 개인·조직 저장소 연결 | 실제 로그인·PR 동기화 확인. 공개 Webhook 실전송은 OPEN-04 이후 별도 | 2026-09-26 로컬 검증 |
 | OPEN-04 | 공개 도메인·Vercel rewrite·Callback 구성 | 로컬 개발 origin만 allowlist | 로그인 배포 테스트 전 |
 | OPEN-05 | Rule별 실제 정확도·문법 버전·Render 피크 자원 | 정의는 후보, fixture 통과 전 해당 Rule 비활성 | 기능 완료 선언 전 |

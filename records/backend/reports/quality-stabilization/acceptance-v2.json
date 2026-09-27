@@ -1,0 +1,1589 @@
+{
+  "started_at": "2026-09-27T13:44:39.495192+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-d927e0b9a90199c6",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "15b71be11a2ef893b508227f49226623ad2506c1a5dca2d7ede3524896a4ae70",
+  "max_calls": 36,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "python-short-circuit-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4456,
+      "output_tokens": 115,
+      "result": {
+        "summary": "None 또는 빈 리스트를 0으로 처리하는 size 함수 변경을 검토했습니다. 2줄에서 None을 명시적으로 검사한 뒤 3줄에서 반환하므로, 4줄의 len(values)는 None이 아닌 값에만 도달합니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.312
+    },
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4454,
+      "output_tokens": 76,
+      "result": {
+        "summary": "size 함수가 null 또는 빈 배열에 대해 0을 반환하도록 변경된 부분을 검토했습니다. 제공된 코드에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 values의 실제 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.14
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4463,
+      "output_tokens": 116,
+      "result": {
+        "summary": "null 허용 문자열의 길이를 반환하는 함수 변경을 검토했습니다. 2줄에서 null 검사를 먼저 수행한 뒤에만 length에 접근하므로 null 역참조 경로는 보이지 않으며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 실제 전달 값의 범위는 확인하지 못했으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "java-disjunction-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4608,
+      "output_tokens": 98,
+      "result": {
+        "summary": "문자열 길이를 반환하는 size 메서드 변경을 검토했습니다. 3줄에서 null 검사 후 length()를 호출하고, 조건이 거짓이면 0을 반환하므로 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4575,
+      "output_tokens": 91,
+      "result": {
+        "summary": "길이 0의 byte 배열을 반환하는 정적 팩터리 메서드 추가를 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 배열을 사용하는 코드가 제공되지 않아 사용 측 동작은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4412,
+      "output_tokens": 99,
+      "result": {
+        "summary": "0부터 0까지의 빈 범위를 리스트로 반환하는 함수 변경을 검토했습니다. 제공된 두 줄에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 반환값 사용 방식이 제공되지 않아 빈 리스트가 호출자에게 미치는 영향은 확인하지 못했으며, 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.281
+    },
+    {
+      "id": "python-short-circuit-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4456,
+      "output_tokens": 311,
+      "result": {
+        "summary": "`size` 함수에서 None 검사와 길이 검사를 `and`로 연결해, `values`가 None일 때 `len(values)`가 평가되어 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "`values`가 None인 상태로 `size`를 호출할 때",
+            "consequence": "`values is None`이 True이므로 `and`의 오른쪽 `len(values)`가 평가되고, None에 대한 len 호출로 TypeError가 발생합니다. 3줄의 `return 0`에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "2줄은 `values is None and len(values) == 0`으로, 왼쪽이 True일 때 오른쪽 `len(values)`를 평가합니다. 4줄의 정상 반환과 달리 None 경로는 3줄에 도달하기 전에 실패합니다.",
+            "suggestion": "None과 빈 리스트를 각각 처리하도록 조건을 분리하거나 `if values is None or len(values) == 0:`처럼 바꾸세요.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.266
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4454,
+      "output_tokens": 517,
+      "result": {
+        "summary": "size 함수에서 null 검사와 length 접근 조건이 잘못 결합되어 있습니다. values가 null이면 조건의 왼쪽이 참이 되어 오른쪽에서 null.length를 평가하므로 TypeError가 발생하고, 빈 배열은 0을 반환하지 못합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size(values)를 호출할 때",
+            "consequence": "2줄의 values === null이 참이 되어 && 오른쪽 values.length가 평가되고, null에서 length를 읽으려다 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "null 검사가 &&로 결합되어 null 역참조가 발생합니다",
+            "evidence": "2줄은 values === null일 때 오른쪽 values.length를 평가하도록 &&로 연결되어 있고, 3줄도 동일하게 values.length를 접근합니다.",
+            "suggestion": "null과 빈 배열을 각각 처리하도록 조건을 분리하세요. 예를 들어 values가 null이면 0을 반환하고, 그렇지 않으면 values.length를 반환하도록 작성하면 두 경로 모두 안전합니다.",
+            "file_path": "size.js",
+            "key": "0b52f5f3188415c4c014c5fd6f27e81fbf3dbd1e817c081caa335eca74176820"
+          },
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 빈 배열일 때 size(values)를 호출하는 경우",
+            "consequence": "values === null이 거짓이라 조건 전체가 거짓이 되어 0을 반환하지 못하고 3줄에서 0을 반환합니다. 결과값은 같지만 2줄의 조기 반환 의도가 동작하지 않습니다.",
+            "assumptions": [],
+            "title": "빈 배열 조기 반환 조건이 실행되지 않습니다",
+            "evidence": "2줄은 values === null을 먼저 요구하므로 빈 배열에서는 values.length === 0 검사에 도달하지 못합니다.",
+            "suggestion": "빈 배열을 조기 반환하려는 의도라면 null 검사와 length 검사를 별도 조건으로 분리하세요.",
+            "file_path": "size.js",
+            "key": "36b48cb7136556d5cd9c3b0672a814dd32890f70eb126d30f4e96d897f7c6fac"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 size 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.281
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4463,
+      "output_tokens": 342,
+      "result": {
+        "summary": "`size` 함수에서 null 검사 조건이 잘못되어 null 입력 시 `values.length`에 접근합니다. `values !== null || values.length > 0`는 null이 아닐 때뿐 아니라 null일 때도 우변을 평가하므로, null 경로에서 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "`values`가 null인 상태로 `size(null)`을 호출할 때",
+            "consequence": "`values !== null`이 false이므로 `||`의 우변 `values.length > 0`이 평가되고, null에서 length를 읽어 TypeError가 발생합니다. 3줄의 `return 0`은 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null 입력에서 length 접근으로 예외가 발생합니다",
+            "evidence": "1줄은 `values`가 `string | null`임을 명시하고, 2줄은 `values !== null || values.length > 0`로 null일 때 우변을 평가합니다.",
+            "suggestion": "null을 먼저 반환하도록 조건을 `if (values === null) return 0;`으로 분리하거나, `values !== null && values.length > 0`처럼 좌변이 참일 때만 length를 읽도록 수정하세요.",
+            "file_path": "size.ts",
+            "key": "f1f7eb2bb2fed2aafc91864010867cd9d864c4749800ad767285e669b43c2581"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.438
+    },
+    {
+      "id": "java-disjunction-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4608,
+      "output_tokens": 315,
+      "result": {
+        "summary": "문자열 길이를 반환하는 size 메서드의 조건 검사를 검토했습니다. 3줄의 `value != null || value.length() > 0` 조건은 value가 null일 때 왼쪽이 false가 되어 오른쪽 `value.length()`가 평가되므로 null 역참조가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 null인 상태에서 size(value)를 호출할 때",
+            "consequence": "`||`의 왼쪽 `value != null`이 false가 되어 오른쪽 `value.length()`가 평가되고 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 검사가 ||로 연결되어 null일 때 역참조가 실행됩니다",
+            "evidence": "3줄에서 `value != null || value.length() > 0`을 평가하며, null이면 왼쪽이 false라 오른쪽 length() 호출이 실행됩니다.",
+            "suggestion": "의도가 null을 0으로 처리하는 것이라면 조건을 `value != null && value.length() > 0`으로 바꾸거나, null을 먼저 반환하도록 분리하세요.",
+            "file_path": "Size.java",
+            "key": "4d64e90ba99f6e58c14c2d476223e1de6f50de73110506974d6ddf875499b990"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.563
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4575,
+      "output_tokens": 221,
+      "result": {
+        "summary": "빈 바이트 배열을 반환하려는 메서드에서 음수 길이로 배열을 생성해 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 길이이므로 NegativeArraySizeException이 발생하고, 메서드 이름이 의도한 빈 배열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 -2를 사용하고 있으며, 이는 유효한 배열 길이가 아닙니다.",
+            "suggestion": "빈 배열을 의도한 것이라면 길이를 0으로 바꾸세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.86
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4412,
+      "output_tokens": 81,
+      "result": {
+        "summary": "0부터 0까지 0 간격으로 range를 생성해 리스트로 반환하는 변경을 검토했습니다. 제공된 코드에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 기대 계약이 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false
+      },
+      "seconds": 1.391
+    },
+    {
+      "id": "python-short-circuit-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4456,
+      "output_tokens": 95,
+      "result": {
+        "summary": "None 또는 빈 리스트를 0으로 처리하는 size 함수 변경을 검토했습니다. 2줄에서 None을 명시적으로 검사한 뒤 4줄에서 len을 호출하므로, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.468
+    },
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4454,
+      "output_tokens": 79,
+      "result": {
+        "summary": "size 함수가 null 또는 빈 배열에 대해 0을 반환하도록 하는 변경을 검토했습니다. 제공된 코드에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 values의 실제 타입/입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.187
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4463,
+      "output_tokens": 116,
+      "result": {
+        "summary": "null 허용 문자열의 길이를 반환하는 함수 변경을 검토했습니다. 2줄에서 null 검사를 먼저 수행한 뒤에만 length에 접근하므로 null 역참조 경로는 보이지 않으며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 실제 전달 값의 범위는 확인하지 못했으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "java-disjunction-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4608,
+      "output_tokens": 134,
+      "result": {
+        "summary": "문자열 길이를 반환하는 정적 메서드 변경을 검토했습니다. null 검사 후 length()를 호출하는 단락 평가가 올바르고, null이거나 빈 문자열이면 0을 반환하므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 반환값 0이 빈 문자열과 null을 구분해야 하는 요구사항이 있는지는 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4575,
+      "output_tokens": 91,
+      "result": {
+        "summary": "길이 0의 byte 배열을 반환하는 정적 팩터리 메서드 추가를 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 배열을 사용하는 코드가 제공되지 않아 사용 측 동작은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.516
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4412,
+      "output_tokens": 99,
+      "result": {
+        "summary": "0부터 0까지의 빈 범위를 리스트로 반환하는 함수 변경을 검토했습니다. 제공된 두 줄에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 반환값 사용 방식이 제공되지 않아 빈 리스트가 호출자에게 미치는 영향은 확인하지 못했으며, 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.281
+    },
+    {
+      "id": "python-short-circuit-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4456,
+      "output_tokens": 311,
+      "result": {
+        "summary": "`size` 함수에서 None 검사와 길이 검사를 `and`로 연결해, `values`가 None일 때 `len(values)`가 평가되어 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "`values`가 None인 상태로 `size`를 호출할 때",
+            "consequence": "`values is None`이 True이므로 `and`의 오른쪽 `len(values)`가 평가되고, None에 대한 len 호출로 TypeError가 발생합니다. 3줄의 `return 0`에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "2줄은 `values is None and len(values) == 0`으로, 왼쪽이 True일 때 오른쪽 `len(values)`를 평가합니다. 4줄의 정상 반환과 달리 None 경로는 3줄에 도달하기 전에 실패합니다.",
+            "suggestion": "None과 빈 리스트를 각각 처리하도록 조건을 분리하거나 `if values is None or len(values) == 0:`처럼 바꾸세요.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.0
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4454,
+      "output_tokens": 305,
+      "result": {
+        "summary": "size 함수가 null 검사와 length 검사를 &&로 결합해, values가 null일 때 곧바로 values.length를 평가합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태에서 size(values)를 호출할 때",
+            "consequence": "2줄의 values === null이 참이 되어 &&의 오른쪽 values.length가 평가되고, null에서 length를 읽으려 해 TypeError가 발생합니다. 3줄의 반환에도 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null 입력에서 조건 평가 중 TypeError가 발생합니다",
+            "evidence": "2줄은 values === null일 때 오른쪽 values.length를 평가하는 && 조건이고, 3줄도 values.length를 그대로 사용합니다. null 경로에서 0을 반환하려는 의도와 달리 예외가 발생합니다.",
+            "suggestion": "null 분기를 먼저 처리하도록 조건을 분리하세요. 예를 들어 values === null이면 0을 반환하고, 그 다음에 length 검사를 수행하도록 작성하면 3줄의 정상 경로도 그대로 유지됩니다.",
+            "file_path": "size.js",
+            "key": "bd4f2008a2f9d5df45a52dcdbce9fec082cfc1c905a86aead0a09cc1f9d12e86"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.593
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4463,
+      "output_tokens": 305,
+      "result": {
+        "summary": "`size` 함수의 null 검사 조건이 `||`로 작성되어, `values`가 null일 때 `values.length`에 접근하는 경로가 열려 있습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "`values !== null`이 false이므로 `||`의 오른쪽 `values.length > 0`이 평가되고, null에서 length를 읽어 TypeError가 발생합니다. 3줄의 return 0은 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null일 때 length 접근으로 TypeError가 발생합니다",
+            "evidence": "1줄에서 매개변수가 `string | null`임을 명시하고, 2줄의 `values !== null || values.length > 0`은 null 분기에서 오른쪽 피연산자를 평가합니다.",
+            "suggestion": "의도가 null을 0으로 처리하는 것이라면 조건을 `values !== null && values.length > 0`로 바꾸거나, null을 먼저 반환하도록 분기 순서를 조정하세요.",
+            "file_path": "size.ts",
+            "key": "644a6045a816c442c98d2fa7cb9ffab22222d989715b00c21c3e80fa3209462e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 함수만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.078
+    },
+    {
+      "id": "java-disjunction-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4608,
+      "output_tokens": 300,
+      "result": {
+        "summary": "문자열 길이를 반환하는 size 메서드의 조건 검사를 검토했습니다. 3줄의 `value != null || value.length() > 0` 조건은 value가 null일 때 왼쪽이 false가 되어 오른쪽 `value.length()`가 평가되므로 null 역참조가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 null인 상태로 size를 호출할 때",
+            "consequence": "`||`의 왼쪽 `value != null`이 false가 되어 오른쪽 `value.length()`가 평가되고 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 검사가 ||로 연결되어 null 역참조가 발생합니다",
+            "evidence": "3줄에서 `value != null || value.length() > 0`을 사용합니다. value가 null이면 왼쪽이 false이므로 오른쪽 length() 호출이 실행됩니다.",
+            "suggestion": "null일 때 단락되도록 `value != null && value.length() > 0`으로 바꾸거나, null을 먼저 반환하는 별도 분기를 두세요.",
+            "file_path": "Size.java",
+            "key": "054c4a9c6547036fd081e8f0ec4b1403ab35cb03cae2827d03d78408b786f4bf"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.468
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4575,
+      "output_tokens": 214,
+      "result": {
+        "summary": "빈 바이트 배열을 반환하려는 메서드에서 음수 길이로 배열을 생성해 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 길이이므로 NegativeArraySizeException이 발생해 정상 반환이 불가능합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 -2를 사용하고 있으며, 이는 자바에서 허용되지 않는 음수 크기입니다.",
+            "suggestion": "의도가 빈 배열이라면 길이를 0으로 바꾸세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.438
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4412,
+      "output_tokens": 262,
+      "result": {
+        "summary": "range(0, 0, 0)는 step이 0이라 호출 시 ValueError가 발생하는 코드입니다. 빈 리스트를 반환하려는 의도로 보이지만 실제로는 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range()의 step 인자가 0이므로 ValueError: range() arg 3 must not be zero가 발생하고 빈 리스트가 반환되지 않습니다.",
+            "assumptions": [],
+            "title": "range의 step이 0이라 빈 리스트 대신 예외가 발생합니다",
+            "evidence": "2줄에서 range(0, 0, 0)을 호출하며, 세 번째 인자 step이 0이면 Python은 ValueError를 발생시킵니다.",
+            "suggestion": "빈 리스트가 목적이라면 range(0, 0) 또는 그냥 []를 반환하세요.",
+            "file_path": "empty.py",
+            "key": "3f82e7a0ad578804a769e17100625b5844edebc6b5cc0e63e2cc3e8c3a622321"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.016
+    },
+    {
+      "id": "python-short-circuit-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4456,
+      "output_tokens": 95,
+      "result": {
+        "summary": "None 또는 빈 리스트를 0으로 처리하는 size 함수 변경을 검토했습니다. 2줄에서 None을 명시적으로 검사한 뒤 4줄에서 len을 호출하므로, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.282
+    },
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4454,
+      "output_tokens": 79,
+      "result": {
+        "summary": "size 함수가 null 또는 빈 배열에 대해 0을 반환하도록 하는 변경을 검토했습니다. 제공된 코드에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 values의 실제 타입/입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.266
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4463,
+      "output_tokens": 116,
+      "result": {
+        "summary": "null 허용 문자열의 길이를 반환하는 함수 변경을 검토했습니다. 2줄에서 null 검사를 먼저 수행한 뒤에만 length에 접근하므로 null 역참조 경로는 보이지 않으며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 실제 전달 값의 범위는 확인하지 못했으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.266
+    },
+    {
+      "id": "java-disjunction-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4608,
+      "output_tokens": 127,
+      "result": {
+        "summary": "문자열 길이를 반환하는 정적 메서드 변경을 검토했습니다. null 검사가 단락 평가로 올바르게 배치되어 있고, null이거나 빈 문자열이면 0을 반환하므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 반환값 0의 의미가 호출자 기대와 일치하는지는 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.688
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4575,
+      "output_tokens": 91,
+      "result": {
+        "summary": "길이 0의 byte 배열을 반환하는 정적 팩터리 메서드 추가를 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 배열을 사용하는 코드가 제공되지 않아 사용 측 동작은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.125
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4412,
+      "output_tokens": 86,
+      "result": {
+        "summary": "0부터 0까지의 range를 리스트로 변환해 빈 리스트를 반환하는 변경을 검토했습니다. 제공된 두 줄에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 반환값 사용 방식은 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.891
+    },
+    {
+      "id": "python-short-circuit-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4456,
+      "output_tokens": 311,
+      "result": {
+        "summary": "`size` 함수에서 None 검사와 길이 검사를 `and`로 연결해, `values`가 None일 때 `len(values)`가 평가되어 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "`values`가 None인 상태로 `size`를 호출할 때",
+            "consequence": "`values is None`이 True이므로 `and`의 오른쪽 `len(values)`가 평가되고, None에 대한 len 호출로 TypeError가 발생합니다. 3줄의 `return 0`에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 TypeError가 발생합니다",
+            "evidence": "2줄은 `values is None and len(values) == 0`으로, 왼쪽이 True일 때 오른쪽 `len(values)`를 평가합니다. 4줄의 정상 반환과 달리 None 경로는 3줄에 도달하기 전에 실패합니다.",
+            "suggestion": "None과 빈 리스트를 각각 처리하도록 조건을 분리하거나 `if values is None or len(values) == 0:`처럼 바꾸세요.",
+            "file_path": "size.py",
+            "key": "b6dc50ab898c116ca3aabbf4389b50f9a52c9fb673de507788dbbed655718f9e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.407
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4454,
+      "output_tokens": 323,
+      "result": {
+        "summary": "size 함수가 null 검사와 length 접근을 함께 사용하는 변경을 검토했습니다. 2줄의 조건은 null일 때 오른쪽 항을 평가하므로 null 역참조 경로가 실제로 존재합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태에서 size(values)를 호출할 때",
+            "consequence": "2줄의 values === null이 참이 되어 && 오른쪽의 values.length가 평가되고, null에서 length를 읽으려 하므로 TypeError가 발생합니다. 3줄의 반환에도 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null 검사 조건이 null 역참조를 유발합니다",
+            "evidence": "2줄은 values === null일 때 오른쪽 피연산자 values.length를 평가합니다. 3줄도 동일한 값을 조건 없이 역참조합니다.",
+            "suggestion": "null을 먼저 반환하도록 조건을 분리하세요. 예: values가 null이면 0을 반환하고, 그렇지 않으면 values.length를 반환하도록 작성하면 2줄과 3줄 모두 안전해집니다.",
+            "file_path": "size.js",
+            "key": "9b454e21f6c862fab0922e40e28f1f10f175ffa52bcd2a24fea9864f92e1eec9"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.172
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4463,
+      "output_tokens": 389,
+      "result": {
+        "summary": "`size` 함수에서 null 검사 조건이 잘못되어 null 입력 시 `values.length`에 접근합니다. `values !== null || values.length > 0`는 `values`가 null일 때 왼쪽 항이 false가 되어 오른쪽 항을 평가하므로, null 역참조로 TypeError가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "`values`가 null인 상태로 `size(null)`을 호출할 때",
+            "consequence": "`values !== null`이 false이므로 `||`의 오른쪽 `values.length > 0`이 평가되고, null에서 `length`를 읽어 TypeError가 발생합니다. 3줄의 `return 0`은 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null 입력 시 조건이 단락되지 않아 null 역참조가 발생합니다",
+            "evidence": "1줄에서 매개변수가 `string | null`임을 명시하고, 2줄은 `values !== null || values.length > 0`로 null일 때 오른쪽 항을 평가합니다.",
+            "suggestion": "null을 먼저 반환하도록 조건을 `if (values === null) return 0;`으로 분리한 뒤 `return values.length;`를 두거나, `values !== null && values.length > 0`로 바꾸세요. 다만 빈 문자열도 0을 반환해야 한다면 `values === null` 분기가 더 명확합니다.",
+            "file_path": "size.ts",
+            "key": "6ee0e060c8663f9b840c498b6c48d34824194de61e54f1aea99552c561cbefdf"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.64
+    },
+    {
+      "id": "java-disjunction-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4608,
+      "output_tokens": 311,
+      "result": {
+        "summary": "문자열 길이를 반환하는 size 메서드의 변경을 검토했습니다. 3줄의 조건이 `value != null || value.length() > 0`로 되어 있어, value가 null일 때 왼쪽 항이 false가 되고 오른쪽 `value.length()`가 평가되어 NullPointerException이 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 null인 상태로 size를 호출할 때",
+            "consequence": "`value != null`이 false이므로 `||`의 오른쪽 `value.length()`가 평가되고, null 역참조로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 검사가 ||로 연결되어 null일 때 length()를 호출합니다",
+            "evidence": "3줄의 조건은 `value != null || value.length() > 0`이며, 왼쪽이 false인 null 입력에서 오른쪽 length() 호출이 평가됩니다.",
+            "suggestion": "null을 먼저 걸러내도록 조건을 `value != null && value.length() > 0`으로 바꾸거나, null일 때 0을 반환하는 별도 분기를 두세요.",
+            "file_path": "Size.java",
+            "key": "b5bd4b6d51ddf42cc4acb6e08d579317c829537c5718d8274109d6b41bb6fa98"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Size.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.063
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4575,
+      "output_tokens": 219,
+      "result": {
+        "summary": "빈 바이트 배열을 반환하려는 메서드가 음수 길이로 배열을 생성해 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "new byte[-2]는 음수 배열 크기이므로 NegativeArraySizeException이 발생해 정상 반환이 불가능합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 -2를 사용하고 있으며, 이는 자바에서 허용되지 않는 음수 크기입니다.",
+            "suggestion": "의도한 결과가 빈 배열이라면 길이를 0으로 바꾸세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.094
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4412,
+      "output_tokens": 83,
+      "result": {
+        "summary": "0부터 0까지 0 간격으로 range를 생성해 리스트로 반환하는 변경을 검토했습니다. 제공된 코드에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 의도된 계약은 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false
+      },
+      "seconds": 1.078
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "f22c651f30c77e181ee8617650a3436c720bf06030ab044ce2156e5b1aa9ca9a",
+    "app/domain/review/provider.py": "0cb06770d5e520c8db30cdd5a3e93721e2da578b1faa34db5352cf1053c47d5b",
+    "app/domain/review/retrieval.py": "8b9f48545988bada2bebf2ea489bdd60286e5d20d0acb505da21441fb11baa7c",
+    "app/domain/review/context_selection.py": "ecfe0e0054290456ced1c5896a8b9612c4f5a1477b86f306766cd0b694f6f196"
+  },
+  "finished_at": "2026-09-27T13:45:41.903665+00:00",
+  "summary": {
+    "attempts": 36,
+    "validated": 36,
+    "automatic_passed": 34,
+    "input_tokens": 161808,
+    "output_tokens": 6923,
+    "authorized_attempts_used": 433
+  }
+}

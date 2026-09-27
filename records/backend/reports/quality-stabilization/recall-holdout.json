@@ -1,0 +1,2053 @@
+{
+  "started_at": "2026-09-27T17:08:03.347769+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "verification_enabled": true,
+  "verification_only": false,
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "rh1-5288a4f4de305498",
+  "prompt_profile": "product",
+  "frozen_baseline_manifest": null,
+  "policy_version": "BOUNDED_CODE_V4",
+  "corpus_sha256": "3a3330659b46c17dd939583777861d12a4d1f442563388f998b5bcb548f93f86",
+  "max_calls": 48,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "python-zip-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "5ee7a2a2e67c94cd13d2e322ca2e383823e224ebaf76d32979edd3704590f0b9",
+      "payload_bytes": 837,
+      "input_tokens": 7205,
+      "output_tokens": 378,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              7,
+              10
+            ],
+            "trigger": "total([3, 4], [2])처럼 두 리스트의 길이가 다를 때 호출하는 경우",
+            "consequence": "zip이 짧은 쪽 길이에 맞춰 잘라내므로 ValueError가 발생하지 않고 3*2=6이 반환되어, 10줄의 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+            "evidence": "2줄은 zip으로 두 리스트를 묶어 길이 검증 없이 합계를 계산합니다. 7~10줄 테스트는 길이 불일치 시 ValueError를 요구합니다.",
+            "suggestion": "합계 계산 전에 두 리스트의 길이가 같은지 확인하고, 다르면 ValueError를 발생시키세요.",
+            "file_path": "totals.py",
+            "key": "00cec08293085702016bfac97923f7055aa6309c94d1d04309e5862f01d31760"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Reject unequal lengths; zip otherwise silently ignores unmatched entries.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              7,
+              10
+            ],
+            "trigger": "total([3, 4], [2])처럼 두 리스트의 길이가 다를 때 호출하는 경우",
+            "consequence": "total([3, 4], [2])는 zip이 짧은 쪽에 맞춰 잘라내므로 ValueError 없이 6을 반환하고, 테스트의 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+            "evidence": "2줄은 zip으로 두 리스트를 묶어 길이 검증 없이 합계를 계산합니다. 7~10줄 테스트는 길이 불일치 시 ValueError를 요구합니다.",
+            "suggestion": "합계 계산 전에 두 리스트의 길이가 같은지 확인하고, 다르면 ValueError를 발생시키세요.",
+            "file_path": "totals.py",
+            "key": "00cec08293085702016bfac97923f7055aa6309c94d1d04309e5862f01d31760"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 3.141
+    },
+    {
+      "id": "python-zip-fixed",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "8ce799eead5eb7e87ada200ca50217aee853fa7936af8d27580e082e9829ea45",
+      "payload_bytes": 953,
+      "input_tokens": 4451,
+      "output_tokens": 106,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Reject unequal lengths; zip otherwise silently ignores unmatched entries.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 HEAD 라인만 검토했으며 테스트를 실행하지 않았습니다. total의 실제 호출부와 입력 생성 경계는 제공되지 않아 런타임 동작은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.219
+    },
+    {
+      "id": "java-ratio-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "38eb8c858e0d4afbb45c5251ddfe539ef2b9090b6878d3582454286b8882ce09",
+      "payload_bytes": 880,
+      "input_tokens": 6913,
+      "output_tokens": 403,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 정수 나눗셈으로 인해 분수 비율이 0으로 잘립니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              7
+            ],
+            "trigger": "ratio(1, 2)를 호출할 때",
+            "consequence": "int끼리의 나눗셈이 먼저 수행되어 0이 되고, double로 변환되어 0.0이 반환됩니다. 7줄의 계약(0.5)을 위반해 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "정수 나눗셈으로 인해 분수 비율이 0으로 잘립니다",
+            "evidence": "4줄은 int 피연산자끼리 나눗셈을 수행하므로 결과가 정수로 절단된 뒤 double로 변환됩니다. 7줄은 ratio(1, 2)가 0.5여야 한다고 명시합니다.",
+            "suggestion": "피연산자 중 하나를 double로 변환하여 부동소수점 나눗셈이 되도록 하세요(예: (double) used / total).",
+            "file_path": "Ratio.java",
+            "key": "bd528515870df9fd2141c3cecc44c9ed1001a88aeb26e9c056688521339f4aee"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Positive total is guarded; ratio(1,2) must be0.5, not integer-truncated0.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 정수 나눗셈으로 인해 분수 비율이 0으로 잘립니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              7
+            ],
+            "trigger": "ratio(1, 2)를 호출할 때",
+            "consequence": "ratio(1, 2)는 int 나눗셈 1/2 = 0을 double로 변환해 0.0을 반환하므로, 7줄의 계약(0.5)을 위반해 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "정수 나눗셈으로 인해 분수 비율이 0으로 잘립니다",
+            "evidence": "4줄은 int 피연산자끼리 나눗셈을 수행하므로 결과가 정수로 절단된 뒤 double로 변환됩니다. 7줄은 ratio(1, 2)가 0.5여야 한다고 명시합니다.",
+            "suggestion": "피연산자 중 하나를 double로 변환하여 부동소수점 나눗셈이 되도록 하세요(예: (double) used / total).",
+            "file_path": "Ratio.java",
+            "key": "bd528515870df9fd2141c3cecc44c9ed1001a88aeb26e9c056688521339f4aee"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 3.187
+    },
+    {
+      "id": "java-ratio-fixed",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "ca03e0cdb1d2ce24804323e8e099213c36c3f2bff90d789294932f8d81b6c3df",
+      "payload_bytes": 889,
+      "input_tokens": 4268,
+      "output_tokens": 108,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Positive total is guarded; ratio(1,2) must be0.5, not integer-truncated0.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 실행 검증은 하지 않았습니다. ratio의 외부 호출부와 total/used의 실제 입력 범위는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.235
+    },
+    {
+      "id": "javascript-sum-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "72ae93dca44d8a66128732a7be8901c605a55052c56387d224885054635802e3",
+      "payload_bytes": 606,
+      "input_tokens": 6454,
+      "output_tokens": 313,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 reduce가 초기값 없이 실패합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "total([])를 호출할 때",
+            "consequence": "초기값 없는 reduce는 빈 배열에서 TypeError를 던져 5줄의 계약(빈 목록 합계 0)을 위반합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 reduce가 초기값 없이 실패합니다",
+            "evidence": "2줄은 초기값 없이 reduce를 호출하고, 5줄은 total([])이 0을 반환해야 한다고 명시합니다.",
+            "suggestion": "reduce에 초기값 0을 전달해 빈 배열에서도 0을 반환하도록 하세요.",
+            "file_path": "total.js",
+            "key": "baa461d84f32d42b13a0acd396a5c763de6043cfd5e7b8905265d9fa5f0a683b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty arrays are valid and must return0; reduce without initial value throws.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 reduce가 초기값 없이 실패합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "total([])를 호출할 때",
+            "consequence": "total([])는 초기값 없는 reduce로 인해 TypeError를 던지므로, 5줄의 '빈 목록 합계 0' 계약을 위반합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 reduce가 초기값 없이 실패합니다",
+            "evidence": "2줄은 초기값 없이 reduce를 호출하고, 5줄은 total([])이 0을 반환해야 한다고 명시합니다.",
+            "suggestion": "reduce에 초기값 0을 전달해 빈 배열에서도 0을 반환하도록 하세요.",
+            "file_path": "total.js",
+            "key": "baa461d84f32d42b13a0acd396a5c763de6043cfd5e7b8905265d9fa5f0a683b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.531
+    },
+    {
+      "id": "javascript-sum-fixed",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "434846fabf9d91f99bdd00262da1417779642d9b45977f9b6e304acadf3ad096",
+      "payload_bytes": 609,
+      "input_tokens": 4074,
+      "output_tokens": 89,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty arrays are valid and must return0; reduce without initial value throws.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며 실행 검증은 하지 않았습니다. 호출부와 입력의 실제 타입 분포는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.063
+    },
+    {
+      "id": "typescript-retries-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "0d69e5aea421fb64520edb74e629d422c2d0a4372f8d7dd9e7bb7d1f4acc8728",
+      "payload_bytes": 675,
+      "input_tokens": 6524,
+      "output_tokens": 344,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: retries가 0일 때 기본값 3이 반환되어 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "retryCount({ retries: 0 })를 호출할 때",
+            "consequence": "options.retries가 0이면 || 연산자가 이를 falsy로 평가해 3을 반환하므로, 5줄의 계약(0이면 0 반환)을 위반합니다.",
+            "assumptions": [],
+            "title": "retries가 0일 때 기본값 3이 반환되어 테스트 계약을 위반합니다",
+            "evidence": "2줄은 options.retries || 3으로 0을 기본값으로 대체합니다. 5줄은 retries: 0일 때 0을 요구합니다.",
+            "suggestion": "명시적 0을 보존하도록 options.retries ?? 3으로 변경하세요.",
+            "file_path": "options.ts",
+            "key": "0e3aabb19195b6f54ab0ddae5eb0f7d6d0d1fad78354ac89873762c02b2f94a6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Zero must be preserved; only undefined options use3. Do not invent requirements for negatives.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: retries가 0일 때 기본값 3이 반환되어 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "retryCount({ retries: 0 })를 호출할 때",
+            "consequence": "retryCount({ retries: 0 })는 0이 falsy이므로 3을 반환하여, 0을 요구하는 테스트 계약을 위반합니다.",
+            "assumptions": [],
+            "title": "retries가 0일 때 기본값 3이 반환되어 테스트 계약을 위반합니다",
+            "evidence": "2줄은 options.retries || 3으로 0을 기본값으로 대체합니다. 5줄은 retries: 0일 때 0을 요구합니다.",
+            "suggestion": "명시적 0을 보존하도록 options.retries ?? 3으로 변경하세요.",
+            "file_path": "options.ts",
+            "key": "0e3aabb19195b6f54ab0ddae5eb0f7d6d0d1fad78354ac89873762c02b2f94a6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 3.047
+    },
+    {
+      "id": "typescript-retries-fixed",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "89acea300fbfe170803b726b281ec70a50660beeae1d0248c2a0b1bb18a1fc10",
+      "payload_bytes": 675,
+      "input_tokens": 4090,
+      "output_tokens": 85,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Zero must be preserved; only undefined options use3. Do not invent requirements for negatives.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 라인만 검토했으며 실행 검증은 하지 않았습니다. 다른 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.047
+    },
+    {
+      "id": "python-zip-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "5ee7a2a2e67c94cd13d2e322ca2e383823e224ebaf76d32979edd3704590f0b9",
+      "payload_bytes": 837,
+      "input_tokens": 7200,
+      "output_tokens": 373,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 길이 불일치를 조용히 잘라내어 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              7,
+              10
+            ],
+            "trigger": "total([3, 4], [2])처럼 두 리스트의 길이가 다를 때",
+            "consequence": "zip이 짧은 쪽 길이에 맞춰 잘라내므로 ValueError가 발생하지 않고 3*2=6이 반환되어, 10줄의 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "길이 불일치를 조용히 잘라내어 테스트 계약을 위반합니다",
+            "evidence": "2줄은 zip으로 두 리스트를 묶어 길이 차이를 무시하고, 7~10줄의 테스트는 길이 불일치 시 ValueError를 요구합니다.",
+            "suggestion": "합계 계산 전에 두 리스트의 길이가 같은지 확인하고, 다르면 ValueError를 발생시키세요.",
+            "file_path": "totals.py",
+            "key": "0b8cbb5d7689c1b3b78ace7d837c73b236dee545b7411a5b9e4f81ebe13dab53"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Reject unequal lengths; zip otherwise silently ignores unmatched entries.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 길이 불일치를 조용히 잘라내어 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              7,
+              10
+            ],
+            "trigger": "total([3, 4], [2])처럼 두 리스트의 길이가 다를 때",
+            "consequence": "total([3, 4], [2])는 zip이 짧은 쪽에 맞춰 잘라내므로 ValueError 없이 6을 반환하고, 테스트의 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "길이 불일치를 조용히 잘라내어 테스트 계약을 위반합니다",
+            "evidence": "2줄은 zip으로 두 리스트를 묶어 길이 차이를 무시하고, 7~10줄의 테스트는 길이 불일치 시 ValueError를 요구합니다.",
+            "suggestion": "합계 계산 전에 두 리스트의 길이가 같은지 확인하고, 다르면 ValueError를 발생시키세요.",
+            "file_path": "totals.py",
+            "key": "0b8cbb5d7689c1b3b78ace7d837c73b236dee545b7411a5b9e4f81ebe13dab53"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 3.235
+    },
+    {
+      "id": "python-zip-fixed",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "8ce799eead5eb7e87ada200ca50217aee853fa7936af8d27580e082e9829ea45",
+      "payload_bytes": 953,
+      "input_tokens": 4451,
+      "output_tokens": 107,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Reject unequal lengths; zip otherwise silently ignores unmatched entries.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실제 실행 검증은 하지 않았습니다. 호출부와 입력 계약(예: 음수/0 값 허용 여부)은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.422
+    },
+    {
+      "id": "java-ratio-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "38eb8c858e0d4afbb45c5251ddfe539ef2b9090b6878d3582454286b8882ce09",
+      "payload_bytes": 880,
+      "input_tokens": 6920,
+      "output_tokens": 393,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 정수 나눗셈으로 인해 소수 비율이 보존되지 않습니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              7
+            ],
+            "trigger": "ratio(1, 2)를 호출할 때",
+            "consequence": "used와 total이 모두 int이므로 4줄에서 정수 나눗셈이 수행되어 0이 반환되고, 7줄의 0.5 비교가 실패해 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "정수 나눗셈으로 인해 소수 비율이 보존되지 않습니다",
+            "evidence": "4줄은 int 피연산자끼리 나눗셈을 수행해 소수부를 버립니다. 7줄은 ratio(1, 2)가 0.5여야 한다고 명시합니다.",
+            "suggestion": "피연산자 중 하나를 double로 변환하여 부동소수점 나눗셈이 되도록 하세요(예: (double) used / total).",
+            "file_path": "Ratio.java",
+            "key": "ae94777c753ae8ae64b568191e557e0705d4bb755206c7eec7aca60781e58c1d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 테스트를 실행하지 않았습니다. ratio의 다른 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Positive total is guarded; ratio(1,2) must be0.5, not integer-truncated0.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 정수 나눗셈으로 인해 소수 비율이 보존되지 않습니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              7
+            ],
+            "trigger": "ratio(1, 2)를 호출할 때",
+            "consequence": "ratio(1, 2)는 int 나눗셈으로 0을 반환하므로 7줄의 0.5 비교가 실패해 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "정수 나눗셈으로 인해 소수 비율이 보존되지 않습니다",
+            "evidence": "4줄은 int 피연산자끼리 나눗셈을 수행해 소수부를 버립니다. 7줄은 ratio(1, 2)가 0.5여야 한다고 명시합니다.",
+            "suggestion": "피연산자 중 하나를 double로 변환하여 부동소수점 나눗셈이 되도록 하세요(예: (double) used / total).",
+            "file_path": "Ratio.java",
+            "key": "ae94777c753ae8ae64b568191e557e0705d4bb755206c7eec7aca60781e58c1d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.859
+    },
+    {
+      "id": "java-ratio-fixed",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "ca03e0cdb1d2ce24804323e8e099213c36c3f2bff90d789294932f8d81b6c3df",
+      "payload_bytes": 889,
+      "input_tokens": 4268,
+      "output_tokens": 90,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Positive total is guarded; ratio(1,2) must be0.5, not integer-truncated0.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 실행 검증 결과는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.235
+    },
+    {
+      "id": "javascript-sum-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "72ae93dca44d8a66128732a7be8901c605a55052c56387d224885054635802e3",
+      "payload_bytes": 606,
+      "input_tokens": 6461,
+      "output_tokens": 319,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 reduce가 초기값 없이 호출되어 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "total([])를 호출할 때",
+            "consequence": "초기값 없는 reduce는 빈 배열에서 TypeError를 던지므로 5줄의 계약(빈 목록 합계 0)을 위반합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 reduce가 초기값 없이 호출되어 계약을 위반합니다",
+            "evidence": "2줄은 초기값 없이 reduce를 호출하고, 5줄은 total([])가 0을 반환해야 한다고 명시합니다.",
+            "suggestion": "reduce에 초기값 0을 전달해 빈 배열에서도 0을 반환하도록 하세요.",
+            "file_path": "total.js",
+            "key": "ef369f12d181769162b7ab8124deda965779786ba821ae85a6881a9199a0c74e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty arrays are valid and must return0; reduce without initial value throws.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 reduce가 초기값 없이 호출되어 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "total([])를 호출할 때",
+            "consequence": "total([])는 초기값 없는 reduce로 인해 TypeError를 던져, 5줄의 '빈 목록 합계 0' 계약을 위반합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 reduce가 초기값 없이 호출되어 계약을 위반합니다",
+            "evidence": "2줄은 초기값 없이 reduce를 호출하고, 5줄은 total([])가 0을 반환해야 한다고 명시합니다.",
+            "suggestion": "reduce에 초기값 0을 전달해 빈 배열에서도 0을 반환하도록 하세요.",
+            "file_path": "total.js",
+            "key": "ef369f12d181769162b7ab8124deda965779786ba821ae85a6881a9199a0c74e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.86
+    },
+    {
+      "id": "javascript-sum-fixed",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "434846fabf9d91f99bdd00262da1417779642d9b45977f9b6e304acadf3ad096",
+      "payload_bytes": 609,
+      "input_tokens": 4074,
+      "output_tokens": 102,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty arrays are valid and must return0; reduce without initial value throws.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며, 실제 호출부의 입력 형태(비숫자 요소 포함 여부)나 실행 검증은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.5
+    },
+    {
+      "id": "typescript-retries-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "0d69e5aea421fb64520edb74e629d422c2d0a4372f8d7dd9e7bb7d1f4acc8728",
+      "payload_bytes": 675,
+      "input_tokens": 6520,
+      "output_tokens": 346,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: retries가 0일 때 기본값 3이 반환됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "retryCount({ retries: 0 })를 호출할 때",
+            "consequence": "options.retries가 0이면 || 연산자가 이를 falsy로 보고 3을 반환하므로, 5줄의 계약(0이면 0 반환)을 위반합니다.",
+            "assumptions": [],
+            "title": "retries가 0일 때 기본값 3이 반환됩니다",
+            "evidence": "2줄은 ||로 기본값을 적용해 0을 대체합니다. 5줄은 retries: 0에 대해 0 반환을 요구합니다.",
+            "suggestion": "명시적 0을 보존하도록 options.retries ?? 3으로 변경하세요.",
+            "file_path": "options.ts",
+            "key": "ccab12c40f0f88d86f5e29b53c3b589c88adfae73350a39f0f995bfd1f601f12"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Zero must be preserved; only undefined options use3. Do not invent requirements for negatives.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: retries가 0일 때 기본값 3이 반환됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "retryCount({ retries: 0 })를 호출할 때",
+            "consequence": "retryCount({ retries: 0 })는 0이 falsy이므로 || 연산자가 3을 반환하여, 5줄의 계약(0 반환)을 위반합니다.",
+            "assumptions": [],
+            "title": "retries가 0일 때 기본값 3이 반환됩니다",
+            "evidence": "2줄은 ||로 기본값을 적용해 0을 대체합니다. 5줄은 retries: 0에 대해 0 반환을 요구합니다.",
+            "suggestion": "명시적 0을 보존하도록 options.retries ?? 3으로 변경하세요.",
+            "file_path": "options.ts",
+            "key": "ccab12c40f0f88d86f5e29b53c3b589c88adfae73350a39f0f995bfd1f601f12"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.656
+    },
+    {
+      "id": "typescript-retries-fixed",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "89acea300fbfe170803b726b281ec70a50660beeae1d0248c2a0b1bb18a1fc10",
+      "payload_bytes": 675,
+      "input_tokens": 4090,
+      "output_tokens": 62,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Zero must be preserved; only undefined options use3. Do not invent requirements for negatives.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.047
+    },
+    {
+      "id": "python-zip-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "5ee7a2a2e67c94cd13d2e322ca2e383823e224ebaf76d32979edd3704590f0b9",
+      "payload_bytes": 837,
+      "input_tokens": 7221,
+      "output_tokens": 393,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              7,
+              10
+            ],
+            "trigger": "total([3, 4], [2])처럼 두 리스트의 길이가 다를 때",
+            "consequence": "zip이 짧은 쪽 길이만큼만 순회해 3*2=6을 반환하므로 ValueError가 발생하지 않고, 7-10줄의 테스트는 AssertionError로 실패합니다.",
+            "assumptions": [],
+            "title": "길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+            "evidence": "2줄은 zip으로 두 리스트를 묶어 길이 차이를 무시하고, 7-10줄은 길이 불일치 시 ValueError를 요구합니다.",
+            "suggestion": "합계 계산 전에 len(prices) != len(counts)이면 ValueError를 발생시키도록 검증을 추가하세요.",
+            "file_path": "totals.py",
+            "key": "00cec08293085702016bfac97923f7055aa6309c94d1d04309e5862f01d31760"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. 호출부의 길이 보장 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Reject unequal lengths; zip otherwise silently ignores unmatched entries.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              7,
+              10
+            ],
+            "trigger": "total([3, 4], [2])처럼 두 리스트의 길이가 다를 때",
+            "consequence": "total([3, 4], [2])는 zip이 짧은 쪽만 순회해 6을 반환하므로 ValueError가 발생하지 않고, 테스트의 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "길이 불일치를 조용히 잘라내 테스트 계약을 위반합니다",
+            "evidence": "2줄은 zip으로 두 리스트를 묶어 길이 차이를 무시하고, 7-10줄은 길이 불일치 시 ValueError를 요구합니다.",
+            "suggestion": "합계 계산 전에 len(prices) != len(counts)이면 ValueError를 발생시키도록 검증을 추가하세요.",
+            "file_path": "totals.py",
+            "key": "00cec08293085702016bfac97923f7055aa6309c94d1d04309e5862f01d31760"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.891
+    },
+    {
+      "id": "python-zip-fixed",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "8ce799eead5eb7e87ada200ca50217aee853fa7936af8d27580e082e9829ea45",
+      "payload_bytes": 953,
+      "input_tokens": 4451,
+      "output_tokens": 82,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Reject unequal lengths; zip otherwise silently ignores unmatched entries.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. 다른 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "totals.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 0.985
+    },
+    {
+      "id": "java-ratio-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "38eb8c858e0d4afbb45c5251ddfe539ef2b9090b6878d3582454286b8882ce09",
+      "payload_bytes": 880,
+      "input_tokens": 6916,
+      "output_tokens": 392,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 정수 나눗셈으로 인해 비율의 소수 부분이 소실됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              7
+            ],
+            "trigger": "ratio(1, 2)를 호출할 때",
+            "consequence": "used와 total이 모두 int이므로 4줄에서 정수 나눗셈이 수행되어 0이 반환되고, 7줄의 0.5 비교가 실패해 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "정수 나눗셈으로 인해 비율의 소수 부분이 소실됩니다",
+            "evidence": "4줄은 int 피연산자끼리 나눗셈을 수행하고, 7줄은 ratio(1, 2)가 0.5이어야 한다고 요구합니다.",
+            "suggestion": "나눗셈 전에 피연산자를 double로 변환하거나(예: (double) used / total) 반환 타입에 맞는 부동소수점 연산을 사용하세요.",
+            "file_path": "Ratio.java",
+            "key": "c6bd52c5dfd6240fdc546c11abe90dbd396dd0301bf422a3604f24d979e4d2f8"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스와 테스트 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Positive total is guarded; ratio(1,2) must be0.5, not integer-truncated0.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 정수 나눗셈으로 인해 비율의 소수 부분이 소실됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4,
+              7
+            ],
+            "trigger": "ratio(1, 2)를 호출할 때",
+            "consequence": "ratio(1, 2)는 int끼리의 나눗셈으로 0을 반환하므로 7줄의 0.5 비교가 실패해 AssertionError가 발생합니다.",
+            "assumptions": [],
+            "title": "정수 나눗셈으로 인해 비율의 소수 부분이 소실됩니다",
+            "evidence": "4줄은 int 피연산자끼리 나눗셈을 수행하고, 7줄은 ratio(1, 2)가 0.5이어야 한다고 요구합니다.",
+            "suggestion": "나눗셈 전에 피연산자를 double로 변환하거나(예: (double) used / total) 반환 타입에 맞는 부동소수점 연산을 사용하세요.",
+            "file_path": "Ratio.java",
+            "key": "c6bd52c5dfd6240fdc546c11abe90dbd396dd0301bf422a3604f24d979e4d2f8"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.906
+    },
+    {
+      "id": "java-ratio-fixed",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "ca03e0cdb1d2ce24804323e8e099213c36c3f2bff90d789294932f8d81b6c3df",
+      "payload_bytes": 889,
+      "input_tokens": 4268,
+      "output_tokens": 112,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Positive total is guarded; ratio(1,2) must be0.5, not integer-truncated0.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 실행 검증은 제공되지 않았습니다. total이 양수라는 계약은 3줄의 가드로 확인됩니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Ratio.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "javascript-sum-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "72ae93dca44d8a66128732a7be8901c605a55052c56387d224885054635802e3",
+      "payload_bytes": 606,
+      "input_tokens": 6477,
+      "output_tokens": 333,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 total이 0 대신 예외를 던집니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "total([])를 호출할 때",
+            "consequence": "초기값 없는 reduce는 빈 배열에서 TypeError를 던지므로 5줄이 요구하는 0 반환이 이루어지지 않고 예외가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 total이 0 대신 예외를 던집니다",
+            "evidence": "2줄은 초기값 없이 reduce를 호출하고, 5줄은 total([])이 0을 반환해야 한다고 명시합니다.",
+            "suggestion": "reduce에 초기값 0을 전달해 빈 배열에서 0을 반환하도록 하세요.",
+            "file_path": "total.js",
+            "key": "98b4236c90bbf219521556db82b560363b11ef36002083a37e3aaba75b5d1c92"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 코드만 검토했으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty arrays are valid and must return0; reduce without initial value throws.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 total이 0 대신 예외를 던집니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "total([])를 호출할 때",
+            "consequence": "total([])는 초기값 없는 reduce로 인해 TypeError를 던져, 5줄이 요구하는 0 반환이 이루어지지 않습니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 total이 0 대신 예외를 던집니다",
+            "evidence": "2줄은 초기값 없이 reduce를 호출하고, 5줄은 total([])이 0을 반환해야 한다고 명시합니다.",
+            "suggestion": "reduce에 초기값 0을 전달해 빈 배열에서 0을 반환하도록 하세요.",
+            "file_path": "total.js",
+            "key": "98b4236c90bbf219521556db82b560363b11ef36002083a37e3aaba75b5d1c92"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.719
+    },
+    {
+      "id": "javascript-sum-fixed",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "434846fabf9d91f99bdd00262da1417779642d9b45977f9b6e304acadf3ad096",
+      "payload_bytes": 609,
+      "input_tokens": 4074,
+      "output_tokens": 101,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty arrays are valid and must return0; reduce without initial value throws.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며, 실제 호출부의 입력 형태(비숫자 요소 포함 여부)와 실행 검증은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "total.js",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.407
+    },
+    {
+      "id": "typescript-retries-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "0d69e5aea421fb64520edb74e629d422c2d0a4372f8d7dd9e7bb7d1f4acc8728",
+      "payload_bytes": 675,
+      "input_tokens": 6535,
+      "output_tokens": 357,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: retries가 0일 때 기본값 3이 반환되어 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "retryCount({ retries: 0 })를 호출할 때",
+            "consequence": "options.retries가 0이면 || 연산자가 이를 falsy로 평가해 3을 반환하므로, 5줄의 계약(0이면 0 반환)을 위반합니다.",
+            "assumptions": [],
+            "title": "retries가 0일 때 기본값 3이 반환되어 계약을 위반합니다",
+            "evidence": "2줄은 options.retries || 3으로 0을 기본값으로 대체합니다. 5줄은 retries: 0일 때 0을 요구합니다.",
+            "suggestion": "명시적 0을 보존하도록 undefined 여부를 확인하는 방식(예: options.retries ?? 3)으로 변경하세요.",
+            "file_path": "options.ts",
+            "key": "bda62c91712a82b2a1ff2d488390fe8f1d93840f85f3b7c74f7285a49364b3d7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "verification_decisions": [
+        {
+          "index": 0,
+          "action": "KEEP",
+          "reason": "CONFIRMED"
+        }
+      ],
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Zero must be preserved; only undefined options use3. Do not invent requirements for negatives.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: retries가 0일 때 기본값 3이 반환되어 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5
+            ],
+            "trigger": "retryCount({ retries: 0 })를 호출할 때",
+            "consequence": "retryCount({ retries: 0 })는 0 대신 3을 반환하여 5줄의 계약(0이면 0 반환)을 위반합니다.",
+            "assumptions": [],
+            "title": "retries가 0일 때 기본값 3이 반환되어 계약을 위반합니다",
+            "evidence": "2줄은 options.retries || 3으로 0을 기본값으로 대체합니다. 5줄은 retries: 0일 때 0을 요구합니다.",
+            "suggestion": "명시적 0을 보존하도록 undefined 여부를 확인하는 방식(예: options.retries ?? 3)으로 변경하세요.",
+            "file_path": "options.ts",
+            "key": "bda62c91712a82b2a1ff2d488390fe8f1d93840f85f3b7c74f7285a49364b3d7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.907
+    },
+    {
+      "id": "typescript-retries-fixed",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "89acea300fbfe170803b726b281ec70a50660beeae1d0248c2a0b1bb18a1fc10",
+      "payload_bytes": 675,
+      "input_tokens": 4090,
+      "output_tokens": 87,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Zero must be preserved; only undefined options use3. Do not invent requirements for negatives.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. 다른 호출부와 옵션 객체의 생성 경계는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "options.ts",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.219
+    }
+  ],
+  "scope": "authored synthetic/public-PR-derived evaluation; no product DB writes or retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "ba81026633132d9d05625d666a2ebcc5c972ee73cd64e8db585f0e60c9848ebf",
+    "app/domain/review/provider.py": "086a41d0b622704f58b30030e8e86c13819afee11ca8f29f42fb94161f2d8e67",
+    "app/domain/review/retrieval.py": "11f96976b85b1eac1e7bef15ba9ac4288a632582d345daf6127a2e6a43fcb9ac",
+    "app/domain/review/context_selection.py": "bdb75bd074a3ad2ec17256c56c9f66fd928e5e2881e2015a6b5d800cf4b569f9",
+    "app/domain/review/context_plan.py": "cf2e1d03ac8a3686f620098c1cabc56ddf28652a6d199dc93c9d0b5c5dc79777",
+    "app/domain/review/verification.py": "1bfe49a3b64c944ba1f6fa864a075dfcef566fd8036aa1b2988bd65f04649fe4",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186",
+    "scripts/recall_evaluation.py": "59b2bce2e615f0ad912c7dee3b965d4766d3b8f7e1ff564add6b79fef6b0e099",
+    "scripts/stabilize_review_quality.py": "f2f885e8d79be9c6db77fd24aec840e400261ae708317732e79af79bca791e60"
+  },
+  "temperature": 0,
+  "finished_at": "2026-09-27T17:08:53.417112+00:00",
+  "summary": {
+    "attempts": 36,
+    "reviews": 24,
+    "validated": 24,
+    "automatic_passed": 24,
+    "input_tokens": 131995,
+    "output_tokens": 5475,
+    "authorized_attempts_used": 1260
+  },
+  "quality_metrics": {
+    "expected_defects": 12,
+    "found_defects": 12,
+    "missed_defects": 0,
+    "normal_reviews": 12,
+    "normal_false_positives": 0,
+    "question_items": 0,
+    "invalid_reviews": 0,
+    "verifier_removed_expected": 0,
+    "draft_missed": 0,
+    "duplicate_or_off_target": 0,
+    "scope": "location_only; semantic review required",
+    "recall": 1.0
+  }
+}

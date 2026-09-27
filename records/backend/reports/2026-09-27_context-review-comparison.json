@@ -1,0 +1,1509 @@
+{
+  "started_at": "2026-09-27T09:14:10.748105+00:00",
+  "prompt_version": "rh1-30cb0c02dda36caf",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "59eff6055cefa472c171ff30b7c3bfe361bf0bd550ba987ef8a8d3d52bb24e42",
+  "max_paid_calls": 24,
+  "cases": [
+    {
+      "id": "python-guarded-null",
+      "arms": {
+        "rules": {
+          "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 1064,
+          "retrieval_seconds": 0.265,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3328,
+            "output_tokens": 312,
+            "result": {
+              "summary": "f1의 label 함수가 requireUser(value).name을 반환하도록 변경되었습니다. 관련 파일 c2의 requireUser는 None만 거부하고 그 외 값을 그대로 반환하므로, value가 None이 아니지만 name 속성이 없는 경우 label에서 AttributeError가 발생할 수 있습니다.",
+              "issues": [
+                {
+                  "line": 4,
+                  "severity": "WARNING",
+                  "basis": "SUPPORTED",
+                  "evidence_lines": [
+                    4
+                  ],
+                  "trigger": "label(value)에 None이 아니면서 name 속성이 없는 값(예: 문자열, 숫자, dict)을 전달할 때",
+                  "consequence": "requireUser는 None만 검사하고 value를 그대로 반환하므로, 이어지는 .name 접근에서 AttributeError가 발생합니다.",
+                  "assumptions": [],
+                  "title": "name 속성이 없는 값에 대한 접근이 검증되지 않습니다",
+                  "evidence": "4줄에서 requireUser(value)의 반환값에 대해 .name을 즉시 접근하며, c2의 requireUser는 None 여부만 확인하고 반환합니다.",
+                  "suggestion": "requireUser가 name 속성 보유를 보장하는지 확인하고, 그렇지 않다면 label에서 속성 존재를 검증하거나 getattr(value, 'name', ...) 형태로 처리하세요.",
+                  "file_path": "src/account_label.py",
+                  "key": "53141b1b796bb7d3559ceab1bf200ee1329b7c7192a933d955bd87e481ad8168"
+                }
+              ],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "requireUser의 실제 계약과 label 호출부는 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/account_label.py",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/account_store.py",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.py",
+                    "provided_lines": 2,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "rules",
+                  "candidate_count": 4,
+                  "fetched_files": 4
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 1,
+              "passed": false
+            },
+            "seconds": 2.469
+          }
+        },
+        "reranker": {
+          "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 1064,
+          "retrieval_seconds": 0.297,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3328,
+            "output_tokens": 151,
+            "result": {
+              "summary": "f1의 label 함수가 requireUser(value).name을 반환하도록 변경되었습니다. 관련 파일 c2에서 requireUser는 None이면 ValueError를 던지고 그 외에는 value를 그대로 반환하므로, value가 None이 아닌 경우 value.name 접근이 그대로 수행됩니다. 제공된 범위에서 확정 가능한 동작 결함은 없습니다.",
+              "issues": [],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "requireUser의 실제 호출 계약과 value에 전달되는 객체 타입(name 속성 보유 여부)은 제공되지 않아 확인하지 못했습니다. c2는 관련 파일로 참조만 했으며 실행 검증은 하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/account_label.py",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/account_store.py",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.py",
+                    "provided_lines": 2,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 4,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 47.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 1.562
+          }
+        }
+      }
+    },
+    {
+      "id": "python-nullable-user",
+      "arms": {
+        "reranker": {
+          "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 1066,
+          "retrieval_seconds": 0.313,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3338,
+            "output_tokens": 303,
+            "error_type": "ValueError",
+            "seconds": 2.016
+          }
+        },
+        "rules": {
+          "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 1066,
+          "retrieval_seconds": 0.25,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3338,
+            "output_tokens": 315,
+            "error_type": "ValueError",
+            "seconds": 2.14
+          }
+        }
+      }
+    },
+    {
+      "id": "python-zero-count",
+      "arms": {
+        "rules": {
+          "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 918,
+          "retrieval_seconds": 0.25,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3287,
+            "output_tokens": 325,
+            "result": {
+              "summary": "label 함수가 itemCount(value) 결과로 100을 나누는 변경을 검토했습니다. 관련 파일 c2에서 itemCount가 len(value)를 반환하므로, value가 비어 있으면 0으로 나누게 되어 ZeroDivisionError가 발생합니다.",
+              "issues": [
+                {
+                  "line": 4,
+                  "severity": "WARNING",
+                  "basis": "SUPPORTED",
+                  "evidence_lines": [
+                    3,
+                    4
+                  ],
+                  "trigger": "value가 빈 시퀀스(예: 빈 리스트, 빈 문자열)여서 itemCount(value)가 0을 반환할 때 label(value)를 호출하면",
+                  "consequence": "100 / 0 연산에서 ZeroDivisionError가 발생해 label 호출이 실패합니다.",
+                  "assumptions": [],
+                  "title": "빈 입력에서 0으로 나누어 ZeroDivisionError가 발생합니다",
+                  "evidence": "4줄이 itemCount(value)의 반환값으로 100을 나누고, 관련 파일 c2의 101-102줄에서 itemCount가 len(value)를 반환하므로 빈 입력이면 제수가 0이 됩니다.",
+                  "suggestion": "나누기 전에 itemCount(value) 결과가 0인지 확인해 0일 때의 반환값이나 예외 처리를 명시하세요.",
+                  "file_path": "src/account_label.py",
+                  "key": "f445a4a63b416a1d20d4c06125020a31fff6271151513110ef5534ba39cbf309"
+                }
+              ],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "label의 호출부와 value의 실제 입력 유형·허용 범위는 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/account_label.py",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/account_store.py",
+                    "provided_lines": 4,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.py",
+                    "provided_lines": 2,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "rules",
+                  "candidate_count": 4,
+                  "fetched_files": 4
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 2.297
+          }
+        },
+        "reranker": {
+          "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 918,
+          "retrieval_seconds": 0.297,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3287,
+            "output_tokens": 321,
+            "error_type": "ValueError",
+            "seconds": 2.219
+          }
+        }
+      }
+    },
+    {
+      "id": "java-guarded-null",
+      "arms": {
+        "reranker": {
+          "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+          "candidate_count": 5,
+          "candidate_hit": true,
+          "selected_hit": false,
+          "selected_paths": [
+            "src/sample/AccountStore.java",
+            "src/accountCache.java"
+          ],
+          "input_bytes": 2053,
+          "retrieval_seconds": 0.375,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 5,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 78.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3626,
+            "output_tokens": 394,
+            "result": {
+              "summary": "f1의 변경된 4줄은 AccountStore.requireUser(value)의 반환값에 trim()을 바로 호출합니다. requireUser의 구현과 반환 계약이 제공되지 않아 null 반환 가능성 여부를 판단할 수 없으며, 제공된 범위에서 확정 가능한 동작 결함은 확인되지 않았습니다.",
+              "issues": [],
+              "questions": [
+                {
+                  "line": 4,
+                  "severity": "WARNING",
+                  "basis": "NEEDS_CONTEXT",
+                  "evidence_lines": [
+                    4
+                  ],
+                  "trigger": "label(int)가 호출되고 AccountStore.requireUser(value)가 null을 반환할 때",
+                  "consequence": "null에 대해 trim()을 호출하면 NullPointerException이 발생합니다. requireUser가 항상 비-null 문자열을 반환하거나 null 시 예외를 던진다면 이 문제는 발생하지 않습니다.",
+                  "assumptions": [
+                    "AccountStore.requireUser(int)가 null을 반환할 수 있습니다."
+                  ],
+                  "title": "requireUser 반환값이 null일 수 있나요?",
+                  "evidence": "4줄에서 requireUser(value)의 결과를 검사 없이 trim()의 수신자로 사용합니다. 관련 파일 c2에는 해당 메서드 구현이 없어 반환 계약을 확인할 수 없습니다.",
+                  "suggestion": "AccountStore.requireUser의 반환 계약(비-null 보장 여부, null 시 예외 발생 여부)을 확인하세요. null이 가능하다면 null 처리 또는 Optional 기반 계약으로 좁히는 변경이 필요합니다.",
+                  "file_path": "src/sample/AccountLabel.java",
+                  "key": "88f324454f327eec89645ee7803800303e5c3ba7db13acc3381c004d728ee35d"
+                }
+              ],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "AccountStore.requireUser의 구현과 호출부, 그리고 label의 호출 맥락이 제공되지 않아 null 반환 가능성과 예외 전파 방식을 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/sample/AccountLabel.java",
+                    "provided_lines": 6,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/sample/AccountStore.java",
+                    "provided_lines": 16,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.java",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 5,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 78.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 1,
+              "passed": false
+            },
+            "seconds": 2.406
+          }
+        },
+        "rules": {
+          "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+          "candidate_count": 5,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/sample/AccountStore.java",
+            "src/accountCache.java"
+          ],
+          "input_bytes": 1220,
+          "retrieval_seconds": 0.266,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3416,
+            "output_tokens": 166,
+            "result": {
+              "summary": "f1의 label 메서드는 AccountStore.requireUser(value) 결과를 trim()으로 가공해 반환합니다. 관련 파일 c2에서 requireUser는 value가 0이면 IllegalArgumentException을 던지고 그 외에는 \"Ada\"를 반환하므로, 제공된 범위에서는 null 반환 경로가 보이지 않아 trim() 관련 결함은 확인되지 않습니다.",
+              "issues": [],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "f1만 변경 파일이며 c2/c3는 관련 파일입니다. requireUser의 전체 구현과 다른 호출부, 예외 처리 정책은 제공되지 않아 value==0일 때 예외 전파가 호출자에게 적절한지는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/sample/AccountLabel.java",
+                    "provided_lines": 6,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/sample/AccountStore.java",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.java",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "rules",
+                  "candidate_count": 5,
+                  "fetched_files": 4
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 1.579
+          }
+        }
+      }
+    },
+    {
+      "id": "java-nullable-user",
+      "arms": {
+        "rules": {
+          "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+          "candidate_count": 5,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/sample/AccountStore.java",
+            "src/accountCache.java"
+          ],
+          "input_bytes": 1189,
+          "retrieval_seconds": 0.25,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3414,
+            "output_tokens": 351,
+            "result": {
+              "summary": "AccountLabel.label이 AccountStore.findUser 결과를 trim하기 전에 null 여부를 확인하지 않습니다. 관련 파일 c2의 findUser는 value가 0일 때 null을 반환하므로, label(0) 호출 시 NullPointerException이 발생하는 경로가 제공된 코드만으로 확인됩니다.",
+              "issues": [
+                {
+                  "line": 4,
+                  "severity": "ERROR",
+                  "basis": "SUPPORTED",
+                  "evidence_lines": [
+                    4
+                  ],
+                  "trigger": "label(0)처럼 AccountStore.findUser가 null을 반환하는 value로 호출될 때",
+                  "consequence": "findUser의 반환값이 null이면 trim() 호출에서 NullPointerException이 발생해 label이 정상 반환하지 못합니다.",
+                  "assumptions": [],
+                  "title": "findUser가 null을 반환하면 trim에서 NullPointerException이 발생합니다",
+                  "evidence": "4줄은 findUser(value)의 반환값을 검사 없이 바로 trim()에 전달하며, 관련 파일 c2의 104줄은 value == 0일 때 null을 반환합니다.",
+                  "suggestion": "findUser 결과를 지역 변수로 받아 null 여부를 먼저 처리하고(예: null이면 빈 문자열 또는 명시적 예외), null이 아닐 때만 trim을 호출하세요.",
+                  "file_path": "src/sample/AccountLabel.java",
+                  "key": "71bd3d96d403db5c21ed985be0365ad368cb65b91a6ad20d7b220063a118a601"
+                }
+              ],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "AccountStore.findUser의 실제 구현과 label 호출부는 제공되지 않았으며, 관련 파일 c2의 findUser가 동일 시그니처의 구현이라는 전제에 기반합니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/sample/AccountLabel.java",
+                    "provided_lines": 6,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/sample/AccountStore.java",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.java",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "rules",
+                  "candidate_count": 5,
+                  "fetched_files": 4
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 2.406
+          }
+        },
+        "reranker": {
+          "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+          "candidate_count": 5,
+          "candidate_hit": true,
+          "selected_hit": false,
+          "selected_paths": [
+            "src/sample/AccountStore.java",
+            "src/accountCache.java"
+          ],
+          "input_bytes": 2050,
+          "retrieval_seconds": 0.328,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 5,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 78.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3625,
+            "output_tokens": 362,
+            "result": {
+              "summary": "f1의 label 메서드가 AccountStore.findUser(value)의 반환값에 대해 trim()을 호출합니다. 제공된 관련 파일(c2)에는 findUser의 구현이나 반환 계약이 없어 null 가능성을 확인할 수 없습니다.",
+              "issues": [],
+              "questions": [
+                {
+                  "line": 4,
+                  "severity": "WARNING",
+                  "basis": "NEEDS_CONTEXT",
+                  "evidence_lines": [
+                    4
+                  ],
+                  "trigger": "AccountStore.findUser(value)가 null을 반환하는 경우 label이 호출될 때",
+                  "consequence": "null에 대해 trim()을 호출하면 NullPointerException이 발생합니다. findUser가 항상 비-null을 반환한다면 문제가 없습니다.",
+                  "assumptions": [
+                    "AccountStore.findUser(int)가 특정 입력(예: 존재하지 않는 사용자)에 대해 null을 반환할 수 있습니다."
+                  ],
+                  "title": "findUser의 반환값이 null일 수 있나요?",
+                  "evidence": "4줄에서 findUser(value)의 결과를 검사 없이 즉시 trim()의 수신자로 사용합니다. c2에는 findUser 선언이나 구현이 제공되지 않았습니다.",
+                  "suggestion": "AccountStore.findUser의 반환 계약(미존재 시 null 여부)을 확인하세요. null이 가능하다면 Optional 처리나 명시적 null 검사로 분기하고, 그렇지 않다면 현 코드를 유지해도 됩니다.",
+                  "file_path": "src/sample/AccountLabel.java",
+                  "key": "51b8a9106a1862fe557f30b70937d139caa4fa005a11dd5f3cd1cb3359432f51"
+                }
+              ],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "AccountStore.findUser의 구현과 반환 계약, label의 호출부가 제공되지 않아 null 도달 가능성과 실제 예외 발생을 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/sample/AccountLabel.java",
+                    "provided_lines": 6,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/sample/AccountStore.java",
+                    "provided_lines": 16,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.java",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 5,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 78.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 1,
+              "unexpected": 0,
+              "passed": false
+            },
+            "seconds": 2.047
+          }
+        }
+      }
+    },
+    {
+      "id": "java-zero-count",
+      "arms": {
+        "reranker": {
+          "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+          "candidate_count": 5,
+          "candidate_hit": true,
+          "selected_hit": false,
+          "selected_paths": [
+            "src/sample/AccountStore.java",
+            "src/accountCache.java"
+          ],
+          "input_bytes": 2068,
+          "retrieval_seconds": 0.359,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 5,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 78.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3628,
+            "output_tokens": 312,
+            "result": {
+              "summary": "AccountLabel.label이 AccountStore.itemCount(value) 결과로 100을 나누는 변경을 검토했습니다. itemCount가 0을 반환하는 경우 나눗셈에서 예외가 발생할 수 있는 경로가 보입니다.",
+              "issues": [],
+              "questions": [
+                {
+                  "line": 4,
+                  "severity": "WARNING",
+                  "basis": "NEEDS_CONTEXT",
+                  "evidence_lines": [
+                    4
+                  ],
+                  "trigger": "label이 호출되고 AccountStore.itemCount(value)가 0을 반환할 때",
+                  "consequence": "0으로 나누게 되어 ArithmeticException이 발생하고 label 호출이 실패합니다.",
+                  "assumptions": [
+                    "AccountStore.itemCount(int)가 0을 반환할 수 있습니다."
+                  ],
+                  "title": "itemCount가 0을 반환할 때 0으로 나누는 문제가 발생하지 않나요?",
+                  "evidence": "4줄에서 100 / AccountStore.itemCount(value)를 계산하며, 제공된 관련 파일에는 itemCount의 구현과 반환 조건이 없습니다.",
+                  "suggestion": "AccountStore.itemCount의 구현과 0 반환 가능성을 확인하세요. 0이 가능하다면 0 처리 분기를 추가하거나 나눗셈 전에 검증하세요.",
+                  "file_path": "src/sample/AccountLabel.java",
+                  "key": "12cd7faec750672434bd5253506ead192ff21900fc7d20f341fe50f27697e3a6"
+                }
+              ],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "AccountStore.itemCount의 구현과 호출부가 제공되지 않아 0 반환 가능성과 예외 전파 조건을 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/sample/AccountLabel.java",
+                    "provided_lines": 6,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/sample/AccountStore.java",
+                    "provided_lines": 16,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.java",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 5,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 78.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 1,
+              "unexpected": 0,
+              "passed": false
+            },
+            "seconds": 2.297
+          }
+        },
+        "rules": {
+          "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+          "candidate_count": 5,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/sample/AccountStore.java",
+            "src/accountCache.java"
+          ],
+          "input_bytes": 1139,
+          "retrieval_seconds": 0.25,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3397,
+            "output_tokens": 311,
+            "result": {
+              "summary": "AccountLabel.label이 AccountStore.itemCount(value) 결과로 100을 나누는 변경을 검토했습니다. 관련 파일 c2의 itemCount는 value가 0일 때 0을 반환하므로, label(0) 호출 시 0으로 나누어 ArithmeticException이 발생하는 경로가 코드로 확인됩니다.",
+              "issues": [
+                {
+                  "line": 4,
+                  "severity": "ERROR",
+                  "basis": "SUPPORTED",
+                  "evidence_lines": [
+                    4
+                  ],
+                  "trigger": "label(0)을 호출하면 AccountStore.itemCount(0)이 0을 반환합니다.",
+                  "consequence": "100 / 0 연산에서 ArithmeticException이 발생해 label 호출이 실패합니다.",
+                  "assumptions": [],
+                  "title": "itemCount가 0을 반환할 때 0으로 나누어 예외가 발생합니다",
+                  "evidence": "4줄은 itemCount(value)를 제수로 사용하고, 관련 파일 c2 103-104줄의 itemCount는 value == 0일 때 0을 반환합니다.",
+                  "suggestion": "제수가 0인 경우의 반환값(예: 빈 문자열 또는 별도 라벨)을 정의하고, 나누기 전에 0 여부를 분기하세요.",
+                  "file_path": "src/sample/AccountLabel.java",
+                  "key": "877cb68c6b54d99be8b03034b54e18521c1e41e8b5f720bd5dda1ce40df5a37a"
+                }
+              ],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "AccountStore의 다른 구현이나 label 호출부, 테스트 실행 여부는 제공되지 않아 실제 호출 조건은 확인하지 못했습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/sample/AccountLabel.java",
+                    "provided_lines": 6,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/sample/AccountStore.java",
+                    "provided_lines": 5,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.java",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "rules",
+                  "candidate_count": 5,
+                  "fetched_files": 4
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 2.203
+          }
+        }
+      }
+    },
+    {
+      "id": "javascript-guarded-null",
+      "arms": {
+        "rules": {
+          "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.js",
+            "src/accountCache.js"
+          ],
+          "input_bytes": 1058,
+          "retrieval_seconds": 0.25,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3334,
+            "output_tokens": 158,
+            "result": {
+              "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 파일 c2에서 requireUser가 value === 0일 때 예외를 던지고 그 외에는 name을 가진 객체를 반환하는 것이 확인되어, 제공된 범위에서는 별도의 동작 결함을 찾지 못했습니다.",
+              "issues": [],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "f1의 호출부와 requireUser의 다른 분기(예: null/undefined 처리)는 제공되지 않았으며, 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 f1과 연결되는 사용 지점이 보이지 않아 검토에 포함하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/accountLabel.js",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/accountStore.js",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.js",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "rules",
+                  "candidate_count": 4,
+                  "fetched_files": 4
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 1.422
+          }
+        },
+        "reranker": {
+          "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.js",
+            "src/accountCache.js"
+          ],
+          "input_bytes": 1058,
+          "retrieval_seconds": 0.297,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3334,
+            "output_tokens": 157,
+            "result": {
+              "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 파일 c2에서 requireUser는 value가 0일 때 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서는 null/undefined 역참조 경로가 확인되지 않습니다.",
+              "issues": [],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "requireUser의 실제 구현은 관련 파일 c2의 발췌 일부만 제공되어 다른 입력(예: null, undefined)에 대한 반환 계약은 확인하지 못했습니다. label의 호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/accountLabel.js",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/accountStore.js",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.js",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 4,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 47.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 1.36
+          }
+        }
+      }
+    },
+    {
+      "id": "javascript-nullable-user",
+      "arms": {
+        "reranker": {
+          "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.js",
+            "src/accountCache.js"
+          ],
+          "input_bytes": 1034,
+          "retrieval_seconds": 0.328,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 63.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3331,
+            "output_tokens": 301,
+            "error_type": "ValueError",
+            "seconds": 2.468
+          }
+        },
+        "rules": {
+          "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.js",
+            "src/accountCache.js"
+          ],
+          "input_bytes": 1034,
+          "retrieval_seconds": 0.282,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3331,
+            "output_tokens": 291,
+            "error_type": "ValueError",
+            "seconds": 2.187
+          }
+        }
+      }
+    },
+    {
+      "id": "javascript-zero-count",
+      "arms": {
+        "rules": {
+          "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.js",
+            "src/accountCache.js"
+          ],
+          "input_bytes": 977,
+          "retrieval_seconds": 0.25,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3308,
+            "output_tokens": 325,
+            "error_type": "ValueError",
+            "seconds": 2.047
+          }
+        },
+        "reranker": {
+          "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.js",
+            "src/accountCache.js"
+          ],
+          "input_bytes": 977,
+          "retrieval_seconds": 0.297,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3308,
+            "output_tokens": 341,
+            "error_type": "ValueError",
+            "seconds": 2.593
+          }
+        }
+      }
+    },
+    {
+      "id": "typescript-guarded-null",
+      "arms": {
+        "reranker": {
+          "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.ts",
+            "src/accountCache.ts"
+          ],
+          "input_bytes": 1082,
+          "retrieval_seconds": 0.297,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3344,
+            "output_tokens": 322,
+            "result": {
+              "summary": "f1의 label 함수가 숫자 값을 requireUser에 그대로 전달해 사용자 이름을 반환하는 변경입니다. 관련 파일 c2에서 requireUser가 value === 0일 때 예외를 던지는 것이 확인되므로, label(0) 호출 시 예외가 전파되는 동작이 드러납니다.",
+              "issues": [
+                {
+                  "line": 3,
+                  "severity": "WARNING",
+                  "basis": "SUPPORTED",
+                  "evidence_lines": [
+                    3
+                  ],
+                  "trigger": "label(0)을 호출할 때",
+                  "consequence": "requireUser(0)이 'missing' 오류를 던지므로 label은 이름을 반환하지 못하고 예외가 호출자에게 전파됩니다.",
+                  "assumptions": [],
+                  "title": "label(0) 호출 시 requireUser가 예외를 던져 전파됩니다",
+                  "evidence": "3줄에서 value를 검증 없이 requireUser에 전달하고, c2 102줄에서 value === 0이면 예외를 던집니다.",
+                  "suggestion": "0이 유효한 입력인지 확인하고, 유효하지 않다면 label에서 0을 걸러 기본 라벨을 반환하거나 호출 계약에 예외 조건을 명시하세요.",
+                  "file_path": "src/accountLabel.ts",
+                  "key": "e8f64c9db6a80dad64adc9189fce20133c58412289e76796ff0fa7b9112172e9"
+                }
+              ],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "f1과 관련 파일 c2, c3만 검토했으며 label의 호출부와 0 입력의 실제 발생 여부, 테스트 실행은 확인하지 못했습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/accountLabel.ts",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/accountStore.ts",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.ts",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 4,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 47.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 1,
+              "passed": false
+            },
+            "seconds": 2.265
+          }
+        },
+        "rules": {
+          "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.ts",
+            "src/accountCache.ts"
+          ],
+          "input_bytes": 1082,
+          "retrieval_seconds": 0.266,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3344,
+            "output_tokens": 304,
+            "error_type": "ValueError",
+            "seconds": 2.234
+          }
+        }
+      }
+    },
+    {
+      "id": "typescript-nullable-user",
+      "arms": {
+        "rules": {
+          "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.ts",
+            "src/accountCache.ts"
+          ],
+          "input_bytes": 1058,
+          "retrieval_seconds": 0.281,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3341,
+            "output_tokens": 310,
+            "error_type": "ValueError",
+            "seconds": 2.063
+          }
+        },
+        "reranker": {
+          "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.ts",
+            "src/accountCache.ts"
+          ],
+          "input_bytes": 1058,
+          "retrieval_seconds": 0.344,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "COMPLETED",
+            "attempts": 1,
+            "input_tokens": 3341,
+            "output_tokens": 285,
+            "result": {
+              "summary": "label 함수가 findUser(value)의 반환값을 확인하지 않고 .name에 접근합니다. 관련 파일 c2의 findUser는 value가 0일 때 null을 반환하므로, label(0) 호출 시 런타임 TypeError가 발생합니다.",
+              "issues": [
+                {
+                  "line": 3,
+                  "severity": "ERROR",
+                  "basis": "SUPPORTED",
+                  "evidence_lines": [
+                    3
+                  ],
+                  "trigger": "label(0)을 호출할 때",
+                  "consequence": "findUser(0)이 null을 반환하므로 null.name 접근에서 TypeError가 발생해 label이 정상 반환하지 못합니다.",
+                  "assumptions": [],
+                  "title": "findUser가 null을 반환할 때 label이 예외를 던집니다",
+                  "evidence": "3줄에서 findUser(value).name을 바로 접근하고, 관련 파일 c2 102줄에서 value === 0이면 null을 반환합니다.",
+                  "suggestion": "findUser의 null 반환을 처리하도록 결과를 변수에 담아 null 검사 후 name을 반환하거나, null일 때의 대체 라벨을 정의하세요.",
+                  "file_path": "src/accountLabel.ts",
+                  "key": "612b48b6406326a8b34d74e512c27bac2e169b4821dc5d4bd94646a275dcb357"
+                }
+              ],
+              "questions": [],
+              "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+              "limitations": "label의 호출부와 findUser의 다른 반환 경로는 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+              "reviewed_files": 3,
+              "omitted_files": 0,
+              "coverage": {
+                "files": [
+                  {
+                    "file_id": "f1",
+                    "file_path": "src/accountLabel.ts",
+                    "provided_lines": 4,
+                    "role": "changed"
+                  },
+                  {
+                    "file_id": "c2",
+                    "file_path": "src/accountStore.ts",
+                    "provided_lines": 6,
+                    "role": "related"
+                  },
+                  {
+                    "file_id": "c3",
+                    "file_path": "src/accountCache.ts",
+                    "provided_lines": 1,
+                    "role": "related"
+                  }
+                ],
+                "excluded": [],
+                "unfetched_files": 0,
+                "context_notes": [],
+                "retrieval": {
+                  "mode": "local_reranker",
+                  "candidate_count": 4,
+                  "fetched_files": 4,
+                  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+                  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+                  "truncated_documents": 0,
+                  "duration_ms": 47.0
+                }
+              },
+              "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+            },
+            "grade": {
+              "missed": 0,
+              "unexpected": 0,
+              "passed": true
+            },
+            "seconds": 2.031
+          }
+        }
+      }
+    },
+    {
+      "id": "typescript-zero-count",
+      "arms": {
+        "reranker": {
+          "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.ts",
+            "src/accountCache.ts"
+          ],
+          "input_bytes": 1001,
+          "retrieval_seconds": 0.329,
+          "ranking": {
+            "mode": "local_reranker",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+            "truncated_documents": 0,
+            "duration_ms": 47.0
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3318,
+            "output_tokens": 336,
+            "error_type": "ValueError",
+            "seconds": 2.14
+          }
+        },
+        "rules": {
+          "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/accountStore.ts",
+            "src/accountCache.ts"
+          ],
+          "input_bytes": 1001,
+          "retrieval_seconds": 0.281,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7,
+          "review": {
+            "status": "FAILED",
+            "attempts": 1,
+            "input_tokens": 3318,
+            "output_tokens": 295,
+            "error_type": "ValueError",
+            "seconds": 2.079
+          }
+        }
+      }
+    }
+  ],
+  "selection_gate": {
+    "rules_hits": 12,
+    "reranker_hits": 9,
+    "regressions": 3,
+    "observed_p95_ms": 78.0,
+    "passed": false
+  },
+  "finished_at": "2026-09-27T09:15:08.432081+00:00"
+}

@@ -30,9 +30,14 @@
 | [ADR-ANALYSIS-001](../adr/analysis/ADR-ANALYSIS-001-static-snapshot-analysis.md) | 네 언어의 고정 Snapshot 정적 분석 | ACCEPTED | D-003, C-004, C-005, D-012 |
 | [ADR-REVIEW-001](../adr/review/ADR-REVIEW-001-optional-explanations.md) | 정적 Finding과 선택적 AI 설명 분리 | SUPERSEDED | D-007, C-007 |
 | [ADR-REVIEW-002](../adr/review/ADR-REVIEW-002-deepseek-provider.md) | DeepSeek Provider 선택 | ACCEPTED | D-009 |
-| [ADR-REVIEW-003](../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md) | 제한된 코드 문맥 수동 AI 리뷰·실행 한도 | ACCEPTED | REVIEW-001 대체 |
+| [ADR-REVIEW-003](../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md) | 제한된 코드 문맥 수동 AI 리뷰·실행 한도 | SUPERSEDED | REVIEW-001 대체 |
 | [ADR-REVIEW-004](../adr/review/ADR-REVIEW-004-versioned-review-harness.md) | DeepSeek 리뷰 하네스·버전·평가 | ACCEPTED | REVIEW-003 확장 |
-| [ADR-REVIEW-005](../adr/review/ADR-REVIEW-005-evidence-admission.md) | AI 근거 줄·조건·결과·가정 검증 | ACCEPTED | REVIEW-004 확장 |
+| [ADR-REVIEW-005](../adr/review/ADR-REVIEW-005-evidence-admission.md) | AI 근거 줄·조건·결과·가정 검증 | SUPERSEDED | REVIEW-004 확장 |
+| [ADR-REVIEW-006](../adr/review/ADR-REVIEW-006-review-workflow.md) | 검토 질문·관련 문맥·개인 처리 기록·리뷰 탐색 | SUPERSEDED | REVIEW-003/005 대체 |
+| [ADR-REVIEW-007](../adr/review/ADR-REVIEW-007-bounded-context-ranking.md) | 제한된 함수·참조 문맥과 선택적 로컬 재정렬 | SUPERSEDED | REVIEW-006 대체 |
+| [ADR-REVIEW-008](../adr/review/ADR-REVIEW-008-team-daily-allowance.md) | 팀별 AI 리뷰 하루30회·일반 모델 표시 | SUPERSEDED | REVIEW-009가 요약 구성만 대체 |
+| [ADR-REVIEW-009](../adr/review/ADR-REVIEW-009-derived-review-summary.md) | 검증된 리뷰 항목으로 사용자 요약 구성 | SUPERSEDED | REVIEW-010이 문맥·검증 호출 변경, 요약 유지 |
+| [ADR-REVIEW-010](../adr/review/ADR-REVIEW-010-evidence-first-verified-review.md) | 필수 문맥 보존·16/48KiB·두 단계 검증 | ACCEPTED | REVIEW-009 대체, 하루30회·리랭커 OFF 유지 |
 | [ADR-INTEGRATION-001](../adr/integration/ADR-INTEGRATION-001-github-pr-sync.md) | 실제 GitHub 연동과 PR 동기화 | ACCEPTED | D-004, C-003, D-010 |
 | [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | ACCEPTED | — |
 | [ADR-RUNTIME-001](../adr/runtime/ADR-RUNTIME-001-durable-jobs.md) | PostgreSQL 영속 Job과 복구 | BASELINE | C-002 |
@@ -43,7 +48,8 @@
 | [ADR-DATA-001](../adr/data/ADR-DATA-001-postgresql.md) | PostgreSQL 사용 | ACCEPTED | — |
 | [ADR-FRONTEND-001](../adr/frontend/ADR-FRONTEND-001-vue-vercel.md) | Vue와 Vercel 프론트 구성 | BASELINE | — |
 | [ADR-DOCS-002](../adr/documentation/ADR-DOCS-002-area-adrs.md) | 영역별 ADR과 변경 이력 관리 | ACCEPTED | — |
-| [ADR-ARCH-002](../adr/architecture/ADR-ARCH-002-independent-repositories.md) | 독립 저장소와 프로젝트별 하네스 | ACCEPTED | — |
+| [ADR-ARCH-002](../adr/architecture/ADR-ARCH-002-independent-repositories.md) | 독립 저장소와 프로젝트별 하네스 | SUPERSEDED | — |
+| [ADR-ARCH-003](../adr/architecture/ADR-ARCH-003-central-documentation.md) | 문서 중앙 관리·로컬 복원 | ACCEPTED | ARCH-002 대체 |
 | [ADR-DATA-002](../adr/data/ADR-DATA-002-local-postgres-foundation.md) | PostgreSQL 17 로컬 개발 기반 | ACCEPTED | — |
 | [ADR-DATA-003](../adr/data/ADR-DATA-003-logical-relations-schema.md) | 물리 FK 없는 17개 테이블·애플리케이션 무결성 | ACCEPTED | — |
 

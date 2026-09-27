@@ -1,0 +1,1246 @@
+{
+  "started_at": "2026-09-27T13:54:39.441926+00:00",
+  "model": "deepseek-flash",
+  "mode": "evaluation-thinking-low",
+  "max_output_tokens": 4096,
+  "timeout_seconds": 90,
+  "prompt_version": "rh1-d927e0b9a90199c6",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "d82269561d14948edc8cf4e939813c8b8c5b4cb69e6717144264b1eea1c4ef86",
+  "max_calls": 24,
+  "repeats": 2,
+  "cases": [
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4479,
+      "output_tokens": 995,
+      "result": {
+        "summary": "배열 길이를 반환하는 함수가 null과 빈 배열을 0으로 처리하도록 변경된 코드를 검토했습니다. 제공된 범위에서 확정된 동작 결함은 없지만, 명시적 null 검사가 undefined 입력을 처리하지 않는 점은 호출 계약 확인이 필요합니다.",
+        "issues": [],
+        "questions": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "NEEDS_CONTEXT",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "호출자가 null 대신 undefined를 values로 전달할 때",
+            "consequence": "2줄의 values === null 검사는 undefined를 걸러내지 못하므로 3줄의 values.length 접근에서 TypeError가 발생합니다. 다만 undefined가 실제로 전달될 수 있는지는 제공된 코드에 드러나지 않습니다.",
+            "assumptions": [
+              "이 함수의 호출자 중 일부가 부재 값을 null이 아닌 undefined로 전달할 수 있습니다.",
+              "제공된 null 검사는 부재 입력을 허용하려는 의도를 반영합니다."
+            ],
+            "title": "null 검사만 있고 undefined 입력은 어떻게 처리되나요?",
+            "evidence": "2줄은 values === null인 경우만 0으로 반환하고, 3줄은 그 외의 경우 values.length에 접근합니다. undefined는 2줄 조건을 통과해 3줄에 도달합니다.",
+            "suggestion": "호출부에서 undefined가 전달될 수 있는지 확인하고, 가능하다면 values == null(또는 values?.length) 형태로 null과 undefined를 함께 처리하세요. undefined가 계약상 허용되지 않는다면 변경할 필요가 없습니다.",
+            "file_path": "size.js",
+            "key": "8d2cedba91b1636dcef88cad0bd4400f24dcf72cafdd8bca84fdd342446149e6"
+          }
+        ],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약(배열 이외 타입 허용 여부)이 제공되지 않아 undefined 전달 가능성은 확인하지 못했으며, 실행 검증은 수행하지 않았습니다. 2줄의 빈 배열 분기는 3줄과 결과가 동일해 중복이지만 동작상 결함은 아닙니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false
+      },
+      "seconds": 5.719
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4488,
+      "output_tokens": 171,
+      "result": {
+        "summary": "null 허용 문자열의 길이를 반환하는 함수 변경을 검토했습니다. null 검사 후 길이를 사용하고, 빈 문자열과 null 모두 0을 반환하는 일관된 분기로 보이며 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약, 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.735
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4600,
+      "output_tokens": 109,
+      "result": {
+        "summary": "길이 0의 바이트 배열을 반환하는 정적 팩터리 메서드 추가를 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 메서드의 반환 배열에 대한 변경 가능성 계약이 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.125
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4437,
+      "output_tokens": 183,
+      "result": {
+        "summary": "인자 없이 호출 가능한 empty 함수가 list(range(0, 0, 1))로 빈 리스트를 반환하도록 한 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 반환값 사용 방식이 제공되지 않아 실제 사용 조건은 확인하지 못했으며, 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.547
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4479,
+      "output_tokens": 781,
+      "result": {
+        "summary": "size 함수가 null 입력을 처리하려는 의도로 보이는 조건을 사용하지만, 조건의 논리 연산자 때문에 null일 때 오히려 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "values가 null인 상태로 size를 호출할 때",
+            "consequence": "2줄은 values === null이 참이면 &&의 오른쪽 피연산자를 평가하므로 null.length 접근에서 TypeError가 발생하고, 의도한 0 반환이 이루어지지 않습니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조해 TypeError가 발생합니다",
+            "evidence": "2줄의 조건은 왼쪽이 참일 때만 오른쪽 values.length를 평가하는 &&를 사용하므로, null 여부를 검사한 직후 같은 값의 length를 읽습니다. 3줄의 정상 경로는 그대로 유지됩니다.",
+            "suggestion": "null 처리 의도라면 값을 역참조하지 않도록 조건을 분리하거나(예: null이면 즉시 0 반환) 빈 배열 검사를 별도 분기로 두어, null일 때 length 접근이 일어나지 않게 하세요.",
+            "file_path": "size.js",
+            "key": "1f00cb89f25402556e8db424bafa3a0b41fe3440e90c1eebc2dc187c725c80d4"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 어떤 값이 실제로 전달되는지는 확인하지 못했으며, 실행 검증은 수행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 4.25
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4488,
+      "output_tokens": 651,
+      "result": {
+        "summary": "null 허용 문자열의 길이를 반환하는 함수로, 조건 연산자 `||`로 인해 null 입력 시 null 역참조가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "size(null)처럼 values가 null인 인자로 호출될 때",
+            "consequence": "`values !== null`이 false이므로 `||`의 오른쪽 `values.length`가 평가되고, null에서 length를 읽으려 해 TypeError가 발생합니다. 3줄의 `return 0;`은 이 경로에서 실행되지 않습니다.",
+            "assumptions": [],
+            "title": "null 입력 시 `||` 조건이 null 역참조를 실행합니다",
+            "evidence": "1줄에서 values는 `string | null`이고, 2줄은 `values !== null || values.length > 0`이므로 왼쪽이 false인 null 경로에서 오른쪽이 평가되어 null.length에 접근합니다.",
+            "suggestion": "null 분기를 먼저 처리하도록 `if (values !== null) return values.length;`로 바꾸거나, 양쪽 검사가 필요하면 `&&`를 사용하세요(빈 문자열은 3줄의 0 반환으로 동일한 결과).",
+            "file_path": "size.ts",
+            "key": "195bef44e6fa414bc25276edd68c7e78d3d9256fadccaf9528c461a3ece24b28"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 실제 null 전달 여부, 실행 검증은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 4.031
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4600,
+      "output_tokens": 263,
+      "result": {
+        "summary": "음수 길이로 byte 배열을 생성하는 변경을 검토했으며, 호출 시 항상 예외가 발생하는 결함이 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "배열 길이로 음수(-2)가 전달되어 NegativeArraySizeException이 발생하고, 정상적인 byte[] 반환에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 배열 길이로 -2를 사용합니다. Java에서 음수 길이는 허용되지 않으므로 생성 자체가 실패합니다.",
+            "suggestion": "의도한 길이가 0인 빈 배열이라면 new byte[0]으로 수정하고, 다른 길이가 필요하면 해당 상수를 사용하세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.406
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4437,
+      "output_tokens": 562,
+      "result": {
+        "summary": "인자가 없는 빈 리스트를 반환하려는 함수에서 step이 0인 range 호출이 포함되어 있습니다. 호출 시 항상 ValueError가 발생하는 경로가 제공된 코드에서 확인됩니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range(0, 0, 0)은 step이 0이므로 ValueError('range() arg 3 must not be zero')가 발생하고, 함수는 의도한 빈 리스트를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "step이 0인 range 호출로 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 세 번째 인자(step)를 0으로 전달한 range를 list로 변환합니다. 파이썬은 step 0을 허용하지 않으므로 2줄 평가 자체가 실패합니다.",
+            "suggestion": "빈 리스트가 목적이라면 return []로 바꾸거나, 범위가 필요하면 step을 생략(또는 1)하세요.",
+            "file_path": "empty.py",
+            "key": "a041f17184d6179df749dc9f28ad0c7bf8831f9b5538301b435948c703dfd055"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.219
+    },
+    {
+      "id": "js-async-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "7f59119631ec7493c90fee6086cd6642ee279473983a7033336a0369bdb1c6b9",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/permission.js"
+        ],
+        "input_bytes": 683,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4587,
+      "output_tokens": 645,
+      "result": {
+        "summary": "권한 확인 결과를 await한 뒤 부정하여 거부 분기를 처리하는 변경을 검토했습니다. 연산자/우선순위와 분기 흐름은 의도대로이며, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "관련 파일 c2의 permitted는 항상 false를 반환하는 스텁으로 보이므로, 이 구현이 그대로 유지되면 access는 항상 \"denied\"를 반환합니다. 다만 c2는 변경되지 않은 제공 코드이고 실제 권한 판정 구현·호출부·테스트는 제공되지 않아 의도된 임시 구현인지 판단할 수 없습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/access.js",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/permission.js",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 4.235
+    },
+    {
+      "id": "js-async-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "7f59119631ec7493c90fee6086cd6642ee279473983a7033336a0369bdb1c6b9",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/permission.js"
+        ],
+        "input_bytes": 677,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4587,
+      "output_tokens": 471,
+      "result": {
+        "summary": "권한 확인 함수를 await 없이 호출해 부정 결과가 항상 참으로 평가되는 접근 제어 로직을 검토했습니다. 관련 구현이 async임이 제공되어 있어 가드가 동작하지 않는 결함이 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "access()가 호출되어 permitted()가 Promise를 반환할 때",
+            "consequence": "Promise 객체는 항상 truthy이므로 !permitted()는 항상 false가 되어 조기 반환이 실행되지 않고, 권한이 없는 경우에도 \"allowed\"가 반환됩니다.",
+            "assumptions": [],
+            "title": "async 권한 확인을 await하지 않아 거부 분기가 동작하지 않습니다",
+            "evidence": "f1:3은 permitted()의 반환값을 await 없이 부정합니다. c2:1-2에서 permitted가 async이며 false를 반환(resolve)하는 것이 제공되어, 반환값은 Promise이므로 부정 결과가 항상 false가 됩니다.",
+            "suggestion": "권한 확인 결과를 await한 뒤 판정하도록 `if (!(await permitted())) return \"denied\";`로 수정하세요.",
+            "file_path": "src/access.js",
+            "key": "0f4297b6e572c1bb2a0ac36b41e93370401d1493d43e1305038c4ba0976db594"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "permission.js의 나머지 구현과 access() 호출부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/access.js",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/permission.js",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.188
+    },
+    {
+      "id": "js-html-question",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4449,
+      "output_tokens": 603,
+      "result": {
+        "summary": "render 함수가 전달받은 content를 element.innerHTML에 그대로 대입하도록 변경된 코드를 검토했습니다. 문자열을 HTML로 해석하는 동작은 확인되지만 content의 출처와 정화 여부가 제공되지 않아, 신뢰할 수 없는 값의 도달 가능성을 판단하려면 입력 경계 확인이 필요합니다.",
+        "issues": [],
+        "questions": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "NEEDS_CONTEXT",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "content에 HTML 문법(예: 태그나 이벤트 속성)을 포함한 값이 전달될 때",
+            "consequence": "content가 신뢰할 수 없는 입력이고 별도 정화 없이 이 경로에 도달한다면, 해당 문자열이 텍스트가 아니라 DOM 마크업으로 해석되어 삽입됩니다.",
+            "assumptions": [
+              "content에 사용자나 외부 시스템의 입력이 정화 없이 전달될 수 있습니다."
+            ],
+            "title": "content의 신뢰 경계와 HTML 정화가 보장되나요?",
+            "evidence": "1줄에서 content를 매개변수로 받고, 2줄에서 element.innerHTML에 직접 대입하므로 값이 HTML로 파싱되는 것은 코드상 명확합니다. 다만 content를 생성·전달하는 지점이 제공되지 않아 신뢰할 수 없는 입력이 도달하는지 여부는 확인되지 않았습니다.",
+            "suggestion": "render 호출부에서 content가 만들어지는 경계를 확인하세요. 외부 입력이 정화 없이 도달한다면 텍스트만 표시할 경우 textContent로 바꾸고, 마크업이 필요하면 검증된 정화 처리를 거친 값만 대입하세요.",
+            "file_path": "src/render.js",
+            "key": "12b43e43631b39de43c8d1d87e995d0ec17939ca430d24c2b2a8962e3f9e1afe"
+          }
+        ],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "content의 입력 출처, 호출부, 기존 정화 처리 여부가 제공되지 않았으며 실행 검증은 하지 않았습니다. 또한 element가 실제 DOM 노드인지, 브라우저·Node 등 실행 환경은 제공된 범위에서 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/render.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.922
+    },
+    {
+      "id": "py-hidden-callee-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4467,
+      "output_tokens": 191,
+      "result": {
+        "summary": "문서 제목을 조회해 대문자로 변환하는 heading 함수 변경을 검토했습니다. 제공된 4줄 범위에서는 구체적인 동작 결함을 확인하지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "title_for의 구현과 반환 계약(미등록 identifier에서의 반환값 포함), heading 호출부와 identifier 입력 계약이 제공되지 않았습니다. 테스트를 실행하지 않았으며, 반환값이 None인 경로가 실제로 존재하는지 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/title.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.562
+    },
+    {
+      "id": "js-short-circuit-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4479,
+      "output_tokens": 716,
+      "result": {
+        "summary": "size 함수가 null이거나 빈 배열일 때 0을 반환하도록 명시적 가드를 추가한 변경을 검토했습니다. null 분기는 도달 가능한 실패 경로가 아니며, undefined 입력 허용 여부만 확인이 필요합니다.",
+        "issues": [],
+        "questions": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "NEEDS_CONTEXT",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "size에 undefined가 전달될 때",
+            "consequence": "2줄의 values === null 검사는 undefined를 걸러내지 못하므로 undefined.length 접근에서 TypeError가 발생합니다. undefined가 계약상 허용 입력이라면 빈 입력 처리 대신 예외가 노출됩니다.",
+            "assumptions": [
+              "호출부가 undefined를 유효한 '값 없음' 입력으로 전달할 수 있습니다."
+            ],
+            "title": "undefined 입력도 null과 동일하게 처리해야 하나요?",
+            "evidence": "2줄은 null만 명시적으로 처리하고 곧바로 values.length를 평가하며, 3줄도 같은 속성에 접근합니다. undefined는 이 검사를 통과합니다.",
+            "suggestion": "호출 계약에서 undefined가 허용되는지 확인하세요. 허용된다면 null 비교를 nullish 검사로 바꾸거나 Array.isArray 같은 입력 검증으로 처리하고, 허용되지 않는다면 현재 가드를 유지하면 됩니다.",
+            "file_path": "size.js",
+            "key": "97a3cb6264980e9b3b5e3c9c24704cddb84ccf9d7a10c47b134fd1ee9d72dd2e"
+          }
+        ],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 undefined 전달 가능성을 확정하지 못했으며, 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false
+      },
+      "seconds": 4.406
+    },
+    {
+      "id": "ts-disjunction-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4488,
+      "output_tokens": 147,
+      "result": {
+        "summary": "null 허용 문자열의 길이를 반환하는 변경을 검토했습니다. 2줄에서 null 여부를 먼저 확인한 뒤에만 length에 접근하므로, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 null 및 빈 문자열이 실제로 전달되는 경로는 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.64
+    },
+    {
+      "id": "java-zero-array-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4600,
+      "output_tokens": 124,
+      "result": {
+        "summary": "길이 0의 byte 배열을 반환하는 정적 팩터리 메서드 추가를 검토했습니다. Java에서 길이 0 배열 할당은 합법이며 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 메서드의 사용 계약, 반환된 배열을 수정하는지 여부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.594
+    },
+    {
+      "id": "python-zero-range-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4437,
+      "output_tokens": 160,
+      "result": {
+        "summary": "빈 정수 리스트를 반환하는 함수 변경을 검토했습니다. `range(0, 0, 1)`은 시작과 종료가 같아 유효한 빈 범위이며, 제공된 두 줄에서 구체적인 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 사용 의도(빈 리스트가 유효한 반환값인지)는 제공되지 않았고, 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.719
+    },
+    {
+      "id": "js-short-circuit-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4479,
+      "output_tokens": 801,
+      "result": {
+        "summary": "null 검사를 의도한 조건식이 `&&`와 역순 피연산자 순서로 작성되어, values가 null일 때 검사 자체가 예외를 던지고 0을 반환하는 경로가 실현되지 않습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "size(null)처럼 values가 null로 전달될 때",
+            "consequence": "`values === null`이 참이 되면서 `&&`의 오른쪽 `values.length`가 평가되어 TypeError가 발생합니다. 따라서 0을 반환하려던 가드는 동작하지 않고, line 3의 정상 반환에도 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null 가드가 null 역참조로 예외를 발생시킵니다",
+            "evidence": "2줄은 `values === null && values.length === 0` 형태로, null일 때 곧바로 오른쪽에서 length를 읽습니다. 이 분기가 0을 반환하도록 의도된 유일한 null 처리이며, 3줄의 반환도 null 입력에서는 도달 불가입니다.",
+            "suggestion": "null/빈 값 처리를 하나의 조건으로 정리하세요. 예를 들어 `if (values == null || values.length === 0) return 0;`처럼 논리 연산자와 피연산자 순서를 바꿔 null 분기에서 역참조가 일어나지 않게 하고, null 이외의 값에 대해서는 기존대로 values.length를 반환하면 됩니다.",
+            "file_path": "size.js",
+            "key": "c3cdf071da6552aa964598ac6539304a1e24a1165b5168e97717a8f563b67001"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄만 검토했으며 호출부의 실제 입력 계약과 테스트 실행 결과는 확인하지 않았습니다. undefined 등 다른 빈 값 입력의 기대 동작은 제공된 코드에 드러나지 않아 판단하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 5.0
+    },
+    {
+      "id": "ts-disjunction-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4488,
+      "output_tokens": 354,
+      "result": {
+        "summary": "null 여부를 검사하는 조건에서 OR를 사용해 null 역참조 경로가 열려 있습니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "size(null)을 호출하는 경우",
+            "consequence": "values !== null이 false이므로 ||의 오른쪽 피연산자 values.length가 평가되고, null에서 속성에 접근해 TypeError가 발생합니다. 반환값 0에 도달하지 못합니다.",
+            "assumptions": [],
+            "title": "null 검사에 ||를 사용해 null 역참조가 발생합니다",
+            "evidence": "2줄은 values !== null || values.length > 0 조건으로, values가 null이면 오른쪽 피연산자를 평가합니다. 1줄의 매개변수 타입이 string | null이라 null 경로가 계약상 유효합니다.",
+            "suggestion": "조건을 values !== null && values.length > 0 형태로 바꿔 null일 때 3줄의 0 반환 경로로 가게 하거나, null 검사를 별도로 분리하세요.",
+            "file_path": "size.ts",
+            "key": "e652088be5bf555afe75b71315755f585dfa28f227d5e51d04604b756c24c26e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "size.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.5
+    },
+    {
+      "id": "java-zero-array-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4600,
+      "output_tokens": 245,
+      "result": {
+        "summary": "음수 길이로 byte 배열을 생성하는 코드가 있어 호출 시 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "배열 길이가 -2이므로 예외 없이 값을 반환하는 경로가 없고 항상 NegativeArraySizeException이 발생합니다.",
+            "assumptions": [],
+            "title": "음수 길이 배열 생성으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 new byte[-2]로 음수 길이를 지정하고 있어 메서드가 정상 반환할 수 없습니다.",
+            "suggestion": "의도한 길이를 확인하고 0 이상의 리터럴(빈 배열이 목적이면 0)을 사용하세요.",
+            "file_path": "Empty.java",
+            "key": "66a39b02aab782abb04bf3a55b5c0c9ea2525ad27324631a1fecc17570283f56"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "해당 클래스만 제공되었고 호출부와 테스트는 확인하지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Empty.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.406
+    },
+    {
+      "id": "python-zero-range-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4437,
+      "output_tokens": 451,
+      "result": {
+        "summary": "빈 리스트를 반환하려는 함수가 step이 0인 range를 사용해 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "empty()를 호출할 때",
+            "consequence": "range(0, 0, 0)는 step이 0이라 생성 자체가 ValueError로 실패하므로, 이 함수는 빈 리스트를 반환하지 못하고 호출자에게 예외를 전파합니다.",
+            "assumptions": [],
+            "title": "step이 0인 range로 인해 empty()가 항상 실패합니다",
+            "evidence": "2줄에서 list(range(0, 0, 0))를 반환하는데, range의 세 번째 인자가 0이면 Python이 ValueError를 발생시킵니다.",
+            "suggestion": "step 인자를 제거한 list(range(0, 0)) 또는 빈 리스트 리터럴 []을 사용하세요.",
+            "file_path": "empty.py",
+            "key": "3bf33c7253cf93e068bd83ab01cc9d29bc405eaaca714489803d82c932542b36"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 실행 검증이나 호출부 확인은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "empty.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.735
+    },
+    {
+      "id": "js-async-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "7f59119631ec7493c90fee6086cd6642ee279473983a7033336a0369bdb1c6b9",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/permission.js"
+        ],
+        "input_bytes": 683,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4587,
+      "output_tokens": 229,
+      "result": {
+        "summary": "권한 확인 결과에 따라 접근을 허용/거부하는 비동기 함수 변경을 검토했습니다. `!await permitted()`는 `!(await permitted())`로 평가되어 부정 결과가 정상적으로 처리되며, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "관련 파일 c2의 permitted 구현이 항상 false를 반환하는 스텁으로 제공되어 실제 권한 판정 로직과 실패/예외 경로는 확인하지 못했습니다. 호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/access.js",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/permission.js",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.766
+    },
+    {
+      "id": "js-async-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "7f59119631ec7493c90fee6086cd6642ee279473983a7033336a0369bdb1c6b9",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/permission.js"
+        ],
+        "input_bytes": 677,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4587,
+      "output_tokens": 471,
+      "result": {
+        "summary": "권한 확인 함수가 async인데 await 없이 호출되어, 반환된 Promise가 항상 truthy로 평가되므로 접근이 항상 허용됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "access()를 호출하면 permitted()가 Promise를 반환하는 상태에서 조건 검사를 수행할 때",
+            "consequence": "!permitted()는 Promise 객체의 truthy 여부를 부정하므로 항상 false가 되고, 3줄의 denied 분기는 실행되지 않아 4줄에서 \"allowed\"가 반환됩니다.",
+            "assumptions": [],
+            "title": "async 권한 확인을 await하지 않아 접근이 항상 허용됩니다",
+            "evidence": "f1:3은 permitted()의 반환값을 부정해 조기 반환을 결정하지만, c2:1에서 permitted가 async로 선언되어 Promise를 반환하므로 조건이 실제 권한 결과를 반영하지 못합니다. c2:2는 false를 반환하지만 이 값은 검사되지 않습니다.",
+            "suggestion": "permitted() 호출에 await를 추가해 실제 해석된 boolean 값으로 조건을 평가하세요.",
+            "file_path": "src/access.js",
+            "key": "d36f66115e6132736d809f58f80afd7cfff2b67e0d856a28de906aab1da6b167"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "permitted의 호출부와 실제 권한 판정 로직, 거부 시 호출자의 기대 동작은 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/access.js",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/permission.js",
+              "provided_lines": 3,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.078
+    },
+    {
+      "id": "js-html-question",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4449,
+      "output_tokens": 429,
+      "result": {
+        "summary": "문자열 content를 element.innerHTML에 그대로 대입하는 변경입니다. 요소가 HTML로 해석되는 동작은 확인되지만 content의 출처와 정화 여부가 제공되지 않아 신뢰 경계 확인이 필요합니다.",
+        "issues": [],
+        "questions": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "NEEDS_CONTEXT",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "render에 HTML 문법을 포함한 content가 전달될 때",
+            "consequence": "신뢰할 수 없는 값이 정화 없이 도달한다면 텍스트가 아니라 DOM 마크업으로 해석되어 스크립트 실행 등 의도치 않은 마크업이 반영될 수 있습니다.",
+            "assumptions": [
+              "content에 외부에서 온 신뢰할 수 없는 값이 정화 없이 도달할 수 있습니다."
+            ],
+            "title": "content의 신뢰 경계와 HTML 정화가 보장되나요?",
+            "evidence": "2줄의 innerHTML 대입은 전달된 문자열을 HTML로 해석하지만, content를 생성·전달하는 지점은 제공되지 않았습니다.",
+            "suggestion": "content 생성 지점의 입력 출처와 정화 처리를 확인하세요. 외부 입력이 정화 없이 도달한다면 텍스트 표시에는 textContent를 사용하고, HTML이 필요하면 검증된 정화 경계를 적용하세요.",
+            "file_path": "src/render.js",
+            "key": "12b43e43631b39de43c8d1d87e995d0ec17939ca430d24c2b2a8962e3f9e1afe"
+          }
+        ],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "element와 content의 계약, 호출부 및 입력 출처가 제공되지 않아 실제 악용 가능성과 요소 null 여부는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/render.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.484
+    },
+    {
+      "id": "py-hidden-callee-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4467,
+      "output_tokens": 186,
+      "result": {
+        "summary": "식별자로 제목을 조회해 대문자로 변환하는 새 함수 `heading`을 검토했습니다. 제공된 범위에서 입증 가능한 동작 결함은 확인되지 않았습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`title_for` 구현과 반환 계약이 제공되지 않아 None/빈 값 여부와 `.upper()` 호출의 안전성은 확인하지 못했습니다. 호출부와 테스트도 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/title.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.594
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "f22c651f30c77e181ee8617650a3436c720bf06030ab044ce2156e5b1aa9ca9a",
+    "app/domain/review/provider.py": "0cb06770d5e520c8db30cdd5a3e93721e2da578b1faa34db5352cf1053c47d5b",
+    "app/domain/review/retrieval.py": "8b9f48545988bada2bebf2ea489bdd60286e5d20d0acb505da21441fb11baa7c",
+    "app/domain/review/context_selection.py": "ecfe0e0054290456ced1c5896a8b9612c4f5a1477b86f306766cd0b694f6f196",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186"
+  },
+  "finished_at": "2026-09-27T13:55:47.765462+00:00",
+  "summary": {
+    "attempts": 24,
+    "validated": 24,
+    "automatic_passed": 22,
+    "input_tokens": 108196,
+    "output_tokens": 9938,
+    "authorized_attempts_used": 523
+  }
+}

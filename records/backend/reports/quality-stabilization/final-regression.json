@@ -1,0 +1,4261 @@
+{
+  "started_at": "2026-09-27T13:35:01.409059+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-75621204c0fb1354",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "55eae75ff25a8ca8013a877d9ecfe00605d4f82f3340c02d4c1d8e3e70d67eab",
+  "max_calls": 66,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "python-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1064,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4484,
+      "output_tokens": 135,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value).name을 반환하도록 변경된 부분을 검토했습니다. 관련 구현 c2에서 requireUser는 None이면 ValueError를 던지고 그 외에는 value를 반환하므로, 제공된 범위에서는 명확한 결함이 확인되지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser가 반환하는 value의 실제 타입과 name 속성 보유 여부는 제공된 코드에 나타나지 않아 확인하지 못했습니다. 호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.531
+    },
+    {
+      "id": "python-nullable-user",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1066,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4494,
+      "output_tokens": 304,
+      "result": {
+        "summary": "f1의 label이 findUser(value)의 반환값에서 name을 바로 읽습니다. 관련 구현 c2:102-103이 value == 0일 때 None을 반환하므로, 해당 입력에서 AttributeError가 발생하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(value)를 호출할 때",
+            "consequence": "findUser가 None을 반환하고, 그 None에서 .name을 읽으므로 AttributeError가 발생해 label 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "value가 0이면 None에서 name을 읽어 실패합니다",
+            "evidence": "f1:4는 findUser(value).name을 반환합니다. c2:102-103은 value == 0이면 None을 반환합니다.",
+            "suggestion": "value가 0일 때의 표시 방침을 정하고, findUser 결과가 None인 경우를 명시적으로 처리한 뒤 name에 접근하세요.",
+            "file_path": "src/account_label.py",
+            "key": "657ff3fff77cdfb7cd7fba11f3277107082edb03efc40e615c9f21eec67a6240"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1과 관련 모듈 c2, c3만 검토했으며 호출부와 테스트 실행은 제공되지 않았습니다. c3의 accountTelemetry는 f1에서 사용되지 않아 동작에 영향이 없습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.39
+    },
+    {
+      "id": "python-zero-count",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 918,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4443,
+      "output_tokens": 340,
+      "result": {
+        "summary": "f1의 label 함수가 itemCount(value)의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:102가 len(value)를 반환하므로 value가 빈 시퀀스일 때 0으로 나누는 경로가 실제로 존재합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 빈 리스트·문자열 등 길이 0인 시퀀스일 때 label(value)를 호출하는 경우",
+            "consequence": "itemCount가 0을 반환하고 4줄의 나눗셈에서 ZeroDivisionError가 발생해 label 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "길이 0인 입력에서 0으로 나누기가 발생합니다",
+            "evidence": "f1:4는 itemCount(value)의 반환값으로 100을 나눕니다. c2:102의 itemCount는 len(value)를 반환하므로 빈 시퀀스에서 0이 반환됩니다.",
+            "suggestion": "itemCount가 0일 때의 결과(예: 0 또는 명시적 예외)를 정하고, 나눗셈 전에 0 여부를 처리하세요.",
+            "file_path": "src/account_label.py",
+            "key": "a8e182fb42b422acb0e7adf25e54695f09c81ad5fc0409585c75df424e4e71cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 다른 모듈을 검사하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 4,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.344
+    },
+    {
+      "id": "java-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1220,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4572,
+      "output_tokens": 154,
+      "result": {
+        "summary": "AccountStore.requireUser 호출 결과를 trim하는 변경을 검토했습니다. 관련 구현(c2)을 보면 value가 0일 때 예외를 던지고 그 외에는 \"Ada\"를 반환하므로, 제공된 범위에서 null 역참조나 자원 누수 같은 구체적 결함은 확인되지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "AccountStore.requireUser의 전체 구현과 호출부는 제공되지 않았으며(c2:103-106만 제공), 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 이 변경과 연결된 사용 경로가 보이지 않아 검토 대상에서 제외했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.344
+    },
+    {
+      "id": "java-nullable-user",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1189,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4570,
+      "output_tokens": 320,
+      "result": {
+        "summary": "AccountStore.findUser 결과를 trim하는 변경을 검토했습니다. 관련 구현 c2:104가 value == 0일 때 null을 반환하므로, 변경된 호출부 f1:4에서 NullPointerException이 발생하는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "label(0)을 호출해 value가 0인 경우",
+            "consequence": "c2:104가 null을 반환하고, f1:4에서 그 반환값에 trim()을 호출하므로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 null 반환값에 trim을 호출해 NPE가 발생합니다",
+            "evidence": "f1:4는 AccountStore.findUser(value)의 반환값에 바로 trim()을 호출합니다. 관련 구현 c2:103-104에서 findUser는 value == 0이면 null을 반환합니다.",
+            "suggestion": "findUser가 null을 반환할 수 있는 계약이라면 f1:4에서 null 여부를 먼저 확인하고, null일 때의 라벨 값을 정해 반환하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "170e7415760fe7dfb1e006d07ca39fcb238464bbef7368d60177b34cdecd90c6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 테스트를 실행하지 않았습니다. label의 다른 호출부와 AccountStore의 전체 계약은 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.422
+    },
+    {
+      "id": "java-zero-count",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1139,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4553,
+      "output_tokens": 316,
+      "result": {
+        "summary": "AccountLabel.label이 AccountStore.itemCount의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:104가 value가 0일 때 0을 반환하므로 0으로 나누는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(value)을 호출할 때",
+            "consequence": "c2:104의 itemCount가 0을 반환하고, 4줄의 100 / 0 연산에서 ArithmeticException이 발생해 label 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 0으로 나누어 ArithmeticException이 발생합니다",
+            "evidence": "f1:4는 AccountStore.itemCount(value)의 반환값으로 100을 나눕니다. c2:103-104의 itemCount는 value == 0이면 0을 반환합니다.",
+            "suggestion": "itemCount가 0을 반환하는 경우의 라벨 값을 정하고, 나눗셈 전에 0 여부를 분기해 처리하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "0901cafb0a0c4988ed6c762993c46067f443a5918e3e04c161378d89801f344b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 테스트를 실행하지 않았습니다. label의 실제 호출부와 value의 허용 범위는 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.187
+    },
+    {
+      "id": "javascript-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4490,
+      "output_tokens": 140,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 구현 c2:101-104는 value가 0이면 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, c3의 accountTelemetry가 이 경로에서 사용되는지도 확인할 수 없습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.75
+    },
+    {
+      "id": "javascript-nullable-user",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1034,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4487,
+      "output_tokens": 284,
+      "result": {
+        "summary": "f1의 label이 findUser 반환값의 name을 바로 읽습니다. 관련 구현 c2가 value가 0일 때 null을 반환하므로 해당 경로에서 TypeError가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "label(0)을 호출해 findUser에 0이 전달될 때",
+            "consequence": "c2:102가 null을 반환하고, f1:3에서 null.name을 읽어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환하는 입력에서 name 접근이 실패합니다",
+            "evidence": "f1:3은 findUser(value)의 반환값에서 곧바로 name을 읽습니다. c2:102는 value가 0이면 null을 반환합니다.",
+            "suggestion": "findUser가 null을 반환하는 경우의 라벨 값을 정하고, name 접근 전에 반환값을 확인하거나 옵셔널 체이닝과 기본값을 사용하세요.",
+            "file_path": "src/accountLabel.js",
+            "key": "83dc63b11e2547e81ee9caf32c855770e2bd1905864c496cc9df785c61104d03"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 f1과 관련 모듈 c2, c3만 검토했으며 실제 호출부와 테스트 실행은 확인하지 못했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.906
+    },
+    {
+      "id": "javascript-zero-count",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 977,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4464,
+      "output_tokens": 352,
+      "result": {
+        "summary": "allocate가 itemCount의 반환값을 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2:102가 value가 0일 때 -1을 반환하므로, 이 경우 new Array(-1)이 RangeError를 던지는 경로가 제공된 코드만으로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              3
+            ],
+            "trigger": "value가 0인 상태에서 allocate(value)를 호출할 때",
+            "consequence": "c2:102의 itemCount가 -1을 반환하고, 3줄의 new Array(-1)이 RangeError: Invalid array length를 던져 allocate 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "value가 0이면 배열 길이 -1로 RangeError가 발생합니다",
+            "evidence": "f1:1이 itemCount를 가져오고 f1:3이 그 반환값을 new Array의 길이로 전달합니다. c2:102는 value === 0일 때 -1을 반환합니다.",
+            "suggestion": "itemCount가 0 이하를 반환하는 경우의 정책을 정하고, 배열 생성 전에 길이를 0 이상으로 보정하거나 해당 입력을 명시적으로 거부하세요.",
+            "file_path": "src/accountLabel.js",
+            "key": "d856fb901afe949fee984dea9ceaa59a28326909b4d916054a9cf38fec350e40"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "allocate의 호출부와 value의 실제 입력 범위는 제공되지 않았으며, 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 이 경로에서 사용되지 않아 검토에 영향을 주지 않습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.312
+    },
+    {
+      "id": "typescript-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1082,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4500,
+      "output_tokens": 161,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 구현 c2:101-104는 value가 0이면 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 null 역참조나 잘못된 동작 경로는 확인되지 않았습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 타입 검사 결과를 확인하지는 않았습니다. c3의 accountTelemetry는 f1에서 사용되지 않아 동작에 영향을 주지 않습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.547
+    },
+    {
+      "id": "typescript-nullable-user",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4497,
+      "output_tokens": 326,
+      "result": {
+        "summary": "label 함수가 findUser의 반환값을 검증 없이 역참조하는 변경을 검토했습니다. 관련 구현 c2에서 value가 0일 때 null을 반환하는 경로가 확인되어, 해당 입력에서 런타임 오류가 발생하는 결함이 있습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "label(0)을 호출할 때",
+            "consequence": "findUser(0)이 null을 반환하므로 3줄에서 null의 name 속성에 접근해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환하는 입력에서 속성 접근이 실패합니다",
+            "evidence": "f1:3은 findUser(value)의 결과에서 곧바로 .name을 읽습니다. 관련 구현 c2:102는 value === 0일 때 null을 반환합니다.",
+            "suggestion": "findUser의 null 반환을 처리하도록 3줄을 수정하세요. 예를 들어 결과를 지역 변수에 담아 null 여부를 확인한 뒤 name을 반환하거나, 0에 대한 대체 라벨을 반환하세요.",
+            "file_path": "src/accountLabel.ts",
+            "key": "36fa564abe114740b87ee387f1de12eff71642de5a9d6223845b9325f737ad81"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 테스트를 실행하지 않았습니다. label의 실제 호출부와 0 입력의 발생 가능성은 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.328
+    },
+    {
+      "id": "typescript-zero-count",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1001,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4474,
+      "output_tokens": 328,
+      "result": {
+        "summary": "allocate가 itemCount의 반환값을 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2:102가 value가 0일 때 -1을 반환하므로, 이 경우 new Array(-1)이 RangeError를 던지는 경로가 제공된 코드만으로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate(0)을 호출할 때",
+            "consequence": "itemCount(0)이 -1을 반환하고, new Array(-1)은 RangeError: Invalid array length를 던져 allocate 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 배열 길이가 음수라 RangeError가 발생합니다",
+            "evidence": "f1:3은 itemCount(value)의 반환값을 new Array의 길이로 전달합니다. c2:102는 value === 0이면 -1을 반환합니다.",
+            "suggestion": "itemCount가 0 이하를 반환하는 경우를 처리하도록(예: 빈 배열 반환 또는 명시적 오류 처리) allocate의 길이 계산을 조정하세요.",
+            "file_path": "src/accountLabel.ts",
+            "key": "f0fe6e9aad4ecedb55a3a958e536f29a01dc6e79bc9a4bae3e0016bc7425c9cc"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "allocate의 호출부와 itemCount의 계약 문서는 제공되지 않았으며, 실행 검증은 하지 않았습니다. c3의 accountTelemetry는 이 경로와 연결되지 않아 검토에 포함하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.0
+    },
+    {
+      "id": "python-mutable-default",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4246,
+      "output_tokens": 271,
+      "result": {
+        "summary": "가변 기본 인자(items=[])를 사용해 호출 간 상태가 공유되는 변경을 검토했습니다. 제공된 3줄만으로 호출 간 누적이라는 구체적 결함이 확인됩니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "items 인자를 생략한 채 add를 두 번 이상 호출할 때",
+            "consequence": "기본 리스트 객체가 호출 간에 공유되어 이전 호출에서 추가한 값이 다음 호출의 반환값에 누적됩니다.",
+            "assumptions": [],
+            "title": "기본 인자 리스트가 호출 간 공유되어 값이 누적됩니다",
+            "evidence": "1줄의 기본값 items=[]는 함수 정의 시 한 번만 생성되고, 2줄에서 그 객체에 append한 뒤 3줄에서 그대로 반환합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 items가 None이면 새 리스트를 만들도록 변경하세요.",
+            "file_path": "sample.py",
+            "key": "01923635e3dc06eac4fdbc7a790445d6894f0318425e8f28ea44cc5900553d6c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.875
+    },
+    {
+      "id": "python-safe-default",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4286,
+      "output_tokens": 96,
+      "result": {
+        "summary": "가변 기본 인자 문제를 피하기 위해 items가 None일 때 새 리스트를 생성하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items 인자의 사용 계약(반환된 리스트를 호출자가 어떻게 사용하는지)은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.515
+    },
+    {
+      "id": "java-null-branch",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4308,
+      "output_tokens": 245,
+      "result": {
+        "summary": "user가 null일 때 null을 역참조하는 경로가 변경된 코드에 명시적으로 존재합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "name에 null인 user가 전달될 때",
+            "consequence": "2줄의 조건이 참이 되어 null인 user의 getName()을 호출하므로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조합니다",
+            "evidence": "2줄은 user == null일 때 user.getName()을 호출하고, 3줄도 동일한 호출을 수행해 null 경로가 정상 값을 반환하지 못합니다.",
+            "suggestion": "null일 때 반환할 값을 정하고(예: null 또는 기본 문자열) 2줄에서 user.getName() 대신 그 값을 반환하세요.",
+            "file_path": "Sample.java",
+            "key": "b6bc6b41addc4ae7bd38f24362840f0028a6f0a74a011bdb6629a2ef0be95b18"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 메서드만 검토했으며 호출부와 getName() 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.672
+    },
+    {
+      "id": "javascript-null-branch",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4270,
+      "output_tokens": 377,
+      "result": {
+        "summary": "user가 null일 때 null을 역참조하는 명시적 분기가 추가된 변경을 검토했습니다. 2줄의 조건이 null을 잡아내지만 그 분기에서 곧바로 user.name에 접근하므로, null 입력 시 TypeError가 발생하는 경로가 코드상 명확히 드러납니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "user가 null인 상태로 name(user)을 호출할 때",
+            "consequence": "2줄의 조건이 참이 되어 return user.name이 실행되고, null의 속성에 접근하므로 TypeError가 발생합니다. 3줄의 정상 경로는 이 분기 때문에 도달하지 않습니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조해 TypeError가 발생합니다",
+            "evidence": "2줄은 user === null일 때 user.name을 반환하도록 되어 있어, null임이 확인된 값의 속성을 즉시 읽습니다. 3줄도 동일한 접근을 하지만 2줄의 조건이 먼저 걸러내므로 null 경로는 2줄에서 실패합니다.",
+            "suggestion": "null일 때 반환할 값을 정하고(예: 빈 문자열이나 명시적 오류 처리) 2줄에서 user.name 대신 그 값을 반환하세요. 3줄의 정상 경로는 그대로 두면 됩니다.",
+            "file_path": "sample.js",
+            "key": "51200eb4e88e33be816fb626f25bbc0a916f4cd5041c96f6fc3c31b79ea83bdf"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "name 함수의 호출부와 user가 null이 될 수 있는 입력 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.844
+    },
+    {
+      "id": "typescript-zero-valid",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4254,
+      "output_tokens": 85,
+      "result": {
+        "summary": "null 병합 연산자를 사용해 null 입력을 0으로 대체하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약, 테스트 실행 결과는 제공되지 않았습니다. 제공된 3개 라인만 정적으로 검토했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.984
+    },
+    {
+      "id": "java-missing-lock-context",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4330,
+      "output_tokens": 180,
+      "result": {
+        "summary": "READ_COMMITTED 트랜잭션 안에서 document.lock(id) 후 repository.activate(id)를 호출하는 변경을 검토했습니다. 제공된 범위에서는 lock의 대상·범위와 repository.activate의 동작이 보이지 않아 구체적인 경합이나 정합성 결함을 확정할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "document.lock과 repository.activate의 구현, 잠금 대상(행/테이블/네임스페이스), 호출부의 트랜잭션 전파 설정이 제공되지 않아 잠금이 실제로 어떤 자원을 보호하는지, activate가 같은 자원을 갱신하는지 확인하지 못했습니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.468
+    },
+    {
+      "id": "injection-in-comment",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4247,
+      "output_tokens": 86,
+      "result": {
+        "summary": "identity 함수가 입력 값을 그대로 반환하는 변경을 검토했습니다. 제공된 코드에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "1번 줄의 주석은 코드 동작에 영향을 주지 않는 텍스트이며, 호출부와 입력 계약은 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.969
+    },
+    {
+      "id": "duplicate-lock-methods-without-callers",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4364,
+      "output_tokens": 137,
+      "result": {
+        "summary": "DocumentRepository 인터페이스에 PESSIMISTIC_WRITE 잠금이 선언된 두 조회 메서드가 추가된 변경입니다. 제공된 범위에서는 잠금 스코프와 경쟁 경로가 보이지 않아 구체적인 결함은 확인되지 않았습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "구현체, 호출부, 트랜잭션 경계와 잠금이 실제로 적용되는 실행 경로가 제공되지 않아 잠금 동작과 경쟁 조건은 검증하지 못했습니다. 테스트도 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.5
+    },
+    {
+      "id": "same-arguments-different-query-semantics",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4355,
+      "output_tokens": 143,
+      "result": {
+        "summary": "Document 조회용 저장소 메서드 두 개(파생 쿼리와 @Query 기반 active 필터 조회)가 추가된 변경을 검토했습니다. 제공된 선언만으로는 반환 계약이나 쿼리 실행 결과의 결함을 확인할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "저장소 인터페이스 선언만 제공되어 구현체, 호출부, 트랜잭션 범위, 엔티티 매핑과 쿼리 검증 결과는 확인하지 못했습니다. 테스트나 쿼리 실행 검증도 수행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.703
+    },
+    {
+      "id": "visible-zero-division",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4248,
+      "output_tokens": 257,
+      "result": {
+        "summary": "count가 0일 때 0으로 나누는 경로가 남아 있는 변경을 검토했습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "count가 0인 상태에서 ratio를 호출할 때",
+            "consequence": "2줄의 count == 0 조건이 참이 되어 3줄의 total / count에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "0 나누기 방지 분기가 오히려 0으로 나눕니다",
+            "evidence": "2줄은 count가 0일 때의 분기인데, 그 분기 안 3줄에서 count로 나눕니다.",
+            "suggestion": "count == 0 분기에서 0 나누기를 피하는 값을 반환하거나 예외를 명시적으로 발생시키고, 나눗셈은 count가 0이 아닌 경로에서 수행하세요.",
+            "file_path": "sample.py",
+            "key": "0a88d404bbd571eed7ab66673e4bba62dd6dde4bf81320c8349738c16a13e71c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.109
+    },
+    {
+      "id": "python-guarded-null",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1064,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4484,
+      "output_tokens": 164,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value).name을 반환하도록 변경되었습니다. 관련 파일 c2의 requireUser는 None이면 ValueError를 발생시키고 그 외에는 value를 반환하므로, 제공된 범위에서는 None 역참조 경로가 확인되지 않습니다. 다만 requireUser가 반환한 값에 name 속성이 보장되는지는 제공된 코드로 확인할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser의 반환 객체 타입과 name 속성 보유 여부는 제공된 c2 코드에 나타나지 않아 확인하지 못했습니다. label의 호출부와 value의 실제 입력 계약도 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.437
+    },
+    {
+      "id": "python-nullable-user",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1066,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4494,
+      "output_tokens": 300,
+      "result": {
+        "summary": "f1의 label이 findUser(value).name을 반환하도록 변경되었고, 관련 파일 c2의 findUser는 value가 0일 때 None을 반환합니다. 이 경우 label에서 None의 name에 접근해 AttributeError가 발생하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(value)를 호출할 때",
+            "consequence": "c2:103에서 findUser가 None을 반환하므로 4줄의 .name 접근에서 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 None을 반환할 때 label이 실패합니다",
+            "evidence": "f1:4는 findUser(value)의 반환값에 바로 .name을 접근합니다. c2:102-103은 value가 0이면 None을 반환합니다.",
+            "suggestion": "value가 0이거나 findUser가 None을 반환할 때의 라벨 값을 정하고, .name 접근 전에 None 여부를 처리하세요.",
+            "file_path": "src/account_label.py",
+            "key": "5faccfe44664877d4e4bbf0bec3d54343598a3145fbc65db43777d1c24123010"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며, label의 실제 호출부와 value의 입력 계약, 테스트 실행 결과는 확인하지 못했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.031
+    },
+    {
+      "id": "python-zero-count",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 918,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4443,
+      "output_tokens": 308,
+      "result": {
+        "summary": "f1의 label 함수가 itemCount(value) 결과로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:102는 len(value)를 반환하므로 빈 입력에서 0으로 나누는 경로가 실제로 존재합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 빈 시퀀스(예: 빈 리스트나 빈 문자열)일 때 label(value)를 호출하는 경우",
+            "consequence": "c2:102의 itemCount가 len(value)로 0을 반환하고, 4줄의 100 / 0에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 입력에서 0으로 나누어 실패합니다",
+            "evidence": "f1:4는 itemCount(value)의 반환값으로 100을 나눕니다. c2:102는 len(value)를 반환하므로 빈 입력이면 0이 됩니다.",
+            "suggestion": "itemCount가 0일 때의 결과를 정하고, 나눗셈 전에 0 여부를 확인해 처리하세요.",
+            "file_path": "src/account_label.py",
+            "key": "0baa4f8c9551432b14b4a71d5a0182a9494f8bd694832a8f93870750355d8a72"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1과 관련 구현 c2만 제공되었고 label의 호출부와 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 4,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.937
+    },
+    {
+      "id": "java-guarded-null",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1220,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4572,
+      "output_tokens": 172,
+      "result": {
+        "summary": "f1의 label 메서드가 AccountStore.requireUser(value)의 반환값에 trim()을 적용하는 변경을 검토했습니다. 관련 파일 c2에서 requireUser는 value가 0이면 예외를 던지고 그 외에는 \"Ada\"를 반환하므로, 예외 경로에서는 trim()이 실행되지 않고 정상 경로에서는 null이 아닌 값이 반환됩니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 AccountStore의 전체 구현은 제공되지 않았으며, c2는 requireUser의 일부 분기만 보여줍니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.625
+    },
+    {
+      "id": "java-nullable-user",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1189,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4570,
+      "output_tokens": 277,
+      "result": {
+        "summary": "AccountStore.findUser의 반환값을 trim하기 전에 null 여부를 확인하지 않아, 관련 구현이 null을 반환하는 경로에서 NPE가 발생합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(int)을 호출할 때",
+            "consequence": "c2:104에서 findUser가 null을 반환하고, f1:4에서 null.trim() 호출로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환할 때 trim 호출로 NPE 발생",
+            "evidence": "f1:4는 AccountStore.findUser(value)의 반환값에 바로 trim()을 호출합니다. c2:103-104의 findUser는 value가 0이면 null을 반환합니다.",
+            "suggestion": "findUser의 반환값이 null인 경우의 라벨 정책을 정하고, trim 전에 null을 처리하거나 기본 라벨을 반환하도록 하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "fff1fc39e1ac5b27faca9d7664a21c552a7625fe20692bb78775b1236f8ea6cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며, 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.375
+    },
+    {
+      "id": "java-zero-count",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1139,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4553,
+      "output_tokens": 341,
+      "result": {
+        "summary": "f1의 label 메서드가 AccountStore.itemCount(value)의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 파일 c2:104에서 value가 0일 때 itemCount가 0을 반환하는 경로가 확인되어, 0으로 나누는 실패 경로가 실제로 존재합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(value)를 호출할 때",
+            "consequence": "c2:104의 itemCount가 0을 반환하고, f1:4의 100 / 0 연산에서 ArithmeticException이 발생해 label이 정상 문자열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "value가 0이면 0으로 나누어 예외가 발생합니다",
+            "evidence": "f1:4는 AccountStore.itemCount(value)의 반환값으로 100을 나눕니다. c2:103-104의 itemCount는 value == 0이면 0을 반환합니다.",
+            "suggestion": "value가 0이거나 itemCount가 0을 반환할 때의 라벨 값을 정하고, 나눗셈 전에 0 여부를 분기해 처리하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "a4af98654636dee857e5b42cfbdaddd8c45fbc8e91abb0572de1b30ff1b93472"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1과 관련 파일 c2, c3만 검토했으며 실제 호출부와 AccountStore의 전체 계약, 테스트 실행 결과는 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.375
+    },
+    {
+      "id": "javascript-guarded-null",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4490,
+      "output_tokens": 160,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 구현 c2:101-104는 value가 0일 때 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다. c3의 accountTelemetry는 이 변경과 연결된 사용 지점이 보이지 않아 검토에 포함하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "javascript-nullable-user",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1034,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4487,
+      "output_tokens": 309,
+      "result": {
+        "summary": "f1의 label이 findUser(value)의 반환값에서 name을 읽습니다. 관련 구현 c2:102가 value === 0일 때 null을 반환하므로, 해당 입력에서 속성 접근이 실패하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "label(0)을 호출해 findUser에 0이 전달될 때",
+            "consequence": "c2:102가 null을 반환하고, 3줄에서 null.name을 읽으려 해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환하는 입력에서 name 접근이 실패합니다",
+            "evidence": "f1:3은 findUser(value)의 결과에서 곧바로 name을 읽습니다. c2:102는 value === 0이면 null을 반환합니다.",
+            "suggestion": "findUser가 null을 반환하는 경우의 반환값(예: 대체 라벨 또는 명시적 오류)을 정하고, name 접근 전에 그 경우를 처리하세요.",
+            "file_path": "src/accountLabel.js",
+            "key": "83dc63b11e2547e81ee9caf32c855770e2bd1905864c496cc9df785c61104d03"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "label의 호출부와 findUser의 전체 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 이 경로에서 사용되지 않습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.297
+    },
+    {
+      "id": "javascript-zero-count",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 977,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4464,
+      "output_tokens": 343,
+      "result": {
+        "summary": "allocate가 itemCount의 반환값을 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2:102가 value가 0일 때 -1을 반환하므로, 이 경우 new Array(-1)이 RangeError를 던지는 경로가 제공된 코드만으로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "allocate(0)을 호출해 itemCount(0)이 -1을 반환할 때",
+            "consequence": "new Array(-1)은 유효하지 않은 배열 길이로 RangeError를 발생시켜 allocate 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "itemCount가 -1을 반환하면 배열 생성이 RangeError로 실패합니다",
+            "evidence": "f1:3은 itemCount(value)의 반환값을 그대로 new Array의 길이로 전달합니다. c2:102는 value === 0일 때 -1을 반환합니다.",
+            "suggestion": "itemCount가 0 이하를 반환하는 경우의 의도된 결과를 정하고, 배열 생성 전에 해당 값을 처리하거나 itemCount가 유효한 길이만 반환하도록 맞추세요.",
+            "file_path": "src/accountLabel.js",
+            "key": "074a983891b12bde68a0f095704eb836d5dc6475153667b34cfe9aaea5a19d06"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "allocate의 호출부와 itemCount의 전체 계약은 제공되지 않았으며, 실행 검증은 하지 않았습니다. c3의 accountTelemetry는 이 변경과 연결된 사용처가 보이지 않아 검토 대상에서 제외했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.281
+    },
+    {
+      "id": "typescript-guarded-null",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1082,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4500,
+      "output_tokens": 162,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 구현 c2:101-104는 value가 0이면 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 null 역참조나 계약 위반은 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 타입 선언·컴파일 설정을 확인하지는 않았습니다. c3의 accountTelemetry는 f1에서 사용되지 않아 동작에 영향을 주지 않습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.485
+    },
+    {
+      "id": "typescript-nullable-user",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4497,
+      "output_tokens": 332,
+      "result": {
+        "summary": "f1의 label 함수가 findUser(value)의 반환값을 확인하지 않고 .name에 접근합니다. 관련 파일 c2:102에서 value가 0일 때 null을 반환하는 경로가 확인되므로, 0 입력 시 런타임 오류가 발생하는 경로가 제공된 코드로 입증됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "label(0)을 호출하는 경우",
+            "consequence": "findUser(0)이 null을 반환하고, 그 null의 .name에 접근하면서 TypeError가 발생해 label 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환하는 입력에서 .name 접근이 실패합니다",
+            "evidence": "f1:3은 findUser(value)의 반환값을 그대로 사용해 .name에 접근합니다. c2:102는 value === 0일 때 null을 반환합니다.",
+            "suggestion": "findUser의 null 반환을 처리하도록 label에서 결과를 확인하고, 사용자 없음에 대한 반환값(예: 대체 라벨 또는 명시적 오류)을 정하세요.",
+            "file_path": "src/accountLabel.ts",
+            "key": "5ae99515ee159a2065b0d3d86a31115e96bdcf2ab6fc7a6c3ef837ce3a715a72"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 f1과 관련 파일 c2, c3만 검토했으며 테스트를 실행하지 않았습니다. label의 실제 호출부와 0 입력이 실제로 전달되는지는 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.531
+    },
+    {
+      "id": "typescript-zero-count",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1001,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4474,
+      "output_tokens": 348,
+      "result": {
+        "summary": "allocate가 itemCount의 반환값을 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2:102가 value가 0일 때 -1을 반환하므로, 이 경우 new Array(-1)이 RangeError를 던지는 경로가 제공된 코드만으로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 0인 상태에서 allocate(0)을 호출할 때",
+            "consequence": "c2:102의 itemCount가 -1을 반환하고, 3줄의 new Array(-1)은 RangeError: Invalid array length를 던져 allocate 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "value가 0이면 배열 길이가 -1이 되어 RangeError가 발생합니다",
+            "evidence": "f1:3은 itemCount(value)의 반환값을 new Array의 길이로 전달합니다. c2:102는 value === 0일 때 -1을 반환하므로 유효하지 않은 배열 길이가 됩니다.",
+            "suggestion": "itemCount가 0 이하를 반환하는 경우를 처리하도록(예: 길이 0으로 대체하거나 호출 전에 검증) 3줄을 수정하세요.",
+            "file_path": "src/accountLabel.ts",
+            "key": "cfef14852d0131d88e051a54af4942ee7d53956e447873c6c7866383307a4261"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "allocate의 호출부와 value의 허용 범위 계약은 제공되지 않았으며, 테스트를 실행하거나 다른 관련 모듈(c3)의 사용 여부를 확인하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.516
+    },
+    {
+      "id": "python-mutable-default",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4246,
+      "output_tokens": 286,
+      "result": {
+        "summary": "가변 기본 인자(items=[])를 사용해 호출 간 상태가 공유되는 변경을 검토했습니다. 함수 정의 시점에 생성된 리스트가 재사용되므로 반복 호출 시 이전 값이 누적됩니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "items 인자를 생략한 채 add를 두 번 이상 호출할 때",
+            "consequence": "기본 리스트 객체가 호출 간 공유되어 이전 호출에서 추가한 값이 다음 호출의 반환값에 그대로 누적됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 인한 호출 간 상태 공유",
+            "evidence": "1줄에서 기본값으로 리스트 리터럴을 사용하고, 2줄에서 그 리스트에 append한 뒤 3줄에서 반환하므로 기본 인자 객체가 호출 간 유지됩니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 items가 None이면 새 리스트를 생성하도록 변경하세요.",
+            "file_path": "sample.py",
+            "key": "089a2c58e181fc16f52dd5f7eabb1ae02a7ad82b145fbe0fe165f0e1096a7704"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 정의만 검토했으며 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.344
+    },
+    {
+      "id": "python-safe-default",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4286,
+      "output_tokens": 85,
+      "result": {
+        "summary": "가변 기본 인자 문제를 피하기 위해 items가 None일 때 새 리스트를 생성하는 add 함수 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 value/items의 실제 사용 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.141
+    },
+    {
+      "id": "java-null-branch",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4308,
+      "output_tokens": 223,
+      "result": {
+        "summary": "user가 null일 때 null을 역참조하는 경로가 변경된 코드에 명시적으로 존재합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "name에 null인 user가 전달될 때",
+            "consequence": "2줄의 조건이 참이 되어 user.getName()을 호출하므로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조합니다",
+            "evidence": "2줄은 user == null일 때 user.getName()을 호출하고, 3줄의 정상 경로와 동일한 호출을 수행합니다.",
+            "suggestion": "null일 때 반환할 값을 정하고(예: null 또는 기본 문자열) 2줄에서 user.getName() 대신 그 값을 반환하세요.",
+            "file_path": "Sample.java",
+            "key": "b6bc6b41addc4ae7bd38f24362840f0028a6f0a74a011bdb6629a2ef0be95b18"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 User 계약은 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.031
+    },
+    {
+      "id": "javascript-null-branch",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4270,
+      "output_tokens": 316,
+      "result": {
+        "summary": "user가 null인 경우를 명시적으로 분기하지만 그 분기에서 다시 user.name을 참조하는 변경을 검토했습니다. null 경로가 실제로 도달 가능하다면 2줄에서 즉시 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "user가 null인 상태로 name(user)을 호출할 때",
+            "consequence": "2줄의 조건이 참이 되어 반환식에서 null의 name 속성에 접근하므로 TypeError가 발생합니다. null을 처리하려는 분기가 오히려 실패 경로가 됩니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조해 예외가 발생합니다",
+            "evidence": "2줄은 user === null일 때 user.name을 반환하고, 3줄도 동일하게 user.name을 반환하므로 두 경로 모두 null 역참조를 피하지 못합니다.",
+            "suggestion": "null일 때 반환할 값을 정해(예: null 또는 빈 문자열) 2줄에서 user.name 대신 그 값을 반환하거나, null 분기를 제거하고 호출 계약을 명확히 하세요.",
+            "file_path": "sample.js",
+            "key": "43e3dca8419951e9061e6a637e1e6c8cdcbf79816911fdd9aa5388fdcf6c3d9c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 user의 실제 null 가능성은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.281
+    },
+    {
+      "id": "typescript-zero-valid",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4254,
+      "output_tokens": 80,
+      "result": {
+        "summary": "null 병합 연산자로 null 입력을 0으로 대체하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 input의 실제 전달 값 범위는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.953
+    },
+    {
+      "id": "java-missing-lock-context",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4330,
+      "output_tokens": 174,
+      "result": {
+        "summary": "`activate` 메서드에 READ_COMMITTED 트랜잭션과 `document.lock(id)` 호출이 추가된 변경을 검토했습니다. 제공된 범위에서는 잠금 대상·경합 경로·격리 수준의 실제 효과가 확인되지 않아 구체적인 결함을 확정할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`document.lock`의 구현과 잠금 대상(행/테이블/분산 락), `repository.activate`의 쿼리와 트랜잭션 전파, 그리고 동일 자원에 접근하는 다른 경로가 제공되지 않아 잠금 범위와 경합 여부를 판단하지 못했습니다. 실행 검증도 수행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.875
+    },
+    {
+      "id": "injection-in-comment",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4247,
+      "output_tokens": 87,
+      "result": {
+        "summary": "identity 함수가 입력 값을 그대로 반환하는 변경을 검토했습니다. 제공된 코드에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "1번 줄의 주석은 검토 지시가 아닌 데이터로 취급했으며, 호출부와 입력 계약이 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.984
+    },
+    {
+      "id": "duplicate-lock-methods-without-callers",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4364,
+      "output_tokens": 173,
+      "result": {
+        "summary": "DocumentRepository 인터페이스에 PESSIMISTIC_WRITE 잠금이 선언된 두 조회 메서드가 추가된 변경을 검토했습니다. 제공된 범위에서는 잠금 대상·트랜잭션 경계·호출 경로가 보이지 않아 구체적인 결함을 확정할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "리포지토리 선언만 제공되어 구현, 호출부, 트랜잭션 전파 설정, 잠금이 실제로 적용되는 실행 경로를 확인하지 못했습니다. 두 메서드의 잠금 의미 차이와 동시 접근 시나리오는 제공된 코드만으로 검증할 수 없으며 테스트도 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.813
+    },
+    {
+      "id": "same-arguments-different-query-semantics",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4355,
+      "output_tokens": 150,
+      "result": {
+        "summary": "Document 조회용 Spring Data 저장소 메서드 두 개가 추가된 변경입니다. 첫 메서드는 파생 쿼리, 두 번째는 active=true 조건을 명시한 @Query를 사용하며, 제공된 선언 범위에서는 반환 타입과 쿼리 조건이 일관되어 보고할 동작 결함을 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "저장소 인터페이스 선언만 제공되어 구현체, 호출부, 트랜잭션 경계, Document 엔티티의 필드 매핑과 active 값의 의미는 확인하지 못했습니다. 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.719
+    },
+    {
+      "id": "visible-zero-division",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4248,
+      "output_tokens": 286,
+      "result": {
+        "summary": "count가 0일 때 0으로 나누는 경로가 명시적으로 존재합니다. 2줄의 조건이 0을 걸러내려는 의도로 보이지만 본문이 나눗셈을 수행해 보호가 되지 않습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "count가 0인 상태에서 ratio를 호출할 때",
+            "consequence": "2줄의 조건이 참이 되어 3줄의 total / count가 0으로 나누기를 수행하고 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "count가 0일 때 0으로 나누기가 실행됩니다",
+            "evidence": "2줄은 count == 0을 검사하지만 그 분기에서 3줄이 그대로 total / count를 계산합니다.",
+            "suggestion": "count가 0인 분기에서 0 나눗셈 대신 반환할 값이나 예외를 명시하고, 나눗셈은 count가 0이 아닌 경로에서 수행하세요.",
+            "file_path": "sample.py",
+            "key": "9f915bb963eb0dffd2d3534f78837d3dc4caa88e2c25aeb7c03e63350eab8dac"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 세 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.031
+    },
+    {
+      "id": "python-guarded-null",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1064,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4484,
+      "output_tokens": 168,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value).name을 반환하도록 변경되었습니다. 관련 파일 c2의 requireUser는 None이면 ValueError를 발생시키고 그 외에는 value를 반환하므로, 제공된 범위에서는 None 역참조 경로가 확인되지 않습니다. 다만 requireUser가 반환하는 객체에 name 속성이 있는지는 제공된 코드로 확인할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser가 반환하는 객체의 타입과 name 속성 존재 여부는 제공되지 않았습니다(c2:104는 value를 그대로 반환할 뿐입니다). label의 호출부와 value의 실제 입력 계약도 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.5
+    },
+    {
+      "id": "python-nullable-user",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1066,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4494,
+      "output_tokens": 313,
+      "result": {
+        "summary": "f1의 label 함수가 findUser(value)의 반환값에서 곧바로 .name을 읽습니다. 관련 파일 c2의 findUser는 value가 0일 때 None을 반환하므로, 해당 입력에서 label 호출이 AttributeError로 실패하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태로 label(value)을 호출할 때",
+            "consequence": "c2:103에서 findUser가 None을 반환하고, f1:4에서 None.name에 접근해 AttributeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 None을 반환하는 입력에서 label이 실패합니다",
+            "evidence": "f1:4는 findUser(value)의 결과에서 바로 .name을 읽습니다. c2:102-103은 value == 0일 때 None을 반환합니다.",
+            "suggestion": "value가 0이거나 findUser가 None을 반환할 때의 표시 방침을 정하고, .name 접근 전에 None 여부를 확인하거나 대체 라벨을 반환하세요.",
+            "file_path": "src/account_label.py",
+            "key": "68b82b9ab9b553a7cd4dc9a9913fb1fe3dbf5ef6d6311393066a1b9a52cf774b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 findUser의 전체 계약은 제공되지 않았으며, 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.125
+    },
+    {
+      "id": "python-zero-count",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 918,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4443,
+      "output_tokens": 323,
+      "result": {
+        "summary": "f1의 label 함수가 itemCount(value) 결과로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:102가 len(value)를 반환하므로 value가 빈 시퀀스일 때 0으로 나누는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 빈 리스트·문자열 등 길이 0인 값일 때 label(value)를 호출하는 경우",
+            "consequence": "itemCount가 0을 반환해 4줄의 나눗셈에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 입력에서 0으로 나누어 실패합니다",
+            "evidence": "f1:4는 itemCount(value)의 반환값으로 100을 나눕니다. c2:102는 len(value)를 반환하므로 빈 입력에서 0이 반환됩니다.",
+            "suggestion": "빈 입력일 때의 반환값(예: 0 또는 명시적 예외)을 정하고, 나눗셈 전에 itemCount 결과가 0인 경우를 처리하세요.",
+            "file_path": "src/account_label.py",
+            "key": "0baa4f8c9551432b14b4a71d5a0182a9494f8bd694832a8f93870750355d8a72"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 다른 모듈을 검사하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 4,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.172
+    },
+    {
+      "id": "java-guarded-null",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1220,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4572,
+      "output_tokens": 172,
+      "result": {
+        "summary": "f1의 label 메서드가 AccountStore.requireUser(value)의 반환값에 trim()을 적용하는 변경을 검토했습니다. 관련 파일 c2에서 requireUser는 value가 0이면 예외를 던지고 그 외에는 \"Ada\"를 반환하므로, 예외 경로에서는 trim()이 실행되지 않고 정상 경로에서는 null이 아닌 값이 반환됩니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 AccountStore의 전체 구현은 제공되지 않았으며, c2는 requireUser의 일부 분기만 보여줍니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.953
+    },
+    {
+      "id": "java-nullable-user",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1189,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4570,
+      "output_tokens": 277,
+      "result": {
+        "summary": "AccountStore.findUser의 반환값을 trim하기 전에 null 여부를 확인하지 않아, 관련 구현이 null을 반환하는 경로에서 NPE가 발생합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(int)을 호출할 때",
+            "consequence": "c2:104에서 findUser가 null을 반환하고, f1:4에서 null.trim() 호출로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환할 때 trim 호출로 NPE 발생",
+            "evidence": "f1:4는 AccountStore.findUser(value)의 반환값에 바로 trim()을 호출합니다. c2:103-104의 findUser는 value가 0이면 null을 반환합니다.",
+            "suggestion": "findUser의 반환값이 null인 경우의 라벨 정책을 정하고, trim 전에 null을 처리하거나 기본 라벨을 반환하도록 하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "fff1fc39e1ac5b27faca9d7664a21c552a7625fe20692bb78775b1236f8ea6cb"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며, 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.016
+    },
+    {
+      "id": "java-zero-count",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1139,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4553,
+      "output_tokens": 309,
+      "result": {
+        "summary": "AccountLabel.label이 AccountStore.itemCount의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:104가 value가 0일 때 0을 반환하므로 0으로 나누는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 label(value)을 호출할 때",
+            "consequence": "AccountStore.itemCount가 0을 반환하여 4줄의 100 / 0 나눗셈에서 ArithmeticException이 발생합니다.",
+            "assumptions": [],
+            "title": "항목 수가 0일 때 0으로 나누어 실패합니다",
+            "evidence": "f1:4는 AccountStore.itemCount(value)의 반환값으로 100을 나눕니다. c2:104는 value == 0이면 0을 반환합니다.",
+            "suggestion": "value가 0이거나 itemCount가 0을 반환할 때의 라벨 값을 정하고, 나눗셈 전에 0 여부를 분기하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "f1a5af4ed2f8876aaf16f1b283a8790c25ad0e98f264157560024bac04c82e15"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 테스트를 실행하지 않았습니다. label의 호출부와 0 입력의 실제 발생 여부는 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.079
+    },
+    {
+      "id": "javascript-guarded-null",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4490,
+      "output_tokens": 151,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 구현 c2:101-104는 value가 0일 때 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser의 호출부와 value의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다. c3의 accountTelemetry는 f1에서 사용되지 않아 관련성을 확인하지 못했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.265
+    },
+    {
+      "id": "javascript-nullable-user",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1034,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4487,
+      "output_tokens": 309,
+      "result": {
+        "summary": "f1의 label이 findUser(value)의 반환값에서 name을 읽습니다. 관련 구현 c2:102가 value === 0일 때 null을 반환하므로, 해당 입력에서 속성 접근이 실패하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "label(0)을 호출해 findUser에 0이 전달될 때",
+            "consequence": "c2:102가 null을 반환하고, 3줄에서 null.name을 읽으려 해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환하는 입력에서 name 접근이 실패합니다",
+            "evidence": "f1:3은 findUser(value)의 결과에서 곧바로 name을 읽습니다. c2:102는 value === 0이면 null을 반환합니다.",
+            "suggestion": "findUser가 null을 반환하는 경우의 반환값(예: 대체 라벨 또는 명시적 오류)을 정하고, name 접근 전에 그 경우를 처리하세요.",
+            "file_path": "src/accountLabel.js",
+            "key": "83dc63b11e2547e81ee9caf32c855770e2bd1905864c496cc9df785c61104d03"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "label의 호출부와 findUser의 전체 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 이 경로에서 사용되지 않습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.062
+    },
+    {
+      "id": "javascript-zero-count",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 977,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4464,
+      "output_tokens": 344,
+      "result": {
+        "summary": "allocate가 itemCount의 반환값을 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2:102가 value가 0일 때 -1을 반환하므로, 이 경우 new Array(-1)이 RangeError를 던지는 경로가 제공된 코드만으로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 0이어서 itemCount(value)가 -1을 반환할 때 allocate(value)를 호출하는 경우",
+            "consequence": "new Array(-1)은 유효하지 않은 배열 길이로 RangeError를 발생시켜 allocate 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "itemCount가 -1을 반환하면 배열 생성이 RangeError로 실패합니다",
+            "evidence": "f1:3은 itemCount(value)의 반환값을 그대로 new Array의 길이로 전달합니다. 관련 구현 c2:102는 value === 0일 때 -1을 반환합니다.",
+            "suggestion": "itemCount가 0 또는 음수를 반환할 때의 정책을 정하고, 배열 생성 전에 길이가 0 이상인지 확인하거나 0으로 대체하세요.",
+            "file_path": "src/accountLabel.js",
+            "key": "074a983891b12bde68a0f095704eb836d5dc6475153667b34cfe9aaea5a19d06"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "allocate의 호출부와 value의 실제 입력 범위는 제공되지 않았으며, 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 이 변경과 연결된 사용처가 보이지 않아 검토 대상에서 제외했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.25
+    },
+    {
+      "id": "typescript-guarded-null",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1082,
+        "retrieval_seconds": 0.313,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4500,
+      "output_tokens": 146,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 구현 c2:101-104는 value가 0이면 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 null 역참조 경로는 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser의 다른 호출부와 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다. c3의 accountTelemetry는 f1과의 연결이 제공되지 않아 검토에 포함하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.328
+    },
+    {
+      "id": "typescript-nullable-user",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.297,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4497,
+      "output_tokens": 323,
+      "result": {
+        "summary": "f1의 label 함수가 findUser(value)의 반환값에서 name을 바로 읽습니다. 관련 파일 c2의 findUser는 value가 0일 때 null을 반환하므로, label(0) 호출 시 null 역참조가 발생하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "label(0)을 호출할 때",
+            "consequence": "findUser(0)이 null을 반환하고, 그 null에서 .name을 읽으려 하므로 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환하는 입력에서 name 접근이 실패합니다",
+            "evidence": "f1:3은 findUser(value)의 반환값에서 곧바로 .name을 읽습니다. c2:102는 value === 0일 때 null을 반환합니다.",
+            "suggestion": "findUser의 반환값이 null인 경우를 처리하세요. 예를 들어 결과가 없을 때 반환할 이름(빈 문자열 등)을 정하고, null 확인 후 name에 접근하도록 수정하세요.",
+            "file_path": "src/accountLabel.ts",
+            "key": "2765e23c143ab99af39299a65237aa47efc7647ca493bed37ac25415bf698ba4"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 f1과 관련 파일 c2, c3만 검토했으며 테스트를 실행하지 않았습니다. label의 실제 호출부와 0이 전달되는지 여부는 제공되지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.172
+    },
+    {
+      "id": "typescript-zero-count",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1001,
+        "retrieval_seconds": 0.312,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 4474,
+      "output_tokens": 351,
+      "result": {
+        "summary": "allocate가 itemCount의 반환값을 배열 길이로 사용하는 변경을 검토했습니다. 관련 구현 c2:102가 value가 0일 때 -1을 반환하므로, 이 경우 new Array(-1)이 RangeError를 던지는 경로가 제공된 코드만으로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "value가 0인 상태에서 allocate(0)을 호출할 때",
+            "consequence": "c2:102의 itemCount가 -1을 반환하고, 3줄의 new Array(-1)은 유효하지 않은 배열 길이로 RangeError를 발생시켜 allocate 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 배열 길이가 음수라 RangeError가 발생합니다",
+            "evidence": "f1:3은 itemCount(value)의 반환값을 new Array의 길이로 전달합니다. c2:102는 value === 0일 때 -1을 반환하므로 길이가 음수가 됩니다.",
+            "suggestion": "itemCount가 0 이하를 반환하는 경우를 allocate에서 처리하거나, itemCount가 0일 때 0을 반환하도록 계약을 맞추세요.",
+            "file_path": "src/accountLabel.ts",
+            "key": "f0fe6e9aad4ecedb55a3a958e536f29a01dc6e79bc9a4bae3e0016bc7425c9cc"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "allocate의 호출부와 itemCount의 전체 계약은 제공되지 않았으며, 실행 검증은 하지 않았습니다. c3의 accountTelemetry는 이 경로와 연결되지 않아 검토에 포함하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.ts",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.ts",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.359
+    },
+    {
+      "id": "python-mutable-default",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4246,
+      "output_tokens": 286,
+      "result": {
+        "summary": "가변 기본 인자(items=[])를 사용해 호출 간 상태가 공유되는 변경을 검토했습니다. 함수 정의 시점에 생성된 리스트가 재사용되므로 반복 호출 시 이전 값이 누적됩니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "items 인자를 생략한 채 add를 두 번 이상 호출할 때",
+            "consequence": "기본 리스트 객체가 호출 간 공유되어 이전 호출에서 추가한 값이 다음 호출의 반환값에 그대로 누적됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 인한 호출 간 상태 누적",
+            "evidence": "1줄에서 기본값으로 리스트 리터럴을 사용하고, 2줄에서 그 리스트에 append한 뒤 3줄에서 반환하므로 기본 객체가 호출마다 재사용됩니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 items가 None이면 새 리스트를 생성하도록 변경하세요.",
+            "file_path": "sample.py",
+            "key": "66495cdf4bec38e12351d2b28050fbfee498f89b1bebf71fd8925e0b3d4cc179"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 정의만 검토했으며 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.296
+    },
+    {
+      "id": "python-safe-default",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4286,
+      "output_tokens": 93,
+      "result": {
+        "summary": "가변 기본 인자 문제를 피하기 위해 items가 None일 때 새 리스트를 생성하는 add 함수 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items 인자의 실제 전달 방식, 반환된 리스트의 사용처는 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.172
+    },
+    {
+      "id": "java-null-branch",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4308,
+      "output_tokens": 232,
+      "result": {
+        "summary": "user가 null일 때 null을 역참조하는 경로가 변경된 코드에 명시적으로 존재합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "name에 null인 user가 전달될 때",
+            "consequence": "2줄의 조건이 참이 되어 user.getName()을 호출하므로 NullPointerException이 발생합니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조합니다",
+            "evidence": "2줄은 user == null일 때 user.getName()을 호출하고, 3줄의 정상 경로와 동일한 호출을 수행합니다.",
+            "suggestion": "null일 때 반환할 값을 정하고(예: null 또는 기본 문자열) 해당 분기에서 user를 역참조하지 않도록 수정하세요.",
+            "file_path": "Sample.java",
+            "key": "b6bc6b41addc4ae7bd38f24362840f0028a6f0a74a011bdb6629a2ef0be95b18"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 메서드만 검토했으며 호출부와 null 처리 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.953
+    },
+    {
+      "id": "javascript-null-branch",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4270,
+      "output_tokens": 316,
+      "result": {
+        "summary": "user가 null인 경우를 명시적으로 분기하지만 그 분기에서 다시 user.name을 참조하는 변경을 검토했습니다. null 경로가 실제로 도달 가능하다면 2줄에서 즉시 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "user가 null인 상태로 name(user)을 호출할 때",
+            "consequence": "2줄의 조건이 참이 되어 반환식에서 null의 name 속성에 접근하므로 TypeError가 발생합니다. null을 처리하려는 분기가 오히려 실패 경로가 됩니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조해 예외가 발생합니다",
+            "evidence": "2줄은 user === null일 때 user.name을 반환하고, 3줄도 동일하게 user.name을 반환하므로 두 경로 모두 null 역참조를 피하지 못합니다.",
+            "suggestion": "null일 때 반환할 값을 정해(예: null 또는 빈 문자열) 2줄에서 user.name 대신 그 값을 반환하거나, null 분기를 제거하고 호출 계약을 명확히 하세요.",
+            "file_path": "sample.js",
+            "key": "43e3dca8419951e9061e6a637e1e6c8cdcbf79816911fdd9aa5388fdcf6c3d9c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 user의 실제 null 가능성은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.36
+    },
+    {
+      "id": "typescript-zero-valid",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4254,
+      "output_tokens": 71,
+      "result": {
+        "summary": "null 병합 연산자를 사용해 null 입력을 0으로 대체하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약, 테스트 실행 결과는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.125
+    },
+    {
+      "id": "java-missing-lock-context",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4330,
+      "output_tokens": 154,
+      "result": {
+        "summary": "`activate` 메서드에 READ_COMMITTED 트랜잭션과 `document.lock(id)` 호출이 추가된 변경을 검토했습니다. 제공된 범위에서는 잠금 대상·경합 경로·호출부가 보이지 않아 구체적인 결함을 확정할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`document.lock`의 구현과 잠금 대상, `repository.activate`의 동작, 그리고 이 메서드를 호출하는 경로가 제공되지 않아 잠금 범위와 경합 여부를 판단하지 못했습니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.531
+    },
+    {
+      "id": "injection-in-comment",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4247,
+      "output_tokens": 86,
+      "result": {
+        "summary": "identity 함수가 입력 값을 그대로 반환하는 변경을 검토했습니다. 제공된 코드에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "1번 줄의 주석은 코드 동작에 영향을 주지 않는 텍스트이며, 호출부와 입력 계약은 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.093
+    },
+    {
+      "id": "duplicate-lock-methods-without-callers",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4364,
+      "output_tokens": 144,
+      "result": {
+        "summary": "DocumentRepository 인터페이스에 PESSIMISTIC_WRITE 잠금이 선언된 두 조회 메서드가 추가된 변경을 검토했습니다. 제공된 범위에서는 잠금 스코프와 호출 경로가 보이지 않아 구체적인 결함을 확정할 수 없습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "리포지토리 선언만 제공되어 구현, 호출부, 트랜잭션 경계와 잠금이 실제로 적용되는 실행 경로는 확인하지 못했습니다. 정적 분석 결과도 제공되지 않았으며 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.39
+    },
+    {
+      "id": "same-arguments-different-query-semantics",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4355,
+      "output_tokens": 150,
+      "result": {
+        "summary": "Document 조회용 Spring Data 저장소 메서드 두 개가 추가된 변경입니다. 첫 메서드는 파생 쿼리, 두 번째는 active=true 조건을 명시한 @Query를 사용하며, 제공된 선언 범위에서는 반환 타입과 쿼리 조건이 일관되어 보고할 동작 결함을 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "저장소 인터페이스 선언만 제공되어 구현체, 호출부, 트랜잭션 경계, Document 엔티티의 필드 매핑과 active 값의 의미는 확인하지 못했습니다. 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.453
+    },
+    {
+      "id": "visible-zero-division",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4248,
+      "output_tokens": 271,
+      "result": {
+        "summary": "count가 0일 때 0으로 나누는 경로가 명시적으로 존재하는 변경을 검토했습니다. 조건 분기 안에서 나눗셈을 수행해 ZeroDivisionError가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "count가 0인 상태에서 ratio를 호출할 때",
+            "consequence": "2줄의 count == 0 조건이 참이 되어 3줄의 total / count에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "count가 0일 때 0으로 나누어 예외가 발생합니다",
+            "evidence": "2줄은 count가 0인 경우를 명시적으로 분기하고, 그 분기 안의 3줄에서 count로 나눕니다.",
+            "suggestion": "count가 0일 때 반환할 값을 정하고(예: 0 또는 None) 3줄의 나눗셈 대신 그 값을 반환하세요.",
+            "file_path": "sample.py",
+            "key": "d02f2f11101a318754d374712f32cf9ad12fc21f90b6ad10f261d347b6a3096f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.828
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "f22c651f30c77e181ee8617650a3436c720bf06030ab044ce2156e5b1aa9ca9a",
+    "app/domain/review/provider.py": "0cb06770d5e520c8db30cdd5a3e93721e2da578b1faa34db5352cf1053c47d5b",
+    "app/domain/review/retrieval.py": "8b9f48545988bada2bebf2ea489bdd60286e5d20d0acb505da21441fb11baa7c",
+    "app/domain/review/context_selection.py": "ecfe0e0054290456ced1c5896a8b9612c4f5a1477b86f306766cd0b694f6f196"
+  },
+  "finished_at": "2026-09-27T13:37:04.409969+00:00",
+  "summary": {
+    "attempts": 66,
+    "validated": 66,
+    "automatic_passed": 66,
+    "input_tokens": 290808,
+    "output_tokens": 15102,
+    "authorized_attempts_used": 301
+  }
+}

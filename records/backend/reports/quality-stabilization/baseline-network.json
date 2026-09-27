@@ -1,0 +1,744 @@
+{
+  "started_at": "2026-09-27T13:17:20.822836+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-30cb0c02dda36caf",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "59eff6055cefa472c171ff30b7c3bfe361bf0bd550ba987ef8a8d3d52bb24e42",
+  "max_calls": 12,
+  "repeats": 1,
+  "cases": [
+    {
+      "id": "python-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1064,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3328,
+      "output_tokens": 349,
+      "result": {
+        "summary": "`label` 함수가 `requireUser(value).name`을 반환하도록 추가된 변경을 검토했습니다. 관련 파일에서 `requireUser`는 None만 거부하고 그 외 값을 그대로 반환하므로, `name` 속성이 없는 값이 전달되면 AttributeError가 발생할 수 있습니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "`label`에 None이 아니면서 `name` 속성이 없는 값(예: 문자열, 숫자, dict)을 전달할 때",
+            "consequence": "`requireUser`는 None만 검사하고 값을 그대로 반환하므로, `value.name` 접근에서 AttributeError가 발생해 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "name 속성이 없는 값 전달 시 AttributeError 발생",
+            "evidence": "4줄에서 `requireUser(value).name`으로 속성에 접근하는데, 관련 파일 c2의 101~104줄에서 `requireUser`는 None 여부만 확인하고 입력 값을 그대로 반환합니다.",
+            "suggestion": "`label`이 기대하는 입력 타입을 명확히 하고, `name` 속성 존재를 보장하는 검증을 추가하거나 속성 접근 전에 타입/속성 확인을 수행하세요.",
+            "file_path": "src/account_label.py",
+            "key": "9850317db9a559c25e10528c00d4a1ce730cc4e6816087142335ec35b37c0c6b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`label`의 호출부와 실제 전달되는 값의 타입, `requireUser`의 전체 구현 및 테스트 실행 여부는 제공되지 않아 확인하지 못했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/account_label.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/account_store.py",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false
+      },
+      "seconds": 2.812
+    },
+    {
+      "id": "python-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "a6467227185c16eb39cdb83238f22854bf9460e5c68a8c1c397a66a32ba4b42d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 1066,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3338,
+      "output_tokens": 299,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 4,
+          "evidence_lines": [
+            4,
+            102,
+            103
+          ],
+          "unprovided": [
+            102,
+            103
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.078
+    },
+    {
+      "id": "python-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "950004d48f592ea420f48a5f74c781302d780c2d393c5e5c85faa83353cc1d11",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/account_store.py",
+          "src/accountCache.py"
+        ],
+        "input_bytes": 918,
+        "retrieval_seconds": 0.36,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3287,
+      "output_tokens": 347,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 4,
+          "evidence_lines": [
+            4,
+            101,
+            102
+          ],
+          "unprovided": [
+            101,
+            102
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.656
+    },
+    {
+      "id": "java-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "503b4c7097e9b424db5ccbb7e517774deb05b4664c4e36e032b3456269a1369e",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1220,
+        "retrieval_seconds": 0.453,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3416,
+      "output_tokens": 160,
+      "result": {
+        "summary": "AccountLabel.label이 AccountStore.requireUser(value)의 반환값을 trim()으로 처리하는 변경을 검토했습니다. 관련 파일 c2에서 requireUser는 value가 0이면 IllegalArgumentException을 던지고 그 외에는 \"Ada\"를 반환하므로, 제공된 범위에서는 null 역참조나 자원 누수 같은 구체적 결함이 확인되지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "AccountStore의 실제 구현과 label 호출부, value의 허용 범위가 제공되지 않아 0 이외의 입력에서의 동작과 예외 전파 경로는 확인하지 못했습니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.593
+    },
+    {
+      "id": "java-nullable-user",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "bb63e7106e4448378874249f2cce42cda96604f46e04547498a71a79ab75ac1d",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1189,
+        "retrieval_seconds": 0.328,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3414,
+      "output_tokens": 327,
+      "result": {
+        "summary": "AccountLabel.label이 AccountStore.findUser(value)의 반환값에 바로 trim()을 호출합니다. 관련 파일 c2의 findUser는 value가 0일 때 null을 반환하므로, value가 0이면 NullPointerException이 발생하는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "label(0)을 호출하면 findUser(0)이 null을 반환하는 경우",
+            "consequence": "null에 trim()을 호출해 NullPointerException이 발생하고 label 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "findUser가 null을 반환할 때 trim()에서 NullPointerException 발생",
+            "evidence": "4줄에서 findUser(value)의 결과를 검사 없이 trim()으로 역참조하며, 관련 파일 c2 104줄은 value == 0일 때 null을 반환합니다.",
+            "suggestion": "findUser 결과를 지역 변수로 받아 null 여부를 확인한 뒤 trim()을 호출하고, null일 때의 반환값(빈 문자열 또는 예외)을 명시하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "8a94ffb878402c1cc95c4760caf90cb49bd0739b4de506978ac53df801805489"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "AccountStore의 실제 구현과 label 호출부는 제공되지 않았으며, c2의 findUser가 AccountStore.findUser와 동일하다는 전제는 제공된 관련 파일에 근거합니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.282
+    },
+    {
+      "id": "java-zero-count",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "1983b20b2b70716e06832e97342b6c329b3ff027885fcc958e0ac8165c118d98",
+        "candidate_count": 5,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/sample/AccountStore.java",
+          "src/accountCache.java"
+        ],
+        "input_bytes": 1139,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 5,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3397,
+      "output_tokens": 327,
+      "result": {
+        "summary": "AccountLabel.label이 AccountStore.itemCount(value)의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 파일 c2에 따르면 itemCount는 value가 0일 때 0을 반환하므로, label(0) 호출 시 0으로 나누어 ArithmeticException이 발생하는 경로가 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "label(0)을 호출하면 itemCount(0)이 0을 반환합니다.",
+            "consequence": "100 / 0 연산에서 ArithmeticException이 발생해 label 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "itemCount가 0을 반환할 때 0으로 나누기가 발생합니다",
+            "evidence": "4줄에서 itemCount(value)의 결과로 100을 나누며, 관련 파일 c2의 104줄은 value == 0일 때 0을 반환합니다.",
+            "suggestion": "나누기 전에 itemCount(value) 결과가 0인 경우의 반환값(예: 대체 라벨 또는 명시적 예외)을 정의하고, 0이 아닐 때만 나누기를 수행하세요.",
+            "file_path": "src/sample/AccountLabel.java",
+            "key": "1785b4eaca92d10b551cd207bd752b15a20afa42b61aae7f903d84b9e3ac3a46"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "AccountLabel의 호출부와 label(0)이 실제로 전달되는지는 제공되지 않았으며, 테스트 실행 없이 정적 검토만 수행했습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/sample/AccountLabel.java",
+              "provided_lines": 6,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/sample/AccountStore.java",
+              "provided_lines": 5,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.java",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 5,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.563
+    },
+    {
+      "id": "javascript-guarded-null",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c20007dfe6cafe018247c0696b16ffdb1a883bff9d5d49f82f47c979efaf626b",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3334,
+      "output_tokens": 155,
+      "result": {
+        "summary": "f1의 label 함수가 requireUser(value)의 반환값에서 name을 읽는 변경을 검토했습니다. 관련 파일 c2에서 requireUser는 value가 0일 때 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서는 name 접근이 실패하는 경로가 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "requireUser의 실제 구현은 관련 파일 c2의 발췌 일부만 제공되어 다른 입력(예: null/undefined)에 대한 동작과 label의 호출부는 확인하지 못했습니다. 테스트 실행이나 런타임 검증은 하지 않았습니다.",
+        "reviewed_files": 3,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/accountLabel.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/accountStore.js",
+              "provided_lines": 6,
+              "role": "related"
+            },
+            {
+              "file_id": "c3",
+              "file_path": "src/accountCache.js",
+              "provided_lines": 1,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.532
+    },
+    {
+      "id": "javascript-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "36ae1e988f2af09ca03d259593ba50aa34de9cc66e2cdda2e8b2f06a7a96268d",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 1034,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3331,
+      "output_tokens": 297,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "evidence_lines": [
+            3,
+            102
+          ],
+          "unprovided": [
+            102
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.078
+    },
+    {
+      "id": "javascript-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "db10601b36f01a3929de8e1c69921de8ba36fae557804edc535fba73582ed92f",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.js",
+          "src/accountCache.js"
+        ],
+        "input_bytes": 977,
+        "retrieval_seconds": 0.359,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3308,
+      "output_tokens": 300,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "evidence_lines": [
+            3,
+            101,
+            102
+          ],
+          "unprovided": [
+            101,
+            102
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.047
+    },
+    {
+      "id": "typescript-guarded-null",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "5a1d9721616d045aa763c6a6b3b244fa56ae0ae7e0616b8b3e9cec87e740b688",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1082,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3344,
+      "output_tokens": 321,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "evidence_lines": [
+            3,
+            102
+          ],
+          "unprovided": [
+            102
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.609
+    },
+    {
+      "id": "typescript-nullable-user",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "508da9daf2e99d28564df6ee9448d15284745d28f118f0dded3bf7895f9cd385",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1058,
+        "retrieval_seconds": 0.343,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3341,
+      "output_tokens": 320,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "evidence_lines": [
+            3,
+            102
+          ],
+          "unprovided": [
+            102
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.656
+    },
+    {
+      "id": "typescript-zero-count",
+      "repeat": 1,
+      "status": "FAILED",
+      "retrieval": {
+        "candidate_digest": "414fd0c25971d12cab53661f3dae2889884191d9d03e8fb863e14c323eea3b53",
+        "candidate_count": 4,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/accountStore.ts",
+          "src/accountCache.ts"
+        ],
+        "input_bytes": 1001,
+        "retrieval_seconds": 0.344,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 4,
+          "fetched_files": 4
+        },
+        "github_reads": 7
+      },
+      "input_tokens": 3318,
+      "output_tokens": 319,
+      "error_type": "ValueError",
+      "error_code": "INVALID_EVIDENCE_LINES",
+      "error_stage": "validation",
+      "anchors": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "evidence_lines": [
+            3,
+            101,
+            102
+          ],
+          "unprovided": [
+            101,
+            102
+          ],
+          "has_changed_evidence": true,
+          "representative_in_evidence": true
+        }
+      ],
+      "seconds": 2.656
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "finished_at": "2026-09-27T13:17:48.545673+00:00",
+  "summary": {
+    "attempts": 12,
+    "validated": 5,
+    "automatic_passed": 4,
+    "input_tokens": 40156,
+    "output_tokens": 3521,
+    "authorized_attempts_used": 24
+  }
+}

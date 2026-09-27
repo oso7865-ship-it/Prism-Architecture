@@ -1,0 +1,6 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PRism 검토 범위 컴포넌트 검증</title><body><main style="max-width:850px;margin:24px auto;padding:16px"><h1>검토 범위 · 테스트 화면</h1><p>아래 데이터는 레이아웃 검증용 예시입니다. 실제 AI 실행 결과가 아닙니다.</p><div id="coverage"></div></main><script type="module">
+import {createApp,h} from '/node_modules/.vite/deps/vue.js';
+import Coverage from '/src/features/analysis/AIReviewCoverage.vue';
+import '/src/app/style.css';
+createApp({render:()=>h(Coverage,{githubUrl:'https://github.com/example/sample/pull/1',headSha:'a'.repeat(40),coverage:{files:[{file_id:'f1',file_path:'src/main/java/com/example/domain/processing/LongNamedProcessingService.java',provided_lines:42}],excluded:[{file_path:'src/main/java/com/example/domain/processing/LargeService.java',reason:'PATCH_TOO_LARGE'},{file_path:'README.md',reason:'UNSUPPORTED_LANGUAGE'},{file_path:null,reason:'SENSITIVE_PATH'}],unfetched_files:0}})}).mount('#coverage');
+</script></body></html>

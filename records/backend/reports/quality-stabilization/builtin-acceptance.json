@@ -1,0 +1,1602 @@
+{
+  "started_at": "2026-09-27T14:01:46.181867+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "rh1-c3abedd2cab15cd2",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "9a08beef21e16b556994d164d557c61596eec95154af571e5a25471f2cdaec66",
+  "max_calls": 36,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "py-int-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4534,
+      "output_tokens": 74,
+      "result": {
+        "summary": "문자열 리터럴을 정수로 변환해 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.594
+    },
+    {
+      "id": "py-int-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4535,
+      "output_tokens": 309,
+      "result": {
+        "summary": "문자열 리터럴을 정수로 변환하는 변경을 검토했습니다. 제공된 코드에서 int()의 인자 계약을 위반하는 구체적 실패 경로가 보입니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()가 호출되어 2줄이 실행될 때",
+            "consequence": "int(\"twelve\")는 정수로 해석할 수 없는 리터럴이므로 ValueError가 발생해 parse()가 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "int()에 정수로 해석할 수 없는 리터럴을 전달해 항상 ValueError가 발생합니다",
+            "evidence": "2줄은 변경된 줄로, int()에 정수 형식이 아닌 문자열 리터럴 \"twelve\"를 직접 전달합니다.",
+            "suggestion": "의도한 값이 12라면 리터럴을 \"12\"로 고치거나 int(12)로 바꾸고, 외부 입력을 파싱하려는 것이라면 입력을 인자로 받아 변환 실패를 처리하세요.",
+            "file_path": "parse.py",
+            "key": "a780b6eea8a2834a4329a132eb2b9b24dbe8159e21c7cdf2453684ee85eec9de"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.016
+    },
+    {
+      "id": "py-min-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4535,
+      "output_tokens": 81,
+      "result": {
+        "summary": "리스트 리터럴의 최솟값을 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.532
+    },
+    {
+      "id": "py-min-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4530,
+      "output_tokens": 261,
+      "result": {
+        "summary": "빈 리스트에 min을 적용하는 변경을 검토했습니다. min의 인자 사전조건을 위반하는 경로가 보입니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])은 빈 시퀀스에 대해 ValueError를 발생시키므로 함수가 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 호출해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 비어 있지 않은 시퀀스를 요구합니다.",
+            "suggestion": "빈 입력일 때 반환할 값을 정하고(예: None 또는 기본값) min 호출 전에 빈 경우를 처리하거나, 실제 데이터 소스를 인자로 받아 비어 있지 않을 때만 min을 적용하세요.",
+            "file_path": "smallest.py",
+            "key": "205f40af2b8b5664c50864b0a18044fe440a8f2d57515661a5f7455da3c8742b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.297
+    },
+    {
+      "id": "js-json-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4558,
+      "output_tokens": 85,
+      "result": {
+        "summary": "JSON.parse를 리터럴 문자열에 적용해 객체를 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 반환값 사용처가 제공되지 않아 실제 사용 조건은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.265
+    },
+    {
+      "id": "js-json-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4556,
+      "output_tokens": 265,
+      "result": {
+        "summary": "JSON.parse에 리터럴 '{oops}'를 전달하는 변경을 검토했습니다. 이 리터럴은 유효한 JSON이 아니므로 호출 시 항상 SyntaxError가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출할 때",
+            "consequence": "JSON.parse는 '{oops}'를 파싱하지 못하고 SyntaxError를 던지므로 parse()는 정상 반환 경로가 없습니다.",
+            "assumptions": [],
+            "title": "항상 실패하는 JSON.parse 리터럴입니다",
+            "evidence": "2줄에서 키/값에 따옴표가 없는 '{oops}'를 JSON.parse에 전달하며, 이는 JSON 문법에 맞지 않습니다.",
+            "suggestion": "의도한 데이터를 유효한 JSON 문자열로 수정하거나, 외부 입력을 파싱하려면 인자를 매개변수로 받고 파싱 실패를 처리하세요.",
+            "file_path": "parse.js",
+            "key": "48e2b686cb171030393f09adc5acb2f1117fabfbf587a087eee9aff856cc8007"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.313
+    },
+    {
+      "id": "ts-date-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4576,
+      "output_tokens": 93,
+      "result": {
+        "summary": "고정된 UTC 시각을 ISO 문자열로 반환하는 함수 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 함수의 사용 목적(예: 고정 기준 시각 제공인지 현재 시각 제공인지)이 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.469
+    },
+    {
+      "id": "ts-date-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4566,
+      "output_tokens": 327,
+      "result": {
+        "summary": "`new Date(\"not-a-date\")`로 만든 유효하지 않은 Date에 대해 `toISOString()`을 호출하는 변경을 검토했습니다. 리터럴 인자가 날짜로 해석되지 않아 런타임 예외가 발생하는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "date()를 호출할 때",
+            "consequence": "`new Date(\"not-a-date\")`는 Invalid Date가 되고, 그 상태에서 `toISOString()`을 호출하면 RangeError가 발생해 함수가 문자열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜 문자열로 toISOString 호출 시 RangeError 발생",
+            "evidence": "2줄에서 날짜로 파싱되지 않는 리터럴 문자열로 Date를 생성한 뒤 곧바로 toISOString()을 호출합니다. Invalid Date에 대한 toISOString()은 RangeError를 던지는 표준 동작입니다.",
+            "suggestion": "유효한 날짜 리터럴(예: ISO 8601 형식)을 사용하거나, 생성한 Date의 유효성을 확인한 뒤 toISOString()을 호출하세요.",
+            "file_path": "date.ts",
+            "key": "873d61ab05a4cd6f0d89492fb8388ec66bf0dfb7dad49dc170f17623171f5c8f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 함수만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.266
+    },
+    {
+      "id": "java-int-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4707,
+      "output_tokens": 105,
+      "result": {
+        "summary": "리터럴 \"12\"를 정수로 파싱해 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다. 리터럴 인수는 유효한 정수 형식이므로 파싱 실패 경로는 보이지 않습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.125
+    },
+    {
+      "id": "java-int-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4708,
+      "output_tokens": 269,
+      "result": {
+        "summary": "`Integer.parseInt(\"twelve\")`가 숫자가 아닌 리터럴을 파싱하도록 작성되어 있어 호출 시 항상 NumberFormatException이 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"twelve\"는 Integer.parseInt가 요구하는 정수 형식이 아니므로 NumberFormatException이 발생하고 parse()는 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 정수 파싱 메서드에 숫자가 아닌 문자열 리터럴 \"twelve\"를 직접 전달합니다.",
+            "suggestion": "의도한 정수 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 입력 검증과 NumberFormatException 처리 방침을 추가하세요.",
+            "file_path": "Parse.java",
+            "key": "464821f7a7a114b78cd76188e27b982b70173b1f243d9668a82d58375dde1eee"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.0
+    },
+    {
+      "id": "java-substring-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4712,
+      "output_tokens": 114,
+      "result": {
+        "summary": "문자열 리터럴 \"ab\"에서 substring(0, 2)로 접두사를 반환하는 변경을 검토했습니다. 리터럴 길이가 2이므로 인덱스 경계가 유효하며, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.375
+    },
+    {
+      "id": "java-substring-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4712,
+      "output_tokens": 282,
+      "result": {
+        "summary": "문자열 리터럴 \"ab\"에 대해 substring(0, 9)를 호출하는 변경을 검토했습니다. beginIndex/endIndex가 문자열 길이를 초과하는 명확한 범위 위반이 있어 보고합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2인데 endIndex로 9를 전달하므로 StringIndexOutOfBoundsException이 발생합니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과합니다",
+            "evidence": "3줄에서 길이 2인 리터럴 \"ab\"에 대해 endIndex 9를 사용하는 substring을 호출합니다.",
+            "suggestion": "의도한 접두사 길이에 맞춰 endIndex를 문자열 길이 이내로 조정하거나, 길이를 초과할 수 있는 경우 Math.min으로 상한을 두세요.",
+            "file_path": "Prefix.java",
+            "key": "df479d4f39f1e1863ed67a6e7cfc6a794fc72fb2da65134ce88a1cfc07048479"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.172
+    },
+    {
+      "id": "py-int-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4534,
+      "output_tokens": 95,
+      "result": {
+        "summary": "문자열 리터럴을 정수로 변환해 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다. 리터럴 인자이므로 변환 실패 경로는 보이지 않습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.312
+    },
+    {
+      "id": "py-int-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4535,
+      "output_tokens": 268,
+      "result": {
+        "summary": "`parse`가 리터럴 문자열 \"twelve\"를 `int`로 변환하는 변경을 검토했습니다. 제공된 두 줄만으로 변환 실패 경로가 확정됩니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "parse()를 호출하면",
+            "consequence": "int(\"twelve\")가 ValueError를 발생시켜 parse가 값을 반환하지 못하고 호출자에게 예외가 전파됩니다.",
+            "assumptions": [],
+            "title": "항상 실패하는 정수 변환입니다",
+            "evidence": "2줄에서 정수로 해석할 수 없는 리터럴 \"twelve\"를 int에 전달하며, 이를 감싸는 예외 처리나 대체 경로가 없습니다.",
+            "suggestion": "의도한 숫자 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 try/except로 ValueError를 처리해 실패 시 반환값을 정의하세요.",
+            "file_path": "parse.py",
+            "key": "ea92722e99e1c9b098d9b1e4ec3341faa29484e40bab71e61fb7f89bc2239697"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.359
+    },
+    {
+      "id": "py-min-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4535,
+      "output_tokens": 82,
+      "result": {
+        "summary": "리스트 리터럴의 최솟값을 반환하는 함수 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.625
+    },
+    {
+      "id": "py-min-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4530,
+      "output_tokens": 252,
+      "result": {
+        "summary": "빈 리스트에 min을 적용하는 변경을 검토했습니다. min은 빈 시퀀스에서 ValueError를 발생시키므로 호출 시 항상 실패합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])이 빈 시퀀스에 대해 ValueError를 발생시켜 함수가 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 적용해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 빈 시퀀스에서 ValueError를 발생시킵니다.",
+            "suggestion": "빈 입력에 대한 반환값(예: None 또는 기본값)을 정하고, min 호출 전에 빈 경우를 처리하거나 기본값 인자를 사용하세요.",
+            "file_path": "smallest.py",
+            "key": "92be584f9a81f2c14902dcf67bbf3114e449a969d8eb359a83990e4e60beff2e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.125
+    },
+    {
+      "id": "js-json-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4558,
+      "output_tokens": 85,
+      "result": {
+        "summary": "JSON.parse를 리터럴 문자열에 적용해 객체를 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 반환값 사용처가 제공되지 않아 소비 방식은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.406
+    },
+    {
+      "id": "js-json-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4556,
+      "output_tokens": 265,
+      "result": {
+        "summary": "JSON.parse에 리터럴 '{oops}'를 전달하는 변경을 검토했습니다. 이 리터럴은 유효한 JSON이 아니므로 함수 호출 시 항상 SyntaxError가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출할 때",
+            "consequence": "JSON.parse가 '{oops}'를 파싱하지 못해 SyntaxError가 발생하고, 함수는 값을 반환하지 못한 채 예외를 전파합니다.",
+            "assumptions": [],
+            "title": "항상 실패하는 JSON.parse 리터럴",
+            "evidence": "2줄에서 JSON.parse에 전달된 '{oops}'는 키와 값이 따옴표로 묶이지 않은 유효하지 않은 JSON 문자열입니다.",
+            "suggestion": "의도한 데이터를 유효한 JSON 문자열로 수정하거나, 외부 입력을 파싱하려면 인자를 매개변수로 받고 try/catch로 처리하세요.",
+            "file_path": "parse.js",
+            "key": "a66b57a904bd8c2e7a965aae73964c2b7f52262af0b2e9edf0aa1385bea6f016"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.969
+    },
+    {
+      "id": "ts-date-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4576,
+      "output_tokens": 93,
+      "result": {
+        "summary": "고정된 UTC 시각을 ISO 문자열로 반환하는 함수 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 이 함수의 사용 목적(예: 고정 기준 시각 제공인지 현재 시각 제공인지)이 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.391
+    },
+    {
+      "id": "ts-date-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4566,
+      "output_tokens": 374,
+      "result": {
+        "summary": "`new Date(\"not-a-date\")`로 만든 유효하지 않은 Date에서 `toISOString()`을 호출하는 변경을 검토했습니다. 리터럴 인자가 날짜로 해석되지 않아 항상 예외가 발생하는 경로가 보입니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "date()를 호출할 때",
+            "consequence": "문자열 \"not-a-date\"는 유효한 날짜 형식이 아니므로 new Date(...)가 Invalid Date를 만들고, 그 상태에서 toISOString()을 호출하면 RangeError: Invalid time value가 발생해 함수가 문자열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜 문자열로 toISOString 호출 시 RangeError가 발생합니다",
+            "evidence": "2줄에서 리터럴 \"not-a-date\"로 Date를 생성한 뒤 곧바로 toISOString()을 호출합니다. 이 문자열은 ECMAScript Date 파싱에서 유효한 형식이 아니므로 Invalid Date가 되고, toISOString()은 Invalid Date에 대해 RangeError를 던집니다.",
+            "suggestion": "의도한 시각을 나타내는 유효한 ISO 8601 문자열(예: \"2024-01-01T00:00:00.000Z\")을 인자로 사용하거나, 현재 시각이 목적이면 인자 없이 new Date()를 사용하세요.",
+            "file_path": "date.ts",
+            "key": "a7d17cd0064d48137d122cd2c52bb38129c63db6f8fd4c0dd996f76a49276e05"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.313
+    },
+    {
+      "id": "java-int-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4707,
+      "output_tokens": 97,
+      "result": {
+        "summary": "리터럴 \"12\"를 정수로 파싱해 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다. 리터럴 인자이므로 파싱 실패 경로는 보이지 않습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.36
+    },
+    {
+      "id": "java-int-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4708,
+      "output_tokens": 309,
+      "result": {
+        "summary": "`Integer.parseInt(\"twelve\")`가 숫자가 아닌 리터럴을 파싱하도록 작성되어 있어 호출 시 항상 NumberFormatException이 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"twelve\"는 Integer.parseInt가 요구하는 정수 형식이 아니므로 NumberFormatException이 발생하고, 이 예외는 잡히지 않아 parse() 호출자에게 그대로 전파됩니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 NumberFormatException 발생",
+            "evidence": "3줄에서 정수 형식이 아닌 문자열 리터럴 \"twelve\"를 Integer.parseInt에 전달하며, 이를 감싸는 try/catch나 사전 검증이 없습니다.",
+            "suggestion": "파싱할 리터럴을 유효한 정수 문자열로 바꾸거나, 의도적으로 잘못된 입력을 다루는 것이 목적이라면 try/catch로 NumberFormatException을 처리해 반환값을 정의하세요.",
+            "file_path": "Parse.java",
+            "key": "9b6dca9f6126f77491747cd65833171861eb6c9f27426998daad7d532a58fc43"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트 실행 여부는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.375
+    },
+    {
+      "id": "java-substring-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4712,
+      "output_tokens": 110,
+      "result": {
+        "summary": "문자열 리터럴 \"ab\"에서 substring(0, 2)로 접두사를 반환하는 변경을 검토했습니다. \"ab\"의 길이가 2이므로 beginIndex 0, endIndex 2는 유효 범위이며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.469
+    },
+    {
+      "id": "java-substring-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4712,
+      "output_tokens": 282,
+      "result": {
+        "summary": "문자열 리터럴 \"ab\"에 대해 substring(0, 9)를 호출하는 변경을 검토했습니다. beginIndex/endIndex가 문자열 길이를 초과하는 명확한 범위 위반이 있어 보고합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2인데 endIndex로 9를 전달하므로 StringIndexOutOfBoundsException이 발생합니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과합니다",
+            "evidence": "3줄에서 길이 2인 리터럴 \"ab\"에 대해 endIndex 9를 사용하는 substring을 호출합니다.",
+            "suggestion": "의도한 접두사 길이에 맞춰 endIndex를 문자열 길이 이내로 조정하거나, 길이를 초과할 수 있는 경우 Math.min으로 상한을 두세요.",
+            "file_path": "Prefix.java",
+            "key": "df479d4f39f1e1863ed67a6e7cfc6a794fc72fb2da65134ce88a1cfc07048479"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.141
+    },
+    {
+      "id": "py-int-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4534,
+      "output_tokens": 80,
+      "result": {
+        "summary": "문자열 리터럴을 정수로 변환해 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 입력 계약, 테스트 실행 결과는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 0.906
+    },
+    {
+      "id": "py-int-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4535,
+      "output_tokens": 288,
+      "result": {
+        "summary": "`parse`가 리터럴 문자열 \"twelve\"를 `int`로 변환하려는 변경을 검토했습니다. 리터럴 인자가 `int`의 변환 계약을 위반하므로 호출 시 항상 실패합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "`parse()`를 호출하면",
+            "consequence": "`int(\"twelve\")`가 `ValueError`를 발생시켜 `parse`가 값을 반환하지 못하고 항상 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "`parse`가 항상 ValueError로 실패합니다",
+            "evidence": "2줄에서 숫자로 해석할 수 없는 리터럴 \"twelve\"를 `int`에 전달하며, 이를 막는 가드나 예외 처리가 없습니다.",
+            "suggestion": "의도한 숫자 리터럴로 바꾸거나, 외부 입력을 파싱하려는 것이라면 입력을 인자로 받고 변환 실패 시의 처리 방침을 정하세요.",
+            "file_path": "parse.py",
+            "key": "df3d6c8db6aac610bb161db403ede29714889dda7aa02d453963b0619d464d65"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.937
+    },
+    {
+      "id": "py-min-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4535,
+      "output_tokens": 109,
+      "result": {
+        "summary": "리스트 리터럴의 최솟값을 반환하는 함수 변경을 검토했습니다. 제공된 두 줄에서는 구체적인 동작 결함을 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며 테스트를 실행하지 않았습니다. min에 전달되는 리터럴은 비어 있지 않으므로 빈 시퀀스 경로는 이 코드에 존재하지 않습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.531
+    },
+    {
+      "id": "py-min-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4530,
+      "output_tokens": 264,
+      "result": {
+        "summary": "빈 리스트에 min을 적용하는 변경을 검토했습니다. min은 빈 시퀀스에서 ValueError를 발생시키므로 호출 시 항상 실패합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "smallest()를 호출할 때",
+            "consequence": "min([])은 빈 시퀀스에 대해 ValueError를 발생시켜 함수가 값을 반환하지 못하고 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트에 min을 적용해 항상 ValueError가 발생합니다",
+            "evidence": "2줄에서 리터럴 빈 리스트를 min에 전달하며, min은 빈 시퀀스에서 ValueError를 발생시킵니다.",
+            "suggestion": "빈 입력일 때의 반환값(예: None 또는 기본값)을 정하고, 비어 있지 않은 경우에만 min을 호출하거나 빈 경우를 먼저 처리하세요.",
+            "file_path": "smallest.py",
+            "key": "92be584f9a81f2c14902dcf67bbf3114e449a969d8eb359a83990e4e60beff2e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "smallest.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.953
+    },
+    {
+      "id": "js-json-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4558,
+      "output_tokens": 86,
+      "result": {
+        "summary": "JSON.parse에 리터럴 문자열을 전달해 객체를 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 반환값 사용처가 제공되지 않아 실제 사용 조건은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "js-json-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4556,
+      "output_tokens": 272,
+      "result": {
+        "summary": "JSON.parse에 리터럴 '{oops}'를 전달하는 변경을 검토했습니다. 이 리터럴은 유효한 JSON이 아니므로 호출 시 항상 SyntaxError가 발생합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "parse()를 호출할 때",
+            "consequence": "JSON.parse는 '{oops}'를 파싱할 수 없어 SyntaxError를 던지므로 parse()는 정상 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "항상 실패하는 JSON.parse 리터럴입니다",
+            "evidence": "2줄에서 JSON.parse에 전달된 '{oops}'는 키/값을 큰따옴표로 감싸지 않은 유효하지 않은 JSON 문자열입니다.",
+            "suggestion": "의도한 데이터를 유효한 JSON 리터럴로 수정하거나, 외부 입력을 파싱하려는 것이라면 입력을 매개변수로 받아 파싱 실패를 처리하세요.",
+            "file_path": "parse.js",
+            "key": "48e2b686cb171030393f09adc5acb2f1117fabfbf587a087eee9aff856cc8007"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "parse.js",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.156
+    },
+    {
+      "id": "ts-date-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4576,
+      "output_tokens": 85,
+      "result": {
+        "summary": "고정된 UTC 시각을 ISO 문자열로 반환하는 함수 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 반환값 사용 방식, 시간대 처리 기대 계약은 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.062
+    },
+    {
+      "id": "ts-date-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4566,
+      "output_tokens": 354,
+      "result": {
+        "summary": "`new Date(\"not-a-date\")`로 생성한 유효하지 않은 Date에 대해 `toISOString()`을 호출하는 변경을 검토했습니다. 이 경로는 런타임에 RangeError를 발생시킵니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "date()가 호출되어 2줄이 실행될 때",
+            "consequence": "문자열 \"not-a-date\"는 유효한 날짜가 아니므로 new Date(...)는 Invalid Date를 만들고, 그 상태에서 toISOString()을 호출하면 RangeError: Invalid time value가 발생해 함수가 문자열을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "유효하지 않은 날짜에 toISOString을 호출해 RangeError가 발생합니다",
+            "evidence": "2줄에서 파싱 불가능한 리터럴 문자열로 Date를 생성한 뒤 곧바로 toISOString()을 호출합니다. Invalid Date에 대한 toISOString()은 RangeError를 던지는 표준 동작입니다.",
+            "suggestion": "유효한 날짜 소스(예: 인자 또는 실제 타임스탬프)를 사용하고, 유효성 검사 후 toISOString()을 호출하거나 유효하지 않을 때의 반환/오류 처리를 명시하세요.",
+            "file_path": "date.ts",
+            "key": "9e5ef94537a781e4172576d2eb80deccbcccd6bd0cf38dc8be522c8c3053a416"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 함수만 검토했으며 호출부와 의도된 날짜 소스, 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "date.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.532
+    },
+    {
+      "id": "java-int-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4707,
+      "output_tokens": 94,
+      "result": {
+        "summary": "문자열 리터럴 \"12\"를 정수로 파싱해 반환하는 변경을 검토했습니다. 리터럴이 유효한 정수 형식이므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.156
+    },
+    {
+      "id": "java-int-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4708,
+      "output_tokens": 300,
+      "result": {
+        "summary": "`Integer.parseInt(\"twelve\")`가 숫자가 아닌 리터럴을 파싱하도록 작성되어 있어 호출 시 항상 NumberFormatException이 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "parse()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"twelve\"는 Integer.parseInt가 요구하는 정수 형식이 아니므로 NumberFormatException이 발생하고, 이 메서드는 정상적으로 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "숫자가 아닌 리터럴 파싱으로 항상 예외가 발생합니다",
+            "evidence": "3줄에서 정수 파싱 메서드에 숫자가 아닌 문자열 리터럴 \"twelve\"를 직접 전달하며, 이를 보호하는 조건이나 예외 처리가 제공된 범위에 없습니다.",
+            "suggestion": "의도한 정수 리터럴(예: \"12\")로 수정하거나, 외부 입력을 파싱하려는 것이라면 입력 검증과 NumberFormatException 처리 방침을 함께 정하세요.",
+            "file_path": "Parse.java",
+            "key": "464821f7a7a114b78cd76188e27b982b70173b1f243d9668a82d58375dde1eee"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄만 검토했으며 호출부와 테스트 실행 여부는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Parse.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.297
+    },
+    {
+      "id": "java-substring-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4712,
+      "output_tokens": 110,
+      "result": {
+        "summary": "문자열 리터럴 \"ab\"에서 substring(0, 2)로 접두사를 반환하는 변경을 검토했습니다. \"ab\"의 길이가 2이므로 beginIndex 0, endIndex 2는 유효 범위이며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.36
+    },
+    {
+      "id": "java-substring-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4712,
+      "output_tokens": 294,
+      "result": {
+        "summary": "문자열 리터럴 \"ab\"에 대해 substring(0, 9)를 호출하는 변경을 검토했습니다. beginIndex/endIndex가 문자열 길이를 초과하는 명확한 범위 위반입니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "prefix()가 호출되어 3줄이 실행될 때",
+            "consequence": "\"ab\"의 길이는 2인데 endIndex 9가 길이를 초과하므로 StringIndexOutOfBoundsException이 발생합니다.",
+            "assumptions": [],
+            "title": "substring 종료 인덱스가 문자열 길이를 초과합니다",
+            "evidence": "3줄은 길이 2인 리터럴 \"ab\"에 endIndex 9를 전달하며, 이는 substring의 유효 범위(0..length)를 벗어납니다.",
+            "suggestion": "의도한 접두사 길이를 명확히 하고, endIndex를 min(9, \"ab\".length())로 제한하거나 리터럴 자체를 의도한 값으로 수정하세요.",
+            "file_path": "Prefix.java",
+            "key": "df479d4f39f1e1863ed67a6e7cfc6a794fc72fb2da65134ce88a1cfc07048479"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Prefix.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.235
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "f22c651f30c77e181ee8617650a3436c720bf06030ab044ce2156e5b1aa9ca9a",
+    "app/domain/review/provider.py": "0cb06770d5e520c8db30cdd5a3e93721e2da578b1faa34db5352cf1053c47d5b",
+    "app/domain/review/retrieval.py": "8b9f48545988bada2bebf2ea489bdd60286e5d20d0acb505da21441fb11baa7c",
+    "app/domain/review/context_selection.py": "ecfe0e0054290456ced1c5896a8b9612c4f5a1477b86f306766cd0b694f6f196",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186"
+  },
+  "finished_at": "2026-09-27T14:02:50.440568+00:00",
+  "summary": {
+    "attempts": 36,
+    "validated": 36,
+    "automatic_passed": 36,
+    "input_tokens": 165687,
+    "output_tokens": 6913,
+    "authorized_attempts_used": 619
+  }
+}

@@ -1,0 +1,2829 @@
+{
+  "started_at": "2026-09-27T13:31:34.939557+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-75621204c0fb1354",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "ac84e441ebe2223194c8680028203ec06da1bb4275ad0ea6222831cf75414fca",
+  "max_calls": 48,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "py-index-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4274,
+      "output_tokens": 98,
+      "result": {
+        "summary": "리스트의 마지막 원소를 반환하는 tail 함수 변경을 검토했습니다. 빈 리스트는 None으로 처리되고, 비어 있지 않은 경우 마지막 유효 인덱스를 사용하므로 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tail.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.328
+    },
+    {
+      "id": "py-index-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4271,
+      "output_tokens": 291,
+      "result": {
+        "summary": "리스트의 마지막 원소를 반환하려는 함수에서 빈 리스트는 None으로 처리하지만, 비어 있지 않은 경우에도 유효 범위를 벗어난 인덱스를 사용합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "values가 비어 있지 않은 리스트일 때 tail을 호출하는 경우",
+            "consequence": "len(values)는 마지막 원소의 인덱스가 아니라 길이이므로 항상 범위를 벗어나 IndexError가 발생합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 항상 IndexError가 발생합니다",
+            "evidence": "2줄에서 빈 리스트를 걸러내므로 4줄은 원소가 1개 이상인 경우 실행되는데, 4줄은 values[len(values)]로 유효 범위를 벗어난 인덱스에 접근합니다.",
+            "suggestion": "마지막 원소를 반환하려면 values[len(values) - 1] 또는 values[-1]을 사용하세요.",
+            "file_path": "src/tail.py",
+            "key": "2b76f5f9a9e9622fd744b81b72ec087720732309218dfbada1b9aae543b3de60"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tail.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.218
+    },
+    {
+      "id": "py-import-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c2696cd1e4a5313ea85d1747f55d0be33b04f5ba89696910e617c2e3ae1f0541",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/normalizer.py"
+        ],
+        "input_bytes": 564,
+        "retrieval_seconds": 0.406,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4342,
+      "output_tokens": 126,
+      "result": {
+        "summary": "inverse 함수가 nonzero(value)의 반환값으로 나누는 변경을 검토했습니다. 관련 구현 c2가 value가 0일 때 1을 반환하므로 0으로 나누는 경로는 보이지 않으며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "normalizer 모듈의 다른 부분과 inverse 호출부, 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다. c2의 nonzero 구현만 관련 근거로 확인했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/inverse.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/normalizer.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.5
+    },
+    {
+      "id": "py-import-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "fa1cbe619211518a65ba23dad8c6a8c0cbf4830f9cc1eb32239e209c80f293dd",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/normalizer.py"
+        ],
+        "input_bytes": 564,
+        "retrieval_seconds": 0.391,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4342,
+      "output_tokens": 286,
+      "result": {
+        "summary": "f1의 inverse 함수가 관련 구현 nonzero의 반환값으로 나눗셈을 수행하는 변경을 검토했습니다. c2:2에서 value가 0이면 0을 반환하므로 0으로 나누는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 inverse(0)을 호출할 때",
+            "consequence": "nonzero가 0을 반환하고 4줄의 10 / 0 나눗셈에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 0으로 나누어 실패합니다",
+            "evidence": "f1:4는 nonzero(value)의 반환값으로 나눕니다. c2:2는 value가 0이면 0을 반환합니다.",
+            "suggestion": "value가 0일 때의 반환값이나 예외 방침을 정하고, 나눗셈 전에 0 여부를 처리하세요.",
+            "file_path": "src/inverse.py",
+            "key": "2feb4edefd14451542ec6a098f36d5bd1d33401c3369bdcbe43ab74094f22414"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/inverse.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/normalizer.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.984
+    },
+    {
+      "id": "java-index-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4359,
+      "output_tokens": 131,
+      "result": {
+        "summary": "배열의 마지막 원소를 반환하는 tail 메서드 변경을 검토했습니다. null 및 빈 배열을 0으로 처리하는 가드가 있고, 이후 마지막 유효 인덱스(values.length - 1)를 사용하므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 값 계약(빈 배열/ null을 0으로 표현하는 것이 도메인 규칙인지)은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Tail.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.64
+    },
+    {
+      "id": "java-index-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4356,
+      "output_tokens": 373,
+      "result": {
+        "summary": "배열의 마지막 원소를 반환하려는 tail 메서드에서 유효 범위를 벗어난 인덱스를 사용합니다. null/빈 배열은 3줄에서 처리되지만, 비어 있지 않은 배열에 대해서는 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "values가 null이 아니고 length가 1 이상인 배열로 tail을 호출할 때",
+            "consequence": "values.length는 유효한 최대 인덱스보다 1 크므로 4줄에서 ArrayIndexOutOfBoundsException이 발생하고, 정상 입력에 대해 마지막 원소를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 배열에서 마지막 원소 조회가 항상 범위를 벗어납니다",
+            "evidence": "3줄은 null과 빈 배열만 걸러내므로 4줄에 도달하는 배열은 length >= 1입니다. 그런데 4줄은 인덱스로 values.length를 사용해 유효 범위 [0, length-1]를 벗어납니다.",
+            "suggestion": "4줄의 인덱스를 values.length - 1로 바꾸어 마지막 유효 인덱스를 사용하세요. 3줄의 null/빈 배열 처리는 그대로 유지하면 됩니다.",
+            "file_path": "src/Tail.java",
+            "key": "a8b026b6a0fca7ca248dff9ac6f43ddd28fa0701b1119bb5a9a35d7dfc94a55c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Tail.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.437
+    },
+    {
+      "id": "java-import-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "842d61fc32e2bc1fff896446cee0ad08b9eecbcbcab9e351bd02d14e8dccea09",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Divisor.java"
+        ],
+        "input_bytes": 712,
+        "retrieval_seconds": 0.406,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4442,
+      "output_tokens": 99,
+      "result": {
+        "summary": "Divisor.normalize가 0을 1로 치환하므로 100 나눗셈에서 0으로 나누는 경로는 발생하지 않습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 호출부와 테스트는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Ratio.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Divisor.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.375
+    },
+    {
+      "id": "java-import-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "5675aaf084e2cb9c4908c62bcef09fff8bf2cfed23956a379640c283bd1c9c27",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Divisor.java"
+        ],
+        "input_bytes": 712,
+        "retrieval_seconds": 0.485,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4442,
+      "output_tokens": 268,
+      "result": {
+        "summary": "Ratio.ratio가 Divisor.normalize의 반환값으로 나누는 변경을 검토했습니다. 관련 구현 c2가 입력 0에 대해 0을 반환하므로 0으로 나누는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "input이 0인 상태에서 ratio를 호출할 때",
+            "consequence": "c2:3의 normalize가 0을 반환하고, 3줄의 100 / 0에서 ArithmeticException이 발생합니다.",
+            "assumptions": [],
+            "title": "input이 0일 때 0으로 나누어 예외가 발생합니다",
+            "evidence": "f1:3은 Divisor.normalize(input)의 반환값으로 나눕니다. c2:3은 value가 0이면 0을 반환합니다.",
+            "suggestion": "input이 0일 때의 결과를 정하고, 나눗셈 전에 normalize 결과가 0인 경우를 처리하세요.",
+            "file_path": "src/Ratio.java",
+            "key": "3951acf3b75e64470cd99d27cbdae17645412de602b21137a6aab212583d236e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 호출부와 실행 검증은 수행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Ratio.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Divisor.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.922
+    },
+    {
+      "id": "js-first-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4303,
+      "output_tokens": 106,
+      "result": {
+        "summary": "배열에서 첫 번째 일치 항목을 제거하는 함수가 추가되었습니다. indexOf로 찾은 인덱스가 유효할 때만 splice를 호출하고 배열을 반환하는 흐름은 제공된 범위에서 일관됩니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items의 실제 사용 방식(공유 참조 여부, 동결 여부)은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/remove.js",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "js-first-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4303,
+      "output_tokens": 273,
+      "result": {
+        "summary": "`removeFirstMatch`가 `indexOf` 결과를 `index > 0`으로 비교해 첫 번째 원소(index 0)를 제거하지 못하는 경계 조건 결함이 있습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "items의 첫 번째 원소가 value와 같아 indexOf가 0을 반환할 때",
+            "consequence": "index > 0 조건이 거짓이 되어 splice가 실행되지 않고, 첫 번째 일치 원소가 제거되지 않은 채 items가 반환됩니다.",
+            "assumptions": [],
+            "title": "첫 번째 원소(index 0) 일치 시 제거되지 않습니다",
+            "evidence": "2줄의 indexOf는 첫 원소 일치 시 0을 반환하지만, 3줄은 index > 0일 때만 splice를 수행합니다.",
+            "suggestion": "index !== -1(또는 index >= 0)로 비교해 0 인덱스도 제거 대상에 포함하세요.",
+            "file_path": "src/remove.js",
+            "key": "b9ddc36bd229cdab40fdb465b312407ac076502327df072e31b85f6424c511a6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items의 실제 사용 방식은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/remove.js",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.031
+    },
+    {
+      "id": "js-import-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "cd463a85456aebad4e871e7cd07ce783343c54da8902b18abd57e4528707ae71",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/labels.js"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.421,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4395,
+      "output_tokens": 147,
+      "result": {
+        "summary": "labelFor 결과를 대문자로 변환해 반환하는 display 함수 변경을 검토했습니다. 관련 구현(c2)은 id가 0일 때 예외를 던지고 그 외에는 문자열을 반환하므로, 제공된 범위에서 새로운 결함은 확인되지 않았습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "display의 호출부와 id의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다. c2의 labelFor가 0 이외의 값에서 항상 문자열을 반환한다는 점만 제공된 코드로 확인했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/display.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/labels.js",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.281
+    },
+    {
+      "id": "js-import-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "f1580e0d5f30a3400fddbcfa543ae143ff6fa84a91275339df2bbd07e4a5cad4",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/labels.js"
+        ],
+        "input_bytes": 674,
+        "retrieval_seconds": 0.407,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4390,
+      "output_tokens": 356,
+      "result": {
+        "summary": "f1의 display가 labelFor(id) 결과에 바로 toUpperCase를 호출하는 변경을 검토했습니다. 관련 파일 c2에서 id가 0일 때 null을 반환하는 경로가 확인되어, 해당 입력에서 런타임 오류가 발생하는 경로가 성립합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "display(0)을 호출해 labelFor에 id 0이 전달될 때",
+            "consequence": "c2:2에서 null이 반환되고, f1:3에서 null.toUpperCase()를 호출하므로 TypeError가 발생해 display가 정상 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "id가 0일 때 null 반환값을 역참조해 TypeError가 발생합니다",
+            "evidence": "f1:3은 labelFor(id)의 반환값에 곧바로 toUpperCase()를 호출합니다. c2:2는 id === 0일 때 null을 반환하므로 해당 경로에서 null 역참조가 발생합니다.",
+            "suggestion": "labelFor가 null을 반환하는 경우의 표시 정책을 정하고, toUpperCase 호출 전에 null 여부를 처리하거나 labelFor가 항상 문자열을 반환하도록 계약을 맞추세요.",
+            "file_path": "src/display.js",
+            "key": "cdb392dd3c2b8f0535435794af325afccc83dd843318c83799fff6eb906d9e5d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 테스트를 실행하지 않았습니다. display의 실제 호출부와 id 0이 도달 가능한지 여부는 제공되지 않아 확인하지 못했습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/display.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/labels.js",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.796
+    },
+    {
+      "id": "ts-zero-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4279,
+      "output_tokens": 131,
+      "result": {
+        "summary": "undefined를 기본값 10으로 대체하는 설정값 해석 함수를 검토했습니다. 제공된 4줄 범위에서는 타입 좁히기와 반환 경로가 일관되어 보고할 동작 결함을 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 value의 실제 생성 경계가 제공되지 않아 0이나 NaN 같은 유효한 falsy 값이 의도적으로 전달되는지, 기본값 10이 업무 요구와 일치하는지는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/config.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.391
+    },
+    {
+      "id": "ts-zero-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4277,
+      "output_tokens": 377,
+      "result": {
+        "summary": "`value`가 0일 때 기본값 10을 반환하는 조건 검사를 검토했습니다. 제공된 코드만으로는 이것이 결함인지 의도된 기본값 처리인지 판단할 수 없습니다.",
+        "issues": [],
+        "questions": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "NEEDS_CONTEXT",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "호출자가 value로 0을 전달할 때",
+            "consequence": "0은 falsy이므로 2줄의 조건이 거짓이 되어 3줄의 기본값 10이 반환됩니다. 0이 유효한 설정값이라면 호출자는 0 대신 10을 받게 됩니다.",
+            "assumptions": [
+              "value의 0이 유효한 설정값으로 취급되어야 합니다.",
+              "호출자가 0을 전달할 수 있습니다."
+            ],
+            "title": "value가 0일 때 기본값 10으로 대체되는 것이 의도된 동작인가요?",
+            "evidence": "1줄의 매개변수 타입은 number | undefined이고, 2줄은 truthy 검사로 0과 undefined를 함께 걸러 3줄의 10을 반환합니다.",
+            "suggestion": "0이 유효한 값인지 확인하세요. 유효하다면 2줄을 value !== undefined로 바꾸어 0을 그대로 반환하고, 0도 기본값 대상이라면 현재 동작을 유지하세요.",
+            "file_path": "src/config.ts",
+            "key": "2b1d30c264b859e61268a0659b7f1584f6f7c60fe163883eeaae68adf2cc12fe"
+          }
+        ],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 value의 계약이 제공되지 않아 0이 유효한 입력인지 확인하지 못했으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/config.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false
+      },
+      "seconds": 2.703
+    },
+    {
+      "id": "ts-import-safe",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "01ecc2477ec49d7465c89a2c83c405fbc96584912adfd3bb32282e8a54758539",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/records.ts"
+        ],
+        "input_bytes": 728,
+        "retrieval_seconds": 0.422,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4410,
+      "output_tokens": 170,
+      "result": {
+        "summary": "recordFor를 호출해 name을 반환하는 새 함수를 검토했습니다. 관련 구현(c2)은 id가 0이면 예외를 던지고 그 외에는 항상 {name: string}을 반환하므로, 제공된 범위에서 name 접근이 실패하는 경로는 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "name 함수의 호출부와 id 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다. c2의 recordFor가 id=0에서 던지는 예외는 호출자에게 전파되는 의도된 거부로 보이며, 이를 처리해야 한다는 계약은 제공되지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/name.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/records.ts",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.859
+    },
+    {
+      "id": "ts-import-bug",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "45bd8bd2e96ef132c0c931ee6ede1cd4766720a7e1f2c7035a05d88c7a75517a",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/records.ts"
+        ],
+        "input_bytes": 718,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4407,
+      "output_tokens": 296,
+      "result": {
+        "summary": "recordFor의 반환값을 바로 역참조하는 name 함수 변경을 검토했습니다. 관련 구현 c2가 id가 0일 때 null을 반환하므로 실제 null 역참조 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "id가 0인 상태에서 name(id)을 호출할 때",
+            "consequence": "recordFor(0)이 null을 반환하므로 3줄에서 null의 name 속성에 접근해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "id가 0일 때 null 역참조가 발생합니다",
+            "evidence": "f1:3은 recordFor(id).name으로 반환값을 즉시 역참조합니다. c2:1-2는 반환 타입이 {name: string} | null이고 id === 0이면 null을 반환합니다.",
+            "suggestion": "id가 0이거나 레코드가 없을 때의 반환 정책을 정하고, null 확인 후 name을 반환하거나 기본값을 사용하세요.",
+            "file_path": "src/name.ts",
+            "key": "0bc4328d1765178678c9577a2582310f97a97e1d4b2a2829ac59fd9777e62c91"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/name.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/records.ts",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.953
+    },
+    {
+      "id": "py-index-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4274,
+      "output_tokens": 111,
+      "result": {
+        "summary": "리스트의 마지막 원소를 반환하는 tail 함수 변경을 검토했습니다. 빈 리스트는 None으로 처리되고, 비어 있지 않은 경우 len(values) - 1로 유효한 마지막 인덱스에 접근하므로 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 values의 실제 타입 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tail.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.359
+    },
+    {
+      "id": "py-index-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4271,
+      "output_tokens": 311,
+      "result": {
+        "summary": "리스트의 마지막 원소를 반환하려는 함수에서 빈 리스트는 None으로 처리하지만, 비어 있지 않은 경우에도 길이를 그대로 인덱스로 사용해 항상 범위를 벗어납니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "values가 비어 있지 않은 리스트일 때 tail을 호출하는 경우",
+            "consequence": "len(values)는 유효한 마지막 인덱스보다 1 크므로 항상 IndexError가 발생하고, 함수는 정상 경로에서 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 항상 인덱스 범위를 벗어납니다",
+            "evidence": "2줄의 빈 리스트 검사는 통과하지만, 4줄에서 길이를 그대로 인덱스로 사용해 마지막 유효 인덱스(len-1)를 넘어섭니다.",
+            "suggestion": "마지막 원소를 반환하려면 values[len(values) - 1] 또는 values[-1]을 사용하세요.",
+            "file_path": "src/tail.py",
+            "key": "ba6bd46e4a4ab4bafea4fddeda04a9380120d7c61d5fdf26136ebc36efc2eeb0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tail.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.938
+    },
+    {
+      "id": "py-import-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c2696cd1e4a5313ea85d1747f55d0be33b04f5ba89696910e617c2e3ae1f0541",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/normalizer.py"
+        ],
+        "input_bytes": 564,
+        "retrieval_seconds": 0.406,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4342,
+      "output_tokens": 128,
+      "result": {
+        "summary": "f1의 inverse 함수가 관련 구현 nonzero의 반환값으로 나눗셈을 수행하는 변경을 검토했습니다. c2:2에서 value가 0일 때 1을 반환하므로 0으로 나누는 경로는 발생하지 않습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 nonzero의 다른 사용처는 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/inverse.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/normalizer.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.5
+    },
+    {
+      "id": "py-import-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "fa1cbe619211518a65ba23dad8c6a8c0cbf4830f9cc1eb32239e209c80f293dd",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/normalizer.py"
+        ],
+        "input_bytes": 564,
+        "retrieval_seconds": 0.391,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4342,
+      "output_tokens": 280,
+      "result": {
+        "summary": "f1의 inverse 함수가 관련 구현 nonzero의 반환값으로 나눗셈을 수행하는 변경을 검토했습니다. c2:2에서 value가 0이면 0을 반환하므로 0으로 나누는 경로가 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 inverse(0)을 호출할 때",
+            "consequence": "nonzero가 0을 반환하고 4줄의 10 / 0에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 0으로 나누어 예외가 발생합니다",
+            "evidence": "f1:4는 nonzero(value)의 반환값으로 나눕니다. c2:2는 value가 0이면 0을 반환합니다.",
+            "suggestion": "value가 0일 때의 반환값이나 예외 방침을 정하고, 나눗셈 전에 0 여부를 처리하세요.",
+            "file_path": "src/inverse.py",
+            "key": "a31f7bff8b710a95c638ba0a20dff373d8df15b2487f5d5cd409dbbbcacd555c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/inverse.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/normalizer.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.875
+    },
+    {
+      "id": "java-index-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4359,
+      "output_tokens": 118,
+      "result": {
+        "summary": "배열의 마지막 원소를 반환하는 tail 메서드 변경을 검토했습니다. null 및 빈 배열을 0으로 처리하는 가드가 있고, 이후 마지막 유효 인덱스에 접근하므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 값 계약(빈 배열을 0으로 표현하는 규칙 등)은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Tail.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.61
+    },
+    {
+      "id": "java-index-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4356,
+      "output_tokens": 356,
+      "result": {
+        "summary": "배열의 마지막 원소를 반환하려는 `tail` 메서드에서 유효 범위를 벗어난 인덱스를 사용합니다. null/빈 배열은 3줄에서 처리되지만, 비어 있지 않은 배열에 대해서는 4줄이 항상 범위를 벗어난 접근을 수행합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "values가 null이 아니고 length가 1 이상인 배열로 tail을 호출할 때",
+            "consequence": "values.length는 유효한 최대 인덱스가 아니라 길이이므로, 4줄의 values[values.length] 접근은 항상 ArrayIndexOutOfBoundsException을 발생시킵니다.",
+            "assumptions": [],
+            "title": "마지막 원소 인덱스가 항상 배열 범위를 벗어납니다",
+            "evidence": "3줄은 null과 빈 배열을 걸러내므로 4줄에 도달하는 배열은 길이 1 이상입니다. 그런데 4줄은 길이 값을 그대로 인덱스로 사용해 유효 범위(0..length-1)를 벗어납니다.",
+            "suggestion": "마지막 유효 인덱스인 values[values.length - 1]을 사용하세요.",
+            "file_path": "src/Tail.java",
+            "key": "df65ce74689f456d6fec70b8737cba4dd1005c7ad4df7c9330bbebda4022959d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Tail.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.172
+    },
+    {
+      "id": "java-import-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "842d61fc32e2bc1fff896446cee0ad08b9eecbcbcab9e351bd02d14e8dccea09",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Divisor.java"
+        ],
+        "input_bytes": 712,
+        "retrieval_seconds": 0.406,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4442,
+      "output_tokens": 140,
+      "result": {
+        "summary": "Ratio.ratio가 Divisor.normalize의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:3이 0을 1로 치환하므로 0으로 나누는 경로는 제공된 범위에서 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Divisor.normalize의 호출 계약과 ratio 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다. 정수 나눗셈의 절삭 특성은 도메인 요구사항이 제공되지 않아 판단하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Ratio.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Divisor.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.437
+    },
+    {
+      "id": "java-import-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "5675aaf084e2cb9c4908c62bcef09fff8bf2cfed23956a379640c283bd1c9c27",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Divisor.java"
+        ],
+        "input_bytes": 712,
+        "retrieval_seconds": 0.485,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4442,
+      "output_tokens": 262,
+      "result": {
+        "summary": "Ratio.ratio가 Divisor.normalize의 반환값으로 나누는 변경을 검토했습니다. 관련 구현 c2가 입력 0에 대해 0을 반환하므로 0으로 나누는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "input이 0인 상태에서 ratio를 호출할 때",
+            "consequence": "c2:3의 normalize가 0을 반환하고, 3줄의 100 / 0에서 ArithmeticException이 발생합니다.",
+            "assumptions": [],
+            "title": "input이 0일 때 0으로 나누어 예외가 발생합니다",
+            "evidence": "f1:3은 normalize의 반환값으로 나눕니다. c2:3은 value가 0이면 0을 반환합니다.",
+            "suggestion": "input이 0일 때의 결과를 정하고, 나눗셈 전에 normalize 결과가 0인 경우를 처리하세요.",
+            "file_path": "src/Ratio.java",
+            "key": "3951acf3b75e64470cd99d27cbdae17645412de602b21137a6aab212583d236e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 호출부와 실행 검증은 수행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Ratio.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Divisor.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.125
+    },
+    {
+      "id": "js-first-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4303,
+      "output_tokens": 128,
+      "result": {
+        "summary": "배열에서 첫 번째 일치 항목을 제거하는 함수가 추가되었습니다. indexOf로 찾은 인덱스가 0 이상일 때만 splice를 호출하므로 일치하지 않는 경우에도 안전하며, 제공된 범위에서 구체적인 동작 결함은 확인되지 않았습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items/value의 실제 입력 계약(예: 희소 배열, NaN 비교, 원본 배열 변경 허용 여부)이 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/remove.js",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.281
+    },
+    {
+      "id": "js-first-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4303,
+      "output_tokens": 318,
+      "result": {
+        "summary": "`removeFirstMatch`가 `indexOf` 결과를 `> 0`으로 비교해 첫 번째 원소가 일치할 때 제거하지 못하는 경계 조건 결함이 있습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "items의 첫 번째 원소(인덱스 0)가 value와 같을 때 removeFirstMatch를 호출하는 경우",
+            "consequence": "indexOf가 0을 반환하지만 조건 `index > 0`이 거짓이 되어 splice가 실행되지 않으므로, 첫 번째 일치 원소가 제거되지 않고 배열이 그대로 반환됩니다.",
+            "assumptions": [],
+            "title": "첫 번째 원소가 일치하면 제거되지 않습니다",
+            "evidence": "2줄의 indexOf는 첫 원소 일치 시 0을 반환하고, 3줄은 index > 0일 때만 splice를 수행하므로 인덱스 0 경로가 누락됩니다.",
+            "suggestion": "조건을 `index !== -1`(또는 `index >= 0`)로 바꿔 인덱스 0도 제거 대상에 포함하세요.",
+            "file_path": "src/remove.js",
+            "key": "d4d1791d1f106a089d7acbadbc6b71996907bcc3a423a3576fde9c6102a36317"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 본체만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/remove.js",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.453
+    },
+    {
+      "id": "js-import-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "cd463a85456aebad4e871e7cd07ce783343c54da8902b18abd57e4528707ae71",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/labels.js"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.421,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4395,
+      "output_tokens": 122,
+      "result": {
+        "summary": "f1의 display가 labelFor(id) 결과에 toUpperCase를 적용하는 변경을 검토했습니다. 관련 구현 c2는 id가 0이면 예외를 던지고 그 외에는 문자열을 반환하므로, 제공된 범위에서 toUpperCase가 실패하는 경로는 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "labelFor의 호출부와 id의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/display.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/labels.js",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.5
+    },
+    {
+      "id": "js-import-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "f1580e0d5f30a3400fddbcfa543ae143ff6fa84a91275339df2bbd07e4a5cad4",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/labels.js"
+        ],
+        "input_bytes": 674,
+        "retrieval_seconds": 0.407,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4390,
+      "output_tokens": 321,
+      "result": {
+        "summary": "labelFor(id)의 반환값에 바로 toUpperCase()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 id가 0일 때 null을 반환하는 경로가 확인되어, 해당 입력에서 런타임 오류가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "display(0)을 호출해 id가 0인 경우",
+            "consequence": "labelFor가 null을 반환하고( c2:2 ), 3줄에서 null.toUpperCase()를 호출해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "id가 0일 때 null 반환값에 toUpperCase를 호출해 실패합니다",
+            "evidence": "f1:3은 labelFor(id)의 반환값에 곧바로 toUpperCase()를 호출합니다. c2:2는 id === 0일 때 null을 반환하므로 해당 경로에서 null 역참조가 발생합니다.",
+            "suggestion": "labelFor가 null을 반환하는 경우의 표시 방침을 정하고, null일 때 대체 문자열을 사용하거나 toUpperCase 호출 전에 null을 처리하세요.",
+            "file_path": "src/display.js",
+            "key": "b2a831c4a9da6cd14d5d8740d137f5cbd32e86d96eb7c9d14d72eae477f1b495"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 테스트를 실행하지 않았습니다. display의 다른 호출부와 labelFor의 다른 반환 경로는 제공되지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/display.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/labels.js",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.375
+    },
+    {
+      "id": "ts-zero-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4279,
+      "output_tokens": 94,
+      "result": {
+        "summary": "undefined일 때 기본값 10을 반환하는 설정값 헬퍼를 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 value의 실제 전달 경로가 제공되지 않아 기본값 10이 의도된 계약인지 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/config.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.406
+    },
+    {
+      "id": "ts-zero-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4277,
+      "output_tokens": 322,
+      "result": {
+        "summary": "숫자 또는 undefined를 받아 truthy일 때 값을 반환하고 그 외에는 기본값 10을 반환하는 함수를 검토했습니다. value가 0일 때 falsy로 판정되어 0 대신 10이 반환되는 동작 차이가 확인됩니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "configured(0)을 호출할 때",
+            "consequence": "0은 유효한 number이지만 falsy이므로 2줄의 조건이 거짓이 되어 3줄에서 10이 반환됩니다. 호출자가 0을 설정값으로 기대하면 잘못된 기본값을 받습니다.",
+            "assumptions": [],
+            "title": "유효한 값 0이 기본값 10으로 대체됩니다",
+            "evidence": "1줄의 매개변수 타입 number | undefined는 0을 유효한 입력으로 허용하고, 2줄은 truthy 검사로 0을 걸러내 3줄의 10을 반환합니다.",
+            "suggestion": "undefined만 기본값으로 처리하도록 value === undefined(또는 value == null) 검사를 사용하세요.",
+            "file_path": "src/config.ts",
+            "key": "afe6fb226c6adc3227b88d9fd23cf5b23ff609ceeaeba4e55ac3f070ea99b430"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 0이 유효한 설정값인지에 대한 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/config.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.437
+    },
+    {
+      "id": "ts-import-safe",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "01ecc2477ec49d7465c89a2c83c405fbc96584912adfd3bb32282e8a54758539",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/records.ts"
+        ],
+        "input_bytes": 728,
+        "retrieval_seconds": 0.422,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4410,
+      "output_tokens": 124,
+      "result": {
+        "summary": "recordFor를 호출해 name을 반환하는 변경을 검토했습니다. 관련 구현 c2는 id가 0이면 예외를 던지고 그 외에는 항상 {name: string}을 반환하므로, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "recordFor의 호출부와 id 입력 계약은 제공되지 않았으며, 예외 전파 시 호출자의 처리 방식은 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/name.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/records.ts",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.407
+    },
+    {
+      "id": "ts-import-bug",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "45bd8bd2e96ef132c0c931ee6ede1cd4766720a7e1f2c7035a05d88c7a75517a",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/records.ts"
+        ],
+        "input_bytes": 718,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4407,
+      "output_tokens": 268,
+      "result": {
+        "summary": "recordFor 호출 결과를 null 검사 없이 역참조하는 변경입니다. 관련 구현이 id가 0일 때 null을 반환하므로 실제 실패 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "id가 0인 상태에서 name(id)을 호출할 때",
+            "consequence": "recordFor(0)이 null을 반환하고 3줄에서 null의 name 속성에 접근해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "id가 0이면 null 역참조로 실패합니다",
+            "evidence": "f1:3은 recordFor(id).name을 바로 읽습니다. c2:1-2에서 recordFor는 id가 0이면 null을 반환합니다.",
+            "suggestion": "recordFor의 null 반환 시 반환할 이름(기본값 또는 예외)을 정하고, 3줄에서 null 분기를 먼저 처리하세요.",
+            "file_path": "src/name.ts",
+            "key": "9a429705ccbd282ec082514a6b9ae89ce63a398738bb0c4e9dfc6c86192a914e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "recordFor의 다른 호출부와 name의 호출 계약은 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/name.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/records.ts",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.719
+    },
+    {
+      "id": "py-index-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4274,
+      "output_tokens": 113,
+      "result": {
+        "summary": "리스트의 마지막 원소를 반환하는 tail 함수 변경을 검토했습니다. 빈 리스트는 None으로 처리되고, 비어 있지 않은 경우 마지막 유효 인덱스를 사용하므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 입력 계약이 제공되지 않아 반환값 None의 처리 방식은 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tail.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.531
+    },
+    {
+      "id": "py-index-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4271,
+      "output_tokens": 324,
+      "result": {
+        "summary": "리스트의 마지막 원소를 반환하려는 함수에서 빈 리스트는 None으로 처리하지만, 비어 있지 않은 경우에도 길이를 그대로 인덱스로 사용해 항상 범위를 벗어납니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "values가 비어 있지 않은 리스트일 때 tail을 호출하는 경우",
+            "consequence": "len(values)는 유효한 최대 인덱스보다 1 크므로 항상 IndexError가 발생하고, 함수는 마지막 원소를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 항상 인덱스 범위를 벗어납니다",
+            "evidence": "2줄에서 빈 리스트를 걸러내므로 4줄에 도달하는 values는 길이 1 이상입니다. 그런데 4줄은 len(values)를 인덱스로 사용해 유효 범위를 벗어납니다.",
+            "suggestion": "마지막 유효 인덱스인 len(values) - 1을 사용하거나 음수 인덱스 values[-1]을 사용하세요.",
+            "file_path": "src/tail.py",
+            "key": "ba6bd46e4a4ab4bafea4fddeda04a9380120d7c61d5fdf26136ebc36efc2eeb0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/tail.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.031
+    },
+    {
+      "id": "py-import-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "c2696cd1e4a5313ea85d1747f55d0be33b04f5ba89696910e617c2e3ae1f0541",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/normalizer.py"
+        ],
+        "input_bytes": 564,
+        "retrieval_seconds": 0.406,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4342,
+      "output_tokens": 128,
+      "result": {
+        "summary": "f1의 inverse 함수가 관련 구현 nonzero의 반환값으로 나눗셈을 수행하는 변경을 검토했습니다. c2:2에서 value가 0일 때 1을 반환하므로 0으로 나누는 경로는 발생하지 않습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 호출부와 nonzero의 다른 사용처는 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/inverse.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/normalizer.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.406
+    },
+    {
+      "id": "py-import-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "fa1cbe619211518a65ba23dad8c6a8c0cbf4830f9cc1eb32239e209c80f293dd",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/normalizer.py"
+        ],
+        "input_bytes": 564,
+        "retrieval_seconds": 0.391,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4342,
+      "output_tokens": 300,
+      "result": {
+        "summary": "f1의 inverse 함수가 관련 구현 nonzero의 반환값으로 나눗셈을 수행하는 변경을 검토했습니다. c2:2에서 value가 0이면 0을 반환하므로 0으로 나누는 경로가 확인됩니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "value가 0인 상태에서 inverse(value)를 호출할 때",
+            "consequence": "nonzero가 0을 반환하여 4줄의 나눗셈에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "value가 0일 때 0으로 나누어 실패합니다",
+            "evidence": "f1:4는 nonzero(value)의 반환값으로 10을 나눕니다. c2:2는 value가 0이면 0을 반환합니다.",
+            "suggestion": "value가 0일 때의 반환 정책을 정하고, 나눗셈 전에 0 여부를 확인하거나 nonzero가 0 대신 유효한 값을 반환하도록 계약을 조정하세요.",
+            "file_path": "src/inverse.py",
+            "key": "2feb4edefd14451542ec6a098f36d5bd1d33401c3369bdcbe43ab74094f22414"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 파일과 관련 구현만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/inverse.py",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/normalizer.py",
+              "provided_lines": 2,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.188
+    },
+    {
+      "id": "java-index-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4359,
+      "output_tokens": 118,
+      "result": {
+        "summary": "배열의 마지막 원소를 반환하는 tail 메서드 변경을 검토했습니다. null 및 빈 배열을 0으로 처리하는 가드가 있고, 이후 마지막 유효 인덱스에 접근하므로 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 값 계약(빈 배열을 0으로 표현하는 규칙 등)은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Tail.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.469
+    },
+    {
+      "id": "java-index-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4356,
+      "output_tokens": 312,
+      "result": {
+        "summary": "tail 메서드가 배열의 마지막 원소를 반환하려 하지만, 유효 범위를 벗어난 인덱스를 사용해 항상 예외가 발생합니다.",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "values가 null도 아니고 길이가 1 이상인 배열일 때 tail을 호출하는 경우",
+            "consequence": "values.length는 유효한 최대 인덱스보다 1 크므로 4줄에서 ArrayIndexOutOfBoundsException이 발생하고, 3줄의 빈 배열 처리 이후 모든 정상 입력에서 실패합니다.",
+            "assumptions": [],
+            "title": "마지막 원소 조회가 항상 배열 범위를 벗어납니다",
+            "evidence": "3줄은 null과 길이 0만 걸러내므로 이후 values.length >= 1이 보장됩니다. 4줄은 그 길이를 그대로 인덱스로 사용해 유효 범위 [0, length-1]를 벗어납니다.",
+            "suggestion": "마지막 유효 인덱스인 values[values.length - 1]을 사용하세요.",
+            "file_path": "src/Tail.java",
+            "key": "0fd0edfbbb6ac1072dd5e58d6052316db153634b2fc65290d221366b1c060d6d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Tail.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.422
+    },
+    {
+      "id": "java-import-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "842d61fc32e2bc1fff896446cee0ad08b9eecbcbcab9e351bd02d14e8dccea09",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Divisor.java"
+        ],
+        "input_bytes": 712,
+        "retrieval_seconds": 0.406,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4442,
+      "output_tokens": 140,
+      "result": {
+        "summary": "Ratio.ratio가 Divisor.normalize의 반환값으로 100을 나누는 변경을 검토했습니다. 관련 구현 c2:3이 0을 1로 치환하므로 0으로 나누는 경로는 제공된 범위에서 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Divisor.normalize의 호출 계약과 ratio 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다. 정수 나눗셈의 절삭 특성은 도메인 요구사항이 제공되지 않아 판단하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Ratio.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Divisor.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.453
+    },
+    {
+      "id": "java-import-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "5675aaf084e2cb9c4908c62bcef09fff8bf2cfed23956a379640c283bd1c9c27",
+        "candidate_count": 2,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "src/Divisor.java"
+        ],
+        "input_bytes": 712,
+        "retrieval_seconds": 0.485,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 2,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4442,
+      "output_tokens": 289,
+      "result": {
+        "summary": "f1의 ratio가 c2의 Divisor.normalize 반환값으로 나누는 변경을 검토했습니다. normalize가 0을 반환하는 경로가 제공되어 있어 0으로 나누는 실패가 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "input이 0일 때 ratio(0)을 호출하는 경우",
+            "consequence": "c2:3에서 normalize가 0을 반환하고, f1:3의 100 / 0 나눗셈에서 ArithmeticException이 발생합니다.",
+            "assumptions": [],
+            "title": "input이 0이면 0으로 나누어 실패합니다",
+            "evidence": "f1:3은 Divisor.normalize(input)의 반환값으로 나눕니다. c2:3은 value가 0이면 0을 반환하므로 나누는 값이 0이 되는 경로가 제공되어 있습니다.",
+            "suggestion": "input이 0일 때의 결과를 정하고, 나눗셈 전에 normalize 결과가 0인 경우를 처리하세요.",
+            "file_path": "src/Ratio.java",
+            "key": "f847526fedd7df00ca8daca1a4469d7e5bd264d2d83e9a2b32285112d4c8406c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 호출부와 실행 검증은 수행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/Ratio.java",
+              "provided_lines": 5,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/Divisor.java",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 2,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.984
+    },
+    {
+      "id": "js-first-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4303,
+      "output_tokens": 137,
+      "result": {
+        "summary": "배열에서 첫 번째 일치 항목을 제거하는 함수가 추가되었습니다. indexOf로 찾은 인덱스가 0 이상일 때만 splice를 호출하므로, 일치 항목이 없을 때 index -1로 마지막 원소를 잘못 제거하는 문제는 없습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items의 실제 사용 방식(공유 참조 여부, 동결 여부)은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/remove.js",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.328
+    },
+    {
+      "id": "js-first-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4303,
+      "output_tokens": 288,
+      "result": {
+        "summary": "`removeFirstMatch`가 `indexOf` 결과를 `> 0`으로 비교해 첫 번째 원소가 일치할 때 제거하지 못하는 경계 조건 결함이 있습니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "items의 첫 번째 원소가 value와 같아 indexOf가 0을 반환할 때",
+            "consequence": "index > 0 조건이 거짓이 되어 splice가 실행되지 않고, 일치하는 첫 원소가 제거되지 않은 채 items가 그대로 반환됩니다.",
+            "assumptions": [],
+            "title": "첫 번째 원소가 일치하면 제거되지 않습니다",
+            "evidence": "2줄의 indexOf는 첫 원소 일치 시 0을 반환하고, 3줄은 index > 0일 때만 splice를 수행하므로 0인 경우 제거가 누락됩니다.",
+            "suggestion": "index !== -1(또는 index >= 0)로 조건을 바꿔 0 인덱스도 제거 대상에 포함하세요.",
+            "file_path": "src/remove.js",
+            "key": "d4d1791d1f106a089d7acbadbc6b71996907bcc3a423a3576fde9c6102a36317"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 items의 구체적 사용 맥락은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/remove.js",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.218
+    },
+    {
+      "id": "js-import-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "cd463a85456aebad4e871e7cd07ce783343c54da8902b18abd57e4528707ae71",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/labels.js"
+        ],
+        "input_bytes": 691,
+        "retrieval_seconds": 0.421,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4395,
+      "output_tokens": 122,
+      "result": {
+        "summary": "f1의 display가 labelFor(id) 결과에 toUpperCase를 적용하는 변경을 검토했습니다. 관련 구현 c2는 id가 0이면 예외를 던지고 그 외에는 문자열을 반환하므로, 제공된 범위에서 toUpperCase가 실패하는 경로는 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "labelFor의 호출부와 id의 실제 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/display.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/labels.js",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.453
+    },
+    {
+      "id": "js-import-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "f1580e0d5f30a3400fddbcfa543ae143ff6fa84a91275339df2bbd07e4a5cad4",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/labels.js"
+        ],
+        "input_bytes": 674,
+        "retrieval_seconds": 0.407,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4390,
+      "output_tokens": 321,
+      "result": {
+        "summary": "labelFor(id)의 반환값에 바로 toUpperCase()를 호출하는 변경을 검토했습니다. 관련 구현 c2에서 id가 0일 때 null을 반환하는 경로가 확인되어, 해당 입력에서 런타임 오류가 발생합니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "display(0)을 호출해 id가 0인 경우",
+            "consequence": "labelFor가 null을 반환하고( c2:2 ), 3줄에서 null.toUpperCase()를 호출해 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "id가 0일 때 null 반환값에 toUpperCase를 호출해 실패합니다",
+            "evidence": "f1:3은 labelFor(id)의 반환값에 곧바로 toUpperCase()를 호출합니다. c2:2는 id === 0일 때 null을 반환하므로 해당 경로에서 null 역참조가 발생합니다.",
+            "suggestion": "labelFor가 null을 반환하는 경우의 표시 방침을 정하고, null일 때 대체 문자열을 사용하거나 toUpperCase 호출 전에 null을 처리하세요.",
+            "file_path": "src/display.js",
+            "key": "b2a831c4a9da6cd14d5d8740d137f5cbd32e86d96eb7c9d14d72eae477f1b495"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 두 파일만 검토했으며 테스트를 실행하지 않았습니다. display의 다른 호출부와 labelFor의 다른 반환 경로는 제공되지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/display.js",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/labels.js",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.312
+    },
+    {
+      "id": "ts-zero-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4279,
+      "output_tokens": 87,
+      "result": {
+        "summary": "undefined일 때 기본값 10을 반환하는 설정값 해석 함수를 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 value의 실제 전달 경로, 기본값 10의 계약 적합성은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/config.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "ts-zero-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4277,
+      "output_tokens": 376,
+      "result": {
+        "summary": "`configured`가 `number | undefined`를 받아 truthy 검사 후 기본값 10을 반환하는 변경을 검토했습니다. 0이 유효한 설정값일 경우 기본값으로 대체되는 동작 차이가 있어 이에 대한 항목을 제기합니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "value에 0이 전달될 때",
+            "consequence": "0은 falsy이므로 2줄의 조건이 거짓이 되어 3줄에서 10이 반환됩니다. 호출자가 0을 유효한 설정값으로 전달했다면 반환값이 0이 아닌 10으로 바뀝니다.",
+            "assumptions": [],
+            "title": "0이 유효한 값이면 기본값 10으로 대체됩니다",
+            "evidence": "1줄의 매개변수 타입은 number | undefined이고, 2줄은 truthy 검사로 0과 undefined를 구분하지 않으며, 3줄은 10을 반환합니다.",
+            "suggestion": "0을 유효한 값으로 취급해야 한다면 2줄을 `value !== undefined`로 바꾸고, 0을 미설정으로 취급하는 것이 의도라면 그 계약을 주석이나 타입으로 명시하세요.",
+            "file_path": "src/config.ts",
+            "key": "d5e52fd48b9ee34068cb9bc283230df2ec2244d84eba676a6511e83f603dfb01"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 0의 의미(유효값인지 미설정 표시인지)에 대한 계약이 제공되지 않아, 0 처리 의도는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/config.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.609
+    },
+    {
+      "id": "ts-import-safe",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "01ecc2477ec49d7465c89a2c83c405fbc96584912adfd3bb32282e8a54758539",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/records.ts"
+        ],
+        "input_bytes": 728,
+        "retrieval_seconds": 0.422,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4410,
+      "output_tokens": 117,
+      "result": {
+        "summary": "recordFor 호출 결과의 name을 반환하는 변경을 검토했습니다. 관련 구현(c2)은 id가 0이면 예외를 던지고 그 외에는 name을 가진 객체를 반환하므로, 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "name 함수의 호출부와 id 입력 계약은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/name.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/records.ts",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.187
+    },
+    {
+      "id": "ts-import-bug",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "45bd8bd2e96ef132c0c931ee6ede1cd4766720a7e1f2c7035a05d88c7a75517a",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "src/records.ts"
+        ],
+        "input_bytes": 718,
+        "retrieval_seconds": 0.375,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 1
+        },
+        "github_reads": 4
+      },
+      "input_tokens": 4407,
+      "output_tokens": 309,
+      "result": {
+        "summary": "recordFor(id)의 반환값을 바로 역참조하는 name 함수 변경을 검토했습니다. 관련 구현 c2가 id가 0일 때 null을 반환하므로, 해당 경로에서 런타임 오류가 발생하는 것이 제공된 코드로 확인됩니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "id가 0인 상태에서 name(id)을 호출할 때",
+            "consequence": "recordFor가 null을 반환하고 그 null의 name 속성에 접근하므로 TypeError가 발생해 호출이 실패합니다.",
+            "assumptions": [],
+            "title": "id가 0일 때 null 역참조로 실패합니다",
+            "evidence": "f1:3은 recordFor(id)의 반환값에서 곧바로 .name을 읽습니다. 관련 구현 c2:1-2는 id가 0이면 null을 반환합니다.",
+            "suggestion": "recordFor의 null 반환을 명시적으로 처리하세요. 예를 들어 null일 때 반환할 이름(또는 오류)을 정하고, 그 분기에서 .name 접근을 피하도록 수정하세요.",
+            "file_path": "src/name.ts",
+            "key": "4489fc01c2d94cb736374efb0d35c19d4a68e12140d8333ae4e8ca398bc538a0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "recordFor의 다른 호출부와 name의 호출 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 2,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "src/name.ts",
+              "provided_lines": 4,
+              "role": "changed"
+            },
+            {
+              "file_id": "c2",
+              "file_path": "src/records.ts",
+              "provided_lines": 4,
+              "role": "related"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 1
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.5
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "f22c651f30c77e181ee8617650a3436c720bf06030ab044ce2156e5b1aa9ca9a",
+    "app/domain/review/provider.py": "0cb06770d5e520c8db30cdd5a3e93721e2da578b1faa34db5352cf1053c47d5b",
+    "app/domain/review/retrieval.py": "8b9f48545988bada2bebf2ea489bdd60286e5d20d0acb505da21441fb11baa7c",
+    "app/domain/review/context_selection.py": "ecfe0e0054290456ced1c5896a8b9612c4f5a1477b86f306766cd0b694f6f196"
+  },
+  "finished_at": "2026-09-27T13:33:03.620521+00:00",
+  "summary": {
+    "attempts": 48,
+    "validated": 48,
+    "automatic_passed": 47,
+    "input_tokens": 208776,
+    "output_tokens": 10412,
+    "authorized_attempts_used": 234
+  }
+}

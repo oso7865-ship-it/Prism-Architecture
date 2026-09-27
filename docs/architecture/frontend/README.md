@@ -48,3 +48,8 @@ GitHub Secret·LLM key·Refresh 원문을 localStorage 또는 프론트 env에 �
 ## 배포 설정 구현
 
 [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md)의 동일 출처 HTTPS 계약을 따른다. frontend deployment/vercel.template.json과 scripts/prepare-deployment.mjs가 API/health rewrite, SPA fallback, no-store와 보안 헤더를 준비한다. 실제 API 주소를 확정한 뒤 설정 파일을 생성하며 외부 OAuth·쿠키 proxy는 공개 환경에서 별도 확인한다.
+
+## 리뷰 탐색과 복원 (ADR-REVIEW-006)
+
+PR 상세는 query.tab=overview/static/ai/activity로 복원한다. 키보드 화살표/Home/End, 선택 탭의 aria-selected를 제공한다. 결함·검토 질문은 별도 개수이며 긴 근거·원문·처리 기록은 펼쳐 확인한다. 기존 basis 없는 결과는 질문 영역에 보존한다.
+로그인 복귀는 /app, /app/team, /app/repositories 내부 경로만 허용한다. query와 초대 fragment를 보존하며 OAuth 왕복 목적지는 탭 sessionStorage에 15분간 저장 후 성공/로그아웃에 삭제한다. 접근·refresh 토큰은 저장하지 않는다. 저장소 사용 불가 브라우저에서는 OAuth 왕복 복원이 제한된다. 새로고침 시 최신 서버 동기화 상태를 읽는다.

@@ -2,9 +2,9 @@
 
 GitHub PR을 정적 규칙으로 분석하고 선택적으로 AI 설명을 제공하는 플랫폼의 아키텍처 저장소입니다.
 
-**현재 단계: 설계 기준 v0.1.0 / 별도 저장소의 개발 기반·초기 CI 검증 완료**
+**현재 단계: 배포 전 개발·검증, 문서 중앙 관리**
 
-기준일: 2026-09-25. 이 저장소에는 설계 문서, 영역별 ADR, 문서 선택·검증 스크립트가 있습니다. 백엔드·프론트 개발 기반은 별도 저장소에 구성했습니다. 로그인 구현·사용자 테스트는 완료했으며 팀·GitHub App 연결·PR 동기화·정적 분석 23개 규칙과 결과 화면은 구현 저장소 dev working-tree에서 검증했습니다. [구현 저장소·현재 단계](docs/architecture/runtime/IMPLEMENTATION.md)를 확인하세요.
+설계·ADR·README·개발 하네스·작업 보고서는 이 저장소에서 관리합니다. 구현 코드는 별도 Backend/Frontend 저장소에서 dev로 개발 후 main에 통합합니다. [문서 목록·다른 PC 복원](records/README.md)과 [현재 구현/이력](docs/architecture/runtime/IMPLEMENTATION.md)을 확인하세요. AI 품질 실패는 미해결 상태이며 소스 병합이 출시 완료를 의미하지 않습니다.
 
 ## 제품과 기술 방향
 
@@ -12,10 +12,10 @@ GitHub PR을 정적 규칙으로 분석하고 선택적으로 AI 설명을 제�
 |---|---|
 | 백엔드 | Python / FastAPI, 업무별 domain과 기술 공통 shared |
 | 데이터베이스 | PostgreSQL 17 개발 Compose 구성. 로컬 구동 확인 완료, 운영 호스팅은 후속 작업 |
-| DB 설계 | [17개 테이블 컬럼·타입·인덱스](docs/architecture/contracts/schema/README.md), 물리 FK 미사용. 15개 업무 테이블 구현·검증, AI Review 2개는 후속 |
+| DB 설계 | [17개 테이블 컬럼·타입·인덱스](docs/architecture/contracts/schema/README.md), 물리 FK 미사용. 실제 migration 상태는 최신 백엔드 보고서 참조 |
 | 분석 언어 | Java / JavaScript / TypeScript / Python |
 | 분석 방식 | 고정 commit SHA의 정적 규칙 분석. 대상 코드 실행·의존성 설치 없음 |
-| AI | LangChain + DeepSeek. 세부 모델·예산 미정, 기본 OFF |
+| AI | LangChain + DeepSeek. 동의 기반 수동 리뷰. 설정·한도·품질 한계는 Review 계약 참조 |
 | 프론트 | Vue / TypeScript / Vite, Vercel은 설계 기본값 |
 | 배포 | 백엔드 Render 예정. 실제 도메인 미정 |
 | 초기 사용 | 본인 Organization과 개인 프로젝트. 향후 외부 사용자 가입·저장소 연결 지원 |

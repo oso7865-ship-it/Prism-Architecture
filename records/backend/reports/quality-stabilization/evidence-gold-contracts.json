@@ -1,0 +1,896 @@
+{
+  "started_at": "2026-09-27T15:10:43.622416+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "verification_enabled": true,
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "rh1-00c123b960588a9a",
+  "policy_version": "BOUNDED_CODE_V4",
+  "corpus_sha256": "83c8a7c3ce47ff4d2d09752bd22346079a719f86ced6a9872726ab1e06091348",
+  "max_calls": 36,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "requests-6589-before",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4689,
+      "output_tokens": 95,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Non-ASCII str is counted as characters instead of wire bytes.",
+          "counterexample": "ASCII and already-encoded bytes have correct lengths; no claim they always fail.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약이 제공되지 않았으며, 테스트를 실행하지 않았습니다. str과 bytes의 길이 의미 차이가 호출부에서 문제가 되는지는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 1.406
+    },
+    {
+      "id": "requests-6589-after",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4726,
+      "output_tokens": 73,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect in the supplied str/bytes contract.",
+          "counterexample": "bytes branch is not encoded twice; empty payload length0 is valid.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.031
+    },
+    {
+      "id": "requests-6589-bytes-normal",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4683,
+      "output_tokens": 70,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect for byte inputs including multibyte UTF-8.",
+          "counterexample": "Do not invent str inputs outside this explicit bytes contract.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 0.969
+    },
+    {
+      "id": "requests-6074-before",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4807,
+      "output_tokens": 113,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty/missing CA variables turn intended verificationTrue into a falsy value. One finding is enough.",
+          "counterexample": "Do not claim arbitrary nonempty bundle paths disable verification.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "choose_verification의 호출부와 env 값의 실제 출처(빈 문자열, 비문자열 등)가 제공되지 않아 반환값의 소비 방식과 검증 경로는 확인하지 못했습니다. 테스트 실행도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 1.094
+    },
+    {
+      "id": "requests-6074-after",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4809,
+      "output_tokens": 97,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect: missing/empty environment keeps explicitTrue.",
+          "counterexample": "The fallback preserves verification; do not demand nonempty env values.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 실제 값 범위와 호출부, CA 번들 경로의 유효성 검사 여부는 제공되지 않았으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.219
+    },
+    {
+      "id": "requests-6074-explicit-false",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4761,
+      "output_tokens": 112,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect in resolver honoring explicitFalse.",
+          "counterexample": "Do not turn a documented caller choice into a fabricated resolver defect.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 값 타입과 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다. verify가 False일 때 환경 변수를 무시하는 동작은 주석에 명시된 의도와 일치합니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.156
+    },
+    {
+      "id": "requests-6589-before",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4689,
+      "output_tokens": 105,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Non-ASCII str is counted as characters instead of wire bytes.",
+          "counterexample": "ASCII and already-encoded bytes have correct lengths; no claim they always fail.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 전달 경로가 제공되지 않아 어떤 타입이 주로 전달되는지, 그리고 이 길이가 바이트 기준이어야 하는지 여부는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 1.235
+    },
+    {
+      "id": "requests-6589-after",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4726,
+      "output_tokens": 73,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect in the supplied str/bytes contract.",
+          "counterexample": "bytes branch is not encoded twice; empty payload length0 is valid.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.094
+    },
+    {
+      "id": "requests-6589-bytes-normal",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4683,
+      "output_tokens": 70,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect for byte inputs including multibyte UTF-8.",
+          "counterexample": "Do not invent str inputs outside this explicit bytes contract.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.094
+    },
+    {
+      "id": "requests-6074-before",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4807,
+      "output_tokens": 93,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty/missing CA variables turn intended verificationTrue into a falsy value. One finding is enough.",
+          "counterexample": "Do not claim arbitrary nonempty bundle paths disable verification.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 실제 값과 호출부, CA 번들 경로의 유효성 검사 여부는 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 1.328
+    },
+    {
+      "id": "requests-6074-after",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4809,
+      "output_tokens": 97,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect: missing/empty environment keeps explicitTrue.",
+          "counterexample": "The fallback preserves verification; do not demand nonempty env values.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 실제 값 분포와 호출부, APP_CA_BUNDLE/CURL_CA_BUNDLE에 설정되는 값의 형식은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.062
+    },
+    {
+      "id": "requests-6074-explicit-false",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4761,
+      "output_tokens": 110,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect in resolver honoring explicitFalse.",
+          "counterexample": "Do not turn a documented caller choice into a fabricated resolver defect.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 값 타입과 호출부가 제공되지 않았으며, 실행 검증은 하지 않았습니다. verify가 False일 때 환경 변수 값이 무시되는 동작은 주석에 명시된 의도와 일치합니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.14
+    },
+    {
+      "id": "requests-6589-before",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4689,
+      "output_tokens": 124,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Non-ASCII str is counted as characters instead of wire bytes.",
+          "counterexample": "ASCII and already-encoded bytes have correct lengths; no claim they always fail.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출부와 body가 실제로 어떤 인코딩/타입으로 전달되는지에 대한 정보가 제공되지 않았으며, 테스트를 실행하지 않았습니다. 주석이 언급한 UTF-8 바이트 길이와 len(str)의 문자 수 차이는 호출 계약이 확인되어야 판단할 수 있습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 1.375
+    },
+    {
+      "id": "requests-6589-after",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4726,
+      "output_tokens": 73,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect in the supplied str/bytes contract.",
+          "counterexample": "bytes branch is not encoded twice; empty payload length0 is valid.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "requests-6589-bytes-normal",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4683,
+      "output_tokens": 70,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect for byte inputs including multibyte UTF-8.",
+          "counterexample": "Do not invent str inputs outside this explicit bytes contract.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출부와 body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "content_length.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "requests-6074-before",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4807,
+      "output_tokens": 111,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Empty/missing CA variables turn intended verificationTrue into a falsy value. One finding is enough.",
+          "counterexample": "Do not claim arbitrary nonempty bundle paths disable verification.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 실제 값 분포와 두 함수의 호출부가 제공되지 않아, CA 번들 경로가 설정된 환경에서의 의도된 동작인지 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 1.219
+    },
+    {
+      "id": "requests-6074-after",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 4809,
+      "output_tokens": 112,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect: missing/empty environment keeps explicitTrue.",
+          "counterexample": "The fallback preserves verification; do not demand nonempty env values.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 실제 값 분포와 choose_verification 호출부는 제공되지 않았으며, 실행 검증은 수행하지 않았습니다. verify 인자에 bool 이외의 값이 전달되는 경우의 계약도 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.594
+    },
+    {
+      "id": "requests-6074-explicit-false",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "input_tokens": 7778,
+      "output_tokens": 425,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열 환경 변수 값이 무시됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "INFO",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "verify가 True이고 env[\"APP_CA_BUNDLE\"] 또는 env[\"CURL_CA_BUNDLE\"]이 빈 문자열(\"\")일 때",
+            "consequence": "or 연산이 빈 문자열을 거짓으로 평가하므로 해당 환경 변수 값이 무시되고 다음 후보나 원래 verify(True)가 반환됩니다. 빈 문자열을 명시적 설정으로 의도했다면 그 설정이 조용히 사라집니다.",
+            "assumptions": [],
+            "title": "빈 문자열 환경 변수 값이 무시됩니다",
+            "evidence": "3줄에서 verify가 True일 때만 4줄이 실행되고, 4줄은 or 체인으로 값을 선택하므로 빈 문자열은 선택되지 않습니다.",
+            "suggestion": "빈 문자열을 유효한 설정으로 취급해야 한다면 or 대신 키 존재 여부를 확인하는 방식(예: 키가 있으면 그 값을 사용)으로 바꾸고, 빈 문자열을 무효로 볼 것인지 주석으로 명확히 하세요.",
+            "file_path": "ca_settings.py",
+            "key": "2e285c8285c5b63ec05329f5a10cc5c9a8d64ca24634dff0a4d1d216530b29c6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "env의 실제 값 분포와 호출부는 제공되지 않았으며, 빈 문자열이 유효한 CA 번들 설정인지 여부는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "No defect in resolver honoring explicitFalse.",
+          "counterexample": "Do not turn a documented caller choice into a fabricated resolver defect.",
+          "reject": "wrong secondary consequence, duplicate defect, missing-contract question without visible concern"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열 환경 변수 값이 무시됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "INFO",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4
+            ],
+            "trigger": "verify가 True이고 env[\"APP_CA_BUNDLE\"] 또는 env[\"CURL_CA_BUNDLE\"]이 빈 문자열(\"\")일 때",
+            "consequence": "or 연산이 빈 문자열을 거짓으로 평가하므로 해당 환경 변수 값이 무시되고 다음 후보나 원래 verify(True)가 반환됩니다. 빈 문자열을 명시적 설정으로 의도했다면 그 설정이 조용히 사라집니다.",
+            "assumptions": [],
+            "title": "빈 문자열 환경 변수 값이 무시됩니다",
+            "evidence": "3줄에서 verify가 True일 때만 4줄이 실행되고, 4줄은 or 체인으로 값을 선택하므로 빈 문자열은 선택되지 않습니다.",
+            "suggestion": "빈 문자열을 유효한 설정으로 취급해야 한다면 or 대신 키 존재 여부를 확인하는 방식(예: 키가 있으면 그 값을 사용)으로 바꾸고, 빈 문자열을 무효로 볼 것인지 주석으로 명확히 하세요.",
+            "file_path": "ca_settings.py",
+            "key": "2e285c8285c5b63ec05329f5a10cc5c9a8d64ca24634dff0a4d1d216530b29c6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "ca_settings.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 4.0
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "ba81026633132d9d05625d666a2ebcc5c972ee73cd64e8db585f0e60c9848ebf",
+    "app/domain/review/provider.py": "086a41d0b622704f58b30030e8e86c13819afee11ca8f29f42fb94161f2d8e67",
+    "app/domain/review/retrieval.py": "11f96976b85b1eac1e7bef15ba9ac4288a632582d345daf6127a2e6a43fcb9ac",
+    "app/domain/review/context_selection.py": "e2796ffe4a942be1e482f371588f67cfb645766fb3c492acaaea0d7fd60abf12",
+    "app/domain/review/context_plan.py": "cf2e1d03ac8a3686f620098c1cabc56ddf28652a6d199dc93c9d0b5c5dc79777",
+    "app/domain/review/verification.py": "8727e5b8d776ee7a5919a2ae6832e7f0536dfc03e6c910aa029c298567260302",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186"
+  },
+  "finished_at": "2026-09-27T15:11:08.569703+00:00",
+  "summary": {
+    "attempts": 19,
+    "reviews": 18,
+    "validated": 18,
+    "automatic_passed": 11,
+    "input_tokens": 88442,
+    "output_tokens": 2023,
+    "authorized_attempts_used": 796
+  }
+}

@@ -435,6 +435,42 @@
       "id": "ADR-DEPLOY-002",
       "owner": "DEPLOY",
       "read_when": "production 설정과 배포 전 검증 경계를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-006-review-workflow.md",
+      "id": "ADR-REVIEW-006",
+      "owner": "architecture-decisions",
+      "read_when": "검토 질문·관련 코드·개인 처리 기록·리뷰 화면 계약 변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-007-bounded-context-ranking.md",
+      "id": "ADR-REVIEW-007",
+      "owner": "architecture-decisions",
+      "read_when": "제한 문맥 검색·리랭커 선택 계약 변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-008-team-daily-allowance.md",
+      "id": "ADR-REVIEW-008",
+      "owner": "architecture-decisions",
+      "read_when": "팀별 AI 리뷰 접수 한도·제공자 표시 정책 변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-009-derived-review-summary.md",
+      "id": "ADR-REVIEW-009",
+      "owner": "architecture-decisions",
+      "read_when": "검증 결과로 사용자 요약 구성 정책 변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-010-evidence-first-verified-review.md",
+      "id": "ADR-REVIEW-010",
+      "owner": "architecture-decisions",
+      "read_when": "근거 보존·16/48KiB 예산·두 단계 검증 호출 변경"
+    },
+    {
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-003-central-documentation.md",
+      "id": "ADR-ARCH-003",
+      "owner": "ARCH",
+      "read_when": "문서 저장소 경계·하네스 복원 변경 시"
     }
   ],
   "tasks": {
@@ -535,7 +571,11 @@
       "description": "LangChain·Provider·AI 설명",
       "documents": [
         "docs/architecture/domain/review/README.md",
-        "docs/architecture/operations/SECURITY_PRIVACY.md"
+        "docs/architecture/operations/SECURITY_PRIVACY.md",
+        "docs/architecture/adr/review/ADR-REVIEW-007-bounded-context-ranking.md",
+        "docs/architecture/adr/review/ADR-REVIEW-008-team-daily-allowance.md",
+        "docs/architecture/adr/review/ADR-REVIEW-009-derived-review-summary.md",
+        "docs/architecture/adr/review/ADR-REVIEW-010-evidence-first-verified-review.md"
       ]
     },
     "webhook": {
@@ -666,7 +706,8 @@
         "docs/architecture/adr/README.md",
         "docs/architecture/PACKAGE_RULES.md",
         "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md",
-        "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md"
+        "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md",
+        "docs/architecture/adr/architecture/ADR-ARCH-003-central-documentation.md"
       ]
     },
     "adr-docs": {
@@ -695,7 +736,12 @@
         "docs/architecture/adr/review/ADR-REVIEW-002-deepseek-provider.md",
         "docs/architecture/adr/review/ADR-REVIEW-003-bounded-manual-code-review.md",
         "docs/architecture/adr/review/ADR-REVIEW-004-versioned-review-harness.md",
-        "docs/architecture/adr/review/ADR-REVIEW-005-evidence-admission.md"
+        "docs/architecture/adr/review/ADR-REVIEW-005-evidence-admission.md",
+        "docs/architecture/adr/review/ADR-REVIEW-006-review-workflow.md",
+        "docs/architecture/adr/review/ADR-REVIEW-007-bounded-context-ranking.md",
+        "docs/architecture/adr/review/ADR-REVIEW-008-team-daily-allowance.md",
+        "docs/architecture/adr/review/ADR-REVIEW-009-derived-review-summary.md",
+        "docs/architecture/adr/review/ADR-REVIEW-010-evidence-first-verified-review.md"
       ]
     },
     "adr-integration": {
@@ -1259,10 +1305,12 @@
       "id": "ADR-ARCH-002",
       "area": "ARCH",
       "path": "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md",
-      "status": "ACCEPTED",
+      "status": "SUPERSEDED",
       "legacy_ids": [],
       "supersedes": [],
-      "superseded_by": []
+      "superseded_by": [
+        "ADR-ARCH-003"
+      ]
     },
     {
       "id": "ADR-DATA-002",
@@ -1295,12 +1343,14 @@
       "id": "ADR-REVIEW-003",
       "area": "REVIEW",
       "path": "docs/architecture/adr/review/ADR-REVIEW-003-bounded-manual-code-review.md",
-      "status": "ACCEPTED",
+      "status": "SUPERSEDED",
       "legacy_ids": [],
       "supersedes": [
         "ADR-REVIEW-001"
       ],
-      "superseded_by": []
+      "superseded_by": [
+        "ADR-REVIEW-006"
+      ]
     },
     {
       "id": "ADR-REVIEW-004",
@@ -1315,10 +1365,12 @@
       "id": "ADR-REVIEW-005",
       "area": "REVIEW",
       "path": "docs/architecture/adr/review/ADR-REVIEW-005-evidence-admission.md",
-      "status": "ACCEPTED",
+      "status": "SUPERSEDED",
       "legacy_ids": [],
       "supersedes": [],
-      "superseded_by": []
+      "superseded_by": [
+        "ADR-REVIEW-006"
+      ]
     },
     {
       "id": "ADR-DEPLOY-002",
@@ -1327,6 +1379,81 @@
       "status": "ACCEPTED",
       "legacy_ids": [],
       "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-006",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-006-review-workflow.md",
+      "status": "SUPERSEDED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-003",
+        "ADR-REVIEW-005"
+      ],
+      "superseded_by": [
+        "ADR-REVIEW-007"
+      ]
+    },
+    {
+      "id": "ADR-REVIEW-007",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-007-bounded-context-ranking.md",
+      "status": "SUPERSEDED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-006"
+      ],
+      "superseded_by": [
+        "ADR-REVIEW-008"
+      ]
+    },
+    {
+      "id": "ADR-REVIEW-008",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-008-team-daily-allowance.md",
+      "status": "SUPERSEDED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-007"
+      ],
+      "superseded_by": [
+        "ADR-REVIEW-009"
+      ]
+    },
+    {
+      "id": "ADR-REVIEW-009",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-009-derived-review-summary.md",
+      "status": "SUPERSEDED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-008"
+      ],
+      "superseded_by": [
+        "ADR-REVIEW-010"
+      ]
+    },
+    {
+      "id": "ADR-REVIEW-010",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-010-evidence-first-verified-review.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-009"
+      ],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-ARCH-003",
+      "area": "ARCH",
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-003-central-documentation.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-ARCH-002"
+      ],
       "superseded_by": []
     }
   ]

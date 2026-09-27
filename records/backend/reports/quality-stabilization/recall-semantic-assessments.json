@@ -1,0 +1,481 @@
+{
+  "recall-baseline-verified": {
+    "reviewer": "Codex agent manual source check; independent human review pending",
+    "assessments": [
+      {
+        "id": "length-before",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "eeb816351a299b63ebec270de7cdf6e7f94662f7e9574ab507f6cb5bf9be8f5b",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-after",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "d668094eb9885840c73ed42a5001d68949fa27daf54e55fba078dbe7a2918fe8",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-before",
+        "repeat": 1,
+        "status": "FAIL",
+        "result_sha256": "48b2780f495ad02a2efceb85f78d3b00505444f5f04d5661c24c889e538fba44",
+        "note": "Missed empty final operand defect."
+      },
+      {
+        "id": "ca-after",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "f4f13e50476b96418462d81c3bce25f46c221d527c5ec4cd68d2264d7e2df5c7",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-bytes-normal",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "0a8daedcb5412f7f5bd96a1a2cd923e11fcf1422c8f236d55be4b66041810302",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-explicit-false-normal",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "56d4d0332be779c4f0cb33a5e13fdc796f74f329a3abef0297e4082f7a433ea3",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-before",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "1401af6206f9f644c11122fc53e8379175a03aba15f3f73d1f44b9b6793b5b89",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-after",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "275b51fcb27266511b9c7fd332af5f3798a21645587081d68034bb14bb7c7199",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-before",
+        "repeat": 2,
+        "status": "FAIL",
+        "result_sha256": "2c41bae6b06a4f0492ac675133a86ca964ffee04289380783bb4cdf401802f2d",
+        "note": "Missed empty final operand defect."
+      },
+      {
+        "id": "ca-after",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "85ff6285413cc061f5f46608b02a53964bdbd70013adbf97acbb66fd06a49681",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-bytes-normal",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "0a8daedcb5412f7f5bd96a1a2cd923e11fcf1422c8f236d55be4b66041810302",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-explicit-false-normal",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "5b11ac5e5d157e34b13f9491585e877f6d84231e3cda00f5ffe2c696797a6a45",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-before",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "ca6855c809c8a636b9dabe130a8ab0f6af98dd1a06afc687bb8d966e22119285",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-after",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "d668094eb9885840c73ed42a5001d68949fa27daf54e55fba078dbe7a2918fe8",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-before",
+        "repeat": 3,
+        "status": "FAIL",
+        "result_sha256": "2c41bae6b06a4f0492ac675133a86ca964ffee04289380783bb4cdf401802f2d",
+        "note": "Missed empty final operand defect."
+      },
+      {
+        "id": "ca-after",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "627e8d451cdefce0de1b429bdc91460f1ceefa74629b2341ecc66a5dc8dc22f6",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-bytes-normal",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "0a8daedcb5412f7f5bd96a1a2cd923e11fcf1422c8f236d55be4b66041810302",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-explicit-false-normal",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "c84d8bdc6e7defc800d3dac1b03707e0a79986645a79f66d924981297b2ac906",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      }
+    ],
+    "gate": {
+      "status": "FAIL",
+      "blockers": [
+        {
+          "id": "ca-before",
+          "repeat": 1,
+          "reason": "AUTOMATIC_CHECK_FAILED"
+        },
+        {
+          "id": "ca-before",
+          "repeat": 2,
+          "reason": "AUTOMATIC_CHECK_FAILED"
+        },
+        {
+          "id": "ca-before",
+          "repeat": 3,
+          "reason": "AUTOMATIC_CHECK_FAILED"
+        }
+      ]
+    }
+  },
+  "recall-core-operators": {
+    "reviewer": "Codex agent manual source check; independent human review pending",
+    "assessments": [
+      {
+        "id": "length-before",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "f4d559dd781f00b69f4c962611687bd6b71b48a253781764f3f82258f7c2ed69",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-after",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "aa617234b069551fed1122013af153d247e7a60f14a241aaccdc0d8a2698a5e1",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-before",
+        "repeat": 1,
+        "status": "FAIL",
+        "result_sha256": "7b5fb7cde2532fd520896dc27def1d788709ce0646b5eb131369c72c6c97c87a",
+        "note": "Incorrect value/trigger: confuses empty string with None, broadens environment condition or invents session=None. Proposed normalization may erase explicit verification setting."
+      },
+      {
+        "id": "ca-after",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "e837ae2596446c6a31a5fe66709b7ffe323b9bb7b6de924c8d85f3fcb36cdfa5",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-bytes-normal",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "5d14f2b0a1dc8424e4217d4ca4f1b2fa0eb9b35c71f14e1d20e7bf6809c9268e",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-explicit-false-normal",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "6e72ba5693c205af27a5ae3447c9d755a07355d0a6e4531f44ff4a6460da8fad",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-before",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "f02e5b012ecd3f1627d6828df887a5d301997a2747a072722ea0faf73ed0803f",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-after",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "11cb6c05b4c2aba008308491144d382f147c92960169e60e40fad8734315b86a",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-before",
+        "repeat": 2,
+        "status": "FAIL",
+        "result_sha256": "b3bb8c940374983df487d9ed80bb93bbffffbcef82c2a432f2a93e14e9e37e14",
+        "note": "Incorrect value/trigger: confuses empty string with None, broadens environment condition or invents session=None. Proposed normalization may erase explicit verification setting."
+      },
+      {
+        "id": "ca-after",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "d82e3a4219a0076e2f22fad44d46cf0ff5c148ae0fa95d2d9bb80f2070eb8df6",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-bytes-normal",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "7db072aa038f9771ce44b9e815e1c9b07ed13e969b553dd7f98743618e6b5535",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-explicit-false-normal",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "6e72ba5693c205af27a5ae3447c9d755a07355d0a6e4531f44ff4a6460da8fad",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-before",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "67dbe1b85a1450e34d6b84fd7f94dd591b1d1801e5496b7888f9d4551dcedf49",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-after",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "191cf3eb8e23d17472cdb899f809de4e202b4ddd452751bbc3a187fbee958e58",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-before",
+        "repeat": 3,
+        "status": "FAIL",
+        "result_sha256": "152778a059735ccdfd492cc5d8fff176b3619105b6fcffec6842755d06cca52f",
+        "note": "Incorrect value/trigger: confuses empty string with None, broadens environment condition or invents session=None. Proposed normalization may erase explicit verification setting."
+      },
+      {
+        "id": "ca-after",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "8c6fbb49cce9e5d157bbffb658bec66b623ecc169930c39b0031caffe4fc73f7",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "length-bytes-normal",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "3d502c43f1162c9d697a1db82888d452c8b160d3804b339cee21e88c69a5c0cb",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "ca-explicit-false-normal",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "6e72ba5693c205af27a5ae3447c9d755a07355d0a6e4531f44ff4a6460da8fad",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      }
+    ],
+    "gate": {
+      "status": "FAIL",
+      "blockers": [
+        {
+          "id": "ca-before",
+          "repeat": 1,
+          "reason": "SEMANTIC_REVIEW_NOT_PASSED"
+        },
+        {
+          "id": "ca-before",
+          "repeat": 2,
+          "reason": "SEMANTIC_REVIEW_NOT_PASSED"
+        },
+        {
+          "id": "ca-before",
+          "repeat": 3,
+          "reason": "SEMANTIC_REVIEW_NOT_PASSED"
+        }
+      ]
+    }
+  },
+  "recall-holdout": {
+    "reviewer": "Codex agent manual source check; independent human review pending",
+    "assessments": [
+      {
+        "id": "python-zip-bug",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "0af7b7fb9810653c7f399a5a2666e8dedbf8f3796826e1eac0ac5b6debf76981",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "python-zip-fixed",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "772eeeacfe34ad8c9fe0497e3e9a58764be080f83acf441ab2c42a44b090a485",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "java-ratio-bug",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "8ebe7c790c264377dbee19da81b9f78d954cccef630a966c3f294fddec8ea72b",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "java-ratio-fixed",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "a0119767c0f22448638f0daf2a7a62b05733af240070ba2e6f96d33788ad560a",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "javascript-sum-bug",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "61f5d91f1b990ba5ee6c39e464c30d9195920ab2a5d22b95f7f704397b18b398",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "javascript-sum-fixed",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "a32a1302e868f0a46f11531bd401b5f99de1d38965653b70006bd12671446f87",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "typescript-retries-bug",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "5fe1544a220f6190e7f6d92f06ac6f7e09a4f5e1e9d44f7d58dc3aadce72f65d",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "typescript-retries-fixed",
+        "repeat": 1,
+        "status": "PASS",
+        "result_sha256": "b0cc18f72995f96191765ab5beb2cd83af9ba07b18802ceff17c22c0ec10a210",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "python-zip-bug",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "bf7f4c80a806c68f81c35f985861ade8e763a1d1433d26b8bf6eb35f883d0858",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "python-zip-fixed",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "29a1afc0853a39cba6a45387a45eed350554c7a7cc9d173e318d490ebbcbab7a",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "java-ratio-bug",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "1588ba4f043ff96cd76bb6e2e60619500d93ed88c3799b31ff762c41d7e890eb",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "java-ratio-fixed",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "ec53ab7f2709c9ff77b63f95b3faabee113028cccabe38fb2708149eb54d0633",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "javascript-sum-bug",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "351c36c56258801b33caac9d6cdf30aa6fa3c765c625d86159665e53b01ac2e4",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "javascript-sum-fixed",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "221001a2ed64a99360e5bd93a1b6bb619ba05a9de3b2c3bb0de48053e4f04d97",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "typescript-retries-bug",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "99d4b6fee809681417782228514f5b89427c8a393b36e89ebf491a5c0089cb06",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "typescript-retries-fixed",
+        "repeat": 2,
+        "status": "PASS",
+        "result_sha256": "1b1dcdfbf7ecd4dec84e844bb9f08a7353d5c124febd44f0901017b3a86423f2",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "python-zip-bug",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "787286e9331ecc164a9e4a63c5b898f99b991bbc2270357965a0444def9a7bf1",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "python-zip-fixed",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "16eaea6df7a129310106d2b596650d5dc1073e7c43dca7ec71ae53e916019bf1",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "java-ratio-bug",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "ec5977f459b5968dff4800bc800017bcbd748ea54fc406944b476de79ac935bc",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "java-ratio-fixed",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "981651dd921ff4fa1e77c92c85597dd551ed598fe2c18b583918acd06e8dc990",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "javascript-sum-bug",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "17eccf4d8c9cc89659b49748e8d6da502d7b4f9f2c69bc7860aa913bea5d4807",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "javascript-sum-fixed",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "042f858027091e4d2411c1323ace21c7856d0a1339fd6ebed6b94035b5af66f5",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "typescript-retries-bug",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "95dfd822700ffbd06101580ea87f739d620076b45a5717a524cf3550caa51c75",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      },
+      {
+        "id": "typescript-retries-fixed",
+        "repeat": 3,
+        "status": "PASS",
+        "result_sha256": "1ea19f43b01ae288e900c45ed22d5b6a8b07900a0f9931971020fa6f95136c12",
+        "note": "Supplied contract, reachable trigger, actual effect and proposed correction inspected; normal cases have no admitted findings."
+      }
+    ],
+    "gate": {
+      "status": "PASS",
+      "blockers": []
+    }
+  }
+}

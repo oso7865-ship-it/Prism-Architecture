@@ -1,0 +1,1464 @@
+{
+  "started_at": "2026-09-27T15:20:34.426758+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "verification_enabled": true,
+  "verification_only": false,
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "rh1-d634ca5b77229914",
+  "policy_version": "BOUNDED_CODE_V4",
+  "corpus_sha256": "1305fbc6f952c8c451b0e275ea60aeca4038c4a61a404ae1c21ec91c44abf614",
+  "max_calls": 24,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "long-function-normal-8k",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "9e9f40b4b6db843a5e070e96b5381a9a4a6fd4eb3a3809e739c340505ab0d509",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 142,
+        "retrieval_seconds": 0.188,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 8192,
+          "max_input_bytes": 24576,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 4634,
+      "output_tokens": 85,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null rejected with return0 before len",
+          "counterexample": "string length is valid",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "함수 시그니처와 호출부, x의 타입 계약이 제공되지 않아 입력 유형과 경계 조건은 확인하지 못했으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 1,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [
+            {
+              "file_id": "f1",
+              "reason": "CONTEXT_LIMIT"
+            },
+            {
+              "file_id": "f1",
+              "reason": "FUNCTION_PARTIAL"
+            }
+          ],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 8192,
+            "max_input_bytes": 24576,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.485
+    },
+    {
+      "id": "long-function-normal-16k",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "9e9f40b4b6db843a5e070e96b5381a9a4a6fd4eb3a3809e739c340505ab0d509",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 12418,
+        "retrieval_seconds": 0.156,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 16384,
+          "max_input_bytes": 49152,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 7235,
+      "output_tokens": 111,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null rejected with return0 before len",
+          "counterexample": "string length is valid",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "변경된 줄은 91줄의 return len(x) 하나이며, 2줄에서 None을 먼저 반환하므로 None 경로는 도달하지 않습니다. 호출부와 입력 계약은 제공되지 않았고 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.156
+    },
+    {
+      "id": "long-function-bug-8k",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "8bdbbd44773627fd78784d8807cc8aed295e6caa1f40b9f06129db4f0d415f38",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 142,
+        "retrieval_seconds": 0.172,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 8192,
+          "max_input_bytes": 24576,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 4634,
+      "output_tokens": 99,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null branch reaches len(x)",
+          "counterexample": "non-null branch returns0",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "x의 타입과 호출부, len이 정의된 방식(내장 함수인지 사용자 정의인지)이 제공되지 않아 입력 계약과 예외 경로를 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 1,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [
+            {
+              "file_id": "f1",
+              "reason": "CONTEXT_LIMIT"
+            },
+            {
+              "file_id": "f1",
+              "reason": "FUNCTION_PARTIAL"
+            }
+          ],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 8192,
+            "max_input_bytes": 24576,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "long-function-bug-16k",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "8bdbbd44773627fd78784d8807cc8aed295e6caa1f40b9f06129db4f0d415f38",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 12422,
+        "retrieval_seconds": 0.156,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 16384,
+          "max_input_bytes": 49152,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 12838,
+      "output_tokens": 356,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 실패합니다",
+        "issues": [
+          {
+            "line": 91,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              91
+            ],
+            "trigger": "compute(None)을 호출하는 경우",
+            "consequence": "2줄의 조건이 거짓이 되어 91줄에 도달하고, None에 len()을 적용할 수 없어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 실패합니다",
+            "evidence": "1줄의 타입 힌트가 x를 str | None으로 허용하고, 2줄은 x가 None이면 반환하지 않으므로 91줄의 len(x)가 None에 대해 실행됩니다.",
+            "suggestion": "None일 때 반환할 값을 정하고, 91줄 이전에 None 분기를 추가하거나 2줄의 조건을 명시적 None 검사로 유지하세요.",
+            "file_path": "main.py",
+            "key": "211eaf43d78102e30fe4ee2291131c0904dfb3346acbe91fd0ce4e636826c5a2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 본문만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null branch reaches len(x)",
+          "counterexample": "non-null branch returns0",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 실패합니다",
+        "issues": [
+          {
+            "line": 91,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              91
+            ],
+            "trigger": "compute(None)을 호출하는 경우",
+            "consequence": "compute(None)을 호출하면 2줄의 조건이 거짓이 되어 91줄에 도달하고, None에 len()을 적용할 수 없어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 실패합니다",
+            "evidence": "1줄의 타입 힌트가 x를 str | None으로 허용하고, 2줄은 x가 None이면 반환하지 않으므로 91줄의 len(x)가 None에 대해 실행됩니다.",
+            "suggestion": "None일 때 반환할 값을 정하고, 91줄 이전에 None 분기를 추가하거나 2줄의 조건을 명시적 None 검사로 유지하세요.",
+            "file_path": "main.py",
+            "key": "211eaf43d78102e30fe4ee2291131c0904dfb3346acbe91fd0ce4e636826c5a2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.234
+    },
+    {
+      "id": "long-function-normal-8k",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "9e9f40b4b6db843a5e070e96b5381a9a4a6fd4eb3a3809e739c340505ab0d509",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 142,
+        "retrieval_seconds": 0.188,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 8192,
+          "max_input_bytes": 24576,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 4634,
+      "output_tokens": 86,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null rejected with return0 before len",
+          "counterexample": "string length is valid",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "함수 시그니처와 호출부, x의 타입 계약이 제공되지 않아 입력 유형과 경계 조건은 확인하지 못했으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 1,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [
+            {
+              "file_id": "f1",
+              "reason": "CONTEXT_LIMIT"
+            },
+            {
+              "file_id": "f1",
+              "reason": "FUNCTION_PARTIAL"
+            }
+          ],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 8192,
+            "max_input_bytes": 24576,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.391
+    },
+    {
+      "id": "long-function-normal-16k",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "9e9f40b4b6db843a5e070e96b5381a9a4a6fd4eb3a3809e739c340505ab0d509",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 12418,
+        "retrieval_seconds": 0.156,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 16384,
+          "max_input_bytes": 49152,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 7235,
+      "output_tokens": 105,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null rejected with return0 before len",
+          "counterexample": "string length is valid",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "변경된 줄(91)은 None 가드 이후의 정상 경로이며, 호출부와 x의 실제 입력 계약은 제공되지 않았습니다. 테스트는 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "long-function-bug-8k",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "8bdbbd44773627fd78784d8807cc8aed295e6caa1f40b9f06129db4f0d415f38",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 142,
+        "retrieval_seconds": 0.172,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 8192,
+          "max_input_bytes": 24576,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 4634,
+      "output_tokens": 87,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null branch reaches len(x)",
+          "counterexample": "non-null branch returns0",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "x의 타입과 호출부, len이 정의된 방식이 제공되지 않아 입력 계약과 예외 경로는 확인하지 못했으며 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 1,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [
+            {
+              "file_id": "f1",
+              "reason": "CONTEXT_LIMIT"
+            },
+            {
+              "file_id": "f1",
+              "reason": "FUNCTION_PARTIAL"
+            }
+          ],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 8192,
+            "max_input_bytes": 24576,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false
+      },
+      "seconds": 1.141
+    },
+    {
+      "id": "long-function-bug-16k",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "8bdbbd44773627fd78784d8807cc8aed295e6caa1f40b9f06129db4f0d415f38",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 12422,
+        "retrieval_seconds": 0.156,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 16384,
+          "max_input_bytes": 49152,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 12864,
+      "output_tokens": 381,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 실패합니다",
+        "issues": [
+          {
+            "line": 91,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              91
+            ],
+            "trigger": "compute(None)을 호출하는 경우",
+            "consequence": "2줄의 조건이 거짓이 되어 91줄에 도달하고, None에 대해 len()을 호출하므로 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 실패합니다",
+            "evidence": "1줄의 타입 힌트가 x가 None일 수 있음을 명시하고, 2줄은 x가 None이 아닐 때만 반환하므로 None은 91줄까지 도달합니다. 91줄은 그 x로 len()을 호출합니다.",
+            "suggestion": "None일 때의 반환값(예: 0)을 정하고 91줄 이전에 None 분기를 추가하거나, None을 허용하지 않을 계약이라면 타입 힌트와 검증을 일치시키세요.",
+            "file_path": "main.py",
+            "key": "211eaf43d78102e30fe4ee2291131c0904dfb3346acbe91fd0ce4e636826c5a2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null branch reaches len(x)",
+          "counterexample": "non-null branch returns0",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 실패합니다",
+        "issues": [
+          {
+            "line": 91,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              91
+            ],
+            "trigger": "compute(None)을 호출하는 경우",
+            "consequence": "compute(None)을 호출하면 2줄의 조건이 거짓이라 91줄에 도달하고, None에 대해 len()을 호출하므로 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 실패합니다",
+            "evidence": "1줄의 타입 힌트가 x가 None일 수 있음을 명시하고, 2줄은 x가 None이 아닐 때만 반환하므로 None은 91줄까지 도달합니다. 91줄은 그 x로 len()을 호출합니다.",
+            "suggestion": "None일 때의 반환값(예: 0)을 정하고 91줄 이전에 None 분기를 추가하거나, None을 허용하지 않을 계약이라면 타입 힌트와 검증을 일치시키세요.",
+            "file_path": "main.py",
+            "key": "211eaf43d78102e30fe4ee2291131c0904dfb3346acbe91fd0ce4e636826c5a2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 2.937
+    },
+    {
+      "id": "long-function-normal-8k",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "9e9f40b4b6db843a5e070e96b5381a9a4a6fd4eb3a3809e739c340505ab0d509",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 142,
+        "retrieval_seconds": 0.188,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 8192,
+          "max_input_bytes": 24576,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 4634,
+      "output_tokens": 98,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null rejected with return0 before len",
+          "counterexample": "string length is valid",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "len(x)의 인자 x에 대한 타입·계약과 호출부가 제공되지 않아, 길이를 지원하지 않는 객체가 전달되는 경우는 확인하지 못했습니다. 테스트 실행 검증도 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 1,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [
+            {
+              "file_id": "f1",
+              "reason": "CONTEXT_LIMIT"
+            },
+            {
+              "file_id": "f1",
+              "reason": "FUNCTION_PARTIAL"
+            }
+          ],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 8192,
+            "max_input_bytes": 24576,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.281
+    },
+    {
+      "id": "long-function-normal-16k",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "9e9f40b4b6db843a5e070e96b5381a9a4a6fd4eb3a3809e739c340505ab0d509",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 12418,
+        "retrieval_seconds": 0.156,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 16384,
+          "max_input_bytes": 49152,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 7235,
+      "output_tokens": 104,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null rejected with return0 before len",
+          "counterexample": "string length is valid",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "변경된 줄(91)은 None 가드 이후의 정상 경로이며, 호출부와 입력 계약은 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "long-function-bug-8k",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "8bdbbd44773627fd78784d8807cc8aed295e6caa1f40b9f06129db4f0d415f38",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": false,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 142,
+        "retrieval_seconds": 0.172,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 8192,
+          "max_input_bytes": 24576,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 4634,
+      "output_tokens": 83,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null branch reaches len(x)",
+          "counterexample": "non-null branch returns0",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "함수 시그니처, x의 타입/None 가능성, 호출부가 제공되지 않아 입력 계약을 확인하지 못했으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 1,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [
+            {
+              "file_id": "f1",
+              "reason": "CONTEXT_LIMIT"
+            },
+            {
+              "file_id": "f1",
+              "reason": "FUNCTION_PARTIAL"
+            }
+          ],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 8192,
+            "max_input_bytes": 24576,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 1,
+        "unexpected": 0,
+        "passed": false
+      },
+      "seconds": 0.859
+    },
+    {
+      "id": "long-function-bug-16k",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {
+        "candidate_digest": "8bdbbd44773627fd78784d8807cc8aed295e6caa1f40b9f06129db4f0d415f38",
+        "candidate_count": 1,
+        "candidate_hit": true,
+        "selected_hit": true,
+        "selected_paths": [
+          "main.py"
+        ],
+        "input_bytes": 12422,
+        "retrieval_seconds": 0.156,
+        "ranking": {
+          "mode": "rules",
+          "candidate_count": 1,
+          "fetched_files": 0,
+          "query_count": 1,
+          "omitted_queries": 0,
+          "protected_candidates": 0,
+          "per_file_bytes": 16384,
+          "max_input_bytes": 49152,
+          "queries": [
+            {
+              "mode": "rules"
+            }
+          ],
+          "duration_ms": 0,
+          "truncated_documents": 0,
+          "protected_missing": 0
+        },
+        "github_reads": 3
+      },
+      "input_tokens": 12863,
+      "output_tokens": 381,
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 실패합니다",
+        "issues": [
+          {
+            "line": 91,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              91
+            ],
+            "trigger": "compute(None)을 호출하는 경우",
+            "consequence": "2줄의 조건이 거짓이 되어 91줄에 도달하고, None에 len()을 적용할 수 없어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 실패합니다",
+            "evidence": "1줄의 타입 힌트가 x를 str | None으로 허용하고, 2줄은 x가 None이 아닐 때만 반환하므로 None은 91줄까지 도달합니다. 91줄은 그 x로 len(x)를 계산합니다.",
+            "suggestion": "None일 때의 반환값(예: 0)을 정하고 91줄 이전에 None 분기를 추가하거나, None을 허용하지 않을 계약이라면 타입 힌트와 검증을 일치시키세요.",
+            "file_path": "main.py",
+            "key": "211eaf43d78102e30fe4ee2291131c0904dfb3346acbe91fd0ce4e636826c5a2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "draft_grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "null branch reaches len(x)",
+          "counterexample": "non-null branch returns0",
+          "reject": "claim that all inputs fail or invent missing guards"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 입력에서 len(None)으로 실패합니다",
+        "issues": [
+          {
+            "line": 91,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              91
+            ],
+            "trigger": "compute(None)을 호출하는 경우",
+            "consequence": "compute(None)을 호출하면 2줄의 조건이 거짓이 되어 91줄에 도달하고, None에 len()을 적용할 수 없어 TypeError가 발생합니다.",
+            "assumptions": [],
+            "title": "None 입력에서 len(None)으로 실패합니다",
+            "evidence": "1줄의 타입 힌트가 x를 str | None으로 허용하고, 2줄은 x가 None이 아닐 때만 반환하므로 None은 91줄까지 도달합니다. 91줄은 그 x로 len(x)를 계산합니다.",
+            "suggestion": "None일 때의 반환값(예: 0)을 정하고 91줄 이전에 None 분기를 추가하거나, None을 허용하지 않을 계약이라면 타입 힌트와 검증을 일치시키세요.",
+            "file_path": "main.py",
+            "key": "211eaf43d78102e30fe4ee2291131c0904dfb3346acbe91fd0ce4e636826c5a2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "main.py",
+              "provided_lines": 91,
+              "role": "changed"
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0,
+          "context_notes": [],
+          "retrieval": {
+            "mode": "rules",
+            "candidate_count": 1,
+            "fetched_files": 0,
+            "query_count": 1,
+            "omitted_queries": 0,
+            "protected_candidates": 0,
+            "per_file_bytes": 16384,
+            "max_input_bytes": 49152,
+            "queries": [
+              {
+                "mode": "rules"
+              }
+            ],
+            "duration_ms": 0,
+            "truncated_documents": 0,
+            "protected_missing": 0
+          }
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "seconds": 3.265
+    }
+  ],
+  "scope": "synthetic only; no product DB writes or automatic retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "ba81026633132d9d05625d666a2ebcc5c972ee73cd64e8db585f0e60c9848ebf",
+    "app/domain/review/provider.py": "086a41d0b622704f58b30030e8e86c13819afee11ca8f29f42fb94161f2d8e67",
+    "app/domain/review/retrieval.py": "11f96976b85b1eac1e7bef15ba9ac4288a632582d345daf6127a2e6a43fcb9ac",
+    "app/domain/review/context_selection.py": "1353e06fc611e8e1c6ec1c914bbc48fa8364f8310c6d3d06bbecc7c2b289ec5a",
+    "app/domain/review/context_plan.py": "cf2e1d03ac8a3686f620098c1cabc56ddf28652a6d199dc93c9d0b5c5dc79777",
+    "app/domain/review/verification.py": "1bfe49a3b64c944ba1f6fa864a075dfcef566fd8036aa1b2988bd65f04649fe4",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186"
+  },
+  "finished_at": "2026-09-27T15:20:55.077244+00:00",
+  "summary": {
+    "attempts": 15,
+    "reviews": 12,
+    "validated": 12,
+    "automatic_passed": 9,
+    "input_tokens": 88074,
+    "output_tokens": 1976,
+    "authorized_attempts_used": 969
+  }
+}

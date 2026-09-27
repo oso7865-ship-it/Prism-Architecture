@@ -1,0 +1,385 @@
+{
+  "at": "2026-09-27T17:15:20.803340+00:00",
+  "start_used": 1059,
+  "attempts": 293,
+  "used": 1352,
+  "remaining": 1648,
+  "input_tokens_observed": 1147951,
+  "output_tokens_observed": 53812,
+  "runs": [
+    {
+      "run": "recall-core-baseline",
+      "prompt": "rh1-d634ca5b77229914",
+      "verification": false,
+      "summary": {
+        "attempts": 18,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 15,
+        "input_tokens": 90498,
+        "output_tokens": 2611,
+        "authorized_attempts_used": 1077
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 3,
+        "missed_defects": 3,
+        "normal_reviews": 12,
+        "normal_false_positives": 0,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 3,
+        "duplicate_or_off_target": 0,
+        "scope": "location_only; semantic review required",
+        "recall": 0.5
+      },
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-candidate",
+      "prompt": "rh1-618242a05e31a27c",
+      "verification": false,
+      "summary": {
+        "attempts": 18,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 15,
+        "input_tokens": 77412,
+        "output_tokens": 3945,
+        "authorized_attempts_used": 1095
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 5,
+        "missed_defects": 1,
+        "normal_reviews": 12,
+        "normal_false_positives": 2,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 1,
+        "duplicate_or_off_target": 2,
+        "scope": "location_only; semantic review required",
+        "recall": 0.8333333333333334
+      },
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-diagnostic",
+      "prompt": "diagnostic-0af5fe2b6d34a356",
+      "verification": false,
+      "summary": {
+        "attempts": 6,
+        "reviews": 6,
+        "validated": 6,
+        "automatic_passed": 0,
+        "input_tokens": 5968,
+        "output_tokens": 1130,
+        "authorized_attempts_used": 1101
+      },
+      "quality_metrics": null,
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-values",
+      "prompt": "rh1-50b502f865db595b",
+      "verification": false,
+      "summary": {
+        "attempts": 18,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 15,
+        "input_tokens": 79950,
+        "output_tokens": 4433,
+        "authorized_attempts_used": 1119
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 6,
+        "missed_defects": 0,
+        "normal_reviews": 12,
+        "normal_false_positives": 3,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 0,
+        "duplicate_or_off_target": 3,
+        "scope": "location_only; semantic review required",
+        "recall": 1.0
+      },
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-verified",
+      "prompt": "rh1-50b502f865db595b",
+      "verification": true,
+      "summary": {
+        "attempts": 27,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 18,
+        "input_tokens": 106828,
+        "output_tokens": 5404,
+        "authorized_attempts_used": 1146
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 6,
+        "missed_defects": 0,
+        "normal_reviews": 12,
+        "normal_false_positives": 0,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 0,
+        "duplicate_or_off_target": 0,
+        "scope": "location_only; semantic review required",
+        "recall": 1.0
+      },
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-witness",
+      "prompt": "rh1-7249b7b76099ffd4",
+      "verification": true,
+      "summary": {
+        "attempts": 26,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 16,
+        "input_tokens": 107395,
+        "output_tokens": 5650,
+        "authorized_attempts_used": 1172
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 5,
+        "missed_defects": 1,
+        "normal_reviews": 12,
+        "normal_false_positives": 0,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 1,
+        "draft_missed": 0,
+        "duplicate_or_off_target": 1,
+        "scope": "location_only; semantic review required",
+        "recall": 0.8333333333333334
+      },
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-compact",
+      "prompt": "rh1-a8990c829e945230",
+      "verification": true,
+      "summary": {
+        "attempts": 24,
+        "reviews": 18,
+        "validated": 13,
+        "automatic_passed": 11,
+        "input_tokens": 74589,
+        "output_tokens": 5686,
+        "authorized_attempts_used": 1196
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 4,
+        "missed_defects": 2,
+        "normal_reviews": 12,
+        "normal_false_positives": 1,
+        "question_items": 0,
+        "invalid_reviews": 5,
+        "verifier_removed_expected": 1,
+        "draft_missed": 0,
+        "duplicate_or_off_target": 1,
+        "scope": "location_only; semantic review required",
+        "recall": 0.6666666666666666
+      },
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-core-operators",
+      "prompt": "rh1-5288a4f4de305498",
+      "verification": true,
+      "summary": {
+        "attempts": 28,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 18,
+        "input_tokens": 113627,
+        "output_tokens": 5665,
+        "authorized_attempts_used": 1224
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 6,
+        "missed_defects": 0,
+        "normal_reviews": 12,
+        "normal_false_positives": 0,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 0,
+        "duplicate_or_off_target": 0,
+        "scope": "location_only; semantic review required",
+        "recall": 1.0
+      },
+      "semantic_gate": {
+        "status": "FAIL",
+        "blockers": [
+          {
+            "id": "ca-before",
+            "repeat": 1,
+            "reason": "SEMANTIC_REVIEW_NOT_PASSED"
+          },
+          {
+            "id": "ca-before",
+            "repeat": 2,
+            "reason": "SEMANTIC_REVIEW_NOT_PASSED"
+          },
+          {
+            "id": "ca-before",
+            "repeat": 3,
+            "reason": "SEMANTIC_REVIEW_NOT_PASSED"
+          }
+        ]
+      }
+    },
+    {
+      "run": "recall-holdout",
+      "prompt": "rh1-5288a4f4de305498",
+      "verification": true,
+      "summary": {
+        "attempts": 36,
+        "reviews": 24,
+        "validated": 24,
+        "automatic_passed": 24,
+        "input_tokens": 131995,
+        "output_tokens": 5475,
+        "authorized_attempts_used": 1260
+      },
+      "quality_metrics": {
+        "expected_defects": 12,
+        "found_defects": 12,
+        "missed_defects": 0,
+        "normal_reviews": 12,
+        "normal_false_positives": 0,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 0,
+        "duplicate_or_off_target": 0,
+        "scope": "location_only; semantic review required",
+        "recall": 1.0
+      },
+      "semantic_gate": {
+        "status": "PASS",
+        "blockers": []
+      }
+    },
+    {
+      "run": "recall-regression",
+      "prompt": "rh1-5288a4f4de305498",
+      "verification": true,
+      "summary": {
+        "attempts": 36,
+        "reviews": 22,
+        "validated": 22,
+        "automatic_passed": 22,
+        "input_tokens": 133766,
+        "output_tokens": 5931,
+        "authorized_attempts_used": 1296
+      },
+      "quality_metrics": null,
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-boundaries",
+      "prompt": "rh1-5288a4f4de305498",
+      "verification": true,
+      "summary": {
+        "attempts": 35,
+        "reviews": 24,
+        "validated": 24,
+        "automatic_passed": 23,
+        "input_tokens": 125298,
+        "output_tokens": 5044,
+        "authorized_attempts_used": 1331
+      },
+      "quality_metrics": null,
+      "semantic_gate": {
+        "status": "NOT_FULLY_ASSESSED"
+      }
+    },
+    {
+      "run": "recall-baseline-verified",
+      "prompt": "rh1-d634ca5b77229914",
+      "verification": true,
+      "summary": {
+        "attempts": 21,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 15,
+        "input_tokens": 100625,
+        "output_tokens": 2838,
+        "authorized_attempts_used": 1352
+      },
+      "quality_metrics": {
+        "expected_defects": 6,
+        "found_defects": 3,
+        "missed_defects": 3,
+        "normal_reviews": 12,
+        "normal_false_positives": 0,
+        "question_items": 0,
+        "invalid_reviews": 0,
+        "provider_failures": 0,
+        "format_failures": 0,
+        "evidence_validation_failures": 0,
+        "verifier_removed_expected": 0,
+        "draft_missed": 3,
+        "duplicate_or_off_target": 0,
+        "scope": "location_only; semantic review required",
+        "recall": 0.5
+      },
+      "semantic_gate": {
+        "status": "FAIL",
+        "blockers": [
+          {
+            "id": "ca-before",
+            "repeat": 1,
+            "reason": "AUTOMATIC_CHECK_FAILED"
+          },
+          {
+            "id": "ca-before",
+            "repeat": 2,
+            "reason": "AUTOMATIC_CHECK_FAILED"
+          },
+          {
+            "id": "ca-before",
+            "repeat": 3,
+            "reason": "AUTOMATIC_CHECK_FAILED"
+          }
+        ]
+      }
+    }
+  ],
+  "adoption": "FAIL",
+  "runtime_prompt_retained": "rh1-d634ca5b77229914",
+  "reason": "Candidate location recall passed but causal explanations failed 3/6 core defect reviews; boundary regression also missed range(0,0,0). Candidates archived; production documents restored byte-for-byte."
+}

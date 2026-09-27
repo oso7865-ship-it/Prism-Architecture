@@ -18,6 +18,12 @@
 
 검증 증거: [백엔드 CI](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36039579708)는 PostgreSQL 17 마이그레이션 왕복과 테스트 5개 통과, [프론트 CI](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36039823516)는 빌드·타입 검사와 제품 테스트 3개 통과다. 실제 제품 배포는 아니다.
 
+## 2026-09-28 문서 분리·전체 통합
+
+[ADR-ARCH-003](../adr/architecture/ADR-ARCH-003-central-documentation.md)이 문서 게시 위치를 변경한다. 이전 개별 저장소 부착 기록은 당시 이력이다. 개발 README/AGENTS/하네스/Report는 [중앙 기록](../../../records/README.md)에 보존한다. 구현 저장소는 architecture.json revision을 따라 `node scripts/restore-docs.mjs <architecture clone 경로>`로 로컬 문서를 복원한다. 문서 복원 없이 코드 테스트·실행이 가능하다.
+
+현재 로그인·팀·저장소·PR·정적 점검·AI 리뷰 핵심 흐름과 UI 개선이 구현됐다. 모델 품질 FAIL은 유지하고 실패 지침 후보를 활성화하지 않는다. 코드 병합/CI와 공개 배포는 별개다. 최신 병합 SHA는 중앙 병합 Report를 따른다. 아래는 날짜별 이력이다.
+
 ## 2026-09-26 현재 작업
 
 이전 문단은 기반 단계의 이력이다. GitHub 로그인·프로필·refresh·logout은 구현·게시·CI 및 사용자 기본 흐름 확인을 마쳤다. 구현 저장소는 dev, 이 아키텍처 저장소는 main에서 작업한다.

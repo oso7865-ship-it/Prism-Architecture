@@ -3,11 +3,11 @@
 > ID: `ADR-REVIEW-005` · 소유: `REVIEW` · 기준: `2026-09-26`
 > 읽는 때: AI 출력 허용 기준·근거 필드 변경
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-26`
 - 근거: 사용자의 남은 작업 1~3번 구현 위임, 기존 유료 평가 문맥 부족 오탐
 - 대체하는 ADR: 없음 (ADR-REVIEW-004의 basis 계약을 구체화)
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-REVIEW-006](ADR-REVIEW-006-review-workflow.md)
 
 ## 배경
 

@@ -1,0 +1,1045 @@
+{
+  "started_at": "2026-09-27T16:55:43.709342+00:00",
+  "model": "deepseek-flash",
+  "mode": "product-non-thinking",
+  "verification_enabled": false,
+  "verification_only": false,
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "prompt_version": "rh1-50b502f865db595b",
+  "prompt_profile": "product",
+  "frozen_baseline_manifest": null,
+  "policy_version": "BOUNDED_CODE_V4",
+  "corpus_sha256": "ea1bfd85c034839cd0a0fcfb2c0ecc2da12d682ecf6b48cefdfa9d4e9222c91a",
+  "max_calls": 18,
+  "repeats": 3,
+  "cases": [
+    {
+      "id": "length-before",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "9dd794ec6e755a4dee4c55ac1d55bbe1cbb70e86a8de7108638cf160391d2ec6",
+      "payload_bytes": 999,
+      "input_tokens": 4323,
+      "output_tokens": 383,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Content-Length must equal transmitted UTF-8 byte count, including non-ASCII strings; bytes must not be encoded again.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5,
+              6,
+              9,
+              11
+            ],
+            "trigger": "prepare에 비ASCII 문자열(예: \"한글\")이 전달될 때",
+            "consequence": "content_length는 문자 수(2)를 반환하지만 wire는 UTF-8로 인코딩되어 6바이트가 되므로, 11줄의 assert request[\"Content-Length\"] == len(request[\"body\"])가 실패합니다. Content-Length가 실제 전송 바이트 수와 불일치합니다.",
+            "assumptions": [],
+            "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치합니다",
+            "evidence": "5줄은 str을 UTF-8로 인코딩해 wire를 만들고, 6줄은 인코딩 전 원본 body로 content_length를 호출합니다. 2줄의 len(body)는 str에 대해 문자 수를 세므로 9줄의 \"한글\" 케이스에서 11줄의 바이트 길이 비교와 어긋납니다.",
+            "suggestion": "content_length가 인코딩된 바이트 수를 반환하도록 하거나, prepare에서 wire를 기준으로 길이를 계산하세요.",
+            "file_path": "length.py",
+            "key": "ef54974c641a04756796e6c1e84839c353c7c07ec9e0cd56973b4fb87dca31db"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 코드만 검토했으며 테스트를 실행하지 않았습니다. content_length의 다른 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.704
+    },
+    {
+      "id": "length-after",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4df51f31477fcdd877b7feacdb996c025a27fda89ceb4b2bd250bfd69b9777e2",
+      "payload_bytes": 1052,
+      "input_tokens": 4339,
+      "output_tokens": 86,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Content-Length must equal transmitted UTF-8 byte count, including non-ASCII strings; bytes must not be encoded again.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 f1의 11개 줄만 검토했으며, 실제 호출부나 다른 모듈, 실행 검증은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.0
+    },
+    {
+      "id": "ca-before",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b2958de7c0151e6adbb7ec8d13da05f741e21d0dfb40a4443cd395005d12c476",
+      "payload_bytes": 1727,
+      "input_tokens": 4548,
+      "output_tokens": 452,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "An empty CURL_CA_BUNDLE must preserve explicit verification True. Missing values may become None but session merge restores True. Explicit False and nonempty paths remain valid.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열 CA 번들 값이 True 대신 빈 문자열로 반환됩니다",
+        "issues": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              10,
+              15,
+              16
+            ],
+            "trigger": "env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE 키가 빈 문자열로 존재하고 verify가 True 또는 None일 때",
+            "consequence": "env.get(...)이 빈 문자열을 반환하면 or 연산이 다음 피연산자로 넘어가고, 두 값 모두 빈 문자열이면 마지막 피연산자인 빈 문자열이 그대로 verify에 할당됩니다. 이후 merge_setting(verify, session_verify)에서 session_verify가 None이면 빈 문자열이 반환되어 15, 16줄의 `is True` 단언이 실패합니다.",
+            "assumptions": [],
+            "title": "빈 문자열 CA 번들 값이 True 대신 빈 문자열로 반환됩니다",
+            "evidence": "10줄은 `env.get(...) or env.get(...)`로 빈 문자열을 falsy로 취급해 다음 값으로 넘어가며, 두 값이 모두 빈 문자열이면 빈 문자열 자체를 반환합니다. 15, 16줄은 이 경우 True를 기대합니다.",
+            "suggestion": "빈 문자열을 미설정으로 간주하려는 의도라면 10줄에서 or로 이어 붙인 결과가 빈 문자열일 때 True로 대체하도록 명시적으로 처리하고, 그렇지 않다면 15, 16줄의 기대값을 실제 계약에 맞게 조정하세요.",
+            "file_path": "settings.py",
+            "key": "937fe34d22e8f06d2b9aa357e45e5c13100e5f2d105cceedbde2f6a1c3bdbe7f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. merge_setting의 호출부와 session_verify의 실제 전달값은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 18
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.75
+    },
+    {
+      "id": "ca-after",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4b35b062cca3fc3e0ef0385fa7f3f70345823ebe221f8b94198bb87f000216fc",
+      "payload_bytes": 1737,
+      "input_tokens": 4550,
+      "output_tokens": 94,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "An empty CURL_CA_BUNDLE must preserve explicit verification True. Missing values may become None but session merge restores True. Explicit False and nonempty paths remain valid.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 f1만 검토했으며 테스트를 실행하지 않았습니다. merge_setting의 호출부와 session_verify의 실제 값 범위는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 18
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.016
+    },
+    {
+      "id": "length-bytes-normal",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "a8f6abc15d4d18ed7bf5140f897f1f3598747aab619f6f62230f422178e471c4",
+      "payload_bytes": 808,
+      "input_tokens": 4261,
+      "output_tokens": 90,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Only bytes accepted and sent unchanged; len(bytes) already counts bytes.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "content_length의 호출부는 prepare 한 곳만 제공되었고, 다른 호출부나 실제 HTTP 전송 계층은 확인하지 못했습니다. 테스트 실행 검증은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.25
+    },
+    {
+      "id": "ca-explicit-false-normal",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b8685ae33be93d587091c61e0a6ef1edb26c091baf8410f6ef73084313da5417",
+      "payload_bytes": 1978,
+      "input_tokens": 4629,
+      "output_tokens": 354,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "The resolver must preserve an explicit False choice and accept CA path strings; do not invent a bool-only return contract.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: verify=False일 때 환경 변수 CA 번들이 무시됩니다",
+        "issues": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              9,
+              10,
+              18,
+              21
+            ],
+            "trigger": "verify=False로 호출하면서 env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE이 설정된 경우",
+            "consequence": "9줄의 조건이 False일 때 10줄을 건너뛰므로 env의 CA 번들 경로가 무시되고 verify=False가 그대로 반환됩니다. 이는 18/21줄 테스트가 요구하는 명시적 비활성화 동작과 일치하지만, 환경 변수로 CA 번들을 지정한 호출자에게는 설정이 적용되지 않습니다.",
+            "assumptions": [],
+            "title": "verify=False일 때 환경 변수 CA 번들이 무시됩니다",
+            "evidence": "9줄은 verify가 True이거나 None일 때만 10줄의 env 조회를 수행합니다. 18줄과 21줄은 verify=False일 때 env에 CA 번들이 있어도 False를 기대합니다.",
+            "suggestion": "verify=False일 때 환경 변수 CA 번들을 무시하는 것이 의도된 계약인지 확인하고, 의도와 다르면 9줄 조건을 조정하세요.",
+            "file_path": "settings.py",
+            "key": "db414cba403f1f97b67cd175e404626ba42c0d2e69d48fca40b0353468082b91"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 함수와 테스트만 검토했으며 실제 호출부나 실행 검증은 포함되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 21
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 2.282
+    },
+    {
+      "id": "length-before",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "9dd794ec6e755a4dee4c55ac1d55bbe1cbb70e86a8de7108638cf160391d2ec6",
+      "payload_bytes": 999,
+      "input_tokens": 4323,
+      "output_tokens": 377,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Content-Length must equal transmitted UTF-8 byte count, including non-ASCII strings; bytes must not be encoded again.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: str 본문의 Content-Length가 인코딩된 바이트 수와 불일치합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5,
+              6,
+              9,
+              11
+            ],
+            "trigger": "prepare에 비ASCII 문자열(예: \"한글\")을 전달하면",
+            "consequence": "content_length는 len(body)로 문자 수 2를 반환하지만, wire는 UTF-8 인코딩으로 6바이트가 되어 Content-Length 헤더가 실제 전송 바이트 수와 다릅니다. 테스트 11줄의 assert도 이 경우 실패합니다.",
+            "assumptions": [],
+            "title": "str 본문의 Content-Length가 인코딩된 바이트 수와 불일치합니다",
+            "evidence": "2줄은 str에 대해 문자 수를 반환하고, 5줄은 str을 UTF-8 바이트로 인코딩하며, 6줄은 인코딩 전 body로 길이를 계산합니다. 9줄의 \"한글\" 케이스에서 11줄의 assert가 성립하지 않습니다.",
+            "suggestion": "content_length가 prepare에서 실제 전송되는 wire의 바이트 길이를 반영하도록, 인코딩된 바이트에 대해 len을 계산하거나 prepare에서 wire를 기준으로 길이를 산출하세요.",
+            "file_path": "length.py",
+            "key": "4d134bee3bafe42b875fa2f50dbb308f807d3e1d7c5804d96a17494787120ab0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일만 검토했으며 테스트를 실행하지 않았습니다. content_length의 다른 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.5
+    },
+    {
+      "id": "length-after",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4df51f31477fcdd877b7feacdb996c025a27fda89ceb4b2bd250bfd69b9777e2",
+      "payload_bytes": 1052,
+      "input_tokens": 4339,
+      "output_tokens": 96,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Content-Length must equal transmitted UTF-8 byte count, including non-ASCII strings; bytes must not be encoded again.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. content_length의 다른 호출부나 body에 대한 외부 입력 계약은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.0
+    },
+    {
+      "id": "ca-before",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b2958de7c0151e6adbb7ec8d13da05f741e21d0dfb40a4443cd395005d12c476",
+      "payload_bytes": 1727,
+      "input_tokens": 4548,
+      "output_tokens": 430,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "An empty CURL_CA_BUNDLE must preserve explicit verification True. Missing values may become None but session merge restores True. Explicit False and nonempty paths remain valid.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 CA 번들 환경 변수가 True 대신 빈 문자열을 반환합니다",
+        "issues": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              10,
+              15,
+              16
+            ],
+            "trigger": "env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE 키가 빈 문자열로 존재하고 verify가 True일 때",
+            "consequence": "10줄의 `or` 연산은 빈 문자열을 falsy로 평가해 다음 피연산자로 넘어가고, 두 값이 모두 빈 문자열이면 마지막 피연산자인 빈 문자열 \"\"을 그대로 반환합니다. 그 결과 verify는 None이 아닌 \"\"가 되어 11줄의 merge_setting에서 session_value가 None이면 \"\"가 반환되므로, 15·16줄의 `is True` 단언이 실패합니다.",
+            "assumptions": [],
+            "title": "빈 CA 번들 환경 변수가 True 대신 빈 문자열을 반환합니다",
+            "evidence": "10줄은 `env.get(...) or env.get(...)`로 두 값을 합치며, 두 값이 모두 빈 문자열이면 `or`는 마지막 피연산자 \"\"를 그대로 반환합니다. 15·16줄은 이 경우 True를 요구합니다.",
+            "suggestion": "빈 문자열을 미설정과 동일하게 취급하려면 10줄에서 결과가 falsy일 때 True로 대체하거나, 각 env.get 결과를 명시적으로 검사해 빈 문자열을 걸러내세요.",
+            "file_path": "settings.py",
+            "key": "3c33a6f5de3b9581e5a2137de83fb1fa0899d702fcabdf33800dde8ce3689347"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. merge_setting의 실제 호출부와 session_verify의 출처는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 18
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.829
+    },
+    {
+      "id": "ca-after",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4b35b062cca3fc3e0ef0385fa7f3f70345823ebe221f8b94198bb87f000216fc",
+      "payload_bytes": 1737,
+      "input_tokens": 4550,
+      "output_tokens": 110,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "An empty CURL_CA_BUNDLE must preserve explicit verification True. Missing values may become None but session merge restores True. Explicit False and nonempty paths remain valid.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 f1만 검토했으며 테스트를 실행하지 않았습니다. `merge_setting`의 호출부와 `session_verify`의 실제 값 분포는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 18
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.297
+    },
+    {
+      "id": "length-bytes-normal",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "a8f6abc15d4d18ed7bf5140f897f1f3598747aab619f6f62230f422178e471c4",
+      "payload_bytes": 808,
+      "input_tokens": 4261,
+      "output_tokens": 85,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Only bytes accepted and sent unchanged; len(bytes) already counts bytes.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "content_length와 prepare의 호출부, body의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 0.937
+    },
+    {
+      "id": "ca-explicit-false-normal",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b8685ae33be93d587091c61e0a6ef1edb26c091baf8410f6ef73084313da5417",
+      "payload_bytes": 1978,
+      "input_tokens": 4629,
+      "output_tokens": 437,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "The resolver must preserve an explicit False choice and accept CA path strings; do not invent a bool-only return contract.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 명시적 False 비활성화 경로가 환경 변수로 덮어써지지 않음",
+        "issues": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              9,
+              10,
+              18,
+              21
+            ],
+            "trigger": "environment_settings({\"CURL_CA_BUNDLE\": \"/ca.pem\"}, False)를 호출할 때",
+            "consequence": "verify가 False이므로 9줄 조건이 거짓이 되어 10줄이 실행되지 않고, verify는 False로 유지되어 11줄 merge_setting(False, session_verify)이 호출됩니다. session_verify 기본값 True이므로 merge_setting은 4-6줄에서 request_value(False)를 반환합니다. 결과는 False로 테스트 기대와 일치합니다.",
+            "assumptions": [],
+            "title": "명시적 False 비활성화 경로가 환경 변수로 덮어써지지 않음",
+            "evidence": "9줄은 verify가 True이거나 None일 때만 10줄을 실행하므로 False는 환경 변수 조회를 건너뜁니다. 18,21줄 테스트는 False 입력 시 False 반환을 요구하며 이 동작과 일치합니다.",
+            "suggestion": "현재 동작이 의도와 일치하므로 변경이 필요하지 않습니다. 다만 verify=False가 환경 변수보다 우선한다는 계약을 문서화하면 향후 혼동을 줄일 수 있습니다.",
+            "file_path": "settings.py",
+            "key": "9e45b8919e63a551dd7cf2aa03f6e57b85c523bbd9b12956064c4558e0982a2f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 f1만 검토했으며 merge_setting의 호출부와 실제 requests 라이브러리 연동은 확인하지 못했습니다. 테스트를 실행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 21
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 2.765
+    },
+    {
+      "id": "length-before",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "9dd794ec6e755a4dee4c55ac1d55bbe1cbb70e86a8de7108638cf160391d2ec6",
+      "payload_bytes": 999,
+      "input_tokens": 4323,
+      "output_tokens": 358,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Content-Length must equal transmitted UTF-8 byte count, including non-ASCII strings; bytes must not be encoded again.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: str 본문의 Content-Length가 인코딩된 바이트 수와 불일치합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              5,
+              6,
+              9,
+              11
+            ],
+            "trigger": "prepare에 비ASCII 문자열(예: \"한글\")을 전달하면",
+            "consequence": "content_length는 문자 수 2를 반환하지만 wire는 UTF-8로 인코딩되어 6바이트가 되므로, Content-Length가 실제 전송 바이트 수와 달라집니다. 테스트의 assert도 이 경우 실패합니다.",
+            "assumptions": [],
+            "title": "str 본문의 Content-Length가 인코딩된 바이트 수와 불일치합니다",
+            "evidence": "f1:2는 len(body)로 문자 수를 세고, f1:5는 str을 UTF-8 바이트로 인코딩하며, f1:6은 원본 body로 길이를 계산합니다. f1:9의 \"한글\"과 f1:11의 바이트 길이 비교가 이 불일치를 드러냅니다.",
+            "suggestion": "content_length가 prepare에서 실제 전송되는 wire 바이트를 기준으로 계산하도록 하거나, prepare에서 인코딩된 wire의 길이를 사용하세요.",
+            "file_path": "length.py",
+            "key": "4d134bee3bafe42b875fa2f50dbb308f807d3e1d7c5804d96a17494787120ab0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일만 검토했으며 테스트를 실행하지 않았습니다. content_length의 다른 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.406
+    },
+    {
+      "id": "length-after",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4df51f31477fcdd877b7feacdb996c025a27fda89ceb4b2bd250bfd69b9777e2",
+      "payload_bytes": 1052,
+      "input_tokens": 4339,
+      "output_tokens": 103,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Content-Length must equal transmitted UTF-8 byte count, including non-ASCII strings; bytes must not be encoded again.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 함수와 테스트만 검토했으며 실행 검증은 하지 않았습니다. content_length와 prepare의 외부 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 11
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.031
+    },
+    {
+      "id": "ca-before",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b2958de7c0151e6adbb7ec8d13da05f741e21d0dfb40a4443cd395005d12c476",
+      "payload_bytes": 1727,
+      "input_tokens": 4548,
+      "output_tokens": 409,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "An empty CURL_CA_BUNDLE must preserve explicit verification True. Missing values may become None but session merge restores True. Explicit False and nonempty paths remain valid.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 CA 번들 환경 변수가 True 대신 빈 문자열을 반환합니다",
+        "issues": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              10,
+              15,
+              16
+            ],
+            "trigger": "env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE 키가 빈 문자열로 존재하고 verify가 True일 때",
+            "consequence": "10줄의 `or` 연산은 빈 문자열을 falsy로 평가해 다음 후보로 넘어가고, 모든 후보가 빈 문자열이면 마지막 피연산자인 빈 문자열을 그대로 반환합니다. 그 결과 verify는 빈 문자열이 되어 11줄의 merge_setting에서 session_value가 None이 아닌 한 빈 문자열이 반환되므로, 15·16줄의 `is True` 단언과 불일치합니다.",
+            "assumptions": [],
+            "title": "빈 CA 번들 환경 변수가 True 대신 빈 문자열을 반환합니다",
+            "evidence": "10줄은 `env.get(...) or env.get(...)`로, 두 값이 모두 빈 문자열이면 빈 문자열을 반환합니다. 15·16줄은 이 경우 True를 기대합니다.",
+            "suggestion": "빈 문자열을 미설정으로 취급하려면 10줄에서 빈 문자열 결과를 True로 정규화하거나, 테스트가 기대하는 계약(빈 문자열 → True)을 명시적으로 구현하세요.",
+            "file_path": "settings.py",
+            "key": "3c33a6f5de3b9581e5a2137de83fb1fa0899d702fcabdf33800dde8ce3689347"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 HEAD 라인만 검토했으며 테스트를 실행하지 않았습니다. merge_setting의 호출부와 session_verify의 실제 값 분포는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 18
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 2.734
+    },
+    {
+      "id": "ca-after",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "4b35b062cca3fc3e0ef0385fa7f3f70345823ebe221f8b94198bb87f000216fc",
+      "payload_bytes": 1737,
+      "input_tokens": 4550,
+      "output_tokens": 110,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "An empty CURL_CA_BUNDLE must preserve explicit verification True. Missing values may become None but session merge restores True. Explicit False and nonempty paths remain valid.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 f1만 검토했으며 테스트를 실행하지 않았습니다. `merge_setting`의 호출부와 `session_verify`의 실제 값 분포는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 18
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.203
+    },
+    {
+      "id": "length-bytes-normal",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "a8f6abc15d4d18ed7bf5140f897f1f3598747aab619f6f62230f422178e471c4",
+      "payload_bytes": 808,
+      "input_tokens": 4261,
+      "output_tokens": 100,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "Only bytes accepted and sent unchanged; len(bytes) already counts bytes.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "content_length와 prepare의 호출부 및 실제 HTTP 전송 계층은 제공되지 않았으며, 테스트를 실행하거나 런타임 동작을 검증하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "length.py",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true,
+        "scope": "location_only"
+      },
+      "seconds": 1.171
+    },
+    {
+      "id": "ca-explicit-false-normal",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "retrieval": {},
+      "payload_sha256": "b8685ae33be93d587091c61e0a6ef1edb26c091baf8410f6ef73084313da5417",
+      "payload_bytes": 1978,
+      "input_tokens": 4629,
+      "output_tokens": 359,
+      "semantic_review": {
+        "status": "PENDING_MANUAL",
+        "rubric": {
+          "required_behavior": "The resolver must preserve an explicit False choice and accept CA path strings; do not invent a bool-only return contract.",
+          "reject": "unreachable trigger, wrong effect, invented contract, duplicate or generic question"
+        }
+      },
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 명시적 False는 환경 변수보다 우선합니다",
+        "issues": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              9,
+              10,
+              18,
+              21
+            ],
+            "trigger": "verify=False로 호출하면서 env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE이 설정된 경우",
+            "consequence": "9줄의 조건이 False이므로 10줄이 실행되지 않아 env 값이 무시되고 verify는 False로 유지됩니다. 이는 18, 21줄 테스트가 요구하는 명시적 비활성화 동작과 일치합니다.",
+            "assumptions": [],
+            "title": "명시적 False는 환경 변수보다 우선합니다",
+            "evidence": "9줄은 verify가 True이거나 None일 때만 10줄을 실행합니다. 18, 21줄은 env에 CA 번들이 있어도 verify=False이면 False를 기대합니다.",
+            "suggestion": "현재 동작이 의도된 계약이라면 변경하지 않아도 됩니다. 만약 환경 변수가 명시적 False보다 우선해야 한다면 9줄 조건과 테스트 기대값을 함께 조정하세요.",
+            "file_path": "settings.py",
+            "key": "06bdd483e83314041673e81b9e2980abc18d73ded8a23bf7f9fb7e0db15fd8ce"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일의 함수와 테스트만 검토했으며 실제 실행 검증이나 외부 호출부는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 21
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false,
+        "scope": "location_only"
+      },
+      "seconds": 2.547
+    }
+  ],
+  "scope": "authored synthetic/public-PR-derived evaluation; no product DB writes or retries",
+  "implementation_sha256": {
+    "app/domain/review/policy.py": "ba81026633132d9d05625d666a2ebcc5c972ee73cd64e8db585f0e60c9848ebf",
+    "app/domain/review/provider.py": "086a41d0b622704f58b30030e8e86c13819afee11ca8f29f42fb94161f2d8e67",
+    "app/domain/review/retrieval.py": "11f96976b85b1eac1e7bef15ba9ac4288a632582d345daf6127a2e6a43fcb9ac",
+    "app/domain/review/context_selection.py": "bdb75bd074a3ad2ec17256c56c9f66fd928e5e2881e2015a6b5d800cf4b569f9",
+    "app/domain/review/context_plan.py": "cf2e1d03ac8a3686f620098c1cabc56ddf28652a6d199dc93c9d0b5c5dc79777",
+    "app/domain/review/verification.py": "1bfe49a3b64c944ba1f6fa864a075dfcef566fd8036aa1b2988bd65f04649fe4",
+    "scripts/evaluation_thinking_provider.py": "e27b51cfd0f4b61dc23148b0f6a974f0383079ba7ad910d16e04993d05886186",
+    "scripts/recall_evaluation.py": "59b2bce2e615f0ad912c7dee3b965d4766d3b8f7e1ff564add6b79fef6b0e099",
+    "scripts/stabilize_review_quality.py": "15e15b7dcdd8e40b0a0a815d0cb2e2f9b8ff74646dd78e8318f3266696f3ae85"
+  },
+  "temperature": 0,
+  "finished_at": "2026-09-27T16:56:17.427330+00:00",
+  "summary": {
+    "attempts": 18,
+    "reviews": 18,
+    "validated": 18,
+    "automatic_passed": 15,
+    "input_tokens": 79950,
+    "output_tokens": 4433,
+    "authorized_attempts_used": 1119
+  },
+  "quality_metrics": {
+    "expected_defects": 6,
+    "found_defects": 6,
+    "missed_defects": 0,
+    "normal_reviews": 12,
+    "normal_false_positives": 3,
+    "question_items": 0,
+    "invalid_reviews": 0,
+    "verifier_removed_expected": 0,
+    "draft_missed": 0,
+    "duplicate_or_off_target": 3,
+    "scope": "location_only; semantic review required",
+    "recall": 1.0
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "scope": "Manual semantic inspection of selected outputs; not a blinded expert benchmark. Automatic labels and original outputs were not rewritten.",
+  "reviewed_fields": [
+    "summary where model-generated",
+    "title",
+    "trigger",
+    "consequence",
+    "evidence",
+    "suggestion",
+    "basis"
+  ],
+  "observations": [
+    {
+      "run": "baseline-network",
+      "type": "validation",
+      "count": 7,
+      "finding": "Numeric evidence for a related file was put in the changed file evidence_lines. Server rejection preserved."
+    },
+    {
+      "run": "final-confirmation",
+      "case": "java-loop-bug",
+      "repeats": [
+        1,
+        2,
+        3
+      ],
+      "type": "location_false_negative",
+      "finding": "Expected access line5 vs condition line4; both identify the same loop bound defect. Original expected label unchanged."
+    },
+    {
+      "run": "acceptance",
+      "case": "java-null-guard-safe",
+      "type": "semantic",
+      "finding": "A summary incorrectly described short-circuit evaluation despite a correct issue; another response missed the defect. Java array recommendations sometimes rejected legal zero."
+    },
+    {
+      "run": "acceptance-v2",
+      "case": "python-zero-range-bug",
+      "repeats": [
+        1,
+        3
+      ],
+      "type": "missed_defect",
+      "finding": "No issue for a built-in range with step0; no unprovided business contract is needed."
+    },
+    {
+      "run": "acceptance-v2",
+      "case": "js-short-circuit-bug",
+      "repeats": [
+        1
+      ],
+      "type": "automatic_false_pass",
+      "finding": "Correct null failure plus redundant incorrect empty-array claim on the same expected line."
+    },
+    {
+      "run": "thinking-low",
+      "case": "js-short-circuit-safe",
+      "repeats": [
+        1,
+        2
+      ],
+      "type": "unnecessary_question",
+      "finding": "Hypothetical undefined callers were not in the supplied contract."
+    },
+    {
+      "run": "thinking-low",
+      "case": "js-async-bug",
+      "repeats": [
+        1
+      ],
+      "type": "summary_contradiction",
+      "finding": "Summary said the negated Promise was true; detailed finding correctly said false."
+    },
+    {
+      "run": "thinking-control",
+      "case": "python-zero-range-bug",
+      "repeats": [
+        1,
+        2
+      ],
+      "type": "missed_or_demoted_defect",
+      "finding": "One omission and one question about whether the runtime accepts step0."
+    },
+    {
+      "run": "language-contract-regression",
+      "case": "js-short-circuit-bug",
+      "repeats": [
+        2
+      ],
+      "type": "summary_contradiction",
+      "finding": "Detailed null failure is correct; summary claimed null short-circuits the dereference. Led to ADR-REVIEW-009."
+    },
+    {
+      "run": "final-boundaries",
+      "case": "js-short-circuit-bug",
+      "repeats": [
+        1,
+        3
+      ],
+      "type": "incorrect_additional_consequence",
+      "finding": "Main null dereference and repair are correct. Extra empty-array claim is false: the subsequent length return already returns0. Automatic location grading missed this. Server summary does not repair incorrect detail."
+    },
+    {
+      "run": "final-regression-v3",
+      "case": "typescript-guarded-null",
+      "repeats": [
+        3
+      ],
+      "type": "false_positive",
+      "finding": "A deliberate helper rejection for0 was treated as a caller defect without a contrary contract. Existing exception-propagation guidance did not prevent this response."
+    }
+  ],
+  "final_assessment": {
+    "structural": "138/138 valid responses",
+    "automatic": "137/138; 72/72 boundaries and65/66 original regression",
+    "boundary_detail_review": "2/72 responses contain an incorrect added consequence despite correct primary findings; strict semantic pass at most70/72",
+    "normal_case_gate": "FAIL: one guard false positive in final-regression-v3",
+    "summary_contract": "PASS in product: deterministic counts/titles, no independent behavioral assessment; not a claim that model-generated summaries became correct",
+    "remaining": "Natural-language detail correctness, minimal advice, realistic PR gold labels and larger diverse evaluation remain necessary."
+  }
+}

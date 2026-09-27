@@ -93,20 +93,20 @@ ADR-REVIEW-003에 따른 0006 구현 계약. 공통 id/created_at 및 updated_at
 | connection_generation | integer | N | 접수 당시 연결 세대 >0 |
 | head_sha | varchar(40) | N | 검증된 40자리 HEAD SHA |
 | model | varchar(80) | N | 실제 DeepSeek 모델 |
-| prompt_version / policy_version | varchar(32) | N | rh1-16hex 하네스 digest / BOUNDED_CODE_V1 |
+| prompt_version / policy_version | varchar(32) | N | rh1-16hex 하네스 digest / 신규 BOUNDED_CODE_V2 (과거 V1 보존) |
 | generation | integer | N | 0 기본, 명시 재실행 세대 >=0 |
 | execution_key | varchar(64) | N | 실행 입력 digest UNIQUE |
 | status | varchar(16) | N | PENDING 기본; RUNNING/COMPLETED/FAILED/CANCELED |
 | consented_at | timestamptz | N | 소유자의 이번 요청 동의 시각 |
 | started_at / finished_at | timestamptz | Y | 시작/종료 시각 |
-| call_attempts | integer | N | 0 기본, 0~1 CHECK; 외부 호출 전 commit |
+| call_attempts | integer | N | 0 기본, 0~2 CHECK; 매 외부 호출 전 commit |
 | input_tokens / output_tokens | integer | N | 0 기본, 관측 사용량 >=0; 미확인은 usage_uncertain과 함께 읽음 |
 | usage_uncertain | boolean | N | false 기본; 호출 후 실패/취소 때 청구 미확인 |
 | error_code | varchar(64) | Y | 정제된 실패 코드 |
 | result | jsonb | Y | 검증된 summary/issues/limitations/scope/reviewed_files/omitted_files |
 | updated_at | timestamptz | N | now(), 애플리케이션 갱신 |
 
-terminal↔finished_at, COMPLETED이면 result 존재, SHA/digest 형식 CHECK. IDX(workspace_id,analysis_id,created_at,id), IDX(workspace_id,created_at). API/worker가 JSON strict schema와 파일·줄을 검증한다. 금액 예약/정산 대신 UTC 접수일별 최대5회와 출력 상한을 적용한다. 실패·취소도 한도를 소비한다. 원문 코드·diff·prompt·응답 원문은 저장하지 않는다.
+terminal↔finished_at, COMPLETED이면 result 존재, SHA/digest 형식 CHECK. IDX(workspace_id,analysis_id,created_at,id), IDX(workspace_id,created_at). API/worker가 JSON strict schema와 파일·줄을 검증한다. 금액 예약/정산 대신 UTC 접수일별 최대30회와 출력 상한을 적용한다. 실패·취소도 한도를 소비한다. 원문 코드·diff·prompt·응답 원문은 저장하지 않는다.
 
 <a id="table-finding_explanations"></a>
 
@@ -120,6 +120,30 @@ ADR-REVIEW-003에서 검증된 review_runs.result JSON으로 대체했다. 별�
 
 ADR-REVIEW-004: 새 result.harness는 version/modules/system_digest를 포함한다. issues.basis는 SUPPORTED/NEEDS_CONTEXT이며 서버 schema와 중요도 조합을 검증한다. 기존 JSON에는 없을 수 있다. prompt_version에 하네스 패키지+schema digest를 사용하므로 DB 컬럼 추가는 없다.
 
+ADR-REVIEW-009: 새 result.summary는 검증된 issues/questions 건수와 우선 제목 최대3개로 서버가 조합하는 문자열이다. 모델 자유 요약은 strict 검증 후 사용하지 않으며 별도 저장하지 않는다. 질문을 확정 결함으로 바꾸지 않고0건은 제공 범위의 지적 없음으로 표시한다. 기존 문자열 타입/1600자 상한과 과거 결과는 유지하며 migration은 없다.
+
 ## AI 근거 계약 보강 (2026-09-26)
 
 ADR-REVIEW-005: 새 issue는 evidence_lines(제공 줄 1~8개, 중복 금지·대표 line과 변경 줄 포함), trigger/consequence(각1~400자), assumptions(최대3개, 각1~400자)를 포함한다. SUPPORTED는 빈 assumptions, NEEDS_CONTEXT는 명시한 미확인 전제가 필요하다. 구조 위반은 응답 전체를 거부하며 지적을 조용히 제거하지 않는다. 구조 검증이 자연어 근거의 진실성을 보장하지 않는다. 과거 결과는 그대로 읽고 신규 UI 필드는 선택적이다. 원문 소스 인용 필드는 없으며 DB migration은 없다.
+
+<a id="table-review_feedback"></a>
+
+## review_feedback — 0007
+
+개인별 지적 처리 기록. 공통 id UUID PK와 created_at timestamptz NOT NULL DEFAULT now()를 사용한다.
+
+| 컬럼 | 타입 | NULL | 의미 |
+|---|---|---|---|
+| workspace_id | uuid | N | workspaces.id 논리 참조; review의 팀과 일치 |
+| review_id | uuid | N | review_runs.id 논리 참조; 완료 결과만 |
+| user_id | uuid | N | users.id 논리 참조; 현재 요청자 본인 |
+| issue_key | varchar(64) | N | 결과의 경로·정규화 제목 SHA-256 |
+| state | varchar(20) | N | OPEN/ACKNOWLEDGED/PLANNED/INTENDED/FALSE_POSITIVE |
+| note | varchar(500) | N | DEFAULT ''; 비밀 의심 메모 거부 |
+| updated_at | timestamptz | N | DEFAULT now(); 애플리케이션 갱신 |
+
+UNIQUE(review_id,user_id,issue_key), CHECK state 및 64자리 소문자 hex. INDEX(workspace_id,user_id,updated_at). Workspace와 review 잠금 아래 부모·팀·작성자·key를 검증한다. 물리 FK 없음. 자신의 상태를 언제든 덮어쓸 수 있으며 동일 회차 동시 쓰기는 직렬화한다. 결과 JSON은 수정하지 않는다. Review/사용자 영구 삭제 시 보관 정책에 따라 먼저 이 자식 기록을 명시적으로 삭제한다. MVP에 영구 삭제 API는 없다. 금액/수량 컬럼 없음.
+
+ADR-REVIEW-006 이후 result는 issues/questions/classification 및 확장 coverage를 제공한다. 원문 코드는 DB에 저장하지 않는다.
+
+ADR-REVIEW-010: call_attempts CHECK를0..2로 완화하는 migration0008. result.verification은 CHECKED/NO_CANDIDATES와 kept/revised/dropped 집계다. 검증 장애는 FAILED, 초안은 미보관. 관측 사용량은 두 호출 합계이며 실패 시 첫 호출의 관측값을 보존한다. 이전 결과에 필드가 없으면 재검증으로 표시하지 않는다.

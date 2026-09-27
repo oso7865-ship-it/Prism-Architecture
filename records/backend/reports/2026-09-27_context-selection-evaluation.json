@@ -1,0 +1,52 @@
+{
+  "started_at": "2026-09-27T09:10:41.820729+00:00",
+  "prompt_version": "rh1-30cb0c02dda36caf",
+  "policy_version": "BOUNDED_CODE_V3",
+  "corpus_sha256": "59eff6055cefa472c171ff30b7c3bfe361bf0bd550ba987ef8a8d3d52bb24e42",
+  "max_paid_calls": 0,
+  "cases": [
+    {
+      "id": "python-guarded-null",
+      "arms": {
+        "rules": {
+          "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 1064,
+          "retrieval_seconds": 0.281,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4
+          },
+          "github_reads": 7
+        },
+        "reranker": {
+          "candidate_digest": "c45ce5a3731f46981cf4645f587d8e6c6f6d56fc982e822e2ccecbd2b6150abe",
+          "candidate_count": 4,
+          "candidate_hit": true,
+          "selected_hit": true,
+          "selected_paths": [
+            "src/account_store.py",
+            "src/accountCache.py"
+          ],
+          "input_bytes": 1064,
+          "retrieval_seconds": 2.266,
+          "ranking": {
+            "mode": "rules",
+            "candidate_count": 4,
+            "fetched_files": 4,
+            "fallback": "RERANK_TIMEOUT",
+            "duration_ms": 2000.0
+          },
+          "github_reads": 7
+        }
+      }
+    }
+  ]
+}

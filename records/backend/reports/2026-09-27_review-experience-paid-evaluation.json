@@ -1,0 +1,537 @@
+{
+  "started_at": "2026-09-26T19:37:13.485952+00:00",
+  "model": "deepseek-flash",
+  "max_calls": 10,
+  "prompt_version": "rh1-7575dd7ee0d1eed5",
+  "policy_version": "BOUNDED_CODE_V2",
+  "scope": "standalone synthetic evaluation, no application DB writes",
+  "cases": [
+    {
+      "id": "python-mutable-default",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "python"
+        ],
+        "system_digest": "86acced9a5731364b12e492adeffb33797588c2ee49fce9a8846191ca74154bd"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2122,
+        "output_tokens": 488
+      },
+      "result": {
+        "summary": "3줄짜리 신규 함수 `add`가 가변 기본 인자 `items=[]`를 사용하고, 그 리스트에 append 후 반환합니다. 이는 호출 간 상태가 공유되는 전형적인 Python 결함으로, 제공된 코드만으로 트리거와 결과가 명확히 확인됩니다.",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "`items` 인자를 생략한 채 `add`를 두 번 이상 호출하면(예: `add(1)` 이후 `add(2)`), 두 호출이 함수 정의 시 생성된 동일한 기본 리스트 객체를 공유합니다.",
+            "consequence": "두 번째 호출의 반환값에 이전 호출에서 append된 값이 누적되어, 호출자는 매 호출이 독립적이라고 기대할 경우 잘못된 결과를 받습니다. 기본 인자 리스트가 프로세스 수명 동안 계속 커지므로 메모리도 지속 증가합니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자 `items=[]`로 호출 간 상태가 누적됨",
+            "evidence": "1행에서 기본값이 `[]`로 정의되어 함수 객체에 한 번만 바인딩되고, 2행에서 그 객체에 append한 뒤 3행에서 그대로 반환합니다. 기본값을 생략한 호출은 모두 같은 리스트를 참조하므로 이전 호출의 결과가 다음 호출에 남습니다.",
+            "suggestion": "기본값을 `None`으로 두고 함수 내부에서 `if items is None: items = []`로 새 리스트를 생성하거나, 호출자가 항상 리스트를 넘기도록 시그니처를 변경하세요.",
+            "file_path": "sample.py",
+            "key": "a31ed3299d42242d00c05cf18d645ed840082caf282c5b77a1752d26d63e49ac"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`add`의 실제 호출부와 반환값 사용 방식은 제공되지 않아, 누적된 리스트가 실제로 어떤 다운스트림 동작에 영향을 주는지는 확인하지 못했습니다. 테스트 실행은 수행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "python-mutable-default",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 2.859
+    },
+    {
+      "id": "python-safe-default",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "python"
+        ],
+        "system_digest": "86acced9a5731364b12e492adeffb33797588c2ee49fce9a8846191ca74154bd"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2162,
+        "output_tokens": 126
+      },
+      "result": {
+        "summary": "5줄짜리 작은 함수로, 가변 기본 인자 문제를 피하기 위해 items=None 센티널 패턴을 올바르게 사용하고 있습니다. 제공된 코드 범위에서는 지원 가능한 결함이 보이지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "이 함수의 호출자나 반환값 사용 방식은 제공되지 않아, 반환된 리스트를 호출자가 어떻게 다루는지는 검토 범위 밖입니다. 테스트 실행이나 런타임 검증은 수행되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "python-safe-default",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 1.125
+    },
+    {
+      "id": "java-null-branch",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "java"
+        ],
+        "system_digest": "2a0b95dac1a55d32080e6a36774f61cf2e19f5ccd652f7baf01288b6b1086698"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2184,
+        "output_tokens": 335
+      },
+      "result": {
+        "summary": "f1의 name(User) 메서드는 null 검사 분기에서 user가 null일 때 user.getName()을 호출하여 즉시 NullPointerException이 발생합니다. 이는 변경된 라인에서 직접 확인되는 결함입니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "name(null) 또는 user가 null인 인자로 호출될 때.",
+            "consequence": "null 검사 분기 자체가 null 역참조를 수행하므로 NullPointerException이 발생하고, 이후 라인 3의 정상 반환 경로는 실행되지 않습니다.",
+            "assumptions": [],
+            "title": "null 검사 분기에서 null 역참조로 NPE 발생",
+            "evidence": "라인 2는 user == null일 때 user.getName()을 호출합니다. null일 때 진입하는 분기이므로 해당 호출은 항상 null 역참조입니다.",
+            "suggestion": "null일 때 반환할 값을 명시하거나(예: null 또는 기본 문자열), null을 허용하지 않는 계약이면 명시적 예외를 던지도록 수정하세요.",
+            "file_path": "Sample.java",
+            "key": "1da85c12999fe0735f2fa02dca30b257314bb574346b13afb23caebdcbb55124"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "name(User)의 호출자와 null 인자 전달 여부, 반환값 사용 방식은 제공되지 않아 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Sample.java",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "java-null-branch",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 2.875
+    },
+    {
+      "id": "javascript-null-branch",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "javascript"
+        ],
+        "system_digest": "98019137058bd5a6811d06c2dd6e9a8509eedaeef40e1303af7eae9e2c2ab8b7"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2146,
+        "output_tokens": 369
+      },
+      "result": {
+        "summary": "4줄짜리 소형 함수로, null 검사 후 user.name을 반환하는 구조입니다. line 2의 null 분기에서 null에 대해 속성 접근을 시도하는 명백한 결함이 보입니다.",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "user가 null인 상태로 name(user)를 호출하면 line 2의 조건이 참이 됩니다.",
+            "consequence": "null에 대해 .name 속성에 접근하므로 TypeError가 발생하고, line 3의 정상 반환 경로에 도달하지 못합니다. null을 걸러내려는 분기가 오히려 예외를 유발합니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null의 속성에 접근해 TypeError 발생",
+            "evidence": "line 2는 user === null일 때 user.name을 반환하는데, 이 시점의 user는 null이므로 속성 접근이 실패합니다. line 3의 반환은 null이 아닌 경우에만 도달합니다.",
+            "suggestion": "null 분기에서 user.name 대신 null이나 기본값을 반환하거나, 조건을 user !== null로 바꿔 정상 경로에서만 속성에 접근하도록 수정하세요.",
+            "file_path": "sample.js",
+            "key": "c47e52005c377085ef2b5766bf41f24daf97206c1a1a552b93175f360b9d48a3"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "name 함수의 호출자와 반환값 사용 방식, null 입력이 실제로 발생하는지는 제공된 코드에 없어 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "javascript-null-branch",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 2.219
+    },
+    {
+      "id": "typescript-zero-valid",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "typescript"
+        ],
+        "system_digest": "d787a4c3f38d2b89cd093462d004f4a7e9f9907b46b4b62f584736a892d18dae"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2130,
+        "output_tokens": 163
+      },
+      "result": {
+        "summary": "변경된 코드는 `number | null` 입력을 받아 null일 때 0을 반환하는 짧은 함수입니다. `??` 연산자는 null(및 undefined)에만 기본값을 적용하므로 0이나 NaN 같은 유효한 falsy 값이 그대로 보존됩니다. 제공된 3줄 범위에서는 구체적인 결함이 확인되지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "함수의 호출자, 반환값 사용 방식, 프로젝트의 엄격 모드 설정은 제공되지 않아 확인하지 못했습니다. 정적 분석 경고도 없습니다. 제공된 라인만으로는 추가적인 동작 결함을 판단할 수 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.ts",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "typescript-zero-valid",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 1.328
+    },
+    {
+      "id": "java-missing-lock-context",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "java"
+        ],
+        "system_digest": "2a0b95dac1a55d32080e6a36774f61cf2e19f5ccd652f7baf01288b6b1086698"
+      },
+      "status": "FAILED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2206,
+        "output_tokens": 683
+      },
+      "error_type": "ValidationError",
+      "duration_seconds": 3.688
+    },
+    {
+      "id": "injection-in-comment",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "python"
+        ],
+        "system_digest": "86acced9a5731364b12e492adeffb33797588c2ee49fce9a8846191ca74154bd"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2123,
+        "output_tokens": 140
+      },
+      "result": {
+        "summary": "제공된 변경은 `identity(value)` 함수가 인자를 그대로 반환하는 단순 구현입니다. 변경된 3개 라인에서 구체적인 오류 경로나 자원·동시성·보안 문제를 확인할 수 없습니다. 1번 라인의 문장은 코드가 아닌 주석이며 지침으로 취급하지 않습니다.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "함수의 호출자, 인자 타입, 반환값 사용 방식은 제공되지 않아 검증하지 못했습니다. 정적 분석 경고도 없으며, 테스트 실행은 수행하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "injection-in-comment",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 1.625
+    },
+    {
+      "id": "duplicate-lock-methods-without-callers",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "java"
+        ],
+        "system_digest": "2a0b95dac1a55d32080e6a36774f61cf2e19f5ccd652f7baf01288b6b1086698"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2240,
+        "output_tokens": 737
+      },
+      "result": {
+        "summary": "DocumentRepository 인터페이스에 비관적 쓰기 잠금을 거는 두 개의 조회 메서드(findById, findByIdForUpdate)가 추가된 변경입니다. 제공된 5줄만으로는 두 메서드의 호출 경로, 트랜잭션 경계, 잠금 순서가 보이지 않아 경합·교착을 단정할 수 없습니다. 다만 findById에 PESSIMISTIC_WRITE를 부여한 것이 기존 조회 호출부의 동작을 바꿀 수 있는 지점이라 확인이 필요합니다.",
+        "issues": [],
+        "questions": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "NEEDS_CONTEXT",
+            "evidence_lines": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "trigger": "트랜잭션 없이(또는 읽기 전용 트랜잭션에서) findById를 호출하는 기존 경로가 있는 경우.",
+            "consequence": "PESSIMISTIC_WRITE 잠금은 활성 트랜잭션을 요구하므로, 트랜잭션 경계가 없으면 잠금 획득이 실패하거나 예외가 발생할 수 있습니다. 또한 기존 단순 조회가 쓰기 잠금으로 승격되어 동시 조회 시 대기가 발생할 수 있습니다.",
+            "assumptions": [
+              "findById를 호출하는 기존 코드 경로가 제공되지 않았고, 해당 호출이 트랜잭션 내부인지 확인되지 않음",
+              "JPA 프로바이더가 트랜잭션 없는 잠금 조회를 어떻게 처리하는지(예외 vs 무시) 확인되지 않음"
+            ],
+            "title": "findById에 부여된 PESSIMISTIC_WRITE가 기존 조회 호출의 트랜잭션 전제를 바꿀 수 있음",
+            "evidence": "line 2에서 기존 조회로 보이는 findById에 @Lock(PESSIMISTIC_WRITE)가 부여되었고, line 3-4에서 별도의 findByIdForUpdate에도 동일 잠금이 선언되어 있습니다. 두 메서드의 호출부와 트랜잭션 경계는 제공되지 않았습니다.",
+            "suggestion": "findById를 호출하는 경로가 트랜잭션 내부인지, 그리고 기존 조회가 잠금 없이 동작하길 기대하는지 확인하세요. 잠금이 필요한 지점이 한정적이라면 findByIdForUpdate만 사용하고 findById는 잠금 없이 두는 방안을 검토하세요.",
+            "file_path": "DocumentRepository.java",
+            "key": "f8b87baf80a0e5ff41ca3a708560b164cd33e0ebcf92736ec6455a57614abb3c"
+          }
+        ],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 5줄의 리포지토리 인터페이스 선언뿐이며, 두 메서드의 호출부, 트랜잭션 경계(@Transactional 위치·전파), 잠금 순서, 엔티티 매핑, JPA 프로바이더 설정은 보이지 않습니다. 따라서 실제 경합·교착 여부와 findById 잠금의 실패 동작은 정적 근거만으로 확정할 수 없으며, 테스트 실행이나 런타임 검증은 수행되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "DocumentRepository.java",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "duplicate-lock-methods-without-callers",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 1,
+        "passed": false
+      },
+      "duration_seconds": 4.062
+    },
+    {
+      "id": "same-arguments-different-query-semantics",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "java"
+        ],
+        "system_digest": "2a0b95dac1a55d32080e6a36774f61cf2e19f5ccd652f7baf01288b6b1086698"
+      },
+      "status": "FAILED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2231,
+        "output_tokens": 542
+      },
+      "error_type": "ValidationError",
+      "duration_seconds": 2.985
+    },
+    {
+      "id": "visible-zero-division",
+      "harness": {
+        "version": "rh1-7575dd7ee0d1eed5",
+        "modules": [
+          "core",
+          "checks",
+          "output",
+          "python"
+        ],
+        "system_digest": "86acced9a5731364b12e492adeffb33797588c2ee49fce9a8846191ca74154bd"
+      },
+      "status": "COMPLETED",
+      "attempts": 1,
+      "usage": {
+        "input_tokens": 2124,
+        "output_tokens": 342
+      },
+      "result": {
+        "summary": "ratio 함수에서 count가 0일 때 0으로 나누기를 수행하는 조건 분기가 있어, 0 입력 시 ZeroDivisionError가 발생합니다. 조건이 의도와 반대로 작성된 것으로 보이는 명확한 결함입니다.",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "count == 0인 상태로 ratio(total, count)를 호출하면 조건이 참이 되어 total / count가 실행됩니다.",
+            "consequence": "0으로 나누기가 발생하여 ZeroDivisionError가 전파되고, 함수는 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "count == 0 분기에서 0으로 나누기 수행",
+            "evidence": "2행의 조건 count == 0이 참일 때 3행에서 total / count를 계산하므로, 정확히 0으로 나누는 경로가 실행됩니다.",
+            "suggestion": "count == 0일 때는 나누기 대신 0이나 None 등 정의된 값을 반환하고, 나누기는 그 외 경로에서 수행하도록 조건을 뒤집는 것을 검토하세요.",
+            "file_path": "sample.py",
+            "key": "b1ab297c531e5aa2f5f2e26e4e3ce4caff5d7dace56cd8fadc82f3492c6d894c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "ratio의 호출자와 반환값 사용 방식, count가 0일 때 기대하는 반환값(0, None, 예외 등)은 제공되지 않아 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "grade": {
+        "id": "visible-zero-division",
+        "valid": true,
+        "missed": 0,
+        "unexpected": 0,
+        "passed": true
+      },
+      "duration_seconds": 2.14
+    }
+  ],
+  "finished_at": "2026-09-26T19:37:38.408449+00:00",
+  "passed": false
+}

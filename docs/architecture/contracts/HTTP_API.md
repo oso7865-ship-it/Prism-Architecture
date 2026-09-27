@@ -69,3 +69,9 @@ Webhook은 API prefix 밖 `POST /webhooks/github`. health는 `/health/live`, `/h
 API response_model은 반환 필드를 allowlist로 제한한다. ORM 전체를 자동 직렬화하지 않는다. private 응답에는 no-store를 적용한다. 기능별 permission 상세는 [Workspace](../domain/workspace/README.md)를 따른다. DELETE Workspace·회원 탈퇴·자동 GitHub 댓글은 이 초기 API 표에 포함하지 않는다.
 
 현재 구현의 연결·PR 리뷰 응답 범위는 [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md)를 따른다. 설정 PATCH·AI 리뷰 경로는 후속 구현이다. 분석과 Webhook은 현재 working-tree에서 구현했으며 검증 범위는 IMPLEMENTATION을 따른다. Sync POST는 page(기본1) 또는 pr_number를 받고, 외부 리뷰 GET은 kind(reviews/comments/review_comments/commits)와 page를 받는다.
+
+## 리뷰 흐름 확장 (2026-09-27)
+
+GET /workspaces/{w}/repositories/{r}/syncs/latest는 현재 연결 세대의 최신 RECENT/PAGE 동기화 또는 null을 반환한다. SINGLE/webhook 실행은 목록 페이지 커서를 덮어쓰지 않는다. 팀 멤버 읽기 권한과 활성 연결을 검증한다.
+GET /workspaces/{w}/members는 기존 user_id/role에 login/display_name(비활성 계정 null)을 추가한다. User 공개 API로 제한된 프로필만 조회한다.
+GET/PUT feedback과 GET source 계약은 [Review](../domain/review/README.md)의 소유 계약을 따른다. 모든 경로는 인증·팀 범위와 no-store를 유지한다.
