@@ -5,6 +5,8 @@
 - [백엔드 현황](backend/docs/PROJECT_STATUS.md)
 - [현재 완성도 Gate와 보수 결과](2026-09-29_predeployment-hardening.md)
 - [EC2 배포 전 실행 안내](2026-09-29_ec2-release-runbook.md)
+- [EC2 직접 접속과 RDS 준비 상태](2026-09-30_ec2-access-report.md)
+- [GHCR·EC2·Vercel 자동 배포 구현과 초기 설정](2026-09-30_automatic-deployment.md)
 - [백엔드 최신 보고서](backend/reports/_LATEST.md)
 - [프론트 최신 보고서](frontend/reports/_LATEST.md)
 - [AI 품질 실패와 후속 조치](backend/reports/2026-09-28_recall-repair_report.md)

@@ -33,6 +33,8 @@ DB pool은 무료/저용량 환경에 맞춰 초기 `pool_size=2, max_overflow=1
 
 ## Migration
 
+초기 운영 DB는 [ADR-DEPLOY-005](../../adr/deployment/ADR-DEPLOY-005-rds-initial-runtime.md)의 RDS PostgreSQL 17이다. 앱과 Alembic은 현재 같은 DATABASE_URL을 읽으며 전용 역할 prism_app으로 테이블을 생성한다. DB 소유자는 관리 역할 hoon이고 앱에 DB CONNECT 및 public schema USAGE/CREATE를 부여한다. 앱에 클러스터 관리자/DB 생성/역할 생성 권한은 부여하지 않는다. 현재 실제 운영 테이블 migration은 미수행이며 백업·복원 준비 후 배포 절차에서 실행한다.
+
 Alembic migration은 배포 전 단일 실행 지점에서 수행한다. API worker 각각의 startup에서 동시에 migration하지 않는다. `create_all()`을 운영 schema 변경 수단으로 사용하지 않는다. schema 변경은 nullable→backfill→제약 강화 등 롤백/호환성을 고려한다.
 
 필수 테스트는 실제 PostgreSQL로 UNIQUE 경쟁, transaction rollback, cross-workspace query, job claim, fence update를 검증한다. SQLite 대체만으로 락/동시성 테스트를 통과했다고 하지 않는다.

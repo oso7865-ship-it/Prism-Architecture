@@ -3,11 +3,11 @@
 > ID: `ADR-DEPLOY-004` · 소유: `DEPLOY` · 기준: `2026-09-29`
 > 읽는 때: EC2 실행 구성과 배포 설정을 변경할 때
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-29`
 - 근거: 사용자 “aws는 ec2로 진행할 예정이야” 결정.
 - 대체하는 ADR: [ADR-DEPLOY-003](ADR-DEPLOY-003-aws-backend.md).
-- 대체한 ADR: 없음.
+- 대체한 ADR: [ADR-DEPLOY-006](ADR-DEPLOY-006-private-ghcr-automatic-release.md). EC2와 production 계약을 유지하며 자동 배포 정책을 구체화한다.
 
 ## 배경
 

@@ -48,7 +48,9 @@
 | [ADR-DEPLOY-001](../adr/deployment/ADR-DEPLOY-001-render-real-deployment.md) | Render 배포와 실제 주소 사용 | SUPERSEDED | D-002, D-010 → DEPLOY-003 |
 | [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md) | Production 설정·배포 전 검증 경계 | SUPERSEDED | DEPLOY-003에 운영 계약 유지 |
 | [ADR-DEPLOY-003](../adr/deployment/ADR-DEPLOY-003-aws-backend.md) | AWS 백엔드와 production 계약 유지 | SUPERSEDED | DEPLOY-004가 EC2 실행 서비스 확정 |
-| [ADR-DEPLOY-004](../adr/deployment/ADR-DEPLOY-004-ec2-runtime.md) | EC2 백엔드 실행 서비스 | ACCEPTED | DEPLOY-003 대체, DB 배치·리전·크기는 미정 |
+| [ADR-DEPLOY-004](../adr/deployment/ADR-DEPLOY-004-ec2-runtime.md) | EC2 백엔드 실행 서비스 | SUPERSEDED | DEPLOY-006이 자동 배포 구체화, EC2 유지 |
+| [ADR-DEPLOY-005](../adr/deployment/ADR-DEPLOY-005-rds-initial-runtime.md) | RDS·서울 EC2·전용 DB 계정·초기 비밀 주입 | ACCEPTED | DEPLOY-004 보완, 앱 배포는 미완료 |
+| [ADR-DEPLOY-006](../adr/deployment/ADR-DEPLOY-006-private-ghcr-automatic-release.md) | private GHCR·AWS OIDC/SSM·Vercel 자동 배포 | ACCEPTED | DEPLOY-004 대체, 초기 연결 후 main 자동 배포 |
 | [ADR-PRODUCT-001](../adr/product/ADR-PRODUCT-001-prism-name.md) | PRism 프로젝트명 | ACCEPTED | D-008 |
 | [ADR-PRODUCT-002](../adr/product/ADR-PRODUCT-002-staged-public-access.md) | 초기 내부 사용과 향후 외부 가입 | ACCEPTED | D-011 |
 | [ADR-DATA-001](../adr/data/ADR-DATA-001-postgresql.md) | PostgreSQL 사용 | ACCEPTED | — |

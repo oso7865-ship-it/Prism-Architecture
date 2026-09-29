@@ -1,8 +1,12 @@
 # EC2 배포 전 실행 안내
 
-아직 배포하지 않았다. 이 안내는 운영 값이 확정된 뒤 실행할 순서다. 코드 저장소의 실행 설정과 정확한 CI 통과 커밋을 함께 사용한다. 리전/인스턴스/OS·호스트 HTTPS 프록시·실제 DB·이미지 registry·비밀 전달 방식은 결정 전이며 임의로 자원을 만들지 않는다.
+아직 애플리케이션을 배포하지 않았다. 이 안내는 운영 값이 완성된 뒤 실행할 순서다. 2026-09-30 EC2 서울/t3.small/Ubuntu 24.04.4, RDS PostgreSQL 17.11/prism DB, Docker/Compose 설치와 전용 계정 로그인을 확인했다. CI 통과 커밋은 EC2에 준비했고 비공개 운영 환경 파일은 `.pending` 상태다. 실제 준비 내역과 경로는 [EC2 접속·준비 기록](2026-09-30_ec2-access-report.md)을 참조한다. 탄력적 IP 52.79.50.98 연결은 완료했다. 호스트 HTTPS 프록시·운영 GitHub 키·registry 인증·운영 백업/복원·비용/장애 알림은 아직 준비하지 않았다. 현재 자동 배포 절차는 [GHCR·EC2·Vercel 초기 설정](2026-09-30_automatic-deployment.md)을 따른다.
 
 ## 필요한 값과 경계
+
+프론트 주소는 사용자 지정 `https://prismquest.p-e.kr`, 백엔드 주소는 `https://api-prismquest.p-e.kr`이다. 사용자는 두 주소 모두 아직 연결하지 않았다고 명시했다. 운영 `PUBLIC_APP_ORIGIN`과 `PUBLIC_API_ORIGIN`은 모두 프론트 주소를 사용하고 프론트 설정 생성용 `PRISM_API_ORIGIN`만 백엔드 주소를 사용한다. GitHub OAuth callback은 `https://prismquest.p-e.kr/api/v1/auth/github/callback`, GitHub App callback은 `https://prismquest.p-e.kr/api/v1/github-app/callback`, Webhook은 `https://api-prismquest.p-e.kr/webhooks/github`로 준비한다. Vercel 도메인 연결·DNS·TLS·GitHub 운영 설정은 아직 미수행/미검증이다.
+
+DNS 연결 시 프론트는 Vercel 프로젝트의 Domains에서 해당 도메인을 등록하고 안내되는 레코드를 적용한다. 백엔드는 EC2 Elastic IP 확정 후 `api-prismquest.p-e.kr`의 A 레코드로 연결한다. DNS 공급자가 요구하는 호스트 입력 형식과 기존 레코드를 확인한 뒤 적용하며 고정되지 않은 IP나 추정한 Vercel 레코드를 입력하지 않는다.
 
 - `PRISM_IMAGE`: 배포할 registry 이미지의 `@sha256:` digest. 이전 배포 digest도 별도로 보관한다.
 - `PRISM_ENV_FILE`: 서버의 비공개 환경 파일 절대 경로. 예시는 backend `config/production.example`. 소유자만 쓰고 읽도록 호스트 권한을 설정한다. Compose raw 형식을 지원하는 버전이 필요하며 `scripts/check_ec2.py`로 확인한다.
