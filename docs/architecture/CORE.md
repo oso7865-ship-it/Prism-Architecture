@@ -9,7 +9,7 @@
 
 팀이 GitHub PR을 조회하고, 정적 규칙으로 발견한 항목과 선택적 AI 설명을 확인하는 플랫폼이다. 코드의 완전한 안전성·정확성·기업 도입 적합성을 인증하는 제품이 아니다.
 
-사용자 선택: Python 백엔드, LangChain 활용, Render 배포, 지원 분석 언어 **Java / JavaScript / TypeScript / Python**. Go는 제외한다. 프론트는 기존 논의에 따라 Vue/Vercel을 설계 기본값으로 둔다.
+사용자 선택: Python 백엔드, LangChain 활용, AWS EC2 백엔드 배포, 지원 분석 언어 **Java / JavaScript / TypeScript / Python**. Go는 제외한다. 프론트는 기존 논의에 따라 Vue/Vercel을 설계 기본값으로 둔다.
 
 ## 바뀌면 안 되는 경계
 

@@ -16,7 +16,7 @@
 | INTEGRATION | `adr/integration/` | GitHub·PR 동기화·Webhook | [domain/pull_request/SYNC_POLICY.md](../domain/pull_request/SYNC_POLICY.md) |
 | RUNTIME | `adr/runtime/` | Job·Worker·복구 | [shared/jobs/README.md](../shared/jobs/README.md) |
 | DATA | `adr/data/` | DB·스키마·트랜잭션 | [shared/database/README.md](../shared/database/README.md) |
-| DEPLOY | `adr/deployment/` | 호스팅·도메인·배포 | [operations/RENDER.md](../operations/RENDER.md) |
+| DEPLOY | `adr/deployment/` | 호스팅·도메인·배포 | [operations/DEPLOYMENT.md](../operations/DEPLOYMENT.md) |
 | SECURITY | `adr/security/` | 인증·인가·테넌트·개인정보 | [operations/SECURITY_PRIVACY.md](../operations/SECURITY_PRIVACY.md) |
 | FRONTEND | `adr/frontend/` | 화면·클라이언트·프록시 | [frontend/README.md](../frontend/README.md) |
 | PRODUCT | `adr/product/` | 이름·제품 범위·공개 대상 | [CORE.md](../CORE.md) |
@@ -37,12 +37,15 @@
 | [ADR-REVIEW-007](../adr/review/ADR-REVIEW-007-bounded-context-ranking.md) | 제한된 함수·참조 문맥과 선택적 로컬 재정렬 | SUPERSEDED | REVIEW-006 대체 |
 | [ADR-REVIEW-008](../adr/review/ADR-REVIEW-008-team-daily-allowance.md) | 팀별 AI 리뷰 하루30회·일반 모델 표시 | SUPERSEDED | REVIEW-009가 요약 구성만 대체 |
 | [ADR-REVIEW-009](../adr/review/ADR-REVIEW-009-derived-review-summary.md) | 검증된 리뷰 항목으로 사용자 요약 구성 | SUPERSEDED | REVIEW-010이 문맥·검증 호출 변경, 요약 유지 |
-| [ADR-REVIEW-010](../adr/review/ADR-REVIEW-010-evidence-first-verified-review.md) | 필수 문맥 보존·16/48KiB·두 단계 검증 | ACCEPTED | REVIEW-009 대체, 하루30회·리랭커 OFF 유지 |
+| [ADR-REVIEW-010](../adr/review/ADR-REVIEW-010-evidence-first-verified-review.md) | 필수 문맥 보존·16/48KiB·두 단계 검증 | SUPERSEDED | REVIEW-011이 빈 초안·코드 열람 변경 |
+| [ADR-REVIEW-011](../adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md) | 빈 초안 파일별 재검토·사이트 내 코드 열람 | ACCEPTED | REVIEW-010 대체, 최대2회·과거 결과 불변 유지 |
 | [ADR-INTEGRATION-001](../adr/integration/ADR-INTEGRATION-001-github-pr-sync.md) | 실제 GitHub 연동과 PR 동기화 | ACCEPTED | D-004, C-003, D-010 |
 | [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | ACCEPTED | — |
 | [ADR-RUNTIME-001](../adr/runtime/ADR-RUNTIME-001-durable-jobs.md) | PostgreSQL 영속 Job과 복구 | BASELINE | C-002 |
-| [ADR-DEPLOY-001](../adr/deployment/ADR-DEPLOY-001-render-real-deployment.md) | Render 배포와 실제 주소 사용 | ACCEPTED | D-002, D-010 |
-| [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md) | Production 설정·배포 전 검증 경계 | ACCEPTED | DEPLOY-001 확장 |
+| [ADR-DEPLOY-001](../adr/deployment/ADR-DEPLOY-001-render-real-deployment.md) | Render 배포와 실제 주소 사용 | SUPERSEDED | D-002, D-010 → DEPLOY-003 |
+| [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md) | Production 설정·배포 전 검증 경계 | SUPERSEDED | DEPLOY-003에 운영 계약 유지 |
+| [ADR-DEPLOY-003](../adr/deployment/ADR-DEPLOY-003-aws-backend.md) | AWS 백엔드와 production 계약 유지 | SUPERSEDED | DEPLOY-004가 EC2 실행 서비스 확정 |
+| [ADR-DEPLOY-004](../adr/deployment/ADR-DEPLOY-004-ec2-runtime.md) | EC2 백엔드 실행 서비스 | ACCEPTED | DEPLOY-003 대체, DB 배치·리전·크기는 미정 |
 | [ADR-PRODUCT-001](../adr/product/ADR-PRODUCT-001-prism-name.md) | PRism 프로젝트명 | ACCEPTED | D-008 |
 | [ADR-PRODUCT-002](../adr/product/ADR-PRODUCT-002-staged-public-access.md) | 초기 내부 사용과 향후 외부 가입 | ACCEPTED | D-011 |
 | [ADR-DATA-001](../adr/data/ADR-DATA-001-postgresql.md) | PostgreSQL 사용 | ACCEPTED | — |

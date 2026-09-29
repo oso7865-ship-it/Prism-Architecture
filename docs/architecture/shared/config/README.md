@@ -15,7 +15,7 @@ Config는 환경을 읽는 기술 기반이다. Repository별 Rule threshold·Wo
 
 `AI_ENABLED=false`가 기본이다. true일 때만 Provider/model/API key/외부 전송 예산이 모두 있어야 시작 또는 해당 기능 활성화를 허용한다. `JOB_RUNNER_MODE=embedded|external|disabled`를 검증한다. DB URL·private key·token에는 SecretStr 등 비밀 표시 타입을 사용하고 settings 전체를 repr/log로 출력하지 않는다.
 
-`.env.example`에는 이름·형식·안전한 placeholder만 둔다. 실제 값은 Render의 비밀 설정으로 관리한다. 프론트 `VITE_*`에는 공개 API 경로 같은 값만 넣고 서버 Secret을 전달하지 않는다. 개발 편의 기본 비밀번호/키를 운영에서 허용하지 않는다.
+`.env.example`에는 이름·형식·안전한 placeholder만 둔다. 실제 값은 선택한 AWS 실행 환경의 서버 측 비밀 주입 방식으로 관리한다. 구체 서비스는 배포 설계에서 정한다. 프론트 `VITE_*`에는 공개 API 경로 같은 값만 넣고 서버 Secret을 전달하지 않는다. 개발 편의 기본 비밀번호/키를 운영에서 허용하지 않는다.
 
 미정 Provider/API version을 코드에서 임의 추정하지 않는다. GitHub API version은 구현 때 검증한 값을 명시하고 adapter contract test와 함께 올린다.
 

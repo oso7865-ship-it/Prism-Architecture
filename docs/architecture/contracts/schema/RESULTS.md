@@ -147,3 +147,5 @@ UNIQUE(review_id,user_id,issue_key), CHECK state 및 64자리 소문자 hex. IND
 ADR-REVIEW-006 이후 result는 issues/questions/classification 및 확장 coverage를 제공한다. 원문 코드는 DB에 저장하지 않는다.
 
 ADR-REVIEW-010: call_attempts CHECK를0..2로 완화하는 migration0008. result.verification은 CHECKED/NO_CANDIDATES와 kept/revised/dropped 집계다. 검증 장애는 FAILED, 초안은 미보관. 관측 사용량은 두 호출 합계이며 실패 시 첫 호출의 관측값을 보존한다. 이전 결과에 필드가 없으면 재검증으로 표시하지 않는다.
+
+ADR-REVIEW-011: 신규 빈 초안은 두 번째 호출을 필수로 하며 result.verification.status=EMPTY_RECHECKED와 file_checks 배열을 보관한다. 각 항목은 file_id/file_path/line/outcome(FINDING/NO_FINDING/LIMITED)/observation(최대240자)다. 이는 간단한 검토 결과이며 소스나 숨은 추론은 보관하지 않는다. CHECKED의 집계는 유지하고 과거 NO_CANDIDATES는 소급 변경하지 않는다. DB DDL 변경은 없다.

@@ -17,7 +17,7 @@ GitHub PR을 정적 규칙으로 분석하고 선택적으로 AI 설명을 제�
 | 분석 방식 | 고정 commit SHA의 정적 규칙 분석. 대상 코드 실행·의존성 설치 없음 |
 | AI | LangChain + DeepSeek. 동의 기반 수동 리뷰. 설정·한도·품질 한계는 Review 계약 참조 |
 | 프론트 | Vue / TypeScript / Vite, Vercel은 설계 기본값 |
-| 배포 | 백엔드 Render 예정. 실제 도메인 미정 |
+| 배포 | 백엔드 AWS EC2 확정. 리전·인스턴스 크기·DB 호스팅·실제 도메인 미정 |
 | 초기 사용 | 본인 Organization과 개인 프로젝트. 향후 외부 사용자 가입·저장소 연결 지원 |
 
 아직 공개 출시 단계가 아닙니다. AI는 정적 Finding을 설명하며 판정을 변경하거나 코드를 자동 수정하지 않습니다. 설계 기본값과 확정된 결정은 [ADR 맵](docs/architecture/decisions/DECISIONS.md)에서 구분합니다.
@@ -100,6 +100,6 @@ python scripts/validate_docs.py --report validation-report.json
 python scripts/check_helpers.py --report helper-test-report.json
 ```
 
-[문서 무결성 결과](validation-report.json)와 [도구 검증 결과](helper-test-report.json)는 명령으로 다시 생성할 수 있는 검증 기록으로 저장합니다. 문서 링크·ID·매핑, 선택 도구, ADR 오류 검출을 확인하며 애플리케이션 실행·성능·보안·실제 GitHub/Render/DeepSeek 연동을 검증한 결과는 아닙니다.
+[문서 무결성 결과](validation-report.json)와 [도구 검증 결과](helper-test-report.json)는 명령으로 다시 생성할 수 있는 검증 기록으로 저장합니다. 문서 링크·ID·매핑, 선택 도구, ADR 오류 검출을 확인하며 애플리케이션 실행·성능·보안·실제 GitHub/AWS/DeepSeek 연동을 검증한 결과는 아닙니다.
 
 공유할 문서·ADR·스크립트·검증 결과·Git 설정 파일은 버전 관리합니다. Python 캐시·가상환경·node_modules·빌드 산출물·IDE 개인 설정·로그·DB 백업·실제 `.env`·비밀키는 [.gitignore](.gitignore)로 제외합니다. 외부 서비스 자격증명은 각 환경에 별도로 설정하고 Git으로 옮기지 않습니다. 필요한 설정 형식은 구현 시 비밀 값이 없는 `.env.example`로 공유합니다.

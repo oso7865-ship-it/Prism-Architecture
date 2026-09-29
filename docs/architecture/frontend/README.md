@@ -31,11 +31,11 @@ PENDING/RUNNING 중에는 3초 간격 상태 조회를 기본으로 하고 오�
 
 ## API 프록시
 
-브라우저는 동일 출처 `/api/v1/...`를 호출하고 Vercel external rewrite가 Render의 `/api/v1/...`로 전달하는 구성을 제안한다. Vercel은 외부 origin으로 요청을 프록시하는 rewrite를 제공한다. [S-VERCEL-REWRITE](../reference/SOURCES.md#s-vercel-rewrite)
+브라우저는 동일 출처 `/api/v1/...`를 호출하고 Vercel external rewrite가 AWS 백엔드의 `/api/v1/...`로 전달하는 구성을 제안한다. Vercel은 외부 origin으로 요청을 프록시하는 rewrite를 제공한다. [S-VERCEL-REWRITE](../reference/SOURCES.md#s-vercel-rewrite)
 
 OAuth Callback도 고정된 프론트 출처의 `/api/v1/auth/github/callback`을 프록시한다. Refresh 쿠키에는 backend 도메인을 Domain으로 지정하지 않는다. Set-Cookie 전달, path, Secure, SameSite, redirect, Origin 검증은 실제 배포 환경에서 확인한다. Preview URL마다 운영 OAuth callback을 넓게 허용하지 않는다.
 
-인증/API 응답은 `Cache-Control: private, no-store`로 응답하고 Vercel API rewrite caching도 비활성화한다. 팀 데이터가 CDN에서 다른 사용자에게 재사용되지 않는지 두 계정으로 테스트한다. GitHub Webhook은 프론트가 아니라 Render의 직접 `/webhooks/github`로 보낸다.
+인증/API 응답은 `Cache-Control: private, no-store`로 응답하고 Vercel API rewrite caching도 비활성화한다. 팀 데이터가 CDN에서 다른 사용자에게 재사용되지 않는지 두 계정으로 테스트한다. GitHub Webhook은 프론트가 아니라 AWS 백엔드의 직접 `/webhooks/github`로 보낸다.
 
 ## 금지와 표시 기준
 

@@ -1,7 +1,9 @@
-# Render 배포와 무료 환경의 한계
+# 과거 설계: Render 배포와 무료 환경의 한계
 
 > ID: `RENDER` · 소유: `deployment` · 기준: `v0.1.0 / 2026-09-25`
-> 읽는 때: Render·Docker·CI/CD·DB 호스팅을 변경할 때
+> 읽는 때: AWS 전환 이전의 Render 결정 이력을 확인할 때
+
+**2026-09-28 대체됨.** 현재 배포 기준은 [DEPLOYMENT](DEPLOYMENT.md)와 [ADR-DEPLOY-004](../adr/deployment/ADR-DEPLOY-004-ec2-runtime.md)이다. 아래는 당시 Render 가정·참고 자료이며 현행 AWS 설정이나 현재 서비스 정책 확인 결과가 아니다.
 
 ## 배포 기본 구성
 

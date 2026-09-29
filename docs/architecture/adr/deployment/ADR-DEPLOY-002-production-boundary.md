@@ -3,11 +3,11 @@
 > ID: `ADR-DEPLOY-002` · 소유: `DEPLOY` · 기준: `2026-09-27`
 > 읽는 때: 운영 환경 설정·배포 준비·복구 절차를 변경할 때
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-27`
 - 근거: 사용자가 배포 전 단계의 자율 작업을 승인했다.
 - 대체하는 ADR: 없음
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-DEPLOY-003](ADR-DEPLOY-003-aws-backend.md)
 
 ## 배경
 

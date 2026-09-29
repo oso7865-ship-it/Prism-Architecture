@@ -1,0 +1,134 @@
+{
+  "at": "2026-09-29T03:33:08.594368+00:00",
+  "adopted_candidate": null,
+  "runtime_prompt": "rh1-b1c775a23f028ad3",
+  "runtime_model": "deepseek-flash",
+  "runtime_profile": "non-thinking,2000 output tokens,60s,max2 calls",
+  "runs": [
+    {
+      "run": "quality-0929-baseline.json",
+      "sha256": "b8456ddcb6423d3fb9667215b9c42cef77a8c542e62540abb05f9c3574865504",
+      "model": "deepseek-flash",
+      "summary": {
+        "attempts": 36,
+        "reviews": 18,
+        "validated": 18,
+        "automatic_passed": 15,
+        "input_tokens": 152220,
+        "output_tokens": 6490,
+        "authorized_attempts_used": 1396
+      },
+      "gate": "FAIL",
+      "blocker": "CA empty-string defect missed on all 3 repetitions; file checks contain incorrect or semantics.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    },
+    {
+      "run": "quality-0929-reasoning-probe.json",
+      "sha256": "853eac0299deaf801db63de6154aca85a72635e77c94a423f11f8fb16181de0f",
+      "model": "deepseek-flash",
+      "summary": {
+        "attempts": 10,
+        "reviews": 6,
+        "validated": 4,
+        "automatic_passed": 4,
+        "input_tokens": 33644,
+        "output_tokens": 8580,
+        "authorized_attempts_used": 1406
+      },
+      "gate": "FAIL",
+      "blocker": "2 length-limit failures; CA trigger includes a non-failing alternative.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    },
+    {
+      "run": "quality-0929-low-witness.json",
+      "sha256": "512632cc9c07bcfb60720c025e2dc1cce5040635e5b1c7f0c8412e2d24397e41",
+      "model": "deepseek-flash",
+      "summary": {
+        "attempts": 35,
+        "reviews": 18,
+        "validated": 16,
+        "automatic_passed": 16,
+        "input_tokens": 156813,
+        "output_tokens": 32878,
+        "authorized_attempts_used": 1441
+      },
+      "gate": "FAIL",
+      "blocker": "2 invalid responses; CA repair or None does not preserve explicit request priority for other session values.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    },
+    {
+      "run": "quality-0929-pro-probe.json",
+      "sha256": "8c768eb05bdb0892d997d134e2b43fec093d43378b97986987f162c668e7b2b6",
+      "model": "deepseek-v4-pro",
+      "summary": {
+        "attempts": 12,
+        "reviews": 6,
+        "validated": 6,
+        "automatic_passed": 4,
+        "input_tokens": 52824,
+        "output_tokens": 2552,
+        "authorized_attempts_used": 1453
+      },
+      "gate": "FAIL",
+      "blocker": "Normal fixed CA case flagged with internally contradictory consequence; unsafe suggested repair.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    },
+    {
+      "run": "quality-0929-pro-reasoning.json",
+      "sha256": "a62e63bd8356539897814d46df5c2cacf377d7e4406d28e955cf8484627623f9",
+      "model": "deepseek-v4-pro",
+      "summary": {
+        "attempts": 12,
+        "reviews": 6,
+        "validated": 6,
+        "automatic_passed": 6,
+        "input_tokens": 52996,
+        "output_tokens": 14644,
+        "authorized_attempts_used": 1465
+      },
+      "gate": "FAIL",
+      "blocker": "Location checks 6/6 are insufficient: CA alternative normalizes to None, changing explicit caller priority. Only one repetition.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    },
+    {
+      "run": "quality-0929-witness-only.json",
+      "sha256": "797c4367bd5f0af52c441a08a789355bfd651e6bf434eaa723348c6e20538033",
+      "model": "deepseek-flash",
+      "summary": {
+        "attempts": 36,
+        "reviews": 18,
+        "validated": 17,
+        "automatic_passed": 16,
+        "input_tokens": 160248,
+        "output_tokens": 7775,
+        "authorized_attempts_used": 1501
+      },
+      "gate": "FAIL",
+      "blocker": "Verifier repeats wrong or semantics and can drop the expected defect; one empty-check validation failure.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    },
+    {
+      "run": "quality-0929-hybrid.json",
+      "sha256": "7ddf9fa49a4cd973c191b4dd5f90e8c58c11413912dfceb9a7cfb2e4ae8bfeb3",
+      "model": "deepseek-flash",
+      "summary": {
+        "attempts": 36,
+        "reviews": 18,
+        "validated": 17,
+        "automatic_passed": 17,
+        "input_tokens": 161091,
+        "output_tokens": 27160,
+        "authorized_attempts_used": 1537
+      },
+      "gate": "FAIL",
+      "blocker": "CA trigger remains overbroad, repair proposes changing assertions, and one schema failure. Different model did not reliably correct all fields.",
+      "review_method": "Agent inspection of blocker examples; no full semantic PASS certification for other cases"
+    }
+  ],
+  "synthetic_attempts": 177,
+  "product_attempts": 2,
+  "total_used": 1539,
+  "remaining": 1461,
+  "scope": "fixed diagnostic corpus; no general recall or defect-free guarantee",
+  "metadata_correction": "Hybrid run checker is deepseek-v4-pro, thinking low,8192 output cap,60s; original max_output_tokens=2000 describes draft only. Original records preserved."
+}

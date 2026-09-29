@@ -5,7 +5,7 @@
 
 ## 실행과 소유권
 
-현재 계약은 [ADR-REVIEW-010](../../adr/review/ADR-REVIEW-010-evidence-first-verified-review.md)이다. 문맥 선택과 입력 예산을 V4로 확대하고, 지적이 있는 초안에 별도 근거 검증 호출을 추가한다.009의 서버 요약 조합은 유지한다. 과거 결과 불변이며 모델 판단을 실행으로 확인한 결과로 표현하지 않는다. 실제 품질·비용은 backend Report가 소유한다.
+현재 계약은 [ADR-REVIEW-011](../../adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md)이다. 빈 초안은 변경 파일별로 재검토하며 검토 파일은 사이트에서 열람한다. 문맥 선택과 입력 예산을 V4로 확대하고, 지적이 있는 초안에 별도 근거 검증 호출을 추가한다.009의 서버 요약 조합은 유지한다. 과거 결과 불변이며 모델 판단을 실행으로 확인한 결과로 표현하지 않는다. 실제 품질·비용은 backend Report가 소유한다.
 
 [ADR-REVIEW-003](../../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md)이 초기 FINDINGS_ONLY 설계를 대체한다. 정적 Finding은 변경하지 않는다. `review`가 router/service/models/policy/provider/worker를 소유하며 analysis/repository/pull_request/workspace의 공개 API만 사용한다. LangChain ChatDeepSeek의 JSON mode와 Pydantic strict 검증을 사용한다. 서버 기본 OFF이며 로컬 검증 설정에서만 명시적으로 켠다. 기본 모델은 deepseek-flash, API 모델 목록에서 가용성을 확인한다.
 
@@ -25,7 +25,7 @@ BOUNDED_CODE_V4: GitHub PR의 첫100개 변경 파일 중 지원 언어 변경 �
 
 PENDING → RUNNING → COMPLETED/FAILED/CANCELED. EXPLAIN_FINDINGS 영속 Job으로 처리한다. analysis·model·prompt·policy·연결 세대·generation digest가 동일하면 기존 실행을 반환한다. 명시 재실행은 새 generation이다.
 
-한 실행 외부 호출 최대2회, 회당 출력2000token·모델60초/취득 포함150초 제한. 초안0건은 두 번째 호출을 생략한다. Workspace UTC 접수일 기준 최대30회(설정1~30, 기본30; 한국시간 오전9시 초기화), 동시1개. 실패/취소도 접수 한도를 소비한다. Workspace 잠금 아래 예약한다. 일일 한도는 [ADR-REVIEW-008](../../adr/review/ADR-REVIEW-008-team-daily-allowance.md)을 따른다. 사용자 화면은 AI 모델/AI 서비스로 표시하며 실제 제공자 설정과 전송·비용 안내를 보존한다. 각 외부 요청 전에 권한·취소·연결 세대·lease를 검사하고 call_attempts(0~2)를 커밋하며 lease 만료는 자동 재호출 없이 실패 처리한다. 모델 설정 변경 시 대기 실행을 다른 모델로 보내지 않는다.
+한 실행 외부 호출 최대2회, 회당 출력2000token·모델60초/취득 포함150초 제한. 초안에 항목이 있으면 근거를 검증하고, 0건이면 변경 파일별로 재검토한다. Workspace UTC 접수일 기준 최대30회(설정1~30, 기본30; 한국시간 오전9시 초기화), 동시1개. 실패/취소도 접수 한도를 소비한다. Workspace 잠금 아래 예약한다. 일일 한도는 [ADR-REVIEW-008](../../adr/review/ADR-REVIEW-008-team-daily-allowance.md)을 따른다. 사용자 화면은 AI 모델/AI 서비스로 표시하며 실제 제공자 설정과 전송·비용 안내를 보존한다. 각 외부 요청 전에 권한·취소·연결 세대·lease를 검사하고 call_attempts(0~2)를 커밋하며 lease 만료는 자동 재호출 없이 실패 처리한다. 모델 설정 변경 시 대기 실행을 다른 모델로 보내지 않는다.
 
 토큰 관측값과 usage_uncertain을 기록한다. 금액 보장은 하지 않으며 정확한 청구는 DeepSeek 기준이다. 취소는 이미 전송된 요청의 과금을 되돌리지 않는다. 원문 소스 보관 없이 한정된 문맥만 검토하므로 실행 검증·전체 시스템 정합성·결함 부재를 보장하지 않는다.
 
@@ -64,9 +64,9 @@ coverage.files.role은 changed/related이고 context_notes는 SOURCE_UNAVAILABLE
 
 - GET /reviews/{rid}/feedback: 요청자 본인의 items(key,state,note,updated_at).
 - PUT /reviews/{rid}/feedback/{key}: {state,note?}; 완료 결과에 실제 존재하는 key만. 상태 OPEN/ACKNOWLEDGED/PLANNED/INTENDED/FALSE_POSITIVE. 메모500자, 비밀 의심 차단.
-- GET /reviews/{rid}/source/{key}: 서버가 결과에서 경로·SHA·대표 줄을 결정한다. 전후8줄, 한 줄300자까지. no-store. 회원·팀·활성 저장소와 연결 세대를 외부 요청 전후 확인한다. 원문 비저장. 역사 결과 읽기와 달리 연결 해제/세대 변경 후 코드 취득은 금지한다.
+- GET /reviews/{rid}/source/{key}: 서버가 결과에서 경로·SHA·대표 줄을 결정한다. 선택적 line으로80줄 페이지, 한 줄300자 및 total_lines를 반환한다. GET /reviews/{rid}/source-files/{file_id}?line=N은 결과 coverage.files 허용 목록에서 파일을 선택한다. no-store. 회원·팀·활성 저장소와 연결 세대를 외부 요청 전후 확인한다. 원문 비저장. 역사 결과 읽기와 달리 연결 해제/세대 변경 후 코드 취득은 금지한다.
 
-피드백은 개인 기록이며 팀 승인/실제 수정 완료가 아니다. 이전 회차 비교는 같은 분석 이력에서 경로·제목의 신규/반복/미검출만 계산한다. 서로 다른 분석의 자동 비교나 의미적 해결 판정은 하지 않는다.
+피드백은 개인 기록이며 팀 승인/실제 수정 완료가 아니다. 이전 회차 비교는 같은 분석 이력의 개선 제안과 추가 확인 질문을 함께 대상으로 경로·제목의 신규/반복/미검출만 계산한다. 서로 다른 분석의 자동 비교나 의미적 해결 판정은 하지 않는다.
 
 ## 모델 출력과 방어 범위 명확화 — 2026-09-27
 
@@ -78,7 +78,9 @@ coverage.files.role은 changed/related이고 context_notes는 SOURCE_UNAVAILABLE
 
 변경 함수별 최대8개 질의를 파일 간 교대로 배정한다. 이름 일치 직접 호출 후보 우선 → 변경 함수 주변 → 선택적 후보 순서이며 같은 파일 여러 구간은 줄 번호로 중복 제거한다. 구간을 추가할 때 파일/전체 예산을 원자적으로 검사하여 가드 끝만 잘라 넣지 않는다. 관련4파일·24후보 한도와 미확보 보호 후보 수, 생략 질의 수를 coverage.retrieval에 기록한다. 부분 함수는 FUNCTION_PARTIAL, 질의 생략은 QUERY_LIMIT이다. 전체 호출 그래프나 필수 근거 전부 확보를 보장하지 않는다.
 
-검증 호출은 같은 코드 입력+strict 검증을 통과한 초안(최대24,000byte)을 보낸다. 각 항목에 KEEP/REVISE/DROP 하나씩, 새 지적·파일/대표 줄 이동·질문의 확정 승격 금지다. 수정도 원 출력 검증을 거친다. 결과의 verification은 status(CHECKED/NO_CANDIDATES), kept/revised/dropped 건수다. 제외된 초안과 검증 자유 응답은 미보관. 검증 장애는 FAILED이며 미검증 성공으로 복귀하지 않는다. 검증 이후 limitations는 서버의 범위/한계 문구로 대체하여 제외한 주장이 재노출되지 않게 한다. 두 번째 실패에도 관측한 첫 사용량을 보존한다. 하루30회는 리뷰 접수 기준이며 최대60회 외부 호출이 가능하다.
+직접 호출 후보는 안전하게 취득한 다른 변경 파일의 함수 정의도 포함한다. 호출 대상 정의가 그 파일의 변경 hunk 밖에 있어도 기존 파일·전체 예산 안에서 우선 선택하며 role=changed를 유지한다. 추가 네트워크 범위나 파일 개수 한도를 늘리는 변경은 아니다.
+
+검증 호출은 같은 코드 입력+strict 검증을 통과한 초안(최대24,000byte)을 보낸다. 각 항목에 KEEP/REVISE/DROP 하나씩, 새 지적·파일/대표 줄 이동·질문의 확정 승격 금지다. 수정도 원 출력 검증을 거친다. 결과의 verification은 status(CHECKED/EMPTY_RECHECKED, 과거 NO_CANDIDATES), kept/revised/dropped 건수다. 제외된 초안과 검증 자유 응답은 미보관. 검증 장애는 FAILED이며 미검증 성공으로 복귀하지 않는다. 검증 이후 limitations는 서버의 범위/한계 문구로 대체하여 제외한 주장이 재노출되지 않게 한다. 두 번째 실패에도 관측한 첫 사용량을 보존한다. 하루30회는 리뷰 접수 기준이며 최대60회 외부 호출이 가능하다.
 
 검증 출력의 checked_consequence는 KEEP/REVISE 모두 필수인1~400자 사용자 결과 문장이다. 서버가 원 초안의 consequence를 이 문장으로 교체하고, 표현이 바뀌면 revised 건수에 포함한다. DROP은 null이어야 한다. 같은 모델의 재서술도 오판할 수 있으므로 진실성 증명으로 표시하지 않는다.
 
@@ -89,3 +91,11 @@ coverage.files.role은 changed/related이고 context_notes는 SOURCE_UNAVAILABLE
 품질 비교는 같은 입력/모델/호출 수 정책/출력 예산에서 수행한다. 위치 적중, 의미가 정확한 주장, 정상 오탐, 형식 실패, 검증 이후 누락을 별도로 기록한다. 검증에서 제거한 초안은 원래 설명이 정확했는지도 검수해야 한다. 최종 주장과 수정안까지 확인한 의미 PASS가 없으면 위치 점수만으로 후보를 채택하지 않는다. 이전 결과와 실패 후보는 보존한다.
 
 평가 전용 구조화 진단은 후보 위치·짧은 관측 결과·보류 사유를 수집할 수 있다. 이는 별도 모델 호출의 출력이며 숨은 내부 추론이나 기존 호출의 탐지 성공 증거가 아니다. 제품 응답/DB 계약에는 추가하지 않으며 검증되지 않은 자유 응답은 보존하지 않는다. 실제 채택·비용·운영 상태는 backend 최신 Report가 소유한다. 이번 문서 정정은 ADR-REVIEW-010의 제품 계약을 변경하지 않는다.
+
+## 빈 결과 재검토
+
+ADR-REVIEW-011에 따라 빈 초안도 두 번째 호출을 진행한다. 모든 변경 파일의 file_checks(file_id/file_path/line/outcome/observation)가 필요하다. outcome은 FINDING/NO_FINDING/LIMITED이며 근거 줄은 제공된 변경 줄이어야 한다. 새 항목도 기존 출력 검증을 거치지만 별도 verifier 실행으로 표현하지 않는다. 검증 실패는 FAILED, 과거 결과는 재작성하지 않는다. 코드 열람은 AI 입력 확대와 별개이며 결과 범위 설명에서 구분한다.
+
+삭제만 있어 제공된 변경 HEAD 줄이 없는 파일은 기존 제공 문맥 줄을 대표 줄로 삼고 LIMITED로만 표시한다. 삭제 코드를 읽었다고 주장하거나 근거 줄을 만들지 않는다.
+
+현재 품질 상태는 [2026-09-29 실제 PR·품질 검증 보고서](../../../../records/2026-09-29_predeploy-quality-report.md)를 따른다. 실제 파일별 재검토·코드 열람은 확인했지만 의미 품질 최소 게이트는 미통과다. 평가 전용 추론/혼합 모델 설정을 제품 설정으로 채택하지 않았다.

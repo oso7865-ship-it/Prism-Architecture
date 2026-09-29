@@ -28,7 +28,7 @@ Webhook 도착 순서를 GitHub 상태 변경 순서로 믿지 않는다. Job은
 
 **모든 중간 commit의 분석을 보장하지 않는다.** 수신되지 않은 이벤트나 합쳐진 commit은 이력에 없을 수 있다. 이미 생성한 Analysis 행은 유지하고 새 snapshot은 새 Analysis를 만든다. SHA 문자열의 사전순으로 '최신'을 판단하지 않는다.
 
-GitHub는 실패한 Webhook을 자동 재전송하지 않는다. Render 무료 서비스가 잠든 동안 누락될 수 있으므로 화면의 `동기화` 버튼과 서비스 재기동 후 최근 목록 재조회로 현재 상태를 복구한다. 이 복구도 전 과거 이벤트 재생은 아니다. [S-GH-RETRY](../../reference/SOURCES.md#s-gh-retry), [Render 제약](../../operations/RENDER.md)
+GitHub는 실패한 Webhook을 자동 재전송하지 않는다. 선택한 배포 구성의 중단·재기동이나 네트워크 장애로 누락될 수 있으므로 화면의 `동기화` 버튼과 서비스 재기동 후 최근 목록 재조회로 현재 상태를 복구한다. 이 복구도 전 과거 이벤트 재생은 아니다. [S-GH-RETRY](../../reference/SOURCES.md#s-gh-retry), [배포 계약](../../operations/DEPLOYMENT.md)
 
 ## 비용/실패
 

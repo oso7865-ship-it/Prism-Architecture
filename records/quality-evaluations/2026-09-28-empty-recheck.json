@@ -1,0 +1,314 @@
+{
+  "prompt_version": "rh1-dfea7fb4c04eba19",
+  "input_kind": "synthetic only; independent empty-result second pass",
+  "attempts": 6,
+  "results": [
+    {
+      "id": "python-off-by-one",
+      "expected_finding": true,
+      "valid": true,
+      "input_tokens": 3005,
+      "output_tokens": 430,
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 리스트 마지막 요소 접근 시 오프바이원 인덱스로 항상 IndexError 발생",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "비어 있지 않은 리스트를 포함해 어떤 리스트로 last를 호출해도 len(values)가 유효 인덱스 범위(0..len-1)를 벗어납니다.",
+            "consequence": "values[len(values)] 접근이 항상 IndexError를 발생시켜 함수가 값을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "리스트 마지막 요소 접근 시 오프바이원 인덱스로 항상 IndexError 발생",
+            "evidence": "line 2에서 인덱스로 len(values)를 사용하는데, 유효한 마지막 인덱스는 len(values)-1입니다. 빈 리스트가 아니어도 len(values)는 범위를 벗어납니다.",
+            "suggestion": "values[-1] 또는 values[len(values) - 1]을 사용하고, 빈 리스트 처리 정책(예외 발생 또는 기본값)을 명시하세요.",
+            "file_path": "sample.py",
+            "key": "d2fc1df9f4cae88bbc11959e11459c571356e923051d240d681a6bf33133d49a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "last 함수의 호출부와 빈 리스트에 대한 기대 계약(예외 vs 기본값)은 제공되지 않아, 빈 입력 처리 방식은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": null
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "len(values)를 인덱스로 사용해 모든 리스트에서 IndexError가 발생하는 오프바이원 오류를 확인했습니다.",
+              "file_path": "sample.py"
+            }
+          ]
+        }
+      },
+      "count_pass": true,
+      "seconds": 2.86
+    },
+    {
+      "id": "python-guarded",
+      "expected_finding": false,
+      "valid": true,
+      "input_tokens": 3009,
+      "output_tokens": 159,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출자와 values의 실제 입력 계약은 제공되지 않았으며, 테스트 실행은 하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": null
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "빈 리스트는 조건식으로 None을 반환하고, 비어 있지 않은 경우에만 values[-1]에 접근하므로 경계 입력에서 인덱스 오류 경로가 보이지 않는다.",
+              "file_path": "sample.py"
+            }
+          ]
+        }
+      },
+      "count_pass": true,
+      "seconds": 1.61
+    },
+    {
+      "id": "typescript-null",
+      "expected_finding": true,
+      "valid": true,
+      "input_tokens": 3055,
+      "output_tokens": 404,
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 분기에서 null을 역참조하여 TypeError 발생",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "length(null)을 호출하면 x === null 조건이 참이 되어 2번째 줄이 실행됩니다.",
+            "consequence": "null에 대해 .length를 접근하므로 TypeError가 발생하고, 3번째 줄의 정상 반환 경로는 실행되지 않습니다.",
+            "assumptions": [],
+            "title": "null 분기에서 null을 역참조하여 TypeError 발생",
+            "evidence": "1번째 줄에서 x는 string | null로 선언되어 null이 유효한 입력입니다. 2번째 줄은 x === null일 때 return x.length를 수행하므로 null 역참조가 확정됩니다.",
+            "suggestion": "null일 때 0을 반환하거나 빈 문자열 길이를 반환하도록 수정하세요(예: if (x === null) return 0;). 3번째 줄의 비-null 경로는 그대로 유지하면 됩니다.",
+            "file_path": "sample.ts",
+            "key": "5bee9822af3df66e90ccc10332ceeec0f67c5d453f4e0d684a21b7aefa690495"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "length 함수의 호출 지점은 제공되지 않았으나, 매개변수 타입에 null이 포함되어 있어 null 입력이 계약상 유효합니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": null
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "x === null 분기에서 x.length를 반환해 null 역참조 TypeError가 발생하는 경로를 확인했습니다.",
+              "file_path": "sample.ts"
+            }
+          ]
+        }
+      },
+      "count_pass": true,
+      "seconds": 2.51
+    },
+    {
+      "id": "typescript-guarded",
+      "expected_finding": false,
+      "valid": true,
+      "input_tokens": 3055,
+      "output_tokens": 176,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출자와 실제 입력 분포는 제공되지 않았으나, 변경된 코드 자체의 null 처리 경로는 완결되어 있습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": null
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "null 분기에서 0을 반환하고 이후 x.length를 참조하므로 명시적 null 역참조 경로가 없습니다.",
+              "file_path": "sample.ts"
+            }
+          ]
+        }
+      },
+      "count_pass": true,
+      "seconds": 1.44
+    },
+    {
+      "id": "java-duplicate-declarations",
+      "expected_finding": false,
+      "valid": true,
+      "input_tokens": 3220,
+      "output_tokens": 293,
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "Store 구현체, 호출 지점, 트랜잭션 전파/격리 수준, 잠금 대상 테이블과 경합하는 다른 접근 경로가 제공되지 않아 실제 잠금 경합·데드락 여부는 판단할 수 없습니다. findById와 findByIdForUpdate의 쿼리 시맨틱 차이도 미제공입니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": null
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "PESSIMISTIC_WRITE 잠금 선언 자체는 문법적으로 유효하며, 제공된 범위에서 잠금 경합을 입증할 호출 경로나 트랜잭션 경계가 없어 결함으로 볼 수 없습니다.",
+              "file_path": "sample.java"
+            }
+          ]
+        }
+      },
+      "count_pass": true,
+      "seconds": 1.92
+    },
+    {
+      "id": "python-div-zero",
+      "expected_finding": true,
+      "valid": true,
+      "input_tokens": 3001,
+      "output_tokens": 412,
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 0으로 나누는 연산으로 인한 ZeroDivisionError",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "value()가 호출되어 2번째 줄의 10 / 0이 평가될 때.",
+            "consequence": "ZeroDivisionError가 발생하여 value() 호출이 정상 반환값을 얻지 못하고 예외로 종료됩니다.",
+            "assumptions": [],
+            "title": "0으로 나누는 연산으로 인한 ZeroDivisionError",
+            "evidence": "2번째 줄에서 리터럴 0을 제수로 사용하는 나눗셈 10 / 0이 변경 라인으로 추가되어 있습니다. 주변에 예외 처리나 0 여부를 검사하는 가드가 없습니다.",
+            "suggestion": "의도한 값이 있다면 0이 아닌 제수를 사용하고, 0이 유효한 입력일 수 있다면 나눗셈 전에 제수를 검사하거나 ZeroDivisionError를 처리하는 분기를 추가하세요.",
+            "file_path": "sample.py",
+            "key": "5a9ab97baacd07ca86e2eddd72527ad8c1df9b2270a557e5a8c8e34046b94fb3"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "value()의 호출자와 반환값 사용처는 제공되지 않아 실제 호출 빈도나 예외 전파 영향은 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "sample.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": null
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "10 / 0 나눗셈이 변경 라인에 있어 호출 시 ZeroDivisionError가 발생하는 경로를 확인했습니다.",
+              "file_path": "sample.py"
+            }
+          ]
+        }
+      },
+      "count_pass": true,
+      "seconds": 2.51
+    }
+  ]
+}

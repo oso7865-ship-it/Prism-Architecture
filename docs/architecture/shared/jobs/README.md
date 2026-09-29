@@ -51,7 +51,7 @@ Job state는 `READY / LEASED / SUCCEEDED / DEAD / CANCELED`. 업무 상태는 do
 
 FastAPI BackgroundTasks는 응답 후 작업을 실행할 수 있지만 영속 큐가 아니다. 여기서는 그것만으로 핵심 Job을 보관하지 않는다. [S-FASTAPI-BG](../../reference/SOURCES.md#s-fastapi-bg)
 
-Render 무료 서비스가 잠들면 embedded runner도 진행을 보장하지 못한다. DB에 남은 작업은 다음 기동 때 복구하지만 24시간 실행을 보장하지 않는다. [배포 계약](../../operations/RENDER.md)을 반드시 함께 적용한다.
+선택한 AWS 실행 환경이 중단되면 embedded runner도 진행을 보장하지 못한다. DB에 남은 작업은 다음 기동 때 복구하지만 24시간 실행을 보장하지 않는다. [배포 계약](../../operations/DEPLOYMENT.md)을 반드시 함께 적용한다.
 
 ## 필수 테스트
 

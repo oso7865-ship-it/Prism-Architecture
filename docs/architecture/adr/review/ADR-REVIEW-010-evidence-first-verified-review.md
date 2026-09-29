@@ -2,10 +2,10 @@
 
 > ID: `ADR-REVIEW-010` · 소유: `REVIEW` · 기준: `2026-09-27`
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 근거: 사용자 개선안1~5 구현 및16KiB 확대 지시.
 - 대체하는 ADR: [ADR-REVIEW-009](ADR-REVIEW-009-derived-review-summary.md). 문맥 예산/선택과 검증 호출 계약을 변경한다.
-- 대체한 ADR: 없음.
+- 대체한 ADR: [ADR-REVIEW-011](ADR-REVIEW-011-empty-recheck-and-source-view.md). 빈 초안 처리와 코드 열람을 변경한다.
 
 ## 배경
 

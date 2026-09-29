@@ -47,7 +47,8 @@ python scripts/context_select.py --path backend/app/domain/review/provider.py
 | [DATA_MODEL](contracts/DATA_MODEL.md) | 논리 관계·소유권·유일성 변경 |
 | [DB-SCHEMA](contracts/schema/README.md) | 17개 테이블 컬럼·타입·인덱스·물리 FK 미사용 규칙 |
 | [FRONTEND](frontend/README.md) | 화면·Cookie/API 프록시 |
-| [RENDER](operations/RENDER.md) | 배포·무료 환경 한계 |
+| [DEPLOYMENT](operations/DEPLOYMENT.md) | AWS EC2 배포·운영 경계와 미정 사항 |
+| [RENDER](operations/RENDER.md) | AWS 전환 이전의 과거 Render 설계 |
 | [PRIVACY](operations/SECURITY_PRIVACY.md) | 소스 반출·보관·삭제 |
 | [TESTING](quality/TESTING.md) | 테스트/릴리스·구현 순서 |
 | [DECISIONS](decisions/DECISIONS.md) | 선택 배경과 이전 설명 정정 |
