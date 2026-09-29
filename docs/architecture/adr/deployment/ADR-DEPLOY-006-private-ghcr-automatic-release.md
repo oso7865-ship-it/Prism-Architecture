@@ -3,11 +3,11 @@
 > ID: `ADR-DEPLOY-006` · 소유: `DEPLOY` · 기준: `2026-09-30`
 > 읽는 때: main 배포·이미지 공개 범위·AWS 배포 권한·실패 복구를 변경할 때
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-30`
 - 근거: 사용자가 자동 배포와 비공개 GHCR 이미지·읽기 토큰 방식을 선택했다.
 - 대체하는 ADR: [ADR-DEPLOY-004](ADR-DEPLOY-004-ec2-runtime.md).
-- 대체한 ADR: 없음.
+- 대체한 ADR: [ADR-DEPLOY-008](ADR-DEPLOY-008-frontend-on-ec2.md). Vercel 관련 결정만 변경하며 백엔드 private GHCR/OIDC/SSM 계약은 유지한다.
 
 ## 배경과 결정 범위
 

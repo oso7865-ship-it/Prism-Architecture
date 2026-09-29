@@ -49,12 +49,15 @@
 | [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md) | Production 설정·배포 전 검증 경계 | SUPERSEDED | DEPLOY-003에 운영 계약 유지 |
 | [ADR-DEPLOY-003](../adr/deployment/ADR-DEPLOY-003-aws-backend.md) | AWS 백엔드와 production 계약 유지 | SUPERSEDED | DEPLOY-004가 EC2 실행 서비스 확정 |
 | [ADR-DEPLOY-004](../adr/deployment/ADR-DEPLOY-004-ec2-runtime.md) | EC2 백엔드 실행 서비스 | SUPERSEDED | DEPLOY-006이 자동 배포 구체화, EC2 유지 |
-| [ADR-DEPLOY-005](../adr/deployment/ADR-DEPLOY-005-rds-initial-runtime.md) | RDS·서울 EC2·전용 DB 계정·초기 비밀 주입 | ACCEPTED | DEPLOY-004 보완, 앱 배포는 미완료 |
-| [ADR-DEPLOY-006](../adr/deployment/ADR-DEPLOY-006-private-ghcr-automatic-release.md) | private GHCR·AWS OIDC/SSM·Vercel 자동 배포 | ACCEPTED | DEPLOY-004 대체, 초기 연결 후 main 자동 배포 |
+| [ADR-DEPLOY-005](../adr/deployment/ADR-DEPLOY-005-rds-initial-runtime.md) | RDS·서울 EC2·전용 DB 계정·초기 비밀 주입 | ACCEPTED | DEPLOY-004 보완, 실제 출시 상태는 DEPLOYMENT 참조 |
+| [ADR-DEPLOY-006](../adr/deployment/ADR-DEPLOY-006-private-ghcr-automatic-release.md) | private GHCR·AWS OIDC/SSM·Vercel 자동 배포 | SUPERSEDED | DEPLOY-008이 프론트 호스팅 변경, 백엔드 계약 유지 |
+| [ADR-DEPLOY-007](../adr/deployment/ADR-DEPLOY-007-caddy-https.md) | EC2 Caddy·공인 HTTPS·자동 갱신 | ACCEPTED | DEPLOY-005/006 보완, 앱 배포 Gate 유지 |
+| [ADR-DEPLOY-008](../adr/deployment/ADR-DEPLOY-008-frontend-on-ec2.md) | 같은 EC2의 Vue 정적 파일·Caddy 프록시 | SUPERSEDED | DEPLOY-009가 공개 이미지와 자동배포 전송 구체화 |
+| [ADR-DEPLOY-009](../adr/deployment/ADR-DEPLOY-009-public-images.md) | 공개 GHCR·토큰 없는 다운로드·정적 OCI 전송 | ACCEPTED | DEPLOY-008의 EC2 구성 유지 |
 | [ADR-PRODUCT-001](../adr/product/ADR-PRODUCT-001-prism-name.md) | PRism 프로젝트명 | ACCEPTED | D-008 |
 | [ADR-PRODUCT-002](../adr/product/ADR-PRODUCT-002-staged-public-access.md) | 초기 내부 사용과 향후 외부 가입 | ACCEPTED | D-011 |
 | [ADR-DATA-001](../adr/data/ADR-DATA-001-postgresql.md) | PostgreSQL 사용 | ACCEPTED | — |
-| [ADR-FRONTEND-001](../adr/frontend/ADR-FRONTEND-001-vue-vercel.md) | Vue와 Vercel 프론트 구성 | BASELINE | — |
+| [ADR-FRONTEND-001](../adr/frontend/ADR-FRONTEND-001-vue-vercel.md) | Vue와 Vercel 프론트 구성 | SUPERSEDED | DEPLOY-008이 EC2 프론트로 전환 |
 | [ADR-DOCS-002](../adr/documentation/ADR-DOCS-002-area-adrs.md) | 영역별 ADR과 변경 이력 관리 | ACCEPTED | — |
 | [ADR-ARCH-002](../adr/architecture/ADR-ARCH-002-independent-repositories.md) | 독립 저장소와 프로젝트별 하네스 | SUPERSEDED | — |
 | [ADR-ARCH-003](../adr/architecture/ADR-ARCH-003-central-documentation.md) | 문서 중앙 관리·로컬 복원 | ACCEPTED | ARCH-002 대체 |

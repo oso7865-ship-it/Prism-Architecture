@@ -3,7 +3,7 @@
 > ID: `FRONTEND` · 소유: `frontend` · 기준: `v0.1.0 / 2026-09-25`
 > 읽는 때: 화면·프론트 API·Cookie 프록시를 변경할 때
 
-기존 논의의 Vue/Vercel을 설계 기본값으로 유지한다. 세부 조합은 Vue 3 + TypeScript + Vite + Vue Router를 제안한다. 실제 의존성 버전은 bootstrap 단계에서 고정한다.
+[ADR-DEPLOY-009](../adr/deployment/ADR-DEPLOY-009-public-images.md)에 따라 Vue 3 + TypeScript + Vite + Vue Router를 유지하고 같은 EC2의 Caddy에서 빌드된 정적 파일을 제공한다. 프론트·백엔드 운영 배포, 실제 GitHub 로그인, 공개 GHCR/OIDC/SSM 자동배포를 완료했다. [최종 검증 기록](../../../records/2026-09-30_full-ec2-release.md)이 실제 확인 범위와 후속을 소유한다.
 
 ```text
 frontend/src/
@@ -33,11 +33,11 @@ PENDING/RUNNING 중에는 3초 간격 상태 조회를 기본으로 하고 오�
 
 ## API 프록시
 
-브라우저는 동일 출처 `/api/v1/...`를 호출하고 Vercel external rewrite가 AWS 백엔드의 `/api/v1/...`로 전달하는 구성을 제안한다. Vercel은 외부 origin으로 요청을 프록시하는 rewrite를 제공한다. [S-VERCEL-REWRITE](../reference/SOURCES.md#s-vercel-rewrite)
+브라우저는 동일 출처 `/api/v1/...`를 호출하고 Caddy가 EC2의 `127.0.0.1:8000` 백엔드로 경로를 보존해 전달한다. API/health는 SPA fallback보다 먼저 분리하며 백엔드 오류를 HTML 200으로 변환하지 않는다.
 
 OAuth Callback도 고정된 프론트 출처의 `/api/v1/auth/github/callback`을 프록시한다. Refresh 쿠키에는 backend 도메인을 Domain으로 지정하지 않는다. Set-Cookie 전달, path, Secure, SameSite, redirect, Origin 검증은 실제 배포 환경에서 확인한다. Preview URL마다 운영 OAuth callback을 넓게 허용하지 않는다.
 
-인증/API 응답은 `Cache-Control: private, no-store`로 응답하고 Vercel API rewrite caching도 비활성화한다. 팀 데이터가 CDN에서 다른 사용자에게 재사용되지 않는지 두 계정으로 테스트한다. GitHub Webhook은 프론트가 아니라 AWS 백엔드의 직접 `/webhooks/github`로 보낸다.
+인증/API 응답은 `Cache-Control: private, no-store`로 응답하고 Caddy 오류 응답도 no-store다. 팀 데이터가 다른 사용자에게 캐시로 재사용되지 않는지 두 계정으로 테스트한다. GitHub Webhook은 프론트가 아니라 AWS 백엔드의 직접 `/webhooks/github`로 보낸다.
 
 ## 금지와 표시 기준
 
@@ -49,7 +49,7 @@ GitHub Secret·LLM key·Refresh 원문을 localStorage 또는 프론트 env에 �
 
 ## 배포 설정 구현
 
-[ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md)의 동일 출처 HTTPS 계약을 따른다. frontend deployment/vercel.template.json과 scripts/prepare-deployment.mjs가 API/health rewrite, SPA fallback, no-store와 보안 헤더를 준비한다. 실제 API 주소를 확정한 뒤 설정 파일을 생성하며 외부 OAuth·쿠키 proxy는 공개 환경에서 별도 확인한다.
+[ADR-DEPLOY-009](../adr/deployment/ADR-DEPLOY-009-public-images.md)의 동일 출처 HTTPS 계약을 따른다. frontend deployment/Caddyfile은 API/health 프록시, SPA fallback, no-store와 보안 헤더를 제공한다. 숨김 파일/소스맵은 404이며 없는 정적 자원도 HTML로 대체하지 않는다. 해시 자원은 immutable 캐시, HTML은 재검증한다. Vercel CI를 EC2 자동배포로 교체했다. 실제 main CI가 게시한 정적 OCI 이미지의 파일을 원자적으로 배포하고 외부 해시·SPA·ready를 검사했다. 운영 OAuth 로그인과 쿠키 Secure/HttpOnly/SameSite=Lax/host-only 및 CSRF 거부를 확인했다. 두 계정 격리와 운영 PR 전체 흐름 검증은 이번 결과에 포함하지 않는다.
 
 ## 리뷰 탐색과 복원 (ADR-REVIEW-006)
 

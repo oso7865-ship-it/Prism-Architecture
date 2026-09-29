@@ -531,6 +531,24 @@
       "id": "ADR-DEPLOY-006",
       "owner": "DEPLOY",
       "read_when": "main 배포·이미지 공개 범위·AWS 배포 권한·실패 복구를 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-007-caddy-https.md",
+      "id": "ADR-DEPLOY-007",
+      "owner": "DEPLOY",
+      "read_when": "EC2 인증서·HTTPS 프록시·갱신 설정을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-008-frontend-on-ec2.md",
+      "id": "ADR-DEPLOY-008",
+      "owner": "DEPLOY",
+      "read_when": "프론트 호스팅·프록시·자동배포 대상을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-009-public-images.md",
+      "id": "ADR-DEPLOY-009",
+      "owner": "DEPLOY",
+      "read_when": "이미지 공개 범위·배포 인증·프론트 산출물 전송을 변경할 때"
     }
   ],
   "tasks": {
@@ -851,7 +869,10 @@
         "docs/architecture/adr/deployment/ADR-DEPLOY-003-aws-backend.md",
         "docs/architecture/adr/deployment/ADR-DEPLOY-004-ec2-runtime.md",
         "docs/architecture/adr/deployment/ADR-DEPLOY-005-rds-initial-runtime.md",
-        "docs/architecture/adr/deployment/ADR-DEPLOY-006-private-ghcr-automatic-release.md"
+        "docs/architecture/adr/deployment/ADR-DEPLOY-006-private-ghcr-automatic-release.md",
+        "docs/architecture/adr/deployment/ADR-DEPLOY-007-caddy-https.md",
+        "docs/architecture/adr/deployment/ADR-DEPLOY-008-frontend-on-ec2.md",
+        "docs/architecture/adr/deployment/ADR-DEPLOY-009-public-images.md"
       ]
     },
     "adr-security": {
@@ -1379,10 +1400,12 @@
       "id": "ADR-FRONTEND-001",
       "area": "FRONTEND",
       "path": "docs/architecture/adr/frontend/ADR-FRONTEND-001-vue-vercel.md",
-      "status": "BASELINE",
+      "status": "SUPERSEDED",
       "legacy_ids": [],
       "supersedes": [],
-      "superseded_by": []
+      "superseded_by": [
+        "ADR-DEPLOY-008"
+      ]
     },
     {
       "id": "ADR-DOCS-002",
@@ -1638,10 +1661,46 @@
       "id": "ADR-DEPLOY-006",
       "area": "DEPLOY",
       "path": "docs/architecture/adr/deployment/ADR-DEPLOY-006-private-ghcr-automatic-release.md",
-      "status": "ACCEPTED",
+      "status": "SUPERSEDED",
       "legacy_ids": [],
       "supersedes": [
         "ADR-DEPLOY-004"
+      ],
+      "superseded_by": [
+        "ADR-DEPLOY-008"
+      ]
+    },
+    {
+      "id": "ADR-DEPLOY-007",
+      "area": "DEPLOY",
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-007-caddy-https.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-DEPLOY-008",
+      "area": "DEPLOY",
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-008-frontend-on-ec2.md",
+      "status": "SUPERSEDED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-DEPLOY-006",
+        "ADR-FRONTEND-001"
+      ],
+      "superseded_by": [
+        "ADR-DEPLOY-009"
+      ]
+    },
+    {
+      "id": "ADR-DEPLOY-009",
+      "area": "DEPLOY",
+      "path": "docs/architecture/adr/deployment/ADR-DEPLOY-009-public-images.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-DEPLOY-008"
       ],
       "superseded_by": []
     }

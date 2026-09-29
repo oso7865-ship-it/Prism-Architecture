@@ -3,11 +3,11 @@
 > ID: `ADR-FRONTEND-001` · 소유: `FRONTEND` · 기준: `2026-09-25`
 > 읽는 때: 이 영역의 결정 배경이나 대체 여부를 검토할 때
 
-- 상태: `BASELINE`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-25`
 - 근거: 기존 설계 기본값
 - 대체하는 ADR: 없음
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-DEPLOY-008](../deployment/ADR-DEPLOY-008-frontend-on-ec2.md). Vue와 동일 출처 계약은 유지하고 호스팅을 EC2로 전환한다.
 
 ## 배경
 

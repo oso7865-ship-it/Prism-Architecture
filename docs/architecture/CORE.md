@@ -9,7 +9,7 @@
 
 GitHub PR의 코드 리뷰·취약점 검토와 팀 문서 기반 컨벤션/패키지 구조 검토를 제공하는 플랫폼이다. 정해진 규칙 탐지와 AI 판단을 구분한다. 코드의 완전한 안전성·정확성·기업 도입 적합성을 인증하는 제품이 아니다.
 
-사용자 선택: Python 백엔드, LangChain 활용, AWS EC2 백엔드 배포, 지원 분석 언어 **Java / JavaScript / TypeScript / Python**. Go는 제외한다. 프론트는 기존 논의에 따라 Vue/Vercel을 설계 기본값으로 둔다.
+사용자 선택: Python 백엔드, LangChain 활용, AWS EC2 백엔드 배포, 지원 분석 언어 **Java / JavaScript / TypeScript / Python**. Go는 제외한다. 2026-09-30 프론트도 같은 EC2의 Caddy에서 Vue 정적 파일로 제공하도록 전환했다. 공개 GHCR/OIDC/SSM 자동배포는 [ADR-DEPLOY-009](adr/deployment/ADR-DEPLOY-009-public-images.md)를 따른다.
 
 ## 바뀌면 안 되는 경계
 
