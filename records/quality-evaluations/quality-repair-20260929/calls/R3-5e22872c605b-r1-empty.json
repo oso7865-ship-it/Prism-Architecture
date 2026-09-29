@@ -1,0 +1,15 @@
+{
+  "key": "R3-5e22872c605b-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:40.294581+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 유일한 변경 라인은 range(0, n, max(n, 1))로, n이 양수일 때 step이 n이 되어 [0]만 반환합니다. 계약상 양수 n에 대해 [0]을 반환하는 것이 의도이므로 이 동작은 계약과 일치하며, n=0은 []를 반환합니다. 다만 n이 음수일 때 max(n,1)=1이 되어 range(0, n, 1)이 빈 리스트를 반환하는데, 이는 계약이 n을 비음수로 한정하므로 위반이 아닙니다. 제공된 범위 내에서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"n의 실제 호출자와 타입 보장은 제공되지 않았습니다. 계약이 n을 비음수 int로 명시하므로 음수 입력은 검토 대상에서 제외했습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"range(0, n, max(n, 1))는 n>0일 때 [0], n=0일 때 []를 반환하여 명시된 계약과 일치합니다. n<0은 계약 범위 밖입니다.\"}]}",
+  "input_tokens": 3205,
+  "output_tokens": 306,
+  "seconds": 2.0
+}

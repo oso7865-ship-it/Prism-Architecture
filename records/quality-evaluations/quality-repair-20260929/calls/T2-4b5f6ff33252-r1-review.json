@@ -1,0 +1,15 @@
+{
+  "key": "T2-4b5f6ff33252-r1-review",
+  "arm": "T2",
+  "phase": "review",
+  "at": "2026-09-29T10:21:46.406228+00:00",
+  "input_hash": "2f2091f6b1548615dc724919994078ad96ec3ac662ddabc3e6286a4e5b4ed256",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 verify가 True 또는 None일 때 환경 변수 CA 경로를 조회하도록 변경된 부분을 검토했습니다. 제공된 테스트 계약과 변경 라인의 동작을 대조했을 때 억제해야 할 명확한 결함은 확인되지 않았습니다.\",\"issues\":[],\"limitations\":\"제공된 f1 범위만 정적 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 session_verify의 실제 전달 값, env 사전의 실제 생성 경계는 제공되지 않아 검토 범위 밖입니다.\"}",
+  "input_tokens": 5366,
+  "output_tokens": 140,
+  "seconds": 1.421
+}

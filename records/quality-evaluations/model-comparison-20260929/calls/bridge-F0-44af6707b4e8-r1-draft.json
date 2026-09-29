@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-44af6707b4e8-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "44af6707b4e8",
+  "at": "2026-09-29T08:42:43.511877+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`가 None이 아닌 거짓 같은 값(0, '', False, 빈 컨테이너)도 부재로 취급해 기본값으로 대체하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 0, 빈 문자열, False, 빈 리스트 등 거짓 같은 값이 명시적으로 전달될 때",
+        "consequence": "or 연산이 해당 값을 거짓으로 평가해 default가 반환되므로, 명시적으로 제공된 값이 보존되지 않고 계약과 어긋납니다.",
+        "assumptions": [],
+        "title": "명시적으로 제공된 거짓 같은 값이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 None 여부가 아니라 truthiness로 분기하므로, 계약의 'None만 부재' 조건과 다르게 동작합니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꿔 거짓 같은 값도 보존하세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "input_tokens": 4738,
+  "output_tokens": 291,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4480,
+  "response_sha256": "45274790e8d9efa681b1b7ea26139e9e18e4624bf30554f33ab67ff8ab633a65",
+  "elapsed_seconds": 2.235
+}

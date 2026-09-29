@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-4d95d35835a5-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "4d95d35835a5",
+  "at": "2026-09-29T08:44:53.683567+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "리스트 컴프리헨션으로 생성한 람다들이 지연 바인딩으로 인해 동일한 값을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()가 반환한 각 람다를 호출할 때",
+        "consequence": "모든 람다가 마지막 반복 값인 2를 반환하여, 각 콜백이 생성 시점의 인덱스를 반환해야 한다는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "람다가 지연 바인딩으로 인해 항상 마지막 인덱스를 반환합니다",
+        "evidence": "2줄의 리스트 컴프리헨션에서 람다는 i를 참조하지만, i는 루프가 끝난 후 마지막 값(2)으로 유지됩니다. 따라서 모든 람다가 2를 반환합니다.",
+        "suggestion": "기본 인자를 사용해 각 반복의 값을 고정하세요: `lambda i=i: i`."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4740,
+  "output_tokens": 329,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "f9a0131cc9da954e9aba2230669f9f89701d9d836b6c3fd0933d934d9edce39a",
+  "elapsed_seconds": 6.375
+}

@@ -1,0 +1,88 @@
+{
+  "key": "bridge-C0-d9318706b943-r1",
+  "case": "d9318706b943",
+  "arm": "C0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "f1의 변경된 `count ?? 10`은 null/undefined만 기본값 10으로 대체하고 0은 유효한 값으로 유지하므로, 명시된 동작 계약(0은 유효한 설정값)과 일치합니다. 변경 라인에서 지원 가능한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "limit 함수의 호출부와 count의 실제 전달 값 범위는 제공되지 않아, 0이나 음수가 이후 로직에서 어떻게 사용되는지는 확인하지 못했습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "limit 함수의 호출부와 count의 실제 전달 값 범위는 제공되지 않아, 0이나 음수가 이후 로직에서 어떻게 사용되는지는 확인하지 못했습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "limits.js",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "`??` 연산자는 null/undefined만 10으로 대체하고 0은 그대로 반환하므로, 0을 유효한 설정값으로 보는 동작 계약과 일치합니다.",
+          "file_path": "limits.js"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "`??` 연산자는 null/undefined만 10으로 대체하고 0은 그대로 반환하므로, 0을 유효한 설정값으로 보는 동작 계약과 일치합니다.",
+        "file_path": "limits.js"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7908,
+  "output_tokens": 288,
+  "elapsed_seconds": 2.4690000000000003
+}

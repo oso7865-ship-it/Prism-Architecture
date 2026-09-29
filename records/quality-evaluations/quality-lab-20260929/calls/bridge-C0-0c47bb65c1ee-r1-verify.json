@@ -1,0 +1,27 @@
+{
+  "key": "bridge-C0-0c47bb65c1ee-r1-verify",
+  "arm": "C0",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:41.582043+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "8d8e26c0fa2d2ca552f09dcd1c5955cb9239aedf7b550670fab4a0580e4d9b45",
+  "input_bytes": 1796,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "base.copy()는 얕은 복사이므로 result['nested']는 base['nested']와 동일한 객체이며, 3줄의 대입으로 호출자의 base['nested']['limit']도 9로 변경되어 4줄은 9를 반환합니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "422fd0895da9979510d3dd85c818a3c11b6805682967944e41add0eb2a622dd1",
+  "input_tokens": 3206,
+  "output_tokens": 105,
+  "elapsed_seconds": 1.156
+}

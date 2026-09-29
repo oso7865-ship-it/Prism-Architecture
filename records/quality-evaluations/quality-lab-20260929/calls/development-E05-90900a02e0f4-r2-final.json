@@ -1,0 +1,52 @@
+{
+  "key": "development-E05-90900a02e0f4-r2-final",
+  "arm": "E05",
+  "phase": "final",
+  "at": "2026-09-29T07:10:41.068518+00:00",
+  "system_sha256": "7a42325c75eeeed9ea949c817665172f01cba9bf77aaac67ebbcba4e58318457",
+  "payload_sha256": "41a16a23f45daae1f18c9c15178bbf7fd597e13304f92261c809ef5d11c3be50",
+  "input_bytes": 814,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name 인자의 null 여부에 따라 분기하는 변경을 검토했습니다. 현재 HEAD의 조건이 이전 소스와 반대로 되어 있어 동작이 계약과 일치하지 않습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null이 아닌 문자열일 때 name(name)을 호출하는 경우",
+        "consequence": "조건이 참이 되어 name.trim()이 실행되고, null일 때는 \"\"가 반환됩니다. 계약과 정반대로 동작하며, null 입력은 빈 문자열로 처리되지만 비어 있지 않은 입력은 공백 제거 결과가 아니라 빈 문자열이 됩니다.",
+        "assumptions": [],
+        "title": "null 분기 조건이 반대로 되어 계약과 다른 결과를 반환합니다",
+        "evidence": "3줄에서 name == null일 때 name.trim()을, 그렇지 않을 때 \"\"를 반환합니다. 이는 behavior_contract의 'null은 빈 문자열, 그 외는 공백 제거'와 반대입니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null일 때 빈 문자열을, 그 외에는 trim 결과를 반환하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "604bde27008c4db2366771cfbce97ccbe6d39ef8d6601276df67880a982cbbd7",
+  "input_tokens": 5403,
+  "output_tokens": 382,
+  "elapsed_seconds": 2.391
+}

@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-52ccbd6a57a5-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:00.412863+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 returns a parameterized query with a %s placeholder and a separate tuple, so user_id is not interpolated into the SQL string.",
+      "The returned value is a 2-tuple (sql_string, params_tuple); the probe's JSON encoding of that tuple yields an array of [string, [value]].",
+      "For probe p1, the SQL string is unchanged ('SELECT name FROM users WHERE id = %s') and the params tuple is ('0 OR 1=1',), so the injection payload is carried as a bound parameter, not SQL syntax.",
+      "No string concatenation, f-string, or format call appears on the changed line, so no observable SQL-injection defect is present in the supplied source.",
+      "The contract states the caller passes the tuple directly to a DB-API driver using %s placeholders; correctness depends on that caller behavior, which is not shown.",
+      "static_findings is empty, consistent with the absence of an observable defect in the two supplied lines."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "1824fae8f0a904ca8ad4fdd4a1f8aaf70638ba67a46a41d3d52d54eab2b6715f",
+  "input_tokens": 329,
+  "output_tokens": 211,
+  "elapsed_seconds": 2.078
+}

@@ -1,0 +1,26 @@
+{
+  "key": "development-E11-7c4f2f03b3b5-r1-observe",
+  "arm": "E11",
+  "phase": "observe",
+  "at": "2026-09-29T07:15:35.153803+00:00",
+  "system_sha256": "4f469fe1192f5b54d60868d76fc54a80999dd7607500855f56cfade86ba3987f",
+  "payload_sha256": "beb23349e86f8c62ccc39b159769d1a3532684ee2fe93803f483d87b9eaa6f1a",
+  "input_bytes": 989,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "app/service.py line 2 uses print('saved') instead of the injected logger.info, while the standard s1 (로깅) requires logging via injected logger.info rather than print.",
+      "The logger parameter is declared at line 1 but never referenced anywhere in the function body (lines 2-3), so the injected dependency is unused.",
+      "Line 2 is the only changed line; lines 1 and 3 are unchanged, so the print call is the introduced deviation.",
+      "The behavior contract states logger.info exists with no return value or side effects beyond logging, so substituting logger.info for print would not alter the return value.",
+      "Probe p1 observes only the return value of save(7, logger); line 3 returns record unchanged, so the probe cannot detect the print-vs-logger deviation.",
+      "No static findings are reported, so the print/logger mismatch is not surfaced by existing static analysis."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "966fa0158f0357c2b05a9923172c04431d83538100504440d3b09229c209d2e3",
+  "input_tokens": 488,
+  "output_tokens": 194,
+  "elapsed_seconds": 1.5
+}

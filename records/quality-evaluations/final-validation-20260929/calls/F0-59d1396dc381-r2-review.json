@@ -1,0 +1,12 @@
+{
+  "key": "F0-59d1396dc381-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:20.808738+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 value를 max(value, 0)으로 계산해 adjusted에 저장하지만 반환은 원래 value를 그대로 반환하도록 변경되었습니다. 제공된 계약상 원본 값을 그대로 반환하는 것이 요구사항이므로 반환 동작 자체는 계약과 일치하며, adjusted 변수는 사용되지 않는 계산입니다.\",\"issues\":[],\"limitations\":\"제공된 3개 라인만 검토했으며 adjust의 호출자나 adjusted 변수의 다른 사용처는 확인할 수 없습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4664,
+  "output_tokens": 135,
+  "seconds": 1.343
+}

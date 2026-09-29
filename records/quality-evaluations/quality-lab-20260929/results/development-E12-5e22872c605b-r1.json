@@ -1,0 +1,54 @@
+{
+  "key": "development-E12-5e22872c605b-r1",
+  "case": "5e22872c605b",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "변경된 indices 함수는 n=0에서 빈 리스트를, 양의 n에서 [0]을 반환하며, 제공된 동작 계약과 일치합니다. 제공 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "변경된 함수와 제공된 동작 계약, 두 개의 프로브 호출만 검토했으며 테스트를 실행하지 않았습니다. 음수 n 등 계약 외 입력의 처리 방식은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5191,
+  "output_tokens": 582,
+  "elapsed_seconds": 3.344,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-4b5f6ff33252-r2-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "4b5f6ff33252",
+  "at": "2026-09-29T08:43:16.299321+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "ec071ae2a7f5ad1731519a374a0effe75ea721c517608e97a204e5726ec4e99a",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 두 줄(9-10)은 verify가 True/None일 때만 환경변수 CA 경로를 조회하도록 조건을 좁혔고, 명시적 False는 그대로 유지됩니다. 제공된 테스트(14-18, 21)와 동작 계약을 대조했을 때 위반되는 경로는 보이지 않습니다.",
+    "issues": [],
+    "limitations": "env 딕셔너리의 실제 값 타입과 merge_setting의 다른 호출 지점은 제공되지 않았습니다. 테스트 실행 여부는 확인하지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 9,
+        "outcome": "NO_FINDING",
+        "observation": "verify가 True/None일 때만 env 조회를 수행하고 False는 건너뛰어 명시적 비활성화가 유지됨. 10행의 or 체인은 빈 문자열을 건너뛰어 테스트 15-16과 일치함."
+      }
+    ]
+  },
+  "input_tokens": 3678,
+  "output_tokens": 237,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3456,
+  "response_sha256": "7919de716649b8129fa2725598881131a276a6566855ea1002a2a78bfb924a87",
+  "elapsed_seconds": 1.812
+}

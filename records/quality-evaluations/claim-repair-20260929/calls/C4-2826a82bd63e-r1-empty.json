@@ -1,0 +1,12 @@
+{
+  "key": "C4-2826a82bd63e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:56.247345+00:00",
+  "input_hash": "7938527fda708e96c42d4ffa33e07ec9adf25b16eb805d0dfa9a51a480d73d2a",
+  "system_hash": "1c451e5ed31d552f6497040d48b0cc947a107fc48ab359ef819557d32454194f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"ordered 함수는 입력 배열을 복사한 뒤 숫자 오름차순으로 정렬해 반환하며, 호출자 배열을 변경하지 않는다는 계약을 충족한다. 제공된 범위에서 구체적인 결함 경로는 확인되지 않았다.\", \"issues\": [], \"limitations\": \"values가 유한 숫자 배열이라는 계약만 제공되어, 비숫자/NaN/무한대 입력에 대한 동작은 검토 범위 밖이다. 호출자 코드는 제공되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"스프레드로 복사 후 숫자 비교자를 사용해 오름차순 정렬하며 원본 배열을 변경하지 않아, 제공된 계약과 일치한다.\"}]}",
+  "input_tokens": 3346,
+  "output_tokens": 189,
+  "seconds": 1.703
+}

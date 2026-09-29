@@ -1,0 +1,15 @@
+{
+  "key": "B0-ff6c59d6fbc8-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:43.128138+00:00",
+  "input_hash": "301e5fa6c3d68b8e7357b25cd715e499181c14a5bcb86b7f398e4f9c2dc0c0e1",
+  "system_hash": "8ee460fda4dd6f302d647ed5de53ee96a9a08ebf7b14ec28d5936c55a2310c71",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 주입된 logger.info로 기록하며, 제공된 로깅 규칙과 일치합니다. 제공된 범위에서 지원되는 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"record의 타입/계약과 logger 구현은 제공되지 않았으나, 변경 라인은 로깅 호출에 한정되어 있어 판단에 영향이 없습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 2, \"outcome\": \"NO_FINDING\", \"observation\": \"변경 라인은 print 대신 주입된 logger.info를 사용해 로깅 규칙(s1)을 충족하며, 반환값 사용이나 예외 경로에서 문제가 보이지 않습니다.\"}]}",
+  "input_tokens": 3596,
+  "output_tokens": 188,
+  "seconds": 1.328
+}

@@ -1,0 +1,54 @@
+{
+  "key": "diagnostic-F0-90900a02e0f4-r2",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:42:27.313854+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name이 null일 때 trim을 호출하고, null이 아닐 때는 빈 문자열을 반환하도록 조건이 뒤바뀌어 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null) 또는 공백을 포함한 비-null 문자열로 호출할 때",
+        "consequence": "null 입력에서는 name이 null인 상태로 trim()이 호출되어 NullPointerException이 발생하고, 비-null 입력에서는 trim 결과 대신 빈 문자열이 반환되어 계약과 반대로 동작합니다.",
+        "assumptions": [],
+        "title": "null 처리와 trim 분기가 반대로 되어 있습니다",
+        "evidence": "3줄의 삼항 연산자는 name == null일 때 name.trim()을, 그렇지 않을 때 \"\"를 반환합니다. 이는 null은 빈 문자열로, 비-null은 trim하라는 계약과 정반대입니다.",
+        "suggestion": "조건의 두 분기를 바꿔 name == null ? \"\" : name.trim()으로 반환하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5331,
+  "output_tokens": 334,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5120,
+  "response_sha256": "cbcfd62bbee3dbf1c3b66dc48bb470555302ac56e3632ae8cbe9a6316d10cce1",
+  "elapsed_seconds": 2.61
+}

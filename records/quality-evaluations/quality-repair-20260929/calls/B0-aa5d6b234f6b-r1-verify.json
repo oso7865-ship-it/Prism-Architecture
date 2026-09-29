@@ -1,0 +1,15 @@
+{
+  "key": "B0-aa5d6b234f6b-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:58.307074+00:00",
+  "input_hash": "741864bfd5f5ae1e120ec67a3976c7bc36083388546f8e88012a6abd92d550ec",
+  "system_hash": "8a3abb984c24bdaf0f817aeafdb887873fe511ce4e309779202bfd2443868155",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"bucket을 생략한 collect 호출이 두 번 이상 발생하면, 함수 정의 시 생성된 동일한 기본 리스트가 재사용되어 두 번째 반환값에 이전 호출의 항목이 누적되며, 이는 '생략 시 매번 새 bucket'이라는 명시된 동작 계약과 어긋납니다.\"}]}",
+  "input_tokens": 3102,
+  "output_tokens": 116,
+  "seconds": 0.969
+}

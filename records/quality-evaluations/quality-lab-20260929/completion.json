@@ -1,0 +1,32 @@
+{
+  "at": "2026-09-29T07:32:45.452167+00:00",
+  "campaign_attempts": 1431,
+  "all_time_attempts": 2994,
+  "absolute_limit": 6563,
+  "campaign_remaining": 3569,
+  "response_received": 1431,
+  "schema_completed": 1430,
+  "schema_failed": 1,
+  "completed_case_runs": 964,
+  "unresolved_calls": 0,
+  "duplicate_call_keys": 0,
+  "resume_check": "development run skipped completed results; attempts remained 1431",
+  "verification": {
+    "linux_tests": "24 passed in 2.17s; offline, read-only source mount",
+    "ruff": "all new scripts/tests check and format pass",
+    "windows_final_test": "access violation diagnostic; not accepted as evidence"
+  },
+  "runtime_adoption": false,
+  "source_sha256": {
+    "prism-backend/scripts/quality_lab_adaptive.py": "1ab7b59197acb1d9c328914357c401b037ba33904f7d52dff403625ff9e824b7",
+    "prism-backend/scripts/quality_lab_bridge.py": "43d816b4bf54d5b6f6bd9d4bcd940a8bdb1c706feaef313f548155f10c840dbd",
+    "prism-backend/scripts/quality_lab_cases.py": "2748c40327d1be117474b0d42d116805b68538654a757149033bbe13b4879b8b",
+    "prism-backend/scripts/quality_lab_protocol.py": "8d0d5fccd80bca6cb92765e6914c10ddbc749907feb6c0a028299c685c72c5f5",
+    "prism-backend/scripts/quality_lab_report.py": "d6bca17d883083536fcbe99239d3b6b94f01e4ef942379e37a28ff914f831226",
+    "prism-backend/scripts/quality_lab_rescore.py": "6f68ff6369204b0625959f715f47f7b02e2e57e4a0f9f88200e5f018b7dd07a2",
+    "prism-backend/scripts/quality_lab_runner.py": "00100714333d4b9116e49e7297690d3dd795887372db0a65dce997af67ea543b",
+    "prism-backend/tests/test_quality_lab.py": "57cafbdc6ac626a94af4620da1a206f15ada37b100dc2e3061b863cfd088bc6d",
+    "prism-backend/evals/quality-lab-20260929/corpus.json": "41976962e2f2f24c68f6bfd61a8cc8b647e45e26d2b8e703c073a543dad3a663",
+    "prism-backend/evals/quality-lab-20260929/manifest.json": "ba75944310388411f1f8bd724da730962eacce745c13d1879d16ebe97f12433e"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C3-0add10c208ec-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:50:16.589636+00:00",
+  "input_hash": "56c210edbb0a33b95331838666085fced4f5619e0a2548e7fd056426110dfed3",
+  "system_hash": "260aabb3aa5517dba41c0c6f49d806ddf89ac8d63cef719ed998475ff2174b4e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 `(long) amount * count`로, 곱셈 이전에 첫 피연산자를 long으로 승격하여 int 오버플로를 방지합니다. 제공된 계약(비음수 int, 곱이 long에 정확히 표현됨)과 path_observations의 세 입력 모두에서 결과가 수학적 곱과 일치합니다. 지원 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"제공된 범위는 f1의 5줄뿐이며, 호출자·테스트·다른 파일은 제공되지 않아 실제 호출 경로와 입력 분포는 확인하지 못했습니다. path_observations는 정적 투영이며 실행 결과가 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"`(long) amount * count`는 곱셈 전에 long으로 승격하므로 int 오버플로가 발생하지 않고, 제공된 계약과 세 입력(0×1, 3×4, 100000×100000) 모두에서 곱이 정확히 보존됨을 확인했습니다.\"}]}",
+  "input_tokens": 3704,
+  "output_tokens": 279,
+  "seconds": 2.281
+}

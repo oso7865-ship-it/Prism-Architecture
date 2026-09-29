@@ -1,0 +1,15 @@
+{
+  "key": "B0-d877f97cb5a9-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:28:00.185626+00:00",
+  "input_hash": "a9e3b4300c56f5dff5af2bc96512dc70fba600faa8fdc227fa9718207bfa5467",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"opener()가 반환한 스트림을 with 문으로 열고 read() 결과를 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.\",\"issues\":[],\"limitations\":\"opener 구현과 반환 계약, 호출부는 제공되지 않았으며 테스트를 실행하지 않았습니다. with 문이 정상 경로와 read() 예외 경로 모두에서 스트림을 닫는지는 표준 컨텍스트 관리자 계약에 의존합니다.\"}",
+  "input_tokens": 4752,
+  "output_tokens": 123,
+  "seconds": 1.281
+}

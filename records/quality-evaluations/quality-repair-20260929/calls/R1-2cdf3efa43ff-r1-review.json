@@ -1,0 +1,15 @@
+{
+  "key": "R1-2cdf3efa43ff-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:23.625793+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Price.total의 곱셈 결과를 int에서 long으로 반환하도록 변경된 한 줄을 검토했습니다.\",\"issues\":[],\"limitations\":\"제공된 5줄만 검토했으며 호출자, 실제 입력 범위, 실행 결과는 확인하지 못했습니다. behavior_contract에 따라 두 입력이 음수가 아니고 곱이 long 범위에 들어간다는 전제에서는 3줄의 int 곱셈이 long으로 승격되어 정확한 곱을 보존합니다.\",\"context_requests\":[]}",
+  "input_tokens": 4874,
+  "output_tokens": 124,
+  "seconds": 1.453
+}

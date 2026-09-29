@@ -1,0 +1,12 @@
+{
+  "key": "F1-cea2cfe09062-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:58:14.865199+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "d1e0b8853bbcc3d0127e29ff5a65f9c8e596e03bb063c493b0ede4a206956d04",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 파일 f1의 normalize 메서드는 계약상 모든 int 값에 대해 원본 값을 반환해야 하며, 실제로도 value를 그대로 반환하므로 계약을 충족합니다. adjusted 지역 변수는 계산되지만 사용되지 않으나, 이는 동작 결함이 아니라 스타일 수준입니다. 지원 가능한 결함은 없습니다.\", \"issues\": [], \"limitations\": \"normalize의 호출자와 실제 사용 맥락은 제공되지 않았습니다. adjusted 변수의 미사용은 동작에 영향을 주지 않아 결함으로 보고하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"normalize는 계약대로 value를 그대로 반환하며, adjusted 계산은 사용되지 않지만 반환값에 영향을 주지 않아 동작 결함이 없습니다.\"}]}",
+  "input_tokens": 3622,
+  "output_tokens": 208,
+  "seconds": 1.594
+}

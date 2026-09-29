@@ -1,0 +1,72 @@
+{
+  "key": "development-E06-1bcaee84937b-r1",
+  "case": "1bcaee84937b",
+  "arm": "E06",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "invoice 함수가 actor를 전혀 사용하지 않고 load(id)의 amount를 그대로 반환합니다. behavior_contract는 소유자에게만 금액을 반환하고 다른 actor에게는 Error를 던져야 한다고 명시하며, load는 owner를 포함한 객체를 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "invoice(7, \"bob\")처럼 항목 소유자가 아닌 actor로 호출할 때",
+        "consequence": "소유권 검사 없이 item.amount가 반환되어 비소유자에게 금액이 노출됩니다. behavior_contract가 요구하는 Error 발생이 일어나지 않습니다.",
+        "assumptions": [],
+        "title": "소유권 검사 없이 금액을 반환해 비소유자에게 노출됩니다",
+        "evidence": "2줄에서 load(id) 결과를 받고 3줄에서 item.amount를 그대로 반환합니다. actor 매개변수는 어디에서도 검사되지 않으며, 관련 구현 load는 owner 필드를 가진 객체를 반환하므로 소유자 비교가 가능함이 드러납니다.",
+        "suggestion": "item.owner와 actor를 비교하여 불일치 시 Error를 던지고, 일치할 때만 amount를 반환하도록 하세요."
+      }
+    ],
+    "limitations": "load의 실제 구현과 호출부, actor 값의 출처는 제공되지 않았습니다. 제공된 관련 구현과 behavior_contract를 근거로 판단했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6236,
+  "output_tokens": 473,
+  "elapsed_seconds": 3.314,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

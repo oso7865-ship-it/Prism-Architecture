@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-9e475996deba-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "9e475996deba",
+  "at": "2026-09-29T08:43:27.949022+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "a032e772435d33c7e94f6bc74350d6b8a673c4d63c0f7576b8fc3c84886a7ffc",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "values가 빈 리스트이면 len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하여 계약이 요구한 0.0을 반환하지 못합니다."
+      }
+    ]
+  },
+  "input_tokens": 3072,
+  "output_tokens": 90,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "0b116acf1f80494a5ee421def2aba4994a7b945b90e10ec01e2857d363c496e2",
+  "elapsed_seconds": 1.141
+}

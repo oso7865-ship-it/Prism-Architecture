@@ -1,0 +1,70 @@
+{
+  "key": "diagnostic-P0-0c543f7d32dd-r1",
+  "case": "0c543f7d32dd",
+  "arm": "P0",
+  "repeat": 1,
+  "split": "diagnostic",
+  "output": {
+    "summary": "경로 접두사 검사 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "resolved가 root의 문자열 접두사이지만 실제로는 root의 하위 경로가 아닌 경우 (예: '/srv/app'과 '/srv/application/key')",
+        "consequence": "허용되지 않아야 할 경로가 permitted()에서 True를 반환하여 접근 제어를 우회할 수 있습니다.",
+        "assumptions": [],
+        "title": "경로 접두사 검사가 형제 경로를 허용합니다",
+        "evidence": "2줄의 startswith(root)는 경로 경계를 확인하지 않으므로 '/srv/application/key'가 '/srv/app'의 하위 경로가 아님에도 True를 반환합니다.",
+        "suggestion": "root와 동일하거나 root + '/'로 시작하는지 확인하세요. 예: resolved == root or resolved.startswith(root + '/')"
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 호출부와 입력 정규화 과정은 확인하지 못했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5524,
+  "output_tokens": 386,
+  "elapsed_seconds": 6.25
+}

@@ -1,0 +1,138 @@
+[
+  {
+    "id": "ff808c0b8406",
+    "family": "await-save",
+    "fixed": false,
+    "path": "save.js",
+    "contract": "Must finish persistence before returning true. save returns a Promise.",
+    "patch": "@@ -0,0 +1,4 @@\n+async function submit(store, value) {\n+  store.save(value);\n+  return true;\n+}",
+    "expected_lines": [
+      2,
+      3
+    ],
+    "oracle": []
+  },
+  {
+    "id": "e8ead1564f3f",
+    "family": "await-save",
+    "fixed": true,
+    "path": "save.js",
+    "contract": "Must finish persistence before returning true. save returns a Promise.",
+    "patch": "@@ -0,0 +1,4 @@\n+async function submit(store, value) {\n+  await store.save(value);\n+  return true;\n+}",
+    "expected_lines": [],
+    "oracle": []
+  },
+  {
+    "id": "9d73a727b44a",
+    "family": "tenant-sql",
+    "fixed": false,
+    "path": "load.py",
+    "contract": "order_id may repeat across tenants. Return only the authenticated tenant's order.",
+    "patch": "@@ -0,0 +1,2 @@\n+def load(db, order_id, tenant_id):\n+    return db.execute('SELECT * FROM orders WHERE id = ?', (order_id,)).fetchone()",
+    "expected_lines": [
+      2
+    ],
+    "oracle": []
+  },
+  {
+    "id": "ea5d99fd7899",
+    "family": "tenant-sql",
+    "fixed": true,
+    "path": "load.py",
+    "contract": "order_id may repeat across tenants. Return only the authenticated tenant's order.",
+    "patch": "@@ -0,0 +1,2 @@\n+def load(db, order_id, tenant_id):\n+    return db.execute('SELECT * FROM orders WHERE id = ? AND tenant_id = ?', (order_id, tenant_id)).fetchone()",
+    "expected_lines": [],
+    "oracle": []
+  },
+  {
+    "id": "33a6ab441a5d",
+    "family": "array-index",
+    "fixed": false,
+    "path": "Last.java",
+    "contract": "Return the last element of nonempty int arrays. Caller rejects empty arrays.",
+    "patch": "@@ -0,0 +1,5 @@\n+class Last {\n+  int last(int[] values) {\n+    return values[values.length];\n+  }\n+}",
+    "expected_lines": [
+      3
+    ],
+    "oracle": []
+  },
+  {
+    "id": "7433f192ad18",
+    "family": "array-index",
+    "fixed": true,
+    "path": "Last.java",
+    "contract": "Return the last element of nonempty int arrays. Caller rejects empty arrays.",
+    "patch": "@@ -0,0 +1,5 @@\n+class Last {\n+  int last(int[] values) {\n+    return values[values.length - 1];\n+  }\n+}",
+    "expected_lines": [],
+    "oracle": []
+  },
+  {
+    "id": "d848633407e8",
+    "family": "close-error",
+    "fixed": false,
+    "path": "read.py",
+    "contract": "Always close streams including when read raises. opener returns a standard context-managed file stream.",
+    "patch": "@@ -0,0 +1,5 @@\n+def read(opener):\n+    stream = opener()\n+    value = stream.read()\n+    stream.close()\n+    return value",
+    "expected_lines": [
+      2,
+      3,
+      4
+    ],
+    "oracle": []
+  },
+  {
+    "id": "d877f97cb5a9",
+    "family": "close-error",
+    "fixed": true,
+    "path": "read.py",
+    "contract": "Always close streams including when read raises. opener returns a standard context-managed file stream.",
+    "patch": "@@ -0,0 +1,3 @@\n+def read(opener):\n+    with opener() as stream:\n+        return stream.read()",
+    "expected_lines": [],
+    "oracle": []
+  },
+  {
+    "id": "4a06b424f621",
+    "family": "sort-state",
+    "fixed": false,
+    "path": "sort.js",
+    "contract": "Return finite numbers in ascending order. Do not modify the caller's array.",
+    "patch": "@@ -0,0 +1,3 @@\n+function ordered(values) {\n+  return values.sort((a, b) => a - b);\n+}",
+    "expected_lines": [
+      2
+    ],
+    "oracle": []
+  },
+  {
+    "id": "2826a82bd63e",
+    "family": "sort-state",
+    "fixed": true,
+    "path": "sort.js",
+    "contract": "Return finite numbers in ascending order. Do not modify the caller's array.",
+    "patch": "@@ -0,0 +1,3 @@\n+function ordered(values) {\n+  return [...values].sort((a, b) => a - b);\n+}",
+    "expected_lines": [],
+    "oracle": []
+  },
+  {
+    "id": "42eddd40771d",
+    "family": "auth-fail-open",
+    "fixed": false,
+    "path": "access.py",
+    "contract": "checker raises TimeoutError when authorization is unknown. Unknown authorization must deny access.",
+    "patch": "@@ -0,0 +1,5 @@\n+def allowed(checker, user):\n+    try:\n+        return checker(user)\n+    except TimeoutError:\n+        return True",
+    "expected_lines": [
+      4,
+      5
+    ],
+    "oracle": []
+  },
+  {
+    "id": "f8f90c041f96",
+    "family": "auth-fail-open",
+    "fixed": true,
+    "path": "access.py",
+    "contract": "checker raises TimeoutError when authorization is unknown. Unknown authorization must deny access.",
+    "patch": "@@ -0,0 +1,5 @@\n+def allowed(checker, user):\n+    try:\n+        return checker(user)\n+    except TimeoutError:\n+        return False",
+    "expected_lines": [],
+    "oracle": []
+  }
+]

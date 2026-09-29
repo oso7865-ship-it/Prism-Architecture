@@ -1,0 +1,80 @@
+{
+  "case": "4cf224cd4371",
+  "arm": "J1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비ASCII 문자열에서 Content-Length가 실제 전송 바이트 수와 불일치",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6,
+          9,
+          11
+        ],
+        "trigger": "prepare에 비ASCII 문자열(예: \"한글\")이 전달될 때",
+        "consequence": "prepare(\"한글\")에서 content_length는 문자 수 2를 반환하지만 wire는 UTF-8 6바이트이므로 Content-Length 헤더가 실제 전송 바이트 수와 불일치합니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 전송 바이트 수와 불일치",
+        "evidence": "5줄은 str을 UTF-8로 인코딩해 wire를 만들고, 6줄은 원본 body로 content_length를 호출합니다. 2줄의 len(body)는 str에 대해 문자 수를 세므로 9줄의 \"한글\" 같은 입력에서 wire 길이와 어긋납니다. 11줄의 테스트는 request[\"body\"] 기준으로 비교해 이 불일치를 검출하지 못합니다.",
+        "suggestion": "prepare에서 인코딩된 wire를 기준으로 길이를 계산하도록 content_length(wire)를 호출하거나, content_length가 str 입력을 UTF-8로 인코딩한 뒤 len을 반환하도록 수정하세요. 테스트도 prepare가 반환한 헤더와 wire 바이트 수를 비교하도록 맞추는 것이 좋습니다.",
+        "file_path": "length.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "6cdb7d7b314a373ad6d5a797447ad3d034af61bca30063d212deb015a2c67552"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "length.py",
+          "provided_lines": 11
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "content_length가 str에 대해 문자 수를 반환해 prepare의 UTF-8 인코딩된 wire 바이트 수와 불일치하며, 테스트는 wire 기준 비교로 이를 검출하지 못합니다.",
+          "file_path": "length.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf"
+}

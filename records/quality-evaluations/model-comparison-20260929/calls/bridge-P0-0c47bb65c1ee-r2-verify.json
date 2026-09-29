@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-0c47bb65c1ee-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "0c47bb65c1ee",
+  "at": "2026-09-29T08:41:44.023021+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "dee52883793e1b84a780b1b842e9594c1d81e371fe8fd4ce0bf3310924004cf6",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "base['nested']가 dict일 때 adjust(base)를 호출하면 result['nested']는 base['nested']와 같은 객체를 참조하므로 result['nested']['limit'] = 9가 원본 base의 중첩 딕셔너리도 변경합니다."
+      }
+    ]
+  },
+  "input_tokens": 3131,
+  "output_tokens": 115,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "ccd06264f0478be2706f0ab423426eca82f84843cc8db27a66be3ab39bb98597",
+  "elapsed_seconds": 3.11
+}

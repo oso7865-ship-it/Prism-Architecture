@@ -1,0 +1,68 @@
+{
+  "key": "development-E06-90900a02e0f4-r1-final",
+  "arm": "E06",
+  "phase": "final",
+  "at": "2026-09-29T07:13:24.032758+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "181ee04e4a74268e3fcf1f93367ec4ff77a62661bbe522a3109b543039bd3052",
+  "input_bytes": 896,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name이 null일 때 trim을 호출하고, null이 아닐 때 빈 문자열을 반환하도록 조건이 뒤바뀌어 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출하는 경우",
+        "consequence": "name == null이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 입력에서 trim을 호출해 NullPointerException이 발생합니다",
+        "evidence": "3줄의 삼항 연산자는 name == null일 때 name.trim()을 선택하고, 그렇지 않을 때 \"\"를 반환합니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null은 빈 문자열, 그 외에는 trim 결과를 반환하도록 하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 null이 아닌 값을 전달하는 경우",
+        "consequence": "조건이 거짓이라 trim이 실행되지 않고 빈 문자열이 반환되어, 공백 제거라는 계약이 지켜지지 않습니다.",
+        "assumptions": [],
+        "title": "null이 아닌 입력의 공백이 제거되지 않습니다",
+        "evidence": "3줄에서 name != null인 분기는 \"\"를 반환하므로 입력값이 결과에 반영되지 않습니다.",
+        "suggestion": "null 분기와 trim 분기를 서로 바꿔 null이 아닌 입력에 trim을 적용하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "823e65f52af142e70f7cd5663173d386d0e3ade9c9b7e6775b2ede4b936e596f",
+  "input_tokens": 5407,
+  "output_tokens": 453,
+  "elapsed_seconds": 2.891
+}

@@ -1,0 +1,15 @@
+{
+  "key": "B0-2cdf3efa43ff-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:22.057072+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "b0cc55fbe27d3e2ba42428640923e967313c9addbeb347dfa1635650971f6b81",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"Price.total의 변경된 곱셈 연산을 검토했다. amount * count는 int 곱셈으로 수행된 뒤 long으로 확장되므로, 계약이 요구하는 '정확한 곱이 long에 맞음' 조건이 int 범위 곱에서 깨질 수 있다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 3, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2, 3], \"trigger\": \"amount와 count가 모두 int이고, 두 값의 곱이 int 범위(약 21억)를 초과하는 경우. 예: amount=100000, count=100000.\", \"consequence\": \"int 곱셈이 먼저 수행되어 오버플로가 발생하고, 그 결과가 long으로 확장되므로 반환값이 실제 수학적 곱과 달라진다. 계약이 요구하는 '정확한 곱 보존'이 위반된다.\", \"assumptions\": [\"amount와 count는 int 범위 내의 값이다\", \"두 값의 곱이 long 범위에는 들어간다\"], \"title\": \"int 곱셈 후 long 확장으로 인한 오버플로\", \"evidence\": \"반환식이 `amount * count`로, 두 피연산자가 int이므로 곱셈이 int 정밀도로 수행된 후 long으로 확장된다. 계약은 곱이 long에 정확히 맞아야 한다고 명시한다.\", \"suggestion\": \"곱셈 전에 피연산자 중 하나를 long으로 캐스팅하여 long 정밀도 곱셈을 수행한다. 예: `return (long) amount * count;`\"}], \"limitations\": \"amount와 count의 실제 호출 값 범위와 호출 지점은 제공되지 않았다. 계약상 두 입력이 비음수이고 곱이 long에 맞는다는 조건만 근거로 판단했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 3, \"outcome\": \"FINDING\", \"observation\": \"int * int 곱셈이 long으로 확장되기 전에 수행되어, 곱이 int 범위를 넘으면 오버플로가 발생하고 계약의 정확한 곱 보존이 깨진다.\"}]}",
+  "input_tokens": 3296,
+  "output_tokens": 535,
+  "seconds": 3.297
+}

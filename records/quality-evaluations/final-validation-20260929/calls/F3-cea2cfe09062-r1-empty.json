@@ -1,0 +1,12 @@
+{
+  "key": "F3-cea2cfe09062-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:03:34.840151+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "ae4d8222a281e9bb64544d325c5f9865c53415d8c6c3225cd7605441ef824e8d",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 계약은 \\\"모든 int value에 대해 원래 값을 그대로 반환(음수 포함)\\\"이며, 변경된 코드의 return value는 이를 그대로 만족합니다. 3행의 adjusted 계산은 사용되지 않지만, 이는 계약 위반이나 동작 결함이 아니라 스타일 수준의 관찰입니다. 지원 가능한 동작 결함은 없습니다.\", \"issues\": [], \"limitations\": \"normalize의 호출자와 실제 사용 맥락은 제공되지 않았습니다. 3행의 미사용 지역 변수는 정적 스타일 경고 대상일 수 있으나, 제공된 계약상 반환 동작에는 영향이 없어 별도 결함으로 보고하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 원래 값(음수 포함) 반환을 요구하며, 4행 return value가 이를 그대로 충족합니다. 3행 adjusted는 사용되지 않지만 반환 계약을 위반하지 않습니다.\"}]}",
+  "input_tokens": 3661,
+  "output_tokens": 250,
+  "seconds": 2.141
+}

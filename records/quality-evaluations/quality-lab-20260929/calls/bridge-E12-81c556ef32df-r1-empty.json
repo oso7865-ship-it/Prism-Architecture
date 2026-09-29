@@ -1,0 +1,29 @@
+{
+  "key": "bridge-E12-81c556ef32df-r1-empty",
+  "arm": "E12",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:35.791126+00:00",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "95b30ed60ead40d5393f7d50dec199fbb65d0fa38a0210c156decf1ec93feaa9",
+  "input_bytes": 386,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄은 `values`가 비어 있을 때 0.0을 반환하고, 그 외에는 합계를 길이로 나누는 조건 표현식입니다. 제공된 계약('유한 숫자 리스트만 허용, 빈 입력의 평균은 0.0')과 일치하며, 빈 리스트에서 0으로 나누는 경로도 발생하지 않습니다. 변경 라인에서 추가로 입증 가능한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "리스트가 아닌 반복자/제너레이터나 numpy 배열이 전달될 경우의 동작은 제공된 계약(리스트 전용) 밖이므로 판단하지 않았습니다. `values` 원소의 실제 타입과 `sum`/`len` 호출자의 계약, 테스트 실행 여부는 제공되지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "빈 리스트는 조건식의 else 분기로 0.0을 반환하고, 비어 있지 않으면 len(values)가 0이 아니므로 0으로 나누는 경로가 없습니다. 제공된 계약과 일치합니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "dba86ce0c8cc79e59ffc5c2f89cafc90bf0f9f005a58bf5fd317f7f74e2afe05",
+  "input_tokens": 3163,
+  "output_tokens": 453,
+  "elapsed_seconds": 3.062
+}

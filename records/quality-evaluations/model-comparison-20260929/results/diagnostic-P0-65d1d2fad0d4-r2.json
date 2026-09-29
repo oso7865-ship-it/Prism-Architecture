@@ -1,0 +1,70 @@
+{
+  "key": "diagnostic-P0-65d1d2fad0d4-r2",
+  "case": "65d1d2fad0d4",
+  "arm": "P0",
+  "repeat": 2,
+  "split": "diagnostic",
+  "output": {
+    "summary": "정수 비교를 뺄셈으로 구현한 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차이가 int 범위를 벗어날 때(예: left=Integer.MIN_VALUE, right=1)",
+        "consequence": "뺄셈 결과가 오버플로되어 부호가 반전되므로 비교자 계약(음수/0/양수)을 위반합니다.",
+        "assumptions": [],
+        "title": "뺄셈 기반 비교가 정수 오버플로로 잘못된 부호를 반환합니다",
+        "evidence": "3줄의 left - right는 두 값의 차이가 int 범위를 벗어나면 오버플로되어 부호가 뒤집힙니다.",
+        "suggestion": "Integer.compare(left, right) 또는 (left < right ? -1 : left > right ? 1 : 0)을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 메서드만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5343,
+  "output_tokens": 381,
+  "elapsed_seconds": 6.125
+}

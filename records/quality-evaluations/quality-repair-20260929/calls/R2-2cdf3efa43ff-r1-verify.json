@@ -1,0 +1,15 @@
+{
+  "key": "R2-2cdf3efa43ff-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:57.506141+00:00",
+  "input_hash": "23aeb16b63f4c9a216cec477de827f19642aadf35e1279f371d26d53c605e27f",
+  "system_hash": "ad69f28120867ff33cf1760c6a79fb1cc93825df39ba5dac011fc0f0e1d16a04",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount와 count의 곱이 int 범위를 넘으면 int 곱셈이 먼저 수행되어 오버플로된 값이 long으로 반환됩니다. 예: amount=100000, count=100000이면 10000000000 대신 오버플로 결과가 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"변경된 3줄의 int*int 곱셈이 long 반환 전에 int로 평가되어, 계약이 보장하는 long 범위 내 곱도 int 범위를 넘으면 오버플로됩니다.\"}]}",
+  "input_tokens": 4148,
+  "output_tokens": 194,
+  "seconds": 1.297
+}

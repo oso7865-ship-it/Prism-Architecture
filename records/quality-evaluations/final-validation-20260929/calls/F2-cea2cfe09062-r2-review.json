@@ -1,0 +1,12 @@
+{
+  "key": "F2-cea2cfe09062-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T13:00:37.006350+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "c9d8af98d178781f0ae194d9ae3004375bf6e2487284a727ea3084b3908f7c95",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 normalize는 value를 받아 Math.max(value, 0)으로 adjusted를 계산하지만 반환은 원래 value를 그대로 합니다. 제공된 계약상 원본 값 반환이 요구되므로 동작은 계약과 일치하며, adjusted는 사용되지 않는 지역 계산입니다.\",\"issues\":[],\"limitations\":\"제공된 f1 6줄만 검토했으며 호출자나 실행 결과는 확인하지 않았습니다. adjusted 미사용은 계약상 반환값과 무관한 스타일 수준으로 결함으로 보지 않았습니다.\"}",
+  "input_tokens": 4791,
+  "output_tokens": 136,
+  "seconds": 1.562
+}

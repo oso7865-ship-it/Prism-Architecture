@@ -1,0 +1,52 @@
+{
+  "case": "898c474a9d7d",
+  "repeat": 2,
+  "arm": "F1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "base가 'nested' 키를 가지며 그 값이 딕셔너리라는 전제는 계약에 명시되어 있어 별도 확인이 필요하지 않습니다. adjust의 호출자와 base의 다른 중첩 구조는 제공되지 않아 검토 범위 밖입니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "options.py",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "base['nested'].copy()로 복사본을 만들어 'limit'을 수정하므로 호출자의 base와 중첩 딕셔너리는 변경되지 않습니다. 반환값은 base['nested']['limit']으로 계약상 보존 대상과 일치합니다.",
+          "file_path": "options.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d"
+}

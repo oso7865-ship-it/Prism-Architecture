@@ -1,0 +1,15 @@
+{
+  "key": "T2-2ff125902b12-r1-empty",
+  "arm": "T2",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:50.521133+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": "high",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 content_length가 len(body)를 반환하도록 한 것으로, 바이트 입력 계약 및 prepare()가 같은 값을 Content-Length로 사용하는 흐름과 일치합니다. 제공된 범위에서 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 외부 호출자와 실제 HTTP 전송 계층은 제공되지 않아 헤더 값이 그대로 사용되는지까지는 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"len(body)는 bytes 길이를 그대로 세므로 prepare()의 Content-Length 및 line 10의 기대값과 일치합니다. 멀티바이트 입력에서도 이중 인코딩 없이 계약과 동일한 값이 나옵니다.\"}]}",
+  "input_tokens": 3345,
+  "output_tokens": 329,
+  "seconds": 2.078
+}

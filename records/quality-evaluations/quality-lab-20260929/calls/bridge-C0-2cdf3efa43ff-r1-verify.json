@@ -1,0 +1,27 @@
+{
+  "key": "bridge-C0-2cdf3efa43ff-r1-verify",
+  "arm": "C0",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:06.347728+00:00",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "c504b2c6c04bd36de3f87c3b3eb834d08e322a9cc72092c27c546b245317f334",
+  "input_bytes": 1885,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "amount와 count의 곱이 Integer.MAX_VALUE를 초과하면 int 곱셈이 오버플로되어 잘린 값이 long으로 반환되므로, 계약이 요구하는 정확한 곱이 보존되지 않습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "0a81a727071a3f0351eba64e12f8cf783b635a7205781a4a208fdaa1ca9db55b",
+  "input_tokens": 3309,
+  "output_tokens": 94,
+  "elapsed_seconds": 0.985
+}

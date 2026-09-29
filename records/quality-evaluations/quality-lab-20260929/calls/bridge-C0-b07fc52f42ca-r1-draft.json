@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-b07fc52f42ca-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:10.707661+00:00",
+  "system_sha256": "473c9cd4cfbafdbcf5da35d8f450496384f98672be3ed5b25190a6cb0f37a357",
+  "payload_sha256": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "input_bytes": 405,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "limit 함수가 null/undefined뿐 아니라 0과 같은 falsy 값에도 기본값 10을 반환하도록 변경된 부분을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 유효한 설정값 0이 전달될 때",
+        "consequence": "0은 falsy이므로 || 연산자가 10을 반환하여, 계약상 유효한 0이 무시되고 기본 한도 10이 적용됩니다.",
+        "assumptions": [],
+        "title": "유효한 0 설정값이 기본값 10으로 대체됩니다",
+        "evidence": "2줄에서 count || 10을 사용하며, ||는 좌변이 falsy이면 우변을 반환하므로 0이 10으로 대체됩니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 count ?? 10으로 변경하세요."
+      }
+    ],
+    "limitations": "호출부와 실제 count 값의 범위는 제공되지 않았으며 테스트를 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "4a323c0869f208c4cc3837ea2c640c644301fdee04b92fc37e691b00fbc8f4c4",
+  "input_tokens": 4762,
+  "output_tokens": 246,
+  "elapsed_seconds": 1.89
+}

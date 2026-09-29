@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-81c5bd8c7f71-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "81c5bd8c7f71",
+  "at": "2026-09-29T08:42:20.527697+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "43ee2c0cd72a3be4f2a90fd0ea076f3d4f4403249946ce9fe93ff44200f45586",
+  "payload_sha256": "3836ab110963b9974368e6044e6493f01190e57972740cb4f7f718e20f72cc92",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "profile이 없는 User 객체로 name을 호출하면 user.profile이 undefined이므로 user.profile!.name 접근 시 TypeError가 발생합니다."
+      }
+    ]
+  },
+  "input_tokens": 3130,
+  "output_tokens": 83,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1664,
+  "response_sha256": "9fd58bbbbd755ce968dc478ad91d746cda1387207ac6fcb29ebdada2824ed33d",
+  "elapsed_seconds": 2.875
+}

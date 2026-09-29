@@ -1,0 +1,12 @@
+{
+  "key": "C4-7c4f2f03b3b5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:27.218696+00:00",
+  "input_hash": "e0b43dc30db62774074b7a04dbaa8f3ade4f412cd32baf9abdac7aebb0f21f1b",
+  "system_hash": "cc691461af92982e4c5f8908fcb054b0634d8b5f1731dd48b76c7f6e213ecbd6",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"save가 호출되면 'saved'가 표준 출력으로 나가고, 주입된 logger.info를 통한 기록은 발생하지 않아 s1이 요구하는 로깅 경로를 따르지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"변경된 2행이 print를 사용해 s1의 'print 대신 주입된 logger.info' 규칙을 위반합니다. 다른 변경 행은 없습니다.\"}]}",
+  "input_tokens": 4786,
+  "output_tokens": 165,
+  "seconds": 1.453
+}

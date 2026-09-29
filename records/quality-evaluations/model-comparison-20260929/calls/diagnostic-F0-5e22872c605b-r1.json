@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-F0-5e22872c605b-r1",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "5e22872c605b",
+  "at": "2026-09-29T08:40:23.971330+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "840c916099747585a184a2a6207c0a362facba34329fa47c6b40d221ef9033d4",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "n이 0일 때와 양수일 때의 인덱스 목록을 반환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 두 줄만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5166,
+  "output_tokens": 112,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "e0ca4046ae5e9da0f52231e62fb0c144d943650b1b5de583f584d4b05830ce9f",
+  "elapsed_seconds": 1.188
+}

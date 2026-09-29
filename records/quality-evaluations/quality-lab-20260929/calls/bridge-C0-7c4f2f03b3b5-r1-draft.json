@@ -1,0 +1,40 @@
+{
+  "key": "bridge-C0-7c4f2f03b3b5-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:22.899466+00:00",
+  "system_sha256": "83dfd05343a4da295eaa8de228cbbb415403ef37859fe072cb40da6d922330ca",
+  "payload_sha256": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "input_bytes": 898,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 2줄이 주입된 logger 대신 print를 사용해 팀 로깅 규칙을 위반합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save가 호출되어 저장 로그를 남길 때",
+        "consequence": "표준 출력으로 기록되어 주입된 logger.info 기반 로깅 규칙을 따르지 않습니다.",
+        "assumptions": [],
+        "title": "print 사용으로 주입된 logger 로깅 규칙 위반",
+        "evidence": "2줄에서 print('saved')로 기록하지만, 함수는 logger를 인자로 받고 있으며 규칙 s1은 print 대신 logger.info 사용을 요구합니다.",
+        "suggestion": "2줄을 logger.info('saved')로 바꿔 주입된 logger를 사용하세요."
+      }
+    ],
+    "limitations": "제공된 3줄과 규칙 s1만 검토했으며 테스트를 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "9b4ce82a8d9d0dcc7fdae3c10235be519f2c1b041187d5cd7ded63ffdc5f2972",
+  "input_tokens": 5219,
+  "output_tokens": 257,
+  "elapsed_seconds": 1.922
+}

@@ -1,0 +1,88 @@
+{
+  "key": "bridge-F0-0e12161a3613-r2",
+  "case": "0e12161a3613",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 2,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 파일 f1의 유일한 변경 라인은 Integer.compare(left, right)를 반환하는 비교 메서드로, 요구된 비교 계약(좌<우 음수, 동일 0, 좌>우 양수)을 정확히 충족한다. 정적 경고도 없고, 제공된 범위에서 구체적 결함 경로가 확인되지 않는다.",
+    "issues": [],
+    "limitations": "호출자와 실제 사용 맥락은 제공되지 않았으며, 비교 메서드 자체의 계약 준수만 검토했다. 테스트 실행은 하지 않았다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "호출자와 실제 사용 맥락은 제공되지 않았으며, 비교 메서드 자체의 계약 준수만 검토했다. 테스트 실행은 하지 않았다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Order.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "Integer.compare 반환값이 비교 계약(음수/0/양수)을 그대로 만족하며, 경계값·null 관련 결함 경로가 보이지 않는다.",
+          "file_path": "Order.java"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "Integer.compare 반환값이 비교 계약(음수/0/양수)을 그대로 만족하며, 경계값·null 관련 결함 경로가 보이지 않는다.",
+        "file_path": "Order.java"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8226,
+  "output_tokens": 291,
+  "elapsed_seconds": 2.891
+}

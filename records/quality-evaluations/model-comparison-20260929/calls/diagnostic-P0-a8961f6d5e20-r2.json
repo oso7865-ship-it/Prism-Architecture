@@ -1,0 +1,48 @@
+{
+  "key": "diagnostic-P0-a8961f6d5e20-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "a8961f6d5e20",
+  "at": "2026-09-29T08:44:29.137797+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "862bdf0617fc7807aa3b0947ded1ce6e296f0e9b99649ae770f56622292bbc9b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "사용자 ID를 SQL 문자열에 직접 연결하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 공격자 제어 값이 전달될 때",
+        "consequence": "SQL 구문이 조작되어 인증 우회, 데이터 노출, 데이터 변조가 발생할 수 있습니다.",
+        "assumptions": [],
+        "title": "SQL 인젝션 취약점",
+        "evidence": "2줄에서 user_id를 SQL 문자열에 직접 연결하고 있습니다. behavior_contract에 따라 user_id는 신뢰할 수 없는 텍스트이며, 반환된 SQL은 DB-API 드라이버에 직접 전달됩니다.",
+        "suggestion": "파라미터 바인딩을 사용하세요. 예: return ('SELECT name FROM users WHERE id = %s', (user_id,))"
+      }
+    ],
+    "limitations": "제공된 코드와 계약만 검토했으며 실제 실행 환경이나 추가 검증 로직은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = 0 OR 1=1\", []]",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5516,
+  "output_tokens": 340,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5504,
+  "response_sha256": "c7899c0652eb6970b3b548cbaed5340e37cf07c0fae0172027eef046922ef275",
+  "elapsed_seconds": 5.422
+}

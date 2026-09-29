@@ -1,0 +1,68 @@
+{
+  "key": "development-E11-90900a02e0f4-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:15:56.567899+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "89d2a93c3f23db1df8b1b8d6bb10188ef4a8397729ead748dbcbccdc8b0ce723",
+  "input_bytes": 1483,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name이 null일 때 trim을 호출하고, null이 아닐 때 빈 문자열을 반환하도록 삼항 연산자가 반전되어 있어 계약과 반대로 동작합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출할 때",
+        "consequence": "name == null이 참이므로 name.trim()이 평가되어 NullPointerException이 발생합니다. 계약이 요구하는 빈 문자열 반환이 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "null 입력에서 trim을 호출해 NullPointerException이 발생합니다",
+        "evidence": "3줄의 조건 name == null이 참일 때 name.trim()을 평가하므로 null 역참조가 발생합니다.",
+        "suggestion": "null일 때 \"\"를, 그렇지 않을 때 name.trim()을 반환하도록 두 분기를 바꾸세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 null이 아닌 값을 전달할 때",
+        "consequence": "조건이 거짓이라 \"\"가 반환되어 입력값이 버려지고 주변 공백 제거가 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "null이 아닌 입력에서 trim 결과 대신 빈 문자열을 반환합니다",
+        "evidence": "3줄에서 조건이 거짓인 분기가 \"\" 리터럴이므로 비-null 입력의 trim 결과가 사용되지 않습니다.",
+        "suggestion": "비-null 분기에서 name.trim()을 반환하도록 분기를 교체하세요."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "84c77a745892f123744ae3059edb54232d36f42e4a8f55bd0532015f0eb35038",
+  "input_tokens": 5515,
+  "output_tokens": 471,
+  "elapsed_seconds": 2.938
+}

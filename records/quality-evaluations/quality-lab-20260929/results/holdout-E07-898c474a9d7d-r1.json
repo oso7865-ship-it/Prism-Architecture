@@ -1,0 +1,67 @@
+{
+  "key": "holdout-E07-898c474a9d7d-r1",
+  "case": "898c474a9d7d",
+  "arm": "E07",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "base의 중첩 딕셔너리를 복사해 result를 만든 뒤 result를 수정하지만, 반환값은 원본 base에서 읽습니다. 호출자의 base는 변경되지 않아 계약상 보존은 지켜지지만, 함수가 반환하는 값은 수정된 result가 아니라 원본 limit 값입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "3줄에서 result['nested']['limit']를 9로 바꾸지만 4줄은 base['nested']['limit']를 반환하므로 1이 반환됩니다. 호출자는 수정된 값 9를 기대할 수 있으나 실제로는 원본 값이 반환됩니다.",
+        "assumptions": [],
+        "title": "수정한 result가 아니라 원본 base 값을 반환합니다",
+        "evidence": "2줄은 base['nested']를 복사해 result를 만들고, 3줄은 result['nested']['limit']를 9로 설정합니다. 4줄은 result가 아닌 base['nested']['limit']를 반환하므로 3줄의 수정이 반환값에 반영되지 않습니다.",
+        "suggestion": "수정된 값을 반환하려면 4줄을 result['nested']['limit']로 바꾸고, 원본 값을 반환하는 것이 의도라면 3줄의 수정이 불필요한지 확인하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 반환값에 대한 호출자의 기대는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5725,
+  "output_tokens": 616,
+  "elapsed_seconds": 3.907,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

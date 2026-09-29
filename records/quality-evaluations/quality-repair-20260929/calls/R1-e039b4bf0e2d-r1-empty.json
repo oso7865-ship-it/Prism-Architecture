@@ -1,0 +1,15 @@
+{
+  "key": "R1-e039b4bf0e2d-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:17:25.551672+00:00",
+  "input_hash": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10은 `env.get(...) or env.get(...)`로 빈 문자열 CA 번들 값을 None으로 정규화하며, 이는 테스트 라인 15-16의 계약(빈 값은 True 유지)과 일치합니다. 제공된 범위에서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 실제 호출자와 session_verify의 런타임 타입은 제공되지 않았습니다. 테스트는 파일 내 정의만 확인했으며 실행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 10의 or 기반 CA 번들 조회는 빈 문자열을 None으로 만들어 merge_setting이 True를 반환하게 하며, 라인 15-16 테스트 계약과 일치합니다. 명시적 False와 비어 있지 않은 경로도 그대로 유지됩니다.\"}]}",
+  "input_tokens": 3569,
+  "output_tokens": 225,
+  "seconds": 1.781
+}

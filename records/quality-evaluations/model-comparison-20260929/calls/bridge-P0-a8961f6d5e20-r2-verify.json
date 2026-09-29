@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-a8961f6d5e20-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "a8961f6d5e20",
+  "at": "2026-09-29T08:42:21.876669+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "dfe93ffd977769bf9583395d5cecb1d53959cb961eaf417bd55d8b297305122b",
+  "payload_sha256": "9f55be43d5f8990a730b68dc3ba3f9b5babe4cf00b9d251cb85b3fa6f89686c0",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "user_id가 공격자 제어 값일 때 SQL 문자열에 직접 연결되어 SQL 인젝션이 가능하며, 임의의 데이터베이스 조회나 조작으로 이어질 수 있습니다."
+      }
+    ]
+  },
+  "input_tokens": 3417,
+  "output_tokens": 96,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2176,
+  "response_sha256": "ceb87cc9b4a05550adf8da7b8712bd7977aaf714f42cb45f1c898baa98d65084",
+  "elapsed_seconds": 2.687
+}

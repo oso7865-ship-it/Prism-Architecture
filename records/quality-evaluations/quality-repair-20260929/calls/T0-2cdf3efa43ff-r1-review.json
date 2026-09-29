@@ -1,0 +1,15 @@
+{
+  "key": "T0-2cdf3efa43ff-r1-review",
+  "arm": "T0",
+  "phase": "review",
+  "at": "2026-09-29T10:21:18.154451+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 total 메서드에서 int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count의 곱이 int 범위(약 21억)를 초과하지만 long 범위에는 들어오는 값으로 total을 호출할 때\",\"consequence\":\"두 int 피연산자의 곱셈이 int 정밀도로 수행된 뒤 long으로 확장되므로, 계약에서 요구하는 정확한 곱이 아닌 오버플로된 값이 반환됩니다.\",\"assumptions\":[],\"title\":\"int 곱셈으로 인한 오버플로 위험\",\"evidence\":\"3줄에서 int 타입인 amount와 count를 그대로 곱해 int 연산 결과를 만들고 이를 long 반환 타입으로 넘깁니다. 계약상 두 입력은 음수가 아니고 정확한 곱이 long에 들어와야 합니다.\",\"suggestion\":\"곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count).\"}],\"limitations\":\"제공된 단일 파일과 변경 라인만 검토했으며, 실제 호출 지점과 입력 범위 검증 코드는 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4874,
+  "output_tokens": 316,
+  "seconds": 2.156
+}

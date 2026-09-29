@@ -1,0 +1,60 @@
+{
+  "key": "development-E11-411a32119068-r2",
+  "case": "411a32119068",
+  "arm": "E11",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "str이면 UTF-8로 인코딩한 뒤, 그 외에는 그대로 len()을 적용해 바이트 수를 반환하는 변경입니다. 제공된 계약(str 또는 bytes) 범위에서는 동작이 일치합니다.",
+    "issues": [],
+    "limitations": "str/bytes 외 입력(None, int, bytearray 등)에 대한 처리와 encode 실패 시 예외 처리는 제공된 범위에서 확인되지 않았습니다. 테스트는 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5767,
+  "output_tokens": 409,
+  "elapsed_seconds": 3.297,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

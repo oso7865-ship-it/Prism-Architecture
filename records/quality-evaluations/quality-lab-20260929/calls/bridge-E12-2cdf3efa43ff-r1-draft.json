@@ -1,0 +1,39 @@
+{
+  "key": "bridge-E12-2cdf3efa43ff-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:04.264936+00:00",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "input_bytes": 552,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈 결과를 long으로 반환하는 변경으로, 곱이 int 범위를 넘으면 오버플로가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "두 int 매개변수 amount와 count의 곱이 Integer.MAX_VALUE를 초과하지만 long 범위에는 들어오는 값으로 total을 호출할 때",
+        "consequence": "3줄의 곱셈이 int 연산으로 수행되어 오버플로된 값이 계산된 뒤 long으로 확장되므로, 보존되어야 하는 정확한 곱 대신 잘못된 값이 반환됩니다.",
+        "assumptions": [],
+        "title": "int 곱셈 오버플로로 정확한 곱이 보존되지 않습니다",
+        "evidence": "2줄에서 매개변수가 int로 선언되어 있고, 3줄은 두 int를 곱한 결과를 long으로 반환하므로 곱셈 자체는 int 정밀도로 수행됩니다.",
+        "suggestion": "곱셈 전에 피연산자를 long으로 승격하세요(예: `(long) amount * count`)."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 실제 호출부의 입력 범위와 테스트 실행 결과는 확인하지 못했습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "3ced6f50df81562f3a7dabafa02aaaef2f34240a75e82cef06d43a86e8d725c3",
+  "input_tokens": 4945,
+  "output_tokens": 679,
+  "elapsed_seconds": 4.453
+}

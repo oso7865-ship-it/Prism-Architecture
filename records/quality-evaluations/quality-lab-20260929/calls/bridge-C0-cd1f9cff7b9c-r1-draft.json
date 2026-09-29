@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-cd1f9cff7b9c-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:20.745948+00:00",
+  "system_sha256": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "payload_sha256": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "input_bytes": 457,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 여부를 판정하는 변경을 검토했습니다. 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크 없음, 후행 슬래시 없음)에서는 `root + '/'` 접두사 검사가 형제 디렉터리 오탐을 막도록 보이지만, 대소문자·유니코드 정규화나 경로 구분자 처리에 대한 추가 계약은 제공되지 않았습니다.",
+    "issues": [],
+    "limitations": "`root`와 `resolved`의 실제 생성·정규화 지점과 호출부가 제공되지 않아, 입력이 계약(정규화된 절대 POSIX 경로, 심볼릭 링크 없음, 후행 슬래시 없음)을 항상 만족하는지 확인하지 못했습니다. 대소문자 비구분 파일시스템이나 유니코드 정규화 차이, Windows 경로 구분자 사용 여부도 제공된 범위에서 판단할 수 없습니다. 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "281dba69b593149f68b6cce5d6f5f9301961e1c381113514afcea25fe3e346b8",
+  "input_tokens": 5106,
+  "output_tokens": 261,
+  "elapsed_seconds": 2.375
+}

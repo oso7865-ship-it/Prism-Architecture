@@ -53,3 +53,9 @@ GitHub Secret·LLM key·Refresh 원문을 localStorage 또는 프론트 env에 �
 
 PR 상세는 query.tab=overview/static/ai/activity로 복원한다. 키보드 화살표/Home/End, 선택 탭의 aria-selected를 제공한다. 결함·검토 질문은 별도 개수이며 긴 근거·원문·처리 기록은 펼쳐 확인한다. 기존 basis 없는 결과는 질문 영역에 보존한다.
 로그인 복귀는 /app, /app/team, /app/repositories 내부 경로만 허용한다. query와 초대 fragment를 보존하며 OAuth 왕복 목적지는 탭 sessionStorage에 15분간 저장 후 성공/로그아웃에 삭제한다. 접근·refresh 토큰은 저장하지 않는다. 저장소 사용 불가 브라우저에서는 OAuth 왕복 복원이 제한된다. 새로고침 시 최신 서버 동기화 상태를 읽는다.
+
+PR 상세 탭은 한눈에 보기 / 코드 점검 / 코드 리뷰 / 취약점 / 팀 규칙 / 변경 기록이다. 기존 tab=ai 링크는 코드 리뷰로 유지한다. 취약점은 보안 규칙 목록+전용 AI 검토, 팀 규칙은 문서 기반 AI 검토+결정적 규칙 결과+고정 버전 출처 열람이다. 저장소의 팀 문서 관리는 별도 패널로 열며, 문서 등록 자체로 외부 AI 호출하지 않는다. 원문은 일반 텍스트 렌더링, 원문 열람 종료 시 메모리에서 폐기한다. [팀 문서 계약](../domain/standards/README.md)을 따른다.
+
+[ADR-REVIEW-013](../adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md)의 출력 복구·추가 발견·문맥 보충 상태는 사용자 문구로 표시한다. 수정 제안의 제한 검사에서 원래 성공값을 바꾸는 예시가 발견되면 결함 카드 안에 경고와 펼칠 수 있는 반례를 제공한다. 자연어에서 추출한 대안은 그 식만 검사했다는 범위를 표시하고 전체 수정 검증으로 표현하지 않는다. 별도 보안 신호는 AI 제안과 분리하며 AI 실패 때도 부분 결과임을 표시한다. 기존 결과에 새 필드가 없으면 과거 결과를 검증 완료로 승격하지 않는다.
+
+[ADR-REVIEW-014](../adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md)의 origin=STATIC_PROJECTION은 ‘코드 계산에서 발견한 차이’로 표시한다. 원시 enum은 사용자 문구로 노출하지 않으며 본문에서 테스트 실행과 제한 계산을 구별한다. 기존/일반 AI 항목의 배지는 유지한다. 수정안이 차단되면 서버의 확인 안내와 기존 반례 UI를 표시하며 자동 수정 완료로 표현하지 않는다.

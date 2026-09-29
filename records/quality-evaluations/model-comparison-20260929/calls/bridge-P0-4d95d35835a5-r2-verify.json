@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-4d95d35835a5-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "4d95d35835a5",
+  "at": "2026-09-29T08:45:00.095348+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "f6c09497894d08094ffc471f86666d9cdd07f85087bf4eb769df441529716ceb",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "callbacks()가 반환한 각 람다를 호출하면 모두 마지막 반복 값인 2를 반환합니다."
+      }
+    ]
+  },
+  "input_tokens": 3076,
+  "output_tokens": 83,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "e6c914cb1e8430381549c38f84adeda04e93e25c7aa8176a05acebbc8ad2b45b",
+  "elapsed_seconds": 2.407
+}

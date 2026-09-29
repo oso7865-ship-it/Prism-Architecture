@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-P0-5e22872c605b-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "5e22872c605b",
+  "at": "2026-09-29T08:40:24.600791+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "840c916099747585a184a2a6207c0a362facba34329fa47c6b40d221ef9033d4",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "indices 함수가 n에 따라 0부터 n-1까지의 인덱스 리스트를 생성합니다.",
+    "issues": [],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5163,
+  "output_tokens": 150,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "2eaf079f5a34ee6f9d4aa33599d13344a683ef6af64088db1e2fc9b9f127ce75",
+  "elapsed_seconds": 2.891
+}

@@ -1,0 +1,15 @@
+{
+  "key": "T1-898c474a9d7d-r1-review",
+  "arm": "T1",
+  "phase": "review",
+  "at": "2026-09-29T10:21:21.568542+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"adjust가 base의 중첩 딕셔너리를 복사한 뒤 복사본만 수정하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']가 중첩 딕셔너리를 포함한 상태에서 adjust를 호출할 때\",\"consequence\":\"2줄에서 base['nested'].copy()로 만든 복사본의 'limit'만 9로 바뀌고, 4줄은 원본 base['nested']['limit']을 반환하므로 호출자는 수정된 값 9가 아닌 원래 값을 받습니다.\",\"assumptions\":[],\"title\":\"복사본을 수정한 뒤 원본 값을 반환합니다\",\"evidence\":\"2줄은 result['nested']를 base['nested']의 얕은 복사본으로 만들고, 3줄은 result['nested']['limit']만 9로 설정합니다. 4줄은 result가 아니라 base['nested']['limit']을 반환합니다.\",\"suggestion\":\"수정된 값을 반환하려면 4줄에서 result['nested']['limit']을 반환하고, 원본 보존이 목적이라면 3줄의 수정 대상과 반환값의 관계를 계약에 맞게 정리하세요.\"}],\"limitations\":\"제공된 4개 줄만 검토했으며 실행 결과나 호출자는 확인하지 못했습니다.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 352,
+  "seconds": 2.062
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F0-898c474a9d7d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:56:18.293689+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하므로 호출자의 base는 변경되지 않습니다. 제공된 계약과 일치하며, 변경 라인에서 지원 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"base가 None이거나 'nested' 키가 없는 경우의 처리는 제공되지 않았으나, 계약이 중첩 딕셔너리를 가진 base를 전제하므로 결함으로 단정하지 않았습니다. 호출자 코드는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"line 2에서 base['nested'].copy()로 복사본을 만들어 line 3에서 복사본만 수정하므로, 계약에서 요구한 호출자 base 비변경이 유지됩니다.\"}]}",
+  "input_tokens": 3394,
+  "output_tokens": 218,
+  "seconds": 1.938
+}

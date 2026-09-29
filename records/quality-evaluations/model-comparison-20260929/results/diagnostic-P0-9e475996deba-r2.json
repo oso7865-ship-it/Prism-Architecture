@@ -1,0 +1,70 @@
+{
+  "key": "diagnostic-P0-9e475996deba-r2",
+  "case": "9e475996deba",
+  "arm": "P0",
+  "repeat": 2,
+  "split": "diagnostic",
+  "output": {
+    "summary": "평균 계산 변경을 검토했습니다. 제공된 계약에 따르면 빈 입력은 0.0을 반환해야 하지만 현재 코드는 ZeroDivisionError를 발생시킵니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "mean([]) 호출 시",
+        "consequence": "len(values)가 0이므로 ZeroDivisionError가 발생하여 계약상 기대값 0.0을 반환하지 못합니다.",
+        "assumptions": [],
+        "title": "빈 입력에서 평균 계산이 실패합니다",
+        "evidence": "2줄에서 sum(values) / len(values)를 수행하며, 빈 리스트의 len은 0입니다. behavior_contract는 빈 입력에 대해 0.0을 요구합니다.",
+        "suggestion": "빈 입력을 명시적으로 처리하여 0.0을 반환하도록 수정하세요. 예: if not values: return 0.0"
+      }
+    ],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "ZeroDivisionError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5154,
+  "output_tokens": 381,
+  "elapsed_seconds": 5.968
+}

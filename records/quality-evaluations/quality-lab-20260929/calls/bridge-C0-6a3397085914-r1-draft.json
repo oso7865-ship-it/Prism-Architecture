@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-6a3397085914-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:20:52.005217+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "581c977c1e5a9d7e6d22c04d129f67528bde5a2af403d540f43cbfb73a2e4d97",
+  "input_bytes": 358,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "wire_size가 body의 길이를 그대로 반환하도록 변경된 부분을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "str 타입의 body로 wire_size를 호출할 때",
+        "consequence": "len(body)는 문자 수를 반환하므로 UTF-8 인코딩 시 바이트 수와 달라집니다. 예를 들어 비ASCII 문자가 포함되면 실제 전송 바이트 수보다 작은 값이 반환되어 계약과 불일치합니다.",
+        "assumptions": [],
+        "title": "str 입력에서 문자 수를 반환해 바이트 수 계약과 불일치",
+        "evidence": "2줄은 len(body)를 반환합니다. 계약은 str 또는 bytes를 받아 UTF-8 기준 전송 바이트 수를 반환해야 한다고 명시되어 있어, str의 경우 len은 문자 수를 세므로 바이트 수와 다릅니다.",
+        "suggestion": "str인 경우 body.encode('utf-8')의 길이를 반환하고, bytes는 그대로 len을 사용하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "68d7df0007e10840474f181fd4ad37b24b6c17762ecf883aa9331c030c3e9562",
+  "input_tokens": 4743,
+  "output_tokens": 290,
+  "elapsed_seconds": 2.172
+}

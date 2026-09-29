@@ -1,0 +1,15 @@
+{
+  "key": "T1-e039b4bf0e2d-r1-review",
+  "arm": "T1",
+  "phase": "review",
+  "at": "2026-09-29T10:21:20.882736+00:00",
+  "input_hash": "81b86358d3d398b99cf93960a8014c3b821a144b3ddbca6f6688e7839a70c1b1",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경 변수 CA 번들 조회가 `or` 연산으로 바뀐 부분을 검토했습니다. 빈 문자열 환경 변수가 None으로 처리되어 세션 값 병합으로 복원되는 경로를 확인했습니다.\",\"issues\":[],\"limitations\":\"제공된 HEAD 라인만 검토했으며 실행 결과나 실제 호출자, requests 라이브러리 연동 동작은 확인하지 않았습니다. merge_setting의 반환값이 이후 어떻게 사용되는지는 제공 범위 밖입니다.\"}",
+  "input_tokens": 5243,
+  "output_tokens": 124,
+  "seconds": 1.328
+}

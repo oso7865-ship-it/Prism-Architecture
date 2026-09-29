@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-aa5d6b234f6b-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "aa5d6b234f6b",
+  "at": "2026-09-29T08:43:40.064333+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "1670041403a1c1cd27c75aaa1041184c882c7dea0e188a2fb72d4360b3153ed5",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "bucket 인자를 생략한 두 번째 호출부터 이전 호출에서 추가된 항목이 포함된 리스트가 반환됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3061,
+  "output_tokens": 82,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "1700d9244aef090ceca30dc72202fd22ade10b16fbe5bbf1f6af827a65d700ee",
+  "elapsed_seconds": 2.485
+}

@@ -1,0 +1,25 @@
+{
+  "key": "development-E08-90900a02e0f4-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:12:47.639710+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 3 condition is inverted relative to the stated contract: it calls name.trim() when name is null and returns \"\" when name is non-null.",
+      "Display.name(null) evaluates the true branch, invoking trim() on null, so a NullPointerException is the predicted observable outcome for probe p1.",
+      "Display.name(\" Ada \") evaluates the false branch and returns \"\", so probe p2 is predicted to return empty rather than the trimmed \"Ada\".",
+      "The contract 'null displayed as empty; otherwise strip surrounding whitespace' is not satisfied by the supplied implementation.",
+      "No static findings were supplied, so the inversion is only observable via the changed line 3 logic."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2f5a5e5000de63d9b7a47d5cdd14ecfe01048e33121b959696458e4c5c4c0f1f",
+  "input_tokens": 372,
+  "output_tokens": 147,
+  "elapsed_seconds": 1.516
+}

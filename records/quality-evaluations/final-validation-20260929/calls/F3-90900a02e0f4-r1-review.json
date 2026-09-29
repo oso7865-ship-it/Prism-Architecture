@@ -1,0 +1,12 @@
+{
+  "key": "F3-90900a02e0f4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:35.190714+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "c9d8af98d178781f0ae194d9ae3004375bf6e2487284a727ea3084b3908f7c95",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄 변경은 null 처리 분기가 계약과 반대로 뒤집혀 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 경우\",\"consequence\":\"name.trim()이 null에 대해 호출되어 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 분기에서 null을 역참조합니다\",\"evidence\":\"3줄의 조건 name == null이 참일 때 삼항 연산자는 name.trim()을 평가하므로 null 역참조가 실행됩니다. 계약은 null name을 빈 문자열로 표시해야 한다고 명시합니다.\",\"suggestion\":\"조건을 name != null로 바꾸어 null일 때 \\\"\\\"를, 그렇지 않을 때 name.trim()을 반환하도록 하세요.\",\"contract_quote\":\"A null name is displayed as empty; otherwise strip surrounding whitespace.\"}],\"limitations\":\"제공된 단일 파일과 HEAD 라인만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4775,
+  "output_tokens": 247,
+  "seconds": 2.172
+}

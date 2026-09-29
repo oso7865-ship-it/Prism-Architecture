@@ -1,0 +1,12 @@
+{
+  "key": "C4-5e22872c605b-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:02:52.244037+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 indices는 n이 음이 아닌 정수라는 계약에서 n=0이면 [], 양수면 [0]을 반환하며, 제공된 의미 관찰값과 일치합니다. 변경된 한 줄에서 계약을 위반하는 경로는 보이지 않습니다.\", \"issues\": [], \"limitations\": \"n이 음이 아닌 정수라는 계약 외의 호출자나 입력 검증은 제공되지 않았습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"range(0, n, max(n,1))는 n=0이면 [], 양수 n이면 [0]을 반환해 제공된 계약과 일치함을 확인했습니다.\"}]}",
+  "input_tokens": 3452,
+  "output_tokens": 187,
+  "seconds": 1.406
+}

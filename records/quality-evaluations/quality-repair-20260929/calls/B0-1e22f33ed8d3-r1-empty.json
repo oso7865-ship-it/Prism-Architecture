@@ -1,0 +1,15 @@
+{
+  "key": "B0-1e22f33ed8d3-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:47.371103+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "c1b104d7a2b4812dac7ace263e24deb30f34e82fdbc2b3c4991cd5412a7e9d0c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length가 str/bytes 모두 UTF-8 바이트 수를 반환하도록 변경된 부분을 검토했으며, 제공된 범위에서 계약 위반이나 실패 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"prepare의 호출자와 실제 전송 계층은 제공되지 않아 Content-Length 헤더가 실제로 어떻게 사용되는지는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 2, \"outcome\": \"NO_FINDING\", \"observation\": \"str은 UTF-8 인코딩 후, bytes는 재인코딩 없이 len을 반환하여 바이트 수 계약과 일치합니다. 빈 문자열/비ASCII 경계도 동일 로직으로 처리됩니다.\"}]}",
+  "input_tokens": 3382,
+  "output_tokens": 192,
+  "seconds": 1.641
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R1-52ccbd6a57a5-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:18:50.972882+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "1bd8daeca3d7886c5d66607589a6fbf00c98a75e3f720fd4b40690766b3984f9",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 변경은 user_id를 SQL 문자열에 직접 삽입하지 않고 %s 플레이스홀더와 파라미터 튜플로 분리해 반환하는 형태로, 값 바인딩을 유지하고 있습니다.\",\"issues\":[],\"limitations\":\"제공 범위는 query 함수의 반환 형태뿐이며, 실제 DB-API 호출부와 user_id의 출처·검증 여부는 확인되지 않았습니다. 실행 결과는 미확인.\",\"context_requests\":[]}",
+  "input_tokens": 5070,
+  "output_tokens": 119,
+  "seconds": 1.578
+}

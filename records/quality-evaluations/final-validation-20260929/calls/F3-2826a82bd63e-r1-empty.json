@@ -1,0 +1,12 @@
+{
+  "key": "F3-2826a82bd63e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:06:14.009594+00:00",
+  "input_hash": "7938527fda708e96c42d4ffa33e07ec9adf25b16eb805d0dfa9a51a480d73d2a",
+  "system_hash": "246eb9458e511a9ecee81e16c5d65ce18e1d73c3a3348086e01b49cadc232c2a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 코드는 `ordered(values)`가 입력 배열을 복사한 뒤 숫자 오름차순으로 정렬해 반환합니다. 계약(유한 숫자 오름차순, 호출자 배열 비변경)과 관찰된 동작이 일치하며, 제공된 범위에서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"`values`의 실제 호출자, 입력이 유한 숫자 배열이라는 보장, 그리고 `values`가 이터러블인지 여부는 제공되지 않았습니다. 정렬 비교 함수의 숫자 의미론과 스프레드 복사만으로 판단했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 유한 숫자 오름차순 반환과 호출자 배열 비변경을 요구한다. `[...values]`가 복사본을 만들고 `sort((a,b)=>a-b)`가 숫자 오름차순으로 정렬해 반환하므로 두 요구를 모두 충족한다.\"}]}",
+  "input_tokens": 3482,
+  "output_tokens": 252,
+  "seconds": 2.187
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F3-4a06b424f621-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:06:14.307496+00:00",
+  "input_hash": "e916804e7a0d94b187548543f9c3ac5e4820cc03bcfa2a5ce676eab36445b450",
+  "system_hash": "eb076b0664d105ef0bff1092ff35db96c11ca44a8c26498d14152601cbfbc2a1",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"Array.prototype.sort는 제자리 정렬이므로 ordered(values) 호출 시 호출자가 전달한 배열 자체의 순서가 변경되어, '호출자 배열을 수정하지 말 것'이라는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"values.sort가 원본 배열을 제자리 정렬하여 'Do not modify the caller's array' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4323,
+  "output_tokens": 158,
+  "seconds": 1.625
+}

@@ -1,0 +1,54 @@
+{
+  "key": "development-E11-cd1f9cff7b9c-r1",
+  "case": "cd1f9cff7b9c",
+  "arm": "E11",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로 포함 여부를 문자열 접두사 비교로 판정하는 변경을 검토했습니다. `root + '/'` 구분자를 사용해 형제 디렉터리 접두사 오인이 발생하지 않으며, 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크·후행 슬래시 없음) 범위에서는 보안 결함이 확인되지 않습니다.",
+    "issues": [],
+    "limitations": "정규화·심볼릭 링크 해석·호출자 신원 검증은 이 함수 밖에 있어 제공된 범위에서 확인하지 못했습니다. 계약을 위반하는 입력(후행 슬래시, 미정규화 경로, 심볼릭 링크)이 실제로 도달 가능한지는 호출부가 제공되지 않아 판단할 수 없으며, 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6067,
+  "output_tokens": 439,
+  "elapsed_seconds": 3.609,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

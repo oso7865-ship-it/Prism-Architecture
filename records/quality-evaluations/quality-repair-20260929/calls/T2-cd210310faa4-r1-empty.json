@@ -1,0 +1,15 @@
+{
+  "key": "T2-cd210310faa4-r1-empty",
+  "arm": "T2",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:30.964296+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 null 입력을 빈 문자열로 처리하고 그 외에는 trim을 적용하는 계약을 그대로 구현하고 있습니다. 삼항 연산자의 조건과 분기 결과가 계약과 일치하여 추가 조치가 필요한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"name()의 호출 지점과 반환값 사용 방식은 제공되지 않아, 빈 문자열 반환 이후의 표시 동작은 확인하지 못했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"line 3의 삼항 연산은 null이면 빈 문자열, 아니면 trim 결과를 반환하여 명시된 계약과 일치합니다. 조건 평가와 분기 결과 모두 정상입니다.\"}]}",
+  "input_tokens": 3261,
+  "output_tokens": 186,
+  "seconds": 1.516
+}

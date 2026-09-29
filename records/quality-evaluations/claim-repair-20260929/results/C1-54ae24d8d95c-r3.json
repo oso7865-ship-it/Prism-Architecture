@@ -1,0 +1,52 @@
+{
+  "case": "54ae24d8d95c",
+  "repeat": 3,
+  "arm": "C1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "merge_setting의 호출자와 session_verify의 실제 전달 값 범위는 제공되지 않았습니다. 테스트 실행 여부는 확인하지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "settings.py",
+          "provided_lines": 18
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 10,
+          "outcome": "NO_FINDING",
+          "observation": "라인 10의 `or` 체인은 빈 문자열/None 환경변수를 건너뛰어 verify=True를 보존하고, 비어 있지 않은 CA 경로는 그대로 반환합니다. 라인 15~17 테스트와 일치합니다.",
+          "file_path": "settings.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "c3b2c767366cb7d0f198053156a1504ce2c9381688fa52228092824d8c7cacd5"
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F3-9d73a727b44a-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:06:08.986231+00:00",
+  "input_hash": "86fec2922b28fed2eea6981fb9917bdc62e2d4452a037dc986a9f33249807178",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"tenant_id가 SQL 조건에 포함되지 않아, 동일 order_id가 다른 tenant에도 존재할 때 인증된 tenant가 아닌 다른 tenant의 주문 행이 반환되어 제공된 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"load가 tenant_id를 받지만 SELECT는 id만 조건으로 사용하여, 계약이 허용하는 tenant 간 order_id 중복 시 다른 tenant의 행이 반환될 수 있습니다.\"}]}",
+  "input_tokens": 4452,
+  "output_tokens": 164,
+  "seconds": 1.36
+}

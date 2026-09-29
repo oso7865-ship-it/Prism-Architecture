@@ -1,0 +1,104 @@
+{
+  "key": "bridge-E12-90900a02e0f4-r1",
+  "case": "90900a02e0f4",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "name이 null일 때 trim()을 호출하도록 조건이 반전되어 있어, 계약과 달리 null 입력에서 NPE가 발생하고 비-null 입력은 빈 문자열로 표시됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 name(String name)을 호출할 때",
+        "consequence": "name이 null이면 name == null이 참이 되어 name.trim()이 평가되며 NullPointerException이 발생하고, null이 아니면 trim된 값 대신 \"\"가 반환되어 동작 계약과 반대입니다.",
+        "assumptions": [],
+        "title": "null 검사가 반전되어 null 입력에서 NPE가 발생합니다",
+        "evidence": "3줄에서 name == null일 때 name.trim()을 평가하고, null이 아닐 때 \"\"를 반환합니다. 제공된 동작 계약(널은 빈 문자열, 그 외는 공백 제거)과 두 분기 모두 반대입니다.",
+        "suggestion": "조건을 뒤집어 null일 때 \"\"를, null이 아닐 때 name.trim()을 반환하도록 수정하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 검사가 반전되어 null 입력에서 NPE가 발생합니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 name(String name)을 호출할 때",
+        "consequence": "name이 null이면 name == null이 참이 되어 name.trim()이 평가되며 NullPointerException이 발생하고, null이 아니면 trim된 값 대신 \"\"가 반환되어 동작 계약과 반대입니다.",
+        "assumptions": [],
+        "title": "null 검사가 반전되어 null 입력에서 NPE가 발생합니다",
+        "evidence": "3줄에서 name == null일 때 name.trim()을 평가하고, null이 아닐 때 \"\"를 반환합니다. 제공된 동작 계약(널은 빈 문자열, 그 외는 공백 제거)과 두 분기 모두 반대입니다.",
+        "suggestion": "조건을 뒤집어 null일 때 \"\"를, null이 아닐 때 name.trim()을 반환하도록 수정하세요.",
+        "file_path": "Display.java",
+        "key": "8246d1999adb717ba2107d8fa3bc6f0e0d348810463962c17f9c444b94756270"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Display.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8241,
+  "output_tokens": 617,
+  "elapsed_seconds": 4.501
+}

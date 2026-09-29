@@ -1,0 +1,38 @@
+{
+  "key": "bridge-E12-90900a02e0f4-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:08.271825+00:00",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "input_bytes": 545,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name이 null일 때 trim()을 호출하도록 조건이 반전되어 있어, 계약과 달리 null 입력에서 NPE가 발생하고 비-null 입력은 빈 문자열로 표시됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 name(String name)을 호출할 때",
+        "consequence": "삼항 연산자의 조건이 참이 되어 null 참조에 대해 name.trim()이 평가되므로 NullPointerException이 발생합니다. 반대로 null이 아니면 trim된 값 대신 \"\"가 반환되어 공백 제거도 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "null 검사가 반전되어 null 입력에서 NPE가 발생합니다",
+        "evidence": "3줄에서 name == null일 때 name.trim()을 평가하고, null이 아닐 때 \"\"를 반환합니다. 제공된 동작 계약(널은 빈 문자열, 그 외는 공백 제거)과 두 분기 모두 반대입니다.",
+        "suggestion": "조건을 뒤집어 null일 때 \"\"를, null이 아닐 때 name.trim()을 반환하도록 수정하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "5ff8d0b03f95a88cde47145bcfba0ecf677dde1800f6df3c2213d7a505ccf8f1",
+  "input_tokens": 4944,
+  "output_tokens": 411,
+  "elapsed_seconds": 2.797
+}

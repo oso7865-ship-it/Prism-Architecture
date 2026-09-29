@@ -1,0 +1,77 @@
+{
+  "key": "development-E03-b07fc52f42ca-r1",
+  "case": "b07fc52f42ca",
+  "arm": "E03",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "기본값 처리에서 `||` 연산자를 사용해 0을 유효한 값이 아닌 falsy 값으로 취급하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)을 호출할 때",
+        "consequence": "0이 falsy로 평가되어 기본값 10이 반환되므로, 유효한 설정값 0이 무시됩니다.",
+        "assumptions": [],
+        "title": "0이 유효한 설정값인데도 기본값으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 count가 0일 때 10을 반환합니다. behavior_contract는 0을 유효한 설정값으로 명시합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5493,
+  "output_tokens": 309,
+  "elapsed_seconds": 2.156,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

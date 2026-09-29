@@ -1,0 +1,15 @@
+{
+  "key": "R2-62086f7d4408-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:51.902860+00:00",
+  "input_hash": "686444d79a9f8d1279ce6c049bc9a9cfcb672325aeb32e281ed6cba54899b89d",
+  "system_hash": "b6dd17841952c8dad8c78d0953bf64563fca6bc117b171ae89e0c9f7c4d21228",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 handle 함수에서 ValueError 처리 방식이 변경되어, 예외를 기록하지 않고 None을 반환하도록 바뀌었습니다. 제공된 팀 표준(오류 처리)과 비교 검토합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4,5],\"trigger\":\"operation()이 ValueError를 발생시킬 때\",\"consequence\":\"4-5줄에서 ValueError를 잡아 logger에 기록하지 않고 None을 반환하므로, 실패가 정상 반환값으로 숨겨져 호출자가 오류를 구분할 수 없습니다. 이는 '기록한 뒤 같은 예외를 다시 던진다. 실패를 정상 반환으로 숨기지 않는다'는 팀 표준과 어긋납니다.\",\"assumptions\":[],\"title\":\"ValueError를 기록 없이 None으로 숨겨 팀 오류 처리 표준 위반\",\"evidence\":\"4줄에서 ValueError를 포착하고 5줄에서 logger 호출 없이 None을 반환합니다. 제공된 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.\",\"suggestion\":\"except 블록에서 logger.error 등으로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"]}],\"limitations\":\"제공된 변경 라인과 표준 문서만 검토했습니다. operation()의 실제 예외 발생 조건과 호출자의 None 처리 방식은 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 5278,
+  "output_tokens": 399,
+  "seconds": 2.547
+}

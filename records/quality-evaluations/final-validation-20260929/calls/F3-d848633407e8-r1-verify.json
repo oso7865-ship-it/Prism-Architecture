@@ -1,0 +1,12 @@
+{
+  "key": "F3-d848633407e8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:06:12.304906+00:00",
+  "input_hash": "9e6d87c5c2fef9742c5ec45eee7f84a7b50fc5abf80eebe9c53ad3c128fb0053",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"read()가 예외를 발생시키면 stream.close()에 도달하지 못해 스트림이 닫히지 않습니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"read() 예외 시 close()가 실행되지 않아 '항상 닫아야 한다'는 계약을 위반합니다.\"}]}",
+  "input_tokens": 4640,
+  "output_tokens": 118,
+  "seconds": 1.14
+}

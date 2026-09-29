@@ -1,0 +1,77 @@
+{
+  "case": "81c5bd8c7f71",
+  "arm": "R1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: profile이 없을 때 Unknown 대신 TypeError가 발생합니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          3
+        ],
+        "trigger": "profile이 없는 User로 name(user)을 호출할 때",
+        "consequence": "profile이 없는 User로 호출하면 user.profile이 undefined이므로 !.name 접근에서 TypeError가 발생하고 'Unknown'이 반환되지 않습니다.",
+        "assumptions": [],
+        "title": "profile이 없을 때 Unknown 대신 TypeError가 발생합니다",
+        "evidence": "1줄에서 profile이 선택적(profile?:)임이 선언되어 있고, 3줄에서 비단언 연산자로 undefined일 수 있는 profile에 접근합니다.",
+        "suggestion": "profile 존재 여부를 확인하고 없으면 'Unknown'을 반환하며, 있으면 profile.name을 반환하도록 3줄을 수정하세요.",
+        "file_path": "profile.ts",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "d9817f95592e67a9d91c6cbad1d760c2df969c59970a42a6f4f3c0a55412c818"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "profile.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "FINDING",
+          "observation": "profile?: 선언과 비단언 접근이 결합되어 profile 부재 시 TypeError가 발생하며, 계약의 'Unknown' 반환이 구현되지 않았습니다.",
+          "file_path": "profile.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f"
+}

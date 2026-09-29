@@ -1,0 +1,26 @@
+{
+  "key": "development-E07-7c4f2f03b3b5-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:15:59.320084+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "beb23349e86f8c62ccc39b159769d1a3532684ee2fe93803f483d87b9eaa6f1a",
+  "input_bytes": 989,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed line 2 uses print('saved') instead of the injected logger.info, while the function signature accepts a logger parameter.",
+      "The behavior contract states logger.info exists and has no return value or side effects beyond logging.",
+      "The untrusted standard s1 requires using injected logger.info rather than print for application logging.",
+      "The probe call save(7, logger) observes only the return value, which is record (7) per line 3.",
+      "No static findings are reported for this file.",
+      "The function returns record unchanged on line 3, independent of the logging call on line 2."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b7f7aa229897d8530465fad57ceda4f5b4de19c9cb6e981acd038b2c79edd655",
+  "input_tokens": 486,
+  "output_tokens": 129,
+  "elapsed_seconds": 1.297
+}

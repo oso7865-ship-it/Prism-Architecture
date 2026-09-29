@@ -1,0 +1,42 @@
+{
+  "key": "bridge-P0-7c4f2f03b3b5-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "7c4f2f03b3b5",
+  "at": "2026-09-29T08:42:54.190862+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "5167925465ea58fc87cf2974fb00e539a362ee19cf46330104a91e51c8048796",
+  "payload_sha256": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "save 함수에서 print 대신 주입된 logger를 사용하지 않는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save 함수가 호출될 때",
+        "consequence": "팀 표준에서 요구하는 logger.info 대신 print로 기록되어 로깅 정책을 위반합니다.",
+        "assumptions": [],
+        "title": "print 대신 주입된 logger를 사용해야 합니다",
+        "evidence": "2줄에서 print('saved')를 사용하지만, 표준 s1은 주입된 logger.info로 기록하도록 요구합니다.",
+        "suggestion": "print('saved')를 logger.info('saved')로 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수와 표준 문서만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5216,
+  "output_tokens": 263,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4864,
+  "response_sha256": "c4bd721944ee8034443989111e5b1dab5f94cdd38488df116a3532c4c7a4149b",
+  "elapsed_seconds": 4.391
+}

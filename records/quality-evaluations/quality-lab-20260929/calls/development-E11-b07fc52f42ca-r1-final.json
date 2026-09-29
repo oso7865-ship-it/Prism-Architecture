@@ -1,0 +1,58 @@
+{
+  "key": "development-E11-b07fc52f42ca-r1-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:15:24.309837+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "c1bdc9a49e115101cd269ce868407145e43b083ea3b86bf3fb26ff3e1098657b",
+  "input_bytes": 1184,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`limit` 함수가 `count || 10`으로 기본값을 처리해, 계약상 유효한 값인 0도 기본값 10으로 대체됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`limit(0)`을 호출할 때",
+        "consequence": "0이 falsy로 평가되어 10이 반환되므로, 0을 유효한 설정값으로 규정한 계약과 어긋나고 호출자는 의도한 0 대신 10을 받습니다.",
+        "assumptions": [],
+        "title": "0이 유효한 값인데도 기본값 10으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 null/undefined뿐 아니라 0, 빈 문자열 등 모든 falsy 값에서 10을 반환합니다. 계약은 null/undefined에만 기본값 10을 적용하고 0은 유효한 값으로 규정합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b3f70b90a611ebea6326ab65a6584033de1b6cd8c7ee92c76163a6a76de69d0c",
+  "input_tokens": 5350,
+  "output_tokens": 370,
+  "elapsed_seconds": 2.735
+}

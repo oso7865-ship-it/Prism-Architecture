@@ -1,0 +1,15 @@
+{
+  "key": "T0-e039b4bf0e2d-r1-review",
+  "arm": "T0",
+  "phase": "review",
+  "at": "2026-09-29T10:22:00.113358+00:00",
+  "input_hash": "81b86358d3d398b99cf93960a8014c3b821a144b3ddbca6f6688e7839a70c1b1",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경 변수 CA 번들 조회가 or 연쇄로 바뀐 부분을 검토했습니다. 빈 문자열 환경 변수가 None으로 대체되는 동작과 merge_setting의 병합 결과를 제공된 테스트 계약과 대조했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE 키가 빈 문자열(\\\"\\\")로 존재하고 verify가 True 또는 None일 때\",\"consequence\":\"or 연쇄는 빈 문자열을 falsy로 평가하므로 verify가 None이 되고, 이어서 merge_setting(11줄)이 session_verify(기본 True)를 반환합니다. 결과적으로 빈 문자열 환경 변수는 무시되고 True가 유지되어 15·16줄의 계약과 일치합니다. 다만 이 동작은 '빈 문자열을 명시적 미설정으로 간주'한다는 전제에 의존하며, 빈 문자열을 유효한 값으로 취급해야 하는 경우에는 잘못된 결과가 됩니다.\",\"assumptions\":[],\"title\":\"빈 문자열 CA 번들 환경 변수가 None으로 대체됨\",\"evidence\":\"10줄은 env.get(...) or env.get(...)로 두 값을 or 결합합니다. semantic_observations에서 '' or None이 null이 됨을 보여주며, 15·16줄 테스트는 빈 문자열일 때 True를 기대합니다.\",\"suggestion\":\"빈 문자열을 미설정으로 볼지 여부를 명확히 하고, 유효한 빈 문자열을 보존해야 한다면 키 존재 여부를 확인하는 명시적 검사로 바꾸세요.\"}],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 실제 requests 라이브러리 연동은 제공되지 않았습니다.\"}",
+  "input_tokens": 5243,
+  "output_tokens": 466,
+  "seconds": 2.828
+}

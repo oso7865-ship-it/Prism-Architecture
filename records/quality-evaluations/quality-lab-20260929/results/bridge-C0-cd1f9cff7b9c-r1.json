@@ -1,0 +1,88 @@
+{
+  "key": "bridge-C0-cd1f9cff7b9c-r1",
+  "case": "cd1f9cff7b9c",
+  "arm": "C0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "경로 접두사 검사 함수 `permitted`의 변경된 한 줄을 보안 관점에서 검토했습니다. `resolved == root` 또는 `resolved.startswith(root + '/')` 조건은 계약상 정규화된 절대 경로 입력에서 루트 및 하위 경로만 허용하도록 정확히 동작하며, 접두사 오매칭(예: `/data` vs `/database`)도 '/' 구분자 추가로 방지됩니다. 제공된 범위에서 지원 가능한 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "정규화(심볼릭 링크 해소, 후행 슬래시 제거)를 수행하는 호출자와 `root`/`resolved`의 실제 출처가 제공되지 않아, 입력이 계약을 벗어난 경우(예: 미정규화 경로, 대소문자 비구분 파일시스템)의 동작은 검증할 수 없습니다. 호출 지점과 권한 부여 흐름도 제공되지 않았습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "정규화(심볼릭 링크 해소, 후행 슬래시 제거)를 수행하는 호출자와 `root`/`resolved`의 실제 출처가 제공되지 않아, 입력이 계약을 벗어난 경우(예: 미정규화 경로, 대소문자 비구분 파일시스템)의 동작은 검증할 수 없습니다. 호출 지점과 권한 부여 흐름도 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "paths.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "`resolved == root` 또는 `root + '/'` 접두사 검사로 루트 및 하위 경로만 허용하며, '/' 구분자 추가로 인접 경로 오매칭을 방지합니다. 제공된 정규화 계약 범위에서 우회 경로는 보이지 않습니다.",
+          "file_path": "paths.py"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "`resolved == root` 또는 `root + '/'` 접두사 검사로 루트 및 하위 경로만 허용하며, '/' 구분자 추가로 인접 경로 오매칭을 방지합니다. 제공된 정규화 계약 범위에서 우회 경로는 보이지 않습니다.",
+        "file_path": "paths.py"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8596,
+  "output_tokens": 618,
+  "elapsed_seconds": 4.891
+}

@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-a8961f6d5e20-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:57.360021+00:00",
+  "system_sha256": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "payload_sha256": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "input_bytes": 455,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "user_id를 문자열 결합으로 SQL 문에 직접 삽입하는 변경을 검토했습니다. 파라미터 바인딩 자리표시자가 아닌 값 결합이므로 SQL 주입 경로가 성립합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표, OR 1=1, UNION SELECT 등 SQL 문법이 포함된 값이 전달될 때",
+        "consequence": "user_id가 SQL 텍스트로 해석되어 WHERE 절이 변조되고, users 테이블 외의 데이터 조회 등 의도하지 않은 쿼리 실행이 가능합니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 결합으로 SQL 주입이 가능합니다",
+        "evidence": "2줄에서 user_id를 SQL 문자열에 직접 이어 붙이고 파라미터 튜플은 빈 값으로 반환합니다. behavior_contract는 user_id가 신뢰할 수 없는 텍스트이며 반환값이 드라이버로 전달됨을 명시합니다.",
+        "suggestion": "SQL에는 %s 자리표시자를 쓰고 user_id를 파라미터 튜플로 전달하세요. 예: ('SELECT name FROM users WHERE id = %s', (user_id,))."
+      }
+    ],
+    "limitations": "호출부와 실제 DB-API 드라이버 구현은 제공되지 않아 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6ee9ef94fece4381971c2902171b37774896e353ef1470af7835ec35a735a60c",
+  "input_tokens": 5115,
+  "output_tokens": 337,
+  "elapsed_seconds": 2.125
+}

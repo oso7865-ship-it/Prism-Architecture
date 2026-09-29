@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-d9318706b943-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "d9318706b943",
+  "at": "2026-09-29T08:42:10.096789+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "7a601442583dedf527044d2a8aea967fea4e47a7575eb5a8ee1bef853a0134e7",
+  "payload_sha256": "3b1fdbe0586a7191ad9ff7efab35ba8ea55632c255e79725e3d38fc7d027a3fd",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 limit 함수는 null/undefined에만 기본값 10을 적용하고 0은 유효한 값으로 유지하므로 계약을 충족합니다. 제시된 컨텍스트에서 지원되는 결함이 없습니다.",
+    "issues": [],
+    "limitations": "호출부와 count 값의 실제 생성 경로가 제공되지 않아 런타임 입력 범위는 확인하지 못했습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "nullish 병합 연산자가 null/undefined에만 기본값을 적용하고 0을 유지하여 계약과 일치합니다."
+      }
+    ]
+  },
+  "input_tokens": 3143,
+  "output_tokens": 176,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1664,
+  "response_sha256": "14aadbe86c946a2d734cdc6485bdfd60793403713f5ee32e4e88dca30e0f5ba1",
+  "elapsed_seconds": 3.907
+}

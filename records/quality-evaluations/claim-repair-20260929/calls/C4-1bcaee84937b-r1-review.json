@@ -1,0 +1,12 @@
+{
+  "key": "C4-1bcaee84937b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:20.969963+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "10c85ff8ddc3e38ccc0f2dc5a8b81e8f83c5b2f5c04af3cba26f7d44c6dfa5e5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 invoice 함수가 load(id) 결과의 amount를 반환하기 전에 behavior_contract가 요구하는 소유자(actor) 검사를 수행하지 않는 점을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"actor가 소유자 \\\"alice\\\"가 아닌 값(예: \\\"bob\\\")이고 id=7로 invoice를 호출할 때\",\"consequence\":\"소유자가 아닌 호출자에게도 item.amount(40)가 그대로 반환되어, 계약이 요구하는 소유자 외 접근 차단이 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"소유자 검사 없이 금액을 반환해 비소유자에게 노출됩니다\",\"evidence\":\"f1:2에서 load(id)로 항목을 가져오고 f1:3에서 item.amount를 즉시 반환합니다. behavior_contract는 \\\"Return the amount only to its owner; throw Error for other actors\\\"를 요구하지만, 제공된 변경 라인 어디에도 actor와 item.owner를 비교하는 검사가 없습니다.\",\"suggestion\":\"f1:3의 반환 전에 actor와 item.owner를 비교하여 불일치 시 Error를 던지는 검사를 추가하세요.\",\"citations\":[]}],\"limitations\":\"load의 실제 구현과 invoice 호출자들은 제공되지 않았으며, 제공된 범위의 정적 검토만 수행했습니다. 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4925,
+  "output_tokens": 357,
+  "seconds": 2.563
+}

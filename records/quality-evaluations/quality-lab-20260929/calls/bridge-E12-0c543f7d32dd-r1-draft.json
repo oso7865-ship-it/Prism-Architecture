@@ -1,0 +1,38 @@
+{
+  "key": "bridge-E12-0c543f7d32dd-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:19.737461+00:00",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "input_bytes": 431,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두어 문자열 비교로 권한 경계를 검사해, root와 이름 접두어를 공유하는 root 외부 경로도 허용될 수 있는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root와 문자열 접두어를 공유하지만 root의 하위가 아닌 경로가 resolved로 전달될 때(예: root=\"/srv/app\", resolved=\"/srv/app-secret/key\")",
+        "consequence": "startswith가 True를 반환해 계약상 허용 범위 밖인 root 외부 경로가 허용될 수 있습니다. 이 함수의 반환값이 파일 접근·경로 권한 판정에 사용되면 경계 우회로 이어질 수 있습니다.",
+        "assumptions": [],
+        "title": "경로 접두어 비교가 root 외부 형제 경로를 허용합니다",
+        "evidence": "2줄은 resolved.startswith(root)로 경로 포함 여부를 판단합니다. 경로 구분자 경계를 확인하지 않으므로 root와 접두어만 같은 외부 경로도 통과합니다.",
+        "suggestion": "root 자체이거나 root 바로 뒤에 경로 구분자가 오는 경우만 허용하도록 비교하세요. 예를 들어 root=\"/\"를 별도 처리한 뒤 resolved == root 또는 resolved.startswith(root + \"/\")로 검사하거나, 정규화된 두 절대 경로에 대해 os.path.commonpath 또는 Path.is_relative_to 같은 경로 기반 판정을 사용하세요."
+      }
+    ],
+    "limitations": "호출부와 resolved의 입력 출처, 실제 권한 판정 흐름은 제공되지 않아 공격 도달 가능성과 영향 범위는 확인하지 못했습니다. 테스트는 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "59e03946b802977c23fe645df7dc1bd900899435d444ba0f3ce5df5e5618450a",
+  "input_tokens": 5124,
+  "output_tokens": 1541,
+  "elapsed_seconds": 9.172
+}

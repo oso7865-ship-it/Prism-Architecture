@@ -1,0 +1,12 @@
+{
+  "key": "C4-d9318706b943-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:22.266371+00:00",
+  "input_hash": "3b1fdbe0586a7191ad9ff7efab35ba8ea55632c255e79725e3d38fc7d027a3fd",
+  "system_hash": "1c451e5ed31d552f6497040d48b0cc947a107fc48ab359ef819557d32454194f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 `count ?? 10`으로 null/undefined일 때만 기본값 10을 적용하고, 0은 유효한 값으로 그대로 반환합니다. 제공된 계약과 일치하며 구체적 결함 경로가 보이지 않습니다.\", \"issues\": [], \"limitations\": \"limit 함수의 호출자와 반환값 사용처는 제공되지 않아, 반환값이 이후 어떻게 소비되는지는 확인할 수 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"`count ?? 10`은 null/undefined에서만 10을 반환하고 0은 그대로 통과시켜, '0은 유효한 설정값'이라는 계약과 일치합니다.\"}]}",
+  "input_tokens": 3352,
+  "output_tokens": 188,
+  "seconds": 1.422
+}

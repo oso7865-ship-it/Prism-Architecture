@@ -1,0 +1,52 @@
+{
+  "key": "holdout-C0-65d1d2fad0d4-r2-final",
+  "arm": "C0",
+  "phase": "final",
+  "at": "2026-09-29T07:18:21.358348+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "8e66a7ec56208b5c48fd53ac882b621af7265751037d8f26fd87349c12a5b02b",
+  "input_bytes": 716,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "정수 비교를 뺄셈으로 구현한 변경을 검토했습니다. 일반적인 값에서는 계약을 만족하지만, 뺄셈 결과가 int 범위를 넘는 입력에서 부호가 뒤집힙니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left가 Integer.MIN_VALUE이고 right가 양수인 경우(예: compare(Integer.MIN_VALUE, 1))",
+        "consequence": "left - right가 int 오버플로로 양수가 되어, left < right임에도 양수를 반환해 비교 계약(음수여야 함)이 위반됩니다.",
+        "assumptions": [],
+        "title": "뺄셈 비교가 int 오버플로로 부호를 뒤집습니다",
+        "evidence": "3줄은 left - right를 그대로 반환합니다. Integer.MIN_VALUE - 1은 int 범위를 넘어 양수로 감싸지므로 부호가 계약과 반대가 됩니다.",
+        "suggestion": "Integer.compare(left, right)를 사용하거나, 뺄셈 대신 명시적 비교 분기로 부호를 반환하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "79a8ac8b2fae5504700194aaa0e987b5a80fe711b1ae259d9bef9d871ae93f1d",
+  "input_tokens": 5346,
+  "output_tokens": 356,
+  "elapsed_seconds": 2.25
+}

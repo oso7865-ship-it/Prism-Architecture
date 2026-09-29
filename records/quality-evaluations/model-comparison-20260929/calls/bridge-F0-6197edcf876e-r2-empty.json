@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-6197edcf876e-r2-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "6197edcf876e",
+  "at": "2026-09-29T08:39:58.355097+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "13036fba1788e5c31aedb919af6beb73c92a5a60637ca0f2e63d3020cc218217",
+  "payload_sha256": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 라인은 `user.profile?.name ?? 'Unknown'` 한 곳이며, 옵셔널 체이닝과 nullish 병합으로 profile 부재 시 'Unknown'을 반환하고 빈 문자열 name은 보존한다. 제공된 계약과 일치하며 구체적 실패 경로가 보이지 않는다.",
+    "issues": [],
+    "limitations": "name()의 호출자와 user 인자 생성 경로는 제공되지 않아 실제 입력 분포는 확인하지 못했다. 정적 경고도 없었다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "옵셔널 체이닝으로 profile 부재 시 undefined가 되고 ?? 'Unknown'이 대체하며, 빈 문자열 name은 ??가 대체하지 않아 계약과 일치한다."
+      }
+    ]
+  },
+  "input_tokens": 3183,
+  "output_tokens": 209,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "9d02cb7f34326cc9673994dcf36c0936366b64ad1a2b0af669ee8368e9c0d51e",
+  "elapsed_seconds": 1.797
+}

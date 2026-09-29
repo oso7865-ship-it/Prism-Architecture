@@ -1,0 +1,15 @@
+{
+  "key": "R1-7c4f2f03b3b5-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:56.040617+00:00",
+  "input_hash": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "system_hash": "b6dd17841952c8dad8c78d0953bf64563fca6bc117b171ae89e0c9f7c4d21228",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 save 함수 2번째 줄이 print('saved')로 변경되었고, 주입된 logger 파라미터는 사용되지 않습니다. 팀 표준 s1은 애플리케이션 로깅에 print 대신 주입된 logger.info를 사용하도록 요구합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"save가 호출되어 2번째 줄이 실행될 때\",\"consequence\":\"표준이 금지하는 print로 기록되어 주입된 logger.info를 통한 로깅이 이루어지지 않습니다. logger 파라미터는 사용되지 않은 채 남습니다.\",\"assumptions\":[],\"title\":\"print 사용으로 주입된 logger.info 로깅 표준 위반\",\"evidence\":\"2번째 줄이 print('saved')로 변경되었고, 시그니처의 logger 파라미터는 본문에서 사용되지 않습니다. 표준 s1은 print 대신 주입된 logger.info 사용을 요구합니다.\",\"suggestion\":\"2번째 줄을 logger.info('saved')로 바꿔 주입된 logger를 사용하도록 하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"]}],\"limitations\":\"제공된 3줄과 표준 s1만 검토했습니다. 실행 결과나 실제 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 5173,
+  "output_tokens": 337,
+  "seconds": 1.953
+}

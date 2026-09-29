@@ -1,0 +1,12 @@
+{
+  "key": "F3-ea5d99fd7899-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:06:06.711220+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 load 함수는 order_id와 tenant_id를 함께 WHERE 조건으로 사용해 조회하며, 제공된 계약(테넌트별 order_id 중복 허용, 인증된 테넌트의 주문만 반환)과 일치합니다. 제공된 두 줄에서 구체적인 실패 경로는 보이지 않습니다.\",\"issues\":[],\"limitations\":\"db.execute의 반환 타입과 fetchone의 동작, 호출자의 tenant_id 인증 경로는 제공되지 않아 검토 범위 밖입니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4612,
+  "output_tokens": 133,
+  "seconds": 1.312
+}

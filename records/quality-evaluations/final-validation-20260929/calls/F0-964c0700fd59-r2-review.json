@@ -1,0 +1,12 @@
+{
+  "key": "F0-964c0700fd59-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:20.466522+00:00",
+  "input_hash": "4ff22b8f191a5d6cf92bf7eb5f949bfd7ff0f6962d109d02616c7d218aa4ad61",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수는 value를 max(value, 0)으로 계산해 adjusted에 저장하지만, 반환문은 계산된 adjusted가 아니라 원래 value를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"value가 0보다 작은 음수일 때 adjust(value)를 호출하는 경우\",\"consequence\":\"2줄에서 adjusted에 0이 저장되지만 3줄이 원래의 음수 value를 반환하므로, 계약이 요구하는 max(value, 0) 결과가 호출자에게 전달되지 않습니다.\",\"assumptions\":[],\"title\":\"음수 입력에서 클램프 결과 대신 원래 값이 반환됩니다\",\"evidence\":\"2줄은 max(value, 0) 결과를 adjusted에 바인딩하지만, 3줄은 adjusted를 사용하지 않고 value를 그대로 반환합니다. 계약은 max(value, 0) 반환을 요구합니다.\",\"suggestion\":\"3줄의 반환식을 adjusted로 바꾸어 계산된 클램프 결과를 반환하세요.\",\"contract_quote\":\"Return max(value, 0).\",\"expression_repair\":{\"line\":3,\"before\":\"return value\",\"after\":\"return adjusted\"}}],\"limitations\":\"제공된 단일 파일과 계약만 검토했으며, 실제 호출자나 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4663,
+  "output_tokens": 336,
+  "seconds": 2.078
+}

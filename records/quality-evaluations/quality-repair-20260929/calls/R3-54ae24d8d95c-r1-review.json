@@ -1,0 +1,15 @@
+{
+  "key": "R3-54ae24d8d95c-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:48.311479+00:00",
+  "input_hash": "697d30c43f7969376c77cea7617620b1c97473ebd827e132b5914631867af52e",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경 변수 CA 번들 조회 로직이 변경되었습니다. 10줄은 verify가 True 또는 None일 때 REQUESTS_CA_BUNDLE/CURL_CA_BUNDLE 값을 or 체인으로 조회하고, 빈 문자열은 falsy이므로 다음 후보로 넘어가 최종적으로 verify로 귀결됩니다. 제공된 테스트 계약과 일치하는지 확인했습니다.\",\"issues\":[],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 session_verify의 실제 전달 값, env 사전의 실제 생성 경계는 제공되지 않았습니다.\",\"context_requests\":[]}",
+  "input_tokens": 5245,
+  "output_tokens": 167,
+  "seconds": 1.562
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F0-0c47bb65c1ee-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:19.513945+00:00",
+  "input_hash": "f636595804c31ff8931c8d8fb8d0b92692de35b187e067b354038fa8d9771f4b",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"base가 중첩 딕셔너리를 가진 경우, result['nested']가 base['nested']와 같은 객체라 3줄의 수정이 호출자의 base['nested']['limit']을 9로 바꾸고 4줄은 9를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 얕은 복사로 중첩 딕셔너리가 공유되어 3줄 수정이 호출자 base에 반영되고 4줄이 변경된 값을 반환합니다.\"}]}",
+  "input_tokens": 4456,
+  "output_tokens": 193,
+  "seconds": 1.265
+}

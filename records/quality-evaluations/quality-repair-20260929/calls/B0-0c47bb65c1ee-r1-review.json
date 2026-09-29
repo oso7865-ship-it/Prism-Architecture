@@ -1,0 +1,15 @@
+{
+  "key": "B0-0c47bb65c1ee-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:18:42.072372+00:00",
+  "input_hash": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"base.copy()는 얕은 복사이므로 중첩 딕셔너리를 수정하면 원본 base가 변경되어 '호출자의 base를 변경하지 않는다'는 계약을 위반합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"adjust(base)를 호출할 때 base['nested']가 딕셔너리인 경우\",\"consequence\":\"2줄의 얕은 복사로 result['nested']가 base['nested']와 동일한 객체를 참조하게 되어, 3줄의 수정이 원본 base['nested']['limit']을 9로 바꾸고 4줄은 변경된 값을 반환합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 원본 base의 중첩 딕셔너리가 변경됩니다\",\"evidence\":\"2줄은 base.copy()로 최상위만 복사하고, 3줄은 중첩 딕셔너리를 제자리에서 수정하며, 4줄은 base의 중첩 값을 반환합니다.\",\"suggestion\":\"copy.deepcopy(base)를 사용하거나 중첩 딕셔너리도 별도로 복사하여 원본이 유지되도록 하세요.\"}],\"limitations\":\"제공된 함수만 검토했으며 호출부와 테스트는 확인하지 않았습니다.\"}",
+  "input_tokens": 4792,
+  "output_tokens": 336,
+  "seconds": 2.265
+}

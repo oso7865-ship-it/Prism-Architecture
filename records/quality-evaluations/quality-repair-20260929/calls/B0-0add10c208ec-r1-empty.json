@@ -1,0 +1,15 @@
+{
+  "key": "B0-0add10c208ec-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:18:29.488304+00:00",
+  "input_hash": "37646a23d109b5c19c66a838cf2865ba2c4359344ea47c2028332c13fd4ac11a",
+  "system_hash": "b0cc55fbe27d3e2ba42428640923e967313c9addbeb347dfa1635650971f6b81",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"단일 변경 파일(f1)에서 (long) amount * count 곱셈의 오버플로 경로를 검토했습니다. 계약상 두 입력이 음이 아니고 곱이 long 범위에 들어가므로, 변경된 연산에서 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"제공된 범위는 Price.total 한 메서드뿐이며, 호출자와 실제 입력 분포는 제공되지 않았습니다. 계약이 곱이 long 범위 내에 있음을 명시하므로 오버플로는 계약 위반 입력에 해당하여 결함으로 채택하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 3, \"outcome\": \"NO_FINDING\", \"observation\": \"(long) amount * count는 첫 피연산자를 long으로 승격해 int 곱셈 오버플로를 피하며, 계약상 비음수 입력과 long 범위 내 곱을 만족하므로 지원 가능한 결함이 없습니다.\"}]}",
+  "input_tokens": 3299,
+  "output_tokens": 245,
+  "seconds": 1.953
+}

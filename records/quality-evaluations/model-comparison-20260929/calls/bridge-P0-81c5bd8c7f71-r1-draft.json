@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-81c5bd8c7f71-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "81c5bd8c7f71",
+  "at": "2026-09-29T08:45:25.870177+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "97ca26af4f7a92a3f3b64dfd6b5d6a837e140b8473074e875f6f346baf58d064",
+  "payload_sha256": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "프로필 이름 조회에서 비단언(non-null assertion)을 사용하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "profile이 없는 User 객체로 name을 호출할 때",
+        "consequence": "user.profile이 undefined인데도 ! 단언으로 접근하여 런타임 TypeError가 발생합니다. 계약상 'Unknown'을 표시해야 하는 경우와도 맞지 않습니다.",
+        "assumptions": [],
+        "title": "profile이 없을 때 비단언으로 인해 런타임 오류가 발생합니다",
+        "evidence": "3줄의 user.profile!.name은 profile이 항상 존재한다고 단언하지만, 1줄의 타입은 profile을 선택적(optional)으로 정의하고 있습니다.",
+        "suggestion": "profile이 없을 때 'Unknown'을 반환하도록 user.profile?.name ?? 'Unknown' 형태로 처리하세요. 빈 이름은 그대로 유지됩니다."
+      }
+    ],
+    "limitations": "제공된 함수와 타입 정의만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4793,
+  "output_tokens": 304,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "633fc1edbc144bf2cf0e17069668147cee45d0ecce931600c876d91a55000605",
+  "elapsed_seconds": 6.031
+}

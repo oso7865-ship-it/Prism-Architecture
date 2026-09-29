@@ -1,0 +1,15 @@
+{
+  "key": "R3-9e475996deba-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:36.328984+00:00",
+  "input_hash": "989b51e913a4db30cfdefcc0b7a4c3035c2baa169a3d980ca7b8bd0ceb2730b5",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"mean 함수가 sum(values) / len(values)로 변경된 제공 코드 검토\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"values가 빈 리스트일 때 mean을 호출하는 경우\",\"consequence\":\"len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하며, 계약상 빈 입력의 평균은 0.0이어야 합니다.\",\"assumptions\":[],\"title\":\"빈 입력에서 평균 계산이 실패합니다\",\"evidence\":\"2줄은 len(values)로 나누는데, 제공된 behavior_contract는 빈 입력의 평균을 0.0으로 규정합니다.\",\"suggestion\":\"나눗셈 전에 values가 비어 있는지 확인하고 계약대로 0.0을 반환하도록 처리하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4700,
+  "output_tokens": 227,
+  "seconds": 1.985
+}

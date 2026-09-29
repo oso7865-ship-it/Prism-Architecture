@@ -1,0 +1,15 @@
+{
+  "key": "R2-be9f4577979e-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:39.670333+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 collect 함수는 bucket 기본값을 None으로 두고 호출 시 새 리스트를 생성하는 표준적인 가변 기본 인자 회피 패턴을 사용한다. 명시된 동작 계약(생략 시 새 버킷, 명시 시 제자리 수정)과 일치하며, 제공된 변경 라인에서 구체적 결함 경로가 보이지 않는다.\", \"issues\": [], \"limitations\": \"collect의 호출부와 반환값 사용처가 제공되지 않아 실제 사용 맥락(예: 반환된 리스트의 후속 변경)은 확인하지 못했다. 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"bucket=None 기본값 후 None일 때 새 리스트를 생성하므로 호출 간 상태 공유가 없고, 명시된 계약과 일치한다. 변경 라인에서 도달 가능한 실패 경로는 보이지 않는다.\"}]}",
+  "input_tokens": 3146,
+  "output_tokens": 235,
+  "seconds": 1.938
+}

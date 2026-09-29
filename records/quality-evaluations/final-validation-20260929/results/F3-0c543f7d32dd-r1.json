@@ -1,0 +1,77 @@
+{
+  "case": "0c543f7d32dd",
+  "repeat": 1,
+  "arm": "F3",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 문자열 접두사 비교로 인접 경로가 허용됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/data/app'이고 resolved가 '/data/application/secret'인 경우",
+        "consequence": "root='/data/app', resolved='/data/application/secret'일 때 startswith가 True를 반환하여 루트 외부 경로가 허용됩니다.",
+        "assumptions": [],
+        "title": "문자열 접두사 비교로 인접 경로가 허용됩니다",
+        "evidence": "2줄은 resolved.startswith(root)로만 판정합니다. '/data/application/secret'은 '/data/app'으로 시작하므로 계약상 허용 대상이 아닌 경로가 통과합니다.",
+        "suggestion": "경로 경계를 포함해 비교하도록 root에 구분자를 붙인 값과 비교하거나, os.path.commonpath 등으로 root가 resolved의 조상인지 확인하세요.",
+        "file_path": "paths.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "bda6eeb2c80990d31857d20f00f375ad9b128b7b77c0390e8d453d90b986af0b"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "paths.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄의 startswith 접두사 비교는 경로 경계를 구분하지 않아 형제 디렉터리 경로가 허용됩니다.",
+          "file_path": "paths.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76"
+}

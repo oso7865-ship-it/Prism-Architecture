@@ -1,0 +1,21 @@
+{
+  "key": "bridge-E12-cd1f9cff7b9c-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:21.295894+00:00",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "input_bytes": 457,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 포함 여부를 판정하는 한 줄 변경을 보안 관점에서 검토했습니다. 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크·후행 슬래시 없음)을 기준으로 하면 `resolved == root` 이거나 `root + '/'` 접두사를 갖는 경우만 허용하는 허용목록 판정이며, 제공된 범위에서 우회 가능한 입력은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "경로 정규화(심볼릭 링크 해제, 대소문자, 후행 슬래시 제거)가 실제로 수행되는 위치와 호출부, root/resolved의 실제 생성 경로를 제공받지 못했습니다. 계약 문구를 근거로 판정했으며 런타임 검증이나 실제 파일 시스템 해석 테스트는 수행하지 않았습니다. 계약을 벗어난 입력(정규화되지 않은 경로, 빈 root 등)에 대한 방어 여부는 이 조각만으로 확인할 수 없습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "e2c8ac1e46523febdffa5aac858b5c2593ee497be92c8f6edb6ce0c44220efed",
+  "input_tokens": 5131,
+  "output_tokens": 1485,
+  "elapsed_seconds": 7.39
+}

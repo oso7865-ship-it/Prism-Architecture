@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-52ccbd6a57a5-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:59.763659+00:00",
+  "system_sha256": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "payload_sha256": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "input_bytes": 455,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "파라미터 바인딩을 사용하는 SQL 쿼리 생성 변경을 검토했습니다. 제공된 범위에서 보안 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "호출부와 실제 DB-API 드라이버 구현은 제공되지 않았으며 실행 검증은 하지 않았습니다. user_id가 %s 플레이스홀더에 바인딩되는 것으로 보이지만 드라이버의 파라미터 처리 방식은 확인하지 못했습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c1eceafc3b48a48c4ea983b9fc73fd21d5976c4c9eed8c085d8838d0c97d1c0d",
+  "input_tokens": 5116,
+  "output_tokens": 115,
+  "elapsed_seconds": 1.266
+}

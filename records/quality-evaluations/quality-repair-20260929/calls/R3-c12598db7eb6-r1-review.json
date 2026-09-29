@@ -1,0 +1,15 @@
+{
+  "key": "R3-c12598db7eb6-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:39.628378+00:00",
+  "input_hash": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 2줄 변경은 None일 때만 default를 반환하도록 하여, 명시적으로 제공된 falsy 값(0, False, 빈 문자열 등)을 보존합니다. 제공된 범위에서는 이 조건과 계약이 일치합니다.\",\"issues\":[],\"limitations\":\"제공된 두 줄만 검토했으며 호출자, default의 타입/기본값, 실행 결과는 확인하지 않았습니다.\",\"context_requests\":[]}",
+  "input_tokens": 4696,
+  "output_tokens": 110,
+  "seconds": 1.203
+}

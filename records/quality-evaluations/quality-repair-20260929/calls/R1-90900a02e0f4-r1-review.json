@@ -1,0 +1,15 @@
+{
+  "key": "R1-90900a02e0f4-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:13.445870+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공 코드 검토\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null이 아닌 값으로 name(String)을 호출할 때\",\"consequence\":\"조건이 반대로 되어 있어 null이면 name.trim()을 호출해 NullPointerException이 발생하고, null이 아니면 빈 문자열을 반환해 실제 이름이 사라집니다.\",\"assumptions\":[],\"title\":\"null 조건이 반전되어 NPE와 빈 결과를 반환합니다\",\"evidence\":\"3줄은 name == null일 때 name.trim()을, 그렇지 않을 때 \\\"\\\"를 반환합니다. 이는 behavior_contract의 'null은 빈 문자열, 그 외는 trim'과 정반대입니다.\",\"suggestion\":\"조건을 name == null ? \\\"\\\" : name.trim()으로 바꿔 null 분기와 비-null 분기를 계약에 맞게 교체하세요.\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 실행 결과나 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 253,
+  "seconds": 1.922
+}

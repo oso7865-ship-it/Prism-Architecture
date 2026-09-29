@@ -1,0 +1,56 @@
+{
+  "key": "bridge-F0-90900a02e0f4-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:41:06.886523+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 처리 분기가 반대로 되어 있어, null이면 trim을 호출하고 비어 있지 않은 값은 빈 문자열로 반환됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 name(name)을 호출할 때",
+        "consequence": "조건이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 분기에서 null을 역참조해 NPE가 발생합니다",
+        "evidence": "3줄의 삼항 연산자는 name == null일 때 name.trim()을 선택하므로 null 역참조가 일어납니다.",
+        "suggestion": "조건을 name != null로 바꿔 null일 때 \"\"를, 그렇지 않을 때 name.trim()을 반환하도록 하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null이 아닌 값으로 name(name)을 호출할 때",
+        "consequence": "trim 결과 대신 빈 문자열이 반환되어 공백 제거가 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "비어 있지 않은 입력의 공백 제거가 동작하지 않습니다",
+        "evidence": "3줄은 name == null이 거짓인 경우 \"\"를 반환하므로 비-null 입력의 trim 경로가 실행되지 않습니다.",
+        "suggestion": "null이 아닌 경우에 name.trim()을 반환하도록 두 분기를 서로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 실행 검증은 포함되지 않았습니다."
+  },
+  "input_tokens": 4919,
+  "output_tokens": 396,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "f09eed1d00f2d1edb44313f42a880c9499def1f727212f0e88aaf3b85408ea98",
+  "elapsed_seconds": 2.844
+}

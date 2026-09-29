@@ -1,0 +1,38 @@
+{
+  "key": "bridge-E12-65d1d2fad0d4-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:44.138461+00:00",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "input_bytes": 549,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "정수 비교를 뺄셈 결과로 반환하도록 변경된 부분을 검토했습니다. 값 범위에 따라 비교 계약이 깨질 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차가 int 범위를 벗어나는 경우(예: left = Integer.MIN_VALUE, right = 1)",
+        "consequence": "left < right임에도 left - right가 양수로 넘쳐 부호가 뒤집혀, 'left < right이면 음수'라는 비교 계약이 위반됩니다. 이 비교기를 사용하는 정렬·이진 탐색 등이 잘못된 순서를 만들거나 계약 위반 예외를 낼 수 있습니다.",
+        "assumptions": [],
+        "title": "뺄셈 기반 비교가 오버플로로 부호 계약을 위반할 수 있습니다",
+        "evidence": "3줄에서 left - right를 그대로 반환하며, int 뺄셈은 범위를 넘길 때 부호가 반전됩니다.",
+        "suggestion": "Integer.compare(left, right)를 반환하도록 바꾸어 오버플로 없이 부호를 보장하세요."
+      }
+    ],
+    "limitations": "호출부와 실제 입력 값 범위는 제공되지 않았으며 테스트를 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "1e692a27c4d1264b8bd2b29f23a60481e74eb0fa5ecbbd2310df24aa5e067ef6",
+  "input_tokens": 4944,
+  "output_tokens": 489,
+  "elapsed_seconds": 3.157
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F0-381b3006774b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:32.557708+00:00",
+  "input_hash": "63b3d239c5cf30e2267494138852601b7d4fec98561ae158f86e0fbfbb0870d6",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 음수이면 adjusted는 0으로 계산되지만 4줄이 원본 value를 반환하므로 음수가 그대로 반환되어 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄에서 보정값을 계산하지만 4줄이 원본 value를 반환해 음수 입력 시 계약(Math.max(value,0))을 위반합니다.\"}]}",
+  "input_tokens": 4437,
+  "output_tokens": 157,
+  "seconds": 1.39
+}

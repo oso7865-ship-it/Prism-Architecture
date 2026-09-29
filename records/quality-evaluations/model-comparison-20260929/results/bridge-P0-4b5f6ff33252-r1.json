@@ -1,0 +1,88 @@
+{
+  "key": "bridge-P0-4b5f6ff33252-r1",
+  "case": "4b5f6ff33252",
+  "arm": "P0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": "ca-explicit-false-normal",
+  "legacy_seen_before": true,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 environment_settings의 verify 처리 로직을 검토했습니다. 제공된 코드와 테스트 계약상 명시적 False 보존 및 CA 경로 문자열 처리가 의도대로 동작하며, 지원 가능한 결함은 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "merge_setting과 environment_settings의 실제 호출부 및 verify 값의 런타임 타입 분포는 제공되지 않아, env 값이 비문자열이거나 verify가 False가 아닌 다른 falsy 값일 때의 동작은 확인하지 못했습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "merge_setting과 environment_settings의 실제 호출부 및 verify 값의 런타임 타입 분포는 제공되지 않아, env 값이 비문자열이거나 verify가 False가 아닌 다른 falsy 값일 때의 동작은 확인하지 못했습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "settings.py",
+          "provided_lines": 21
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 9,
+          "outcome": "NO_FINDING",
+          "observation": "verify가 True 또는 None일 때 env의 CA 번들 값을 우선 사용하고, 명시적 False는 merge_setting에서 보존되는 변경 로직을 확인했습니다.",
+          "file_path": "settings.py"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 9,
+        "outcome": "NO_FINDING",
+        "observation": "verify가 True 또는 None일 때 env의 CA 번들 값을 우선 사용하고, 명시적 False는 merge_setting에서 보존되는 변경 로직을 확인했습니다.",
+        "file_path": "settings.py"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8966,
+  "output_tokens": 293,
+  "elapsed_seconds": 7.906
+}

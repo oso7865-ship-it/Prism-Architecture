@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-c12598db7eb6-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "c12598db7eb6",
+  "at": "2026-09-29T08:45:26.134698+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 choose 함수는 None만 기본값으로 대체하고 그 외 값은 그대로 반환합니다. 제공된 계약과 일치하며, 검토 범위에서 확인된 결함은 없습니다.",
+    "issues": [],
+    "limitations": "호출부와 value의 실제 타입/값 범위가 제공되지 않아, None 외의 특수 값 처리나 성능 영향은 확인할 수 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "None 여부에 따라 기본값 또는 원본 값을 반환하는 단순 삼항식으로, 제공된 계약과 일치합니다."
+      }
+    ]
+  },
+  "input_tokens": 3123,
+  "output_tokens": 176,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "e0904211c1c864fb5e9097174fbed0c551291c5d8e083d1a24b1fc4d589ec9aa",
+  "elapsed_seconds": 4.422
+}

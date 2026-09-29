@@ -1,0 +1,74 @@
+{
+  "key": "development-E13-cd1f9cff7b9c-r1",
+  "case": "cd1f9cff7b9c",
+  "arm": "E13",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 1,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로 포함 여부를 검사하는 permitted 함수의 변경된 한 줄을 검토했습니다. root와 그 하위 경로만 허용하는 계약에 대해 접두사 비교 방식이 경계를 벗어난 경로를 허용할 수 있는지 확인이 필요합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/srv/app'이고 resolved가 '/srv/application/key'처럼 root로 시작하지만 root의 하위 디렉터리가 아닌 경로일 때",
+        "consequence": "2줄의 startswith(root + '/') 비교는 '/srv/app/' 접두사를 요구하므로 '/srv/application/key'는 이 조건에 걸리지 않아 False를 반환합니다. 다만 root가 '/'로 끝나는 등 정규화되지 않은 값이 전달되면 접두사 비교가 의도한 경계를 벗어난 경로를 허용할 수 있습니다.",
+        "assumptions": [
+          "root가 항상 후행 슬래시 없이 정규화된 절대 경로로 전달된다는 보장이 호출부에서 제공됩니다.",
+          "resolved가 심볼릭 링크 해석 없이 정규화된 절대 경로로 전달됩니다."
+        ],
+        "title": "root 정규화가 보장되지 않으면 접두사 비교가 경계를 벗어난 경로를 허용하나요?",
+        "evidence": "2줄은 resolved == root 또는 resolved.startswith(root + '/')로만 하위 경로를 판정합니다. root에 후행 슬래시가 있으면 root + '/'가 '//'가 되어 정상 하위 경로가 거부되고, root가 '/'이면 모든 절대 경로가 통과할 수 있습니다.",
+        "suggestion": "호출부에서 root와 resolved가 후행 슬래시 없이 정규화된 절대 경로인지 확인하세요. 정규화가 보장되지 않는다면 비교 전에 두 값을 정규화하거나 os.path.commonpath 같은 경계 검사를 사용하세요."
+      }
+    ],
+    "limitations": "호출부와 root/resolved 생성 경로가 제공되지 않아 실제 입력 정규화 여부를 확인하지 못했으며, 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 8061,
+  "output_tokens": 574,
+  "elapsed_seconds": 3.563,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 1,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

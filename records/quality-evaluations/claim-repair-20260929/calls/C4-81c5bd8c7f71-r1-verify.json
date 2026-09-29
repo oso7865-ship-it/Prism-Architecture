@@ -1,0 +1,12 @@
+{
+  "key": "C4-81c5bd8c7f71-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:38.913632+00:00",
+  "input_hash": "0c601f04d1817c37a0cec7a2026d686b4e371e7f11b0d89d01f545a3749ac451",
+  "system_hash": "3888e9ae7efcd79252fa1c0545ea05c84c232b41cbeb5d36fc825b24b50b95fe",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"profile이 없는 User로 호출하면 user.profile!.name에서 TypeError가 발생해 'Unknown'을 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3번 줄의 비-널 단언은 옵셔널 profile이 없는 경우 계약이 요구하는 'Unknown' 대신 TypeError를 발생시킵니다.\"}]}",
+  "input_tokens": 4406,
+  "output_tokens": 142,
+  "seconds": 1.328
+}

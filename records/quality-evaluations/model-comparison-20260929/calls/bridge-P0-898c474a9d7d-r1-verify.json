@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-898c474a9d7d-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:42:20.439518+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "53f57a6ab8ebe6b8ecb385fbf7ffaab430213d18ab6bb5d2099f3e866403d12d",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "adjust는 result['nested']['limit']을 9로 변경한 후 base['nested']['limit']을 반환하므로, 반환값은 변경된 9가 아니라 원본 base의 기존 limit 값이 됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3152,
+  "output_tokens": 103,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "0bb4d28e11606850a2e594e3bf5285c10302fb9b5555ccc94410bba518d6a2a5",
+  "elapsed_seconds": 3.36
+}

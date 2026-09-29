@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-0d5e36006ab7-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:48.500471+00:00",
+  "system_sha256": "bc946a1ae973546c6194797bdb47a57a691c336eadb54ca1a17d3c60362e9665",
+  "payload_sha256": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "input_bytes": 487,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 접근 판정 함수에서 check()의 Promise를 불리언처럼 평가하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "check가 async 함수여서 Promise를 반환할 때 access를 호출하는 경우",
+        "consequence": "Promise 객체는 항상 truthy이므로 check가 false로 resolve되어도 2줄의 조건이 참이 되어 'allowed'가 반환됩니다. 즉 거부되어야 할 접근이 허용됩니다.",
+        "assumptions": [],
+        "title": "async check의 Promise를 평가해 접근이 항상 허용됩니다",
+        "evidence": "2줄은 check()의 반환값을 await 없이 조건으로 사용합니다. 제공된 계약에 따르면 check는 async이며 boolean으로 resolve되므로, 반환된 Promise는 resolve 값과 무관하게 truthy입니다.",
+        "suggestion": "2줄을 `if (await check()) return 'allowed';`로 바꿔 resolve된 불리언 값을 판정에 사용하세요."
+      }
+    ],
+    "limitations": "check의 실제 구현과 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d185be35c051c7e24695f66ab43cb128326920960c326dfb432a2be61c2f8a6f",
+  "input_tokens": 5135,
+  "output_tokens": 281,
+  "elapsed_seconds": 2.0
+}

@@ -1,0 +1,108 @@
+{
+  "key": "bridge-F0-aa5d6b234f6b-r1",
+  "case": "aa5d6b234f6b",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 명시된 계약과 달리 기본 버킷이 호출 간에 공유됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "bucket을 생략한 호출이 두 번 이상 발생하면 함수 정의 시 생성된 동일한 기본 리스트가 재사용되어, 두 번째 호출의 반환 리스트에 첫 번째 호출의 항목이 함께 포함됩니다.",
+        "assumptions": [],
+        "title": "기본 버킷이 호출 간에 공유되어 이전 항목이 누적됩니다",
+        "evidence": "1줄의 기본값 bucket=[]은 함수 정의 시 한 번만 생성되어 모든 생략 호출에서 같은 객체가 사용되고, 2줄의 append가 그 객체를 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 만들도록 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 기본 버킷이 호출 간에 공유되어 이전 항목이 누적됩니다",
+    "issues": [
+      {
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "bucket을 생략한 호출이 두 번 이상 발생하면 함수 정의 시 생성된 동일한 기본 리스트가 재사용되어, 두 번째 호출의 반환 리스트에 첫 번째 호출의 항목이 함께 포함됩니다.",
+        "assumptions": [],
+        "title": "기본 버킷이 호출 간에 공유되어 이전 항목이 누적됩니다",
+        "evidence": "1줄의 기본값 bucket=[]은 함수 정의 시 한 번만 생성되어 모든 생략 호출에서 같은 객체가 사용되고, 2줄의 append가 그 객체를 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 만들도록 바꾸세요.",
+        "file_path": "collector.py",
+        "key": "1989b1ac8508e79011347ac16a21f41bff19398cecf95e5962dd4432a6145811"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "collector.py",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7869,
+  "output_tokens": 386,
+  "elapsed_seconds": 3.624
+}

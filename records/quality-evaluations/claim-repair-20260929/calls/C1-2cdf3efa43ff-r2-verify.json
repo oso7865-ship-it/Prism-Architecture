@@ -1,0 +1,12 @@
+{
+  "key": "C1-2cdf3efa43ff-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:39:47.788453+00:00",
+  "input_hash": "d39b5d20a17a3f75ea75444b72cfa5d9aadf423dd23015a9bb67ef8cfaef0382",
+  "system_hash": "39fee3cc195edae0c4156237b97026508e0f93d6505af9fdb174d8c561e1bf36",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount=100000, count=100000이면 int 곱셈이 먼저 수행되어 1410065408로 오버플로된 값이 long으로 확장되어 반환되므로, 계약이 요구하는 정확한 곱 10000000000이 보존되지 않습니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 int 곱셈이 long 확장 전에 수행되어, 계약이 보장하는 long 범위 내 곱에서도 오버플로가 발생합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4361,
+  "output_tokens": 185,
+  "seconds": 1.593
+}

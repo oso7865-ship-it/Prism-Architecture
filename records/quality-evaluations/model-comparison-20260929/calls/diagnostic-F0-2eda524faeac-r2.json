@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-F0-2eda524faeac-r2",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "2eda524faeac",
+  "at": "2026-09-29T08:41:41.918790+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "99b285a15cd6dc42ca7a1f3da6dc36ba033045e3e721a4af4afd3e6c690fa789",
+  "payload_sha256": "e159307c1e32f20d1bb253119870caea832cc6c91b1b7920fb12feee1a8f8b84",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 check 결과를 await하여 boolean으로 판정하는 접근 제어 함수 변경을 검토했습니다. 제공된 코드에서는 check의 반환값을 그대로 조건으로 사용하므로 계약상 true일 때만 'allowed'를 반환합니다.",
+    "issues": [],
+    "limitations": "check의 실제 구현과 호출부, 입력 출처는 제공되지 않았습니다. check가 boolean이 아닌 truthy 값을 반환할 경우의 계약 위반 여부는 확인하지 못했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"denied\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5550,
+  "output_tokens": 179,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5376,
+  "response_sha256": "787d0971b080a3a3db5c3ce26f32b3b35c7b81d0ec5d9c3070653c465a3dab7d",
+  "elapsed_seconds": 1.812
+}

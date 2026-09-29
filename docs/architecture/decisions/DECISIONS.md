@@ -38,7 +38,10 @@
 | [ADR-REVIEW-008](../adr/review/ADR-REVIEW-008-team-daily-allowance.md) | 팀별 AI 리뷰 하루30회·일반 모델 표시 | SUPERSEDED | REVIEW-009가 요약 구성만 대체 |
 | [ADR-REVIEW-009](../adr/review/ADR-REVIEW-009-derived-review-summary.md) | 검증된 리뷰 항목으로 사용자 요약 구성 | SUPERSEDED | REVIEW-010이 문맥·검증 호출 변경, 요약 유지 |
 | [ADR-REVIEW-010](../adr/review/ADR-REVIEW-010-evidence-first-verified-review.md) | 필수 문맥 보존·16/48KiB·두 단계 검증 | SUPERSEDED | REVIEW-011이 빈 초안·코드 열람 변경 |
-| [ADR-REVIEW-011](../adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md) | 빈 초안 파일별 재검토·사이트 내 코드 열람 | ACCEPTED | REVIEW-010 대체, 최대2회·과거 결과 불변 유지 |
+| [ADR-REVIEW-012](../adr/review/ADR-REVIEW-012-purpose-and-team-standards.md) | 목적별 리뷰·취약점·팀 문서 RAG | ACCEPTED | REVIEW-011의 코드 취득/검증 계약 유지·RAG 범위 추가 |
+| [ADR-REVIEW-011](../adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md) | 빈 초안 파일별 재검토·사이트 내 코드 열람 | SUPERSEDED | REVIEW-010 대체, 최대2회·과거 결과 불변 유지 |
+| [ADR-REVIEW-013](../adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md) | 누락 복구·출력 복구·제한 연산·독립 보안 근거 | SUPERSEDED | REVIEW-011 대체, 코드 열람·한도 유지 |
+| [ADR-REVIEW-014](../adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md) | 제한 계산 설명·출력 조건·수정안 반례 차단 | ACCEPTED | REVIEW-013 대체, 호출·권한·원문 비저장 유지 |
 | [ADR-INTEGRATION-001](../adr/integration/ADR-INTEGRATION-001-github-pr-sync.md) | 실제 GitHub 연동과 PR 동기화 | ACCEPTED | D-004, C-003, D-010 |
 | [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | ACCEPTED | — |
 | [ADR-RUNTIME-001](../adr/runtime/ADR-RUNTIME-001-durable-jobs.md) | PostgreSQL 영속 Job과 복구 | BASELINE | C-002 |

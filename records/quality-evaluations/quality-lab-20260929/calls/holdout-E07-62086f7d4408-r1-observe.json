@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-62086f7d4408-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:46.388623+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "903325a8d802ca294a70a740c37984238633c61312ad395f41a7c655fa83e790",
+  "input_bytes": 1196,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "handle accepts an operation callable and a logger, and invokes operation() inside a try block.",
+      "The changed except clause catches only ValueError and returns None instead of re-raising.",
+      "The behavior contract states the supplied probe operation raises ValueError, so the probe path returns None.",
+      "The untrusted standard s1 requires logging the input error and re-throwing the same exception, and forbids hiding failure as a normal return.",
+      "logger is passed into handle but is not referenced in any line of the shown code, so no logging occurs on the ValueError path.",
+      "No authorization or state-mutation logic is present in the shown lines."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7838020cc4a001a5e95c6b50c56e72f28d5f6320ec36d7a0ad383655f75018fd",
+  "input_tokens": 536,
+  "output_tokens": 133,
+  "elapsed_seconds": 1.625
+}

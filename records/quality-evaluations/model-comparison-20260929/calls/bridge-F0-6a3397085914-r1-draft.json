@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-6a3397085914-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "6a3397085914",
+  "at": "2026-09-29T08:41:03.526175+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "581c977c1e5a9d7e6d22c04d129f67528bde5a2af403d540f43cbfb73a2e4d97",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "wire_size가 body의 길이를 그대로 반환하도록 변경된 부분을 검토했습니다. 제공된 범위에서는 계약과 관련된 구체적 결함을 확인하지 못했습니다.",
+    "issues": [],
+    "limitations": "body의 실제 호출 유형과 인코딩 처리 여부는 제공되지 않았으며, 테스트를 실행하지 않았습니다. UTF-8 바이트 수 계약과 len(body)의 관계는 body 유형에 따라 달라질 수 있으나 이를 판단할 호출부나 구현이 없습니다."
+  },
+  "input_tokens": 4743,
+  "output_tokens": 125,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4480,
+  "response_sha256": "3b313e45b1167eea616951249ddafc7ed194fae518cd14d774b48bed3510ee53",
+  "elapsed_seconds": 1.735
+}

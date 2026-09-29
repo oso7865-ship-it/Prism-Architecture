@@ -1,0 +1,26 @@
+{
+  "key": "development-E07-6a3397085914-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:10:59.888751+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "97d7a1da1a3d4c6b9df8e7ae69d397cf6c437255deba56daaed1417d2619f018",
+  "input_bytes": 519,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a single Python function wire_size(body) that returns len(body).",
+      "The changed line is line 2, the return statement; line 1 is unchanged.",
+      "The stated behavior contract requires accepting str or bytes and returning wire byte count using UTF-8.",
+      "For str input, len(body) counts characters, not UTF-8 bytes, so it diverges from the contract for non-ASCII text.",
+      "Probe p1 passes '한글', a non-ASCII str where character count and UTF-8 byte count differ.",
+      "Probes p2 and p3 pass bytes and empty str respectively; no authorization or state boundary is present in the shown code."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e1fd21fb1e84972bf56c6b07ebc127b2183360eb39615e19e7c12b8cfbb510c6",
+  "input_tokens": 330,
+  "output_tokens": 144,
+  "elapsed_seconds": 1.235
+}

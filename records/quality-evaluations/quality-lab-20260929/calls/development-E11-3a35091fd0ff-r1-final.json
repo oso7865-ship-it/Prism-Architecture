@@ -1,0 +1,35 @@
+{
+  "key": "development-E11-3a35091fd0ff-r1-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:11:56.896713+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "21ceabb2113d4752db690737af1b58d6ec8de61f354fde255035dcfd80f873d1",
+  "input_bytes": 1686,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 검사 후 금액을 반환하는 invoice 함수의 변경분을 보안 관점에서 검토했습니다. 제공된 load 구현은 id=7에 대해 owner \"alice\"를 반환하므로, actor가 \"alice\"일 때만 금액이 반환되고 그 외에는 Error가 발생합니다. 제공 범위에서 권한 우회나 주입 등 구체적 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "load의 실제 구현은 관련 구현 스니펫(항상 owner \"alice\", amount 40 반환)만 제공되어, 존재하지 않는 id나 다른 레코드에 대한 반환 계약(예: undefined/null 반환 여부)은 확인하지 못했습니다. actor 문자열의 출처와 정규화 여부, 호출부의 인증 경계도 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "cdff8fb072b0151552e3ea30776e89d02254922e61d34a32d2879d6b819d5a6d",
+  "input_tokens": 5840,
+  "output_tokens": 258,
+  "elapsed_seconds": 2.016
+}

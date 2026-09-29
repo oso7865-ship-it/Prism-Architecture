@@ -1,0 +1,26 @@
+{
+  "key": "development-E08-7c4f2f03b3b5-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:12:12.132791+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "beb23349e86f8c62ccc39b159769d1a3532684ee2fe93803f483d87b9eaa6f1a",
+  "input_bytes": 989,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses print('saved') instead of the injected logger.info, violating the untrusted standard requiring logger.info for application logging.",
+      "The logger parameter is declared but never used anywhere in the function body.",
+      "The behavior contract states logger.info has no return value or side effects beyond logging, so replacing print with logger.info would not alter the return value.",
+      "The probe call save(7, logger) observing only the return value would return 7 under both the current print implementation and a logger.info implementation, so the probe cannot distinguish the standard violation.",
+      "No static findings are supplied, so the print-vs-logger discrepancy is only visible from the source line marked changed.",
+      "The changed line is the sole logging statement; the return on line 3 is unchanged and independent of the logging call."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "897af863402c23e3e560b673c50aa5cbddb6bcf310d880653e1ba2427067858e",
+  "input_tokens": 487,
+  "output_tokens": 169,
+  "elapsed_seconds": 1.281
+}

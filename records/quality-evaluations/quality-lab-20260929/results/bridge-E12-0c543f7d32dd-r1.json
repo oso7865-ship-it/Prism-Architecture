@@ -1,0 +1,104 @@
+{
+  "key": "bridge-E12-0c543f7d32dd-r1",
+  "case": "0c543f7d32dd",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "경로 접두어 문자열 비교로 권한 경계를 검사해, root와 이름 접두어를 공유하는 root 외부 경로도 허용될 수 있는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root와 문자열 접두어를 공유하지만 root의 하위가 아닌 경로가 resolved로 전달될 때(예: root=\"/srv/app\", resolved=\"/srv/app-secret/key\")",
+        "consequence": "root=\"/srv/app\", resolved=\"/srv/app-secret/key\"인 경우 resolved.startswith(root)가 True를 반환하여, 계약상 허용 범위(root 및 그 하위)를 벗어난 형제 경로가 허용됩니다.",
+        "assumptions": [],
+        "title": "경로 접두어 비교가 root 외부 형제 경로를 허용합니다",
+        "evidence": "2줄은 resolved.startswith(root)로 경로 포함 여부를 판단합니다. 경로 구분자 경계를 확인하지 않으므로 root와 접두어만 같은 외부 경로도 통과합니다.",
+        "suggestion": "root 자체이거나 root 바로 뒤에 경로 구분자가 오는 경우만 허용하도록 비교하세요. 예를 들어 root=\"/\"를 별도 처리한 뒤 resolved == root 또는 resolved.startswith(root + \"/\")로 검사하거나, 정규화된 두 절대 경로에 대해 os.path.commonpath 또는 Path.is_relative_to 같은 경로 기반 판정을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 경로 접두어 비교가 root 외부 형제 경로를 허용합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root와 문자열 접두어를 공유하지만 root의 하위가 아닌 경로가 resolved로 전달될 때(예: root=\"/srv/app\", resolved=\"/srv/app-secret/key\")",
+        "consequence": "root=\"/srv/app\", resolved=\"/srv/app-secret/key\"인 경우 resolved.startswith(root)가 True를 반환하여, 계약상 허용 범위(root 및 그 하위)를 벗어난 형제 경로가 허용됩니다.",
+        "assumptions": [],
+        "title": "경로 접두어 비교가 root 외부 형제 경로를 허용합니다",
+        "evidence": "2줄은 resolved.startswith(root)로 경로 포함 여부를 판단합니다. 경로 구분자 경계를 확인하지 않으므로 root와 접두어만 같은 외부 경로도 통과합니다.",
+        "suggestion": "root 자체이거나 root 바로 뒤에 경로 구분자가 오는 경우만 허용하도록 비교하세요. 예를 들어 root=\"/\"를 별도 처리한 뒤 resolved == root 또는 resolved.startswith(root + \"/\")로 검사하거나, 정규화된 두 절대 경로에 대해 os.path.commonpath 또는 Path.is_relative_to 같은 경로 기반 판정을 사용하세요.",
+        "file_path": "paths.py",
+        "key": "74956eeeafd124cd0be105337b12d80a3354dff0737d0a58d5623d854ae9083a"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "paths.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8712,
+  "output_tokens": 1815,
+  "elapsed_seconds": 10.969000000000001
+}

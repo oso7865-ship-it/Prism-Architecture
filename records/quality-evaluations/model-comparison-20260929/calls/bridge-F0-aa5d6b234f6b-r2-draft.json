@@ -1,0 +1,42 @@
+{
+  "key": "bridge-F0-aa5d6b234f6b-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "aa5d6b234f6b",
+  "at": "2026-09-29T08:43:33.527584+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "2b85092893817e6aad007ffeb7a809c5c6b4a0c0d40ba625cff9f7ba3aa5a380",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 생략된 bucket 호출이 호출 간 상태를 공유하는 문제가 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간에 재사용되어 이전 호출의 항목이 다음 호출의 반환값에 누적됩니다. 이는 '생략 시 매번 새 bucket'이라는 명시된 동작 계약과 어긋납니다.",
+        "assumptions": [],
+        "title": "기본 bucket이 호출 간 공유되어 항목이 누적됩니다",
+        "evidence": "1줄의 기본값 bucket=[]은 함수 정의 시 한 번만 생성되어 이후 모든 생략 호출이 같은 리스트를 참조하고, 2줄의 append가 그 리스트를 계속 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 바꾸세요. 명시적으로 전달된 bucket은 그대로 사용해야 합니다."
+      }
+    ],
+    "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트는 제공되지 않아 실제 호출 패턴을 확인하지 못했습니다."
+  },
+  "input_tokens": 4763,
+  "output_tokens": 320,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "d7fea485bb065ff005c64ba2bf873e4d898675ab49da3d181cc58e8cb04b0bf6",
+  "elapsed_seconds": 2.266
+}

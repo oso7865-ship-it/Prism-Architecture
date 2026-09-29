@@ -1,0 +1,58 @@
+{
+  "key": "development-E02-6a3397085914-r2-final",
+  "arm": "E02",
+  "phase": "final",
+  "at": "2026-09-29T07:11:42.443091+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "b4870419efbcbf9154009903b3a422ace61645aafbce60af159c36693868764c",
+  "input_bytes": 681,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열/바이트 입력의 길이를 반환하는 변경을 검토했습니다. 계약은 UTF-8 인코딩 기준 바이트 수를 요구하지만, 구현은 len(body)로 문자 수를 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "wire_size('한글')처럼 비ASCII 문자가 포함된 str을 전달할 때",
+        "consequence": "len('한글')은 2를 반환하지만 UTF-8 인코딩 시 6바이트이므로, 계약이 요구하는 전송 바이트 수와 다른 값이 반환됩니다.",
+        "assumptions": [],
+        "title": "str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환합니다",
+        "evidence": "2줄은 len(body)를 반환합니다. str에 대해 len은 문자(코드 포인트) 수를 세므로 UTF-8 인코딩 후 바이트 수와 다릅니다.",
+        "suggestion": "str인 경우 body.encode('utf-8')의 길이를 반환하고, bytes는 그대로 len을 사용하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a606830768cda83f9dee41684b02936e7cc3415dc09a25ad082136e47b08de22",
+  "input_tokens": 5210,
+  "output_tokens": 381,
+  "elapsed_seconds": 2.078
+}

@@ -1,0 +1,71 @@
+{
+  "key": "adaptive_holdout-E15-81c5bd8c7f71-r1",
+  "case": "81c5bd8c7f71",
+  "arm": "E15",
+  "split": "adaptive_holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "`name` 함수가 `profile`이 없을 때 비-널 단언(`!`)으로 `undefined`에 접근합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "`profile`이 없는 `User`(예: `{}`)로 `name`을 호출할 때",
+        "consequence": "`user.profile`이 `undefined`이므로 `undefined.name` 접근에서 TypeError가 발생하며, 계약에서 요구하는 'Unknown' 표시가 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "profile이 없으면 TypeError가 발생하고 Unknown을 반환하지 않습니다",
+        "evidence": "1줄에서 `profile`이 선택적 속성으로 선언되어 `undefined`가 가능하고, 3줄에서 `!`로 이를 제거한 뒤 `name`에 접근합니다.",
+        "suggestion": "`user.profile`이 없으면 'Unknown'을 반환하고, 있으면 `profile.name`을 그대로 반환하도록 처리하세요."
+      }
+    ],
+    "limitations": "제공된 4줄만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "TypeError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5322,
+  "output_tokens": 322,
+  "elapsed_seconds": 2.422,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

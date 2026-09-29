@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-P0-81c556ef32df-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "81c556ef32df",
+  "at": "2026-09-29T08:43:08.391937+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "c78ba19f4a75e85c5053169208c9fa9d4785ecc800fd4005aa53b2025c0e7f56",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "빈 입력을 0.0으로 처리하는 평균 계산 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0.0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5162,
+  "output_tokens": 148,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5120,
+  "response_sha256": "72806e3d44e45c4d6703d0d1408e0867b6799ba1beb8967a88f43bdca2a029ed",
+  "elapsed_seconds": 2.672
+}

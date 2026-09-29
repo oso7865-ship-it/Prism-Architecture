@@ -1,0 +1,15 @@
+{
+  "key": "B0-2ff125902b12-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:05.482712+00:00",
+  "input_hash": "bca5ff34e21e5387b1f30dd7ee3f3a772343d662beb265209f368f40a526cea1",
+  "system_hash": "c1b104d7a2b4812dac7ace263e24deb30f34e82fdbc2b3c4991cd5412a7e9d0c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 content_length가 len(body)를 반환하도록 한 단순 변경이며, 제공된 bytes 계약과 일치합니다. 제공된 범위에서 구체적 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 실제 호출자와 body에 대한 런타임 입력 검증은 제공되지 않았습니다. 테스트는 실행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 2, \"outcome\": \"NO_FINDING\", \"observation\": \"content_length가 len(body)를 반환하며, bytes 계약에서 len은 바이트 수를 세므로 Content-Length 계산과 일치합니다. 제공된 범위에서 구체적 실패 경로는 보이지 않습니다.\"}]}",
+  "input_tokens": 3293,
+  "output_tokens": 188,
+  "seconds": 1.422
+}

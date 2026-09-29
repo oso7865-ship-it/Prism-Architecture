@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-7c4f2f03b3b5-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:28.684448+00:00",
+  "system_sha256": "2609a13795f243de22c0a7d8dbe1a054a1aab289ca81d29302a0b1cb0326d5bf",
+  "payload_sha256": "f24971ecf3ed16e17d6af8247cd7c312c66aa950fcbe4f69b181e658a0d2204d",
+  "input_bytes": 2122,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "save가 호출되면 2줄의 print('saved')가 실행되어 표준 출력으로 기록되고, 주입된 logger.info는 사용되지 않아 s1의 'print 대신 주입된 logger.info로 기록한다' 요구를 위반합니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "780d913993d7c831381c0a24dcb258eee26db51e59f646e382fc44f1627adb92",
+  "input_tokens": 3613,
+  "output_tokens": 264,
+  "elapsed_seconds": 1.875
+}

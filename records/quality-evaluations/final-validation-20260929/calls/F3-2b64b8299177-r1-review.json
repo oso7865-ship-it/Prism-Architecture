@@ -1,0 +1,12 @@
+{
+  "key": "F3-2b64b8299177-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:17.253641+00:00",
+  "input_hash": "e8727eabae41d294598492d58066822a55b49b90b35a58a739121d85dc7abb4f",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"retries 함수가 value or 5로 기본값을 처리하도록 변경되었습니다. 제공된 계약은 None일 때만 5를 사용하고 명시적 0은 보존하라고 요구합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2],\"trigger\":\"value가 0(유효한 음이 아닌 정수)으로 전달될 때\",\"consequence\":\"0이 falsy이므로 or 연산이 5를 반환하여 명시적 0이 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"명시적 0이 기본값 5로 대체됩니다\",\"evidence\":\"2줄의 value or 5는 value가 falsy일 때 5를 반환합니다. 계약은 value가 None 또는 음이 아닌 정수이고 0을 보존해야 한다고 명시하므로, 0 입력에서 5가 반환됩니다.\",\"suggestion\":\"None만 기본값으로 처리하도록 value if value is not None else 5 형태로 변경하세요.\",\"contract_quote\":\"value is None or a nonnegative int. Preserve explicit zero; use 5 only for None.\",\"expression_repair\":{\"line\":2,\"before\":\"return value or 5\",\"after\":\"return value if value is not None else 5\"}}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 테스트는 수행하지 않았습니다.\"}",
+  "input_tokens": 4751,
+  "output_tokens": 331,
+  "seconds": 2.062
+}

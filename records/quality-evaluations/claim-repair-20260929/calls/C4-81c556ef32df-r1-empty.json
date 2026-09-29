@@ -1,0 +1,12 @@
+{
+  "key": "C4-81c556ef32df-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:30.059510+00:00",
+  "input_hash": "95b30ed60ead40d5393f7d50dec199fbb65d0fa38a0210c156decf1ec93feaa9",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 mean 함수는 빈 입력에 대해 계약대로 0.0을 반환하고, 비어 있지 않은 경우 sum/len을 계산합니다. 제공된 변경 라인에서 구체적인 결함 경로는 보이지 않습니다.\", \"issues\": [], \"limitations\": \"values의 원소 타입과 호출자, 비수치 입력 처리는 제공되지 않아 검토 범위 밖입니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"빈 리스트는 계약대로 0.0을 반환하고, 비어 있지 않은 경우 sum(values)/len(values)를 계산하는 단일 표현식으로 경계 처리와 계산이 일관됩니다.\"}]}",
+  "input_tokens": 3344,
+  "output_tokens": 185,
+  "seconds": 1.765
+}

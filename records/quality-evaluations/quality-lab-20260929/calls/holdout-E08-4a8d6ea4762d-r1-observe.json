@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-4a8d6ea4762d-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:44.319508+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "652ef113870ba2b288870977e26b70d7a826467e36671238b40c3cc35dfe87bc",
+  "input_bytes": 1262,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed lines 4-6 catch only ValueError, log 'failed', and re-raise the same exception, matching the standard's requirement to log and re-raise input errors.",
+      "The standard also states failures must not be hidden as normal returns; the code does not swallow the exception or return a fallback value, so no violation is observable.",
+      "The behavior contract states operation raises ValueError and logger.error returns normally, so the probe path reaches logger.error then the bare raise.",
+      "No static findings are supplied, and no defect is observable in the supplied source.",
+      "A normal comparison input would be an operation that returns a value without raising; the try block returns it directly and no logging occurs.",
+      "A failing input would be an operation raising a non-ValueError exception; it propagates unlogged, but the standard text only addresses input errors and the contract only specifies ValueError, so this is not a demonstrable violation."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "df10345c291a7ca5f381cc5d1a50c3ec09da690da6d7b6706b6301d73d944a9b",
+  "input_tokens": 558,
+  "output_tokens": 194,
+  "elapsed_seconds": 1.641
+}

@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-4b5f6ff33252-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "4b5f6ff33252",
+  "at": "2026-09-29T08:40:02.485015+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "ec071ae2a7f5ad1731519a374a0effe75ea721c517608e97a204e5726ec4e99a",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 변경된 두 줄(9-10)은 verify가 True/None일 때만 환경변수 CA 경로를 조회하고, 명시적 False는 그대로 유지하도록 동작한다. 제공된 테스트 계약(14-18, 21)과 일치하며, 병합 로직(merge_setting)도 명시적 False를 보존한다. 변경 범위에서 지원 가능한 결함은 확인되지 않았다.",
+    "issues": [],
+    "limitations": "env 딕셔너리의 실제 호출자와 값 타입, verify에 bool 외 값이 전달되는 경우는 제공되지 않았다. 테스트는 실행하지 않았고, 변경되지 않은 merge_setting의 외부 호출 맥락도 확인 범위 밖이다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 9,
+        "outcome": "NO_FINDING",
+        "observation": "verify가 True/None일 때만 env에서 CA 경로를 조회하고, False는 조건에서 제외되어 명시적 비활성화가 유지된다. 제공된 테스트 계약과 일치한다."
+      }
+    ]
+  },
+  "input_tokens": 3678,
+  "output_tokens": 260,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3456,
+  "response_sha256": "db785ed2d8d9bc00ba605c79bd8260823af370b2ddf93857f42a70a4288352ef",
+  "elapsed_seconds": 1.953
+}

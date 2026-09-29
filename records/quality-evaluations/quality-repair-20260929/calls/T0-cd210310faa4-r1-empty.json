@@ -1,0 +1,15 @@
+{
+  "key": "T0-cd210310faa4-r1-empty",
+  "arm": "T0",
+  "phase": "empty",
+  "at": "2026-09-29T10:22:04.293035+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 4000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 null 입력을 빈 문자열로 처리하고 그 외에는 trim을 수행하며, 계약과 일치합니다. 추가로 확인된 결함은 없습니다.\", \"issues\": [], \"limitations\": \"단일 파일의 5줄만 제공되어 호출자, name 파라미터의 실제 입력 분포, trim 이후 사용처는 확인하지 못했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"name == null 삼항 연산으로 null은 빈 문자열, 그 외에는 trim을 반환하며 계약과 일치합니다. 삼항 연산자는 단락 평가로 null 역참조가 발생하지 않습니다.\"}]}",
+  "input_tokens": 3261,
+  "output_tokens": 168,
+  "seconds": 1.438
+}

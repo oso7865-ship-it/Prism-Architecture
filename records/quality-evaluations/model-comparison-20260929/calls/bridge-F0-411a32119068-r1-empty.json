@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-411a32119068-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "411a32119068",
+  "at": "2026-09-29T08:41:20.974082+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 `wire_size`는 str이면 UTF-8 인코딩 후, bytes면 그대로 길이를 반환하도록 분기하며, 계약(str/bytes 허용)과 일치합니다. 제공된 범위에서 구체적 결함 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출 지점과 실제 전달 인자 유형은 제공되지 않았습니다. bytes 이외의 버퍼형(memoryview, bytearray) 입력은 계약에 없어 검토 범위 밖입니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str은 UTF-8 인코딩 길이, bytes는 len을 반환하는 분기로 계약과 일치하며, 제공된 범위에서 실패 경로가 보이지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3141,
+  "output_tokens": 209,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "d10f3cfda6660db410000db72cc86f2235b08d27da4d235743c37f9ebcf6b88a",
+  "elapsed_seconds": 1.735
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-0d5e36006ab7-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:49.050424+00:00",
+  "input_hash": "029996c5cabe028668d44d76844b51966f436b911169b62ed820b3c11ad5e05f",
+  "system_hash": "b58a47fdf9fd5597f098444d0c26d8eb87e29140b25d9a88186ac7ac0eb251c1",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"check가 async로 Promise를 반환하면 Promise 객체는 항상 truthy이므로, check가 false로 resolve되어도 'allowed'가 반환되어 인가 판정이 실제 검사 결과와 무관하게 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 async 계약의 check()를 await 없이 조건으로 사용해 Promise truthy로 인가가 항상 허용되는 경로가 확인됩니다.\"}]}",
+  "input_tokens": 4221,
+  "output_tokens": 162,
+  "seconds": 1.453
+}

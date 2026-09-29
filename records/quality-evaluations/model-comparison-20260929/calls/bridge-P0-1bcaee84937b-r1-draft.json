@@ -1,0 +1,41 @@
+{
+  "key": "bridge-P0-1bcaee84937b-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "1bcaee84937b",
+  "at": "2026-09-29T08:41:29.758716+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "1027e098cdf6fb153b41d6bdbddb183aee9c9af33646c73e09b5c4a7b02e88ee",
+  "payload_sha256": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "id로 항목을 조회해 amount를 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "actor가 소유자가 아닌 상태에서 invoice를 호출할 때",
+        "consequence": "소유자 확인 없이 amount가 반환되어 소유자 외의 행위자에게 금액이 노출됩니다.",
+        "assumptions": [],
+        "title": "소유자 확인 없이 금액이 반환됩니다",
+        "evidence": "2줄에서 load(id)로 항목을 가져오지만 actor와 item.owner를 비교하는 코드가 없고, 3줄에서 item.amount를 그대로 반환합니다. behavior_contract는 소유자에게만 반환하고 다른 행위자에게는 Error를 던져야 한다고 명시합니다.",
+        "suggestion": "반환 전에 actor와 item.owner를 비교하고, 일치하지 않으면 Error를 던지도록 수정하세요."
+      }
+    ],
+    "limitations": "load 구현과 호출부는 제공되지 않았으며, 제공된 계약과 변경된 코드만으로 판단했습니다."
+  },
+  "input_tokens": 5163,
+  "output_tokens": 305,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "8df73652ee15ab319ffc9179558637c2fb9f3a367ab00887395661b0545cb3b6",
+  "elapsed_seconds": 6.797
+}

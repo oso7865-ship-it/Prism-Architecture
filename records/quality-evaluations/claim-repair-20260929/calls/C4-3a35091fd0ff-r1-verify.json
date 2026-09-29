@@ -1,0 +1,12 @@
+{
+  "key": "C4-3a35091fd0ff-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:24.891937+00:00",
+  "input_hash": "ee9a214f10e660484240dace4a49867015d9503bb1d5cfaeea102ba29e888380",
+  "system_hash": "1e97fe369c08b68771aa374a500e39f6bd11f504706377ae1360d86a4b685be9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"변경된 invoice는 load(id) 결과의 owner와 actor를 비교해 불일치 시 예외를 던지고, 일치 시 amount만 반환합니다. 제공된 load 스텁이 id를 무시한다는 점은 실제 저장소 조회 계약이 제공되지 않아 보안 결함으로 확정할 수 없습니다.\"}]}",
+  "input_tokens": 4920,
+  "output_tokens": 154,
+  "seconds": 1.25
+}

@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-898c474a9d7d-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:15.261204+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "input_bytes": 620,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 performs a shallow copy: `{**base, ...}` copies only the top-level mapping, and `base['nested'].copy()` copies only the nested dict one level deep.",
+      "Line 3 mutates `result['nested']['limit']`, which is the copied nested dict, so the caller's `base['nested']` is not mutated for this single-level case.",
+      "Line 4 returns `base['nested']['limit']`, reading from the original input rather than from `result`, so the returned value reflects the caller's object, not the adjusted copy.",
+      "For probe p1 `adjust({'nested': {'limit': 1}})`: line 3 sets `result['nested']['limit'] = 9` on the copy, then line 4 returns `base['nested']['limit']` which is still 1; predicted observable outcome is 1, not 9.",
+      "The stated contract 'Preserve the caller's base without mutation' is satisfied for the single-level nested case, but the shallow copy does not protect deeper nesting (e.g., `base['nested']['deeper']` would be shared).",
+      "No static findings were supplied; the mismatch between the mutated copy and the value returned from `base` is the observable defect."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a9c2cb606e7aabae3871d6dfe52b011777c6bab4d9875ef5d76ee0299aa58b34",
+  "input_tokens": 359,
+  "output_tokens": 274,
+  "elapsed_seconds": 1.734
+}

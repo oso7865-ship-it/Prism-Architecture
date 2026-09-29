@@ -1,0 +1,12 @@
+{
+  "key": "F3-0d5e36006ab7-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:53.182511+00:00",
+  "input_hash": "2c8065aed37b7347dc77efc057fd4dd79048e48cbb5f313272770ee1a3a595b4",
+  "system_hash": "05141fb469d745120d23bf929f7fb6a806835be0b4a4dd057e2473ed096f58a0",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"check가 async로 boolean을 resolve하는 계약에서 await 없이 check()를 조건으로 평가하면 Promise 객체가 항상 truthy이므로 check가 false로 resolve되어도 'allowed'가 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2번째 줄에서 async check()의 Promise를 await 없이 조건으로 사용해, false로 resolve되어도 'allowed'가 반환되는 접근 제어 우회가 확인됩니다.\"}]}",
+  "input_tokens": 4790,
+  "output_tokens": 162,
+  "seconds": 1.312
+}

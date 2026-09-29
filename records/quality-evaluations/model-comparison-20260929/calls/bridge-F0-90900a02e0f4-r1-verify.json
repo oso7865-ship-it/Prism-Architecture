@@ -1,0 +1,36 @@
+{
+  "key": "bridge-F0-90900a02e0f4-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:41:09.775220+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "7b2b068647c67162a646dd3914ea04cbd789886fd52306a8cc70ec3714b288f0",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "name이 null이면 조건이 참이 되어 null.trim()이 평가되므로 NullPointerException이 발생합니다."
+      },
+      {
+        "index": 1,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "name이 null이 아니면 조건이 거짓이 되어 \"\"가 반환되므로 입력의 앞뒤 공백이 제거되지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3385,
+  "output_tokens": 133,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2688,
+  "response_sha256": "d4364b16df0a9bae4c510552344ce030ea4d898b1245bcb9b2bf29cbb5f270ba",
+  "elapsed_seconds": 1.469
+}

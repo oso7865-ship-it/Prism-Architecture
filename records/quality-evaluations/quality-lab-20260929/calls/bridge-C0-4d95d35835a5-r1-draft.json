@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-4d95d35835a5-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:33.545406+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "input_bytes": 358,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "콜백 목록을 만드는 변경에서 지연 바인딩(late binding)으로 인해 각 람다가 생성 시점의 인덱스가 아닌 최종 값을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출한 뒤 반환된 람다 중 하나를 호출할 때",
+        "consequence": "모든 람다가 클로저 변수 i를 공유하므로 range(3) 종료 후 i=2로 평가되어 세 콜백 모두 2를 반환합니다. 이는 '생성 시점의 인덱스를 반환한다'는 동작 계약과 어긋납니다.",
+        "assumptions": [],
+        "title": "람다가 생성 시점 인덱스 대신 최종 값을 반환합니다",
+        "evidence": "2줄의 리스트 컴프리헨션은 각 반복에서 i를 캡처하지 않고 동일한 클로저 변수 i를 참조하는 람다를 만듭니다.",
+        "suggestion": "기본 인자로 값을 고정하거나(예: lambda i=i: i) 팩토리 함수를 사용해 각 콜백이 생성 시점의 i를 캡처하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "071a270d5a74704a19a3aeaab962771bba792cdf74ee07a412b053121a218d21",
+  "input_tokens": 4743,
+  "output_tokens": 332,
+  "elapsed_seconds": 2.343
+}

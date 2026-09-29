@@ -1,0 +1,15 @@
+{
+  "key": "B0-9d73a727b44a-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:28:00.369455+00:00",
+  "input_hash": "a64bfff467c524d30730bf38509847870dff86146d91b6d43eb41e808a5689ba",
+  "system_hash": "8a3abb984c24bdaf0f817aeafdb887873fe511ce4e309779202bfd2443868155",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"동일한 order_id가 여러 테넌트에 존재할 때, 쿼리는 id만 비교하므로 tenant_id와 무관하게 해당 주문 행을 반환하여 인증된 테넌트가 소유하지 않은 주문 데이터가 노출됩니다.\"}]}",
+  "input_tokens": 3113,
+  "output_tokens": 99,
+  "seconds": 1.312
+}

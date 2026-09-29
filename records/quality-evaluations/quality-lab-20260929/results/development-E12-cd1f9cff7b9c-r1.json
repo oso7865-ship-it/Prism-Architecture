@@ -1,0 +1,54 @@
+{
+  "key": "development-E12-cd1f9cff7b9c-r1",
+  "case": "cd1f9cff7b9c",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로가 root 또는 그 하위 경로인지 판정하는 permitted 함수의 변경을 보안 관점에서 검토했습니다. 구분자 '/'를 덧붙여 startswith를 수행하므로 '/srv/app' 대비 '/srv/application' 같은 접두사 혼동(형제 디렉터리 우회)이 발생하지 않으며, 제공된 입력 계약(정규화된 POSIX 절대 경로, 심볼릭 링크·후행 슬래시 없음) 범위에서 권한 경계를 약화시키는 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부(어떤 값이 resolved로 전달되는지, 정규화가 어디서 수행되는지)와 이 판정이 어떤 파일 접근·권한 결정에 사용되는지는 제공되지 않아 실제 보안 경계의 완전성은 확인하지 못했습니다. root='/' 경계나 대소문자 비구분 파일시스템에서의 동작은 검증하지 않았으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5559,
+  "output_tokens": 1057,
+  "elapsed_seconds": 5.485,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

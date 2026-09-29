@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-6197edcf876e-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:21.305733+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "d37d92043b3a4ff2aba34ebebb4c290aeab13c8eb15d2d3a00083cd755bea0ad",
+  "input_bytes": 644,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 3 uses optional chaining plus nullish coalescing, so a missing profile yields 'Unknown' and an empty string name is preserved, matching the stated contract.",
+      "Probe p1 name({}) is predicted to return 'Unknown' because user.profile is undefined and ?? applies.",
+      "Probe p2 name({profile: {name: \"\"}}) is predicted to return '' because ?? only falls back on null/undefined, not empty string.",
+      "No static findings are supplied and no defect is observable in the four provided lines.",
+      "The function name shadows the type member name 'name' but this is not a runtime defect in the shown code."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ae47c1b469925d1773cdc9a9fbd96bf4c80aa2a2a3881ae2a3443fba97d9765c",
+  "input_tokens": 364,
+  "output_tokens": 140,
+  "elapsed_seconds": 1.437
+}

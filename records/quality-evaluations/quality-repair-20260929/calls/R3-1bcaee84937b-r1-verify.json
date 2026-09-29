@@ -1,0 +1,15 @@
+{
+  "key": "R3-1bcaee84937b-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:48.158506+00:00",
+  "input_hash": "80d25a65af72ae8955be7ae8551db9ec1020dcbdde0832217224537c7a881425",
+  "system_hash": "6be146c64063d1321e8e87b68cc0abde68f280cc28bb050b05c9977938d7cfc3",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"actor가 소유자(\\\"alice\\\")가 아닌 값으로 호출해도 소유권 검사 없이 item.amount(40)가 반환되어, 계약상 Error를 던져야 할 비소유자에게 금액이 노출됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"actor 매개변수가 선언되어 있으나 소유권 검사에 사용되지 않고, load(id) 결과의 amount가 그대로 반환되어 계약(소유자 외 Error)을 위반합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4316,
+  "output_tokens": 183,
+  "seconds": 1.39
+}

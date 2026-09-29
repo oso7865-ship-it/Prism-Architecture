@@ -1,0 +1,15 @@
+{
+  "key": "J1-898c474a9d7d-r1-review",
+  "arm": "J1",
+  "phase": "review",
+  "at": "2026-09-29T10:20:30.353161+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base를 얕게 복사한 뒤 nested만 별도로 copy()하여 중첩 딕셔너리 변경이 호출자의 base에 전파되지 않도록 수정한 변경입니다.\",\"issues\":[],\"limitations\":\"제공된 4개 라인만 검토했으며 실행 결과는 확인하지 않았습니다. base['nested']가 딕셔너리라는 계약은 behavior_contract에 기술되어 있으나, 실제 호출자와 base의 구체적 구조는 제공되지 않았습니다.\"}",
+  "input_tokens": 5703,
+  "output_tokens": 126,
+  "seconds": 1.766
+}

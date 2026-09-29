@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-0e12161a3613-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:32.825218+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "36cda02e6c0897da21cd7eb1ea54cb1e0feab43589a27280849ac3e52f98855a",
+  "input_bytes": 732,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed line 3 delegates comparison to Integer.compare(left, right).",
+      "Order.compare is a static method taking two int parameters and returning int.",
+      "The behavior contract requires negative, zero, or positive sign for less-than, equal, and greater-than respectively.",
+      "Probe p1 calls Order.compare(Integer.MIN_VALUE, 1) and applies Integer.signum to the result.",
+      "Probe p2 calls Order.compare(3, 3) and applies Integer.signum to the result.",
+      "No static findings are reported and no authorization or state-mutation logic is present in the shown source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "9f55dec83e3b8cd5f7dc0b24f7e610fed0443bad28b2805582cdbe7b84f9c24c",
+  "input_tokens": 388,
+  "output_tokens": 128,
+  "elapsed_seconds": 1.219
+}

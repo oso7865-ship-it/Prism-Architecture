@@ -1,0 +1,26 @@
+{
+  "key": "development-E11-c12598db7eb6-r1-observe",
+  "arm": "E11",
+  "phase": "observe",
+  "at": "2026-09-29T07:14:44.480027+00:00",
+  "system_sha256": "4f469fe1192f5b54d60868d76fc54a80999dd7607500855f56cfade86ba3987f",
+  "payload_sha256": "e0a1c9a03111e48784aa3c7d86bff14a2f86411d7ae8a99e6bd3e38ec0d789e1",
+  "input_bytes": 554,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses an identity check `value is None`, so only None is treated as absent, matching the stated contract.",
+      "Line 2 returns `value` unchanged for any non-None input, preserving explicitly provided values including falsy ones.",
+      "Probe p1 `choose('', 'default')` returns '' because '' is not None, consistent with line 2.",
+      "Probe p2 `choose(False, True)` returns False because False is not None, consistent with line 2.",
+      "Probe p3 `choose(None, 'default')` returns 'default' because None satisfies the `is None` branch on line 2.",
+      "The function has no exception paths, state, or authorization logic; it is a pure two-argument conditional on lines 1-2."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7e922676783efc2e0f75e7cd8313b1faa31d9cacee0de4cec985b5a09b745a7c",
+  "input_tokens": 334,
+  "output_tokens": 170,
+  "elapsed_seconds": 1.453
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-81c556ef32df-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:43.928236+00:00",
+  "input_hash": "95b30ed60ead40d5393f7d50dec199fbb65d0fa38a0210c156decf1ec93feaa9",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 mean 함수는 빈 입력에 대해 계약대로 0.0을 반환하고, 비어 있지 않은 경우 sum/len을 계산합니다. 제공된 변경 라인에서 구체적인 실패 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"values의 원소 타입(비숫자 포함 여부)과 호출 지점은 제공되지 않았습니다. 계약상 유한 숫자 리스트만 유효 입력이므로 타입 오류는 검토 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"빈 리스트는 조건식으로 0.0을 반환하고, 비어 있지 않으면 sum(values)/len(values)를 계산합니다. 제공된 계약(유한 숫자 리스트, 빈 입력 0.0)과 일치하며 구체적 실패 경로가 보이지 않습니다.\"}]}",
+  "input_tokens": 3097,
+  "output_tokens": 225,
+  "seconds": 1.672
+}

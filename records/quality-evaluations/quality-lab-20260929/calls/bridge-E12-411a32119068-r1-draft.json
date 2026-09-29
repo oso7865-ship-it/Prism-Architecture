@@ -1,0 +1,21 @@
+{
+  "key": "bridge-E12-411a32119068-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:20:54.352952+00:00",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "input_bytes": 409,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열이면 UTF-8로 인코딩한 뒤 바이트 수를 세고, 그 외에는 그대로 길이를 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 동작 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "wire_size의 호출부와 실제 전달되는 값의 종류는 제공되지 않았으며, 테스트를 실행하지 않았습니다. str/bytes 이외의 입력이 전달될 경우 동작은 계약 범위 밖이므로 확인하지 못했습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "f18be3fb3309caef94f55ab74830c132f26830622d7288166761b199edfdc13d",
+  "input_tokens": 4782,
+  "output_tokens": 272,
+  "elapsed_seconds": 2.079
+}

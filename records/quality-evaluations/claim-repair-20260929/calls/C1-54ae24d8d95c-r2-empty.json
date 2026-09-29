@@ -1,0 +1,12 @@
+{
+  "key": "C1-54ae24d8d95c-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:39:57.611738+00:00",
+  "input_hash": "697d30c43f7969376c77cea7617620b1c97473ebd827e132b5914631867af52e",
+  "system_hash": "2f6d4a5ca10b9172e4a0c123f361a45548e33e2d4740ecb89c5ed4b7c49a96e4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10의 `or` 체인은 빈 문자열 환경변수를 무시하고 다음 후보로 넘어가므로, 빈 CURL_CA_BUNDLE이 명시적 verify=True를 덮어쓰지 않습니다. 제공된 계약과 테스트(라인 15~16)가 이 동작을 확인하며, 지원 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 호출자와 session_verify의 실제 전달 값 범위는 제공되지 않았습니다. 테스트 실행 여부는 확인하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 10의 `or` 체인은 빈 문자열/None 환경변수를 건너뛰어 verify=True를 보존하고, 비어 있지 않은 CA 경로는 그대로 반환합니다. 라인 15~17 테스트와 일치합니다.\"}]}",
+  "input_tokens": 3802,
+  "output_tokens": 232,
+  "seconds": 2.0
+}

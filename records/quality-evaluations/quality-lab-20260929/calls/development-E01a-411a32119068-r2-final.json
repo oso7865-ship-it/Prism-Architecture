@@ -1,0 +1,41 @@
+{
+  "key": "development-E01a-411a32119068-r2-final",
+  "arm": "E01a",
+  "phase": "final",
+  "at": "2026-09-29T07:08:54.543429+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "7955a0d5fed650b6fb228dc3f89f8360c08f8fc925f8177f9ef8dd7177e36aa2",
+  "input_bytes": 375,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열 또는 바이트열을 UTF-8 기준 바이트 길이로 계산하는 변경을 검토했습니다. 제공된 한 줄에서는 구체적인 결함을 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "함수 시그니처와 호출부, body에 전달될 수 있는 값의 계약이 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "46bba9ab84805d3cc46205a36f602d160e5fc89865358829c719059803e27c98",
+  "input_tokens": 5136,
+  "output_tokens": 166,
+  "elapsed_seconds": 1.265
+}

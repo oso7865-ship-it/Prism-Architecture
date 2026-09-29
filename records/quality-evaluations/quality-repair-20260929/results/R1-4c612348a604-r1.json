@@ -1,0 +1,76 @@
+{
+  "case": "4c612348a604",
+  "arm": "R1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: n=0일 때 range의 step이 0이 되어 ValueError가 발생합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n이 0일 때 indices(0)을 호출하는 경우",
+        "consequence": "n=0이면 range(0, 0, 0)의 step이 0이므로 ValueError가 발생하고, 계약이 요구하는 빈 리스트가 반환되지 않습니다.",
+        "assumptions": [],
+        "title": "n=0일 때 range의 step이 0이 되어 ValueError가 발생합니다",
+        "evidence": "2줄에서 range의 세 번째 인자(step)로 n을 그대로 전달하며, 계약상 n=0은 유효한 입력입니다.",
+        "suggestion": "n이 0이면 빈 리스트를 반환하도록 분기하거나, step으로 n 대신 유효한 값을 사용하세요.",
+        "file_path": "indices.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "1ff5a51fcd88b8b2effc7e9aca5c9826c177f9770f719ad31301833d0a25e5c7"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "indices.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "n=0은 계약상 유효한 입력이지만 range step이 0이 되어 ValueError가 발생합니다.",
+          "file_path": "indices.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "61cf489c7a3a7b80a1a63439c74dd92fd0a729ad93f075eba43afc3987d56918"
+}

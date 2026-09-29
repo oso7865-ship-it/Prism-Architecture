@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-4d95d35835a5-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "4d95d35835a5",
+  "at": "2026-09-29T08:40:36.235280+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "8a4f71815f0738e071554eaf87f8d098150fa916c85b4aad2f116133a9237045",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "callbacks()가 반환한 각 람다는 클로저 변수 i를 공유하므로, 호출 시점에 모두 2를 반환하여 계약이 요구하는 생성 시점 인덱스 캡처가 되지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3054,
+  "output_tokens": 98,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "a5d6e8c171889303749cdde7fa097a4e27e345e1e53b9eb2eb88d45464fd8690",
+  "elapsed_seconds": 1.25
+}

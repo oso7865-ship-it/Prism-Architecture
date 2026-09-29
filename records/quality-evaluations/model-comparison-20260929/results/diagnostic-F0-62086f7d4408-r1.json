@@ -1,0 +1,67 @@
+{
+  "key": "diagnostic-F0-62086f7d4408-r1",
+  "case": "62086f7d4408",
+  "arm": "F0",
+  "repeat": 1,
+  "split": "diagnostic",
+  "output": {
+    "summary": "f1의 handle이 ValueError를 잡아 None으로 반환하도록 변경된 부분을 검토했습니다. 팀 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구하므로, 이 변경은 표준과 정면으로 충돌합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 5,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "예외가 전파되지 않고 None이 정상 반환값으로 호출자에게 전달되어, 호출자는 실패를 성공으로 오인하고 후속 처리를 계속할 수 있습니다. 또한 표준이 요구하는 오류 기록(logger)도 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "ValueError를 삼키고 None을 반환해 실패를 숨깁니다",
+        "evidence": "4-5줄에서 ValueError를 잡은 뒤 로깅 없이 None을 반환합니다. 이는 s1의 '기록한 뒤 같은 예외를 다시 던진다, 실패를 정상 반환으로 숨기지 않는다' 요구와 어긋납니다.",
+        "suggestion": "except 블록에서 logger.error 등으로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요."
+      }
+    ],
+    "limitations": "handle의 호출부와 operation의 실제 구현은 제공되지 않아, None 반환을 정상 흐름으로 기대하는 호출자가 있는지는 확인하지 못했습니다. 정적 분석 도구 실행이나 테스트 실행은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "null",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5666,
+  "output_tokens": 442,
+  "elapsed_seconds": 2.859
+}

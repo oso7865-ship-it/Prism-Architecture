@@ -1,0 +1,77 @@
+{
+  "case": "4d95d35835a5",
+  "repeat": 1,
+  "arm": "C4",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출해 반환된 콜백을 호출할 때",
+        "consequence": "callbacks()가 반환한 세 콜백을 호출하면 모두 클로저 변수 i의 최종 값인 2를 반환하여, 각 콜백이 생성 시점의 인덱스를 반환해야 한다는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다",
+        "evidence": "2줄의 람다는 i를 참조하지만 i는 range(3) 순회가 끝난 뒤 2로 확정되므로, 반환된 세 콜백 모두 2를 반환합니다.",
+        "suggestion": "기본 인자로 현재 값을 바인딩하도록 lambda i=i: i 형태로 변경하세요.",
+        "file_path": "callbacks.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "382b4959e38bd0330ba2626f63f7752234443f902840b1be0fd6cfa0b7dfa0e9"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "callbacks.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄의 람다는 순회 종료 후 값 2로 확정된 i를 참조하므로 모든 콜백이 2를 반환해 계약과 불일치합니다.",
+          "file_path": "callbacks.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024"
+}

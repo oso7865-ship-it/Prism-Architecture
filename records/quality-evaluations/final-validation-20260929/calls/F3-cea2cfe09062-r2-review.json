@@ -1,0 +1,12 @@
+{
+  "key": "F3-cea2cfe09062-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T13:03:33.871126+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "c9d8af98d178781f0ae194d9ae3004375bf6e2487284a727ea3084b3908f7c95",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Normalize.normalize가 value를 받아 adjusted를 계산하지만 원래 value를 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"INFO\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4],\"trigger\":\"normalize가 어떤 int value로 호출될 때\",\"consequence\":\"3줄에서 계산한 adjusted가 사용되지 않고 4줄이 원래 value를 반환하므로, 음수 입력에서도 조정된 값이 아닌 원본이 반환됩니다.\",\"assumptions\":[],\"title\":\"계산된 adjusted가 반환되지 않고 원본 value가 반환됩니다\",\"evidence\":\"3줄은 Math.max(value, 0)으로 adjusted를 계산하지만 4줄은 value를 반환합니다. 제공된 behavior_contract는 모든 int value에 대해 원본 값을 반환하라고 명시하므로 반환값 자체는 계약과 일치하며, adjusted는 사용되지 않는 계산입니다.\",\"suggestion\":\"adjusted 계산이 의도된 것이라면 4줄에서 adjusted를 반환하고, 원본 반환이 의도라면 사용되지 않는 3줄의 계산을 제거하는 것이 좋습니다.\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4791,
+  "output_tokens": 298,
+  "seconds": 1.922
+}

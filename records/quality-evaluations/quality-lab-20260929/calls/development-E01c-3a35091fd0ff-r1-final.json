@@ -1,0 +1,35 @@
+{
+  "key": "development-E01c-3a35091fd0ff-r1-final",
+  "arm": "E01c",
+  "phase": "final",
+  "at": "2026-09-29T07:09:45.202607+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "c048176c1e54027817fbfd9068354fc7f193cb62265de066c5a96d6414b67bf5",
+  "input_bytes": 787,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 검사 후 금액을 반환하는 변경을 검토했습니다. load가 항상 owner/amount를 가진 객체를 반환하므로 제공된 범위에서 인증 우회나 정보 노출 결함은 보이지 않습니다.",
+    "issues": [],
+    "limitations": "load의 실제 구현은 관련 구현 스니펫으로만 제공되어 다른 id나 미존재 id에 대한 반환 계약은 확인하지 못했습니다. 호출부와 실행 검증은 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "dbc196ba6cafc231292aa05b63b5404959aafd1c2bfcb5ca886ac542b9356086",
+  "input_tokens": 5620,
+  "output_tokens": 168,
+  "elapsed_seconds": 1.437
+}

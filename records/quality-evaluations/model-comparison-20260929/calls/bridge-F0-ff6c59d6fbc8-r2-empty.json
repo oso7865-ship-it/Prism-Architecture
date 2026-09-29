@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-ff6c59d6fbc8-r2-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "ff6c59d6fbc8",
+  "at": "2026-09-29T08:45:18.389467+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "99fb3519938e447350c383aa506c665d7c9a35be5a3e0fb3d1177858150e8214",
+  "payload_sha256": "301e5fa6c3d68b8e7357b25cd715e499181c14a5bcb86b7f398e4f9c2dc0c0e1",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄(logger.info 호출)은 팀 로깅 규칙과 일치하며, 제공된 범위에서 구체적 결함 경로가 확인되지 않았다.",
+    "issues": [],
+    "limitations": "save 함수의 호출자, logger 구현, record의 실제 타입 계약은 제공되지 않아 반환값 사용 방식과 예외 처리는 확인하지 못했다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "logger.info로 기록하는 변경으로 print 사용이 없어 로깅 규칙을 위반하지 않으며, 제공된 범위에서 실패 경로가 보이지 않는다."
+      }
+    ]
+  },
+  "input_tokens": 3604,
+  "output_tokens": 168,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3456,
+  "response_sha256": "443a186272604a014035072870ce700b33d08d4117b94fb5e102c34a9b56b468",
+  "elapsed_seconds": 1.453
+}

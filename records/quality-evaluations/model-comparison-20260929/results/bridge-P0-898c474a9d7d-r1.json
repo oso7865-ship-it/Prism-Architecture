@@ -1,0 +1,108 @@
+{
+  "key": "bridge-P0-898c474a9d7d-r1",
+  "case": "898c474a9d7d",
+  "arm": "P0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "base의 중첩 딕셔너리를 복사해 원본 변경 없이 limit을 조정하는 코드를 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base['nested']가 존재하고 adjust가 호출될 때",
+        "consequence": "adjust는 result['nested']['limit']을 9로 변경한 후 base['nested']['limit']을 반환하므로, 반환값은 변경된 9가 아니라 원본 base의 기존 limit 값이 됩니다.",
+        "assumptions": [],
+        "title": "조정된 limit 값이 아닌 원본 값을 반환합니다",
+        "evidence": "2줄에서 nested를 복사해 result를 만들고 3줄에서 result의 limit을 9로 변경하지만, 4줄은 base의 limit을 반환합니다.",
+        "suggestion": "조정된 값을 반환하려면 4줄을 result['nested']['limit']으로 변경하세요. 원본 값을 의도적으로 반환하는 경우에는 계약을 명확히 문서화하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 조정된 limit 값이 아닌 원본 값을 반환합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base['nested']가 존재하고 adjust가 호출될 때",
+        "consequence": "adjust는 result['nested']['limit']을 9로 변경한 후 base['nested']['limit']을 반환하므로, 반환값은 변경된 9가 아니라 원본 base의 기존 limit 값이 됩니다.",
+        "assumptions": [],
+        "title": "조정된 limit 값이 아닌 원본 값을 반환합니다",
+        "evidence": "2줄에서 nested를 복사해 result를 만들고 3줄에서 result의 limit을 9로 변경하지만, 4줄은 base의 limit을 반환합니다.",
+        "suggestion": "조정된 값을 반환하려면 4줄을 result['nested']['limit']으로 변경하세요. 원본 값을 의도적으로 반환하는 경우에는 계약을 명확히 문서화하세요.",
+        "file_path": "options.py",
+        "key": "468dd49686148d04302e0cef6879dd3df2ee43ad7fbb298b6fbe19bc5cdbb626"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "options.py",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7953,
+  "output_tokens": 447,
+  "elapsed_seconds": 9.923
+}

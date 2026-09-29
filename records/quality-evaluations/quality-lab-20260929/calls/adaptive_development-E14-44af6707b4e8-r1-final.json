@@ -1,0 +1,58 @@
+{
+  "key": "adaptive_development-E14-44af6707b4e8-r1-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:06.883032+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "9e279f72e12a9b49c1dd61db6edfb0a7e97c079de5ebcac66580295bd019fbcf",
+  "input_bytes": 1711,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`가 None뿐 아니라 모든 falsy 값(빈 문자열, False, 0 등)을 대체하도록 변경되어, 명시적으로 전달된 값을 보존해야 한다는 계약과 어긋납니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "choose('', 'default')나 choose(False, True)처럼 falsy이지만 None이 아닌 값을 전달할 때",
+        "consequence": "or 연산이 왼쪽 피연산자를 falsy로 평가해 default가 반환되므로, 명시적으로 제공된 '' 또는 False가 소실됩니다.",
+        "assumptions": [],
+        "title": "falsy 값이 None과 동일하게 대체됩니다",
+        "evidence": "2줄의 `value or default`는 왼쪽이 falsy이면 오른쪽을 반환합니다. 계약은 None만 부재로 규정하므로 ''와 False는 보존되어야 합니다.",
+        "suggestion": "`return default if value is None else value`로 명시적 None 검사로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2e86e6c43418ebccd4c6b46b3c3997196729737e6a783039de825d1f758328ba",
+  "input_tokens": 5442,
+  "output_tokens": 364,
+  "elapsed_seconds": 2.64
+}

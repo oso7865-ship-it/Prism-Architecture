@@ -1,0 +1,35 @@
+{
+  "key": "development-E09-cd210310faa4-r2-draft1",
+  "arm": "E09",
+  "phase": "draft1",
+  "at": "2026-09-29T07:09:41.443217+00:00",
+  "system_sha256": "fc94829c0a41b44b348c321ef5e081475c476b0a3763a60a69bf1b9a94b327f6",
+  "payload_sha256": "7d039d2a98bf7eefe8b9fc614433d0d1b7866851ccead663b4b9b97450d63f42",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 입력을 빈 문자열로 처리하고 그 외에는 앞뒤 공백을 제거하는 변경을 검토했습니다. 제공된 코드에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 단일 클래스와 변경 라인만 검토했으며 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"Ada\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "26ed6532a798675b546cc2ca2388461bd97a57f8600c6bf31732e1baeb05419f",
+  "input_tokens": 5359,
+  "output_tokens": 138,
+  "elapsed_seconds": 1.281
+}

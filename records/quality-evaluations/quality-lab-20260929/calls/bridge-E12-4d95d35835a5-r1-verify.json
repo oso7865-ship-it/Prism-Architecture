@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-4d95d35835a5-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:38.762171+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "b55f4b49c80a573ea140aa2443575090b33298ce84bbaa1f67e12a01f5bfe7c7",
+  "input_bytes": 1601,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "callbacks()가 반환한 세 콜백을 각각 호출하면 모두 2를 반환하며, 계약이 요구하는 생성 시점 인덱스 0, 1, 2는 반환되지 않습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "9149df7fedae0a509cf4cd62a48243410c903969d2417dfd68941733a889f6b6",
+  "input_tokens": 3163,
+  "output_tokens": 284,
+  "elapsed_seconds": 1.797
+}

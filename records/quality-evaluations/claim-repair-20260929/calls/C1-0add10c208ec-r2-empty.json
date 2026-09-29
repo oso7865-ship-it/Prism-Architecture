@@ -1,0 +1,12 @@
+{
+  "key": "C1-0add10c208ec-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:39:49.979271+00:00",
+  "input_hash": "37646a23d109b5c19c66a838cf2865ba2c4359344ea47c2028332c13fd4ac11a",
+  "system_hash": "6c37afb63e5f4a5763bf8ce85bf3e1c26f95854162434383526c3897d5b60964",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 곱셈 전에 (long) 캐스팅을 적용해 int 오버플로를 방지하는 수정으로, 제공된 계약(비음수 int, long 범위 내 정확한 곱)을 만족합니다. 검토 범위 내에서 실행 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"제공된 파일은 단일 클래스의 5줄뿐이며 호출자, 테스트, 실제 입력 범위는 포함되지 않았습니다. 정적 분석 경고도 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"곱셈 전 (long) 캐스팅으로 int 오버플로를 방지하며, 비음수 int 입력과 long 범위 내 정확한 곱이라는 계약과 일치합니다.\"}]}",
+  "input_tokens": 3434,
+  "output_tokens": 216,
+  "seconds": 1.593
+}

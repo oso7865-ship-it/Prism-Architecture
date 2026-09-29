@@ -1,0 +1,12 @@
+{
+  "key": "F3-3a35091fd0ff-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:39.672072+00:00",
+  "input_hash": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "system_hash": "feb254209fd37b8c7edfffbf26d31443b81edf5474b9c353effe305c2a92e5dd",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"소유자 검사 후 금액을 반환하는 변경된 invoice 함수 검토. 제공된 load 구현은 id와 무관하게 owner가 \\\"alice\\\"인 객체를 반환하므로, actor가 \\\"alice\\\"이면 검사를 통과합니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인. load가 id를 무시하고 고정 객체를 반환한다는 점은 제공된 related_implementation에서 확인되지만, 이는 변경된 코드의 결함이 아니라 제공된 테스트용 구현의 특성입니다. 실제 load의 정의와 호출자, actor의 출처는 제공되지 않았습니다.\"}",
+  "input_tokens": 5056,
+  "output_tokens": 153,
+  "seconds": 1.578
+}

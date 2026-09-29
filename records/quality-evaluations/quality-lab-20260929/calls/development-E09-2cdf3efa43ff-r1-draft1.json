@@ -1,0 +1,52 @@
+{
+  "key": "development-E09-2cdf3efa43ff-r1-draft1",
+  "arm": "E09",
+  "phase": "draft1",
+  "at": "2026-09-29T07:15:19.827224+00:00",
+  "system_sha256": "fc94829c0a41b44b348c321ef5e081475c476b0a3763a60a69bf1b9a94b327f6",
+  "payload_sha256": "2cdb12609e2f08a4d015c3a57e413fba8d2317b51ba791678726db8d54292058",
+  "input_bytes": 675,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다. 계약상 곱이 long 범위에 들어가야 하지만, 곱셈이 int로 수행되어 오버플로가 발생할 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 Integer.MAX_VALUE(2147483647)를 초과할 때(예: total(50000, 50000))",
+        "consequence": "int 곱셈이 먼저 수행되어 32비트에서 오버플로된 값이 나오고, 그 값이 long으로 확장되어 반환되므로 계약이 요구하는 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈으로 인한 오버플로로 정확한 곱이 보존되지 않습니다",
+        "evidence": "3줄에서 두 int 매개변수를 그대로 곱해 int 연산으로 결과가 계산된 뒤 long으로 반환됩니다. 계약은 곱이 long에 들어가며 정확히 보존되어야 한다고 명시합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 실제 입력 범위는 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "1b1820ec2f8731ea4dba20db31e2d9c15b7ba0687943555a5494575979bb55cd",
+  "input_tokens": 5367,
+  "output_tokens": 400,
+  "elapsed_seconds": 2.547
+}

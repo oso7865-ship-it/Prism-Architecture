@@ -1,0 +1,35 @@
+{
+  "key": "development-E12-cd210310faa4-r2-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:13:20.873758+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "7d039d2a98bf7eefe8b9fc614433d0d1b7866851ccead663b4b9b97450d63f42",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "Display.name이 null이면 빈 문자열을, 그렇지 않으면 trim한 이름을 반환하도록 변경되었습니다. 제공된 범위에서 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"Ada\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "3b9627640e9e09e063c2949641ebda2f4f8ca81d3558adea67a6b8189fe5c859",
+  "input_tokens": 5355,
+  "output_tokens": 174,
+  "elapsed_seconds": 1.625
+}

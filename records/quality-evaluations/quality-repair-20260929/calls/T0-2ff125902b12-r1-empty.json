@@ -1,0 +1,15 @@
+{
+  "key": "T0-2ff125902b12-r1-empty",
+  "arm": "T0",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:27.671377+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 4000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 content_length의 반환식(len(body))뿐이며, bytes 입력에 대해 바이트 수를 정확히 반환합니다. 제공된 계약과 테스트도 이 동작과 일치하여 조치가 필요한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"content_length의 실제 호출 지점과 body가 bytes 이외의 타입으로 전달될 수 있는지는 제공되지 않았습니다. 테스트 실행 여부는 확인하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"content_length가 len(body)로 bytes 길이를 반환하는 변경으로, 제공된 bytes 계약 및 테스트 기대값과 일치하며 경계값(빈 bytes)에서도 0을 반환합니다.\"}]}",
+  "input_tokens": 3320,
+  "output_tokens": 196,
+  "seconds": 1.531
+}

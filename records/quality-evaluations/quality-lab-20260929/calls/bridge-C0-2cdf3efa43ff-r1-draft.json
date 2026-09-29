@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-2cdf3efa43ff-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:03.875174+00:00",
+  "system_sha256": "824c09fdcc7c4bb81a735a18f3a5eb67d0450ef5ca71aed841ba7c2c2e9ec9e7",
+  "payload_sha256": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "input_bytes": 552,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다. 제공된 계약상 곱이 long 범위에 들어가지만, 곱셈 자체가 int로 수행되어 결과가 int 범위를 넘으면 값이 잘못될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count가 모두 nonnegative int이고 두 값의 곱이 Integer.MAX_VALUE를 초과할 때 total을 호출하는 경우",
+        "consequence": "3줄의 곱셈이 int 정밀도로 수행된 뒤 long으로 확장되므로, int 범위를 넘는 곱은 오버플로로 잘린 값이 반환되어 계약에서 요구하는 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 후 long 변환으로 큰 곱이 오버플로됩니다",
+        "evidence": "3줄은 int 매개변수 두 개를 곱해 int 결과를 만든 뒤 long 반환 타입으로 확장합니다. 계약은 곱이 long에 들어가고 정확히 보존되어야 한다고 명시합니다.",
+        "suggestion": "곱셈 전에 한 피연산자를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 클래스 한 곳만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "efe4c0541416355bc8af3e8eccd4c53bce45e9d9f92dc210e133df31f026387e",
+  "input_tokens": 4920,
+  "output_tokens": 342,
+  "elapsed_seconds": 2.437
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F3-ff6c59d6fbc8-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:05:45.038088+00:00",
+  "input_hash": "301e5fa6c3d68b8e7357b25cd715e499181c14a5bcb86b7f398e4f9c2dc0c0e1",
+  "system_hash": "6333992caf2125c56a8d9a5cac63d8558babc9c215da4bc49aa8a8860c6e7f3d",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 f1의 유일한 변경 라인은 logger.info('saved') 호출이며, 제공된 팀 표준(주입된 logger.info 사용, print 금지)을 그대로 준수한다. 제공된 계약상 logger.info는 반환값이 없고 로깅 외 부작용이 없으므로, 반환값 미사용이나 상태 변화로 인한 결함은 확인되지 않는다. 정적 경고도 없어 추가 조치가 필요한 항목이 없다.\", \"issues\": [], \"limitations\": \"f1의 save 호출자, logger 구현체, record의 실제 타입은 제공되지 않았다. 제공된 라인만으로 판단했으며 테스트 실행이나 미제공 코드 검사는 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"변경 라인 2는 주입된 logger.info로 기록하며, 표준 s1의 'print 대신 주입된 logger.info 사용' 요구를 충족한다. 계약상 반환값·부작용이 없어 결함 없음.\"}]}",
+  "input_tokens": 3946,
+  "output_tokens": 260,
+  "seconds": 2.094
+}

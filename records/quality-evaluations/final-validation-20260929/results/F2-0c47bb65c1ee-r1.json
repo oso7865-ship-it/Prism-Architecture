@@ -1,0 +1,79 @@
+{
+  "case": "0c47bb65c1ee",
+  "repeat": 1,
+  "arm": "F2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 얕은 복사로 인해 호출자의 중첩 딕셔너리가 변경됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base가 중첩 딕셔너리(예: {'nested': {'limit': 1}})를 포함한 상태로 adjust(base)를 호출할 때",
+        "consequence": "base가 중첩 딕셔너리를 포함할 때 result['nested']가 base['nested']와 같은 객체를 가리키므로 3줄의 수정이 호출자의 base['nested']['limit']을 9로 바꾸고, 4줄은 9를 반환합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 호출자의 중첩 딕셔너리가 변경됩니다",
+        "evidence": "2줄의 copy()는 얕은 복사이므로 중첩 객체를 공유하고, 3줄이 공유된 result['nested']를 직접 수정하며, 4줄은 원본 base의 중첩 값을 반환합니다.",
+        "suggestion": "중첩 딕셔너리까지 분리하려면 copy.deepcopy(base)를 사용하거나, result['nested'] = dict(base['nested'])처럼 중첩 딕셔너리를 별도로 복사한 뒤 수정하세요.",
+        "file_path": "options.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "96ff327b34349da7119d6ed7a8d8452b1a25fa0d600e180b247372e77324e408"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "options.py",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄의 얕은 copy()가 중첩 딕셔너리를 공유하여 3줄 수정이 호출자 base를 변경하고, 4줄이 변경된 값을 반환합니다.",
+          "file_path": "options.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab"
+}

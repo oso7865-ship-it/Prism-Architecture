@@ -1,0 +1,15 @@
+{
+  "key": "B0-5e22872c605b-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:17:27.533298+00:00",
+  "input_hash": "f15686c3ef0bfff52b5f015111a7f68b020c8a010bdf8971fdae2d3fec0fd798",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"n이 양수일 때 0만 반환하는 인덱스 생성 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"n이 1 이상인 양의 정수일 때 indices(n)을 호출하는 경우\",\"consequence\":\"range의 step이 max(n,1)=n이 되어 range(0, n, n)은 0만 생성하므로, 계약이 요구하는 [0]이 아니라 n>1일 때도 [0]만 반환되어 인덱스 목록이 불완전합니다.\",\"assumptions\":[],\"title\":\"양수 n에서 0만 반환해 인덱스 목록이 불완전합니다\",\"evidence\":\"2줄에서 step을 max(n,1)로 지정하는데, n>=1이면 step이 n이 되어 range(0, n, n)은 0 하나만 생성합니다.\",\"suggestion\":\"의도한 인덱스 간격이 1이라면 step을 1로 고정하고, n=0일 때 빈 목록이 되는지 확인하세요.\"}],\"limitations\":\"제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.\"}",
+  "input_tokens": 4756,
+  "output_tokens": 295,
+  "seconds": 2.0
+}

@@ -1,0 +1,60 @@
+{
+  "key": "development-E11-411a32119068-r1",
+  "case": "411a32119068",
+  "arm": "E11",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "문자열 또는 바이트 입력의 전송 바이트 수를 계산하는 wire_size 변경을 검토했습니다. str은 UTF-8로 인코딩 후 길이를 반환하고 bytes는 그대로 길이를 반환하여 명시된 계약과 일치합니다.",
+    "issues": [],
+    "limitations": "제공된 2줄만 검토했으며 호출부, 타입 계약 강제 여부, 테스트 실행은 확인하지 않았습니다. 비-str/비-bytes 입력은 계약 범위 밖이므로 결함으로 판단하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5731,
+  "output_tokens": 397,
+  "elapsed_seconds": 2.875,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

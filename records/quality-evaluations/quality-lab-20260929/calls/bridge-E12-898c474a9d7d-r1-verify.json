@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-898c474a9d7d-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:53.197932+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "08d654f8f6195cdc2665e0b92086b78dd3fcc593e8fb98e4313aeeeeb0e32103",
+  "input_bytes": 2473,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "DROP",
+        "reason": "MISSING_CONTRACT",
+        "revised": null,
+        "checked_consequence": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "a6a5881ac40bedb50ad8fc10d55f4e957ac781013770f19948fdc67fc02b33d9",
+  "input_tokens": 3403,
+  "output_tokens": 256,
+  "elapsed_seconds": 2.109
+}

@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-b97e39c6de2b-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:19.114489+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "1f73f33e502d262769bb7ce825e9b90114a072e3047eb7e5ddd5a92771ca1caf",
+  "input_bytes": 439,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses a default-argument capture `lambda i=i`, which binds the current value of `i` at lambda creation, so late-binding closure capture is avoided.",
+      "The list comprehension iterates `range(3)`, producing three lambdas with defaults i=0, i=1, i=2.",
+      "Probe p1 `[fn() for fn in callbacks()]` is predicted to return `[0, 1, 2]`, matching the stated behavior contract.",
+      "No static findings are supplied, and the source contains no other logic that could alter the captured values.",
+      "No plausible defect is observable in the supplied source; the default-argument idiom is the standard fix for the late-binding pitfall."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e7b9453005ed7bb38b1e2c012e698ab99ab083dca773302a8bcfedf4fa6d4105",
+  "input_tokens": 297,
+  "output_tokens": 157,
+  "elapsed_seconds": 1.266
+}

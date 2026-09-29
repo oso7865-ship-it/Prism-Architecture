@@ -1,0 +1,15 @@
+{
+  "key": "R2-90900a02e0f4-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:34.660059+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Display.name의 null 처리 분기가 변경되어, null일 때 trim을 호출하고 비어 있지 않은 값에는 빈 문자열을 반환하는 동작이 됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 상태로 Display.name을 호출할 때\",\"consequence\":\"조건식이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 분기에서 null을 역참조합니다\",\"evidence\":\"3줄의 조건은 name == null일 때 name.trim()을 선택하므로, null이 그대로 수신자로 사용됩니다.\",\"suggestion\":\"null일 때 빈 문자열을 반환하고 그 외에는 trim 결과를 반환하도록 두 분기의 값을 서로 바꾸세요.\"},{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 공백을 포함한 비어 있지 않은 문자열일 때\",\"consequence\":\"trim이 수행되지 않고 빈 문자열이 반환되어, 계약에서 요구한 주변 공백 제거가 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"비어 있지 않은 입력에서 trim이 실행되지 않습니다\",\"evidence\":\"3줄은 name이 null이 아닐 때 \\\"\\\"를 반환하므로 trim 경로가 비어 있지 않은 값에 도달하지 않습니다.\",\"suggestion\":\"null이 아닌 경우 name.trim()을 반환하도록 조건식의 두 결과를 교체하세요.\"}],\"limitations\":\"제공된 단일 파일과 HEAD 라인만 검토했으며, 실행 결과나 다른 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 403,
+  "seconds": 2.75
+}

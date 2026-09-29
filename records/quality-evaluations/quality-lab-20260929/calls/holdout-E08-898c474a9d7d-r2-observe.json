@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-898c474a9d7d-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:51.716368+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "input_bytes": 620,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 performs a shallow copy: `{**base, ...}` copies the top-level dict and `base['nested'].copy()` copies the nested dict, so the nested mutation on line 3 does not affect the caller's `base['nested']`.",
+      "Line 3 mutates `result['nested']['limit']` to 9, but line 4 returns `base['nested']['limit']`, reading from the original input rather than the modified copy.",
+      "For probe p1 `adjust({'nested': {'limit': 1}})`, the nested copy is mutated to 9 but the return value reads the untouched original, so the observable return is 1, not 9.",
+      "The behavior contract (preserve caller's base without mutation) appears satisfied for the nested dict, since the mutation targets the copy, not `base`.",
+      "The return statement is inconsistent with the mutation: the function modifies `result` but reports a value derived from `base`, so the computed change is discarded.",
+      "No static findings are supplied; the only observable defect is the return-source mismatch on line 4 versus the mutation on line 3."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6063f1684506d1140b3486198a8348f7e0d7a3a95f76f26ec1de26dac7d32d38",
+  "input_tokens": 359,
+  "output_tokens": 245,
+  "elapsed_seconds": 2.047
+}

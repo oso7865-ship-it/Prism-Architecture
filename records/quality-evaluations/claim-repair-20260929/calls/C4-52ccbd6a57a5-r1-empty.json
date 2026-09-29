@@ -1,0 +1,12 @@
+{
+  "key": "C4-52ccbd6a57a5-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:41.017178+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "f33ac90877144efca6f52e329a4bd1a2c7d20e376368c0de2d208c03ef91685a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 SQL 문자열과 파라미터 튜플을 반환하는 단일 함수입니다. user_id는 %s 플레이스홀더로 바인딩되어 문자열 보간이 없으므로 SQL 인젝션 경로가 보이지 않습니다.\", \"issues\": [], \"limitations\": \"호출자와 DB-API 드라이버 구현은 제공되지 않았으나, 반환된 SQL은 값 바인딩(%s)을 사용하고 있어 제공된 범위에서 인젝션 위험이 확인되지 않습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"user_id가 %s 플레이스홀더와 파라미터 튜플로 전달되어 값 바인딩되며, SQL 문자열에 직접 삽입되지 않아 인젝션 경로가 보이지 않습니다.\"}]}",
+  "input_tokens": 3706,
+  "output_tokens": 209,
+  "seconds": 1.719
+}

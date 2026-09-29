@@ -1,0 +1,12 @@
+{
+  "key": "F3-1bcaee84937b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:41.931753+00:00",
+  "input_hash": "0a5b7b453fa45805c244f940677ee92b1da70a5fe03237a1601219b98a026d23",
+  "system_hash": "796ddeea88067e10daccd6fa856142d3707ce497a16b86f09ccf3994695d09d0",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"actor가 \\\"alice\\\"가 아닌 값(예: \\\"bob\\\")으로 invoice(7, actor)를 호출하면, load(7)이 owner \\\"alice\\\"의 항목을 반환하므로 소유자가 아닌 actor에게도 amount 40이 그대로 반환되어 제공된 계약을 위반합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"변경된 invoice가 load(id) 결과의 amount를 반환하면서 actor와 item.owner를 비교하는 권한 검사가 없어, 제공된 계약(\\\"Return the amount only to its owner; throw Error for other actors\\\")을 위반합니다.\"}]}",
+  "input_tokens": 4882,
+  "output_tokens": 191,
+  "seconds": 1.297
+}

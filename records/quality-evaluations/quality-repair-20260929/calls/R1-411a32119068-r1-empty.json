@@ -1,0 +1,15 @@
+{
+  "key": "R1-411a32119068-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:09.171727+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 wire_size는 str이면 UTF-8 인코딩 길이를, 그 외에는 len(body)를 반환한다. 계약상 bytes 입력은 정상 동작하며, 변경 라인에서 지원 가능한 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"호출자와 실제 입력 타입 분포는 제공되지 않았다. str/bytes 이외의 타입(예: None, int)이 전달되는 경우의 계약은 명시되지 않아 판단 범위 밖이다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"str은 UTF-8 인코딩 후 바이트 길이를, bytes는 len을 반환하는 분기로 계약과 일치한다. 변경 라인에서 구체적 실패 경로는 확인되지 않았다.\"}]}",
+  "input_tokens": 3100,
+  "output_tokens": 205,
+  "seconds": 1.719
+}

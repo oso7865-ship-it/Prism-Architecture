@@ -1,0 +1,12 @@
+{
+  "key": "F3-aa5d6b234f6b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:34.612095+00:00",
+  "input_hash": "5014a8e1ed38d362ec1ac23125f99730fda47143829b951f1b55289004588980",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"bucket을 생략한 collect 호출이 두 번 이상 발생하면, 함수 정의 시 생성된 동일한 기본 리스트가 재사용되어 이전 호출의 item이 이후 호출의 반환 리스트에도 누적됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"기본 인자 bucket=[]이 정의 시 한 번 생성되어 생략 호출 간 공유되며, append로 누적된 리스트를 반환해 '생략 호출마다 새 bucket' 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4668,
+  "output_tokens": 180,
+  "seconds": 1.578
+}

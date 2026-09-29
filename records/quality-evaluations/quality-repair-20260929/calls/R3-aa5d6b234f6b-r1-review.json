@@ -1,0 +1,15 @@
+{
+  "key": "R3-aa5d6b234f6b-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:27.937073+00:00",
+  "input_hash": "98f6ec45542d20354bb1020149d64b19fc1bd0221df1b8d0d1f62da3a39fd164",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"collect 함수가 기본 인자 bucket=[]을 사용해 호출 간 상태를 공유하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":1,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"bucket을 생략한 채 collect를 두 번 이상 호출할 때\",\"consequence\":\"기본 리스트 객체가 호출 간에 재사용되어 이전 호출의 항목이 다음 호출의 반환값에 누적됩니다. 이는 '생략 시 매번 새 bucket'이라는 명시된 동작 계약과 어긋납니다.\",\"assumptions\":[],\"title\":\"기본 인자 리스트가 호출 간 공유되어 누적됩니다\",\"evidence\":\"1줄의 기본값 []는 함수 정의 시 한 번만 생성되고, 2줄에서 그 객체에 append하며 3줄에서 그대로 반환합니다.\",\"suggestion\":\"기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 바꾸세요. 명시적으로 전달된 리스트는 그대로 수정하는 현재 동작을 유지할 수 있습니다.\"}],\"limitations\":\"제공된 3줄만 검토했으며 실제 호출부와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4862,
+  "output_tokens": 295,
+  "seconds": 1.875
+}

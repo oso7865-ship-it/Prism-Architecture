@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-81c556ef32df-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:29.989514+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "c78ba19f4a75e85c5053169208c9fa9d4785ecc800fd4005aa53b2025c0e7f56",
+  "input_bytes": 487,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 returns 0.0 for empty input, matching the stated contract that empty input has mean 0.0.",
+      "Line 2 divides by len(values) only when values is truthy, so no ZeroDivisionError occurs for empty lists.",
+      "The truthiness check treats any falsy sequence (e.g., empty tuple) as empty, returning 0.0 rather than raising.",
+      "No type validation is present; non-numeric elements would raise TypeError from sum, and non-sized inputs would raise TypeError from len.",
+      "Probe p1 mean([]) is predicted to return 0.0; probe p2 mean([2, 4]) is predicted to return 3.0.",
+      "static_findings is empty, so no static-analysis defects are reported for this file."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "1a834238df2bb9b5a940e8b221dba9f1349211fdafadfe6e807aed12a8e9b63e",
+  "input_tokens": 322,
+  "output_tokens": 169,
+  "elapsed_seconds": 1.563
+}

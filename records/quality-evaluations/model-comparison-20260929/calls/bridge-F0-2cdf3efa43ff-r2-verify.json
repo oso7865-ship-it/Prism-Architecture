@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-2cdf3efa43ff-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "2cdf3efa43ff",
+  "at": "2026-09-29T08:41:28.633543+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "49f44d2ed069155e348f7dc395aaa74151a3f7b5d702c3c0e0fb3fd83e5b8edf",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "amount와 count의 곱이 Integer.MAX_VALUE를 초과하면 int 곱셈이 오버플로되어 잘린 int 값이 long으로 변환·반환되므로, 계약이 요구하는 정확한 곱이 보존되지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3330,
+  "output_tokens": 98,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "94ce9752c8282e5343bb167b22badca5a5871f0eb28f5a88575ada52431631e3",
+  "elapsed_seconds": 1.343
+}

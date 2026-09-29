@@ -1,0 +1,88 @@
+{
+  "key": "bridge-P0-52ccbd6a57a5-r2",
+  "case": "52ccbd6a57a5",
+  "arm": "P0",
+  "split": "bridge",
+  "repeat": 2,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 쿼리 생성 함수는 %s 자리표시자와 파라미터 튜플을 사용하여 SQL 인젝션을 방지하고 있습니다. 제공된 코드에서 보안상 조치가 필요한 결함은 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부와 DB 드라이버의 실제 실행 방식은 제공되지 않았으나, behavior_contract에 따라 파라미터 바인딩이 사용되므로 인젝션 경로는 확인되지 않았습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "호출부와 DB 드라이버의 실제 실행 방식은 제공되지 않았으나, behavior_contract에 따라 파라미터 바인딩이 사용되므로 인젝션 경로는 확인되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "query.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "user_id가 %s 자리표시자와 파라미터 튜플로 전달되어 SQL 인젝션 위험이 보이지 않습니다.",
+          "file_path": "query.py"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "user_id가 %s 자리표시자와 파라미터 튜플로 전달되어 SQL 인젝션 위험이 보이지 않습니다.",
+        "file_path": "query.py"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8610,
+  "output_tokens": 316,
+  "elapsed_seconds": 7.702999999999999
+}

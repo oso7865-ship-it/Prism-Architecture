@@ -1,0 +1,12 @@
+{
+  "key": "F3-2d4679c2fde0-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:22.924285+00:00",
+  "input_hash": "a216a7c4be47bf91ab54aa93abe7953ba65fd570fad31a3d413bfbd2acdea6f3",
+  "system_hash": "53b151a5996ffda1e6a8f7b43cfceb2d3f9e55c7af5bee5e71fa752ae88ddb76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 null이면 value === null이 true가 되어 &&의 오른쪽 value.length가 평가되고, null에서 length를 읽어 TypeError가 발생하므로 계약이 요구한 0 반환이 이루어지지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 value === null && value.length 조건이 null 입력에서 TypeError를 유발해 계약의 null→0 반환이 깨집니다.\"}]}",
+  "input_tokens": 4438,
+  "output_tokens": 162,
+  "seconds": 1.5
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-411a32119068-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:11.420925+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 wire_size는 str이면 UTF-8 인코딩 길이, bytes면 길이를 반환하여 계약과 일치합니다. 변경 라인에서 구체적 결함 경로가 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"호출자와 실제 입력 타입 분포는 제공되지 않았으며, str/bytes 이외 타입 전달 시 동작은 계약 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"isinstance(body, str) 분기로 str은 UTF-8 인코딩 바이트 수, bytes는 len을 반환하여 계약과 일치함을 확인했습니다.\"}]}",
+  "input_tokens": 3347,
+  "output_tokens": 172,
+  "seconds": 1.625
+}

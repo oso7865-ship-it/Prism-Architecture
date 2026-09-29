@@ -1,0 +1,12 @@
+{
+  "key": "F3-411a32119068-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:05:29.504925+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 반환식은 str이면 UTF-8 인코딩 바이트 수를, bytes면 길이를 반환하여 제공된 계약('Accept str or bytes; return the number of bytes sent on the wire using UTF-8')을 충족한다. 명시된 입력 유형 외 값에 대한 처리는 계약 범위 밖이며, 제공된 컨텍스트에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"wire_size의 호출자와 실제 전달 값 분포는 제공되지 않았다. 계약에 명시된 str/bytes 외 입력(예: None, int)에 대한 동작은 검토 범위 밖이며, 테스트 실행이나 미제공 코드 확인은 수행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 str/bytes 입력에 대해 UTF-8 기준 전송 바이트 수를 요구한다. str은 encode('utf-8') 후 len, bytes는 len을 반환하므로 요구된 반환값과 일치하며 위반 사례가 보이지 않는다.\"}]}",
+  "input_tokens": 3483,
+  "output_tokens": 268,
+  "seconds": 2.219
+}

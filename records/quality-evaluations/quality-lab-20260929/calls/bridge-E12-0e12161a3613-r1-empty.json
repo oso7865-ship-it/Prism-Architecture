@@ -1,0 +1,29 @@
+{
+  "key": "bridge-E12-0e12161a3613-r1-empty",
+  "arm": "E12",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:47.281364+00:00",
+  "system_sha256": "edf521b822f29f725576f4e5ad720f6683d28e13d87aad26e4ac4d158d62beac",
+  "payload_sha256": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "제공된 변경 파일 f1은 `Integer.compare(left, right)`를 반환하는 단일 변경 라인으로, left < right에서 음수, 동일 시 0, 그 외 양수를 반환하는 비교자 계약을 그대로 충족합니다. 추가적인 결함 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "변경 파일 f1의 3번 라인만 제공되었으며, 이 비교자를 호출하는 호출부나 정렬/Comparator 사용 지점은 제공되지 않아 호출 맥락에서의 영향은 검토하지 못했습니다. 정적 분석 경고는 제공되지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "`Integer.compare(left, right)` 반환은 left<right에서 음수, 동일 시 0, 그 외 양수를 반환하여 비교자 계약을 충족합니다. 널 입력이나 경계값 관련 추가 실패 경로는 보이지 않습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "46217f35d0f63ccd3c13e8353cfed93de39e8bb96259bfbe614fee01f898844b",
+  "input_tokens": 3330,
+  "output_tokens": 269,
+  "elapsed_seconds": 2.078
+}

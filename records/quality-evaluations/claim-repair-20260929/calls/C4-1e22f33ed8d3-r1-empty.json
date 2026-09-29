@@ -1,0 +1,12 @@
+{
+  "key": "C4-1e22f33ed8d3-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:44.067880+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length가 str/bytes 모두 UTF-8 바이트 수를 반환하도록 변경되었고, prepare와 테스트의 기대값과 일치합니다. 제공된 범위에서 지원 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 외부 호출자와 실제 전송 계층은 제공되지 않아, 반환값이 실제로 어떻게 사용되는지는 확인하지 못했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"content_length는 str이면 UTF-8 인코딩 후, bytes면 그대로 len을 반환하여 prepare의 body 바이트 수 및 테스트 기대값과 일치합니다.\"}]}",
+  "input_tokens": 3596,
+  "output_tokens": 173,
+  "seconds": 1.516
+}

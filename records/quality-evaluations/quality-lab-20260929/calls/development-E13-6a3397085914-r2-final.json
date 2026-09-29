@@ -1,0 +1,58 @@
+{
+  "key": "development-E13-6a3397085914-r2-final",
+  "arm": "E13",
+  "phase": "final",
+  "at": "2026-09-29T07:13:58.800618+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "cfbcd644fa0e8fc95cb3037c0ac722585005deb0605dd0bff025c86c14cee1f4",
+  "input_bytes": 9892,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "wire_size가 body의 길이를 그대로 반환하도록 변경된 코드를 검토했습니다. behavior_contract는 UTF-8 인코딩 기준 바이트 수를 요구하지만, 현재 구현은 str 입력에 대해 문자 수를 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "비ASCII 문자(예: '한글')를 포함한 str을 wire_size에 전달할 때",
+        "consequence": "len(body)는 UTF-8 바이트 수가 아니라 코드 포인트 수를 반환하므로, '한글'에 대해 2를 반환하지만 실제 전송 바이트 수는 6입니다. 계약에서 요구하는 바이트 수와 불일치합니다.",
+        "assumptions": [],
+        "title": "str 입력에 대해 UTF-8 바이트 수 대신 문자 수를 반환합니다",
+        "evidence": "f1:2의 len(body)는 str에 대해 문자 수를 세며, behavior_contract는 UTF-8 기준 바이트 수를 요구합니다. bytes 입력(b'AB')은 우연히 일치하지만 str 입력은 불일치합니다.",
+        "suggestion": "str인 경우 body.encode('utf-8')의 길이를 반환하고, bytes인 경우 len(body)를 반환하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 호출부와 실제 전송 계층은 확인하지 못했습니다. 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2ea56ff3b131dbddd8b46c11f73023b846f23cb01ea8beb605e2312d3217b65a",
+  "input_tokens": 7701,
+  "output_tokens": 419,
+  "elapsed_seconds": 2.375
+}

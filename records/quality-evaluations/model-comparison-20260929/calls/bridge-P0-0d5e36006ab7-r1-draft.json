@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-0d5e36006ab7-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "0d5e36006ab7",
+  "at": "2026-09-29T08:44:56.509409+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "check()의 결과를 동기적으로 평가해 접근을 결정하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "check()가 Promise를 반환하는 비동기 함수일 때 access를 호출하는 경우",
+        "consequence": "Promise 객체는 항상 truthy이므로 check()의 실제 해석 결과와 무관하게 'allowed'가 반환되어 접근 제어가 우회됩니다.",
+        "assumptions": [],
+        "title": "비동기 check()의 결과를 동기적으로 평가해 접근 제어가 우회됩니다",
+        "evidence": "2줄에서 check()의 반환값을 await 없이 if 조건으로 사용합니다. check가 async이므로 반환값은 Promise이며, Promise 객체는 항상 truthy입니다.",
+        "suggestion": "await check()로 실제 boolean 결과를 기다린 후 조건을 평가하세요."
+      }
+    ],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5132,
+  "output_tokens": 280,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "0e1454d0b1cf90f40283396b97fc43bc26ffca71a8cfba6566307da88f2ac39a",
+  "elapsed_seconds": 5.828
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R1-0e12161a3613-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:22.796093+00:00",
+  "input_hash": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 Integer.compare(left, right)로, left<right일 때 음수, 같을 때 0, 그 외 양수를 반환하여 명시된 비교 계약을 정확히 만족합니다. 추가로 검토할 실패 경로나 경계 문제는 보이지 않습니다.\", \"issues\": [], \"limitations\": \"제공된 범위는 단일 클래스의 compare 메서드 한 줄이며, 호출자나 정렬 대상 컬렉션, 오버플로 관련 다른 연산은 제공되지 않아 검토 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"Integer.compare(left, right)는 left<right에서 음수, 동일 값에서 0, 그 외 양수를 반환해 요구된 비교 계약을 충족하며, 제공된 범위에서 구체적 실패 경로가 없습니다.\"}]}",
+  "input_tokens": 3264,
+  "output_tokens": 220,
+  "seconds": 2.156
+}

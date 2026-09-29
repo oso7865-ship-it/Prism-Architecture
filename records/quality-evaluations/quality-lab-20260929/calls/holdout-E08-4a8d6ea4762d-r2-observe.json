@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-4a8d6ea4762d-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:37.609146+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "652ef113870ba2b288870977e26b70d7a826467e36671238b40c3cc35dfe87bc",
+  "input_bytes": 1262,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed lines 4-6 catch only ValueError, log via logger.error('failed'), then re-raise with a bare `raise`, preserving the original exception and traceback.",
+      "This matches the untrusted standard s1: input errors are logged for the caller and the same exception is re-thrown, not hidden as a normal return.",
+      "The behavior contract states operation raises ValueError and logger.error returns normally, so the probe path reaches the except block and re-raises.",
+      "No static findings are reported, and no defect is observable in the supplied source for the described contract.",
+      "A non-ValueError exception (e.g., TypeError) would bypass the handler and propagate unlogged; the standard text only mentions input errors, so this is not clearly a violation.",
+      "If logger.error itself raised, the original ValueError would be replaced; the contract states logger.error returns normally, so this is not exercised."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "0066aeab6ecba3cbce6c130a3cd45cc58fa066a0a7b239ec9ad1569b15229941",
+  "input_tokens": 558,
+  "output_tokens": 189,
+  "elapsed_seconds": 1.625
+}

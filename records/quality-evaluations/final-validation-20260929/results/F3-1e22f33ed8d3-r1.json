@@ -1,0 +1,52 @@
+{
+  "case": "1e22f33ed8d3",
+  "repeat": 1,
+  "arm": "F3",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "content_length/prepare의 외부 호출자와 실제 전송 계층은 제공되지 않아 검토 범위 밖이다. 테스트는 정적 라인으로만 확인했으며 실행하지 않았다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "length.py",
+          "provided_lines": 11
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "line 2는 str이면 UTF-8 인코딩 길이, bytes면 원래 길이를 반환해 계약과 일치한다. line 5-6도 동일 규칙으로 body와 Content-Length를 만들어 테스트 입력 전부에서 일치한다.",
+          "file_path": "length.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b"
+}

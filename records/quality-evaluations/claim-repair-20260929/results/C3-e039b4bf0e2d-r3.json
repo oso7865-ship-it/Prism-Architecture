@@ -1,0 +1,80 @@
+{
+  "case": "e039b4bf0e2d",
+  "repeat": 3,
+  "arm": "C3",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 CA 번들 환경변수가 명시적 verify=True를 덮어씁니다",
+    "issues": [
+      {
+        "line": 10,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          10,
+          15,
+          16
+        ],
+        "trigger": "env에 CURL_CA_BUNDLE 또는 REQUESTS_CA_BUNDLE 키가 빈 문자열로 존재하고 verify가 True(또는 None)일 때",
+        "consequence": "env에 CURL_CA_BUNDLE=\"\"(또는 REQUESTS_CA_BUNDLE=\"\")가 있고 verify가 True이면, or 연산이 빈 문자열을 falsy로 평가해 verify가 \"\"가 되고 merge_setting 6줄에서 \"\"가 반환되어 명시적 True가 유지되지 않습니다.",
+        "assumptions": [],
+        "title": "빈 CA 번들 환경변수가 명시적 verify=True를 덮어씁니다",
+        "evidence": "10줄은 env.get(...) or env.get(...) 결과를 verify에 대입합니다. 빈 문자열은 or에서 falsy이므로 다른 키도 없으면 결과가 \"\"가 됩니다. 15·16줄 테스트는 이 경우 True를 기대하지만 path_observations에서 값이 \"\"로 기록되어 불일치합니다.",
+        "suggestion": "빈 문자열을 미설정으로 취급하려면 or 대신 None 여부를 기준으로 선택하세요. 예: env.get(\"REQUESTS_CA_BUNDLE\") if env.get(\"REQUESTS_CA_BUNDLE\") is not None else env.get(\"CURL_CA_BUNDLE\"). 이렇게 하면 17줄의 비어 있지 않은 값 경로와 18줄의 verify=False 경로는 그대로 유지됩니다.",
+        "contract_quote": "",
+        "file_path": "settings.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "f6fd2f459aa32f5337caa7376ee2417b80fc50f08a6218ae6db1e4f30d150751"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "settings.py",
+          "provided_lines": 18
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 10,
+          "outcome": "FINDING",
+          "observation": "10줄의 or 기반 CA 번들 조회가 빈 문자열 환경변수에서 명시적 verify=True를 \"\"로 덮어써 15·16줄 계약과 불일치합니다.",
+          "file_path": "settings.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8"
+}

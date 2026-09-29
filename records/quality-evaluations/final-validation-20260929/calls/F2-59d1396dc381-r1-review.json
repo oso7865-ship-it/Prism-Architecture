@@ -1,0 +1,12 @@
+{
+  "key": "F2-59d1396dc381-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:00:25.292427+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 계산된 adjusted 값이 사용되지 않고 원본 value가 그대로 반환되는 변경을 검토했습니다. 제공된 계약상 원본 반환은 의도된 동작이므로 결함으로 보지 않습니다.\",\"issues\":[],\"limitations\":\"제공된 HEAD 라인만 검토했으며 실행 결과나 외부 호출자는 확인하지 않았습니다. adjusted 지역 변수의 미사용은 계약상 원본 반환을 위반하지 않아 스타일 수준으로 제외했습니다.\"}",
+  "input_tokens": 4761,
+  "output_tokens": 122,
+  "seconds": 1.656
+}

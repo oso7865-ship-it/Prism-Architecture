@@ -1,0 +1,42 @@
+{
+  "key": "bridge-F0-898c474a9d7d-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:42:12.606208+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base의 중첩 딕셔너리를 복사한 뒤 복사본의 limit을 9로 바꾸지만, 반환값은 원본 base의 limit을 읽습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust(base)를 호출하면",
+        "consequence": "3줄에서 복사본 result['nested']['limit']만 9로 변경되고, 4줄은 원본 base['nested']['limit']을 반환하므로 호출자는 변경된 값을 받지 못합니다.",
+        "assumptions": [],
+        "title": "복사본을 수정한 뒤 원본 값을 반환합니다",
+        "evidence": "2줄은 base['nested']를 복사해 result에 넣고, 3줄은 result의 limit을 9로 설정하지만, 4줄은 base의 limit을 반환합니다.",
+        "suggestion": "반환값을 result['nested']['limit']으로 바꾸거나, 원본을 변경하지 않는 것이 목적이라면 반환할 값을 명확히 정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "input_tokens": 4804,
+  "output_tokens": 290,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4480,
+  "response_sha256": "b0a2e7cecd9794e4e630ad9a7fb6fd79ed589c25f5d47f0694ae50f83f7d2b6e",
+  "elapsed_seconds": 2.391
+}

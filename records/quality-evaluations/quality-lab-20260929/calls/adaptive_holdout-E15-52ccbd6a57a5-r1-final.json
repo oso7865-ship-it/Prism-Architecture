@@ -1,0 +1,29 @@
+{
+  "key": "adaptive_holdout-E15-52ccbd6a57a5-r1-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:18.192544+00:00",
+  "system_sha256": "285b3f8c2edc3ec1b9c15f0e79b8d5dbb6b301eb1afa2190a331c6504ad69dd2",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "파라미터 바인딩(%s)을 사용해 SQL 문자열과 파라미터 튜플을 반환하는 변경을 검토했습니다. 제공된 코드에서 주입으로 이어지는 경로는 보이지 않습니다.",
+    "issues": [],
+    "limitations": "호출부와 실제 DB-API 드라이버 구현은 제공되지 않아 반환된 튜플이 그대로 바인딩되는지 실행 검증하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "8be4a5e81f0d56415ceb8dcf4076d843af04f8daa3dc70a60df99b12050b09a7",
+  "input_tokens": 5632,
+  "output_tokens": 154,
+  "elapsed_seconds": 1.625
+}

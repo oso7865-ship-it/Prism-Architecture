@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-898c474a9d7d-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:45:13.787990+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "051249486fb5a4dcecec24ee90eb9b3a99c6ceb44d9bc89787984e5cc1388835",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "adjust가 호출되면 base['nested']['limit']의 기존 값을 반환하며, result['nested']['limit']에 설정한 9는 반환되지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3147,
+  "output_tokens": 92,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2688,
+  "response_sha256": "28d02195948cd0a1825efe56e131a2da88648c1c21cdf04d74be394cb33660bd",
+  "elapsed_seconds": 2.969
+}

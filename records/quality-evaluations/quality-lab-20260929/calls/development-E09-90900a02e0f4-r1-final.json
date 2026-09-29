@@ -1,0 +1,68 @@
+{
+  "key": "development-E09-90900a02e0f4-r1-final",
+  "arm": "E09",
+  "phase": "final",
+  "at": "2026-09-29T07:10:35.165157+00:00",
+  "system_sha256": "fc94829c0a41b44b348c321ef5e081475c476b0a3763a60a69bf1b9a94b327f6",
+  "payload_sha256": "bc637f712f2b83b37fa50ea592c9e605980b506734a5d34be0e2f045c1b29887",
+  "input_bytes": 2798,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 여부에 따라 분기하는 삼항 연산자가 계약과 반대로 배치되어 있습니다. null 입력 시 trim을 호출하고, 비-null 입력 시 빈 문자열을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출하는 경우",
+        "consequence": "name == null이 참이므로 name.trim()이 평가되어 NullPointerException이 발생합니다. 계약에서 요구한 빈 문자열 반환에 도달하지 못합니다.",
+        "assumptions": [],
+        "title": "null 입력에서 trim을 호출해 NullPointerException이 발생합니다",
+        "evidence": "3줄의 삼항 연산자는 name == null일 때 name.trim()을 선택하고, 그렇지 않을 때 \"\"를 반환합니다. 이는 null을 빈 문자열로 표시하라는 계약과 정반대입니다.",
+        "suggestion": "조건과 결과를 뒤집어 null일 때 \"\"를, 그렇지 않을 때 name.trim()을 반환하도록 수정하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 공백을 포함한 비-null 문자열을 전달하는 경우",
+        "consequence": "조건이 거짓이 되어 trim이 수행되지 않고 빈 문자열이 반환되므로, 주변 공백 제거와 원래 값 표시가 모두 되지 않습니다.",
+        "assumptions": [],
+        "title": "비-null 입력의 값이 버려지고 공백 제거가 되지 않습니다",
+        "evidence": "3줄은 비-null 분기에서 \"\"를 반환하므로 입력 문자열이 출력에 반영되지 않습니다.",
+        "suggestion": "비-null 분기에서 name.trim()을 반환하도록 수정하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "java.lang.NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "50ab6c3ca16c035cd73ce6066e1e85122dfe05d8f32242dba4b03ec984523812",
+  "input_tokens": 5951,
+  "output_tokens": 517,
+  "elapsed_seconds": 2.391
+}

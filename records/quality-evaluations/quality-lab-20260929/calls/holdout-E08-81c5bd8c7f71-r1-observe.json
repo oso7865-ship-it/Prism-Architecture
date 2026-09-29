@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-81c5bd8c7f71-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:57.543056+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "4761f858654c516c9ce745c512a273b1227f92b73999da4606bc3c03ede01646",
+  "input_bytes": 631,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 3 uses a non-null assertion `user.profile!.name`, which does not implement the stated contract of displaying \"Unknown\" when profile is missing.",
+      "Probe p1 `name({})` passes an object with no `profile`; the non-null assertion is erased at runtime, so accessing `.name` on `undefined` throws a TypeError instead of returning \"Unknown\".",
+      "Probe p2 `name({profile: {name: \"\"}})` has a defined profile with an empty string name; line 3 returns `\"\"` unchanged, which matches the contract clause that an existing empty name is preserved.",
+      "No fallback or default value (e.g., `?? \"Unknown\"`) appears anywhere in the supplied lines, so the missing-profile branch is unhandled.",
+      "The `profile` field is optional in the `User` type (line 1), confirming `undefined` is a valid input state that line 3 does not guard against."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "5ea7737d00276357920342e674cf2d26381c55266e827246d196b907818e96cf",
+  "input_tokens": 361,
+  "output_tokens": 209,
+  "elapsed_seconds": 1.562
+}

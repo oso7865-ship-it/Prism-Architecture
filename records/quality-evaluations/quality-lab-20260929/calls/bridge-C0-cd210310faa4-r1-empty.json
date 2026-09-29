@@ -1,0 +1,29 @@
+{
+  "key": "bridge-C0-cd210310faa4-r1-empty",
+  "arm": "C0",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:11.849022+00:00",
+  "system_sha256": "edf521b822f29f725576f4e5ad720f6683d28e13d87aad26e4ac4d158d62beac",
+  "payload_sha256": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "input_bytes": 545,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄은 null 병합 후 trim을 수행하는 단순 가드로, null 입력은 빈 문자열로 처리되고 그 외에는 trim이 적용된다. 제공된 범위에서 구체적 결함 경로가 확인되지 않았다.",
+    "issues": [],
+    "limitations": "호출자와 name의 실제 입력 분포, trim 결과의 후속 사용 방식은 제공되지 않아 검토 범위가 제한된다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "null 삼항 가드 후 trim 수행을 확인. null은 빈 문자열로 반환되고 비-null은 trim되며, 제공된 범위에서 실패 경로가 보이지 않음."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b1cabb1b3c124d664fc77a7cbf735b9725789d0a3735f2e55a1fdead9f786ce7",
+  "input_tokens": 3302,
+  "output_tokens": 180,
+  "elapsed_seconds": 1.844
+}

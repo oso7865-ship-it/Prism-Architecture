@@ -1,0 +1,48 @@
+{
+  "key": "development-E05-7c4f2f03b3b5-r1-final",
+  "arm": "E05",
+  "phase": "final",
+  "at": "2026-09-29T07:14:37.993427+00:00",
+  "system_sha256": "4b1a849fbc6979960cc115daa0e2b47bf034c588ede59b3d85b85519a7baa733",
+  "payload_sha256": "f675fc236a605930f46bbf364951949b8bdfc9c6ada10f9e1aeb101afa8a93e5",
+  "input_bytes": 1099,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수에서 로깅 방식이 주입된 logger.info 대신 print로 변경되었습니다. 반환값과 제어 흐름은 그대로이며, 표준 위반 외에 별도의 동작 결함은 보이지 않습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출될 때",
+        "consequence": "주입된 logger를 통한 기록 대신 표준 출력으로 메시지가 출력되어, 팀 표준이 요구하는 로깅 경로를 우회합니다.",
+        "assumptions": [],
+        "title": "주입된 logger.info 대신 print로 기록합니다",
+        "evidence": "2줄에서 'saved'를 print로 출력하며, 이는 주입된 logger.info 사용을 요구하는 표준 s1과 어긋납니다.",
+        "suggestion": "2줄을 logger.info('saved')로 되돌려 주입된 로거를 사용하도록 하세요."
+      }
+    ],
+    "limitations": "logger 구현과 호출부는 제공되지 않았으며, 표준 위반 외 런타임 동작은 실행 검증하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ef6d1675b505a3f8c374bbd715218298df2b0b67c21a79b81028f87d92a68dd0",
+  "input_tokens": 5678,
+  "output_tokens": 329,
+  "elapsed_seconds": 2.094
+}

@@ -1,0 +1,79 @@
+{
+  "case": "898c474a9d7d",
+  "repeat": 1,
+  "arm": "C4",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 복사본을 수정한 뒤 원본 값을 반환합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base['nested']에 'limit' 키가 있는 딕셔너리를 전달해 adjust를 호출하는 경우",
+        "consequence": "base['nested']에 'limit' 키가 있는 딕셔너리를 전달하면, 3줄은 복사본 result['nested']['limit']만 9로 바꾸고 4줄은 원본 base['nested']['limit']을 반환하므로 반환값은 9가 아니라 원본의 기존 limit 값입니다.",
+        "assumptions": [],
+        "title": "복사본을 수정한 뒤 원본 값을 반환합니다",
+        "evidence": "2줄은 base['nested'].copy()로 새 딕셔너리를 만들어 result에 넣고, 3줄은 result['nested']['limit']만 9로 설정합니다. 4줄은 result가 아닌 base['nested']['limit']을 반환하므로 3줄의 변경이 반환값에 반영되지 않습니다.",
+        "suggestion": "반환값을 result['nested']['limit']으로 바꾸거나, 원본을 변경하지 않아야 한다는 계약에 맞춰 3줄의 대입 대상을 result로 유지한 채 반환도 result에서 읽도록 맞추세요.",
+        "file_path": "options.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "eb91b59bc87c42ed5e283b139ccbf03bda4f1a53483fafe7359dfc9f85cb308e"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "options.py",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄에서 base['nested']를 얕은 복사해 result에 넣고 3줄에서 복사본만 수정하지만, 4줄은 원본 base['nested']['limit']을 반환해 수정 결과가 반영되지 않습니다.",
+          "file_path": "options.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d"
+}

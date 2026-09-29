@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-44af6707b4e8-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "44af6707b4e8",
+  "at": "2026-09-29T08:43:26.473141+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`로 값을 선택하는 변경을 검토했습니다. 명시된 계약상 None만 부재를 의미하므로, falsy 값이 기본값으로 대체되는 동작 차이가 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value가 None이 아닌 falsy 값(예: 0, \"\", False, 빈 컬렉션)일 때 choose를 호출하는 경우",
+        "consequence": "or 연산이 falsy를 부재로 취급하여 명시적으로 전달된 값이 default로 대체되므로, 계약의 '명시적으로 제공된 모든 값 보존'이 위반됩니다.",
+        "assumptions": [],
+        "title": "falsy 값이 기본값으로 대체되어 명시 값이 보존되지 않습니다",
+        "evidence": "2줄은 `value or default`를 반환하므로 value가 falsy이면 default가 반환됩니다. 계약은 None만 부재로 규정합니다.",
+        "suggestion": "`return default if value is None else value`처럼 None 여부를 명시적으로 검사하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "input_tokens": 4738,
+  "output_tokens": 294,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4604,
+  "response_sha256": "d73aa1c5b4e872346fc803d940d5356b04c20dc079cff41bc7d7dd8e0d581301",
+  "elapsed_seconds": 2.204
+}

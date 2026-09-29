@@ -1,0 +1,39 @@
+{
+  "key": "bridge-E12-0d5e36006ab7-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:49.399965+00:00",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "input_bytes": 487,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "async 검사 함수를 await 없이 조건에 사용해 허용/거부 판정이 항상 허용으로 귀결되는 접근 제어 결함을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "check가 async이고 boolean으로 resolve되는 계약대로 access(check)를 호출할 때",
+        "consequence": "check()는 Promise 객체를 반환하며 Promise는 resolve 값과 무관하게 항상 truthy이므로, 2줄의 조건은 false로 평가될 수 없고 check가 false를 resolve해도 'allowed'가 반환되어 거부 경로가 실행되지 않습니다.",
+        "assumptions": [],
+        "title": "await 누락으로 인한 접근 제어 우회",
+        "evidence": "1줄은 check가 async 계약임을, behavior contract는 check가 boolean으로 resolve되고 true일 때만 허용해야 함을 명시합니다. 2줄은 await 없이 check()의 반환값(Promise)을 조건으로 사용하므로 resolve 값이 판정에 반영되지 않습니다.",
+        "suggestion": "2줄을 `if (await check()) return 'allowed';`로 바꿔 resolve된 boolean을 비교하도록 하고, 거부 시 'denied' 경로가 실제로 실행되는지 확인하세요."
+      }
+    ],
+    "limitations": "제공된 4줄의 함수와 check의 계약 설명만 검토했으며, check 구현과 실제 호출부, 테스트 실행은 제공되지 않아 런타임 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "c56e3b1e5130b84fcc14d28a37796e770f53175165e0f38c955907ede6969b24",
+  "input_tokens": 5160,
+  "output_tokens": 593,
+  "elapsed_seconds": 3.719
+}

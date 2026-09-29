@@ -1,0 +1,48 @@
+{
+  "key": "adaptive_holdout-E14-898c474a9d7d-r2-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:00.663988+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "9d6551702ffafe8a8afa7cf5c45bac7a41f1e4e8c52bb7edddc91064f8b706a8",
+  "input_bytes": 1796,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "adjust는 base의 중첩 딕셔너리를 얕은 복사한 뒤 복사본의 limit만 9로 바꾸고, 원본 base['nested']['limit']을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "2줄의 base['nested'].copy()는 별도 중첩 딕셔너리를 만들지만, 3줄은 그 복사본의 limit만 9로 설정합니다. 4줄은 원본 base['nested']['limit']을 반환하므로 호출자는 변경된 값 9가 아니라 원래 값 1을 받습니다.",
+        "assumptions": [],
+        "title": "복사본을 수정한 뒤 원본 값을 반환해 변경이 반영되지 않습니다",
+        "evidence": "2줄에서 result['nested']는 base['nested']의 복사본이 되고, 3줄은 result['nested']['limit']만 9로 바꿉니다. 4줄은 base['nested']['limit']을 반환하므로 수정된 result가 아닌 원본을 읽습니다.",
+        "suggestion": "반환할 대상이 수정된 값이라면 4줄에서 result['nested']['limit']을 반환하세요. 원본 보존이 목적이라면 3줄의 수정 대상과 4줄의 반환 대상을 일치시키세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개와 단일 프로브 호출만 검토했으며, 실제 실행 검증이나 다른 호출부의 기대 계약은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "82356a5b0f462dc244fc232dd834676cb115c47dfd975bb11bb32e6832fa15ce",
+  "input_tokens": 5473,
+  "output_tokens": 448,
+  "elapsed_seconds": 2.969
+}

@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-2eda524faeac-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:41.553749+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "e159307c1e32f20d1bb253119870caea832cc6c91b1b7920fb12feee1a8f8b84",
+  "input_bytes": 635,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses `if (await check())`, so the resolved value is coerced to boolean by the `if`; a resolved `false` yields 'denied' and a resolved `true` yields 'allowed', matching the stated contract.",
+      "Probe p1 (`check` resolves false) is predicted to return 'denied'; probe p2 (`check` resolves true) is predicted to return 'allowed'.",
+      "No static findings are supplied and no defect is observable in the four provided lines relative to the behavior contract.",
+      "The function does not validate that `check` is a function or that its resolution is a boolean; a non-boolean truthy/falsy resolution would be coerced by the `if` rather than rejected, but the contract only specifies boolean resolution.",
+      "No failing input is identifiable from the supplied source for the stated contract; the only changed line (line 2) is consistent with the contract."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6685b6010248687ce37726a1e32440c2935d8898878ff76441f3607ae688c236",
+  "input_tokens": 357,
+  "output_tokens": 197,
+  "elapsed_seconds": 1.421
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R2-aa5d6b234f6b-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:47.484913+00:00",
+  "input_hash": "04bd4eeda263fd5936b78bb124d18e9cc449bf659bcd09a967af0b3d9107e7ab",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"bucket을 생략한 호출이 두 번 이상 발생하면 첫 호출에서 append된 항목이 이후 생략 호출의 반환 리스트에도 누적되어, '생략 호출마다 새 bucket'이라는 명시된 동작 계약을 위반합니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"1줄의 가변 기본 인자 []가 정의 시 한 번 생성되어 생략 호출 간 공유되고, 2줄의 append가 이를 변경하여 명시된 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4037,
+  "output_tokens": 176,
+  "seconds": 1.234
+}

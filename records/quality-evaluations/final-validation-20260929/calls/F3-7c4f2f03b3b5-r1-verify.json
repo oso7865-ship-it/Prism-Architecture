@@ -1,0 +1,12 @@
+{
+  "key": "F3-7c4f2f03b3b5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:45.441187+00:00",
+  "input_hash": "f940eb4a42103b2b17c0cf65e63e5ea7d88d4de39a2117d4c4c4a56608bfc768",
+  "system_hash": "767b90b6d7f1d51d632b66f8adca71d006b8523368e0baf7d407b6047ec905f3",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"save가 호출되면 'saved'가 주입된 logger.info가 아니라 표준 출력으로 기록되어 팀 로깅 규칙을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 print('saved')가 주입된 logger를 사용하지 않아 s1 규칙 위반이 확인됩니다.\"}]}",
+  "input_tokens": 4897,
+  "output_tokens": 141,
+  "seconds": 1.375
+}

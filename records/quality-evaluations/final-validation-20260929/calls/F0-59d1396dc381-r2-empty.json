@@ -1,0 +1,12 @@
+{
+  "key": "F0-59d1396dc381-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:56:22.185787+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 계약대로 원본 value를 그대로 반환하며, line 2의 max(value, 0) 결과는 사용되지 않는 죽은 계산입니다. 반환 동작에는 영향이 없어 동작 결함은 없습니다.\", \"issues\": [], \"limitations\": \"line 2의 adjusted는 반환에 사용되지 않아 계약상 요구되지 않는 계산이지만, 반환값 자체는 계약과 일치하므로 결함으로 보지 않았습니다. 호출자 정보는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"value를 그대로 반환하여 음수 포함 원본 유지 계약과 일치함을 확인. line 2의 max 결과는 미사용이나 반환 동작에 영향 없음.\"}]}",
+  "input_tokens": 3495,
+  "output_tokens": 198,
+  "seconds": 1.437
+}

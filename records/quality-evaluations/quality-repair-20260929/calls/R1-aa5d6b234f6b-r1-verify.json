@@ -1,0 +1,15 @@
+{
+  "key": "R1-aa5d6b234f6b-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:56.499444+00:00",
+  "input_hash": "fbd13009173770f970ec5837246b2fe43deeedcab64988a435fcbdc7ae8391bf",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"bucket을 생략한 collect 호출이 반복되면 함수 정의 시 생성된 동일한 기본 리스트가 재사용되어, 이전 호출에서 append된 항목이 이후 반환값에 계속 누적됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"1행의 가변 기본 인자 []가 호출 간 공유되어, bucket 생략 시 이전 항목이 누적됩니다.\"}]}",
+  "input_tokens": 3832,
+  "output_tokens": 150,
+  "seconds": 1.391
+}

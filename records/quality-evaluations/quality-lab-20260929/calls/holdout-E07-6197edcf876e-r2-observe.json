@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-6197edcf876e-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:37.099859+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "d37d92043b3a4ff2aba34ebebb4c290aeab13c8eb15d2d3a00083cd755bea0ad",
+  "input_bytes": 644,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a TypeScript file defining type User with an optional profile containing a required name string.",
+      "Function name takes a User and returns user.profile?.name ?? 'Unknown'.",
+      "Line 3 is the only changed line; it uses optional chaining and nullish coalescing.",
+      "For probe p1 name({}), profile is undefined so the expression yields 'Unknown'.",
+      "For probe p2 name({profile: {name: \"\"}}), name is an empty string, which is not nullish, so '' is returned.",
+      "No static findings are reported and no authorization or state-mutation logic is present."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b9085364532fdb827db89b19e468a832941a3b77423985a11db6f8cc7989f3dd",
+  "input_tokens": 363,
+  "output_tokens": 133,
+  "elapsed_seconds": 1.438
+}

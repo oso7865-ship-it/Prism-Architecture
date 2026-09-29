@@ -1,0 +1,15 @@
+{
+  "key": "B0-898c474a9d7d-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:46.231836+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "c1b104d7a2b4812dac7ace263e24deb30f34e82fdbc2b3c4991cd5412a7e9d0c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경 라인은 base를 얕게 복사한 뒤 nested를 별도로 복사하여 호출자의 base를 보존하려는 의도로 보이며, 이 의도는 코드상 일관되게 구현되어 있습니다. 다만 반환값이 복사본이 아닌 원본 base의 값을 읽는 점은 동작상 확인이 필요합니다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 2, \"severity\": \"INFO\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2, 3, 4], \"trigger\": \"adjust(base) 호출 시 base['nested']가 dict이고 'limit' 키가 존재하는 경우.\", \"consequence\": \"result['nested']['limit']는 9로 설정되지만 반환값은 base['nested']['limit']이므로 원본 값이 반환됩니다. 호출자가 복사본의 limit(9)을 기대한다면 반환값이 기대와 다를 수 있습니다.\", \"assumptions\": [\"base['nested']는 dict이며 'limit' 키가 존재한다.\"], \"title\": \"복사본을 수정한 뒤 원본 값을 반환함\", \"evidence\": \"2행에서 result는 base의 얕은 복사본과 nested의 복사본으로 구성되고, 3행에서 result['nested']['limit']을 9로 변경하지만 4행은 base['nested']['limit']을 반환합니다.\", \"suggestion\": \"복사본의 값을 반환하려는 의도라면 4행을 result['nested']['limit']으로 바꾸고, 원본 값을 반환하려는 의도라면 3행의 수정이 반환값에 영향을 주지 않음을 명확히 하는 주석이나 테스트를 추가하세요.\"}], \"limitations\": \"base['nested']의 실제 타입과 'limit' 키 존재 여부, 호출자의 기대 반환값은 제공되지 않았습니다. 제공된 라인만으로 판단했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 2, \"outcome\": \"FINDING\", \"observation\": \"base를 얕게 복사하고 nested를 별도 복사하여 원본 보존 의도는 구현되었으나, 3행에서 복사본을 수정한 뒤 4행에서 원본 base의 값을 반환하여 반환값이 수정 결과와 다를 수 있음을 확인했습니다.\"}]}",
+  "input_tokens": 3180,
+  "output_tokens": 556,
+  "seconds": 3.156
+}

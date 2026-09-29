@@ -1,0 +1,27 @@
+{
+  "key": "bridge-C0-0c543f7d32dd-r1-verify",
+  "arm": "C0",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:20.105080+00:00",
+  "system_sha256": "dfe93ffd977769bf9583395d5cecb1d53959cb961eaf417bd55d8b297305122b",
+  "payload_sha256": "f040bd8a0fd100c03784ca027d2fdebf01d907021b8b480b9f7d46572944667c",
+  "input_bytes": 1765,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "root='/srv/data', resolved='/srv/database/secret'일 때 startswith가 True를 반환하여 root의 하위가 아닌 형제 디렉터리 경로가 허용됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "89490fcd55aa77ef803a98168c73e4e19acc2e1df5816f5bb6fc9252a2216519",
+  "input_tokens": 3490,
+  "output_tokens": 86,
+  "elapsed_seconds": 1.156
+}

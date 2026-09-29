@@ -1,0 +1,54 @@
+{
+  "key": "development-E01c-aa5d6b234f6b-r2-final",
+  "arm": "E01c",
+  "phase": "final",
+  "at": "2026-09-29T07:15:08.020513+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "dd6012858cbeb48d8780c1f0a147ff91e904a28a32d3664beef3e32070bd13b9",
+  "input_bytes": 624,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 생략 호출 간 상태가 공유되어 계약과 다른 결과가 나옵니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간 공유되어 두 번째 호출 결과에 이전 항목이 누적됩니다. 계약이 요구하는 '생략 시 매번 새 bucket'과 다릅니다.",
+        "assumptions": [],
+        "title": "기본 인자 리스트가 호출 간 공유됩니다",
+        "evidence": "1줄의 bucket=[]는 함수 정의 시 한 번만 평가되어 모든 생략 호출이 같은 리스트를 사용하고, 2줄의 append가 그 리스트를 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[1,2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "1edfe4b02cb61a2442552ab7ad0d846b537492aebe1b23ba1f825f3c4132e5d1",
+  "input_tokens": 5194,
+  "output_tokens": 336,
+  "elapsed_seconds": 2.407
+}

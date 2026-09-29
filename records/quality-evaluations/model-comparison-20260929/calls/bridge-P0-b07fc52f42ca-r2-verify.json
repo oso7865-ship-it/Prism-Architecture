@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-b07fc52f42ca-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "b07fc52f42ca",
+  "at": "2026-09-29T08:45:32.977041+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "e6e5be44b68e2d64201df938c9a103574574dc1639f126c42db05925fcb55748",
+  "payload_sha256": "a03af68a2e0d291659adaf287888d47cd6661c54145896b8b6db364b9e5e3115",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "count가 0이면 `count || 10`이 10을 반환하여 계약상 유효한 0 제한이 무시됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3015,
+  "output_tokens": 86,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2176,
+  "response_sha256": "4448cb6c870864d7ef46530a5bb421094f555d912e211fbbc5a85554b766faff",
+  "elapsed_seconds": 2.485
+}

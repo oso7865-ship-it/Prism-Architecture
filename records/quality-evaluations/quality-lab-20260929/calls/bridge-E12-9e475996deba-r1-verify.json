@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-9e475996deba-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:34.692002+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "bc6fc80ced2b495229e2eeefc31eb928be47f3c10973aa020ba8002511b2f3d6",
+  "input_bytes": 1712,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "values가 빈 리스트이면 sum(values)는 0, len(values)는 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하여, 빈 입력의 평균을 0.0으로 규정한 계약을 충족하지 못합니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "bc41c56c219ba0cf0f5c31786f8cd2ed6b276e28a41a29e05a9e9b5a1df7e4c1",
+  "input_tokens": 3168,
+  "output_tokens": 189,
+  "elapsed_seconds": 1.391
+}

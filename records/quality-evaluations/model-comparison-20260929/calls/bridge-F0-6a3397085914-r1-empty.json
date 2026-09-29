@@ -1,0 +1,51 @@
+{
+  "key": "bridge-F0-6a3397085914-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "6a3397085914",
+  "at": "2026-09-29T08:41:05.285438+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "581c977c1e5a9d7e6d22c04d129f67528bde5a2af403d540f43cbfb73a2e4d97",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 변경된 반환식 `len(body)`는 UTF-8 인코딩 기준 바이트 수를 반환한다는 계약과 불일치할 수 있습니다. str 입력 시 문자 수를 반환하므로 계약 위반 가능성이 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "body가 str이고 ASCII 이외 문자(예: 한글, 이모지)를 포함할 때 `len(body)`가 실행되면",
+        "consequence": "문자 수가 반환되어 UTF-8 바이트 수와 달라지고, 계약상 'wire bytes'를 기대하는 호출자에서 크기 계산이 과소평가될 수 있습니다.",
+        "assumptions": [
+          "계약의 'UTF-8'이 str 입력에도 바이트 수를 요구한다는 해석"
+        ],
+        "title": "str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환",
+        "evidence": "line 1은 `def wire_size(body):`로 str/bytes를 받는다고 명시되어 있고, line 2의 변경된 `return len(body)`는 str에 대해 문자 수를 반환합니다. UTF-8에서 비-ASCII 문자는 1바이트를 초과하므로 계약과 불일치합니다.",
+        "suggestion": "str인 경우 `len(body.encode('utf-8'))`를, bytes인 경우 `len(body)`를 반환하도록 분기하거나, 계약을 문자 수 기준으로 명확히 수정하세요."
+      }
+    ],
+    "limitations": "호출자와 실제 입력 타입 분포는 제공되지 않았습니다. 계약이 str에 대해 문자 수를 의도한 것인지 확인이 필요합니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "FINDING",
+        "observation": "변경된 `len(body)`는 str 입력에서 UTF-8 바이트 수가 아닌 문자 수를 반환해 계약과 불일치할 수 있음."
+      }
+    ]
+  },
+  "input_tokens": 3127,
+  "output_tokens": 485,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "3be30ff1af76318d44df846f2382e6eddd55c13dc3d7a97b75c6915e4df9aa4d",
+  "elapsed_seconds": 3.172
+}

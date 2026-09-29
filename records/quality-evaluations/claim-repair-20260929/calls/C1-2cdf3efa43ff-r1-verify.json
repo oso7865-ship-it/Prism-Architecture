@@ -1,0 +1,12 @@
+{
+  "key": "C1-2cdf3efa43ff-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:39:47.195688+00:00",
+  "input_hash": "c226f89cd8f7da7ea6b7d5308a2ac8ea942e763d21f5180365489b7cfc2d4ebc",
+  "system_hash": "39fee3cc195edae0c4156237b97026508e0f93d6505af9fdb174d8c561e1bf36",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"amount와 count의 곱이 int 범위를 초과하지만 long 범위에 들어오는 경우(예: 100000 * 100000), int 곱셈이 먼저 수행되어 오버플로된 값이 long으로 확대 변환되어 반환되므로 실제 곱과 다른 값이 반환됩니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3행에서 int * int를 먼저 수행한 뒤 long으로 반환하므로, 계약상 보존되어야 하는 int 범위 초과 곱이 오버플로됩니다.\"}],\"new_findings\":[]}",
+  "input_tokens": 4352,
+  "output_tokens": 176,
+  "seconds": 1.625
+}

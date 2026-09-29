@@ -1,0 +1,15 @@
+{
+  "key": "B0-44af6707b4e8-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:10.151098+00:00",
+  "input_hash": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"`value or default`로 대체값을 선택하는 변경을 검토했습니다. 명시된 계약상 None만 부재를 의미하므로, falsy 값이 제공된 경우에도 default로 대체되는 동작 차이가 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value에 0, 빈 문자열, 빈 리스트 등 falsy이지만 None이 아닌 값이 전달될 때\",\"consequence\":\"or 연산이 falsy 값을 부재로 취급해 default가 반환되므로, 명시적으로 제공된 값이 보존되지 않고 계약과 어긋납니다.\",\"assumptions\":[],\"title\":\"None이 아닌 falsy 값도 default로 대체됩니다\",\"evidence\":\"2줄은 `value or default`를 반환합니다. or는 value가 falsy이면 default를 선택하므로, 계약의 'None만 부재' 조건과 달리 0이나 빈 문자열 같은 제공 값도 대체됩니다.\",\"suggestion\":\"`return default if value is None else value`처럼 None 여부를 명시적으로 검사해 falsy 값을 보존하세요.\"}],\"limitations\":\"제공된 함수 한 줄만 검토했으며 호출부와 실제 입력 유형, 테스트 실행은 확인하지 않았습니다.\"}",
+  "input_tokens": 4738,
+  "output_tokens": 308,
+  "seconds": 2.109
+}

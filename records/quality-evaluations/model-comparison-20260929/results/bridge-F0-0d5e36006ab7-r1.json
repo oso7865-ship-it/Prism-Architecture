@@ -1,0 +1,104 @@
+{
+  "key": "bridge-F0-0d5e36006ab7-r1",
+  "case": "0d5e36006ab7",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "비동기 권한 검사 함수 `check`를 조건문에서 직접 호출하는 변경을 검토했습니다. 제공된 계약상 `check`는 Promise를 반환하므로, 이 조건은 해석된 boolean이 아니라 Promise 객체의 truthy 여부를 평가합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`check`가 async 함수여서 호출 시 항상 Promise를 반환하는 상태에서 `access`를 호출할 때",
+        "consequence": "`check`가 async라 호출 시 Promise를 반환하므로 `if (check())`는 항상 truthy인 Promise 객체를 평가하여, `check`가 false로 resolve되어도 'allowed'가 반환됩니다.",
+        "assumptions": [],
+        "title": "async 권한 검사 결과를 await하지 않아 항상 허용됩니다",
+        "evidence": "제공된 계약에 따르면 `check`는 async이며 boolean으로 resolve됩니다. 2줄은 `await` 없이 `check()`의 반환값(Promise)을 조건으로 사용하므로 resolve 값이 아닌 Promise 객체의 truthiness가 평가됩니다.",
+        "suggestion": "`if (await check())`로 resolve된 boolean을 평가하도록 수정하세요. `access`가 async이므로 await 사용이 가능합니다."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: async 권한 검사 결과를 await하지 않아 항상 허용됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`check`가 async 함수여서 호출 시 항상 Promise를 반환하는 상태에서 `access`를 호출할 때",
+        "consequence": "`check`가 async라 호출 시 Promise를 반환하므로 `if (check())`는 항상 truthy인 Promise 객체를 평가하여, `check`가 false로 resolve되어도 'allowed'가 반환됩니다.",
+        "assumptions": [],
+        "title": "async 권한 검사 결과를 await하지 않아 항상 허용됩니다",
+        "evidence": "제공된 계약에 따르면 `check`는 async이며 boolean으로 resolve됩니다. 2줄은 `await` 없이 `check()`의 반환값(Promise)을 조건으로 사용하므로 resolve 값이 아닌 Promise 객체의 truthiness가 평가됩니다.",
+        "suggestion": "`if (await check())`로 resolve된 boolean을 평가하도록 수정하세요. `access`가 async이므로 await 사용이 가능합니다.",
+        "file_path": "access.js",
+        "key": "fed94689005325274660a1a395a30f81156e257e0386926845664d53ef7bd738"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "access.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8673,
+  "output_tokens": 451,
+  "elapsed_seconds": 3.344
+}

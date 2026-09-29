@@ -1,0 +1,26 @@
+{
+  "key": "development-E07-aa5d6b234f6b-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:10:53.062015+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "dd6012858cbeb48d8780c1f0a147ff91e904a28a32d3664beef3e32070bd13b9",
+  "input_bytes": 624,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Function `collect` takes `item` and a default `bucket=[]` mutable default argument.",
+      "Body appends `item` to `bucket` and returns the same `bucket` object.",
+      "The stated behavior contract expects each omitted-bucket call to receive a fresh bucket.",
+      "Mutable default arguments are evaluated once at function definition, so the default list is shared across calls that omit `bucket`.",
+      "Probe p1 calls `collect(1)` then `collect(2)` without a bucket and returns snapshots, which would expose shared state if the default is reused.",
+      "Probe p2 passes an explicit list `[9]`, which is mutated in place and returned, matching the explicit-bucket part of the contract."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a4b408faa1f08efe3ba4976596d08d598867b002c95d902846452a4b48b36e8b",
+  "input_tokens": 350,
+  "output_tokens": 156,
+  "elapsed_seconds": 1.313
+}

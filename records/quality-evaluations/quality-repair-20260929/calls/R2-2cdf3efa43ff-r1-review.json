@@ -1,0 +1,15 @@
+{
+  "key": "R2-2cdf3efa43ff-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:18:54.445845+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Price.total의 곱셈 반환식이 변경된 한 줄을 검토했습니다. 두 입력이 음수가 아닌 int이고 곱이 long 범위에 들어간다는 계약이 제공되어, int 곱셈의 오버플로 위험이 있는지 확인했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count가 모두 int이고 그 곱이 Integer.MAX_VALUE를 초과할 때 total을 호출하는 경우\",\"consequence\":\"3줄의 곱셈이 int 산술로 수행된 뒤 long으로 변환되므로, int 범위를 넘는 곱은 오버플로되어 잘못된 값이 long으로 반환됩니다. 예를 들어 amount=100000, count=100000이면 기대값 10000000000 대신 int 오버플로 결과가 반환됩니다.\",\"assumptions\":[],\"title\":\"int 곱셈 후 long 변환으로 큰 곱이 오버플로됩니다\",\"evidence\":\"2줄의 매개변수는 int이고 3줄은 두 int를 곱한 결과를 long 반환 타입으로 넘깁니다. 곱셈은 int로 평가된 후 확장되므로, 계약이 보장하는 '곱이 long에 들어감' 조건에서도 int 범위를 넘는 곱은 정확히 보존되지 않습니다.\",\"suggestion\":\"곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count). 이렇게 하면 두 입력이 음수가 아닌 int인 계약과 long 범위 내 곱을 그대로 만족합니다.\"}],\"limitations\":\"제공된 단일 파일과 변경 한 줄만 검토했으며, 실제 호출자나 입력 분포, 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4874,
+  "output_tokens": 428,
+  "seconds": 2.984
+}

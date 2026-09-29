@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-65d1d2fad0d4-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:47.318404+00:00",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "5d38253ff5334987d9e2f11a01cf34d1f396a968e022f586597f26abe73109cf",
+  "input_bytes": 1774,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "left = Integer.MIN_VALUE, right = 1처럼 차가 int 범위를 벗어나면 left - right가 양수(2147483647)로 넘쳐, left < right임에도 양수가 반환되어 'left < right이면 음수'라는 비교 계약이 위반됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "67f4f0034bf5e4aa4f6b9f7511d9ef8386d2cdce62ab68eaedb32332e98274a4",
+  "input_tokens": 3305,
+  "output_tokens": 416,
+  "elapsed_seconds": 2.453
+}

@@ -1,0 +1,40 @@
+{
+  "key": "bridge-C0-0c47bb65c1ee-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:38.872343+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab",
+  "input_bytes": 509,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base.copy()는 얕은 복사이므로 중첩 딕셔너리를 수정하면 원본 base가 변경됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust(base)를 호출하면 2줄의 base.copy()가 최상위 딕셔너리만 복사하고, 3줄에서 result['nested']['limit']을 9로 설정할 때 result와 base가 동일한 중첩 딕셔너리 객체를 공유합니다.",
+        "consequence": "3줄의 대입이 호출자의 base['nested']['limit']도 9로 변경하여 4줄이 원래 값이 아닌 9를 반환하고, 'Preserve the caller's base without mutation' 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 중첩 딕셔너리 수정이 원본 base에 반영됩니다",
+        "evidence": "2줄의 base.copy()는 얕은 복사로 중첩 객체를 공유하며, 3줄에서 공유된 중첩 딕셔너리를 변경하고 4줄에서 base의 중첩 값을 반환합니다.",
+        "suggestion": "copy.deepcopy(base)로 깊은 복사를 수행하거나, 중첩 딕셔너리도 별도로 복사한 뒤 수정하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ae8bba2677e1859c9510c2ed3b9df9416cebf6f65f02312b20ad6f25b921487c",
+  "input_tokens": 4792,
+  "output_tokens": 366,
+  "elapsed_seconds": 2.672
+}

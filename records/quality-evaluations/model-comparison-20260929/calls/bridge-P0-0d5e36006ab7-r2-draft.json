@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-0d5e36006ab7-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "0d5e36006ab7",
+  "at": "2026-09-29T08:45:04.989302+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "check()의 결과에 따라 접근을 허용하거나 거부하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "check()가 Promise를 반환하는 비동기 함수일 때 access를 호출하는 경우",
+        "consequence": "check()의 실제 불리언 결과를 기다리지 않고 Promise 객체 자체를 truthy로 평가하여 항상 'allowed'를 반환합니다. 이는 접근 제어 우회로 이어집니다.",
+        "assumptions": [],
+        "title": "비동기 check()의 결과를 기다리지 않아 접근 제어가 우회됩니다",
+        "evidence": "2줄에서 check()의 반환값을 await 없이 if 조건에 사용합니다. check가 async 함수이므로 반환값은 Promise이며, Promise 객체는 항상 truthy이므로 조건이 항상 참이 됩니다.",
+        "suggestion": "if (await check())와 같이 check()의 결과를 await하여 실제 불리언 값으로 평가하세요."
+      }
+    ],
+    "limitations": "제공된 코드만 검토했으며 check()의 실제 구현과 호출부는 확인하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5132,
+  "output_tokens": 321,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5120,
+  "response_sha256": "0eee775b7d2429753bba4817204133e29413aa41b29b312faf14735aa44c01bb",
+  "elapsed_seconds": 6.031
+}

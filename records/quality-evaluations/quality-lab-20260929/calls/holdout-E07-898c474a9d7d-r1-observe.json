@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-898c474a9d7d-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:04.026183+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "input_bytes": 620,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a dict `base` with a nested dict under key 'nested'; probe call passes {'nested': {'limit': 1}}.",
+      "Line 2 builds `result` via shallow dict unpacking plus `base['nested'].copy()`, a shallow copy of the nested dict.",
+      "Line 3 mutates `result['nested']['limit']` to 9, affecting only the copied nested dict.",
+      "Line 4 returns `base['nested']['limit']`, reading from the original caller dict rather than `result`.",
+      "The stated behavior contract requires preserving the caller's `base` without mutation.",
+      "No static findings are reported and no authorization or external I/O boundary appears in the shown code."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "25f5d2a69a90615e5436e148ebbcb5ec25874999ed68e33ae24f7d3a8c4a93b9",
+  "input_tokens": 358,
+  "output_tokens": 156,
+  "elapsed_seconds": 1.313
+}

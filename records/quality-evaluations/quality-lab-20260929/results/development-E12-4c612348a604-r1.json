@@ -1,0 +1,71 @@
+{
+  "key": "development-E12-4c612348a604-r1",
+  "case": "4c612348a604",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "n=0일 때 range의 step 인자가 0이 되어 ValueError가 발생하는 변경을 검토했습니다. 양수 n에 대해서는 계약대로 [0]을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n=0으로 indices를 호출할 때",
+        "consequence": "range(0, 0, 0)의 step이 0이므로 range() arg 3 must not be zero라는 ValueError가 발생해, 계약이 요구하는 빈 리스트 대신 예외가 전파됩니다.",
+        "assumptions": [],
+        "title": "n=0에서 step 0으로 인해 ValueError가 발생합니다",
+        "evidence": "2줄은 세 번째 인자(step)로 n을 그대로 전달하는데, 제공된 계약은 n이 음이 아닌 정수이고 n=0이면 []를 반환해야 한다고 명시합니다. n=0이면 step이 0이 되어 range 생성 자체가 실패합니다.",
+        "suggestion": "n이 0인 경우를 먼저 분기해 빈 리스트를 반환하고, 그 외에는 [0]을 반환하도록 하거나 step을 조건부로 지정하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "ValueError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5187,
+  "output_tokens": 524,
+  "elapsed_seconds": 2.907,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

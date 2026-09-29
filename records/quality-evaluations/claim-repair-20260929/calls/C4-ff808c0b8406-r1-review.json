@@ -1,0 +1,12 @@
+{
+  "key": "C4-ff808c0b8406-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:48.142251+00:00",
+  "input_hash": "7175cd85d770a42b11b9ce19a40624892149770ee0541ba0433cda042a3ca76f",
+  "system_hash": "46f0cd9956d7617606f7a64c035c62cfdad7ef20333c38738f958c14a3754b69",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"submit 함수가 store.save(value)의 Promise를 기다리지 않고 true를 반환하도록 변경된 점을 검토했습니다. 제공된 계약상 저장 완료 후 true를 반환해야 하므로, 현재 코드는 이를 위반할 수 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"submit이 호출되어 store.save(value)가 Promise를 반환할 때\",\"consequence\":\"save의 완료를 기다리지 않고 3줄에서 true가 반환되어, 저장이 끝나기 전에 호출자가 성공으로 처리할 수 있습니다.\",\"assumptions\":[],\"title\":\"save Promise를 기다리지 않고 true를 반환합니다\",\"evidence\":\"1줄은 async 함수이고, 2줄의 store.save(value)는 계약에 따라 Promise를 반환하지만 await 없이 호출되며, 3줄에서 즉시 true를 반환합니다.\",\"suggestion\":\"2줄을 await store.save(value);로 변경하여 저장 완료 후 true를 반환하도록 하세요.\",\"contract_quote\":\"Must finish persistence before returning true. save returns a Promise.\"}],\"limitations\":\"store.save의 실제 구현과 호출자는 제공되지 않아 저장 실패 시의 처리 방식은 확인하지 못했습니다.\"}",
+  "input_tokens": 4525,
+  "output_tokens": 305,
+  "seconds": 2.016
+}

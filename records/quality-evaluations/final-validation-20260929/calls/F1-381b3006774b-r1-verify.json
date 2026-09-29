@@ -1,0 +1,12 @@
+{
+  "key": "F1-381b3006774b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:58:14.298947+00:00",
+  "input_hash": "18ef076f6dad27096ae4ab5ae07f21fb89224a27b80551a2786b7130e7965ed6",
+  "system_hash": "5d0b65565f6b6110269eac27672e595479de9e18ceb10059057c02d8a2d82c76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"음수 value가 전달되면 4줄에서 원본 음수 value가 반환되어, 계약이 요구하는 Math.max(value, 0) 결과와 달라집니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3줄에서 Math.max(value, 0)을 계산하지만 4줄은 원본 value를 반환하여 음수 입력에서 계약과 불일치합니다.\"}]}",
+  "input_tokens": 4583,
+  "output_tokens": 142,
+  "seconds": 1.297
+}

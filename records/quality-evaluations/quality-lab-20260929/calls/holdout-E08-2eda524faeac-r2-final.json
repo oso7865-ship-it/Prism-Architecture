@@ -1,0 +1,35 @@
+{
+  "key": "holdout-E08-2eda524faeac-r2-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:17:43.002702+00:00",
+  "system_sha256": "99b285a15cd6dc42ca7a1f3da6dc36ba033045e3e721a4af4afd3e6c690fa789",
+  "payload_sha256": "3e1d5fc749abba44a0d1f75d7877205829013fea37aad1e393c4d45cb437fda8",
+  "input_bytes": 1531,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 권한 확인 함수 `access`의 변경된 2번 줄을 보안 관점에서 검토했습니다. `await check()`의 이행값을 `if`가 불리언으로 강제 변환하므로, 계약대로 `true`면 'allowed', `false`면 'denied'를 반환합니다. 제공된 4개 줄에서 권한 우회나 주입 등 구체적인 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "`check`의 실제 구현과 호출부, 반환값의 신뢰 경계는 제공되지 않아 확인하지 못했습니다. 제공된 코드만 정적으로 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"denied\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "bc28aea9e40f6e0b8b4408669b413bdc5840da32580c6cfa11418a21412b67ba",
+  "input_tokens": 5756,
+  "output_tokens": 222,
+  "elapsed_seconds": 1.75
+}

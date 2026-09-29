@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-6a3397085914-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "6a3397085914",
+  "at": "2026-09-29T08:41:10.618746+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "18c94d358e53fbf54805c463d8c2edae7120ee516913475008b1d796547298e6",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "body가 str 타입이고 멀티바이트 문자가 포함된 경우, len(body)는 문자 수를 반환하여 UTF-8 인코딩 시 실제 전송 바이트 수보다 작은 값을 반환합니다."
+      }
+    ]
+  },
+  "input_tokens": 3026,
+  "output_tokens": 101,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "ed068ce70387e5db9c57db4d21b83084322306b8a9e30776a86bbc45123278f5",
+  "elapsed_seconds": 2.063
+}

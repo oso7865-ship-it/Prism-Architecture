@@ -1,0 +1,15 @@
+{
+  "key": "R3-e039b4bf0e2d-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:42.469291+00:00",
+  "input_hash": "1cb3b9d388a25bf2525ae2e2c129e542741f22ecaaea233b684558b1378d7831",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 10줄이 환경 변수 조회 방식으로 변경되었고, 빈 문자열 처리와 merge_setting을 통한 세션 값 병합 경로를 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 REQUESTS_CA_BUNDLE이 없고 CURL_CA_BUNDLE이 빈 문자열(\\\"\\\")인 상태로 environment_settings(env, True)를 호출할 때\",\"consequence\":\"or 연산이 빈 문자열을 falsy로 평가해 10줄의 결과가 \\\"\\\"가 되고, merge_setting에서 session_value가 None이면 빈 문자열이 그대로 반환되어 명시적 verify=True가 유지되지 않습니다. 15줄의 계약(빈 CURL_CA_BUNDLE은 True 유지)과 16줄의 두 값 모두 빈 문자열인 경우가 이 경로에 해당합니다.\",\"assumptions\":[],\"title\":\"빈 CURL_CA_BUNDLE이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 env.get(...) or env.get(...)로 빈 문자열을 falsy 처리합니다. 15·16줄은 빈 문자열 환경에서 True가 유지되어야 함을 보여줍니다.\",\"suggestion\":\"빈 문자열을 유효한 미설정으로 취급하려면 각 값을 명시적으로 None/빈 문자열 검사한 뒤 선택하도록 10줄을 조정하세요.\"}],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과와 실제 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 5532,
+  "output_tokens": 393,
+  "seconds": 2.406
+}

@@ -1,0 +1,48 @@
+{
+  "key": "adaptive_holdout-E14-0c47bb65c1ee-r1-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:57.900113+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "93e1978aacf762ad3c025843f93fab7cb71fda9af8a9d5050cc8a79d51f80683",
+  "input_bytes": 1766,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base.copy()는 얕은 복사이므로 중첩 딕셔너리를 공유한 채 수정하여 호출자의 base가 변경됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "2줄의 얕은 복사로 result['nested']가 base['nested']와 같은 객체를 참조하므로, 3줄의 대입이 호출자의 base['nested']['limit']까지 9로 바꾸고 4줄은 9를 반환합니다.",
+        "assumptions": [],
+        "title": "얕은 복사 후 중첩 값 수정으로 호출자 입력이 변경됩니다",
+        "evidence": "2줄의 base.copy()는 최상위 컨테이너만 복사하고 중첩 딕셔너리는 공유합니다. 3줄에서 공유된 중첩 딕셔너리의 'limit'을 9로 대입하고, 4줄에서 base['nested']['limit']을 반환하므로 호출자의 base가 그대로 변경됩니다.",
+        "suggestion": "중첩 딕셔너리까지 복사하도록 copy.deepcopy(base)를 사용하거나, result['nested'] = {**base['nested']}처럼 중첩 수준을 별도로 복사한 뒤 수정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "55c03b08ca4b5520afca598738fbc62d844cf75271cdca0fcf6743febb25a73d",
+  "input_tokens": 5461,
+  "output_tokens": 421,
+  "elapsed_seconds": 2.469
+}

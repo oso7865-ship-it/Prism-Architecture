@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-a8961f6d5e20-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "a8961f6d5e20",
+  "at": "2026-09-29T08:41:25.771408+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "user_id를 문자열 결합으로 SQL 문에 직접 삽입하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 SQL 구문이 포함된 값(예: 따옴표와 조건절)이 전달될 때",
+        "consequence": "user_id가 이스케이프 없이 쿼리 문자열에 결합되어 WHERE 절이 공격자가 의도한 조건으로 변조되고, 반환된 SQL이 그대로 드라이버에 실행되어 다른 사용자 행의 조회 등 SQL 주입이 발생합니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 결합으로 SQL 주입이 가능합니다",
+        "evidence": "2줄은 user_id를 '+'로 SQL 문자열에 직접 연결하고 파라미터 튜플은 빈 값으로 반환합니다. behavior_contract에 user_id가 신뢰할 수 없는 텍스트이고 반환값이 드라이버에 직접 전달된다고 명시되어 있습니다.",
+        "suggestion": "user_id를 값으로 바인딩하도록 쿼리를 'SELECT name FROM users WHERE id = %s'로 바꾸고 파라미터 튜플에 user_id를 담아 반환하세요."
+      }
+    ],
+    "limitations": "호출부와 실제 드라이버 구현은 제공되지 않아 실행 검증은 하지 않았으며, 제공된 변경 라인만 근거로 판단했습니다."
+  },
+  "input_tokens": 5115,
+  "output_tokens": 339,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "cf7f85e3e93f4c63ce057633e84214708a51351043c1c3e7596f8a1693f82aa6",
+  "elapsed_seconds": 2.625
+}

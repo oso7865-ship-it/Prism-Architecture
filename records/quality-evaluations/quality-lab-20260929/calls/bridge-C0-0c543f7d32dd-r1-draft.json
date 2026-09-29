@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-0c543f7d32dd-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:17.509997+00:00",
+  "system_sha256": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "payload_sha256": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "input_bytes": 431,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 여부를 판정하는 변경을 검토했습니다. 문자열 접두사 비교는 경로 경계를 구분하지 못해 형제 디렉터리가 통과할 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/srv/data'이고 resolved가 '/srv/database/secret'처럼 root 문자열로 시작하지만 root의 하위가 아닌 경로일 때",
+        "consequence": "startswith가 True를 반환해 루트 밖 경로가 허용되므로, 이 함수가 접근 제어 판정에 쓰이면 경로 탈출(형제 디렉터리 접근)이 가능합니다.",
+        "assumptions": [],
+        "title": "경로 접두사 비교가 형제 디렉터리를 허용합니다",
+        "evidence": "2줄은 resolved.startswith(root)만 검사하며, 경로 구분자 경계를 확인하지 않아 '/srv/data'가 '/srv/database'를 접두사로 허용합니다.",
+        "suggestion": "root와 정확히 같거나 root + os.sep로 시작하는지 비교하도록 경계를 추가하세요(예: resolved == root or resolved.startswith(root + os.sep))."
+      }
+    ],
+    "limitations": "호출부와 root/resolved의 실제 생성·정규화 경로는 제공되지 않았으며, 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b49164e9aadbc4062ef697ab8505319352d14655e9c039dcb2fed6a4d3a190ec",
+  "input_tokens": 5099,
+  "output_tokens": 349,
+  "elapsed_seconds": 2.563
+}

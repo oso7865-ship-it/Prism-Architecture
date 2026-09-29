@@ -1,0 +1,77 @@
+{
+  "key": "development-E06-44af6707b4e8-r2",
+  "case": "44af6707b4e8",
+  "arm": "E06",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "`value or default`는 None뿐 아니라 빈 문자열·False 같은 falsy 값도 대체하므로, 명시적으로 전달된 값을 보존해야 한다는 계약과 어긋납니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "choose('', 'default') 또는 choose(False, True)처럼 falsy이지만 None이 아닌 값을 전달할 때",
+        "consequence": "`or` 연산이 falsy 값을 대체값으로 바꾸므로 빈 문자열은 'default', False는 True가 반환되어 명시적으로 제공된 값이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "falsy 값이 대체되어 명시적 입력이 보존되지 않습니다",
+        "evidence": "2줄의 `value or default`는 value가 falsy이면 default를 반환합니다. 계약은 None만 부재로 규정하므로 ''와 False는 보존되어야 합니다.",
+        "suggestion": "`return default if value is None else value`로 None만 대체하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5796,
+  "output_tokens": 463,
+  "elapsed_seconds": 3.078,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

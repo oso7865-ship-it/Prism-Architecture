@@ -1,0 +1,54 @@
+{
+  "key": "development-E02-0add10c208ec-r2",
+  "case": "0add10c208ec",
+  "arm": "E02",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "amount와 count의 곱을 long으로 계산하도록 캐스팅 위치를 변경한 코드를 검토했습니다. 계약상 두 입력이 음이 아닌 int이고 곱이 long 범위에 들어가므로, 변경된 3줄은 곱셈 전에 피연산자를 long으로 승격시켜 int 오버플로를 방지합니다.",
+    "issues": [],
+    "limitations": "제공된 파일은 Price.total 한 곳뿐이며 호출부와 테스트는 포함되지 않았습니다. 계약에 명시된 입력 범위와 long 범위 내 곱셈 조건을 전제로 정적 검토만 수행했고 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2500000000",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5782,
+  "output_tokens": 223,
+  "elapsed_seconds": 2.327,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

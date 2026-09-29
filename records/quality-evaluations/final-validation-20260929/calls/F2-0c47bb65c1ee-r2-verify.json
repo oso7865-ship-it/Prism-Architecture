@@ -1,0 +1,12 @@
+{
+  "key": "F2-0c47bb65c1ee-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:00:23.685290+00:00",
+  "input_hash": "6282a543af1fd3a616225313992e07b2ca547466674b1a1dbbe10738dacb6577",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"base가 중첩 딕셔너리를 포함할 때 base.copy()는 최상위만 복사하므로 3줄의 result['nested']['limit'] = 9가 원본 base의 중첩 딕셔너리를 변경하고, 4줄은 변경된 값 9를 반환합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄의 얕은 복사 후 3줄에서 공유 중첩 딕셔너리를 수정하여 'Preserve the caller's base without mutation' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4526,
+  "output_tokens": 172,
+  "seconds": 1.578
+}

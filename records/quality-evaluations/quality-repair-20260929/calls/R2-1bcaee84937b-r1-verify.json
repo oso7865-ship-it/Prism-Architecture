@@ -1,0 +1,15 @@
+{
+  "key": "R2-1bcaee84937b-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:37.338583+00:00",
+  "input_hash": "708a6120c8c2aa87cf12d0024bf15974631cd61690f3fc1946bf057a20f14353",
+  "system_hash": "6be146c64063d1321e8e87b68cc0abde68f280cc28bb050b05c9977938d7cfc3",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"actor가 소유자와 다른 값이어도 owner 검사 없이 item.amount가 그대로 반환되어, behavior_contract가 요구하는 비소유자 예외가 발생하지 않고 금액이 노출됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"actor 매개변수가 사용되지 않아 소유자 검사 없이 amount가 반환되며, 이는 명시된 소유자 전용 반환 계약을 위반합니다.\"}]}",
+  "input_tokens": 4319,
+  "output_tokens": 168,
+  "seconds": 1.36
+}

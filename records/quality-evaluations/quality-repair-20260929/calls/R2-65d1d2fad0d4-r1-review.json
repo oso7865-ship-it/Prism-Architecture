@@ -1,0 +1,15 @@
+{
+  "key": "R2-65d1d2fad0d4-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:18.098253+00:00",
+  "input_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Order.compare가 두 int의 차이를 그대로 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"left와 right의 차이가 int 범위를 넘는 경우(예: left = Integer.MIN_VALUE, right = 1)\",\"consequence\":\"left - right가 int 오버플로를 일으켜 부호가 뒤집힙니다. 이 경우 left < right인데도 결과가 양수가 되어 Comparator 계약(음수/0/양수 부호)이 위반되고, 정렬 결과가 잘못될 수 있습니다.\",\"assumptions\":[],\"title\":\"int 뺄셈의 오버플로로 Comparator 부호 계약이 깨질 수 있습니다\",\"evidence\":\"3줄에서 left - right를 그대로 반환하며, int 뺄셈은 범위를 넘으면 오버플로합니다.\",\"suggestion\":\"Integer.compare(left, right)를 사용하거나, 뺄셈 대신 명시적 비교로 부호를 반환하세요.\"}],\"limitations\":\"제공된 단일 클래스만 검토했으며, 실제 호출 지점과 입력 범위는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 300,
+  "seconds": 2.188
+}

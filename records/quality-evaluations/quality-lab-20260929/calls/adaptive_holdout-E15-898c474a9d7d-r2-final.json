@@ -1,0 +1,48 @@
+{
+  "key": "adaptive_holdout-E15-898c474a9d7d-r2-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:00.982277+00:00",
+  "system_sha256": "8d69e48f69155482c63908e2b325eb12509304922d6ac8d3f04563380fa1e4ff",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "input_bytes": 620,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`adjust`는 `base`를 얕게 복사한 뒤 `nested` 딕셔너리를 복사해 `limit`을 9로 설정하지만, 반환값은 복사본이 아니라 원본 `base['nested']['limit']`을 읽습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "`adjust({'nested': {'limit': 1}})`처럼 `nested`를 가진 `base`로 호출할 때",
+        "consequence": "2~3줄에서 복사본의 `limit`만 9로 바뀌고 원본 `base['nested']['limit']`은 1로 남으므로, 4줄은 변경 결과가 아닌 원본 값 1을 반환합니다.",
+        "assumptions": [],
+        "title": "복사본을 수정한 뒤 원본 값을 반환합니다",
+        "evidence": "2줄은 `base`를 얕게 복사하고 `nested`를 별도로 복사하며, 3줄은 `result['nested']['limit']`을 9로 설정합니다. 4줄은 `result`가 아니라 `base['nested']['limit']`을 반환합니다.",
+        "suggestion": "반환값을 `result['nested']['limit']`으로 바꾸거나, 원본을 변경하려는 의도라면 복사 대신 `base['nested']['limit']`을 직접 수정하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ca19bac4dff77810dcfad68e8726ed59e531b34254380a7a9197b3c4ae9edd37",
+  "input_tokens": 5314,
+  "output_tokens": 413,
+  "elapsed_seconds": 2.313
+}

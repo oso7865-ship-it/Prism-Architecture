@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-65d1d2fad0d4-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "65d1d2fad0d4",
+  "at": "2026-09-29T08:44:40.294605+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "e8d6a0824e722a6a9101d2b0f4bbfe7951e2cadafce230f7d561f0053d95746e",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "left가 큰 양수이고 right가 큰 음수여서 차이가 int 범위를 넘으면 left - right가 오버플로로 감겨 부호가 뒤집혀, left > right인데도 음수가 반환되어 비교 계약이 위반됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3272,
+  "output_tokens": 99,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "faded84e1d5d11d544c611a49c3169f74330cb0a78784857731e1f65b9b2484b",
+  "elapsed_seconds": 1.0
+}

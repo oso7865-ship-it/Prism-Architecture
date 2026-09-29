@@ -1,0 +1,72 @@
+{
+  "key": "holdout-E08-81c5bd8c7f71-r2",
+  "case": "81c5bd8c7f71",
+  "arm": "E08",
+  "split": "holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "선택적 profile에 비-널 단언을 적용한 변경을 검토했습니다. profile이 없을 때 계약이 요구하는 \"Unknown\" 대신 TypeError가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          3
+        ],
+        "trigger": "profile이 없는 User(예: name({}))로 name을 호출할 때",
+        "consequence": "user.profile이 undefined이므로 ! 단언은 런타임에서 제거되어 undefined.name 접근이 되어 TypeError가 발생하고, 계약이 요구하는 \"Unknown\" 표시가 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "profile 누락 시 폴백 없이 TypeError가 발생합니다",
+        "evidence": "1줄에서 profile이 선택적임을 선언하고, 3줄에서 user.profile!.name으로 단언 후 접근합니다. 비-널 단언은 컴파일 시에만 영향을 주고 런타임 검사를 추가하지 않으므로 profile이 undefined인 경로에서 실패합니다.",
+        "suggestion": "profile 존재 여부를 확인하고 없으면 \"Unknown\"을 반환하도록 3줄을 옵셔널 체이닝과 널 병합(예: user.profile?.name ?? \"Unknown\")으로 바꾸세요. 이 경우 빈 문자열 name은 ??가 null/undefined만 대체하므로 그대로 보존됩니다."
+      }
+    ],
+    "limitations": "제공된 단일 함수와 타입 선언만 검토했으며 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "TypeError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5791,
+  "output_tokens": 622,
+  "elapsed_seconds": 4.406,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

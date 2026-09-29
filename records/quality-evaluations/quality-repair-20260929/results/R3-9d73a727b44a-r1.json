@@ -1,0 +1,77 @@
+{
+  "case": "9d73a727b44a",
+  "arm": "R3",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 테넌트 조건 없이 주문을 조회해 다른 테넌트 주문이 반환될 수 있습니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "order_id가 서로 다른 테넌트에서 중복되고, 호출자가 tenant_id를 전달한 상태에서 load가 실행될 때",
+        "consequence": "order_id가 여러 테넌트에서 중복될 때, tenant_id가 SQL 조건에 사용되지 않으므로 다른 테넌트의 주문 행이 반환되어 '인증된 테넌트의 주문만 반환' 계약이 위반됩니다.",
+        "assumptions": [],
+        "title": "테넌트 조건 없이 주문을 조회해 다른 테넌트 주문이 반환될 수 있습니다",
+        "evidence": "1줄은 tenant_id를 매개변수로 받지만, 2줄의 SELECT는 id 조건만 사용하고 tenant_id를 바인딩하지 않습니다. 계약상 order_id는 테넌트 간 중복될 수 있습니다.",
+        "suggestion": "WHERE 절에 tenant_id 조건을 추가하고 바인딩 값에 tenant_id를 포함하세요.",
+        "file_path": "load.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "f1bc7f072638c989ce246b6722e7320228ebcd9db57a1db06655406ce6ee0acd"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "load.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "load가 tenant_id를 받지만 SELECT는 id만 조건으로 사용해 테넌트 격리 계약을 위반합니다.",
+          "file_path": "load.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "2770aa2f43884b9ea3b9b26a8e98c3d753447e7112d8f702a7bd9c6c56486f01"
+}

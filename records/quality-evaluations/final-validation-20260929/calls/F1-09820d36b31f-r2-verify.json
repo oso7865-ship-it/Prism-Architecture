@@ -1,0 +1,12 @@
+{
+  "key": "F1-09820d36b31f-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:58:10.920902+00:00",
+  "input_hash": "978dbc0e4397e92731d514fb529f3e4acceaf39357edbbf4237757957d66a3fa",
+  "system_hash": "53b151a5996ffda1e6a8f7b43cfceb2d3f9e55c7af5bee5e71fa752ae88ddb76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"scale(5)는 10이 아니라 5를 반환하여, 계약이 요구하는 두 배 결과를 내지 못합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄에서 value*2를 scaled에 저장하지만 3줄은 value를 반환하여, 계약이 요구하는 두 배 값이 반환되지 않습니다.\"}]}",
+  "input_tokens": 4428,
+  "output_tokens": 131,
+  "seconds": 1.672
+}

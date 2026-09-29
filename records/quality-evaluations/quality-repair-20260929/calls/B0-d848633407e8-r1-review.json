@@ -1,0 +1,15 @@
+{
+  "key": "B0-d848633407e8-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:28:01.767410+00:00",
+  "input_hash": "b2a147f2f5c89a4c2ff032275e88493b84d25bc0830331e6f557934af69d4d95",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"opener가 반환한 스트림을 read 후 close하는 변경을 검토했습니다. read가 예외를 던지면 close가 실행되지 않아 계약을 위반합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"opener()가 반환한 스트림의 read() 호출이 예외를 던질 때\",\"consequence\":\"3줄에서 예외가 전파되어 4줄의 stream.close()가 실행되지 않으므로 스트림이 닫히지 않습니다. 이는 'read가 예외를 던져도 항상 close한다'는 제공된 계약과 어긋납니다.\",\"assumptions\":[],\"title\":\"read 예외 시 스트림이 닫히지 않습니다\",\"evidence\":\"2줄에서 스트림을 열고 3줄에서 read를 호출한 뒤 4줄에서 close합니다. read가 예외를 던지면 4줄에 도달하지 못합니다.\",\"suggestion\":\"with 문이나 try/finally로 감싸 read 성공 여부와 무관하게 close가 실행되도록 하세요.\"}],\"limitations\":\"opener와 stream의 실제 구현 및 호출부는 제공되지 않았으며 테스트를 실행하지 않았습니다.\"}",
+  "input_tokens": 4791,
+  "output_tokens": 310,
+  "seconds": 1.953
+}

@@ -1,0 +1,54 @@
+{
+  "key": "development-E03-aa5d6b234f6b-r2-final",
+  "arm": "E03",
+  "phase": "final",
+  "at": "2026-09-29T07:12:13.975930+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "89a80ac2fb0439d2a63dcb81a9e319a058c7d885adc03dcab5e3b7e364deccc6",
+  "input_bytes": 2020,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트 `[]`를 사용하는 `collect` 함수를 검토했습니다. 기본 인자는 정의 시점에 한 번만 평가되므로, `bucket`을 생략한 호출들이 같은 리스트를 공유하게 되어 계약과 다른 동작을 합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "`bucket`을 생략하고 `collect`를 두 번 이상 호출할 때",
+        "consequence": "첫 호출이 반환한 리스트와 두 번째 호출이 반환한 리스트가 동일 객체가 되어, 첫 결과에 두 번째 항목까지 누적됩니다. 계약이 요구하는 '생략 시 매번 새 bucket'이 지켜지지 않습니다.",
+        "assumptions": [],
+        "title": "기본 인자 리스트가 호출 간에 공유됩니다",
+        "evidence": "1줄의 `bucket=[]`는 함수 정의 시 한 번만 평가되어 모든 생략 호출이 같은 리스트를 참조하고, 2줄의 `append`가 그 리스트를 변경한 뒤 3줄에서 그대로 반환합니다.",
+        "suggestion": "기본값을 `None`으로 두고 함수 내부에서 `if bucket is None: bucket = []`로 새 리스트를 만들거나, 기본값 없이 필수 인자로 받도록 시그니처를 조정하세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1,2],[1,2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6ac3914666a4150c063eccbba51de4ec22e84a3a7aee173cd18d036ace1ae396",
+  "input_tokens": 5702,
+  "output_tokens": 428,
+  "elapsed_seconds": 2.594
+}

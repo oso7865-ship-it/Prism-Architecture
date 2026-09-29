@@ -1,0 +1,35 @@
+{
+  "key": "development-E01a-cd1f9cff7b9c-r2-final",
+  "arm": "E01a",
+  "phase": "final",
+  "at": "2026-09-29T07:13:41.002880+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "84160ca01490dc0f07ffaf612a7555c1062ad38aa2762e31bfd7a5b7d8fc3b7a",
+  "input_bytes": 373,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사 로직 한 줄을 검토했습니다. root와 resolved가 정규화된 절대경로라는 전제에서 '/srv/app'과 '/srv/application/key'는 구분되고, '/srv/app/file'은 허용됩니다. 제공된 범위에서 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "root와 resolved의 생성·정규화 방식(심볼릭 링크 해석, 대소문자, 유니코드 정규화, 후행 슬래시 처리)과 호출부가 제공되지 않아 경로 탈출 가능성은 확정할 수 없습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c26c3af3d1341d3cc742e64be745d79007bb8f9329c8df3c539108c61a8066c6",
+  "input_tokens": 5477,
+  "output_tokens": 216,
+  "elapsed_seconds": 1.718
+}

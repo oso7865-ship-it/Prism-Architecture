@@ -1,0 +1,12 @@
+{
+  "key": "C4-d877f97cb5a9-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:52.689063+00:00",
+  "input_hash": "a9e3b4300c56f5dff5af2bc96512dc70fba600faa8fdc227fa9718207bfa5467",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1은 opener()가 반환한 컨텍스트 관리자로 스트림을 열고 with 블록 안에서 read() 결과를 반환하는 3줄 함수입니다. 제공된 계약상 opener는 표준 컨텍스트 관리 파일 스트림을 반환하므로 with가 정상/예외 경로 모두에서 닫기를 보장합니다.\",\"issues\":[],\"limitations\":\"제공된 3줄과 계약 문구만 검토했습니다. opener의 실제 구현, read()가 반환하는 값의 타입, 호출자 및 실행 결과는 제공되지 않아 확인하지 못했습니다.\"}",
+  "input_tokens": 4511,
+  "output_tokens": 145,
+  "seconds": 1.469
+}

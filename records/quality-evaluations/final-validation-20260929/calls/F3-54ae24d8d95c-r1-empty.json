@@ -1,0 +1,12 @@
+{
+  "key": "F3-54ae24d8d95c-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:06:03.042665+00:00",
+  "input_hash": "98a016d1a8706f2a08be80d73404ebb89a68bf32c3af443c3b08235cbaa5d96a",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10은 `env.get(...) or env.get(...) or verify` 형태로, 빈 문자열 환경변수는 falsy이므로 무시되고 `verify`가 유지됩니다. 제공된 계약(빈 CURL_CA_BUNDLE은 True 유지, 비어있지 않은 값은 사용)과 path_observations의 5개 케이스가 모두 일치합니다. 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"merge_setting/environment_settings의 외부 호출자, env의 실제 타입 보장, verify에 전달되는 비불리언 값의 처리 계약은 제공되지 않아 검토 범위 밖입니다. 테스트는 정적 투영이며 실제 실행 결과가 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 10의 `or` 체인은 빈 문자열 환경변수를 falsy로 처리해 verify를 보존하며, 계약(빈 CURL_CA_BUNDLE→True 유지, 비어있지 않은 값 사용)과 path_observations 5개 케이스 모두 일치합니다.\"}]}",
+  "input_tokens": 4747,
+  "output_tokens": 282,
+  "seconds": 2.219
+}

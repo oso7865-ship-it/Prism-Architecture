@@ -1,0 +1,466 @@
+{
+  "at": "2026-09-29T08:45:57.659070+00:00",
+  "rows": 312,
+  "requests_reserved": 479,
+  "calls_recorded": 479,
+  "campaign_requests": 1910,
+  "all_requests": 3473,
+  "models": {
+    "F0": {
+      "model": "deepseek-flash",
+      "calls": 239,
+      "completed": 238,
+      "failed": 1,
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "input_tokens": 1076560,
+      "output_tokens": 50622,
+      "cached_input_tokens": 1010044,
+      "missing_usage_calls": 0,
+      "cache_known_calls": 239,
+      "usd_lower_bound_known_usage": 0.043381,
+      "usd_upper_bound_known_usage": 0.086761
+    },
+    "P0": {
+      "model": "deepseek-v4-pro",
+      "calls": 240,
+      "completed": 240,
+      "failed": 0,
+      "response_models": [
+        "deepseek-v4-pro"
+      ],
+      "input_tokens": 1077199,
+      "output_tokens": 46126,
+      "cached_input_tokens": 952320,
+      "missing_usage_calls": 0,
+      "cache_known_calls": 240,
+      "usd_lower_bound_known_usage": 0.194701,
+      "usd_upper_bound_known_usage": 0.389401
+    }
+  },
+  "results": {
+    "diagnostic-F0": {
+      "expected_bug": 36,
+      "miss": 0,
+      "normal_false_positive": 0,
+      "questions": 0,
+      "probe_correct": 136,
+      "probe_total": 136,
+      "valid": 72,
+      "location_hit": 36,
+      "cases": 72,
+      "expected_normal": 36,
+      "incomplete": 0,
+      "p50_seconds": 1.977,
+      "p95_seconds": 3.078
+    },
+    "bridge-F0": {
+      "expected_bug": 40,
+      "miss": 5,
+      "normal_false_positive": 1,
+      "questions": 4,
+      "probe_correct": 0,
+      "probe_total": 0,
+      "valid": 83,
+      "location_hit": 35,
+      "cases": 84,
+      "expected_normal": 44,
+      "incomplete": 1,
+      "p50_seconds": 3.391,
+      "p95_seconds": 4.234
+    },
+    "bridge_new-F0": {
+      "expected_bug": 36,
+      "miss": 3,
+      "normal_false_positive": 1,
+      "questions": 4,
+      "probe_correct": 0,
+      "probe_total": 0,
+      "valid": 71,
+      "location_hit": 33,
+      "cases": 72,
+      "expected_normal": 36,
+      "incomplete": 1,
+      "p50_seconds": 3.344,
+      "p95_seconds": 4.313
+    },
+    "bridge_legacy-F0": {
+      "expected_bug": 4,
+      "miss": 2,
+      "normal_false_positive": 0,
+      "questions": 0,
+      "probe_correct": 0,
+      "probe_total": 0,
+      "valid": 12,
+      "location_hit": 2,
+      "cases": 12,
+      "expected_normal": 8,
+      "incomplete": 0,
+      "p50_seconds": 3.523,
+      "p95_seconds": 3.921
+    },
+    "diagnostic-P0": {
+      "expected_bug": 36,
+      "miss": 3,
+      "normal_false_positive": 1,
+      "questions": 0,
+      "probe_correct": 130,
+      "probe_total": 136,
+      "valid": 72,
+      "location_hit": 33,
+      "cases": 72,
+      "expected_normal": 36,
+      "incomplete": 0,
+      "p50_seconds": 4.117,
+      "p95_seconds": 6.687
+    },
+    "bridge-P0": {
+      "expected_bug": 40,
+      "miss": 4,
+      "normal_false_positive": 2,
+      "questions": 0,
+      "probe_correct": 0,
+      "probe_total": 0,
+      "valid": 83,
+      "location_hit": 36,
+      "cases": 84,
+      "expected_normal": 44,
+      "incomplete": 1,
+      "p50_seconds": 7.297,
+      "p95_seconds": 9.312000000000001
+    },
+    "bridge_new-P0": {
+      "expected_bug": 36,
+      "miss": 1,
+      "normal_false_positive": 2,
+      "questions": 0,
+      "probe_correct": 0,
+      "probe_total": 0,
+      "valid": 72,
+      "location_hit": 35,
+      "cases": 72,
+      "expected_normal": 36,
+      "incomplete": 0,
+      "p50_seconds": 7.258,
+      "p95_seconds": 9.923
+    },
+    "bridge_legacy-P0": {
+      "expected_bug": 4,
+      "miss": 3,
+      "normal_false_positive": 0,
+      "questions": 0,
+      "probe_correct": 0,
+      "probe_total": 0,
+      "valid": 11,
+      "location_hit": 1,
+      "cases": 12,
+      "expected_normal": 8,
+      "incomplete": 1,
+      "p50_seconds": 7.453,
+      "p95_seconds": 9.047
+    }
+  },
+  "input_pairs_checked": 156,
+  "input_pair_mismatches": [],
+  "automatic_anomalies": [
+    {
+      "key": "bridge-F0-0c543f7d32dd-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 1,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-F0-1bcaee84937b-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": false,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-F0-6a3397085914-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 1,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-F0-898c474a9d7d-r1",
+      "metrics": {
+        "expected_bug": false,
+        "miss": false,
+        "normal_false_positive": true,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-F0-898c474a9d7d-r2",
+      "metrics": {
+        "expected_bug": false,
+        "miss": false,
+        "normal_false_positive": false,
+        "questions": 2,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-F0-e039b4bf0e2d-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-F0-e039b4bf0e2d-r2",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-P0-4c612348a604-r2",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-P0-4cf224cd4371-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": false,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-P0-898c474a9d7d-r1",
+      "metrics": {
+        "expected_bug": false,
+        "miss": false,
+        "normal_false_positive": true,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-P0-898c474a9d7d-r2",
+      "metrics": {
+        "expected_bug": false,
+        "miss": false,
+        "normal_false_positive": true,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-P0-e039b4bf0e2d-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "bridge-P0-e039b4bf0e2d-r2",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 0,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-0c47bb65c1ee-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": false,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 1,
+        "valid": true,
+        "location_hit": true,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-0c47bb65c1ee-r2",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 0,
+        "probe_total": 1,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-2cdf3efa43ff-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 1,
+        "probe_total": 2,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-2cdf3efa43ff-r2",
+      "metrics": {
+        "expected_bug": true,
+        "miss": true,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 1,
+        "probe_total": 2,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-898c474a9d7d-r1",
+      "metrics": {
+        "expected_bug": false,
+        "miss": false,
+        "normal_false_positive": true,
+        "questions": 0,
+        "probe_correct": 1,
+        "probe_total": 1,
+        "valid": true,
+        "location_hit": false,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-90900a02e0f4-r1",
+      "metrics": {
+        "expected_bug": true,
+        "miss": false,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 1,
+        "probe_total": 2,
+        "valid": true,
+        "location_hit": true,
+        "semantic_explanation_verified": false
+      }
+    },
+    {
+      "key": "diagnostic-P0-90900a02e0f4-r2",
+      "metrics": {
+        "expected_bug": true,
+        "miss": false,
+        "normal_false_positive": false,
+        "questions": 0,
+        "probe_correct": 1,
+        "probe_total": 2,
+        "valid": true,
+        "location_hit": true,
+        "semantic_explanation_verified": false
+      }
+    }
+  ],
+  "semantic_explanations_verified": false,
+  "campaign_remaining": 3090,
+  "unfinished_calls": [],
+  "failed_calls": [
+    {
+      "key": "bridge-F0-1bcaee84937b-r1-draft",
+      "error_class": "ValidationError",
+      "http_status": null,
+      "schema_errors": [
+        {
+          "type": "extra_forbidden",
+          "loc": [
+            "citations"
+          ]
+        }
+      ]
+    }
+  ]
+}

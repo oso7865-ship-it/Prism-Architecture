@@ -1,0 +1,12 @@
+{
+  "key": "F3-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:06:00.979215+00:00",
+  "input_hash": "f48c2b86205d43bbe17d3bbd76d833a995476d146e4e5252dda72b45a04f2dd8",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 빈 CA 번들 환경변수 처리 변경을 검토했습니다. line 10의 `or` 체인이 빈 문자열을 None으로 대체해, 명시적 verify=True가 유지되어야 한다는 계약과 테스트(line 15, 16)를 위반합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE=\\\"\\\"(또는 REQUESTS_CA_BUNDLE=\\\"\\\"와 CURL_CA_BUNDLE=\\\"\\\")가 있고 verify가 True일 때\",\"consequence\":\"line 10의 `or`가 빈 문자열을 falsy로 평가해 verify가 None이 되고, merge_setting이 session_verify(기본 True)를 반환하므로 line 15/16의 `is True` 단언이 실패합니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 값이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"line 10은 `env.get(...) or env.get(...)`로 빈 문자열을 None으로 대체합니다. path_observations에서 line 15/16 호출이 \\\"\\\"를 반환해 asserted_value True와 불일치합니다. behavior_contract는 빈 CURL_CA_BUNDLE이 명시적 True를 보존해야 한다고 명시합니다.\",\"suggestion\":\"빈 문자열을 유효한 미설정으로 취급하도록, 키 존재 여부를 확인해 값을 선택하고 빈 문자열이면 verify를 True로 유지하는 분기를 추가하세요.\",\"contract_quote\":\"An empty CURL_CA_BUNDLE must preserve explicit verification True.\"}],\"limitations\":\"제공된 f1 범위만 정적 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 실제 requests 통합 동작은 제공되지 않았습니다.\"}",
+  "input_tokens": 5873,
+  "output_tokens": 442,
+  "seconds": 2.921
+}

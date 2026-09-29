@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-d9318706b943-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "d9318706b943",
+  "at": "2026-09-29T08:42:08.054879+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "7a601442583dedf527044d2a8aea967fea4e47a7575eb5a8ee1bef853a0134e7",
+  "payload_sha256": "3b1fdbe0586a7191ad9ff7efab35ba8ea55632c255e79725e3d38fc7d027a3fd",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 변경된 `count ?? 10`은 null/undefined만 기본값 10으로 대체하고 0은 유효한 값으로 유지하므로, 명시된 동작 계약과 일치합니다. 변경 라인에서 지원 가능한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "limit 함수의 호출부와 count의 실제 전달 값 범위는 제공되지 않아, 0이나 음수 등 경계값이 실제로 사용되는지는 확인하지 못했습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "`??` 연산자는 null/undefined만 10으로 대체하고 0은 그대로 반환하므로, '0은 유효한 limit'이라는 계약과 일치합니다."
+      }
+    ]
+  },
+  "input_tokens": 3146,
+  "output_tokens": 197,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "de64c2ab8fec2c786dca326056f3172cf0bab4851cc80b70e5d71c8070412771",
+  "elapsed_seconds": 1.859
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C3-e039b4bf0e2d-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T11:50:18.603868+00:00",
+  "input_hash": "c06a37681b8707de0292d45034060e368270a91afc99fb913ba143a4732a1a53",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경변수 CA 번들 조회가 `or` 연산으로 변경되었고, 빈 문자열 환경변수와 명시적 verify=True 조합의 계약 위반이 정적 투영으로 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[9,10,11,15,16],\"trigger\":\"environment_settings에 env={\\\"CURL_CA_BUNDLE\\\": \\\"\\\"} (또는 REQUESTS_CA_BUNDLE/CURL_CA_BUNDLE 모두 빈 문자열)과 verify=True가 전달될 때\",\"consequence\":\"10줄의 `or` 연쇄가 빈 문자열을 falsy로 평가해 verify가 \\\"\\\"로 덮어써지고, merge_setting(11줄)이 session_verify=True 대신 \\\"\\\"를 반환하여 명시적 검증 True가 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 환경변수가 명시적 verify=True를 덮어씁니다\",\"evidence\":\"9줄에서 verify가 True이면 10줄이 env 값을 조회하는데, `or`는 빈 문자열을 건너뛰고 두 값이 모두 비면 마지막 falsy 값인 \\\"\\\"를 반환합니다. 11줄은 이를 session_verify와 병합하지만 merge_setting은 None만 대체하므로 \\\"\\\"가 그대로 반환됩니다. 정적 투영에서 테스트 15·16줄의 기대값 True와 실제 값 \\\"\\\"가 불일치합니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 조회 결과가 falsy일 때 verify를 변경하지 않도록(예: 조회값이 truthy일 때만 대입) 10줄을 조정해 테스트 15·16줄의 True 계약을 유지하세요.\"}],\"limitations\":\"제공된 f1 범위만 정적으로 검토했으며 실행 검증은 수행하지 않았습니다. merge_setting의 실제 호출자와 verify 인자의 런타임 타입 분포는 제공되지 않았습니다.\"}",
+  "input_tokens": 5664,
+  "output_tokens": 493,
+  "seconds": 3.343
+}

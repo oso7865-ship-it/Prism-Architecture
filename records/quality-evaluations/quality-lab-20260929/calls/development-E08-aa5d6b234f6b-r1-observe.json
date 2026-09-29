@@ -1,0 +1,26 @@
+{
+  "key": "development-E08-aa5d6b234f6b-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:09:34.202682+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "dd6012858cbeb48d8780c1f0a147ff91e904a28a32d3664beef3e32070bd13b9",
+  "input_bytes": 624,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Mutable default argument `bucket=[]` is created once at function definition time and shared across all calls that omit the argument.",
+      "The behavior contract states each omitted-bucket call should get a fresh bucket, but the code reuses the same list object, so the contract is violated.",
+      "Probe p1: first call collect(1) returns [1]; second call collect(2) returns [1, 2] because the same default list is mutated, not a fresh [2].",
+      "Probe p2: collect(3, [9]) appends to the explicit list and returns [9, 3], which matches the contract for explicit buckets.",
+      "The default list is also mutated by any omitted-bucket call, so state leaks across calls and persists for the module lifetime.",
+      "No static findings were supplied, but the mutable-default pattern is the observable defect."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "60a96e322c78200ccc329b6f8ea21fd56bdf9216c6af80b34e8f9a80cea02653",
+  "input_tokens": 351,
+  "output_tokens": 185,
+  "elapsed_seconds": 1.375
+}

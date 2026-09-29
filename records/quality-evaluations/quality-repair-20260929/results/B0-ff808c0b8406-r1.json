@@ -1,0 +1,61 @@
+{
+  "case": "ff808c0b8406",
+  "arm": "B0",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 저장 완료 전에 true를 반환합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "submit이 호출되어 store.save(value)가 Promise를 반환할 때",
+        "consequence": "store.save(value)가 Promise를 반환하지만 await되지 않아, 저장이 완료되기 전에 submit이 true를 반환합니다. 저장이 나중에 실패해도 호출자는 이미 true를 관찰합니다.",
+        "assumptions": [],
+        "title": "저장 완료 전에 true를 반환합니다",
+        "evidence": "2줄은 save를 호출하지만 반환된 Promise를 await하지 않고, 3줄에서 즉시 true를 반환합니다. 제공된 계약은 save가 Promise를 반환하고 반환 전에 영속화가 끝나야 함을 명시합니다.",
+        "suggestion": "2줄을 await store.save(value)로 바꿔 저장 완료 후에 true를 반환하도록 하세요.",
+        "file_path": "save.js",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "ef5a99df1e78fc39c55b218fd479fbdf3d52cda47b8b78c133f22df6732a8ddc"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "save.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "7175cd85d770a42b11b9ce19a40624892149770ee0541ba0433cda042a3ca76f"
+}

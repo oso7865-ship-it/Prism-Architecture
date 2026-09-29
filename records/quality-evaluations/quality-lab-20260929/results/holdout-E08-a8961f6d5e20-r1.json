@@ -1,0 +1,65 @@
+{
+  "key": "holdout-E08-a8961f6d5e20-r1",
+  "case": "a8961f6d5e20",
+  "arm": "E08",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "user_id를 SQL 문자열에 직접 연결해 반환하는 변경으로, 파라미터 바인딩이 전혀 적용되지 않습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "공격자가 제어하는 user_id(예: '0 OR 1=1')로 query를 호출하고 반환된 SQL이 그대로 실행될 때",
+        "consequence": "user_id가 SQL 구문으로 해석되어 WHERE 절이 무력화되고, users 테이블의 name 값이 조건과 무관하게 반환되는 SQL 인젝션이 발생합니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 연결로 SQL 인젝션이 가능합니다",
+        "evidence": "2줄은 user_id를 '+'로 SQL 문자열에 직접 붙이고 파라미터 튜플은 빈 ()로 반환합니다. behavior_contract는 호출자가 %s 플레이스홀더로 이 튜플을 드라이버에 전달한다고 명시하지만, 반환 SQL에는 %s가 없어 어떤 값도 바인딩되지 않습니다.",
+        "suggestion": "SQL에 %s 플레이스홀더를 두고 user_id를 파라미터 튜플로 반환하도록 변경하세요(예: 'SELECT name FROM users WHERE id = %s', (user_id,))."
+      }
+    ],
+    "limitations": "호출자의 실제 실행 경로와 DB-API 드라이버 종류는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = 0 OR 1=1\", []]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6053,
+  "output_tokens": 599,
+  "elapsed_seconds": 3.968,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

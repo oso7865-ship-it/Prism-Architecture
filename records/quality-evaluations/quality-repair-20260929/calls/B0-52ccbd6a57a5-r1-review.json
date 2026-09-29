@@ -1,0 +1,15 @@
+{
+  "key": "B0-52ccbd6a57a5-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:35.073278+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"파라미터 바인딩을 사용하는 SQL 쿼리 생성 변경을 검토했습니다. 제공된 범위에서 보안 결함은 찾지 못했습니다.\",\"issues\":[],\"limitations\":\"호출부와 실제 DB-API 드라이버 구현은 제공되지 않았으며 실행 검증은 하지 않았습니다. user_id가 %s 플레이스홀더에 바인딩되는 것으로 보이지만 드라이버의 파라미터 처리 방식은 확인하지 못했습니다.\"}",
+  "input_tokens": 5116,
+  "output_tokens": 115,
+  "seconds": 1.344
+}

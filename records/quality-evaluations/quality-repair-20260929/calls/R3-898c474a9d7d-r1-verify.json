@@ -1,0 +1,15 @@
+{
+  "key": "R3-898c474a9d7d-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:46.801632+00:00",
+  "input_hash": "fdc5c72116c62d1ff4276b0a691b55a2eba55e65ac0a9cc1ca31dc1dcf0885e7",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"2줄에서 base['nested']를 복사해 원본 보존 계약을 충족하며, 제공된 계약상 nested는 필수이고 limit 키 부재는 계약 위반 입력이라 결함으로 볼 근거가 없습니다.\"}]}",
+  "input_tokens": 3935,
+  "output_tokens": 133,
+  "seconds": 1.469
+}

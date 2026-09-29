@@ -1,0 +1,29 @@
+{
+  "batch": "model-comparison-20260929",
+  "models": {
+    "F0": "deepseek-flash",
+    "P0": "deepseek-v4-pro"
+  },
+  "maximum_calls": 480,
+  "corpus_digest": "41976962e2f2f24c68f6bfd61a8cc8b647e45e26d2b8e703c073a543dad3a663",
+  "legacy_digest": "56516aee64c2367083bd7f4753a34b66fa35964a4f680e4f9538799b92549cb6",
+  "harness_digest": "40693febf520962a4b6f43242279a278e652046a7dc446feb6170eb64851f42a",
+  "protocol_digests": {
+    "scripts/quality_lab_protocol.py": "8d0d5fccd80bca6cb92765e6914c10ddbc749907feb6c0a028299c685c72c5f5",
+    "scripts/quality_lab_bridge.py": "43d816b4bf54d5b6f6bd9d4bcd940a8bdb1c706feaef313f548155f10c840dbd",
+    "scripts/compare_review_models.py": "1f86052eaa2be7610ea9ba579be1f4f6bffb5d0ebb079310f3a54ba14fea5f65"
+  },
+  "temperature": 0,
+  "thinking": "disabled",
+  "max_output_tokens": 2000,
+  "timeout_seconds": 60,
+  "concurrency": 4,
+  "automatic_retries": 0,
+  "repeats": 2,
+  "cases_previously_seen": true,
+  "exception_aliases": {
+    "java.lang.NullPointerException": "NullPointerException",
+    "builtins.ValueError": "ValueError",
+    "builtins.ZeroDivisionError": "ZeroDivisionError"
+  }
+}

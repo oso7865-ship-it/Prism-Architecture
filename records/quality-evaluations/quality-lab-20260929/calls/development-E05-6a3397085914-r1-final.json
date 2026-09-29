@@ -1,0 +1,58 @@
+{
+  "key": "development-E05-6a3397085914-r1-final",
+  "arm": "E05",
+  "phase": "final",
+  "at": "2026-09-29T07:13:42.990598+00:00",
+  "system_sha256": "f198ab44ddbc154afb209b9c66822b55c704f8cbe21a263e5fc266cad9fe89cb",
+  "payload_sha256": "6b2a660d4304357f95ebb9a9bbe7b4c11d4057af0e91662aa33e23502768c396",
+  "input_bytes": 652,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "이전 구현은 str을 UTF-8로 인코딩한 뒤 바이트 수를 반환했지만, 현재 HEAD는 len(body)로 바꾸어 str 입력에서 문자 수를 반환합니다. 계약상 UTF-8 바이트 수를 반환해야 하므로 비ASCII 문자열에서 결과가 달라집니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "wire_size에 비ASCII 문자를 포함한 str을 전달할 때(예: '한글')",
+        "consequence": "len(body)는 UTF-8 인코딩 후의 바이트 수가 아니라 코드 포인트 수를 반환하므로, 계약이 요구하는 전송 바이트 수보다 작은 값이 반환됩니다. 예를 들어 '한글'은 2를 반환하지만 UTF-8 전송 바이트는 6입니다.",
+        "assumptions": [],
+        "title": "str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환합니다",
+        "evidence": "2줄에서 body를 인코딩하지 않고 len(body)를 그대로 반환합니다. 이전 소스는 str일 때 body.encode('utf-8')의 길이를 반환했고, behavior_contract는 UTF-8 기준 바이트 수를 요구합니다.",
+        "suggestion": "str인 경우 body.encode('utf-8')의 길이를, bytes인 경우 len(body)를 반환하도록 인코딩 분기를 복원하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수와 계약만 검토했으며 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "92b48904392970b4b070ea181df74de0719fbe990e5a3a3af948f1a229066c87",
+  "input_tokens": 5241,
+  "output_tokens": 448,
+  "elapsed_seconds": 2.984
+}

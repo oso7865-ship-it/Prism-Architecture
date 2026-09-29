@@ -1,0 +1,65 @@
+{
+  "key": "holdout-E08-4d95d35835a5-r1",
+  "case": "4d95d35835a5",
+  "arm": "E08",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "callbacks()가 리스트 컴프리헨션으로 세 개의 람다를 반환하지만, 각 람다가 반복 변수 i를 늦게 바인딩하여 생성 시점의 인덱스를 보존하지 못합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출한 뒤 반환된 각 콜백을 실행할 때",
+        "consequence": "모든 람다가 루프 종료 후의 동일한 i 값(2)을 참조하므로 [2, 2, 2]가 반환되어, 각 콜백이 생성 시점의 인덱스를 반환해야 한다는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "람다가 반복 변수를 늦게 바인딩해 모든 콜백이 마지막 값을 반환합니다",
+        "evidence": "2줄의 lambda: i는 i를 자유 변수로 참조하고, 리스트 컴프리헨션의 i는 반복이 끝난 뒤 2로 남습니다. 따라서 각 콜백은 생성 시점 값이 아니라 최종 값을 반환합니다.",
+        "suggestion": "각 반복에서 값을 고정하도록 lambda i=i: i처럼 기본 인자로 바인딩하거나, 인덱스를 생성하는 별도 팩토리 함수를 사용하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 콜백 사용 방식은 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[2, 2, 2]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5642,
+  "output_tokens": 610,
+  "elapsed_seconds": 4.39,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

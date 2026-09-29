@@ -1,0 +1,12 @@
+{
+  "key": "F3-898c474a9d7d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:03:20.351627+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경 라인은 base의 중첩 딕셔너리를 복사하여 result에 담고, result['nested']['limit']만 수정한 뒤 base['nested']['limit']을 반환한다. 계약은 호출자의 base를 변경하지 않고 보존하는 것이며, base['nested']는 복사본에만 사용되므로 원본 base는 변경되지 않는다. 반환값은 수정 전 원본 limit 값으로, 계약이 요구하는 'base 보존'과 일치한다. 제공된 범위에서 지원되는 결함은 없다.\", \"issues\": [], \"limitations\": \"base가 중첩 딕셔너리를 실제로 포함하는지, base['nested']가 딕셔너리인지, 호출자가 반환값을 어떻게 사용하는지는 제공되지 않았다. adjust의 호출자와 테스트는 확인하지 못했다. 정적 분석 경고는 없었다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 base를 변경하지 않고 보존하는 것이다. line 2에서 base['nested'].copy()로 복사본을 만들어 result에 넣고 line 3은 result['nested']만 수정하므로 원본 base는 변경되지 않는다. line 4는 수정 전 base['nested']['limit']을 반환하여 계약을 위반하지 않는다.\"}]}",
+  "input_tokens": 3530,
+  "output_tokens": 330,
+  "seconds": 2.468
+}

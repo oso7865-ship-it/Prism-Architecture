@@ -1,0 +1,53 @@
+{
+  "key": "development-E10-1bcaee84937b-r2-final",
+  "arm": "E10",
+  "phase": "final",
+  "at": "2026-09-29T07:13:30.646220+00:00",
+  "system_sha256": "90f86ded511e4d1d7ca9d073d332ff4522b1d8aa86255996b4ca0e8b51de58a5",
+  "payload_sha256": "77a6d13c54bcf583761e21baaf6148da2cf09a63fbc2b30588fdea34599093e5",
+  "input_bytes": 3977,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 검증 없이 청구 금액을 반환하는 변경을 검토했습니다. behavior_contract는 소유자에게만 금액을 반환하고 다른 actor에게는 Error를 던지라고 요구하지만, 제공된 코드에는 actor를 사용하는 검사가 전혀 없습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "invoice(7, \"bob\")처럼 항목 소유자가 아닌 actor로 호출할 때",
+        "consequence": "load가 반환한 항목의 owner와 actor를 비교하는 검사가 없어, 소유자가 아닌 호출자에게도 amount 값이 그대로 반환됩니다. 이는 behavior_contract가 요구하는 소유자 전용 반환 및 비소유자 Error 조건을 위반하는 접근 통제 누락입니다.",
+        "assumptions": [],
+        "title": "소유자 검증 없이 금액을 반환해 비소유자에게 노출됩니다",
+        "evidence": "f1:2에서 load(id)로 항목을 가져오지만 f1:3은 actor를 전혀 참조하지 않고 item.amount를 반환합니다. 관련 구현은 owner가 \"alice\"인 항목을 반환하므로 actor가 \"bob\"이어도 동일한 금액이 반환됩니다.",
+        "suggestion": "item.owner와 actor를 비교해 일치하지 않으면 Error를 던지는 검사를 반환 전에 추가하세요."
+      }
+    ],
+    "limitations": "load의 실제 구현과 호출부, actor 값의 출처는 제공된 관련 구현 일부만 확인했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "9d6f4aa890b0c94aaa26971d71129ac9feccbdacc19826d3bee92774a9034f9c",
+  "input_tokens": 6537,
+  "output_tokens": 441,
+  "elapsed_seconds": 2.203
+}

@@ -1,0 +1,51 @@
+{
+  "case": "4a8d6ea4762d",
+  "arm": "R2",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "operation()의 실제 구현과 호출자, logger.error의 실패 동작은 제공되지 않았습니다. 변경되지 않은 1~3행은 컨텍스트로만 참조했습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "app/handler.py",
+          "provided_lines": 6
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 4,
+          "outcome": "NO_FINDING",
+          "observation": "ValueError 포착 시 logger.error로 기록하고 raise로 동일 예외를 재전파하여 실패를 정상 반환으로 숨기지 않음. 표준 s1의 요구와 일치하며 제공된 범위에서 결함 없음.",
+          "file_path": "app/handler.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "6b9a4676a296ec44ad68c9681be41e5cbfe3a20122281f22956be6a1d41510f2"
+}

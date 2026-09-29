@@ -1,0 +1,41 @@
+{
+  "key": "bridge-F0-1bcaee84937b-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "1bcaee84937b",
+  "at": "2026-09-29T08:42:01.321814+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "1027e098cdf6fb153b41d6bdbddb183aee9c9af33646c73e09b5c4a7b02e88ee",
+  "payload_sha256": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 확인 없이 청구 금액을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "actor가 \"alice\"가 아닌 값으로 invoice(7, actor)를 호출할 때",
+        "consequence": "load가 반환한 항목의 amount가 소유자 검사 없이 그대로 반환되어, 계약상 소유자에게만 허용되어야 할 금액이 다른 actor에게도 노출됩니다.",
+        "assumptions": [],
+        "title": "소유자 검사 없이 금액을 반환해 접근 경계가 무력화됩니다",
+        "evidence": "f1:2에서 load(id)로 항목을 가져온 뒤 f1:3에서 actor를 확인하지 않고 item.amount를 반환합니다. 관련 구현은 owner가 \"alice\"인 항목을 반환하므로 actor가 다른 경우에도 동일한 금액이 반환됩니다.",
+        "suggestion": "item.amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지세요."
+      }
+    ],
+    "limitations": "load의 실제 구현과 호출부는 제공된 관련 구현 요약에만 의존했으며, 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5166,
+  "output_tokens": 309,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "c2d259cac2a759d610716cc2535c38650be778b55b743837bfc2e32f9a081c62",
+  "elapsed_seconds": 2.391
+}

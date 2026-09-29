@@ -1,0 +1,38 @@
+{
+  "key": "bridge-E12-a8961f6d5e20-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:58.360825+00:00",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "input_bytes": 455,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 줄에서 신뢰할 수 없는 user_id 값을 SQL 문자열에 직접 이어 붙여 질의를 구성합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표, 주석 기호 등 SQL 메타문자가 포함된 값이 query에 전달될 때",
+        "consequence": "이어 붙인 값이 SQL 구문의 일부로 해석되어 조건절 변조나 임의 SQL 실행으로 이어질 수 있습니다. 파라미터 튜플이 비어 있어 드라이버의 바인딩 보호가 적용되지 않습니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 연결로 인한 SQL 주입",
+        "evidence": "f1:2에서 'SELECT name FROM users WHERE id = ' + user_id 로 값을 구문에 직접 결합하고, 두 번째 반환 값은 빈 튜플이라 바인딩되는 파라미터가 없습니다. 제공된 계약상 user_id는 신뢰할 수 없는 텍스트이고 반환값은 %s 자리표시자를 쓰는 드라이버로 전달됩니다.",
+        "suggestion": "SQL에는 %s 자리표시자를 두고 user_id를 파라미터 튜플로 전달하도록 변경하세요(예: 'SELECT name FROM users WHERE id = %s', (user_id,))."
+      }
+    ],
+    "limitations": "query의 호출부와 실제 DB-API 드라이버 구현은 제공되지 않아 실행 경로를 직접 확인하지 못했습니다. 제공된 줄만 정적 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "7cc44e0cf7f681e720706fbf934a574a1dc953f4c627d37870b15314b3b575b1",
+  "input_tokens": 5140,
+  "output_tokens": 488,
+  "elapsed_seconds": 3.078
+}

@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-e039b4bf0e2d-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "e039b4bf0e2d",
+  "at": "2026-09-29T08:40:59.613532+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "455dc48550d70ba8952095bbf4ba4e2df4c84546a32b0e1b3ccc339b34468847",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "DROP",
+        "reason": "MISSING_CONTRACT",
+        "revised": null,
+        "checked_consequence": null
+      }
+    ]
+  },
+  "input_tokens": 3697,
+  "output_tokens": 41,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "a6a5881ac40bedb50ad8fc10d55f4e957ac781013770f19948fdc67fc02b33d9",
+  "elapsed_seconds": 0.609
+}

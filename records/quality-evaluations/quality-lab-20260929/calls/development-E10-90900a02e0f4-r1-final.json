@@ -1,0 +1,68 @@
+{
+  "key": "development-E10-90900a02e0f4-r1-final",
+  "arm": "E10",
+  "phase": "final",
+  "at": "2026-09-29T07:13:22.691799+00:00",
+  "system_sha256": "937722a8f0781d0ccdd4c1a758330da065bc2886abf27c3db0652bbaf11c7096",
+  "payload_sha256": "4c38b5347a1d0ef177da5043aab9f5e47a7cdb58fb5129dc05c57eddfb0af289",
+  "input_bytes": 3830,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 분기와 비-null 분기의 반환값이 뒤바뀐 삼항 연산자 변경을 검토했습니다. null 입력에서는 null 역참조가, 비-null 입력에서는 trim 미수행이 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출하는 경우",
+        "consequence": "name == null이 참이 되어 name.trim()이 평가되고 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 분기에서 null을 역참조해 NPE가 발생합니다",
+        "evidence": "3줄의 삼항 연산자는 조건이 참일 때 name.trim()을 평가하므로 null 입력에서 null 역참조가 일어납니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null일 때 빈 문자열을 반환하도록 하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 null이 아닌 값을 전달하는 경우",
+        "consequence": "조건이 거짓이 되어 else 분기인 \"\"가 반환되므로 공백 제거 계약이 지켜지지 않습니다.",
+        "assumptions": [],
+        "title": "null이 아닌 입력의 공백 제거가 동작하지 않습니다",
+        "evidence": "3줄은 name != null인 분기에서 \"\"를 반환하므로 비-null 입력의 trim 결과가 버려집니다.",
+        "suggestion": "null 분기와 비-null 분기의 반환값을 서로 바꿔 비-null 입력에서 name.trim()을 반환하세요."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "java.lang.NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "5cd93d40ec84c63a20b7dd09107f7bd1086319cb046a64eb399f77fe41987622",
+  "input_tokens": 6269,
+  "output_tokens": 488,
+  "elapsed_seconds": 2.375
+}

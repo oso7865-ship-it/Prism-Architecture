@@ -1,0 +1,71 @@
+{
+  "key": "development-E01b-cd1f9cff7b9c-r1",
+  "case": "cd1f9cff7b9c",
+  "arm": "E01b",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로 접두사 검사 함수의 변경된 비교 로직을 검토했습니다. `root + '/'` 접두사 검사로 형제 디렉터리 우회는 차단되지만, `root`가 `/`인 경우 접두사가 `//`가 되어 정상 하위 경로가 거부될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "INFO",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/'이고 resolved가 '/etc/passwd'처럼 '/' 바로 아래 경로일 때",
+        "consequence": "root + '/'가 '//'가 되어 resolved.startswith('//')가 거짓이므로, 실제로 root 하위인 경로가 permitted에서 거부됩니다. 이는 접근 허용 실패(가용성)이며 권한 상승은 아닙니다.",
+        "assumptions": [],
+        "title": "root가 '/'일 때 하위 경로가 거부됩니다",
+        "evidence": "2줄에서 root + '/' 접두사를 비교합니다. root가 '/'이면 접두사는 '//'가 되고, '/etc/passwd'는 '//'로 시작하지 않아 거짓이 됩니다.",
+        "suggestion": "root가 '/'인 경우를 별도로 처리하거나, 접두사 결합 시 중복 슬래시를 정규화하세요."
+      }
+    ],
+    "limitations": "permitted의 호출부와 root/resolved가 정규화되는 방식(심볼릭 링크, '..' 처리)이 제공되지 않아 실제 접근 경계는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5499,
+  "output_tokens": 423,
+  "elapsed_seconds": 2.61,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

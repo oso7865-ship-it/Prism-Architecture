@@ -1,0 +1,15 @@
+{
+  "key": "R3-0add10c208ec-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:55.895255+00:00",
+  "input_hash": "37646a23d109b5c19c66a838cf2865ba2c4359344ea47c2028332c13fd4ac11a",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Price.total의 곱셈 결과를 long으로 계산하도록 변경된 한 줄을 검토했습니다.\",\"issues\":[],\"limitations\":\"제공된 변경 라인과 계약만 검토했으며, 실행 결과나 호출 지점은 확인하지 않았습니다. amount와 count가 int 범위 내 비음수이고 곱이 long 범위에 들어간다는 계약이므로 (long) 캐스팅으로 정확한 곱이 보존됩니다.\"}",
+  "input_tokens": 4877,
+  "output_tokens": 108,
+  "seconds": 1.391
+}

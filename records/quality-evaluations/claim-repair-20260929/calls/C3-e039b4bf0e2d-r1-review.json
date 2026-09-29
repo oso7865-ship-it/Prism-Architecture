@@ -1,0 +1,12 @@
+{
+  "key": "C3-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:50:16.653558+00:00",
+  "input_hash": "c06a37681b8707de0292d45034060e368270a91afc99fb913ba143a4732a1a53",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings 10줄이 환경 변수 조회를 `or` 연쇄로 변경했고, 제공된 계약과 테스트는 빈 문자열 CURL_CA_BUNDLE이 True를 유지해야 함을 명시합니다. 정적 투영은 빈 문자열이 그대로 반환되어 테스트 15·16이 실패함을 보여줍니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE=\\\"\\\"(또는 REQUESTS_CA_BUNDLE=\\\"\\\"와 CURL_CA_BUNDLE=\\\"\\\")가 있고 verify가 True일 때\",\"consequence\":\"`or` 연쇄가 빈 문자열을 falsy로 평가해 다음 후보로 넘어가고, 두 값 모두 비면 최종적으로 빈 문자열이 verify에 할당되어 merge_setting이 그대로 반환합니다. 결과적으로 명시적 검증 True가 빈 문자열로 대체되어 테스트 15·16의 `is True` 단언이 실패합니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 값이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 `env.get(...) or env.get(...)`로 빈 문자열을 건너뛰지만, 두 키가 모두 빈 문자열이면 빈 문자열이 반환됩니다. path_observations는 테스트 15·16에서 값이 \\\"\\\"이고 단언 True와 불일치한다고 기록합니다.\",\"suggestion\":\"빈 문자열을 '값 없음'으로 취급하려면 각 조회 결과에 대해 None/빈 문자열 여부를 명시적으로 검사하고, 유효한 값이 없을 때 verify를 True로 유지하도록 10줄의 대입 로직을 조정하세요.\",\"contract_quote\":\"An empty CURL_CA_BUNDLE must preserve explicit verification True.\"}],\"limitations\":\"제공된 f1 범위와 정적 투영만 검토했으며 실제 테스트 실행 결과는 확인하지 않았습니다. merge_setting의 다른 호출자와 실제 requests 통합 동작은 제공되지 않았습니다.\"}",
+  "input_tokens": 5664,
+  "output_tokens": 511,
+  "seconds": 3.453
+}

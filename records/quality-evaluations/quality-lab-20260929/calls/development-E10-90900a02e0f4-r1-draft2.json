@@ -1,0 +1,52 @@
+{
+  "key": "development-E10-90900a02e0f4-r1-draft2",
+  "arm": "E10",
+  "phase": "draft2",
+  "at": "2026-09-29T07:13:20.226331+00:00",
+  "system_sha256": "4b567ef0f7db170bcf552f7fdb246ce3659b3fc2d34ec12771cd4ab223f3a0e5",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name 인자의 null 여부에 따라 trim 또는 빈 문자열을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null이 아닌 값(예: \" Ada \")으로 Display.name을 호출할 때",
+        "consequence": "조건이 false가 되어 삼항 연산자의 else 분기인 \"\"가 반환되므로, 입력 문자열 대신 항상 빈 문자열이 반환됩니다.",
+        "assumptions": [],
+        "title": "null이 아닌 입력에서 trim 대신 빈 문자열을 반환합니다",
+        "evidence": "3줄의 조건 name == null이 true일 때 name.trim()을, false일 때 \"\"를 반환하도록 분기가 뒤바뀌어 있습니다.",
+        "suggestion": "분기를 name == null ? \"\" : name.trim()으로 바꿔 null은 빈 문자열, 그 외에는 trim 결과가 반환되도록 하세요."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "3a512bc85f39b3282ca2d861a3ea2d630102e40d0477baabceab6b1b5ae86824",
+  "input_tokens": 5376,
+  "output_tokens": 311,
+  "elapsed_seconds": 2.438
+}

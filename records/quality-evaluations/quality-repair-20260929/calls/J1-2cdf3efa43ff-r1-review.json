@@ -1,0 +1,15 @@
+{
+  "key": "J1-2cdf3efa43ff-r1-review",
+  "arm": "J1",
+  "phase": "review",
+  "at": "2026-09-29T10:20:29.242202+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Price.total의 곱셈 결과를 int 연산으로 계산한 뒤 long으로 반환하도록 변경된 라인을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count가 모두 int이고 두 값의 곱이 Integer.MAX_VALUE를 초과할 때 total을 호출하는 경우\",\"consequence\":\"3줄의 amount * count는 두 피연산자가 int이므로 int 곱셈으로 수행되어 상위 비트가 잘린 뒤 long으로 확장됩니다. 계약상 long 범위 안에 들어오는 곱이라도 int 범위를 넘으면 잘못된 값이 반환됩니다.\",\"assumptions\":[],\"title\":\"int 곱셈으로 인한 오버플로로 정확한 곱이 손실됩니다\",\"evidence\":\"2줄의 매개변수는 int이고 3줄은 두 int를 그대로 곱해 long으로 반환하므로, 곱셈 자체는 int 정밀도로 수행됩니다. 계약은 두 입력이 음수가 아니고 정확한 곱이 long에 들어간다고 명시합니다.\",\"suggestion\":\"곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count).\"}],\"limitations\":\"제공된 5줄만 검토했으며 실제 호출자와 입력 범위, 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 5819,
+  "output_tokens": 337,
+  "seconds": 2.765
+}

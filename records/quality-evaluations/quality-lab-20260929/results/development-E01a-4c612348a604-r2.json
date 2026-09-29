@@ -1,0 +1,71 @@
+{
+  "key": "development-E01a-4c612348a604-r2",
+  "case": "4c612348a604",
+  "arm": "E01a",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "range의 step으로 n을 사용하는 한 줄 변경을 검토했습니다. n이 0일 때 ValueError가 발생하는 경로가 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n이 0인 상태에서 이 함수를 호출할 때",
+        "consequence": "range(0, 0, 0)의 step이 0이므로 ValueError('range() arg 3 must not be zero')가 발생해 호출이 실패합니다.",
+        "assumptions": [],
+        "title": "n이 0이면 range step 0으로 ValueError가 발생합니다",
+        "evidence": "2줄에서 range의 세 번째 인자(step)로 n을 그대로 전달하므로 n==0이면 step이 0이 됩니다.",
+        "suggestion": "n이 0일 때의 반환값(예: 빈 리스트)을 정하고, 나눗셈/step 사용 전에 0을 분기해 처리하세요."
+      }
+    ],
+    "limitations": "함수 시그니처와 호출부, n의 허용 범위 계약이 제공되지 않아 n==0이 실제 호출 경로인지와 다른 경계값 처리는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "ValueError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5108,
+  "output_tokens": 350,
+  "elapsed_seconds": 2.407,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

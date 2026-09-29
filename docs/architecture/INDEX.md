@@ -75,3 +75,5 @@ DB 컬럼·타입·인덱스 → contracts/schema. 스키마 수정은 `--task d
 아키텍처 변경은 [ADR 규칙](adr/README.md)과 [영역 맵](decisions/DECISIONS.md)을 확인한다. `--task adr`는 작성 안내, `--task adr-review`·`--task adr-data` 등은 해당 영역의 이력만 선택한다. ADR 파일 경로도 영역별 작업으로 연결한다.
 
 구현 진행·독립 저장소 경로·하네스 연결은 [IMPLEMENTATION](runtime/IMPLEMENTATION.md)을 확인한다.
+
+[팀 문서·컨벤션·패키지 규칙](domain/standards/README.md)은 --task standards로 선택한다.

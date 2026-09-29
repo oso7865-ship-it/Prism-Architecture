@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-2cdf3efa43ff-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "2cdf3efa43ff",
+  "at": "2026-09-29T08:43:57.070396+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "19a4a6f0001df75370b39da6106cf8efa5e30a0317c393d81f254f0e105eb2fe",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "amount와 count의 곱이 Integer.MAX_VALUE를 초과하면 amount * count가 int 정밀도로 계산되어 32비트 오버플로가 발생하고, 그 잘못된 값이 long으로 확장되어 반환되므로 long 범위에 들어가는 정확한 곱이어도 잘못된 값이 반환됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3325,
+  "output_tokens": 117,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "9ef782ed66fdc8a93a4c246e9b16449fb06c2365b6261637f2ac6d4e35587a36",
+  "elapsed_seconds": 1.11
+}

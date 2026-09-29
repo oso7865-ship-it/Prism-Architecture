@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-b07fc52f42ca-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "b07fc52f42ca",
+  "at": "2026-09-29T08:45:28.206524+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "7a3f4d1228eb8bf556db89558bf13cc772a4e48612b4abe14261eb91521221ae",
+  "payload_sha256": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "limit 함수의 기본값 처리 로직을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count가 0으로 전달될 때",
+        "consequence": "0은 falsy 값이므로 기본값 10이 반환되어, 계약상 유효한 0 제한이 무시됩니다.",
+        "assumptions": [],
+        "title": "0이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 0을 falsy로 처리하여 기본값을 반환합니다. 계약은 0을 유효한 값으로 명시합니다.",
+        "suggestion": "null 또는 undefined일 때만 기본값을 적용하도록 `count ?? 10`을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 호출부와 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4759,
+  "output_tokens": 249,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "bbc4f7a515c70195483bc29f6857609052388549e74df344ce528a7326ee41c7",
+  "elapsed_seconds": 4.734
+}

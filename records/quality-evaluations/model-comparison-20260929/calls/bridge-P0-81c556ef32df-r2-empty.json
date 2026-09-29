@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-81c556ef32df-r2-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "81c556ef32df",
+  "at": "2026-09-29T08:44:22.422973+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "95b30ed60ead40d5393f7d50dec199fbb65d0fa38a0210c156decf1ec93feaa9",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 mean 함수는 빈 입력에 대해 0.0을 반환하는 계약을 명시하고 있으며, 제공된 코드만으로는 결함이 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부와 입력 값의 실제 타입/유한성 검증은 제공되지 않아 확인할 수 없었습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "빈 입력 처리와 평균 계산 로직을 확인했으며, 제공된 계약 내에서 문제가 없습니다."
+      }
+    ]
+  },
+  "input_tokens": 3135,
+  "output_tokens": 159,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "c66a320e7b35beb1481f3812aa1cc25c9006cb9736dcadba6e51afeaaaeabd76",
+  "elapsed_seconds": 3.484
+}

@@ -1,0 +1,15 @@
+{
+  "key": "T0-0add10c208ec-r1-empty",
+  "arm": "T0",
+  "phase": "empty",
+  "at": "2026-09-29T10:22:06.366220+00:00",
+  "input_hash": "37646a23d109b5c19c66a838cf2865ba2c4359344ea47c2028332c13fd4ac11a",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 4000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 (long) amount * count로, 곱셈 전에 첫 피연산자를 long으로 승격해 int 오버플로를 방지한다. 제공된 계약(비음수 int, 곱이 long에 정확히 들어감)과 일치하며, 승격 순서상 두 번째 피연산자도 long으로 승격되므로 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"제공된 범위는 f1의 5줄뿐이며, 호출자와 실제 입력 분포는 확인하지 못했다. 계약상 곱이 long 범위를 넘는 경우의 동작은 검토 대상이 아니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"곱셈 전 (long) 캐스팅으로 int 오버플로를 방지하며, 제공된 비음수 int 계약과 일치한다. 추가 조치가 필요해 보이지 않는다.\"}]}",
+  "input_tokens": 3266,
+  "output_tokens": 241,
+  "seconds": 2.157
+}

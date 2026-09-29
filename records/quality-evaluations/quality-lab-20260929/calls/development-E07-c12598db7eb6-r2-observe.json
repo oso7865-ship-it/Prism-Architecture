@@ -1,0 +1,26 @@
+{
+  "key": "development-E07-c12598db7eb6-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:14:07.370889+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "e0a1c9a03111e48784aa3c7d86bff14a2f86411d7ae8a99e6bd3e38ec0d789e1",
+  "input_bytes": 554,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a single Python function `choose(value, default)` with one changed line (line 2).",
+      "Line 2 returns `default` only when `value is None`, otherwise returns `value` unchanged.",
+      "Behavior contract states only None means absent and explicitly provided values must be preserved.",
+      "Probe p1 `choose('', 'default')` passes an empty string, which is not None, so the function returns `''`.",
+      "Probe p2 `choose(False, True)` passes boolean False, which is not None, so the function returns `False`.",
+      "Probe p3 `choose(None, 'default')` passes None, so the function returns `'default'`."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d22b10e7737b7927bdda5ca2b1a3a3ea9c502123cef3d30eeef981689b4cd276",
+  "input_tokens": 332,
+  "output_tokens": 153,
+  "elapsed_seconds": 1.031
+}

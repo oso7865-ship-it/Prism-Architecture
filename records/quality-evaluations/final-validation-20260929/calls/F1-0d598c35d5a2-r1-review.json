@@ -1,0 +1,12 @@
+{
+  "key": "F1-0d598c35d5a2-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T12:58:05.554552+00:00",
+  "input_hash": "78637666b6050a31fd521b6d6f83dd56dc8c09c291a916de426df45a37677675",
+  "system_hash": "fc65a30673a8e7abfa6a12da0589a67f02863d45a956e18bdb26863c5e12b06a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 trim 함수는 문자열을 trim한 결과를 지역 변수에 저장하지만 원본 value를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"INFO\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"trim 함수가 호출될 때\",\"consequence\":\"2줄에서 계산한 trimmed 값이 사용되지 않고 3줄에서 원본 value가 그대로 반환됩니다.\",\"assumptions\":[],\"title\":\"trim 결과가 반환되지 않고 원본 값이 반환됩니다\",\"evidence\":\"2줄은 value.trim() 결과를 trimmed에 저장하지만 3줄은 trimmed가 아닌 value를 반환합니다.\",\"suggestion\":\"trimmed 결과를 반환할 의도라면 3줄에서 value 대신 trimmed를 반환하세요. 원본 반환이 의도라면 2줄의 미사용 계산을 제거하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4635,
+  "output_tokens": 245,
+  "seconds": 2.0
+}

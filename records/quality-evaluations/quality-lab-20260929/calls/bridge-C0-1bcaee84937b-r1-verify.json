@@ -1,0 +1,27 @@
+{
+  "key": "bridge-C0-1bcaee84937b-r1-verify",
+  "arm": "C0",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:16.405078+00:00",
+  "system_sha256": "4bf0d5ec60bc171a4b987c12ea650e17f1958a223c7f04866aa539a2ad9897f2",
+  "payload_sha256": "a682ca3f338dc2f4753b8bd1a679b761d1c4ca68c142253f3b7baeb3497369b7",
+  "input_bytes": 1733,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "actor가 \"alice\"가 아닌 값이어도 load(id)의 결과에서 owner를 비교하는 코드가 없으므로 item.amount(40)가 그대로 반환되어, 계약이 요구하는 소유자 경계가 지켜지지 않습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "55822b033a9d4cf764d9648f87fbca1968ad4f4779eb3b176b4e8b87fcfa7394",
+  "input_tokens": 3504,
+  "output_tokens": 101,
+  "elapsed_seconds": 1.031
+}

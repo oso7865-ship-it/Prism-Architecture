@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-a8961f6d5e20-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "a8961f6d5e20",
+  "at": "2026-09-29T08:41:28.386634+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "사용자 ID를 SQL 문자열에 직접 연결하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 공격자 제어 문자열이 전달될 때",
+        "consequence": "SQL 구문이 조작되어 인증 우회, 데이터 노출 또는 데이터베이스 조작이 발생할 수 있습니다.",
+        "assumptions": [],
+        "title": "SQL 인젝션 취약점",
+        "evidence": "2줄에서 user_id를 SQL 문자열에 직접 연결하고 있으며, behavior_contract에 user_id가 신뢰할 수 없는 텍스트라고 명시되어 있습니다.",
+        "suggestion": "파라미터 바인딩을 사용하도록 변경하세요. 예: 'SELECT name FROM users WHERE id = %s', (user_id,)"
+      }
+    ],
+    "limitations": "제공된 함수와 계약만 검토했으며 실제 호출부와 데이터베이스 드라이버 설정은 확인하지 않았습니다."
+  },
+  "input_tokens": 5112,
+  "output_tokens": 273,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3840,
+  "response_sha256": "1343ddb7c22358e9b031ddb78204eb051f9093dd0dbae5af694fc3b4860064d8",
+  "elapsed_seconds": 5.515
+}

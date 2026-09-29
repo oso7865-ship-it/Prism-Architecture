@@ -1,0 +1,12 @@
+{
+  "key": "F1-cea2cfe09062-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:58:14.342476+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "d1e0b8853bbcc3d0127e29ff5a65f9c8e596e03bb063c493b0ede4a206956d04",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 코드는 `adjusted`를 계산하지만 반환하지 않고 원본 `value`를 반환합니다. 계약이 원본 값 반환을 요구하므로 이는 계약을 충족하며, 동작상 결함은 확인되지 않습니다.\", \"issues\": [], \"limitations\": \"`normalize`의 호출자와 `adjusted` 사용 여부는 제공되지 않았습니다. 사용되지 않는 지역 변수 계산은 스타일 문제로, CODE 목적에서는 결함으로 보고하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"`Math.max(value, 0)` 결과를 `adjusted`에 저장하지만 반환은 원본 `value`입니다. 제공된 계약이 원본 값 반환을 요구하므로 반환 동작은 계약과 일치합니다.\"}]}",
+  "input_tokens": 3622,
+  "output_tokens": 206,
+  "seconds": 1.703
+}

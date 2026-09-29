@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-65d1d2fad0d4-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:18.935802+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "8e66a7ec56208b5c48fd53ac882b621af7265751037d8f26fd87349c12a5b02b",
+  "input_bytes": 716,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed line 3 computes the comparison result as integer subtraction `left - right`.",
+      "The behavior contract requires a negative value when left < right, zero on equality, and positive otherwise.",
+      "Probe p1 calls `Order.compare(Integer.MIN_VALUE, 1)`, where subtraction overflows int range and yields a positive value instead of the required negative sign.",
+      "Probe p2 calls `Order.compare(3, 3)`, where subtraction yields 0, matching the equality requirement.",
+      "The method is static and package-private with no authorization or state checks; inputs are plain ints.",
+      "No static findings are reported for this file."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "9252bbef186be27dc83915f51c5d6a5c3591b0ff59424c7bbbb2f6fcc40cf8e5",
+  "input_tokens": 386,
+  "output_tokens": 139,
+  "elapsed_seconds": 1.172
+}

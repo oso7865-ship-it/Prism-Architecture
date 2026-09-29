@@ -1,0 +1,12 @@
+{
+  "key": "F3-2cdf3efa43ff-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:35.029073+00:00",
+  "input_hash": "08e61641e4d219f753c2fea5d81736cb35f913ce52fbef355baed7a36dbdda40",
+  "system_hash": "c9d8af98d178781f0ae194d9ae3004375bf6e2487284a727ea3084b3908f7c95",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 total에서 int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다. 계약상 곱이 long 범위에 들어가더라도 int 연산에서 먼저 오버플로가 발생할 수 있는지 확인이 필요합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count가 모두 int이고 그 곱이 int 범위를 초과하지만 long 범위에는 들어오는 경우(예: 100000 * 100000)\",\"consequence\":\"int 곱셈이 먼저 수행되어 32비트에서 오버플로된 값이 long으로 변환·반환되므로, 계약이 요구하는 정확한 곱이 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"int 곱셈 오버플로로 long 반환값이 부정확해집니다\",\"evidence\":\"3줄은 두 int 매개변수를 그대로 곱해 long으로 반환합니다. 제공된 path_observations에서 100000*100000은 1410065408을 반환해 수학적 곱 10000000000과 다릅니다. 반환 타입 long은 이미 수행된 int 연산의 오버플로를 되돌리지 못합니다.\",\"suggestion\":\"곱셈 전에 한 피연산자를 long으로 승격하세요(예: (long) amount * count). 이렇게 하면 0이나 작은 값 등 기존에 정확했던 입력의 결과도 그대로 유지됩니다.\"}],\"limitations\":\"제공된 단일 파일과 정적 관찰만 검토했으며 실제 실행이나 호출자 검증은 수행하지 않았습니다.\"}",
+  "input_tokens": 4967,
+  "output_tokens": 402,
+  "seconds": 3.063
+}

@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-65d1d2fad0d4-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:42.764330+00:00",
+  "system_sha256": "824c09fdcc7c4bb81a735a18f3a5eb67d0450ef5ca71aed841ba7c2c2e9ec9e7",
+  "payload_sha256": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "input_bytes": 549,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "정수 비교를 뺄셈으로 구현한 변경을 검토했습니다. 제공된 계약상 부호만 요구되지만, 뺄셈 결과가 int 범위를 넘는 입력에서 부호가 뒤집힐 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left가 양수 최대 부근이고 right가 음수 최대 부근이어서 left - right가 int 범위를 초과할 때",
+        "consequence": "int 오버플로로 결과의 부호가 뒤집혀 left > right인데도 음수가 반환되므로, 이 값을 사용하는 비교/정렬 로직이 잘못된 순서를 산출할 수 있습니다.",
+        "assumptions": [],
+        "title": "뺄셈 비교가 int 오버플로로 부호를 뒤집을 수 있습니다",
+        "evidence": "3줄에서 left - right를 그대로 반환하며, 두 int의 차이는 int 범위를 넘을 수 있습니다.",
+        "suggestion": "Integer.compare(left, right)를 사용하거나 long으로 승격한 뒤 부호를 반환하세요."
+      }
+    ],
+    "limitations": "호출부와 실제 입력 범위는 제공되지 않았으며 테스트를 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "be4ae30257fdc1b30dfab4636789ed21032db5fb79b281b567c4dca8c83b28f1",
+  "input_tokens": 4919,
+  "output_tokens": 297,
+  "elapsed_seconds": 2.047
+}

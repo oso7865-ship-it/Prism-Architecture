@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-90900a02e0f4-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:45:15.720535+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "e989144ddbe9b25308ec2d5c833f24fc75bb90f9b20d01f5429fdcde7007e72d",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "name이 null이면 조건이 참이 되어 null.trim()이 실행되어 NullPointerException이 발생하고, null이 아니면 trim 대신 빈 문자열이 반환되어 계약과 반대 동작을 합니다."
+      }
+    ]
+  },
+  "input_tokens": 3238,
+  "output_tokens": 87,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "f634dccc7215cfa9518da8b1643fa5b24637ab8afcab87f23766e07c7f643071",
+  "elapsed_seconds": 0.985
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F3-a8961f6d5e20-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:54.528472+00:00",
+  "input_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "system_hash": "e6ec33007027b6e817157de434ae13e544aacdab868ffc2ef72c92dde48eb1ee",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 2줄은 user_id를 SQL 문자열에 직접 연결해 반환하므로, 제공된 계약상 untrusted text가 파라미터 바인딩 없이 SQL 텍스트에 포함됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"untrusted text인 user_id가 query에 전달될 때\",\"consequence\":\"user_id 값이 SQL 구문의 일부로 해석되어 WHERE 절이 변조될 수 있습니다.\",\"assumptions\":[],\"title\":\"user_id가 SQL 문자열에 직접 연결되어 SQL 주입이 가능합니다\",\"evidence\":\"2줄은 user_id를 문자열 연결로 SQL 텍스트에 삽입하고 파라미터 튜플은 빈 값으로 반환합니다. 제공된 계약은 user_id가 untrusted text이고 반환값이 DB-API 드라이버로 직접 전달된다고 명시합니다.\",\"suggestion\":\"SQL 텍스트에는 %s 플레이스홀더만 두고 user_id를 두 번째 반환값인 파라미터 튜플에 넣어 바인딩하세요.\",\"citations\":[]}],\"limitations\":\"제공된 단일 함수와 계약만 검토했으며, 실제 호출부와 DB-API 드라이버의 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4971,
+  "output_tokens": 314,
+  "seconds": 2.141
+}

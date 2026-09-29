@@ -1,0 +1,106 @@
+{
+  "key": "bridge-E12-44af6707b4e8-r1",
+  "case": "44af6707b4e8",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "명시적으로 전달된 falsy 값을 None과 동일하게 처리해 기본값으로 대체하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "value에 0, 빈 문자열, 빈 리스트, False 등 None이 아닌 falsy 값이 전달될 때",
+        "consequence": "value에 0, 빈 문자열, 빈 리스트, False 같은 None이 아닌 falsy 값이 전달되면 `value or default`가 default를 반환해, 계약이 요구하는 'None만 결측' 및 명시적 값 보존이 위반됩니다.",
+        "assumptions": [],
+        "title": "None이 아닌 falsy 값이 default로 대체됩니다",
+        "evidence": "제공된 동작 계약은 'Only None means absent. Preserve all explicitly provided values.'라고 명시하지만, 2줄의 `value or default`는 falsy 전체를 결측으로 처리합니다.",
+        "suggestion": "`return default if value is None else value`처럼 None 여부만 검사하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None이 아닌 falsy 값이 default로 대체됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "value에 0, 빈 문자열, 빈 리스트, False 등 None이 아닌 falsy 값이 전달될 때",
+        "consequence": "value에 0, 빈 문자열, 빈 리스트, False 같은 None이 아닌 falsy 값이 전달되면 `value or default`가 default를 반환해, 계약이 요구하는 'None만 결측' 및 명시적 값 보존이 위반됩니다.",
+        "assumptions": [],
+        "title": "None이 아닌 falsy 값이 default로 대체됩니다",
+        "evidence": "제공된 동작 계약은 'Only None means absent. Preserve all explicitly provided values.'라고 명시하지만, 2줄의 `value or default`는 falsy 전체를 결측으로 처리합니다.",
+        "suggestion": "`return default if value is None else value`처럼 None 여부만 검사하도록 변경하세요.",
+        "file_path": "settings.py",
+        "key": "cf44af6c058dbd586913aa155b54583dcbb7fec89561700ef2fe5219562a7189"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "settings.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7839,
+  "output_tokens": 744,
+  "elapsed_seconds": 5.015000000000001
+}

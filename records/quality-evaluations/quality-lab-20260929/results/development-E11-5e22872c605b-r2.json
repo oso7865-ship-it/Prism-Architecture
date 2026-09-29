@@ -1,0 +1,54 @@
+{
+  "key": "development-E11-5e22872c605b-r2",
+  "case": "5e22872c605b",
+  "arm": "E11",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "n이 음이 아닌 정수일 때 계약대로 [] 또는 [0]을 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "n이 음이 아닌 정수라는 계약만 제공되어 음수나 비정수 입력의 처리는 확인하지 못했으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5735,
+  "output_tokens": 383,
+  "elapsed_seconds": 2.922,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

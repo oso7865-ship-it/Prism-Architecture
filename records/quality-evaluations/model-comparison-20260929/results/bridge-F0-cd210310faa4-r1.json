@@ -1,0 +1,88 @@
+{
+  "key": "bridge-F0-cd210310faa4-r1",
+  "case": "cd210310faa4",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 한 줄은 null을 빈 문자열로, 그 외에는 trim 결과를 반환하는 단순 삼항 연산으로, 명시된 동작 계약과 일치합니다. 제공된 범위에서 구체적 결함 경로가 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출자와 name 인자의 실제 입력 분포는 제공되지 않았으며, trim()이 반환하는 새 문자열의 사용처도 확인 범위 밖입니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "호출자와 name 인자의 실제 입력 분포는 제공되지 않았으며, trim()이 반환하는 새 문자열의 사용처도 확인 범위 밖입니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Display.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "null 검사 후 trim을 수행하는 삼항 연산으로, null 입력은 빈 문자열로 처리되고 그 외 입력은 trim 결과를 반환합니다. 계약과 일치하며 추가 결함 경로는 보이지 않습니다.",
+          "file_path": "Display.java"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "null 검사 후 trim을 수행하는 삼항 연산으로, null 입력은 빈 문자열로 처리되고 그 외 입력은 trim 결과를 반환합니다. 계약과 일치하며 추가 결함 경로는 보이지 않습니다.",
+        "file_path": "Display.java"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8220,
+  "output_tokens": 277,
+  "elapsed_seconds": 3.094
+}

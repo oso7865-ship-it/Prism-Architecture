@@ -1,0 +1,41 @@
+{
+  "key": "development-E12-411a32119068-r2-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:10:44.237358+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "47b2320f78109fe85d98ad9fba04c2ed7065b95079fdb1d1c9eaf5bae4c18f30",
+  "input_bytes": 570,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "wire_size가 str이면 UTF-8 인코딩 바이트 수를, bytes이면 길이를 반환하도록 변경된 한 줄을 검토했습니다. 제공된 범위에서 계약 위반이나 구체적 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부와 입력 계약 외 다른 사용처는 제공되지 않았으며, 실행 검증 없이 제공된 한 줄만 정적으로 검토했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "de9a60b2f8c3d2acbd667eb2de602ac7e224abe7826c4cf8fd7dfdda53cc99d6",
+  "input_tokens": 5213,
+  "output_tokens": 292,
+  "elapsed_seconds": 2.094
+}

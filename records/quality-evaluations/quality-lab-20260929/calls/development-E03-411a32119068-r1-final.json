@@ -1,0 +1,41 @@
+{
+  "key": "development-E03-411a32119068-r1-final",
+  "arm": "E03",
+  "phase": "final",
+  "at": "2026-09-29T07:14:05.516677+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "ea24bdf53e065311dcbffa608d532e71d0599356a8484e84e88f2f054098bfa0",
+  "input_bytes": 2737,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "str 또는 bytes 입력을 받아 UTF-8 기준 바이트 길이를 반환하는 함수 변경을 검토했습니다. str은 encode('utf-8') 후 len, bytes는 그대로 len을 적용해 계약과 일치하며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수 정의 한 건만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다. bytes 이외의 버퍼형 입력은 계약에 없어 검토 범위 밖입니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "551c582525df1e21d475b8d47b4acba0146776073c19f83e6aab51b1ae9a70ee",
+  "input_tokens": 5986,
+  "output_tokens": 201,
+  "elapsed_seconds": 1.828
+}

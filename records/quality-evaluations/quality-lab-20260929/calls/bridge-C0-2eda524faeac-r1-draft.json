@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-2eda524faeac-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:49.804497+00:00",
+  "system_sha256": "bc946a1ae973546c6194797bdb47a57a691c336eadb54ca1a17d3c60362e9665",
+  "payload_sha256": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f",
+  "input_bytes": 493,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 권한 검사 함수의 변경된 조건문을 검토했습니다. 제공된 코드에서는 보안 결함이 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "check 함수의 구현과 호출부가 제공되지 않아 실제 권한 판정 로직과 예외 처리 경계는 확인하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "56c0ce1c387e587b138ac4629b7507c656b6e556c8f6f9e0148d3f8c961c2f30",
+  "input_tokens": 5136,
+  "output_tokens": 87,
+  "elapsed_seconds": 1.109
+}

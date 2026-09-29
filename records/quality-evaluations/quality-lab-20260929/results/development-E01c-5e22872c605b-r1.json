@@ -1,0 +1,71 @@
+{
+  "key": "development-E01c-5e22872c605b-r1",
+  "case": "5e22872c605b",
+  "arm": "E01c",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "n이 0일 때와 양수일 때의 인덱스 목록을 반환하는 변경을 검토했습니다. n=0 경로는 계약과 일치하지만, 양수 n에 대해서는 계약이 기대하는 [0] 대신 여러 인덱스가 반환됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "양수 n으로 indices(n)을 호출할 때(예: n=3)",
+        "consequence": "range(0, n, max(n, 1))의 step이 n이 되어 0만 생성되므로 [0]이 반환됩니다. 이는 계약과 일치합니다.",
+        "assumptions": [],
+        "title": "양수 n에서도 [0]만 반환되어 계약과 일치합니다",
+        "evidence": "2줄에서 step을 max(n, 1)로 지정해 n>0이면 step=n이 되고, range(0, n, n)은 0만 생성합니다. n=0이면 range(0, 0, 1)이 비어 []가 됩니다.",
+        "suggestion": "현재 구현이 계약을 충족하므로 변경이 필요하지 않습니다."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5166,
+  "output_tokens": 367,
+  "elapsed_seconds": 2.406,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

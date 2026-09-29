@@ -1,0 +1,41 @@
+{
+  "key": "development-E11-d9318706b943-r1-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:11:39.305687+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "e55018df53b314275a8bb3fca8c2b343618527a359b3625ffc093dd96ea4c36f",
+  "input_bytes": 1222,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`limit` 함수가 nullish 병합 연산자(`??`)를 사용해 null/undefined일 때만 기본값 10을 적용하도록 변경된 코드를 검토했습니다. 제공된 계약(0은 유효한 설정값)과 일치하며, 세 프로브 호출 모두 예상대로 동작합니다.",
+    "issues": [],
+    "limitations": "제공된 3줄 함수만 검토했으며 호출부, 입력 타입 계약, 테스트 실행은 확인하지 않았습니다. 비숫자 입력의 처리 방침은 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "03b192c308ffae38a13d5ccfe04b001f1adfa28c9cd9e3b4b74e7b01dd0a4341",
+  "input_tokens": 5354,
+  "output_tokens": 206,
+  "elapsed_seconds": 1.625
+}

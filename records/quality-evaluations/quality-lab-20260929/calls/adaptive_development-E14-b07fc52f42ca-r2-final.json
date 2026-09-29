@@ -1,0 +1,58 @@
+{
+  "key": "adaptive_development-E14-b07fc52f42ca-r2-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:32.298974+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "e146e08b3580e65addcfef4a9de01a69bc4fc7f224ffa4f22cfd1f13da1b70e2",
+  "input_bytes": 545,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본값 처리 변경을 검토했습니다. `||` 연산자는 null/undefined뿐 아니라 0과 같은 falsy 값도 기본값으로 대체합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)을 호출할 때",
+        "consequence": "0이 falsy이므로 `count || 10`이 10을 반환해, 유효한 설정값 0이 기본값으로 덮어써집니다.",
+        "assumptions": [],
+        "title": "유효한 0 설정값이 기본값 10으로 대체됩니다",
+        "evidence": "2줄에서 `||`를 사용해 falsy 값을 기본값으로 대체하며, 동작 계약은 null/undefined에만 기본값 10을 적용하고 0은 유효한 값으로 규정합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a715b570f3b36f3b9ed66719748ca3fe2f855b8956c3b5687dde246c49851543",
+  "input_tokens": 5187,
+  "output_tokens": 329,
+  "elapsed_seconds": 2.187
+}

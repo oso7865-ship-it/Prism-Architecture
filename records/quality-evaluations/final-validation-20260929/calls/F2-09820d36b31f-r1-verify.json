@@ -1,0 +1,12 @@
+{
+  "key": "F2-09820d36b31f-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:00:34.149286+00:00",
+  "input_hash": "0c701b16f9cb5f7944b63490f47eb814e6d41d16da486803c5e1ba8b0d37b5a1",
+  "system_hash": "53b151a5996ffda1e6a8f7b43cfceb2d3f9e55c7af5bee5e71fa752ae88ddb76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scale(5)는 10이 아니라 5를 반환하여 'Return double the input' 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 value*2를 scaled에 저장하지만 3줄은 value를 반환하여 두 배 반환 계약을 위반합니다.\"}]}",
+  "input_tokens": 4419,
+  "output_tokens": 138,
+  "seconds": 1.407
+}

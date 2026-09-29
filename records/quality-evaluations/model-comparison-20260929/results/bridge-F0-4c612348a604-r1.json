@@ -1,0 +1,104 @@
+{
+  "key": "bridge-F0-4c612348a604-r1",
+  "case": "4c612348a604",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "range의 step으로 n을 사용하는 변경을 검토했습니다. n이 0일 때 range의 step이 0이 되어 ValueError가 발생하는 경로가 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n이 0인 상태에서 indices(0)을 호출할 때",
+        "consequence": "indices(0) 호출 시 range(0, 0, 0)의 step이 0이므로 ValueError가 발생하여 계약이 요구한 [] 대신 예외가 전파됩니다.",
+        "assumptions": [],
+        "title": "n=0일 때 step 0으로 인해 ValueError가 발생합니다",
+        "evidence": "2줄에서 range의 세 번째 인자로 n을 그대로 전달하며, 계약은 n이 0일 때 []를 반환해야 한다고 명시합니다.",
+        "suggestion": "n이 0인 경우를 먼저 분기해 []를 반환하고, 그 외에는 유효한 step을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: n=0일 때 step 0으로 인해 ValueError가 발생합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n이 0인 상태에서 indices(0)을 호출할 때",
+        "consequence": "indices(0) 호출 시 range(0, 0, 0)의 step이 0이므로 ValueError가 발생하여 계약이 요구한 [] 대신 예외가 전파됩니다.",
+        "assumptions": [],
+        "title": "n=0일 때 step 0으로 인해 ValueError가 발생합니다",
+        "evidence": "2줄에서 range의 세 번째 인자로 n을 그대로 전달하며, 계약은 n이 0일 때 []를 반환해야 한다고 명시합니다.",
+        "suggestion": "n이 0인 경우를 먼저 분기해 []를 반환하고, 그 외에는 유효한 step을 사용하세요.",
+        "file_path": "indices.py",
+        "key": "f2338afd656a581e724b60b0e376e1066b85542df5b4e4a382a1c63fc15e0aca"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "indices.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7812,
+  "output_tokens": 346,
+  "elapsed_seconds": 3.2350000000000003
+}

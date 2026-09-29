@@ -1,0 +1,67 @@
+{
+  "key": "adaptive_holdout-E14-0c47bb65c1ee-r2",
+  "case": "0c47bb65c1ee",
+  "arm": "E14",
+  "split": "adaptive_holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "base.copy()는 얕은 복사이므로 중첩 딕셔너리를 공유한 채 수정하여 호출자의 base가 변경됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "2줄의 base.copy()는 최상위만 복사하고 'nested' 값은 같은 객체를 공유하므로, 3줄의 result['nested']['limit'] = 9가 호출자의 base['nested']['limit']까지 9로 바꿉니다. 4줄은 변경된 9를 반환하며, 계약에서 요구한 '호출자의 base를 변경하지 않음'이 위반됩니다.",
+        "assumptions": [],
+        "title": "얕은 복사 후 중첩 딕셔너리를 수정해 호출자 상태가 변경됩니다",
+        "evidence": "2줄은 base.copy()로 얕은 복사만 수행하고, 3줄은 공유된 중첩 딕셔너리를 직접 수정합니다. 4줄은 그 변경된 값을 반환합니다.",
+        "suggestion": "copy.deepcopy(base)로 중첩 구조까지 복사하거나, result['nested'] = dict(base['nested'])처럼 수정할 중첩 딕셔너리를 별도로 복사한 뒤 값을 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5461,
+  "output_tokens": 412,
+  "elapsed_seconds": 2.657,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,51 @@
+{
+  "case": "3a35091fd0ff",
+  "arm": "R2",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "load()의 실제 구현은 관련 코드로 제공된 단순 스텁이며, 실제 저장소 조회·테넌트 경계·actor 값의 출처(인증 주체 여부)는 제공되지 않아 검증 범위 밖입니다. 호출자와 예외 처리도 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "invoice.ts",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "load(id)로 조회한 item의 owner와 actor를 비교해 불일치 시 예외를 던지고, 일치 시에만 amount를 반환하는 인가 흐름을 확인했습니다. 제공된 범위에서 우회 경로는 보이지 않습니다.",
+          "file_path": "invoice.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db"
+}

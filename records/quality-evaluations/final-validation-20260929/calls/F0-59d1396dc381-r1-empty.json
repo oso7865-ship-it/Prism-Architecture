@@ -1,0 +1,12 @@
+{
+  "key": "F0-59d1396dc381-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:56:22.264183+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 계약상 value를 그대로 반환해야 하며, 실제 반환문도 value를 그대로 반환합니다. line 2의 max(value, 0) 계산 결과는 사용되지 않아 동작에 영향이 없으므로, 제공된 계약 기준으로 결함은 확인되지 않습니다.\", \"issues\": [], \"limitations\": \"line 2의 adjusted는 반환에 사용되지 않지만, 계약이 원본 값 반환을 요구하므로 동작 결함으로 보지 않았습니다. 호출자나 테스트는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 원본 value 반환을 요구하고, line 3이 value를 그대로 반환합니다. line 2의 max 계산은 미사용이라 반환값에 영향을 주지 않습니다.\"}]}",
+  "input_tokens": 3495,
+  "output_tokens": 211,
+  "seconds": 1.578
+}

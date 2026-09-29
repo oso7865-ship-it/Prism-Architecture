@@ -1,0 +1,15 @@
+{
+  "key": "B0-cd210310faa4-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:18:55.548406+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "b0cc55fbe27d3e2ba42428640923e967313c9addbeb347dfa1635650971f6b81",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 null 병합 후 trim을 수행하는 단순 가드로, 명시된 계약(null은 빈 문자열, 그 외 공백 제거)과 일치합니다. 제공된 범위에서 실행 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"호출자와 name 인자의 실제 출처, trim 이후 빈 문자열이 되는 경우의 후속 처리는 제공되지 않아 검토 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 3, \"outcome\": \"NO_FINDING\", \"observation\": \"name == null 삼항 분기로 null을 빈 문자열로 처리하고, 비-null 경로에서만 trim을 호출하므로 NPE 경로가 없습니다. 계약과 일치합니다.\"}]}",
+  "input_tokens": 3294,
+  "output_tokens": 190,
+  "seconds": 1.485
+}

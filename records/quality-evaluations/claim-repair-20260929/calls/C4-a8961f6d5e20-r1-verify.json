@@ -1,0 +1,12 @@
+{
+  "key": "C4-a8961f6d5e20-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:41.267576+00:00",
+  "input_hash": "2bcd7d282124fd04eb023dcec8d57b32c12165a152fa0c31a301e6a47e558257",
+  "system_hash": "c932df7fc76f19cd4898974717ab091fd3f0904272bdc8d8bff8dbe597408b6a",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"user_id가 이스케이프 없이 SQL 문자열에 결합되어 반환되므로, 신뢰할 수 없는 user_id에 포함된 SQL 구문이 WHERE 절을 조작하거나 추가 구문을 주입할 수 있습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2행에서 신뢰할 수 없는 user_id를 문자열 결합으로 SQL에 삽입하고 파라미터 튜플을 비워 두어 SQL 주입 경로가 성립합니다.\"}]}",
+  "input_tokens": 4757,
+  "output_tokens": 175,
+  "seconds": 1.281
+}

@@ -1,0 +1,15 @@
+{
+  "key": "B0-411a32119068-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:18:52.496766+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "c1b104d7a2b4812dac7ace263e24deb30f34e82fdbc2b3c4991cd5412a7e9d0c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"단일 변경 파일(f1)에서 wire_size가 str/bytes를 받아 UTF-8 바이트 길이를 반환하는 연산을 검토했다. 명시된 계약(str 또는 bytes)과 일치하며, 변경 라인에서 구체적 실패 경로는 확인되지 않았다.\", \"issues\": [], \"limitations\": \"wire_size의 호출자와 실제 전달 인자 유형은 제공되지 않았다. 계약에 명시된 str/bytes 외의 입력(예: None, int)에 대한 처리는 이 발췌만으로 판단할 수 없다. 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 2, \"outcome\": \"NO_FINDING\", \"observation\": \"str이면 UTF-8 인코딩 후, bytes면 그대로 len을 적용해 바이트 수를 반환한다. isinstance 분기와 encode 인자 모두 계약과 일치하며 변경 라인에서 구체적 실패 경로는 보이지 않는다.\"}]}",
+  "input_tokens": 3133,
+  "output_tokens": 240,
+  "seconds": 1.828
+}

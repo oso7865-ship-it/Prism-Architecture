@@ -1,0 +1,12 @@
+{
+  "key": "F0-59d1396dc381-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:20.654348+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 계산된 adjusted 값이 사용되지 않고 원본 value가 그대로 반환되는 변경입니다. 제공된 계약상 원본 값을 그대로 반환하는 것이 요구되므로 반환 동작 자체는 계약과 일치합니다.\",\"issues\":[],\"limitations\":\"제공된 3개 라인만 검토했으며 실행 결과나 다른 호출자는 확인하지 않았습니다. adjusted 변수는 사용되지 않지만, 제공된 계약이 원본 반환을 요구하므로 동작 결함으로 단정하지 않았습니다.\"}",
+  "input_tokens": 4664,
+  "output_tokens": 131,
+  "seconds": 1.579
+}

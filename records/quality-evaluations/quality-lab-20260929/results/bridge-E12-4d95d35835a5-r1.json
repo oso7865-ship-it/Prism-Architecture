@@ -1,0 +1,104 @@
+{
+  "key": "bridge-E12-4d95d35835a5-r1",
+  "case": "4d95d35835a5",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "콜백 목록을 만드는 컴프리헨션에서 람다가 루프 변수를 늦게 바인딩해, 계약과 달리 각 콜백이 생성 시점의 인덱스를 반환하지 않습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출해 반환된 세 콜백을 각각 호출할 때",
+        "consequence": "callbacks()가 반환한 세 콜백을 각각 호출하면 모두 2를 반환하며, 계약이 요구하는 생성 시점 인덱스 0, 1, 2는 반환되지 않습니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 마지막 값을 반환합니다",
+        "evidence": "2줄의 람다는 i를 인자로 캡처하지 않고 외부 스코프 변수 i를 참조하며, 컴프리헨션이 끝난 뒤 i는 마지막 값 2입니다. 이는 각 콜백이 생성 시점 인덱스를 반환한다는 계약과 어긋납니다.",
+        "suggestion": "각 람다가 값을 생성 시점에 캡처하도록 기본 인자를 사용하세요 (예: lambda i=i: i)."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 콜백이 생성 시점 인덱스 대신 마지막 값을 반환합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출해 반환된 세 콜백을 각각 호출할 때",
+        "consequence": "callbacks()가 반환한 세 콜백을 각각 호출하면 모두 2를 반환하며, 계약이 요구하는 생성 시점 인덱스 0, 1, 2는 반환되지 않습니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 마지막 값을 반환합니다",
+        "evidence": "2줄의 람다는 i를 인자로 캡처하지 않고 외부 스코프 변수 i를 참조하며, 컴프리헨션이 끝난 뒤 i는 마지막 값 2입니다. 이는 각 콜백이 생성 시점 인덱스를 반환한다는 계약과 어긋납니다.",
+        "suggestion": "각 람다가 값을 생성 시점에 캡처하도록 기본 인자를 사용하세요 (예: lambda i=i: i).",
+        "file_path": "callbacks.py",
+        "key": "e9427f5a55585a1cb149d877e2e30956cc315226ae87dc651adc00d8bcaef7b1"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "callbacks.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7931,
+  "output_tokens": 774,
+  "elapsed_seconds": 4.922
+}

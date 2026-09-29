@@ -1,0 +1,54 @@
+{
+  "key": "adaptive_development-E15-aa5d6b234f6b-r2-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:20.819800+00:00",
+  "system_sha256": "8d69e48f69155482c63908e2b325eb12509304922d6ac8d3f04563380fa1e4ff",
+  "payload_sha256": "dd6012858cbeb48d8780c1f0a147ff91e904a28a32d3664beef3e32070bd13b9",
+  "input_bytes": 624,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트 `bucket=[]`를 사용하는 `collect` 함수를 검토했습니다. 기본값이 호출 간에 공유되어, bucket을 생략한 호출들이 같은 리스트를 누적합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간에 공유되어, 두 번째 호출의 반환값에 첫 번째 호출의 항목까지 포함됩니다. 예를 들어 collect(1) 후 collect(2)를 호출하면 두 번째 결과는 [1, 2]가 됩니다.",
+        "assumptions": [],
+        "title": "가변 기본 인자 bucket=[]이 호출 간에 공유됩니다",
+        "evidence": "1줄에서 기본값으로 생성된 리스트가 함수 정의 시 한 번만 만들어지고, 2줄의 append가 그 동일 객체를 수정하며 3줄에서 그 객체를 반환합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 변경하세요. 명시적으로 전달된 리스트는 그대로 수정하는 현재 동작을 유지할 수 있습니다."
+      }
+    ],
+    "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1], [1, 2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9, 3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "61295bf513dc44bd677e0e57aa99720e5f35196c9ddc49f646f774a261b9dc4f",
+  "input_tokens": 5306,
+  "output_tokens": 410,
+  "elapsed_seconds": 2.703
+}

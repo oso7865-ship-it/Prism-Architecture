@@ -1,0 +1,15 @@
+{
+  "key": "R1-898c474a9d7d-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:52.627940+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공 코드 검토\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']가 중첩 딕셔너리를 포함하고 adjust가 호출될 때\",\"consequence\":\"2줄의 copy()는 얕은 복사이므로 result['nested']의 중첩 값이 base['nested']와 공유됩니다. 3줄에서 result['nested']['limit']을 9로 바꾸면 base['nested']['limit']도 함께 변경되어, 4줄이 반환하는 값이 호출자의 원본 base 상태에 따라 9가 아닌 다른 값이 될 수 있고 호출자 데이터가 변형됩니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 base가 변형됩니다\",\"evidence\":\"2줄은 base['nested']에 대해 copy()만 수행하고, 3줄은 그 복사본의 중첩 항목을 수정합니다. 4줄은 원본 base['nested']['limit']을 반환하므로 복사본 수정이 원본에 전파되면 반환값도 달라집니다.\",\"suggestion\":\"base['nested']의 중첩 값까지 보존해야 한다면 copy.deepcopy(base)로 복사하거나, 중첩 딕셔너리도 별도로 복사한 뒤 수정하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 357,
+  "seconds": 2.453
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-4d95d35835a5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:29.527518+00:00",
+  "input_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 callbacks 함수가 range(3) 순회로 생성한 람다 목록을 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"callbacks()를 호출해 반환된 콜백을 호출할 때\",\"consequence\":\"모든 콜백이 클로저 변수 i의 최종 값인 2를 반환하여, 각 콜백이 생성 시점의 인덱스를 반환해야 한다는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다\",\"evidence\":\"2줄의 람다는 i를 참조하지만 i는 range(3) 순회가 끝난 뒤 2로 확정되므로, 반환된 세 콜백 모두 2를 반환합니다.\",\"suggestion\":\"기본 인자로 현재 값을 바인딩하도록 lambda i=i: i 형태로 변경하세요.\",\"contract_quote\":\"Each callback returns the index captured when it was created.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4502,
+  "output_tokens": 290,
+  "seconds": 2.125
+}

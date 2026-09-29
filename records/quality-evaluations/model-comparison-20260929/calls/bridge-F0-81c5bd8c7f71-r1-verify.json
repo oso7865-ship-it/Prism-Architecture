@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-81c5bd8c7f71-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "81c5bd8c7f71",
+  "at": "2026-09-29T08:45:29.508453+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "43ee2c0cd72a3be4f2a90fd0ea076f3d4f4403249946ce9fe93ff44200f45586",
+  "payload_sha256": "7cb4581eb2cae14826fd90d418179ad20a5968256c677cc6f011ad3a3d4c7f4b",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "profile이 없는 user로 호출하면 user.profile!.name 접근에서 TypeError가 발생하며, 계약이 요구하는 'Unknown' 반환은 이루어지지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3099,
+  "output_tokens": 80,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2688,
+  "response_sha256": "73b27fba95d42dc6d3add59897c02f909c254b44539f251de0409cf05b88bbb4",
+  "elapsed_seconds": 0.984
+}

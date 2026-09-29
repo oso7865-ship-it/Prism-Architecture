@@ -11,3 +11,5 @@ records/frontend/** -text -whitespace
 
 # Evaluation summaries hash the original result bytes, including line endings.
 records/quality-evaluations/*.json -text whitespace=cr-at-eol
+# Preserve nested frozen experiment artifacts when cloning on another OS.
+records/quality-evaluations/** -text whitespace=cr-at-eol

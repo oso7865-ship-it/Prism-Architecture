@@ -1,0 +1,26 @@
+{
+  "key": "development-E11-44af6707b4e8-r2-observe",
+  "arm": "E11",
+  "phase": "observe",
+  "at": "2026-09-29T07:14:50.666380+00:00",
+  "system_sha256": "4f469fe1192f5b54d60868d76fc54a80999dd7607500855f56cfade86ba3987f",
+  "payload_sha256": "675702fa9714ba1490be140c63ffca268ec6a73869791b5cca7754be124e65b8",
+  "input_bytes": 535,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses `value or default`, which returns `default` for any falsy value, not only None.",
+      "The stated behavior contract says only None means absent and all explicitly provided values must be preserved, but line 2 cannot distinguish None from other falsy values.",
+      "Probe p1 `choose('', 'default')` would return 'default' at line 2, discarding the explicitly provided empty string.",
+      "Probe p2 `choose(False, True)` would return True at line 2, discarding the explicitly provided False.",
+      "Probe p3 `choose(None, 'default')` would return 'default' at line 2, which is consistent with the contract.",
+      "No exception handling or authorization logic is present in the two-line function."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "08b4609b0e08857c7b271b5e7150332eb90ada6918d1afd3a1256a0a616dfa28",
+  "input_tokens": 330,
+  "output_tokens": 166,
+  "elapsed_seconds": 1.172
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C3-54ae24d8d95c-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:50:23.236477+00:00",
+  "input_hash": "651af29a8d82da95dc11a6d17dabdda4d7912b78b56b737590afec12d98fa278",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경 라인 10은 verify가 True/None일 때 환경변수 CA 번들 값을 우선 적용하고, 빈 문자열은 or 체인으로 무시되어 기존 verify가 유지된다. 제공된 계약과 path_observations의 5개 케이스가 모두 일치하므로 지원되는 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"merge_setting의 호출자와 session_verify의 실제 전달 값, env 사전의 실제 구성은 제공되지 않았다. 변경 라인 10의 or 체인은 빈 문자열을 건너뛰는 동작이며, 제공된 계약과 일치한다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 10의 or 체인이 빈 문자열 CA 번들에서 verify를 유지하고, 비어 있지 않은 경로는 대체하며, verify=False 경로는 라인 9 조건으로 건너뛴다. 제공된 5개 계약 케이스와 모두 일치한다.\"}]}",
+  "input_tokens": 4499,
+  "output_tokens": 254,
+  "seconds": 2.063
+}

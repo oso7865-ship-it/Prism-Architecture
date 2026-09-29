@@ -1,0 +1,12 @@
+{
+  "key": "F3-d848633407e8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:06:09.873250+00:00",
+  "input_hash": "d3269173a10e9d30d250300a4772382c8c06f3deff9318aa939a6d168cc99f29",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"read 함수가 opener()로 연 스트림을 read() 이후에만 close하도록 변경된 코드를 검토했습니다. 제공된 동작 계약은 read()가 예외를 발생시키는 경우를 포함해 항상 스트림을 닫아야 한다고 명시합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"opener()가 반환한 스트림의 read() 호출이 예외를 발생시키는 경우\",\"consequence\":\"3줄에서 예외가 전파되면 4줄의 stream.close()가 실행되지 않아 스트림이 닫히지 않습니다.\",\"assumptions\":[],\"title\":\"read()가 예외를 내면 스트림이 닫히지 않습니다\",\"evidence\":\"2줄에서 스트림을 열고 3줄에서 read()를 호출한 뒤 4줄에서 close()를 호출합니다. 3줄이 예외를 발생시키면 4줄에 도달하지 못합니다.\",\"suggestion\":\"try/finally로 감싸 finally에서 stream.close()를 호출하거나, 계약에 명시된 대로 with opener() as stream 형태의 컨텍스트 관리자를 사용하세요.\",\"contract_quote\":\"Always close streams including when read raises. opener returns a standard context-managed file stream.\"}],\"limitations\":\"제공된 5줄만 검토했으며 opener()의 실제 구현과 호출자는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4792,
+  "output_tokens": 360,
+  "seconds": 2.406
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C1-e039b4bf0e2d-r3-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:39:54.176209+00:00",
+  "input_hash": "1cb3b9d388a25bf2525ae2e2c129e542741f22ecaaea233b684558b1378d7831",
+  "system_hash": "2f6d4a5ca10b9172e4a0c123f361a45548e33e2d4740ecb89c5ed4b7c49a96e4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10은 `or` 연산으로 REQUESTS_CA_BUNDLE/CURL_CA_BUNDLE을 조회합니다. 빈 문자열 환경변수는 falsy이므로 다음 후보로 넘어가고, 모든 후보가 비면 None이 되어 merge_setting이 session_verify(기본 True)를 복원합니다. 제공된 테스트 계약과 일치하며, 제공된 범위에서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 호출자와 session_verify의 실제 전달 값 범위는 제공되지 않았습니다. env가 dict 이외의 매핑일 때의 동작과 실제 환경변수 설정 출처는 확인 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 10의 `or` 체이닝은 빈 문자열/누락 시 None을 반환하고, merge_setting이 session_verify(기본 True)로 복원하므로 제공된 계약(빈 CURL_CA_BUNDLE이 True 유지)과 일치합니다.\"}]}",
+  "input_tokens": 4089,
+  "output_tokens": 269,
+  "seconds": 1.985
+}

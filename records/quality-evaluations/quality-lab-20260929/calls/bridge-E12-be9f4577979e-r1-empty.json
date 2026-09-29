@@ -1,0 +1,29 @@
+{
+  "key": "bridge-E12-be9f4577979e-r1-empty",
+  "arm": "E12",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:04.592394+00:00",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 `collect`는 `bucket=None` 기본값과 `is None` 검사로 호출마다 새 리스트를 생성하는 표준적인 가변 기본인자 회피 패턴이다. 명시적으로 전달된 bucket을 제자리에서 수정한다는 동작 계약과도 일치하며, 제출된 변경 라인에서 구체적인 결함 경로는 확인되지 않았다.",
+    "issues": [],
+    "limitations": "제출된 파일은 5줄짜리 단일 함수뿐이며, 실제 호출부와 bucket 인자로 전달되는 값의 유형은 제공되지 않았다. 이에 따라 호출자가 리스트가 아닌 값을 전달하는 경우의 동작은 검토 범위 밖이다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "`bucket is None` 검사 후 새 리스트를 할당하므로 공유 가변 기본인자 문제가 없고, 명시적 bucket에 대한 append/return 경로도 계약과 일치한다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "ad832ffef02a84253dbb7cd685dbc7ce28b9e43031ed5889711e40ce906737b1",
+  "input_tokens": 3212,
+  "output_tokens": 325,
+  "elapsed_seconds": 2.125
+}

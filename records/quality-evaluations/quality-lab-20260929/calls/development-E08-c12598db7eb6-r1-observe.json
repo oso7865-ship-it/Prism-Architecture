@@ -1,0 +1,25 @@
+{
+  "key": "development-E08-c12598db7eb6-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:11:35.814124+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "e0a1c9a03111e48784aa3c7d86bff14a2f86411d7ae8a99e6bd3e38ec0d789e1",
+  "input_bytes": 554,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses an identity check `value is None`, so only None triggers the default; falsy values like '' and False are returned unchanged.",
+      "Probe p1 `choose('', 'default')` returns '' (empty string), consistent with the contract that only None means absent.",
+      "Probe p2 `choose(False, True)` returns False, preserving the explicitly provided value as the contract requires.",
+      "Probe p3 `choose(None, 'default')` returns 'default', the only case where the default is substituted.",
+      "No static findings are reported and the single changed line matches the stated behavior contract; no defect is observable in the supplied source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7932c8d1894a4caf5e68358909fe0a21fc0840ea542215995a18dc5a79d1caf2",
+  "input_tokens": 333,
+  "output_tokens": 143,
+  "elapsed_seconds": 1.266
+}

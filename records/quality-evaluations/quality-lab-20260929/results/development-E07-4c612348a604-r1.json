@@ -1,0 +1,71 @@
+{
+  "key": "development-E07-4c612348a604-r1",
+  "case": "4c612348a604",
+  "arm": "E07",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "n을 0으로 호출하면 range의 step이 0이 되어 ValueError가 발생하며, 계약이 요구하는 [] 대신 예외가 발생합니다. 양수 n에서는 [0]을 반환해 계약을 충족합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n=0으로 indices를 호출할 때",
+        "consequence": "range(0, 0, 0)의 step이 0이므로 ValueError가 발생하고, 계약이 요구하는 빈 리스트 []를 반환하지 못합니다.",
+        "assumptions": [],
+        "title": "n=0일 때 step 0으로 인해 ValueError가 발생합니다",
+        "evidence": "2줄에서 range의 step 인자로 n을 그대로 사용합니다. n=0이면 step이 0이 되어 range가 ValueError를 발생시킵니다.",
+        "suggestion": "n이 0이면 빈 리스트를 반환하도록 분기하고, 그 외에는 range(0, n, n) 대신 range(0, n, 1) 또는 range(n)을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 n의 실제 입력 분포는 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "ValueError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5612,
+  "output_tokens": 482,
+  "elapsed_seconds": 3.281,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,71 @@
+{
+  "key": "adaptive_development-E15-90900a02e0f4-r2",
+  "case": "90900a02e0f4",
+  "arm": "E15",
+  "split": "adaptive_development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "name 인자의 null 여부에 따라 분기하는 변경을 검토했습니다. null일 때 trim을 호출하고, null이 아닐 때 빈 문자열을 반환해 계약과 반대 동작을 합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null) 또는 공백을 포함한 비-null 문자열로 호출할 때",
+        "consequence": "null이면 name.trim()에서 NullPointerException이 발생하고, 비-null이면 trim 결과 대신 빈 문자열이 반환되어 계약(주변 공백 제거)이 위반됩니다.",
+        "assumptions": [],
+        "title": "null 분기와 trim 적용이 반대로 되어 있습니다",
+        "evidence": "3줄에서 name == null이 참일 때 null 참조에 trim()을 호출하고, 거짓일 때 \"\"를 반환합니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null은 빈 문자열, 비-null은 trim 결과가 되도록 하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "java.lang.NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5443,
+  "output_tokens": 346,
+  "elapsed_seconds": 2.359,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

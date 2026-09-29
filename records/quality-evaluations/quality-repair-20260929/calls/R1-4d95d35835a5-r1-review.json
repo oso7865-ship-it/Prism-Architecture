@@ -1,0 +1,15 @@
+{
+  "key": "R1-4d95d35835a5-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:18:31.478401+00:00",
+  "input_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 callbacks 함수가 range(3) 각 반복에서 생성되는 람다 목록을 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"callbacks()를 호출한 뒤 반환된 콜백 중 하나를 호출할 때\",\"consequence\":\"람다가 반복 변수 i를 클로저로 공유하므로 모든 콜백이 생성 시점의 값이 아니라 호출 시점의 최종 값 2를 반환합니다. 이는 '생성 시점의 인덱스를 반환한다'는 동작 계약과 어긋납니다.\",\"assumptions\":[],\"title\":\"콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다\",\"evidence\":\"2줄의 람다가 반복 변수 i를 기본 인자로 캡처하지 않아, range(3) 반복이 끝난 뒤 i=2를 공유 참조합니다.\",\"suggestion\":\"각 반복에서 값을 고정하도록 기본 인자로 캡처하세요(예: lambda i=i: i).\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과나 실제 호출부는 확인하지 않았습니다.\"}",
+  "input_tokens": 4697,
+  "output_tokens": 306,
+  "seconds": 1.984
+}

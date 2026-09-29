@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-4d95d35835a5-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "4d95d35835a5",
+  "at": "2026-09-29T08:44:51.208689+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "콜백 목록을 생성하는 변경을 검토했습니다. 제공된 계약과 실제 동작이 어긋나는 지점이 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출해 반환된 콜백을 실행할 때",
+        "consequence": "각 람다는 값이 아니라 루프 변수 i를 참조하므로, 생성 시점의 인덱스가 아니라 루프 종료 후의 최종 값 2를 모든 콜백이 반환합니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다",
+        "evidence": "2줄의 람다가 기본 인자로 값을 고정하지 않고 i를 클로저로 참조하며, 계약은 각 콜백이 생성 시점 인덱스를 반환한다고 명시합니다.",
+        "suggestion": "기본 인자로 값을 캡처하도록 lambda i=i: i 형태로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4743,
+  "output_tokens": 277,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "64ddbf4b5a67f474426ef9146683fa291bcda95b64538c500c8a51a7becfe63b",
+  "elapsed_seconds": 2.078
+}

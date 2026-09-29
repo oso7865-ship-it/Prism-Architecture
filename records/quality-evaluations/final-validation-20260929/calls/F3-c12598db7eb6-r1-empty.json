@@ -1,0 +1,12 @@
+{
+  "key": "F3-c12598db7eb6-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:05:29.096982+00:00",
+  "input_hash": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 반환식은 계약과 일치합니다. 계약은 None만 부재로 간주하고 명시적으로 제공된 모든 값을 보존하라고 요구하며, 코드는 `value is None`일 때만 default를 반환하고 그 외에는 value를 그대로 반환합니다. 0, False, 빈 문자열 등 falsy 값도 보존되므로 위반이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 변경 라인은 f1의 단일 함수뿐이며, 호출자나 default의 실제 값 유형은 제공되지 않았습니다. 정적 분석 경고도 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 None만 부재로 보고 명시된 값을 보존하라고 요구한다. 반환식은 `value is None`일 때만 default를 반환하고 그 외에는 value를 그대로 반환하므로 0/False/빈 문자열도 보존되어 계약을 충족한다.\"}]}",
+  "input_tokens": 3468,
+  "output_tokens": 245,
+  "seconds": 1.812
+}

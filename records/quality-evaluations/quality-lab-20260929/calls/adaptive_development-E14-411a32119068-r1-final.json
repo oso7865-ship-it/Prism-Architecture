@@ -1,0 +1,41 @@
+{
+  "key": "adaptive_development-E14-411a32119068-r1-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:13.208094+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "c6417b8cd5cf57ed1fb075b8e414541b912ad55e5ddf5af7db3a90c7d97547ee",
+  "input_bytes": 1746,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열 또는 바이트를 받아 UTF-8 기준 바이트 수를 반환하는 함수 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "호출부와 입력 계약(예: 다른 타입 전달 가능성)은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "f5e57c0e49c21351563a1222dfb683cafda49d7285271580ad2f715ed772ae42",
+  "input_tokens": 5458,
+  "output_tokens": 162,
+  "elapsed_seconds": 1.39
+}

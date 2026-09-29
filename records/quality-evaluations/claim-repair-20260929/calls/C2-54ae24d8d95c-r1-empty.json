@@ -1,0 +1,12 @@
+{
+  "key": "C2-54ae24d8d95c-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:45:40.048824+00:00",
+  "input_hash": "de91798c17778c0c07fc3d5b064c4c3e2f2d678cc03d4d5c83325e0985c1cdf2",
+  "system_hash": "7ff16f9b3fff0fad74df3fb22fcb39567970446b7b9c48d7878368639844f44e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10은 `env.get(...) or env.get(...) or verify`로, 빈 문자열 CA 번들 값이 falsy이므로 verify(True)로 대체됩니다. 제공된 계약과 테스트(14~18행)가 기대하는 동작과 일치하며, 정적 관찰도 이를 뒷받침합니다. 변경 라인에서 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 호출자와 session_verify의 실제 전달 값은 제공되지 않았습니다. 테스트는 정적 투영이며 실행 결과가 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 10의 or 체인이 빈 문자열 CA 번들에서 verify(True)를 보존하고, 비어있지 않은 경로와 명시적 False 케이스도 계약대로 유지됨을 확인했습니다.\"}]}",
+  "input_tokens": 4395,
+  "output_tokens": 229,
+  "seconds": 2.078
+}

@@ -1,0 +1,77 @@
+{
+  "key": "development-E12-44af6707b4e8-r2",
+  "case": "44af6707b4e8",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "`value or default`가 None뿐 아니라 빈 문자열·0·False 같은 거짓 값도 '없음'으로 취급해 기본값으로 대체합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "choose('', 'default')나 choose(False, True)처럼 명시적으로 제공된 거짓 값(falsy)을 첫 인자로 전달할 때",
+        "consequence": "빈 문자열이나 False가 유효한 값으로 전달되어도 or 연산이 이를 거짓으로 판정해 default가 반환되므로, 명시적으로 제공된 값이 보존되지 않습니다(예: '' → 'default', False → True).",
+        "assumptions": [],
+        "title": "명시적으로 제공된 거짓 값을 기본값으로 대체합니다",
+        "evidence": "2줄은 `value or default`로, value의 진리값만 검사합니다. 'Only None means absent. Preserve all explicitly provided values.' 계약과 달리 ''·0·False는 or에서 default로 넘어갑니다.",
+        "suggestion": "`return default if value is None else value`처럼 None 여부만 명시적으로 검사해 거짓 값을 그대로 반환하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 2줄만 검토했으며 호출부와 실제 입력 유형 분포는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5197,
+  "output_tokens": 600,
+  "elapsed_seconds": 3.39,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

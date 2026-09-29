@@ -1,0 +1,53 @@
+{
+  "key": "holdout-E07-81c5bd8c7f71-r1-final",
+  "arm": "E07",
+  "phase": "final",
+  "at": "2026-09-29T07:17:34.279706+00:00",
+  "system_sha256": "8b9632b753e81be29b47d8a592e751a22aff06c9cafdd49428ca13bf11ba7f40",
+  "payload_sha256": "100187db19dceb9442edaa311d742ef0ef07b417f07c39148c6a71d85464fb32",
+  "input_bytes": 1234,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`name` 함수가 선택적 `profile`에 비널 단언(`!`)을 적용한 뒤 `name`을 읽습니다. 타입 단언은 런타임 검사를 하지 않으므로, `profile`이 없는 입력에서는 계약이 요구하는 'Unknown' 대신 예외가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          3
+        ],
+        "trigger": "`profile`이 없는 `User`(예: `name({})`)로 `name`을 호출할 때",
+        "consequence": "`user.profile`이 `undefined`인데 `!`는 런타임 검사를 하지 않으므로 `undefined.name` 접근에서 TypeError가 발생합니다. 계약이 요구하는 'Unknown' 표시가 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "profile이 없으면 비널 단언으로 인해 TypeError가 발생합니다",
+        "evidence": "1줄에서 `profile`이 선택적 속성으로 선언되어 `undefined`가 가능하고, 3줄에서 `user.profile!`로 단언한 뒤 `.name`을 읽습니다. 단언은 런타임에 `undefined`를 제거하지 않습니다.",
+        "suggestion": "`user.profile`의 존재를 실제로 확인하고, 없으면 계약대로 'Unknown'을 반환하도록 조건 분기를 추가하세요. 빈 문자열 `name`은 그대로 보존되어야 하므로 `profile` 존재 여부만 검사해야 합니다."
+      }
+    ],
+    "limitations": "제공된 단일 함수와 타입 선언만 검토했으며, 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "TypeError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "401b5ae2b0c26080ff98a659f39ad4a501a4966567bcd4d2dedc2f08c0d8ce96",
+  "input_tokens": 5344,
+  "output_tokens": 438,
+  "elapsed_seconds": 2.703
+}

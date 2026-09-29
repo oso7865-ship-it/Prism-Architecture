@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-0c47bb65c1ee-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:22.643079+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "f8217ab6daaa6ba7ffcad52aeb7c62183bae612251960dd1ad34592eef6484ea",
+  "input_bytes": 590,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses base.copy(), a shallow copy, so result['nested'] is the same object as base['nested'].",
+      "Line 3 mutates result['nested']['limit'], which also mutates base['nested']['limit'] through the shared nested dict.",
+      "Line 4 returns base['nested']['limit'], reading the caller's base rather than result.",
+      "The behavior contract requires preserving the caller's base without mutation, but the shallow copy plus nested mutation violates it.",
+      "Probe p1 adjust({'nested': {'limit': 1}}) is predicted to return 9 and leave the caller's base['nested']['limit'] changed to 9.",
+      "A normal comparison input such as adjust({'nested': {'limit': 5}}) is predicted to return 9 while also mutating the caller's base to 9."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a379b11474561b7868ec55ac0fb872ee84b85266f82ac19947c73c9a11fc4457",
+  "input_tokens": 347,
+  "output_tokens": 183,
+  "elapsed_seconds": 1.313
+}

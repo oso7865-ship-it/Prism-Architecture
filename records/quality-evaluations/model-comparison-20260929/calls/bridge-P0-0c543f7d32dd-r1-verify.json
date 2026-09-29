@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-0c543f7d32dd-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "0c543f7d32dd",
+  "at": "2026-09-29T08:44:15.180944+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "dfe93ffd977769bf9583395d5cecb1d53959cb961eaf417bd55d8b297305122b",
+  "payload_sha256": "d41631aaf34b5f47f1f3a51eb1bbe3ea10b927f452ae2acd08d45d8118a5da01",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "root='/app'이고 resolved='/app2/secret'인 경우 resolved.startswith(root)가 True를 반환하여 root 밖의 경로가 허용됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3402,
+  "output_tokens": 88,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2176,
+  "response_sha256": "219c0e85b267e0693fa0bfb0fd073ef9559b61f3365f4aa5663c24d1a8cbf070",
+  "elapsed_seconds": 2.421
+}

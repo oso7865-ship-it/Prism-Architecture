@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-F0-81c556ef32df-r1",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "81c556ef32df",
+  "at": "2026-09-29T08:43:06.738424+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "c78ba19f4a75e85c5053169208c9fa9d4785ecc800fd4005aa53b2025c0e7f56",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "빈 리스트에 대해 0.0을 반환하고, 비어 있지 않은 리스트에는 평균을 계산하는 변경을 검토했습니다. 제공된 계약과 코드가 일치합니다.",
+    "issues": [],
+    "limitations": "제공된 함수 한 줄만 검토했으며 테스트를 실행하지 않았습니다. values의 원소 타입과 호출부는 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0.0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5165,
+  "output_tokens": 149,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "260ae68696e0b7c77d08b2ef45484b5cd783d700e45d136eaefb07701b5be9f5",
+  "elapsed_seconds": 1.609
+}

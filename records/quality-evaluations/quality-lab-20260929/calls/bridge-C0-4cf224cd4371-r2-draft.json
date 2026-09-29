@@ -1,0 +1,42 @@
+{
+  "key": "bridge-C0-4cf224cd4371-r2-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:22:08.337674+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf",
+  "input_bytes": 1141,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str과 bytes 모두에 대해 len(body)를 반환하도록 변경되어, 비ASCII 문자열에서 UTF-8 바이트 수가 아닌 문자 수를 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6,
+          9,
+          11
+        ],
+        "trigger": "prepare에 비ASCII 문자열(예: \"한글\")이 전달될 때",
+        "consequence": "content_length가 문자 수를 반환하지만 body는 5줄에서 UTF-8로 인코딩되므로, 6줄의 Content-Length가 실제 전송 바이트 수와 달라집니다. 11줄의 테스트도 이 불일치로 실패합니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치합니다",
+        "evidence": "2줄은 str/bytes 구분 없이 len(body)를 반환합니다. 5줄은 str을 UTF-8로 인코딩하고 6줄은 인코딩 전 body로 길이를 계산하므로, \"한글\"의 경우 2와 6이 어긋납니다.",
+        "suggestion": "content_length에서 str이면 UTF-8 인코딩 후 길이를 계산하고, bytes는 그대로 len을 사용하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 파일만 검토했으며 테스트를 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "599919cef41889c87a1f127e159b1949b60b9a9f558deba8c54ccbf8042f94bb",
+  "input_tokens": 4990,
+  "output_tokens": 333,
+  "elapsed_seconds": 2.437
+}

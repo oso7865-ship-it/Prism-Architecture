@@ -1,0 +1,12 @@
+{
+  "key": "C4-e039b4bf0e2d-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T12:02:57.683927+00:00",
+  "input_hash": "f48c2b86205d43bbe17d3bbd76d833a995476d146e4e5252dda72b45a04f2dd8",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings 10줄이 환경 변수 CA 번들 조회를 `or` 연쇄로 변경했고, 제공된 계약과 테스트는 빈 문자열 CURL_CA_BUNDLE이 명시적 verify=True를 보존해야 함을 요구합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE=\\\"\\\"(또는 REQUESTS_CA_BUNDLE=\\\"\\\"와 CURL_CA_BUNDLE=\\\"\\\")가 있고 verify가 True인 상태로 environment_settings를 호출할 때\",\"consequence\":\"10줄의 `or` 연쇄가 빈 문자열을 falsy로 평가해 verify가 \\\"\\\"로 바뀌고, merge_setting은 session_verify가 True이므로 6줄에서 \\\"\\\"를 반환합니다. 그 결과 15·16줄의 `is True` 계약이 깨집니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 환경 변수가 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 `env.get(\\\"REQUESTS_CA_BUNDLE\\\") or env.get(\\\"CURL_CA_BUNDLE\\\")`로 빈 문자열을 건너뛰지 않고 그대로 반환합니다. path_observations에서 15·16줄 호출의 값이 \\\"\\\"로 기록되어 asserted True와 불일치합니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 각 조회 결과에 대해 None/빈 값 검사를 명시적으로 수행하고, 유효한 값이 없을 때만 verify를 유지하도록 10줄을 조정하세요.\",\"contract_quote\":\"An empty CURL_CA_BUNDLE must preserve explicit verification True.\"}],\"limitations\":\"제공된 f1 범위와 정적 투영만 검토했으며 실제 테스트 실행이나 다른 호출자, merge_setting의 외부 사용처는 확인하지 않았습니다.\"}",
+  "input_tokens": 5776,
+  "output_tokens": 476,
+  "seconds": 3.187
+}

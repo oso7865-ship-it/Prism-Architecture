@@ -1,0 +1,15 @@
+{
+  "key": "J1-1e22f33ed8d3-r1-empty",
+  "arm": "J1",
+  "phase": "empty",
+  "at": "2026-09-29T10:20:25.115660+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length가 str은 UTF-8 인코딩 후 바이트 수를, bytes는 그대로 길이를 반환하도록 변경되어 계약(Content-Length = 전송 바이트 수)을 만족합니다. 제공된 테스트도 비ASCII 문자열과 bytes 케이스를 포함해 일치합니다. 변경 라인에서 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 실제 호출자와 네트워크 전송 계층은 제공되지 않아, 반환된 Content-Length가 실제 전송 경로에서 사용되는지는 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"content_length가 str은 UTF-8 인코딩 길이, bytes는 원본 길이를 반환해 계약과 일치하며, 제공된 테스트 케이스에서도 prepare의 body 길이와 동일합니다.\"}]}",
+  "input_tokens": 4514,
+  "output_tokens": 235,
+  "seconds": 1.985
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R1-5e22872c605b-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:17:32.924780+00:00",
+  "input_hash": "31fe84328bbbf7179565dc8e8eb4208a72ba8a9ae615fc3fd3c15173683b8d71",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"UNSUPPORTED\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"n이 음수일 때 range(0, n, max(n,1))은 빈 리스트를 반환하지만, 계약은 n을 음이 아닌 정수로 한정하므로 위반이 아닙니다. 양수 n과 n=0 모두 계약을 충족합니다.\"}]}",
+  "input_tokens": 4008,
+  "output_tokens": 143,
+  "seconds": 1.219
+}

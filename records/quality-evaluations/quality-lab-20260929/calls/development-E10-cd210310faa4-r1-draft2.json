@@ -1,0 +1,35 @@
+{
+  "key": "development-E10-cd210310faa4-r1-draft2",
+  "arm": "E10",
+  "phase": "draft2",
+  "at": "2026-09-29T07:15:22.287213+00:00",
+  "system_sha256": "4b567ef0f7db170bcf552f7fdb246ce3659b3fc2d34ec12771cd4ab223f3a0e5",
+  "payload_sha256": "7d039d2a98bf7eefe8b9fc614433d0d1b7866851ccead663b4b9b97450d63f42",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 입력을 빈 문자열로 처리하고 그 외에는 trim을 적용하는 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 단일 클래스와 변경 라인만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"Ada\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a9258d2b1b1764dfe1245b223f4d769e58731500893c4a181845ccf54aa4196b",
+  "input_tokens": 5375,
+  "output_tokens": 133,
+  "elapsed_seconds": 1.25
+}

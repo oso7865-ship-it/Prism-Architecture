@@ -1,0 +1,54 @@
+{
+  "key": "development-E09-3a35091fd0ff-r2",
+  "case": "3a35091fd0ff",
+  "arm": "E09",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "소유자 검증 후 금액을 반환하는 변경을 검토했습니다. load가 owner/amount를 가진 객체를 반환하고 actor 비교로 소유자만 접근하도록 되어 있어 제공된 범위에서 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "load의 실제 구현은 관련 스니펫으로만 제공되어 다른 입력에 대한 반환 형태와 예외 처리는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 11489,
+  "output_tokens": 333,
+  "elapsed_seconds": 2.89,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

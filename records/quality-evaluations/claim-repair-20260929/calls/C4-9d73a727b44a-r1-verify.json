@@ -1,0 +1,12 @@
+{
+  "key": "C4-9d73a727b44a-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:50.858684+00:00",
+  "input_hash": "79822ef42191eb9ee108512c4527255e9ea19a78b3332ce3f5606dc1332f0f09",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"order_id가 여러 테넌트에 걸쳐 존재할 때, id만으로 조회하므로 다른 테넌트의 주문 행이 반환되어 '인증된 테넌트의 주문만 반환' 계약이 위반됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"load는 tenant_id를 받지만 SQL은 id만 조건으로 사용해 테넌트 간 반복되는 order_id에서 다른 테넌트의 행이 반환될 수 있습니다.\"}]}",
+  "input_tokens": 4381,
+  "output_tokens": 173,
+  "seconds": 1.156
+}

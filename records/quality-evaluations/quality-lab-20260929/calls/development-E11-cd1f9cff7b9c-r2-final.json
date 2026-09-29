@@ -1,0 +1,35 @@
+{
+  "key": "development-E11-cd1f9cff7b9c-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:10:47.193829+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "a1092f2d39445719fce2771a516e944d8033cde60487046c560f830b5bf3ce81",
+  "input_bytes": 1530,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 root 하위 경로 허용 여부를 판정하는 변경을 검토했습니다. 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크 없음)과 코드가 일치하며, 구분자 '/'를 포함한 접두사 비교라 '/srv/application' 같은 형제 경로는 허용되지 않습니다.",
+    "issues": [],
+    "limitations": "호출부와 경로 정규화/심볼릭 링크 해석 계층이 제공되지 않아, 계약을 벗어난 입력(비정규화 경로, 심볼릭 링크 경유 경로)이 실제로 이 함수에 도달하는지는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b3075b4b3376a30e560f9a1863930de03e6a1b2fe51405b03a42c72f6d554105",
+  "input_tokens": 5735,
+  "output_tokens": 233,
+  "elapsed_seconds": 1.75
+}

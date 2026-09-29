@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-6197edcf876e-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "6197edcf876e",
+  "at": "2026-09-29T08:44:32.091553+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "13036fba1788e5c31aedb919af6beb73c92a5a60637ca0f2e63d3020cc218217",
+  "payload_sha256": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 name 함수는 profile이 없을 때 'Unknown'을 반환하고, profile이 있으면 name을 반환합니다. 제공된 계약과 코드에 따르면 결함이 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부와 User 객체 생성부가 제공되지 않아 실제 입력값의 다양성은 확인하지 못했습니다. profile.name이 빈 문자열인 경우의 동작은 계약에 따라 의도된 것으로 보입니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "profile이 없으면 'Unknown'을 반환하고, 있으면 name을 반환하는 로직이 계약과 일치합니다."
+      }
+    ]
+  },
+  "input_tokens": 3180,
+  "output_tokens": 188,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "496b8e85521b9ac545a3c975f239473ade70ee781f2e13f2628e2014c1665c5e",
+  "elapsed_seconds": 4.5
+}

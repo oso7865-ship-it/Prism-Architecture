@@ -1,0 +1,48 @@
+{
+  "key": "holdout-E08-0c47bb65c1ee-r2-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:18:01.951768+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "a1f522965ff367d28cab9c142997b0619bd3e01baf2278440bb841f3969d2c7d",
+  "input_bytes": 1354,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base.copy()로 얕은 복사 후 중첩 딕셔너리를 수정해 호출자의 base가 변경되는지 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust에 중첩 딕셔너리를 가진 base를 전달할 때",
+        "consequence": "result['nested']가 base['nested']와 같은 객체이므로 3줄의 수정이 호출자의 base['nested']['limit']까지 9로 바꾸고, 4줄은 변경된 base 값을 반환합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 호출자의 base가 변경됩니다",
+        "evidence": "2줄의 base.copy()는 최상위만 복사해 중첩 딕셔너리를 공유하고, 3줄이 그 공유 객체를 수정하며 4줄이 base에서 읽습니다.",
+        "suggestion": "중첩 구조까지 보존하려면 copy.deepcopy(base)로 복사하거나 중첩 딕셔너리도 별도로 복사한 뒤 수정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "85824ec615f5efaf234ca1f5dbddbb532d0679b7d5d3f22d2fa130e4ab420ddd",
+  "input_tokens": 5384,
+  "output_tokens": 328,
+  "elapsed_seconds": 2.047
+}

@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-52ccbd6a57a5-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "52ccbd6a57a5",
+  "at": "2026-09-29T08:43:03.176078+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "파라미터 바인딩을 사용하는 SQL 조회 구성 변경을 검토했습니다. 제공된 범위에서 보안 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "호출부와 실제 DB-API 드라이버 구현은 제공되지 않았으며 실행 검증은 하지 않았습니다. 반환된 SQL과 파라미터 튜플이 실제로 바인딩되어 실행되는지는 확인하지 못했습니다."
+  },
+  "input_tokens": 5116,
+  "output_tokens": 104,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4864,
+  "response_sha256": "148307b220ed3ec8b9a81a52364b0b11769acec6229da56c8ab99093af0890c4",
+  "elapsed_seconds": 1.328
+}

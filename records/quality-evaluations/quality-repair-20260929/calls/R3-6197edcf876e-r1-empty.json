@@ -1,0 +1,15 @@
+{
+  "key": "R3-6197edcf876e-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:31.987971+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "cad31b0656122408a0e337f9a369ef09af51bb16e73a64d3841f45bc484bd2d1",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 3행은 옵셔널 체이닝과 nullish 병합으로 profile 부재 시 'Unknown'을 반환하고, 빈 문자열 name은 그대로 보존한다. 계약과 일치하며 구체적 결함 경로가 보이지 않는다.\", \"issues\": [], \"limitations\": \"단일 파일의 4줄 발췌만 제공되어 실제 호출자, User 객체 생성 경로, name의 다른 사용처는 확인하지 못했다. 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"user.profile?.name ?? 'Unknown'은 profile이 없거나 null/undefined일 때 'Unknown'을 반환하고, name이 빈 문자열이면 그대로 반환한다. 계약과 일치하는 경로만 확인됨.\"}]}",
+  "input_tokens": 3142,
+  "output_tokens": 209,
+  "seconds": 1.484
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R2-4cf224cd4371-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:17:30.466023+00:00",
+  "input_hash": "5d61655ea8321801b64579b8dc707a4fc48ae385d0666c1aedf3fae62100dec2",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"content_length가 str 입력에 대해 문자 수를 반환하도록 변경되어, prepare가 계산하는 Content-Length와 실제 UTF-8 바이트 수가 불일치할 수 있는지 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,5,6,11],\"trigger\":\"prepare에 비ASCII 문자열(예: \\\"한글\\\")을 전달하면\",\"consequence\":\"content_length는 len(body)로 문자 수 2를 반환하지만, 5줄에서 body를 UTF-8로 인코딩한 wire는 6바이트이므로 Content-Length가 실제 전송 바이트 수와 4바이트 차이납니다. 이는 제공된 behavior_contract(비ASCII 포함 UTF-8 바이트 수와 일치)를 위반합니다.\",\"assumptions\":[],\"title\":\"비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치합니다\",\"evidence\":\"2줄은 str에 대해 문자 수를 반환하고, 5줄은 str을 UTF-8로 인코딩해 wire를 만들며, 6줄은 인코딩 전 body로 길이를 계산합니다. 11줄의 테스트는 prepare가 반환한 body(인코딩 후)와 비교하므로 이 불일치를 검출합니다.\",\"suggestion\":\"content_length가 str이면 UTF-8 인코딩 후의 바이트 수를 반환하도록 하거나, prepare에서 인코딩된 wire를 기준으로 길이를 계산하세요.\"}],\"limitations\":\"제공된 코드만 검토했으며 실행 결과는 확인하지 않았습니다. content_length의 다른 호출 지점은 제공되지 않았습니다.\"}",
+  "input_tokens": 5004,
+  "output_tokens": 395,
+  "seconds": 2.453
+}

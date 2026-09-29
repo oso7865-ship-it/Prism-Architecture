@@ -1,0 +1,104 @@
+{
+  "key": "bridge-P0-b07fc52f42ca-r1",
+  "case": "b07fc52f42ca",
+  "arm": "P0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "limit 함수의 기본값 처리 로직을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count가 0으로 전달될 때",
+        "consequence": "count가 0이면 `count || 10`이 10을 반환하여 유효한 설정값 0이 무시됩니다.",
+        "assumptions": [],
+        "title": "0이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 0을 falsy로 처리하여 기본값을 반환합니다. 계약상 0은 유효한 값입니다.",
+        "suggestion": "null 또는 undefined일 때만 기본값을 적용하도록 `count ?? 10`을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 0이 기본값으로 대체됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count가 0으로 전달될 때",
+        "consequence": "count가 0이면 `count || 10`이 10을 반환하여 유효한 설정값 0이 무시됩니다.",
+        "assumptions": [],
+        "title": "0이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 0을 falsy로 처리하여 기본값을 반환합니다. 계약상 0은 유효한 값입니다.",
+        "suggestion": "null 또는 undefined일 때만 기본값을 적용하도록 `count ?? 10`을 사용하세요.",
+        "file_path": "limits.js",
+        "key": "8874415a2a5d5cc0e16f43c286cecc31468fabc4a356b545f693aedebf7fe06d"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "limits.js",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7767,
+  "output_tokens": 325,
+  "elapsed_seconds": 7.077999999999999
+}

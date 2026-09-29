@@ -1,0 +1,21 @@
+{
+  "key": "bridge-E12-2eda524faeac-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:51.680605+00:00",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f",
+  "input_bytes": 493,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "권한 확인 함수 check()의 비동기 결과가 true일 때만 'allowed'를 반환하도록 변경된 부분을 검토했으며, 제공된 범위에서 권한 우회나 입력 검증 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "check()의 실제 구현, 호출부, 권한 판단 실패 시 예외 처리 정책은 제공되지 않아 검증하지 못했습니다. 실행 테스트는 수행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "845b417b224d209ce695a60f1da8cdf847b21165f9ce63baea2b3faf0a9d4739",
+  "input_tokens": 5161,
+  "output_tokens": 239,
+  "elapsed_seconds": 1.828
+}

@@ -1,0 +1,15 @@
+{
+  "key": "B0-0d5e36006ab7-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:12.352271+00:00",
+  "input_hash": "a3ef40752d3e90a970fa9ca71f8cc6e5bb0286a3f4f423a4adf5517e1a13e882",
+  "system_hash": "cc947b97ae3594b5dfe0c85a832bd2fab436147bb00bf33d0764586f9a02f25c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"check가 async라 Promise를 반환하므로 await 없이 평가하면 Promise 객체가 항상 truthy가 되어, false로 resolve되는 경우에도 'allowed'가 반환되어 권한 검사가 우회됩니다.\"}]}",
+  "input_tokens": 3472,
+  "output_tokens": 87,
+  "seconds": 0.922
+}

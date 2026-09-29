@@ -1,0 +1,51 @@
+{
+  "case": "cd1f9cff7b9c",
+  "arm": "B0",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "호출자와 `root`/`resolved`의 실제 생성 경로(정규화·심볼릭 링크 해석 여부)는 제공되지 않았다. 계약이 정규 경로를 보장하므로 정규화 누락이나 심볼릭 링크 우회는 이 조각만으로 판단할 수 없다. `root`가 빈 문자열이거나 상대 경로인 경우의 동작도 제공된 범위 밖이다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "paths.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "`resolved == root` 또는 `root + '/'` 접두사 비교로 형제 경로(`/data2`) 오허용을 막는 경계 검사가 정상 동작한다. 제공된 계약(정규 절대 경로) 범위에서 우회 경로는 보이지 않는다.",
+          "file_path": "paths.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366"
+}

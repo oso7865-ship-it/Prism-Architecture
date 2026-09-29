@@ -1,0 +1,58 @@
+{
+  "key": "development-E06-44af6707b4e8-r2-final",
+  "arm": "E06",
+  "phase": "final",
+  "at": "2026-09-29T07:08:48.019283+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "4631f14076fcb051fdc56ddce4381b15ab08c81a2ef9084d16c8df24cecbc487",
+  "input_bytes": 850,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`는 None뿐 아니라 빈 문자열·False 같은 falsy 값도 대체하므로, 명시적으로 전달된 값을 보존해야 한다는 계약과 어긋납니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "choose('', 'default') 또는 choose(False, True)처럼 falsy이지만 None이 아닌 값을 전달할 때",
+        "consequence": "`or` 연산이 falsy 값을 대체값으로 바꾸므로 빈 문자열은 'default', False는 True가 반환되어 명시적으로 제공된 값이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "falsy 값이 대체되어 명시적 입력이 보존되지 않습니다",
+        "evidence": "2줄의 `value or default`는 value가 falsy이면 default를 반환합니다. 계약은 None만 부재로 규정하므로 ''와 False는 보존되어야 합니다.",
+        "suggestion": "`return default if value is None else value`로 None만 대체하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "5b4fdfc384c137fa35b8e685084a2939d9c8c107234a2230f1a4e5fb1388aa23",
+  "input_tokens": 5279,
+  "output_tokens": 363,
+  "elapsed_seconds": 2.203
+}

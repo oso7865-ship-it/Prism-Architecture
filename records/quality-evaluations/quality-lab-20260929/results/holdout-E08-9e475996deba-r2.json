@@ -1,0 +1,71 @@
+{
+  "key": "holdout-E08-9e475996deba-r2",
+  "case": "9e475996deba",
+  "arm": "E08",
+  "split": "holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "mean 함수가 리스트 합계를 길이로 나누는 한 줄 구현으로 변경되었습니다. 제공된 계약은 빈 입력에 대해 0.0을 요구하지만, 변경된 2번 줄에는 빈 리스트 처리 분기가 없습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "mean([])처럼 빈 리스트로 호출될 때",
+        "consequence": "len(values)가 0이므로 2번 줄의 나눗셈에서 ZeroDivisionError가 발생하고, 계약이 명시한 0.0 반환이 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "빈 입력에서 계약과 달리 ZeroDivisionError가 발생합니다",
+        "evidence": "2번 줄은 sum(values) / len(values)를 그대로 반환하며 빈 리스트를 처리하는 분기가 없습니다. 제공된 behavior_contract는 빈 입력의 평균을 0.0으로 규정합니다.",
+        "suggestion": "나눗셈 전에 values가 비어 있는 경우 0.0을 반환하는 분기를 추가해 계약을 충족하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 입력 검증 계층은 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "ZeroDivisionError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5623,
+  "output_tokens": 513,
+  "elapsed_seconds": 3.264,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-2eda524faeac-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "2eda524faeac",
+  "at": "2026-09-29T08:43:47.982446+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 권한 검사 결과를 await로 기다린 뒤 boolean으로 판정하는 변경을 검토했습니다. 제공된 코드에서는 허용/거부 분기가 계약대로 동작하며, 구체적인 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "check 구현과 호출부, 반환값의 실제 신뢰 경계가 제공되지 않아 검사 로직 자체의 정확성과 우회 가능성은 확인하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5136,
+  "output_tokens": 124,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "aa29126c43021878ccc6591138fbe965f9aa1456df68000027dbea01228e2a52",
+  "elapsed_seconds": 1.328
+}

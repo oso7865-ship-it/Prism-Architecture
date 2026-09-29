@@ -1,0 +1,15 @@
+{
+  "key": "T1-4b5f6ff33252-r1-empty",
+  "arm": "T1",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:20.252922+00:00",
+  "input_hash": "2f2091f6b1548615dc724919994078ad96ec3ac662ddabc3e6286a4e5b4ed256",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 4000,
+  "reasoning": "high",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경 라인(9-10)은 verify가 True/None일 때만 REQUESTS_CA_BUNDLE/CURL_CA_BUNDLE로 CA 번들을 대체하고, verify가 False이면 그대로 두는 분기입니다. 제공된 테스트(라인 14-21)의 경계값(빈 문자열, 경로 문자열, False)을 라인 9-11의 연산자 순서로 추적하면 모두 의도한 결과가 나오며, 제공된 범위에서 동작 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"변경 파일 f1만 제공되었고 environment_settings/merge_setting의 실제 호출자, 실제 os.environ 주입 경로, requests 연동 지점은 확인할 수 없습니다. 테스트 라인 14-21은 이 함수의 계약 근거로만 사용했으며 실행 여부는 검증하지 않았습니다. verify에 bool이 아닌 truthy 값(예: 1)을 넘기는 호출자는 제공되지 않아 해당 경로는 판단하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 9-11의 verify 가드와 or 체인을 확인함. verify=False는 라인 9에서 분기를 건너뛰어 보존되고, 빈 문자열 env는 or 체인에서 falsy로 처리되어 verify로 폴백하므로 제공된 테스트 14-21의 기대값과 일치하며, 변경 라인에서 구체적 실패 경로는 보이지 않음.\"}]}",
+  "input_tokens": 3780,
+  "output_tokens": 3146,
+  "seconds": 14.266
+}

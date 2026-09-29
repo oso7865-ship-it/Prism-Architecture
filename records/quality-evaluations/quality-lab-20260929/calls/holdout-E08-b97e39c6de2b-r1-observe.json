@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-b97e39c6de2b-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:12.493342+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "1f73f33e502d262769bb7ce825e9b90114a072e3047eb7e5ddd5a92771ca1caf",
+  "input_bytes": 439,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses a default-argument binding `lambda i=i: i` inside a list comprehension, so each lambda captures the current value of `i` at creation time.",
+      "The behavior contract states each callback returns the index captured when created; the default-argument pattern is the standard way to satisfy this.",
+      "No static findings are reported, and no defect is observable from the supplied source.",
+      "Probe p1 `[fn() for fn in callbacks()]` is predicted to return `[0, 1, 2]`, matching the contract.",
+      "A normal comparison input would be the same probe; no plausible failing input is evident from the supplied source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ac5e27345f932e38324a062feed16c2ed5ee135950de9053bb3376fd8fbb13ac",
+  "input_tokens": 297,
+  "output_tokens": 144,
+  "elapsed_seconds": 1.234
+}

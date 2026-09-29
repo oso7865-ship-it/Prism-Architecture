@@ -1,0 +1,15 @@
+{
+  "key": "R3-6a3397085914-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:35.172551+00:00",
+  "input_hash": "d735866dd0e86f94b7af28b98a464bbe6edfa722fcee55348eced7ce54f12fe4",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"wire_size가 body의 길이를 그대로 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"body가 비ASCII 문자를 포함한 str일 때 wire_size를 호출하는 경우\",\"consequence\":\"len(body)는 문자 수를 반환하므로 UTF-8 인코딩 시 실제 전송 바이트 수와 달라집니다. 예를 들어 '한'은 len 결과 1이지만 UTF-8 전송 바이트는 3입니다.\",\"assumptions\":[],\"title\":\"str 입력에서 문자 수를 반환해 바이트 수와 불일치합니다\",\"evidence\":\"2줄은 len(body)를 반환합니다. 계약은 str 또는 bytes를 받아 UTF-8 기준 전송 바이트 수를 반환하는 것입니다. len은 str에 대해 문자 수를 세므로 비ASCII 문자에서 바이트 수와 어긋납니다.\",\"suggestion\":\"body가 str이면 len(body.encode('utf-8'))를, bytes이면 len(body)를 반환하도록 분기하세요.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 호출자와 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4757,
+  "output_tokens": 287,
+  "seconds": 2.063
+}

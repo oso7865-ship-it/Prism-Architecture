@@ -1,0 +1,12 @@
+{
+  "key": "F3-33a6ab441a5d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:06:11.026657+00:00",
+  "input_hash": "3d0180e4adc04a4ba7c23cc6b95135e507eeb089b232cf76a4d188a90c601f4a",
+  "system_hash": "5d0b65565f6b6110269eac27672e595479de9e18ceb10059057c02d8a2d82c76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"길이가 1 이상인 비어 있지 않은 int 배열에서 `values[values.length]`는 유효 인덱스 범위(0..length-1)를 벗어나 `ArrayIndexOutOfBoundsException`이 발생합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"`values[values.length]`는 비어 있지 않은 배열에서도 항상 범위를 벗어나며, `values.length - 1`이 마지막 요소 인덱스입니다.\"}]}",
+  "input_tokens": 4620,
+  "output_tokens": 159,
+  "seconds": 1.407
+}

@@ -1,0 +1,49 @@
+{
+  "key": "adaptive_holdout-E15-62086f7d4408-r1-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:19.810119+00:00",
+  "system_sha256": "a8e5d02f5d95994f8f0604cba33aea51102ec74fa32696405572b41c8e06263e",
+  "payload_sha256": "903325a8d802ca294a70a740c37984238633c61312ad395f41a7c655fa83e790",
+  "input_bytes": 1196,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "handle 함수의 ValueError 처리 변경을 검토했습니다. 변경된 except 절이 예외를 기록하지 않고 None을 반환하여, 팀 표준의 '기록 후 재던짐' 요구와 어긋납니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "4~5줄에서 예외를 잡아 logger에 기록하지 않고 None을 반환하므로, 호출자는 실패를 정상 반환값과 구분할 수 없고 팀 표준이 요구하는 오류 기록과 재전파가 모두 누락됩니다.",
+        "assumptions": [],
+        "title": "ValueError를 기록 없이 None으로 숨겨 실패가 정상 반환처럼 보입니다",
+        "evidence": "4줄에서 ValueError를 포착하고 5줄에서 None을 반환합니다. logger는 인자로 받지만 변경된 except 경로에서 사용되지 않습니다. 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.",
+        "suggestion": "except 절에서 logger.error 등으로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요."
+      }
+    ],
+    "limitations": "logger의 구체 인터페이스와 handle 호출부는 제공되지 않았으며, 실행 검증은 수행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "null",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "3c47a7ce1d9dbc2670217fd3f795ee4fb119773c83607abb2b3d1654f99c17b7",
+  "input_tokens": 5778,
+  "output_tokens": 397,
+  "elapsed_seconds": 2.766
+}

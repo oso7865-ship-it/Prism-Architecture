@@ -1,0 +1,12 @@
+{
+  "key": "C3-2cdf3efa43ff-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:50:15.322175+00:00",
+  "input_hash": "45a0607b50a6138957a1479be8b57c952f39ac90ea78f0c7442d2663da6a9b26",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount=100000, count=100000일 때 int 곱셈이 먼저 수행되어 1410065408이 long으로 변환·반환되므로 계약이 요구하는 정확한 곱 10000000000이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"line 3의 amount * count는 int 정밀도로 계산된 후 long으로 변환되어, 계약상 long 범위에 들어가는 곱(예: 100000*100000)이 보존되지 않습니다.\"}]}",
+  "input_tokens": 4744,
+  "output_tokens": 186,
+  "seconds": 1.282
+}

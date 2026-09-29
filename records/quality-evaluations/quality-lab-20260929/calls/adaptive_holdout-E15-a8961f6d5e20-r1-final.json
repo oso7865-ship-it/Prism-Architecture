@@ -1,0 +1,46 @@
+{
+  "key": "adaptive_holdout-E15-a8961f6d5e20-r1-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:15.676138+00:00",
+  "system_sha256": "285b3f8c2edc3ec1b9c15f0e79b8d5dbb6b301eb1afa2190a331c6504ad69dd2",
+  "payload_sha256": "862bdf0617fc7807aa3b0947ded1ce6e296f0e9b99649ae770f56622292bbc9b",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "user_id를 문자열 연결로 SQL 문에 직접 삽입하는 변경을 검토했습니다. 파라미터 튜플은 비어 있어 바인딩이 이루어지지 않습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 SQL 구문이 포함된 값(예: \"0 OR 1=1\")이 전달될 때",
+        "consequence": "연결된 문자열이 그대로 SQL로 실행되어 WHERE 절이 조작되고, users 테이블의 name 값이 조건과 무관하게 반환될 수 있습니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 연결로 SQL 주입이 가능합니다",
+        "evidence": "2줄에서 user_id를 '+'로 SQL 문자열에 직접 결합하고 파라미터 튜플은 빈 ()로 반환합니다. behavior_contract는 이 반환값이 %s 플레이스홀더를 쓰는 DB-API 드라이버에 그대로 전달되며 user_id가 신뢰할 수 없는 텍스트라고 명시합니다.",
+        "suggestion": "SQL 문자열에서 user_id 연결을 제거하고 'SELECT name FROM users WHERE id = %s'와 같이 플레이스홀더를 두고 파라미터 튜플에 (user_id,)를 전달하세요."
+      }
+    ],
+    "limitations": "호출부와 실제 DB 드라이버 구현은 제공되지 않아 실행 검증은 하지 않았습니다. 반환된 SQL이 다른 경로에서 재작성되는지는 확인하지 못했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = 0 OR 1=1\", []]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "36f9d7f1077b5904519860ad5dc04228bcbb16c550db56ac16695ddad09ac766",
+  "input_tokens": 5631,
+  "output_tokens": 406,
+  "elapsed_seconds": 2.484
+}

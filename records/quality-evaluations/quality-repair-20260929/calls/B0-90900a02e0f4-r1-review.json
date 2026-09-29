@@ -1,0 +1,15 @@
+{
+  "key": "B0-90900a02e0f4-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:55.040397+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "824c09fdcc7c4bb81a735a18f3a5eb67d0450ef5ca71aed841ba7c2c2e9ec9e7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"name이 null일 때 trim을 호출하고, null이 아닐 때 빈 문자열을 반환하도록 조건이 뒤바뀐 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 상태로 name(name)을 호출할 때\",\"consequence\":\"조건이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 분기에서 null을 역참조해 NPE가 발생합니다\",\"evidence\":\"3줄의 삼항 연산자는 name == null이면 name.trim()을 평가하고, null이 아니면 \\\"\\\"를 반환합니다. 이는 계약(널은 빈 문자열, 그 외는 trim)과 반대입니다.\",\"suggestion\":\"조건을 name == null ? \\\"\\\" : name.trim()으로 바꿔 null 분기에서는 빈 문자열을, 그 외에는 trim 결과를 반환하도록 하세요.\"}],\"limitations\":\"제공된 단일 메서드만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.\"}",
+  "input_tokens": 4919,
+  "output_tokens": 264,
+  "seconds": 1.906
+}

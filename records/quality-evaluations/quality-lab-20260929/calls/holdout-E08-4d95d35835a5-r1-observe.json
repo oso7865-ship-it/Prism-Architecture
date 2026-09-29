@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-4d95d35835a5-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:13.256038+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "e2a8f742cc4599e9fd235b448f69f871837fad06ab03382f7b33ed894b07dbf5",
+  "input_bytes": 435,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses a late-binding closure: `lambda: i` captures the variable `i`, not its per-iteration value, so all three lambdas share the final value of `i`.",
+      "The behavior contract states each callback returns the index captured at creation, but the source does not bind `i` per iteration (e.g., no default-argument `lambda i=i: i`).",
+      "Probe p1 `[fn() for fn in callbacks()]` is predicted to return `[2, 2, 2]` rather than the contract-implied `[0, 1, 2]`.",
+      "A normal comparison input would be `[lambda i=i: i for i in range(3)]`, predicted to return `[0, 1, 2]`, matching the contract.",
+      "No static findings are supplied, so the late-binding defect is only observable via the probe call."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ec8a3bc02b78aa4bfa1fff05e7f1fefeb7ad75acae70c2719fb51c378466d68e",
+  "input_tokens": 295,
+  "output_tokens": 200,
+  "elapsed_seconds": 1.562
+}

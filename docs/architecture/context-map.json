@@ -495,6 +495,30 @@
       "id": "ADR-DEPLOY-004",
       "owner": "DEPLOY",
       "read_when": "EC2 실행 구성과 배포 설정을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/domain/standards/README.md",
+      "id": "STANDARDS",
+      "owner": "backend/app/domain/standards",
+      "read_when": "문서 버전·검색·팀 규칙을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-012-purpose-and-team-standards.md",
+      "id": "ADR-REVIEW-012",
+      "owner": "REVIEW",
+      "read_when": "목적별 리뷰와 문서 RAG 계약을 변경할 때"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md",
+      "id": "ADR-REVIEW-013",
+      "owner": "REVIEW",
+      "read_when": "누락 복구·독립 근거·품질 보수 계약 변경"
+    },
+    {
+      "path": "docs/architecture/adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md",
+      "id": "ADR-REVIEW-014",
+      "owner": "REVIEW",
+      "read_when": "출력 조건·제한 계산 설명·수정안 반례 차단 계약 변경"
     }
   ],
   "tasks": {
@@ -600,7 +624,11 @@
         "docs/architecture/adr/review/ADR-REVIEW-008-team-daily-allowance.md",
         "docs/architecture/adr/review/ADR-REVIEW-009-derived-review-summary.md",
         "docs/architecture/adr/review/ADR-REVIEW-010-evidence-first-verified-review.md",
-        "docs/architecture/adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md"
+        "docs/architecture/adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md",
+        "docs/architecture/domain/standards/README.md",
+        "docs/architecture/adr/review/ADR-REVIEW-012-purpose-and-team-standards.md",
+        "docs/architecture/adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md",
+        "docs/architecture/adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md"
       ]
     },
     "webhook": {
@@ -767,7 +795,11 @@
         "docs/architecture/adr/review/ADR-REVIEW-008-team-daily-allowance.md",
         "docs/architecture/adr/review/ADR-REVIEW-009-derived-review-summary.md",
         "docs/architecture/adr/review/ADR-REVIEW-010-evidence-first-verified-review.md",
-        "docs/architecture/adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md"
+        "docs/architecture/adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md",
+        "docs/architecture/domain/standards/README.md",
+        "docs/architecture/adr/review/ADR-REVIEW-012-purpose-and-team-standards.md",
+        "docs/architecture/adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md",
+        "docs/architecture/adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md"
       ]
     },
     "adr-integration": {
@@ -879,56 +911,40 @@
         "docs/architecture/contracts/schema/README.md",
         "docs/architecture/contracts/schema/RELATIONS.md"
       ]
+    },
+    "standards": {
+      "description": "팀 문서·검색·컨벤션·구조 규칙",
+      "documents": [
+        "docs/architecture/domain/standards/README.md",
+        "docs/architecture/adr/review/ADR-REVIEW-012-purpose-and-team-standards.md",
+        "docs/architecture/operations/SECURITY_PRIVACY.md"
+      ]
     }
   },
   "path_routes": [
     {
-      "prefix": "docs/architecture/adr",
-      "task": "adr"
+      "prefix": "docs/architecture/contracts/schema/EXECUTION.md",
+      "task": "database-execution"
     },
     {
-      "prefix": "docs/architecture/adr/product",
-      "task": "adr-product"
+      "prefix": "docs/architecture/contracts/schema/RELATIONS.md",
+      "task": "database-relations"
     },
     {
-      "prefix": "docs/architecture/adr/frontend",
-      "task": "adr-frontend"
+      "prefix": "docs/architecture/contracts/schema/IDENTITY.md",
+      "task": "database-identity"
     },
     {
-      "prefix": "docs/architecture/adr/security",
-      "task": "adr-security"
+      "prefix": "docs/architecture/contracts/schema/RESULTS.md",
+      "task": "database-results"
     },
     {
-      "prefix": "docs/architecture/adr/deployment",
-      "task": "adr-deploy"
+      "prefix": "docs/architecture/contracts/schema/GITHUB.md",
+      "task": "database-github"
     },
     {
-      "prefix": "docs/architecture/adr/data",
-      "task": "adr-data"
-    },
-    {
-      "prefix": "docs/architecture/adr/runtime",
-      "task": "adr-runtime"
-    },
-    {
-      "prefix": "docs/architecture/adr/integration",
-      "task": "adr-integration"
-    },
-    {
-      "prefix": "docs/architecture/adr/review",
-      "task": "adr-review"
-    },
-    {
-      "prefix": "docs/architecture/adr/analysis",
-      "task": "adr-analysis"
-    },
-    {
-      "prefix": "docs/architecture/adr/documentation",
-      "task": "adr-docs"
-    },
-    {
-      "prefix": "docs/architecture/adr/architecture",
-      "task": "adr-arch"
+      "prefix": "docs/architecture/contracts/schema/README.md",
+      "task": "database"
     },
     {
       "prefix": "backend/app/domain/analysis/rule/javascript",
@@ -963,6 +979,26 @@
       "task": "pipeline"
     },
     {
+      "prefix": "docs/architecture/adr/documentation",
+      "task": "adr-docs"
+    },
+    {
+      "prefix": "docs/architecture/adr/architecture",
+      "task": "adr-arch"
+    },
+    {
+      "prefix": "docs/architecture/domain/standards",
+      "task": "standards"
+    },
+    {
+      "prefix": "docs/architecture/adr/integration",
+      "task": "adr-integration"
+    },
+    {
+      "prefix": "docs/architecture/adr/deployment",
+      "task": "adr-deploy"
+    },
+    {
       "prefix": "backend/app/domain/analysis/rule",
       "task": "rule-engine"
     },
@@ -975,8 +1011,32 @@
       "task": "pr"
     },
     {
+      "prefix": "docs/architecture/adr/frontend",
+      "task": "adr-frontend"
+    },
+    {
+      "prefix": "docs/architecture/adr/security",
+      "task": "adr-security"
+    },
+    {
+      "prefix": "docs/architecture/adr/analysis",
+      "task": "adr-analysis"
+    },
+    {
+      "prefix": "docs/architecture/adr/product",
+      "task": "adr-product"
+    },
+    {
+      "prefix": "docs/architecture/adr/runtime",
+      "task": "adr-runtime"
+    },
+    {
       "prefix": "backend/app/domain/repository",
       "task": "repository"
+    },
+    {
+      "prefix": "docs/architecture/adr/review",
+      "task": "adr-review"
     },
     {
       "prefix": "backend/app/domain/workspace",
@@ -985,6 +1045,10 @@
     {
       "prefix": "backend/app/shared/exception",
       "task": "exception"
+    },
+    {
+      "prefix": "backend/app/domain/standards",
+      "task": "standards"
     },
     {
       "prefix": "backend/app/domain/analysis",
@@ -997,6 +1061,10 @@
     {
       "prefix": "backend/app/shared/security",
       "task": "security"
+    },
+    {
+      "prefix": "docs/architecture/adr/data",
+      "task": "adr-data"
     },
     {
       "prefix": "backend/app/domain/webhook",
@@ -1031,6 +1099,10 @@
       "task": "docs"
     },
     {
+      "prefix": "scripts/check_helpers.py",
+      "task": "docs"
+    },
+    {
       "prefix": "backend/app/domain/auth",
       "task": "auth"
     },
@@ -1045,6 +1117,10 @@
     {
       "prefix": "backend/pyproject.toml",
       "task": "architecture"
+    },
+    {
+      "prefix": "docs/architecture/adr",
+      "task": "adr"
     },
     {
       "prefix": "backend/app/worker.py",
@@ -1097,34 +1173,6 @@
     {
       "prefix": "frontend",
       "task": "frontend"
-    },
-    {
-      "prefix": "scripts/check_helpers.py",
-      "task": "docs"
-    },
-    {
-      "prefix": "docs/architecture/contracts/schema/IDENTITY.md",
-      "task": "database-identity"
-    },
-    {
-      "prefix": "docs/architecture/contracts/schema/GITHUB.md",
-      "task": "database-github"
-    },
-    {
-      "prefix": "docs/architecture/contracts/schema/RESULTS.md",
-      "task": "database-results"
-    },
-    {
-      "prefix": "docs/architecture/contracts/schema/EXECUTION.md",
-      "task": "database-execution"
-    },
-    {
-      "prefix": "docs/architecture/contracts/schema/README.md",
-      "task": "database"
-    },
-    {
-      "prefix": "docs/architecture/contracts/schema/RELATIONS.md",
-      "task": "database-relations"
     }
   ],
   "notes": [
@@ -1508,12 +1556,14 @@
       "id": "ADR-REVIEW-011",
       "area": "REVIEW",
       "path": "docs/architecture/adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md",
-      "status": "ACCEPTED",
+      "status": "SUPERSEDED",
       "legacy_ids": [],
       "supersedes": [
         "ADR-REVIEW-010"
       ],
-      "superseded_by": []
+      "superseded_by": [
+        "ADR-REVIEW-013"
+      ]
     },
     {
       "id": "ADR-DEPLOY-004",
@@ -1523,6 +1573,39 @@
       "legacy_ids": [],
       "supersedes": [
         "ADR-DEPLOY-003"
+      ],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-012",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-012-purpose-and-team-standards.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-REVIEW-013",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md",
+      "status": "SUPERSEDED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-011"
+      ],
+      "superseded_by": [
+        "ADR-REVIEW-014"
+      ]
+    },
+    {
+      "id": "ADR-REVIEW-014",
+      "area": "REVIEW",
+      "path": "docs/architecture/adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [
+        "ADR-REVIEW-013"
       ],
       "superseded_by": []
     }

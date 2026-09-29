@@ -1,0 +1,54 @@
+{
+  "key": "adaptive_holdout-E14-2eda524faeac-r1",
+  "case": "2eda524faeac",
+  "arm": "E14",
+  "split": "adaptive_holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "비동기 검사 함수의 반환값을 await로 기다린 뒤 truthy 여부로 접근을 허용하는 변경을 검토했습니다. 제공된 코드에서는 검사 결과가 boolean 계약을 따르는 한 허용/거부 분기가 의도대로 동작합니다.",
+    "issues": [],
+    "limitations": "check 콜백의 실제 구현과 호출부는 제공되지 않았습니다. check가 boolean이 아닌 truthy 값을 반환할 때의 처리와 예외 전파 경계는 확인하지 못했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"denied\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5550,
+  "output_tokens": 188,
+  "elapsed_seconds": 1.938,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

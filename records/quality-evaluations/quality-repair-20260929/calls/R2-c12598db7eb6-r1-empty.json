@@ -1,0 +1,15 @@
+{
+  "key": "R2-c12598db7eb6-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:21.332320+00:00",
+  "input_hash": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 None일 때만 default를 반환하고 그 외 값은 그대로 보존하므로, 명시된 계약과 일치합니다. 허용된 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"choose 함수의 호출자와 value/default의 실제 타입은 제공되지 않았습니다. 제공된 한 줄 범위에서는 추가 검토 경계가 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"None 여부를 명시적으로 검사해 default를 반환하고, 그 외 값은 그대로 반환합니다. 계약과 일치하며 경계값 처리에서 결함이 보이지 않습니다.\"}]}",
+  "input_tokens": 3085,
+  "output_tokens": 175,
+  "seconds": 1.36
+}

@@ -1,0 +1,77 @@
+{
+  "key": "adaptive_development-E14-44af6707b4e8-r2",
+  "case": "44af6707b4e8",
+  "arm": "E14",
+  "split": "adaptive_development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "`value or default`가 None뿐 아니라 모든 falsy 값(빈 문자열, False, 0 등)을 대체하므로, 명시적으로 제공된 값을 보존해야 한다는 계약과 어긋납니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 빈 문자열, False, 0 등 falsy이지만 None이 아닌 값이 전달될 때",
+        "consequence": "`or`가 왼쪽 피연산자를 버리고 default를 반환하므로, 명시적으로 제공된 값이 소실됩니다. 예를 들어 choose('', 'default')는 '' 대신 'default'를, choose(False, True)는 False 대신 True를 반환합니다.",
+        "assumptions": [],
+        "title": "None이 아닌 falsy 값도 default로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 왼쪽이 falsy이면 오른쪽을 반환합니다. 계약은 None만 부재로 규정하고 명시적 값 보존을 요구합니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꾸어 falsy 값은 그대로 반환하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5442,
+  "output_tokens": 398,
+  "elapsed_seconds": 2.593,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

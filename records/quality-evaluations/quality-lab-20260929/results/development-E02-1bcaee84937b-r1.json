@@ -1,0 +1,72 @@
+{
+  "key": "development-E02-1bcaee84937b-r1",
+  "case": "1bcaee84937b",
+  "arm": "E02",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "소유자 검증 없이 금액을 반환하는 변경으로, actor 인자가 권한 판단에 사용되지 않습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "actor가 \"bob\"인 호출에서 id=7을 조회할 때",
+        "consequence": "load가 반환한 항목의 owner가 \"alice\"여도 actor와 비교하지 않고 amount를 반환하므로, 소유자가 아닌 호출자에게 금액이 노출됩니다.",
+        "assumptions": [],
+        "title": "소유자 확인 없이 금액을 반환해 권한 경계가 무시됩니다",
+        "evidence": "f1:2에서 load(id)로 항목을 가져오지만 f1:3은 actor를 전혀 사용하지 않고 item.amount를 반환합니다. related 구현은 owner가 \"alice\"인 항목을 반환하며, behavior_contract는 소유자 외 actor에게는 Error를 요구합니다.",
+        "suggestion": "item.owner와 actor를 비교하고 불일치 시 Error를 던진 뒤, 일치하는 경우에만 amount를 반환하세요."
+      }
+    ],
+    "limitations": "load의 실제 구현과 호출부 전체는 제공되지 않았으며, 제공된 related 구현과 계약만 근거로 판단했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6015,
+  "output_tokens": 379,
+  "elapsed_seconds": 3.016,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

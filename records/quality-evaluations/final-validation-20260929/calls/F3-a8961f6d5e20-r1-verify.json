@@ -1,0 +1,12 @@
+{
+  "key": "F3-a8961f6d5e20-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:56.705485+00:00",
+  "input_hash": "4d35ee4ccb504015b231aadfdcd64ea61ca0c47bd8491c2325bd71de1cb19e58",
+  "system_hash": "4d130eed414862e8514268fdaca8fc6d66b2ab32805af7c7c637c42987c2a2d0",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"user_id가 SQL 텍스트에 직접 연결되어 반환되므로, 해당 값이 SQL 구문의 일부로 해석되어 WHERE 절이 변조될 수 있습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"변경된 2줄이 untrusted text인 user_id를 파라미터 바인딩 없이 SQL 문자열에 직접 연결해 반환합니다.\"}]}",
+  "input_tokens": 4770,
+  "output_tokens": 149,
+  "seconds": 1.516
+}

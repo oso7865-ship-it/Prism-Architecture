@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-6197edcf876e-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:10.184628+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "d37d92043b3a4ff2aba34ebebb4c290aeab13c8eb15d2d3a00083cd755bea0ad",
+  "input_bytes": 644,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 3 uses optional chaining plus nullish coalescing: `user.profile?.name ?? 'Unknown'`.",
+      "For probe p1 `name({})`, `user.profile` is undefined, so `?.` short-circuits to undefined and `??` returns 'Unknown'; matches contract for missing profile.",
+      "For probe p2 `name({profile: {name: \"\"}})`, `name` is the empty string, which is not null/undefined, so `??` preserves it and returns \"\"; matches contract for existing empty name.",
+      "No static findings are reported and no related implementation is supplied.",
+      "Both supplied probe calls align with the stated behavior contract; no defect is observable from the given source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "4b558e6671dab459f53c41f896d447ccf0fb01592ef2be954ce8a5bd366fcd6b",
+  "input_tokens": 364,
+  "output_tokens": 155,
+  "elapsed_seconds": 1.563
+}

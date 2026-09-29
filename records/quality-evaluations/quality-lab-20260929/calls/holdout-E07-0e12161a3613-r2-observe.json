@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-0e12161a3613-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:57.960727+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "36cda02e6c0897da21cd7eb1ea54cb1e0feab43589a27280849ac3e52f98855a",
+  "input_bytes": 732,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a single Java class Order with a static compare(int left, int right) method.",
+      "The changed line 3 delegates to Integer.compare(left, right) rather than computing a subtraction.",
+      "No static findings are reported and no related implementation is supplied.",
+      "The behavior contract requires negative, zero, and positive results for left<right, equality, and left>right respectively.",
+      "Probe p1 calls Integer.signum(Order.compare(Integer.MIN_VALUE, 1)), exercising the extreme negative boundary.",
+      "Probe p2 calls Integer.signum(Order.compare(3, 3)), exercising the equality case."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "fcb63adc8bfa92b3bde21d34d90c4767bfb3f29c36425060a234645dc2527581",
+  "input_tokens": 388,
+  "output_tokens": 132,
+  "elapsed_seconds": 1.047
+}

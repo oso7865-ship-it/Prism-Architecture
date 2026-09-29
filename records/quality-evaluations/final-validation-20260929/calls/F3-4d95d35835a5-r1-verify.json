@@ -1,0 +1,12 @@
+{
+  "key": "F3-4d95d35835a5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:49.829326+00:00",
+  "input_hash": "951c0c517c5e1777e5a4382840afb9e2fd3544b35e339a77601d4300eae881ae",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"callbacks()가 반환한 모든 콜백을 호출하면 각각 2를 반환하여, 생성 시점 인덱스를 반환해야 한다는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"lambda가 외부 변수 i를 참조하여 리스트 컴프리헨션 종료 후 i=2가 되고, 모든 콜백이 2를 반환합니다.\"}]}",
+  "input_tokens": 4376,
+  "output_tokens": 160,
+  "seconds": 1.594
+}

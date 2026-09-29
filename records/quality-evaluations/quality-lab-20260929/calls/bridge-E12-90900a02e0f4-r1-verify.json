@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-90900a02e0f4-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:11.096774+00:00",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "0560d2b178c6f7663badf01ede380e0b37fdd6bf3e603fe1b4907cbb7bc329c1",
+  "input_bytes": 1817,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "name이 null이면 name == null이 참이 되어 name.trim()이 평가되며 NullPointerException이 발생하고, null이 아니면 trim된 값 대신 \"\"가 반환되어 동작 계약과 반대입니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "a6ffdcaa870462cfb8fd618c2581c71a23f32f7377c26c9aa7127e845cbeaa0e",
+  "input_tokens": 3297,
+  "output_tokens": 206,
+  "elapsed_seconds": 1.704
+}

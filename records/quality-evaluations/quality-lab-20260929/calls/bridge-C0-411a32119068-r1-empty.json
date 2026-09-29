@@ -1,0 +1,29 @@
+{
+  "key": "bridge-C0-411a32119068-r1-empty",
+  "arm": "C0",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:20:54.161161+00:00",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "input_bytes": 409,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 wire_size는 str이면 UTF-8 인코딩 후, 그 외에는 그대로 len()을 적용한다. 계약상 허용 입력(str/bytes)에서는 바이트 수를 정확히 반환하며, 제공된 범위에서 구체적 결함 경로는 확인되지 않았다.",
+    "issues": [],
+    "limitations": "호출 지점과 실제 전달되는 입력 타입은 제공되지 않았다. 계약에 없는 타입(예: None, int)이 전달되는 경우의 동작은 이 발췌만으로 판단할 수 없다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str은 UTF-8 인코딩 후, bytes는 그대로 len()을 적용해 계약상 바이트 수를 반환한다. 제공된 입력 범위에서 구체적 실패 경로는 보이지 않는다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b1b750735d2cba2234f5568138764ba57519a8be0db363573236ab1e04e3dee4",
+  "input_tokens": 3141,
+  "output_tokens": 222,
+  "elapsed_seconds": 1.875
+}

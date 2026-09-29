@@ -1,0 +1,52 @@
+{
+  "key": "holdout-E07-9e475996deba-r1-final",
+  "arm": "E07",
+  "phase": "final",
+  "at": "2026-09-29T07:18:11.885906+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "c006390417c73d02c3647cbe6538a86d4f12846bfd1517407b2964eff1192429",
+  "input_bytes": 1115,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "mean 함수가 리스트 합계를 길이로 나누는 변경을 검토했습니다. 제공된 계약은 빈 입력에 대해 0.0을 요구하지만, 구현에는 빈 리스트 처리 분기가 없습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "mean([])처럼 빈 리스트를 전달할 때",
+        "consequence": "len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하고, 계약이 요구하는 0.0을 반환하지 못합니다.",
+        "assumptions": [],
+        "title": "빈 입력에서 0.0 대신 ZeroDivisionError가 발생합니다",
+        "evidence": "2줄은 sum(values)를 len(values)로 나누며, 제공된 behavior_contract는 빈 입력의 평균을 0.0으로 명시합니다. 빈 리스트에서는 분모가 0이 됩니다.",
+        "suggestion": "나눗셈 전에 values가 비어 있는지 확인해 계약대로 0.0을 반환하는 분기를 추가하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개와 계약만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 입력 검증 계층은 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "ZeroDivisionError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b108676c23eb7ab4c09a5e1a00e43878314f8aedf88b1de0223f8264c50d77cd",
+  "input_tokens": 5307,
+  "output_tokens": 363,
+  "elapsed_seconds": 2.406
+}

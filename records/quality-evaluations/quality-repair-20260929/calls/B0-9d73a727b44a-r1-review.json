@@ -1,0 +1,15 @@
+{
+  "key": "B0-9d73a727b44a-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:27:58.412541+00:00",
+  "input_hash": "2770aa2f43884b9ea3b9b26a8e98c3d753447e7112d8f702a7bd9c6c56486f01",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"주문 조회 쿼리가 테넌트 조건 없이 order_id만으로 필터링하도록 변경된 점을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2],\"trigger\":\"tenant_id가 다른 두 테넌트에 동일한 order_id가 존재할 때 load(db, order_id, tenant_id)를 호출하는 경우\",\"consequence\":\"WHERE 절이 id만 비교하므로 다른 테넌트의 주문 행이 반환되어, 인증된 테넌트가 소유하지 않은 주문 데이터가 노출됩니다.\",\"assumptions\":[],\"title\":\"테넌트 조건이 빠져 다른 테넌트의 주문이 반환됩니다\",\"evidence\":\"1줄은 tenant_id를 인자로 받지만 2줄의 SQL은 id = ? 조건만 사용하고 tenant_id를 바인딩하지 않습니다. behavior_contract는 order_id가 테넌트 간 반복될 수 있고 인증된 테넌트의 주문만 반환해야 한다고 명시합니다.\",\"suggestion\":\"WHERE id = ? AND tenant_id = ? 로 조건을 추가하고 (order_id, tenant_id)를 바인딩하세요.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 호출부, 테이블 스키마, 테스트 실행은 확인하지 않았습니다.\"}",
+  "input_tokens": 4749,
+  "output_tokens": 323,
+  "seconds": 1.922
+}

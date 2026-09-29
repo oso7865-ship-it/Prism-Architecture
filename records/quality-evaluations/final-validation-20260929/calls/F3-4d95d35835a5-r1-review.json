@@ -1,0 +1,12 @@
+{
+  "key": "F3-4d95d35835a5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:47.164924+00:00",
+  "input_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 callbacks 함수가 range(3) 각 항목에 대해 lambda를 생성하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"callbacks()를 호출한 뒤 반환된 콜백 중 하나를 호출할 때\",\"consequence\":\"모든 콜백이 클로저 변수 i의 최종 값인 2를 반환하여, 각 콜백이 생성 시점의 인덱스를 반환해야 한다는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다\",\"evidence\":\"2줄의 lambda는 i를 기본 인자로 바인딩하지 않고 외부 변수 i를 참조하므로, 리스트 컴프리헨션이 끝난 뒤 i는 2가 되고 모든 콜백이 2를 반환합니다.\",\"suggestion\":\"lambda i=i: i처럼 기본 인자로 현재 값을 캡처하도록 변경하세요.\",\"contract_quote\":\"Each callback returns the index captured when it was created.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4599,
+  "output_tokens": 291,
+  "seconds": 2.625
+}

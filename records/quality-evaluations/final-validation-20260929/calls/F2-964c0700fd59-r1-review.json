@@ -1,0 +1,12 @@
+{
+  "key": "F2-964c0700fd59-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:00:24.755882+00:00",
+  "input_hash": "4ff22b8f191a5d6cf92bf7eb5f949bfd7ff0f6962d109d02616c7d218aa4ad61",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 계산된 adjusted 값을 반환하지 않고 원본 value를 반환하도록 변경된 점을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"value가 0보다 작은 정수(예: -1)로 adjust를 호출하는 경우\",\"consequence\":\"2줄에서 max(value, 0)으로 계산한 보정값 대신 원본 value가 반환되어, 음수 입력이 그대로 호출자에게 전달됩니다.\",\"assumptions\":[],\"title\":\"보정값 대신 원본 value를 반환합니다\",\"evidence\":\"2줄은 adjusted = max(value, 0)으로 보정값을 계산하지만, 3줄은 adjusted가 아닌 value를 반환합니다.\",\"suggestion\":\"3줄의 반환식을 adjusted로 바꿔 계산된 보정값을 반환하도록 하세요.\",\"contract_quote\":\"value is an int. Return max(value, 0).\",\"expression_repair\":{\"line\":3,\"before\":\"return value\",\"after\":\"return adjusted\"}}],\"limitations\":\"제공된 f1의 3개 줄만 검토했으며, 실행 결과나 호출자 코드는 확인하지 않았습니다.\"}",
+  "input_tokens": 4760,
+  "output_tokens": 297,
+  "seconds": 1.937
+}

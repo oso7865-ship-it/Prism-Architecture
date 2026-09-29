@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-b97e39c6de2b-r2-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "b97e39c6de2b",
+  "at": "2026-09-29T08:41:01.401451+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "ab027f0444ce97595f19d90835a614129ff8024195fdd947a54ce64821ca1c7f",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 변경된 한 줄은 기본 인자 i=i로 각 람다가 생성 시점의 인덱스를 캡처하도록 하여, 계약(각 콜백이 생성 시 인덱스 반환)을 정확히 만족한다. 지연 바인딩으로 인한 공유 값 문제가 없으며, 제출된 범위에서 실행 가능한 결함은 확인되지 않았다.",
+    "issues": [],
+    "limitations": "콜백의 호출 지점과 반환값 사용 방식은 제공되지 않아, 반환된 리스트의 소비 방식이나 스레드 안전성은 검토 범위 밖이다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "기본 인자 i=i로 루프 변수를 즉시 바인딩해 각 람다가 생성 시점 인덱스를 반환한다. 지연 바인딩으로 인한 공유 값 오류 경로가 보이지 않는다."
+      }
+    ]
+  },
+  "input_tokens": 3129,
+  "output_tokens": 249,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "7fbb3f8f0e40cda59d3e569e7594be31990518ddf9eb1da5b013249358357f02",
+  "elapsed_seconds": 2.078
+}

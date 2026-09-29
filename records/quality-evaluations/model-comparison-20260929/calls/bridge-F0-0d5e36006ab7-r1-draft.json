@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-0d5e36006ab7-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "0d5e36006ab7",
+  "at": "2026-09-29T08:44:58.905556+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 권한 검사 함수 `check`를 조건문에서 직접 호출하는 변경을 검토했습니다. 제공된 계약상 `check`는 Promise를 반환하므로, 이 조건은 해석된 boolean이 아니라 Promise 객체의 truthy 여부를 평가합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`check`가 async 함수여서 호출 시 항상 Promise를 반환하는 상태에서 `access`를 호출할 때",
+        "consequence": "`if (check())`는 Promise 객체 자체를 평가하며 Promise는 항상 truthy이므로, `check`가 false로 resolve되어도 2줄에서 'allowed'가 반환됩니다. 즉 거부되어야 할 접근이 허용됩니다.",
+        "assumptions": [],
+        "title": "async 권한 검사 결과를 await하지 않아 항상 허용됩니다",
+        "evidence": "제공된 계약에 따르면 `check`는 async이며 boolean으로 resolve됩니다. 2줄은 `await` 없이 `check()`의 반환값(Promise)을 조건으로 사용하므로 resolve 값이 아닌 Promise 객체의 truthiness가 평가됩니다.",
+        "suggestion": "`if (await check())`로 resolve된 boolean을 평가하도록 수정하세요. `access`가 async이므로 await 사용이 가능합니다."
+      }
+    ],
+    "limitations": "`check`의 실제 구현과 호출부는 제공되지 않았으며, 제공된 계약 설명에 근거해 판단했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5135,
+  "output_tokens": 361,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4864,
+  "response_sha256": "765d881d2dfc0919fb5e29da581270c9ca2060daa6392864f94fcbd3cad11093",
+  "elapsed_seconds": 2.5
+}

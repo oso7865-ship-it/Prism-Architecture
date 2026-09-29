@@ -1,0 +1,35 @@
+{
+  "key": "development-E11-be9f4577979e-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:15:27.358685+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "31c05ff3d6482ee6352fd7c38f4164b0bdf1d12988e053248f829c87364b38a9",
+  "input_bytes": 1768,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자가 None인 경우에만 새 리스트를 생성하고, 명시적으로 전달된 리스트는 그대로 변경하는 collect 함수 변경을 검토했습니다. 제공된 범위에서 계약과 어긋나는 동작은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "제공된 5개 라인만 검토했으며 호출부, item/bucket의 실제 타입 계약, 테스트 실행 결과는 확인하지 못했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2af6d929a944009b1a3acfc577828ab7215d79e3d91c8b887c16477dc0505328",
+  "input_tokens": 5458,
+  "output_tokens": 166,
+  "elapsed_seconds": 1.656
+}

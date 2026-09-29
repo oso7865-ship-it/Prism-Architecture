@@ -1,0 +1,15 @@
+{
+  "key": "T1-4c612348a604-r1-verify",
+  "arm": "T1",
+  "phase": "verify",
+  "at": "2026-09-29T10:21:42.937325+00:00",
+  "input_hash": "1fa76c636381571bfb3fc4fdaf3b19202e9b1cfc4941c00bf74acc03adf1b3f8",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 4000,
+  "reasoning": "high",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"n=0으로 호출하면 range(0, 0, 0)의 step이 0이 되어 ValueError가 발생하고, 계약이 요구하는 []를 반환하지 못합니다.\"}, {\"index\": 1, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 range(0, n, n)는 n=0에서 step 0으로 ValueError를 일으켜 계약의 [] 반환을 위반합니다. 양수 n에서는 [0]을 반환해 계약과 일치하며, 호출자나 다른 경로는 제공되지 않았습니다.\"}]}",
+  "input_tokens": 4176,
+  "output_tokens": 1780,
+  "seconds": 7.703
+}

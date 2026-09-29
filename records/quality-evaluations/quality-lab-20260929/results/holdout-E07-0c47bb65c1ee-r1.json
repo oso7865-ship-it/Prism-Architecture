@@ -1,0 +1,67 @@
+{
+  "key": "holdout-E07-0c47bb65c1ee-r1",
+  "case": "0c47bb65c1ee",
+  "arm": "E07",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "base의 얕은 복사본을 만든 뒤 중첩 딕셔너리를 수정하는 변경을 검토했습니다. 얕은 복사로는 중첩 객체가 분리되지 않아 호출자의 base가 변경됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "base.copy()는 최상위만 복사하므로 3줄의 result['nested']['limit'] = 9가 base와 공유된 중첩 딕셔너리를 수정합니다. 그 결과 호출자의 base['nested']['limit']도 9로 바뀌어 'base를 변경하지 않는다'는 동작 계약이 위반되고, 4줄은 1이 아닌 9를 반환합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 호출자의 중첩 딕셔너리가 변경됩니다",
+        "evidence": "2줄의 base.copy()는 중첩 객체를 공유하는 얕은 복사이며, 3줄이 그 공유 중첩 딕셔너리를 직접 수정합니다. 4줄은 base에서 값을 읽어 변경이 호출자에게 반영됨을 보여줍니다.",
+        "suggestion": "중첩 딕셔너리까지 분리하도록 copy.deepcopy(base)를 사용하거나, 중첩 딕셔너리를 별도로 복사한 뒤 수정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5676,
+  "output_tokens": 580,
+  "elapsed_seconds": 4.094,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

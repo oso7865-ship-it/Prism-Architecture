@@ -1,0 +1,12 @@
+{
+  "key": "F1-964c0700fd59-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:58:03.829956+00:00",
+  "input_hash": "b6a13e8cf16f45c00772f0125ba022f8e14909f332b07f291c9673e8e19ea3b1",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 -1일 때 adjust는 max(-1, 0)인 0이 아니라 -1을 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 계산한 adjusted를 반환하지 않고 3줄에서 원본 value를 반환하여, 계약(Return max(value, 0))과 달리 음수 입력이 그대로 반환됩니다.\"}]}",
+  "input_tokens": 4552,
+  "output_tokens": 151,
+  "seconds": 1.75
+}

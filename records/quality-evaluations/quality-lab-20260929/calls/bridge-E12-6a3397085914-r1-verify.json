@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-6a3397085914-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:20:54.793465+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "a7762ee4a0e37bb7a7400308377de263a583ab56c56556e0701c78db348777ac",
+  "input_bytes": 1583,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "비-ASCII 문자를 포함한 str을 전달하면 wire_size는 UTF-8 인코딩 바이트 수가 아니라 문자 수를 반환하여, 계약이 요구하는 전송 바이트 수보다 작은 값이 나옵니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "cf45d7f37fa8b4bab36b66258f400d3780ba6aadc1f1dc100a0337ee0f28e970",
+  "input_tokens": 3122,
+  "output_tokens": 224,
+  "elapsed_seconds": 2.0
+}

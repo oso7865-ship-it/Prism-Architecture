@@ -1,0 +1,54 @@
+{
+  "key": "development-E07-cd1f9cff7b9c-r2",
+  "case": "cd1f9cff7b9c",
+  "arm": "E07",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 경로 허용 여부를 판정하는 변경을 검토했습니다. 제공된 계약(정규 절대 POSIX 경로, 심볼릭 링크·후행 슬래시 없음)과 코드가 일치하며, 형제 디렉터리 오허용도 발생하지 않습니다.",
+    "issues": [],
+    "limitations": "permitted의 호출부, root 값의 출처, 경로 정규화·심볼릭 링크 해석이 어디서 수행되는지는 제공되지 않았습니다. 계약이 실제 입력에서 보장되는지 여부와 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6033,
+  "output_tokens": 361,
+  "elapsed_seconds": 3.345,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

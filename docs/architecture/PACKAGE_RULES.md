@@ -50,7 +50,8 @@ shared                        기술 기반
 | repository | workspace |
 | pull_request | repository, workspace |
 | analysis | pull_request, repository, workspace |
-| review | analysis, repository, workspace |
+| review | analysis, repository, pull_request, workspace, standards |
+| standards | repository, workspace, analysis(구문 판독 API) |
 | webhook | repository, pull_request, analysis |
 
 위 표는 업무 의존성이다. 각 Router의 `auth.api` 인증 주체 타입 참조는 별도로 허용한다. FastAPI Depends alias는 해당 도메인의 dependencies.py에서 조립하며 auth 내부 구현을 import하지 않는다.
@@ -81,3 +82,5 @@ Service가 같은 도메인의 Repository를 호출하는 것은 정상이다. �
 ## 문서 게시 경계
 
 [ADR-ARCH-003](adr/architecture/ADR-ARCH-003-central-documentation.md)에 따라 README/설계/작업기록/개발 하네스는 Prism-Architecture records에서 관리하고 구현 저장소에는 코드·설정·테스트·.prompt 실행 리소스만 게시한다. architecture.json의 고정 커밋과 복원 스크립트로 로컬 문서를 되살린다. 과거 이력은 재작성하지 않는다.
+
+팀 문서·불변 버전·섹션 검색·적용 규칙은 [standards](domain/standards/README.md)가 소유한다. 공통 비밀 의심 정규식만 domain 중립 shared/content_safety.py에 둔다. 문서 원문을 review가 직접 ORM 조회하지 않는다.

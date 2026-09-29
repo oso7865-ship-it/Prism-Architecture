@@ -1,0 +1,15 @@
+{
+  "key": "R1-0c47bb65c1ee-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:22.018043+00:00",
+  "input_hash": "00ea337ee96e2991ff4f93f74b75ebd55d9e9bad002bbd6d2daf944c57c212be",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"base.copy()는 최상위만 복사하므로 result['nested']는 base['nested']와 같은 객체이고, 3줄의 대입이 원본 base['nested']['limit']을 9로 바꾸며 4줄은 그 변경된 9를 반환합니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 얕은 복사로 3줄 대입이 원본 base의 중첩 딕셔너리를 변경하고 4줄이 변경된 값을 반환하여 'base를 변경하지 않는다'는 계약과 충돌합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 3991,
+  "output_tokens": 205,
+  "seconds": 1.578
+}

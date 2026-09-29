@@ -1,0 +1,12 @@
+{
+  "key": "F0-cea2cfe09062-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:33.045400+00:00",
+  "input_hash": "36f993f3b03f91b68eefa5ebd462ed186d8866d758189691b48fc954cda69766",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"제공된 behavior_contract는 'For every int value return that original value, including negatives.'로 원래 값 반환을 명시하므로 4줄의 value 반환은 계약과 일치하며, 3줄의 미사용 adjusted 계산은 동작 결함이 아닙니다.\"}]}",
+  "input_tokens": 4437,
+  "output_tokens": 145,
+  "seconds": 0.953
+}

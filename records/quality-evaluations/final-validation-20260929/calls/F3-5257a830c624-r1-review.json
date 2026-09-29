@@ -1,0 +1,12 @@
+{
+  "key": "F3-5257a830c624-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:17.723701+00:00",
+  "input_hash": "798f74ad91ce16baae0c3a1c3f34a718466923956dee4362a7f793802bac194c",
+  "system_hash": "fc65a30673a8e7abfa6a12da0589a67f02863d45a956e18bdb26863c5e12b06a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 allowed 함수는 check(user)의 반환값을 await 없이 조건으로 사용합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"check(user)가 Promise<boolean>을 반환할 때 allowed를 호출하는 경우\",\"consequence\":\"Promise 객체는 항상 truthy이므로 2줄의 조건이 항상 참이 되어 check가 false로 resolve되어도 true를 반환합니다.\",\"assumptions\":[],\"title\":\"await 누락으로 인증 결정이 항상 true가 됩니다\",\"evidence\":\"2줄은 check(user)의 반환값을 조건으로 평가하지만 await가 없습니다. 제공된 계약은 check가 Promise<boolean>을 반환하고 resolve된 결정을 반환해야 한다고 명시합니다.\",\"suggestion\":\"2줄을 `if (await check(user)) return true;`로 수정하여 resolve된 boolean을 평가하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 check의 실제 구현과 호출자는 확인하지 못했습니다.\"}",
+  "input_tokens": 4642,
+  "output_tokens": 251,
+  "seconds": 2.093
+}

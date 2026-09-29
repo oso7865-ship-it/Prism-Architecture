@@ -1,0 +1,52 @@
+{
+  "case": "59d1396dc381",
+  "repeat": 2,
+  "arm": "F1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "adjusted 지역 변수는 어떤 경로에서도 사용되지 않으나, 이는 스타일 관찰이며 동작 결함이 아닙니다. 호출자 정보는 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "adjusted.py",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "반환문이 계약대로 원본 value를 반환하며, 음수 포함 모든 입력에서 계약을 만족합니다. 미사용 adjusted 계산은 동작 영향이 없는 스타일 사항입니다.",
+          "file_path": "adjusted.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "04ee87ca82fa3253480ced452b0e303cf6665e0e2bcbd61b32be1377183477d0"
+}

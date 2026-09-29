@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-81c556ef32df-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:48.674054+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "c78ba19f4a75e85c5053169208c9fa9d4785ecc800fd4005aa53b2025c0e7f56",
+  "input_bytes": 487,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 returns 0.0 for empty input, matching the stated contract that empty input has mean 0.0.",
+      "Line 2 divides by len(values) only when values is truthy, so no ZeroDivisionError occurs for empty input.",
+      "The truthiness check `if values` treats any falsy sequence (e.g., empty list) as the empty case; non-empty numeric lists proceed to sum/len.",
+      "No static findings are reported, so no lint/type issues are flagged in the supplied source.",
+      "Probe p1 mean([]) is predicted to return 0.0; probe p2 mean([2, 4]) is predicted to return 3.0.",
+      "The contract restricts input to finite numeric lists; behavior for non-numeric or non-finite elements is unspecified by the supplied source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6d1abcbea1853eb6184838353bb5305a828359a17c7a118ee5dc1cd9a57a0cfc",
+  "input_tokens": 322,
+  "output_tokens": 177,
+  "elapsed_seconds": 1.281
+}

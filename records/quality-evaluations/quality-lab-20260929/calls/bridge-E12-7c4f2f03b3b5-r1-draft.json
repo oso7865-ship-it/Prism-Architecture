@@ -1,0 +1,40 @@
+{
+  "key": "bridge-E12-7c4f2f03b3b5-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:25.694257+00:00",
+  "system_sha256": "5167925465ea58fc87cf2974fb00e539a362ee19cf46330104a91e51c8048796",
+  "payload_sha256": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "input_bytes": 898,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "save 함수에서 주입된 logger 대신 print로 기록하도록 변경된 부분을 검토했습니다. 팀 로깅 규칙과 직접 충돌합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2줄이 실행될 때",
+        "consequence": "기록이 logger.info를 통하지 않고 표준 출력으로만 나가므로, 로깅 파이프라인(레벨/수집/포맷)을 우회하여 팀 표준을 위반합니다.",
+        "assumptions": [],
+        "title": "주입된 logger 대신 print로 기록합니다",
+        "evidence": "f1의 2줄은 'saved'를 print로 출력하며, 같은 함수의 logger 파라미터가 사용되지 않습니다. 표준 s1은 애플리케이션에서 print 대신 주입된 logger.info로 기록하도록 요구합니다.",
+        "suggestion": "2줄을 logger.info('saved')로 바꾸어 주입된 로거를 사용하세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 실행 검증이나 테스트는 수행하지 않았습니다. logger 호출부의 실제 주입 방식은 제공되지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "3de6bd4c8e4aeb7475364f3a83c01a1de5c2f9cf9049179b79eaba4f833b1d53",
+  "input_tokens": 5244,
+  "output_tokens": 464,
+  "elapsed_seconds": 2.953
+}

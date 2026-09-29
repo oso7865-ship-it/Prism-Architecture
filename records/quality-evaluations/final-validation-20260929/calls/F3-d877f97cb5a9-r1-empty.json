@@ -1,0 +1,12 @@
+{
+  "key": "F3-d877f97cb5a9-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:06:11.688059+00:00",
+  "input_hash": "a9e3b4300c56f5dff5af2bc96512dc70fba600faa8fdc227fa9718207bfa5467",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1은 `with opener() as stream:`로 스트림을 열고 `stream.read()` 결과를 반환한다. 제공된 계약(예외 발생 시에도 스트림을 닫고, opener가 표준 컨텍스트 관리 스트림을 반환)을 위반하는 동작은 보이지 않는다. `with` 블록이 read 예외 시에도 정리를 보장하므로 보고할 결함이 없다.\", \"issues\": [], \"limitations\": \"opener의 실제 구현과 호출자는 제공되지 않았다. 제공된 3줄만으로 판단했으며, 테스트 실행이나 미제공 코드 검사는 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 read 예외 시에도 스트림을 닫도록 요구한다. `with opener() as stream:` 블록 안에서 `stream.read()`를 반환하므로 예외 경로에서도 컨텍스트 관리자가 정리를 수행해 계약을 충족한다.\"}]}",
+  "input_tokens": 3478,
+  "output_tokens": 248,
+  "seconds": 1.969
+}

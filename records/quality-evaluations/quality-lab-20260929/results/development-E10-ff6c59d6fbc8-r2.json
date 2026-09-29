@@ -1,0 +1,48 @@
+{
+  "key": "development-E10-ff6c59d6fbc8-r2",
+  "case": "ff6c59d6fbc8",
+  "arm": "E10",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "f1의 save 함수에서 logger.info로 로그를 남기고 record를 그대로 반환하는 변경을 검토했습니다. 제공된 표준 s1(로깅)과 동작 계약 범위에서 보고할 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "logger.info의 실제 구현과 호출부는 제공되지 않았으며, 테스트를 실행하지 않았습니다. 표준 문서 전체가 아닌 검색된 섹션만 확인했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 3,
+  "pipeline_complete": true,
+  "input_tokens": 17268,
+  "output_tokens": 411,
+  "elapsed_seconds": 4.234,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

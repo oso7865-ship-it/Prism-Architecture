@@ -1,0 +1,12 @@
+{
+  "key": "F3-09820d36b31f-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:03:31.318244+00:00",
+  "input_hash": "0fee01b6022d9772f1ea662938a05558377476d7af4a2f440f7561e33cf9652f",
+  "system_hash": "53b151a5996ffda1e6a8f7b43cfceb2d3f9e55c7af5bee5e71fa752ae88ddb76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scale(value)는 2줄에서 계산한 두 배 값이 아니라 원래 value를 반환하므로, 계약이 요구한 '입력의 두 배 반환'을 충족하지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 scaled = value * 2를 계산하지만 3줄이 value를 반환하여, 계약 'Return double the input.'과 불일치합니다.\"}]}",
+  "input_tokens": 4431,
+  "output_tokens": 162,
+  "seconds": 1.282
+}

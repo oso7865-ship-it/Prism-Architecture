@@ -1,0 +1,35 @@
+{
+  "key": "development-E01a-1bcaee84937b-r1-final",
+  "arm": "E01a",
+  "phase": "final",
+  "at": "2026-09-29T07:11:09.174337+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "82cc82ffa17b4f114d488780f5ff3117ffac51d17750d704e9506e2097c08bf8",
+  "input_bytes": 398,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "제공된 변경은 `load(id)` 결과의 `amount`를 반환하는 짧은 조각으로, 보안 관점에서 검토할 수 있는 입력 경계·권한 검사·위험 싱크가 코드에 드러나지 않습니다. `load` 구현과 호출자, `id`의 출처가 제공되지 않아 접근 통제 여부를 판단할 근거가 없습니다.",
+    "issues": [],
+    "limitations": "`load`의 구현과 반환 계약, `id`의 출처 및 호출자(예: `invoice(7, \"bob\")`, `invoice(7, \"alice\")`의 실제 인자 매핑)가 제공되지 않아 객체 소유자 검증이나 접근 통제가 존재하는지 확인할 수 없습니다. 정적 분석 경고도 제공되지 않았고 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "UNKNOWN",
+        "value_json": null,
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "UNKNOWN",
+        "value_json": null,
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6e41ccb2e921148eb92b21df5b0793162912743ac38520e69ff79c36ea93248c",
+  "input_tokens": 5506,
+  "output_tokens": 259,
+  "elapsed_seconds": 1.781
+}

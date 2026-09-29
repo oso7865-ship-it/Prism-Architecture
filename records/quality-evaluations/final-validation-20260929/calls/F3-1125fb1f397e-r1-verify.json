@@ -1,0 +1,12 @@
+{
+  "key": "F3-1125fb1f397e-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:23.720302+00:00",
+  "input_hash": "80ced69dc3e237ac728cf47170c7e0e3f5f147f520c02bbce111b2cbb671bb9e",
+  "system_hash": "5d0b65565f6b6110269eac27672e595479de9e18ceb10059057c02d8a2d82c76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비어 있지 않은 int 배열 values로 호출하면 values[values.length] 접근이 ArrayIndexOutOfBoundsException을 던져 마지막 요소를 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄이 values[values.length]로 접근해 계약이 요구하는 마지막 요소 반환 대신 항상 범위를 벗어난 인덱스에 접근합니다.\"}]}",
+  "input_tokens": 4571,
+  "output_tokens": 162,
+  "seconds": 1.218
+}

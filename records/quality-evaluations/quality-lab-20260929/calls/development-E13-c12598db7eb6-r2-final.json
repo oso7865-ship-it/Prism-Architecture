@@ -1,0 +1,41 @@
+{
+  "key": "development-E13-c12598db7eb6-r2-final",
+  "arm": "E13",
+  "phase": "final",
+  "at": "2026-09-29T07:08:35.686777+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "9597c5494a08558f3ef4b6f1c8721bef9f99b7fed1eb84f53c535940e9e1a2c7",
+  "input_bytes": 9927,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`choose` 함수가 None 여부를 명시적으로 검사해 기본값을 반환하도록 변경된 두 줄을 검토했습니다. 제공된 계약('None만 부재를 의미, 명시적으로 제공된 값은 보존')과 일치하며, 빈 문자열·False 같은 falsy 값도 그대로 보존됩니다.",
+    "issues": [],
+    "limitations": "제공된 변경 두 줄과 명시된 계약만 검토했으며, 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "bd06ea11c0db98861bb9bdffb07a337b3831b853ac4fbe39c3fb1418f1b58dfe",
+  "input_tokens": 7703,
+  "output_tokens": 195,
+  "elapsed_seconds": 1.735
+}

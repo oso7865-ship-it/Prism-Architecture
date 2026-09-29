@@ -1,0 +1,38 @@
+{
+  "key": "bridge-E12-b07fc52f42ca-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:12.829785+00:00",
+  "system_sha256": "7a3f4d1228eb8bf556db89558bf13cc772a4e48612b4abe14261eb91521221ae",
+  "payload_sha256": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "input_bytes": 405,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본값 처리에서 `||`를 사용해 0과 같은 falsy 값도 기본값 10으로 대체되는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 0이 전달될 때(0은 계약상 유효한 설정값)",
+        "consequence": "0이 falsy이므로 `count || 10`이 10을 반환해, 설정된 limit 0이 무시되고 기본값 10이 적용됩니다.",
+        "assumptions": [],
+        "title": "limit 값 0이 기본값 10으로 잘못 대체됩니다",
+        "evidence": "2줄은 `||` 연산자로 기본값을 적용하므로 좌항이 falsy이면 우항을 반환합니다. 계약상 0은 유효한 limit이지만 0은 falsy입니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 좁히세요."
+      }
+    ],
+    "limitations": "해당 함수의 호출부와 count의 실제 타입/입력 계약은 제공되지 않았으며 테스트는 실행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "20a6f1e097728307688179fa551a997fbccb3e628ee4034db041444e76041802",
+  "input_tokens": 4787,
+  "output_tokens": 350,
+  "elapsed_seconds": 2.39
+}

@@ -1,0 +1,35 @@
+{
+  "key": "development-E01a-cd210310faa4-r1-final",
+  "arm": "E01a",
+  "phase": "final",
+  "at": "2026-09-29T07:11:01.265789+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "ca822bb0e83051c98de87a183b6fc3e7331398de151e6f7f3284a37a2569e389",
+  "input_bytes": 312,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 처리와 공백 제거를 수행하는 name 메서드 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "메서드 시그니처와 호출부, name의 실제 입력 계약은 제공되지 않았으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"Ada\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "94fdd441d669c18a95f54954bfeb14e2f0af40a429c3257729dc39aa58161617",
+  "input_tokens": 5227,
+  "output_tokens": 134,
+  "elapsed_seconds": 1.547
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F1-964c0700fd59-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:58:03.588339+00:00",
+  "input_hash": "15bbaabfc754da828480f37460d30961fe480d1714d1c5ceaefc27ea2676c36d",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 음수인 int일 때 adjust는 max(value, 0)이 아닌 원래의 음수 value를 반환하여 계약과 불일치합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 adjusted = max(value, 0)을 계산하지만 3줄은 value를 반환하여, 음수 입력 시 계약(Return max(value, 0))과 다른 값이 반환됩니다.\"}]}",
+  "input_tokens": 4618,
+  "output_tokens": 162,
+  "seconds": 1.594
+}

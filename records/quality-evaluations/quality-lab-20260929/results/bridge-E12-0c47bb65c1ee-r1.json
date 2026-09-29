@@ -1,0 +1,108 @@
+{
+  "key": "bridge-E12-0c47bb65c1ee-r1",
+  "case": "0c47bb65c1ee",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "base.copy()가 얕은 복사이므로 중첩 딕셔너리를 수정하면 호출자의 base까지 변경됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base['nested']가 딕셔너리인 base로 adjust를 호출할 때",
+        "consequence": "base['nested']가 딕셔너리인 입력에서 base.copy()는 중첩 딕셔너리를 공유하므로 3줄의 result['nested']['limit'] = 9가 호출자의 base['nested']['limit']도 9로 바꾸고, 4줄은 변경된 9를 반환합니다. 이는 제공된 '호출자의 base를 변경하지 않는다'는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 중첩 딕셔너리 변경이 호출자 base에 전파됩니다",
+        "evidence": "2줄은 최상위만 복사하는 base.copy()를 사용하고, 3줄은 중첩 값인 result['nested']['limit']를 변경하며, 4줄은 base의 같은 중첩 값을 다시 읽습니다. 중첩 딕셔너리는 복사되지 않아 두 이름이 동일 객체를 가리킵니다.",
+        "suggestion": "중첩 딕셔너리까지 보존하려면 copy.deepcopy(base)를 사용하거나, 복사본의 중첩 딕셔너리를 별도로 복사한 뒤 수정하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 얕은 복사로 인해 중첩 딕셔너리 변경이 호출자 base에 전파됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base['nested']가 딕셔너리인 base로 adjust를 호출할 때",
+        "consequence": "base['nested']가 딕셔너리인 입력에서 base.copy()는 중첩 딕셔너리를 공유하므로 3줄의 result['nested']['limit'] = 9가 호출자의 base['nested']['limit']도 9로 바꾸고, 4줄은 변경된 9를 반환합니다. 이는 제공된 '호출자의 base를 변경하지 않는다'는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 중첩 딕셔너리 변경이 호출자 base에 전파됩니다",
+        "evidence": "2줄은 최상위만 복사하는 base.copy()를 사용하고, 3줄은 중첩 값인 result['nested']['limit']를 변경하며, 4줄은 base의 같은 중첩 값을 다시 읽습니다. 중첩 딕셔너리는 복사되지 않아 두 이름이 동일 객체를 가리킵니다.",
+        "suggestion": "중첩 딕셔너리까지 보존하려면 copy.deepcopy(base)를 사용하거나, 복사본의 중첩 딕셔너리를 별도로 복사한 뒤 수정하세요.",
+        "file_path": "options.py",
+        "key": "91276cdc759f5c93787c00f465c31f5a2fed48cbf69b394132781345a193eda3"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "options.py",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8089,
+  "output_tokens": 1053,
+  "elapsed_seconds": 6.186999999999999
+}

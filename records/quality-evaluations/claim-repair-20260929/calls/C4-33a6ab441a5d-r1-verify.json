@@ -1,0 +1,12 @@
+{
+  "key": "C4-33a6ab441a5d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:53.413169+00:00",
+  "input_hash": "b0c05b30ea578a97fd6288683b52ca64e52308ac252b18686937aef09f64ca54",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"길이가 1 이상인 int 배열로 호출하면 values.length 인덱스에 접근하여 ArrayIndexOutOfBoundsException이 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄이 values[values.length]를 반환하여 비어 있지 않은 배열에서도 범위를 벗어난 인덱스에 접근합니다.\"}]}",
+  "input_tokens": 4408,
+  "output_tokens": 145,
+  "seconds": 1.156
+}

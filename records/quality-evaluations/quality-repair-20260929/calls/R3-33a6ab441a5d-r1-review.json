@@ -1,0 +1,15 @@
+{
+  "key": "R3-33a6ab441a5d-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:28:00.891801+00:00",
+  "input_hash": "3dc224e49a0dd42fe08364bc411ca076afe0349a7e6fad5c0dd846dbaf7a09fe",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공 코드 검토\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"비어 있지 않은 배열로 last를 호출할 때\",\"consequence\":\"values.length는 마지막 유효 인덱스가 아니라 길이이므로 항상 ArrayIndexOutOfBoundsException이 발생합니다.\",\"assumptions\":[],\"title\":\"마지막 원소 조회가 항상 범위를 벗어납니다\",\"evidence\":\"3줄에서 배열 길이를 그대로 인덱스로 사용하며, 유효 인덱스 범위는 0부터 length-1입니다.\",\"suggestion\":\"values.length - 1을 인덱스로 사용하세요. 계약상 비어 있지 않은 배열만 전달되므로 별도 빈 배열 처리는 필요하지 않습니다.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4856,
+  "output_tokens": 217,
+  "seconds": 1.781
+}

@@ -1,0 +1,52 @@
+{
+  "key": "development-E10-2cdf3efa43ff-r1-final",
+  "arm": "E10",
+  "phase": "final",
+  "at": "2026-09-29T07:13:51.574207+00:00",
+  "system_sha256": "937722a8f0781d0ccdd4c1a758330da065bc2886abf27c3db0652bbaf11c7096",
+  "payload_sha256": "4d51277624ea0314f19dbf586c32a6b95f44086166dcd31b557669275ca73da1",
+  "input_bytes": 3761,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 두 값을 곱해 long으로 반환하는 변경을 검토했습니다. 곱셈이 int 정밀도로 수행된 뒤 확장되어, 계약이 요구하는 long 범위 내 정확한 곱이 보존되지 않는 경로가 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 Integer.MAX_VALUE를 초과하지만 long 범위에는 들어가는 값으로 total을 호출할 때(예: total(50000, 50000))",
+        "consequence": "두 int 피연산자의 곱셈이 int 정밀도로 수행되어 32비트에서 넘친 뒤 long으로 확장되므로, 반환값이 수학적 곱과 다른 값이 됩니다.",
+        "assumptions": [],
+        "title": "int 곱셈 오버플로로 long 결과가 잘못됩니다",
+        "evidence": "3줄에서 int 매개변수 두 개를 그대로 곱해 int 연산으로 결과를 계산하고, 그 결과가 long 반환 타입으로 확장됩니다. behavior_contract는 곱이 long에 정확히 보존되어야 함을 요구합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "705032704",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a7d253b85ebac6ab807611998615afad6bcb213fd56d2c24492c6ae7b49c2a35",
+  "input_tokens": 6279,
+  "output_tokens": 394,
+  "elapsed_seconds": 2.281
+}

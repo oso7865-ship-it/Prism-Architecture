@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-2ff125902b12-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "2ff125902b12",
+  "at": "2026-09-29T08:43:36.837374+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "bca5ff34e21e5387b1f30dd7ee3f3a772343d662beb265209f368f40a526cea1",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 바이트 본문의 길이를 반환하는 변경을 검토했습니다. 제공된 계약과 테스트 맥락에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "content_length와 prepare의 실제 호출부 및 bytes 이외 입력이 차단되는 지점은 제공되지 않았으며, 테스트를 실행 검증하지는 않았습니다."
+  },
+  "input_tokens": 4917,
+  "output_tokens": 92,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "bf0feec73c250123f9d9317a946ec4f5f454c8b32d5cd3a6da36359749c23852",
+  "elapsed_seconds": 0.875
+}

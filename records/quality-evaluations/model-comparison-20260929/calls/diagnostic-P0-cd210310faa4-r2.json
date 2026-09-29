@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-P0-cd210310faa4-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "cd210310faa4",
+  "at": "2026-09-29T08:42:51.402119+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "7d039d2a98bf7eefe8b9fc614433d0d1b7866851ccead663b4b9b97450d63f42",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null 이름은 빈 문자열로, 그 외에는 앞뒤 공백을 제거해 반환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 메서드만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"Ada\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5327,
+  "output_tokens": 156,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5248,
+  "response_sha256": "c56d9836d0e27f91495179ffbff9c5d7512e8219e312c7d2e679729cf4a82311",
+  "elapsed_seconds": 2.688
+}

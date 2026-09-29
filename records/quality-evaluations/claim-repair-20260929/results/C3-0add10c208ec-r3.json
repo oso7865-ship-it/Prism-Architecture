@@ -1,0 +1,52 @@
+{
+  "case": "0add10c208ec",
+  "repeat": 3,
+  "arm": "C3",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 것은 단일 파일의 5줄과 정적 투영뿐이며, 실제 호출자·테스트 실행·다른 오버로드는 확인하지 못했습니다. amount/count가 계약을 벗어난 음수이거나 곱이 long 범위를 넘는 경우는 계약상 유효 입력이 아니므로 판단 대상에서 제외했습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Price.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "`(long) amount * count`는 곱셈 전에 long으로 승격하므로 int 오버플로가 발생하지 않고, 제공된 계약과 세 정적 투영 입력 모두에서 곱이 정확히 보존됨을 확인했습니다.",
+          "file_path": "Price.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "37646a23d109b5c19c66a838cf2865ba2c4359344ea47c2028332c13fd4ac11a"
+}

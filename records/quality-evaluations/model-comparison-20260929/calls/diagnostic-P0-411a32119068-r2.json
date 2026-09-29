@@ -1,0 +1,43 @@
+{
+  "key": "diagnostic-P0-411a32119068-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "411a32119068",
+  "at": "2026-09-29T08:42:29.962837+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "47b2320f78109fe85d98ad9fba04c2ed7065b95079fdb1d1c9eaf5bae4c18f30",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열은 UTF-8로 인코딩하고 바이트는 그대로 두어 전송 바이트 수를 반환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다. str/bytes 외의 입력에 대한 계약은 명시되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5185,
+  "output_tokens": 212,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5120,
+  "response_sha256": "3179981182d064c6c90ef34f4506c9c68e8c5af8f19a88e696c012a8fde90bc9",
+  "elapsed_seconds": 3.969
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C3-e039b4bf0e2d-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:50:22.068762+00:00",
+  "input_hash": "f8546c0f2f736dc279aeed47af3d47ff0594d50aea7d0aab60cbe3c2f29d0624",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"env에 CURL_CA_BUNDLE=\\\"\\\"(또는 REQUESTS_CA_BUNDLE=\\\"\\\")가 있고 verify가 True이면, or 연산이 빈 문자열을 falsy로 평가해 verify가 \\\"\\\"가 되고 merge_setting 6줄에서 \\\"\\\"가 반환되어 명시적 True가 유지되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"10줄의 or 기반 CA 번들 조회가 빈 문자열 환경변수에서 명시적 verify=True를 \\\"\\\"로 덮어써 15·16줄 계약과 불일치합니다.\"}]}",
+  "input_tokens": 5603,
+  "output_tokens": 202,
+  "seconds": 1.562
+}

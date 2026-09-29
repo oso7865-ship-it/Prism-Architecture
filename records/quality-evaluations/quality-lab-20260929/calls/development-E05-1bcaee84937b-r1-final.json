@@ -1,0 +1,53 @@
+{
+  "key": "development-E05-1bcaee84937b-r1-final",
+  "arm": "E05",
+  "phase": "final",
+  "at": "2026-09-29T07:13:32.432500+00:00",
+  "system_sha256": "09950fb95c0e278cf94a8bc40841e2ede92af7216b5576c0ce4e7911c70620cf",
+  "payload_sha256": "6636e3a6f3d902f7870a5115525d54b388a9a05eef31fe5218a813f93bbd0a01",
+  "input_bytes": 883,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "이전 버전에 있던 소유자 검사(`item.owner !== actor`일 때 예외 발생)가 현재 HEAD에서 제거되어, `invoice`가 소유자 확인 없이 금액을 반환합니다. `load`는 `{owner: \"alice\", amount: 40}`을 반환하므로 bob과 같은 비소유자도 금액을 받게 됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "`invoice(7, \"bob\")`처럼 `load(id).owner`와 다른 actor로 호출될 때",
+        "consequence": "소유자 검사가 없어 비소유자에게도 `item.amount`(40)가 반환됩니다. behavior_contract가 요구하는 '소유자에게만 반환, 그 외에는 Error'를 위반하는 접근 통제 실패입니다.",
+        "assumptions": [],
+        "title": "소유자 검사 제거로 비소유자에게 금액이 노출됩니다",
+        "evidence": "2줄에서 `load(id)` 결과를 받고 3줄에서 곧바로 `item.amount`를 반환합니다. 이전 소스에 있던 `item.owner !== actor` 검사가 HEAD에는 없습니다.",
+        "suggestion": "3줄의 반환 전에 `if (item.owner !== actor) throw new Error(\"denied\");`를 복원해 소유자만 금액을 받도록 하세요."
+      }
+    ],
+    "limitations": "`load`의 실제 구현과 호출부, actor 값의 출처는 제공된 범위 밖이며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d9b98c80d3607ecf6e068864ddeb160e9a71d82c15e7adf0c40b9dfedfb51f68",
+  "input_tokens": 5676,
+  "output_tokens": 441,
+  "elapsed_seconds": 2.859
+}

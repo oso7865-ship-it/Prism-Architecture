@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-b07fc52f42ca-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:15.250536+00:00",
+  "system_sha256": "e6e5be44b68e2d64201df938c9a103574574dc1639f126c42db05925fcb55748",
+  "payload_sha256": "a3c2adde367e98232f8cedc0a0805e0c9610b8e5f9dd5ecc47d0a4d475062759",
+  "input_bytes": 1428,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "count에 0이 전달되면 0은 falsy이므로 `count || 10`이 10을 반환하여, 계약상 유효한 limit 값 0이 무시되고 기본값 10이 적용됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "6e0e4a4dea7ba3a57cde01b224916a526d13f2b88e0ce4a7e9f4b90605830894",
+  "input_tokens": 3104,
+  "output_tokens": 146,
+  "elapsed_seconds": 1.156
+}

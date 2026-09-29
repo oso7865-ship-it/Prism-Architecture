@@ -1,0 +1,15 @@
+{
+  "key": "R3-2ff125902b12-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:29.296141+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"content_length가 바이트 길이를 반환하도록 변경된 한 줄을 검토했습니다. 제공된 계약과 테스트가 일치하며, 바이트 입력에 대해 len(body)는 바이트 수를 반환하므로 별도 결함은 확인되지 않습니다.\",\"issues\":[],\"limitations\":\"제공된 HEAD 라인만 검토했으며 실행 결과는 확인하지 않았습니다. content_length/prepare의 외부 호출자와 실제 입력 타입 검증 여부는 제공 범위에 없습니다.\",\"context_requests\":[]}",
+  "input_tokens": 4931,
+  "output_tokens": 125,
+  "seconds": 1.438
+}

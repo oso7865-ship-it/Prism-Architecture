@@ -1,0 +1,12 @@
+{
+  "key": "C4-cd1f9cff7b9c-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:24.232198+00:00",
+  "input_hash": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "system_hash": "7598ba0719de43b008983eb2a3fbc85fec13713add6362d49266676260381a34",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"경로 포함 여부를 판정하는 단일 함수의 변경 라인을 검토했습니다. 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크 없음, 후행 슬래시 없음)을 기준으로 접두사 비교 로직을 확인했습니다.\",\"issues\":[],\"limitations\":\"제공된 범위는 permitted 함수 한 줄뿐이며, root와 resolved를 생성·전달하는 호출자, 경로 정규화 및 심볼릭 링크 해석 여부, 실제 파일 접근 지점은 확인되지 않았습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4865,
+  "output_tokens": 147,
+  "seconds": 1.515
+}

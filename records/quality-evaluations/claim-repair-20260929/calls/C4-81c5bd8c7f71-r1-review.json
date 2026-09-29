@@ -1,0 +1,12 @@
+{
+  "key": "C4-81c5bd8c7f71-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:36.290633+00:00",
+  "input_hash": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "system_hash": "68f3e4d489c9367ba1d03c3453caa4b48b8184a0e26973f2fced001923665459",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3번 줄에서 옵셔널 profile에 비-널 단언(!)을 적용해 반환하도록 변경되었습니다. 제공된 동작 계약과 비교해 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"profile 속성이 없는 User 객체로 name(user)을 호출할 때\",\"consequence\":\"user.profile이 undefined이므로 user.profile!.name 접근에서 TypeError가 발생하고, 계약에서 요구한 'Unknown' 표시가 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"profile이 없을 때 'Unknown' 대신 TypeError가 발생합니다\",\"evidence\":\"1번 줄에서 profile은 옵셔널(profile?: { name: string })이므로 profile이 없는 User가 유효합니다. 3번 줄은 비-널 단언으로 profile을 강제 역참조하므로, 계약이 요구하는 'Missing profile must display Unknown' 동작과 달리 예외가 발생합니다.\",\"suggestion\":\"profile이 없을 때 'Unknown'을 반환하고, profile이 있으면 기존처럼 name을 반환하도록 옵셔널 체이닝과 기본값을 사용하세요(예: user.profile?.name ?? 'Unknown'). 이렇게 하면 빈 문자열 name은 그대로 보존됩니다.\",\"contract_quote\":\"Missing profile must display Unknown; an existing empty name is preserved.\"}],\"limitations\":\"제공된 4개 줄만 검토했으며 실행 결과나 다른 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4555,
+  "output_tokens": 364,
+  "seconds": 2.578
+}

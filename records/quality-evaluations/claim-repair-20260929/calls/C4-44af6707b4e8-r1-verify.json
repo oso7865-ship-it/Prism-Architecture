@@ -1,0 +1,12 @@
+{
+  "key": "C4-44af6707b4e8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:12.120735+00:00",
+  "input_hash": "7760348f4baa6019c2615eaaaaa36915aa03662a41cd27bbbcf35c82f0c84063",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value에 0, 빈 문자열, False 등 None이 아닌 falsy 값이 전달되면 default가 반환되어 명시적으로 제공된 값이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 `value or default`는 truthiness로 분기하여 None이 아닌 falsy 값(0, \\\"\\\", False)도 default로 대체하므로, None만 부재로 간주하라는 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4539,
+  "output_tokens": 172,
+  "seconds": 1.344
+}

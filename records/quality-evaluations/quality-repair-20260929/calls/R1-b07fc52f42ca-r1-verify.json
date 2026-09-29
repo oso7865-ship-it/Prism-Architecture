@@ -1,0 +1,15 @@
+{
+  "key": "R1-b07fc52f42ca-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:20:01.078427+00:00",
+  "input_hash": "b4f4b6d2c094b60e401cea9bd94798012d018ff5a4812260fd2010b40e7fb216",
+  "system_hash": "0e44a5b1ed2ae67d0be460766232f03381bbefdbadfc9132fc9b0f033133966b",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count가 0이면 `count || 10`이 10을 반환하여 유효한 설정값 0이 기본값 10으로 대체됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"논리 OR 사용으로 유효한 0이 기본값 10으로 대체됨; 계약상 null/undefined에만 기본값 적용 필요.\"}], \"new_findings\": []}",
+  "input_tokens": 3817,
+  "output_tokens": 148,
+  "seconds": 1.344
+}

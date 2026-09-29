@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-2ff125902b12-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "2ff125902b12",
+  "at": "2026-09-29T08:43:40.297859+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "bca5ff34e21e5387b1f30dd7ee3f3a772343d662beb265209f368f40a526cea1",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 content_length 함수는 bytes 입력에 대해 len(body)를 반환하며, 제공된 계약(바이트 수 계산)과 테스트에서 정상 동작합니다. 검토 범위 내에서 지원되는 결함은 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "prepare 함수의 호출부와 content_length에 None 등 잘못된 타입이 전달되는 경로는 제공되지 않아 확인할 수 없었습니다. 변경된 코드만 검토했으며 테스트 실행은 하지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "content_length가 bytes 입력에 대해 len(body)를 반환하는 동작을 확인했으며, 제공된 계약과 테스트에서 문제가 없습니다."
+      }
+    ]
+  },
+  "input_tokens": 3298,
+  "output_tokens": 207,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3200,
+  "response_sha256": "1aa2061ac07a873f1d5bb81842d45d6f835027a87cf148ac2e2dc76c97575863",
+  "elapsed_seconds": 4.5
+}

@@ -1,0 +1,27 @@
+{
+  "revision": "lab-1",
+  "corpus": {
+    "sha256": "41976962e2f2f24c68f6bfd61a8cc8b647e45e26d2b8e703c073a543dad3a663",
+    "cases": 36,
+    "development": 20,
+    "holdout": 16,
+    "provenance": "hand-authored synthetic; no customer code",
+    "oracle_review": "agent-authored; trusted reference tests; independent human pending"
+  },
+  "model": "deepseek-flash",
+  "harness": "rh1-53e49450b98330c5",
+  "harness_digest": "40693febf520962a4b6f43242279a278e652046a7dc446feb6170eb64851f42a",
+  "protocol_digest": "8d0d5fccd80bca6cb92765e6914c10ddbc749907feb6c0a028299c685c72c5f5",
+  "temperature": 0,
+  "normal_output_tokens": 2000,
+  "E12_output_tokens": 8192,
+  "concurrency": 4,
+  "automatic_retries": 0,
+  "selection_order": [
+    "miss",
+    "normal_false_positive",
+    "invalid",
+    "probe_errors",
+    "calls"
+  ]
+}

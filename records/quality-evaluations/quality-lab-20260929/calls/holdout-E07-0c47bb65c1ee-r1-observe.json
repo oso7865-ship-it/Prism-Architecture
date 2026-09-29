@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-0c47bb65c1ee-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:14.610197+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "f8217ab6daaa6ba7ffcad52aeb7c62183bae612251960dd1ad34592eef6484ea",
+  "input_bytes": 590,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Function adjust takes a single argument base and returns base['nested']['limit'].",
+      "Line 2 was changed to result = base.copy(), a shallow copy of the top-level dictionary.",
+      "Line 3 mutates result['nested']['limit'] = 9, which writes through the shared nested dictionary.",
+      "The behavior contract states the caller's base must be preserved without mutation.",
+      "The probe call passes a nested dict {'nested': {'limit': 1}} and the function returns the nested limit value.",
+      "No static findings are reported; the shallow copy does not isolate the nested object referenced by base."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "8071fed5ac523be39886da97f7dcdbe57e6a1535d53ac01dd029dae0086b44cc",
+  "input_tokens": 346,
+  "output_tokens": 131,
+  "elapsed_seconds": 1.219
+}

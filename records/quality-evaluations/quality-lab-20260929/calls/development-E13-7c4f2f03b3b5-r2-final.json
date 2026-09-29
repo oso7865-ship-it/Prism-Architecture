@@ -1,0 +1,48 @@
+{
+  "key": "development-E13-7c4f2f03b3b5-r2-final",
+  "arm": "E13",
+  "phase": "final",
+  "at": "2026-09-29T07:14:31.560541+00:00",
+  "system_sha256": "3e88b38d11ce52a1d3692f9ea1c06e19d517d053a98bc6eeb808c5ff1ae3be9d",
+  "payload_sha256": "01e69476a07bac6ebe36babd0ba3a1f95f190929c7b1740f3d5ac50222b7a52a",
+  "input_bytes": 10362,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수에서 변경된 2줄이 print를 사용해 로깅하고 있습니다. 팀 표준은 주입된 logger.info 사용을 요구하므로 표준 위반 항목 1건을 보고합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2줄이 실행될 때",
+        "consequence": "표준이 요구하는 주입된 logger.info 대신 print로 기록되어 로깅 표준을 위반합니다. 반환값(record)과 제어 흐름에는 영향이 없습니다.",
+        "assumptions": [],
+        "title": "print 사용으로 로깅 표준 위반",
+        "evidence": "2줄에서 print('saved')로 기록하지만, 표준 s1은 애플리케이션에서 print 대신 주입된 logger.info를 사용하도록 요구하며 f1을 대상 파일로 지정합니다. 함수는 logger를 인자로 받고 있습니다.",
+        "suggestion": "2줄을 logger.info('saved')로 바꿔 주입된 logger를 사용하세요."
+      }
+    ],
+    "limitations": "제공된 3줄과 표준 섹션 s1만 검토했으며, logger 구현과 실제 호출부, 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "06d27f785dc7a9d486730a2eabfb0d4bcfe3197b349253c7d1a50f7ee0951d92",
+  "input_tokens": 8143,
+  "output_tokens": 363,
+  "elapsed_seconds": 2.266
+}

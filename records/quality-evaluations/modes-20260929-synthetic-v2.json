@@ -1,0 +1,313 @@
+{
+  "scope": "six synthetic cases, purpose integration only; not a security certification",
+  "prompt_version": "rh1-53e49450b98330c5",
+  "model": "deepseek-flash",
+  "cases": [
+    {
+      "id": "code-null",
+      "purpose": "CODE",
+      "expected_finding": true,
+      "payload_sha256": "c2480a370bc7d1afd6d3d85dcc0945f9bc91cbcb10562c582c4a66755b74ef3d",
+      "input_tokens": 7752,
+      "output_tokens": 358,
+      "status": "COMPLETED",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: None 처리 분기가 반대로 되어 있어 None 접근과 이름 유실이 발생합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2
+            ],
+            "trigger": "user가 None인 상태로 name(user)을 호출할 때",
+            "consequence": "user가 None이면 조건식이 참이 되어 user.name을 평가하므로 AttributeError가 발생하고, user가 정상 객체이면 ''가 반환되어 이름이 유실됩니다.",
+            "assumptions": [],
+            "title": "None 처리 분기가 반대로 되어 있어 None 접근과 이름 유실이 발생합니다",
+            "evidence": "2줄은 `user.name if user is None else ''`로, user가 None일 때 user.name을 평가하고 정상 객체일 때 ''를 반환합니다.",
+            "suggestion": "조건을 `'' if user is None else user.name`으로 뒤집어 None 분기에서 빈 문자열을, 그 외 분기에서 user.name을 반환하도록 하세요.",
+            "file_path": "app.py",
+            "key": "a4369fe67deb8e420d7f26eaf4d7fbe64a554505b384d8dd71620656c22ff6c9"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "app.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "signal_pass": true
+    },
+    {
+      "id": "code-guard",
+      "purpose": "CODE",
+      "expected_finding": false,
+      "payload_sha256": "fb07c279561d4f7d846a1abdee3d9a019eb872e59685d434fba38f5881547ccb",
+      "input_tokens": 7816,
+      "output_tokens": 263,
+      "status": "COMPLETED",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "user 객체의 타입/계약과 호출 지점은 제공되지 않아 user.name 접근의 유효성은 확인 범위 밖이다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "app.py",
+              "provided_lines": 2
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "None이면 빈 문자열을 반환하고 그 외에는 user.name을 반환하는 명시적 분기로, 제공된 범위에서 도달 가능한 실패 경로가 없다.",
+              "file_path": "app.py"
+            }
+          ]
+        }
+      },
+      "signal_pass": true
+    },
+    {
+      "id": "sql-injection",
+      "purpose": "SECURITY",
+      "expected_finding": true,
+      "payload_sha256": "2cef9bd1b8e0630f503d707d5a3b6811bca3732506a0a3b6b7b296949f196038",
+      "input_tokens": 8602,
+      "output_tokens": 390,
+      "status": "COMPLETED",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 요청 파라미터가 SQL 문자열에 직접 연결됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "request.args['id']에 SQL 문법이 포함된 값이 전달될 때",
+            "consequence": "request.args['id'] 값이 문자열 연결로 SELECT 문에 삽입되어 실행되므로, SQL 문법이 포함된 입력은 쿼리 구조를 변조해 조회 결과를 공격자 입력에 따라 바꿀 수 있습니다.",
+            "assumptions": [],
+            "title": "요청 파라미터가 SQL 문자열에 직접 연결됩니다",
+            "evidence": "4줄에서 request.args['id']를 문자열 연결로 SELECT 문에 삽입하고 execute로 실행합니다. 값 바인딩이나 검증이 없습니다.",
+            "suggestion": "파라미터 바인딩을 사용해 쿼리 구조와 값을 분리하세요(예: execute(\"SELECT name FROM users WHERE id = %s\", (request.args['id'],))).",
+            "file_path": "api.py",
+            "key": "8445822b538fd6d1740270555ea216a241006d895e346cb9d0a207d8d7d3f6e7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "api.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "signal_pass": true
+    },
+    {
+      "id": "sql-parameters",
+      "purpose": "SECURITY",
+      "expected_finding": false,
+      "payload_sha256": "216ec8ae7ebbc83c269c74a6fb31a30e5702c82a5464dc5890e91e08b83af697",
+      "input_tokens": 8654,
+      "output_tokens": 390,
+      "status": "COMPLETED",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`request.args['id']`가 누락될 때의 동작(400 처리 여부)과 `lookup` 호출자·인증/인가 경계, DB 커서 구현은 제공되지 않아 판단하지 않았다. 쿼리는 값 바인딩을 사용하므로 인젝션으로 단정하지 않는다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "api.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "요청 인자 id를 %s 파라미터 바인딩 튜플로 전달해 SQL 인젝션 경로가 보이지 않는다. 인증/인가 및 호출자 맥락은 제공되지 않아 확인 범위 밖이다.",
+              "file_path": "api.py"
+            }
+          ]
+        }
+      },
+      "signal_pass": true
+    },
+    {
+      "id": "convention-print",
+      "purpose": "STANDARDS",
+      "expected_finding": true,
+      "payload_sha256": "4e7c75cf8ff66f692e1ba893f950990c0daaccfc18274c06afa982e5de28fd1d",
+      "input_tokens": 8769,
+      "output_tokens": 389,
+      "status": "COMPLETED",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: print 사용으로 주입된 logger 대신 표준 출력에 기록합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "save_record가 호출되어 2줄이 실행될 때",
+            "consequence": "save_record가 호출되면 2줄의 print가 표준 출력으로 'record saved'를 출력하고, 주입된 logger.info는 호출되지 않아 팀 로깅 규칙(s1)을 위반합니다.",
+            "assumptions": [],
+            "title": "print 사용으로 주입된 logger 대신 표준 출력에 기록합니다",
+            "evidence": "2줄에서 print('record saved')를 호출하며, 함수 시그니처 1줄은 logger를 매개변수로 받지만 사용되지 않습니다.",
+            "suggestion": "2줄의 print 호출을 logger.info('record saved')로 바꾸고, 로깅 내용에 비밀정보가 포함되지 않도록 유지하세요.",
+            "file_path": "app.py",
+            "citations": [
+              {
+                "id": "00000000-0000-0000-0000-000000000001:s1",
+                "document_id": "00000000-0000-0000-0000-000000000002",
+                "version_id": "00000000-0000-0000-0000-000000000001",
+                "version": 1,
+                "title": "합성 로깅 규칙",
+                "kind": "CONVENTION",
+                "section": "s1",
+                "heading": "로깅 규칙"
+              }
+            ],
+            "key": "41811b49cef5c198e1084861066de62e78263cd667c5ce0015efb517f20914a0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "app.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0
+        }
+      },
+      "signal_pass": true
+    },
+    {
+      "id": "convention-logger",
+      "purpose": "STANDARDS",
+      "expected_finding": false,
+      "payload_sha256": "ba13ea5dcfbbd9c8440623b2e7564a6b2024c3cd356d7675394fc2a093471858",
+      "input_tokens": 8816,
+      "output_tokens": 341,
+      "status": "COMPLETED",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "record의 실제 내용과 logger 구현, 호출자는 제공되지 않았습니다. 로깅 문자열이 리터럴이므로 비밀정보 포함 여부는 이 발췌만으로 판단했으며, 저장 동작 자체의 정확성은 검토 범위 밖입니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "app.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "주입된 logger.info로 고정 문자열을 기록하며 print 사용이나 비밀정보 노출이 없어 s1 규칙상 조치할 위반이 보이지 않습니다.",
+              "file_path": "app.py"
+            }
+          ]
+        }
+      },
+      "signal_pass": true
+    }
+  ],
+  "attempts": 12,
+  "authorized_attempts_used": 1563
+}

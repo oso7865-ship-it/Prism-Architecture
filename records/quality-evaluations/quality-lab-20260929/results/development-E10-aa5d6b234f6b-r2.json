@@ -1,0 +1,73 @@
+{
+  "key": "development-E10-aa5d6b234f6b-r2",
+  "case": "aa5d6b234f6b",
+  "arm": "E10",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수가 추가된 변경을 검토했습니다. bucket을 생략한 호출들이 함수 정의 시 생성된 동일 리스트를 공유해 호출 간 상태가 누적됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 인자 리스트가 함수 정의 시 한 번만 생성되어 모든 생략 호출이 같은 객체를 공유합니다. 첫 호출의 반환값이 두 번째 호출에서 함께 변경되어 '생략 호출마다 새 bucket'이라는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "기본 bucket 리스트가 호출 간 공유되어 이전 결과가 오염됩니다",
+        "evidence": "1줄의 bucket=[]는 정의 시 한 번 평가되어 이후 생략 호출에서 재사용되고, 2줄의 append가 그 공유 객체를 변경한 뒤 3줄에서 같은 객체를 반환합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 안에서 bucket이 None이면 새 리스트를 만들도록 바꾸세요. 명시적 bucket을 받은 경우에는 그대로 append하여 in-place 수정 계약을 유지하세요."
+      }
+    ],
+    "limitations": "제공된 3개 줄만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1,2],[1,2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 3,
+  "pipeline_complete": true,
+  "input_tokens": 16653,
+  "output_tokens": 1276,
+  "elapsed_seconds": 8.03,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

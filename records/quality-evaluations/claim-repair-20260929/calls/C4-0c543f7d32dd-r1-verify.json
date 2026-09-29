@@ -1,0 +1,12 @@
+{
+  "key": "C4-0c543f7d32dd-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:25.936499+00:00",
+  "input_hash": "6c1a8afff3372a998b4d5bf035058aa27fafa14fb396f7ae321f5866dabaad96",
+  "system_hash": "c932df7fc76f19cd4898974717ab091fd3f0904272bdc8d8bff8dbe597408b6a",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"root가 '/data'이고 resolved가 '/database/secret'일 때 startswith가 True를 반환하여 root의 하위 경로가 아닌 경로가 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"구분자 경계 없는 startswith 비교로 형제 디렉터리('/database')가 root('/data') 하위로 오인되어 허용됩니다.\"}]}",
+  "input_tokens": 4591,
+  "output_tokens": 150,
+  "seconds": 1.125
+}

@@ -1,0 +1,35 @@
+{
+  "key": "development-E11-5e22872c605b-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:12:31.436873+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "447d8d010f4c1c0ba2d0751034525f6874bc5bb4e58312f1167bffb478436e11",
+  "input_bytes": 1289,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "n이 음이 아닌 정수일 때 계약대로 [] 또는 [0]을 반환하는 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "n이 음이 아닌 정수라는 계약만 제공되어 음수나 비정수 입력의 처리는 확인하지 못했으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "584a11845d4014e31140fc7179e08b03ee94b56f55c5dbed57b1be79b5375684",
+  "input_tokens": 5411,
+  "output_tokens": 147,
+  "elapsed_seconds": 1.391
+}

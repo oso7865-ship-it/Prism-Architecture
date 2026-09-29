@@ -1,0 +1,88 @@
+{
+  "key": "bridge-E12-6197edcf876e-r1",
+  "case": "6197edcf876e",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 한 줄은 `user.profile?.name ?? 'Unknown'`으로, profile이 없을 때만 'Unknown'을 반환하고 빈 문자열 name은 그대로 보존한다. 표시된 동작 계약과 일치하며 구체적 결함 경로는 확인되지 않았다.",
+    "issues": [],
+    "limitations": "User 타입 정의와 호출부는 제공되었으나, user 자체가 null인 경우의 처리나 실제 호출 빈도는 제공되지 않았다. 정적 분석 경고는 없었다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "User 타입 정의와 호출부는 제공되었으나, user 자체가 null인 경우의 처리나 실제 호출 빈도는 제공되지 않았다. 정적 분석 경고는 없었다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "profile.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "옵셔널 체이닝과 null 병합으로 profile 부재 시 'Unknown'을 반환하고, name이 빈 문자열이면 그대로 유지되어 계약과 일치한다.",
+          "file_path": "profile.ts"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "옵셔널 체이닝과 null 병합으로 profile 부재 시 'Unknown'을 반환하고, name이 빈 문자열이면 그대로 유지되어 계약과 일치한다.",
+        "file_path": "profile.ts"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8032,
+  "output_tokens": 482,
+  "elapsed_seconds": 3.6710000000000003
+}

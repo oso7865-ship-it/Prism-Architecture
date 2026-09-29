@@ -1,0 +1,12 @@
+{
+  "key": "F1-59d1396dc381-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T12:58:02.195092+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수는 value를 int로 받아 원래 값을 그대로 반환하는 계약이며, 2줄에서 계산한 adjusted는 반환에 사용되지 않습니다. 제공된 계약과 실제 반환값이 일치하므로 동작상 결함은 확인되지 않습니다.\",\"issues\":[],\"limitations\":\"제공된 3개 라인만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. 2줄의 adjusted는 사용되지 않는 계산이지만, 계약이 원본 반환을 요구하므로 결함으로 보지 않았습니다.\"}",
+  "input_tokens": 4761,
+  "output_tokens": 138,
+  "seconds": 1.407
+}

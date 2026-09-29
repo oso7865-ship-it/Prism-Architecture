@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-90900a02e0f4-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:41:12.321344+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "fe0c26e79935f2a917dee8cccacd57c347a4ae164bf922f43fb1a5999f67e4b9",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "name이 null이면 삼항 연산자의 참 분기에서 name.trim()이 호출되어 NullPointerException이 발생합니다."
+      }
+    ]
+  },
+  "input_tokens": 3185,
+  "output_tokens": 80,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1664,
+  "response_sha256": "feb6272a6ee3b483581476e2af4a603aacb23d18e09ae2bcd4c6e3f1f245321c",
+  "elapsed_seconds": 2.469
+}

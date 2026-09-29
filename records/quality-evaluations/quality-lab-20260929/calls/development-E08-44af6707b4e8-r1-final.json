@@ -1,0 +1,58 @@
+{
+  "key": "development-E08-44af6707b4e8-r1-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:12:52.523711+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "37d2042006af567d1d61c138c836bf25858fcc8b7383926822bf829055f0b184",
+  "input_bytes": 1312,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`choose`가 `value or default`로 값을 선택해, 계약상 'None만 부재'인데도 빈 문자열·False·0 같은 명시적 falsy 값이 기본값으로 대체됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 None이 아닌 falsy 값(예: '', False, 0, [], {})을 전달해 choose를 호출할 때",
+        "consequence": "명시적으로 제공된 값이 보존되지 않고 default가 반환되어, 계약('None만 부재, 명시적 값은 모두 보존')을 위반합니다. 예를 들어 choose('', 'default')는 '' 대신 'default'를, choose(False, True)는 False 대신 True를 반환합니다.",
+        "assumptions": [],
+        "title": "falsy 값이 부재로 오인되어 기본값으로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value의 truthiness로 분기하므로 None뿐 아니라 모든 falsy 값에서 default를 반환합니다. 이는 'None만 부재'라는 계약과 어긋납니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꿔 None일 때만 default를 반환하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수와 계약만 검토했으며, 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "4ac3d754a5adcb16d97b78eb206a5a01f77a75fade156c9ef73815eb3559e79e",
+  "input_tokens": 5358,
+  "output_tokens": 421,
+  "elapsed_seconds": 2.641
+}

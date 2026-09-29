@@ -1,0 +1,12 @@
+{
+  "key": "F3-0c543f7d32dd-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:42.207806+00:00",
+  "input_hash": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "system_hash": "e6ec33007027b6e817157de434ae13e544aacdab868ffc2ef72c92dde48eb1ee",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"경로 접두사 검사로 루트 하위 여부를 판정하는 변경된 함수입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"root가 '/data/app'이고 resolved가 '/data/application/secret'인 경우\",\"consequence\":\"startswith가 문자열 접두사만 비교하므로 root의 형제 디렉터리 경로가 허용되어, 루트 외부 경로에 대한 접근 제어가 우회됩니다.\",\"assumptions\":[],\"title\":\"문자열 접두사 비교로 인접 경로가 허용됩니다\",\"evidence\":\"2줄은 resolved.startswith(root)로만 판정합니다. '/data/application/secret'은 '/data/app'으로 시작하므로 계약상 허용 대상이 아닌 경로가 통과합니다.\",\"suggestion\":\"경로 경계를 포함해 비교하도록 root에 구분자를 붙인 값과 비교하거나, os.path.commonpath 등으로 root가 resolved의 조상인지 확인하세요.\",\"citations\":[]}],\"limitations\":\"제공된 두 줄만 검토했으며, 호출자와 실제 경로 정규화 방식은 확인하지 못했습니다.\"}",
+  "input_tokens": 4955,
+  "output_tokens": 287,
+  "seconds": 2.187
+}

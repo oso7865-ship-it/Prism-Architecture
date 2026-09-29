@@ -1,0 +1,15 @@
+{
+  "key": "B0-ff808c0b8406-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:27:53.771325+00:00",
+  "input_hash": "4cb3abb53e8e750974df2a9b12518483e97007c3c3cecd8cac059bd44aa12f7c",
+  "system_hash": "4f2781b31bdc983b6b7f70f4f7c7424e67fc12b08e1198069a8125762def3934",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"store.save(value)가 Promise를 반환하지만 await되지 않아, 저장이 완료되기 전에 submit이 true를 반환합니다. 저장이 나중에 실패해도 호출자는 이미 true를 관찰합니다.\"}]}",
+  "input_tokens": 3089,
+  "output_tokens": 91,
+  "seconds": 1.078
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C2-2cdf3efa43ff-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:45:30.345750+00:00",
+  "input_hash": "e7156eefa105a3fcb88ad656c44f4029d530c2051cad6965d08513147563c361",
+  "system_hash": "f8bd7771defad4974c45d3d86f5b9e877ea0e66aa475329ce3d555fdf6e03a7d",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Price.total의 곱셈이 int 연산으로 수행되어 long 반환에도 불구하고 큰 곱에서 오버플로가 발생하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count가 모두 int이고 그 곱이 int 범위를 초과할 때(예: 100000 * 100000)\",\"consequence\":\"곱셈이 int 정밀도로 먼저 수행되어 오버플로된 값이 long으로 변환·반환되므로, 계약에서 요구하는 정확한 곱(10000000000)이 보존되지 않고 1410065408이 반환됩니다.\",\"assumptions\":[],\"title\":\"int 곱셈으로 인한 오버플로로 정확한 곱이 손실됩니다\",\"evidence\":\"3줄에서 두 int 피연산자를 곱하므로 연산은 32비트 int로 수행되고, 반환 타입 long으로의 변환은 그 이후에 일어납니다. path_observations의 100000*100000 예시가 1410065408을 반환합니다.\",\"suggestion\":\"곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count).\"}],\"limitations\":\"제공된 단일 파일과 정적 투영만 검토했으며 실제 실행이나 호출자 검증은 수행하지 않았습니다.\"}",
+  "input_tokens": 4985,
+  "output_tokens": 338,
+  "seconds": 2.234
+}

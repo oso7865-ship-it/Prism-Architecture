@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-b07fc52f42ca-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "b07fc52f42ca",
+  "at": "2026-09-29T08:45:30.528708+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "7a3f4d1228eb8bf556db89558bf13cc772a4e48612b4abe14261eb91521221ae",
+  "payload_sha256": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "limit 함수가 null/undefined뿐 아니라 0도 기본값 10으로 대체하도록 변경된 부분을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 유효한 설정값 0이 전달될 때",
+        "consequence": "0은 falsy이므로 || 연산자가 10을 반환해, 명시된 계약(0은 유효한 limit)과 달리 0이 10으로 대체됩니다.",
+        "assumptions": [],
+        "title": "유효한 0 설정값이 기본값 10으로 대체됩니다",
+        "evidence": "2줄의 count || 10은 count가 0일 때도 10을 반환합니다. 계약상 0은 유효한 limit입니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 count ?? 10을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "input_tokens": 4762,
+  "output_tokens": 241,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "3571bc7e8a134fc3788fc1cfa290716b396d997fa8c52823b1283a581e2e0693",
+  "elapsed_seconds": 1.875
+}

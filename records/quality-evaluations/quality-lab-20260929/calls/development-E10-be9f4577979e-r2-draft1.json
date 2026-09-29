@@ -1,0 +1,35 @@
+{
+  "key": "development-E10-be9f4577979e-r2-draft1",
+  "arm": "E10",
+  "phase": "draft1",
+  "at": "2026-09-29T07:15:44.905550+00:00",
+  "system_sha256": "1132cf5e8cd690ca1acaedabf3f5c197a81052bf90b2e1f6f452d624ba067295",
+  "payload_sha256": "bc63d366248867957bbe72f0c153b7eb5a826b63743a0b3e88f23fc14b471f2f",
+  "input_bytes": 753,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 None을 사용하고 호출 시 새 리스트를 생성하는 collect 함수 변경을 검토했습니다. 제공된 코드에서는 기본 버킷 공유로 인한 결함이 보이지 않습니다.",
+    "issues": [],
+    "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7c77e2ce0fe758942279e525653b1d6e2a25bf8054fa5647b31d282602bc5841",
+  "input_tokens": 5278,
+  "output_tokens": 143,
+  "elapsed_seconds": 1.484
+}

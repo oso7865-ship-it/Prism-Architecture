@@ -1,0 +1,15 @@
+{
+  "key": "R2-44af6707b4e8-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:17.322930+00:00",
+  "input_hash": "a6de390e70bce22d93d11a81ec23ddd9eb0c164543c96913c604fa2fc7df8679",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 choose 함수가 `value or default`로 변경되어, None뿐 아니라 0, 빈 문자열, False 같은 falsy 값도 default로 대체됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value에 0, 빈 문자열, False 등 falsy이지만 명시적으로 제공된 값이 전달될 때\",\"consequence\":\"`or` 연산이 falsy 값을 거짓으로 평가하여 해당 값 대신 default가 반환되므로, 명시적으로 제공된 값이 보존되지 않고 계약과 다르게 동작합니다.\",\"assumptions\":[],\"title\":\"falsy 값이 default로 대체되어 명시적 값이 유실됩니다\",\"evidence\":\"2줄의 `value or default`는 value가 falsy이면 default를 반환합니다. semantic_observations에서 value=0, \\\"\\\", false일 때 default(-1)가 반환됨을 확인할 수 있습니다.\",\"suggestion\":\"None만 부재로 취급하도록 `return default if value is None else value`로 변경하세요.\"}],\"limitations\":\"제공된 단일 파일과 라인만 검토했으며, 실제 호출자와 value의 타입 계약은 제공되지 않았습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4882,
+  "output_tokens": 305,
+  "seconds": 2.125
+}

@@ -53,3 +53,5 @@ Job aggregate_id는 기술 참조이고 처리 의미는 handler가 정한다. �
 보관 기간과 연결 해제/삭제 순서는 [보안·보관](../operations/SECURITY_PRIVACY.md)이 유일한 기준이다. 정리 작업은 lease 중인 Job을 먼저 막고, 자식 설명/결과→실행→부모 메타데이터 순서로 안전하게 삭제한다. 무조건 CASCADE로 모든 분석 이력을 제거하는 정책을 몰래 넣지 않는다.
 
 테이블별 인덱스 정의는 물리 스키마의 [인증·팀](schema/IDENTITY.md), [GitHub·PR](schema/GITHUB.md), [분석·AI](schema/RESULTS.md), [실행·웹훅](schema/EXECUTION.md)에 있다. 실제 query plan/데이터 분포 검증은 구현 단계에 수행한다. 위 관계선은 논리 관계이며 DB FK가 아니다.
+
+2026-09-29 migration0009 기준 실제 테이블은19개(기존17+standard_documents/standard_versions)다. 신규 테이블의 모든 컬럼·관계·보관/삭제는 [팀 문서 스키마](../domain/standards/README.md)가 소유한다. 물리 FK 없이 Workspace 잠금과 논리 참조를 검사한다. ReviewRun 목적·문서 버전 스냅샷은 [결과 스키마](schema/RESULTS.md)를 따른다.

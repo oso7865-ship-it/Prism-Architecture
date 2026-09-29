@@ -1,0 +1,12 @@
+{
+  "key": "F3-90900a02e0f4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:37.394004+00:00",
+  "input_hash": "feba1842364d38d4c1308a3a347c15115a4b7e3132a2bc7fa7763c4abadbbedf",
+  "system_hash": "5d0b65565f6b6110269eac27672e595479de9e18ceb10059057c02d8a2d82c76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"name이 null이면 name.trim()이 평가되어 NullPointerException이 발생하고, 계약이 요구하는 빈 문자열이 반환되지 않습니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3줄의 삼항 조건이 뒤집혀 null 입력 시 null 역참조가 발생하며, 계약(null은 빈 문자열)과 불일치합니다.\"}]}",
+  "input_tokens": 4508,
+  "output_tokens": 125,
+  "seconds": 1.375
+}

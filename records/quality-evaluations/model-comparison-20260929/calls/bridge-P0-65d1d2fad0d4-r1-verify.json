@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-65d1d2fad0d4-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "65d1d2fad0d4",
+  "at": "2026-09-29T08:44:42.096566+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "75a0a8709af5081845a7b524fe0874387595f16b279b7949f9d11cd7efd5f668",
+  "payload_sha256": "9ac1c280285051e4a9b13fc178f407707c848e6c01a560d1bbef3f489af0bac0",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "left = Integer.MAX_VALUE, right = Integer.MIN_VALUE일 때 left - right는 int 오버플로우로 음수가 되어 비교 계약을 위반합니다."
+      }
+    ]
+  },
+  "input_tokens": 3233,
+  "output_tokens": 88,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2688,
+  "response_sha256": "9f969accb53b3e7071a747d3d168d54f817e4729a2839b864906364dec93653f",
+  "elapsed_seconds": 1.75
+}

@@ -1,0 +1,52 @@
+{
+  "case": "cd210310faa4",
+  "repeat": 1,
+  "arm": "C4",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "호출자와 name 인자의 실제 전달 값 범위는 제공되지 않아, 계약 외 입력(예: 비문자열)에 대한 검토는 불가합니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Display.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "3행의 삼항 연산은 null이면 빈 문자열, 아니면 trim 결과를 반환해 'null은 빈 문자열, 그 외 공백 제거' 계약과 일치함을 확인했습니다.",
+          "file_path": "Display.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a"
+}

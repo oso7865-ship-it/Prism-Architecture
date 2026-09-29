@@ -1,0 +1,12 @@
+{
+  "key": "C4-d848633407e8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:52.047721+00:00",
+  "input_hash": "d3269173a10e9d30d250300a4772382c8c06f3deff9318aa939a6d168cc99f29",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 read 함수가 opener()로 연 스트림을 read() 이후에만 close()하도록 변경된 부분을 검토했습니다. 제공된 계약은 read()가 예외를 발생시켜도 스트림을 닫아야 함을 명시하고 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"opener()가 반환한 스트림의 read() 호출이 예외를 발생시킬 때\",\"consequence\":\"3줄에서 예외가 전파되어 4줄의 stream.close()가 실행되지 않으므로 스트림이 닫히지 않습니다.\",\"assumptions\":[],\"title\":\"read() 예외 시 스트림이 닫히지 않습니다\",\"evidence\":\"2줄에서 연 스트림을 4줄에서만 닫는데, 3줄의 read()가 예외를 발생시키면 4줄에 도달하지 못합니다. 제공된 behavior_contract는 read가 예외를 발생시켜도 스트림을 닫아야 한다고 명시합니다.\",\"suggestion\":\"stream을 with 문으로 열거나 try/finally로 감싸 read() 예외 시에도 close()가 실행되도록 하세요.\",\"contract_quote\":\"Always close streams including when read raises.\"}],\"limitations\":\"제공된 5개 라인만 검토했으며 opener()의 실제 구현과 호출자는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4695,
+  "output_tokens": 351,
+  "seconds": 2.328
+}

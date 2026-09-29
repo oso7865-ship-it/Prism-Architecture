@@ -1,0 +1,54 @@
+{
+  "key": "development-E13-0add10c208ec-r1",
+  "case": "0add10c208ec",
+  "arm": "E13",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "Price.total의 곱셈이 long으로 캐스팅되어 두 int의 곱이 long 범위에서 정확히 보존됩니다. 제공된 변경 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 단일 파일과 변경 라인만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 입력 계약은 behavior_contract 설명에 의존했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2500000000",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 7869,
+  "output_tokens": 155,
+  "elapsed_seconds": 1.594,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

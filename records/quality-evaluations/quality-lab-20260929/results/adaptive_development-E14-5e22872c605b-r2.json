@@ -1,0 +1,71 @@
+{
+  "key": "adaptive_development-E14-5e22872c605b-r2",
+  "case": "5e22872c605b",
+  "arm": "E14",
+  "split": "adaptive_development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "n이 0일 때 range의 step이 1로 대체되어 빈 리스트 대신 [0]이 반환되는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n=0으로 indices를 호출할 때",
+        "consequence": "max(0,1)=1이 step으로 사용되어 range(0,0,1)이 빈 범위가 되므로 []가 아니라 [0]이 반환되어 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "n=0에서 [0]을 반환해 계약 위반",
+        "evidence": "2줄에서 step을 max(n,1)로 계산하므로 n=0이면 step=1이 되고, range(0,0,1)은 빈 범위가 아니라 종료값 0을 포함하지 않아 [0]이 됩니다.",
+        "suggestion": "n이 0이면 빈 리스트를 반환하도록 명시적 분기를 추가하거나, range(0, n, 1)처럼 step을 고정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[0]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[0, 1, 2]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5437,
+  "output_tokens": 343,
+  "elapsed_seconds": 2.297,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

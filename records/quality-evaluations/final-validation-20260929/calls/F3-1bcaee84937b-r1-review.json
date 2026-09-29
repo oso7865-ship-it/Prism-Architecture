@@ -1,0 +1,12 @@
+{
+  "key": "F3-1bcaee84937b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:39.493367+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "feb254209fd37b8c7edfffbf26d31443b81edf5474b9c353effe305c2a92e5dd",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 invoice 함수가 load(id) 결과의 amount를 반환하기 전에 actor와 owner를 비교하는 권한 검사를 수행하지 않는 점을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"actor가 \\\"alice\\\"가 아닌 값(예: \\\"bob\\\")으로 invoice(7, actor)를 호출할 때\",\"consequence\":\"load(7)이 owner \\\"alice\\\"의 항목을 반환하므로, 소유자가 아닌 actor에게도 amount 40이 그대로 반환되어 제공된 계약(\\\"Return the amount only to its owner; throw Error for other actors\\\")을 위반합니다.\",\"assumptions\":[],\"title\":\"소유자 확인 없이 금액을 반환해 권한 경계가 무너집니다\",\"evidence\":\"f1:2에서 load(id) 결과를 받고 f1:3에서 item.amount를 그대로 반환합니다. 관련 구현은 id=7에 대해 owner \\\"alice\\\"인 항목을 반환하므로, actor를 검사하는 코드가 없으면 비소유자 호출도 동일한 amount를 받습니다.\",\"suggestion\":\"f1:3에서 amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지도록 검사를 추가하세요.\",\"citations\":[]}],\"limitations\":\"제공된 f1과 관련 구현만 검토했으며, load의 실제 정의·호출자·actor 값의 출처는 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 5022,
+  "output_tokens": 374,
+  "seconds": 2.406
+}

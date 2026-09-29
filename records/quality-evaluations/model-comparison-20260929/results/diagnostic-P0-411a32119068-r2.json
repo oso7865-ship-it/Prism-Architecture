@@ -1,0 +1,59 @@
+{
+  "key": "diagnostic-P0-411a32119068-r2",
+  "case": "411a32119068",
+  "arm": "P0",
+  "repeat": 2,
+  "split": "diagnostic",
+  "output": {
+    "summary": "문자열은 UTF-8로 인코딩하고 바이트는 그대로 두어 전송 바이트 수를 반환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다. str/bytes 외의 입력에 대한 계약은 명시되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5185,
+  "output_tokens": 212,
+  "elapsed_seconds": 3.969
+}

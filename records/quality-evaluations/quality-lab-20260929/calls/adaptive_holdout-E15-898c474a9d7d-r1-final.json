@@ -1,0 +1,29 @@
+{
+  "key": "adaptive_holdout-E15-898c474a9d7d-r1-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:00.939674+00:00",
+  "system_sha256": "8d69e48f69155482c63908e2b325eb12509304922d6ac8d3f04563380fa1e4ff",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "input_bytes": 620,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`adjust`는 `base`를 얕게 복사한 뒤 `nested`를 별도로 복사해 수정하므로 호출자의 `base`를 변경하지 않습니다. 제공된 범위에서 동작 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "`base`의 실제 호출자와 `nested` 값의 타입 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c82ced2477ab5a62c80c73de4bccabb2b9c52c74d25131c92d0f18f5161b0485",
+  "input_tokens": 5314,
+  "output_tokens": 133,
+  "elapsed_seconds": 1.672
+}

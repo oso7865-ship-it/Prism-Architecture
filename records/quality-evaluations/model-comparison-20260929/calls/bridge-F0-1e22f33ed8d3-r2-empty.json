@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-1e22f33ed8d3-r2-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "1e22f33ed8d3",
+  "at": "2026-09-29T08:42:54.542620+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str/bytes를 구분해 UTF-8 바이트 수를 계산하도록 변경된 한 줄을 검토했다. str은 encode, bytes는 그대로 len을 적용해 계약(전송 바이트 수 일치)과 일치하며, 제공된 테스트도 이를 확인한다. 변경 범위에서 지원 가능한 결함은 보이지 않는다.",
+    "issues": [],
+    "limitations": "content_length/prepare의 실제 호출자와 네트워크 전송 계층은 제공되지 않아, 반환된 Content-Length가 실제 전송 경로에서 사용되는지는 확인하지 못했다. 테스트 실행 여부는 검증하지 않았다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str은 UTF-8로 인코딩 후 len, bytes는 재인코딩 없이 len을 적용해 바이트 수 계약과 일치한다. 비ASCII 문자열도 encode 경로로 처리되어 이중 인코딩 문제가 없다."
+      }
+    ]
+  },
+  "input_tokens": 3390,
+  "output_tokens": 244,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3200,
+  "response_sha256": "1ad6631e84dc6df8ecad3a416329a8736c52346e2b124f582d115bd0609ce122",
+  "elapsed_seconds": 2.265
+}

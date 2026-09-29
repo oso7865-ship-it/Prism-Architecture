@@ -1,0 +1,52 @@
+{
+  "key": "development-E11-2cdf3efa43ff-r1-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:10:08.581268+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "b75aeb13bd5601c1a812a1746602e5c37196f5bf32f9b8318733c13f13e2d23c",
+  "input_bytes": 1507,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 타입 두 값을 곱해 long으로 반환하는 변경을 검토했습니다. 계약상 곱이 long 범위에 들어가도 int 곱셈이 먼저 수행되어 오버플로가 발생할 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count가 모두 int이고 두 값의 곱이 Integer.MAX_VALUE를 초과할 때(예: 50000 * 50000)",
+        "consequence": "3줄의 곱셈이 32비트 int 연산으로 수행되어 오버플로한 뒤 long으로 확장되므로, long 범위에 들어가는 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 후 long 확장으로 오버플로가 발생합니다",
+        "evidence": "2줄의 반환 타입은 long이지만 3줄은 int 피연산자끼리 곱하므로 확장이 곱셈 이후에 일어납니다. 계약은 정확한 곱이 long에 보존되어야 한다고 명시합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 캐스팅하여 64비트 곱셈이 되도록 하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "80829ccfd7c794b4152da7be261ae01824927ecca05ad1d101b2ba94084d24ae",
+  "input_tokens": 5547,
+  "output_tokens": 390,
+  "elapsed_seconds": 2.375
+}

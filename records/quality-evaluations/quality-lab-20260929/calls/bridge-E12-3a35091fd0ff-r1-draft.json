@@ -1,0 +1,21 @@
+{
+  "key": "bridge-E12-3a35091fd0ff-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:17.467354+00:00",
+  "system_sha256": "1027e098cdf6fb153b41d6bdbddb183aee9c9af33646c73e09b5c4a7b02e88ee",
+  "payload_sha256": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "input_bytes": 666,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 확인 후 금액을 반환하는 변경된 코드를 보안 관점에서 검토했으며, 제공된 범위에서 구체적인 권한 우회나 데이터 노출 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "제공된 변경 라인과 관련 구현(load가 항상 owner/amount를 가진 객체를 반환)만 검토했습니다. 실제 호출부의 actor 값 출처, 인증 경계, id에 대한 접근 제어는 제공되지 않아 확인하지 못했으며 테스트나 실행 검증은 수행하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "e7ae11ea829a975ece11a7d732b84a92def9b3ea3b8dc5c8dd4988b79007dccb",
+  "input_tokens": 5225,
+  "output_tokens": 273,
+  "elapsed_seconds": 2.297
+}

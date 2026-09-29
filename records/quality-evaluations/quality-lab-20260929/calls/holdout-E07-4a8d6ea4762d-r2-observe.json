@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-4a8d6ea4762d-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:44.785003+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "652ef113870ba2b288870977e26b70d7a826467e36671238b40c3cc35dfe87bc",
+  "input_bytes": 1262,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "handle takes an operation callable and a logger, and returns operation()'s result on success.",
+      "The changed lines 4-6 catch only ValueError, log 'failed' via logger.error, then re-raise the same exception.",
+      "The standard requires logging input errors and re-raising the same exception without hiding failure as a normal return.",
+      "The probe supplies an operation that raises ValueError and a logger whose error method returns normally.",
+      "No static findings are reported and no authorization or state-mutation logic appears in the shown lines.",
+      "The re-raise preserves the original exception rather than converting it to a normal return value."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "35dd98b9852cd04520f55c10e751709e54c1aee7e0dbb1282a90c1a58534bb3c",
+  "input_tokens": 557,
+  "output_tokens": 132,
+  "elapsed_seconds": 1.25
+}

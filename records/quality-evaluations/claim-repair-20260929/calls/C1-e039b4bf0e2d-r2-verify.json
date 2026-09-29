@@ -1,0 +1,12 @@
+{
+  "key": "C1-e039b4bf0e2d-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:39:54.952534+00:00",
+  "input_hash": "5d8bb342795b1b8c1f5150e0adf466d8869121baa503f8fd329367d52f5a09a8",
+  "system_hash": "ddc5db8891a9455f5abe8c70fab41106609314979b872d70659fab8ab2c74d2c",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"env에 REQUESTS_CA_BUNDLE이 없고 CURL_CA_BUNDLE이 \\\"\\\"이며 session_verify가 None이면, 10줄이 \\\"\\\"를 반환하고 merge_setting이 이를 그대로 반환해 명시적 verify=True가 유지되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"10줄의 `or` 체인이 빈 CURL_CA_BUNDLE을 \\\"\\\"로 반환하고, merge_setting이 session_value None일 때 이를 그대로 반환해 15줄 계약(True 유지)을 위반합니다.\"}]}",
+  "input_tokens": 5170,
+  "output_tokens": 198,
+  "seconds": 1.094
+}

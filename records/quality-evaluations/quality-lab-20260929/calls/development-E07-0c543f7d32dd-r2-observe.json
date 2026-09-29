@@ -1,0 +1,26 @@
+{
+  "key": "development-E07-0c543f7d32dd-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:12:00.568593+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "424f191114cd67a6fa5759703ed1c534b31300ddcf3c4bc41572095d1bb6116f",
+  "input_bytes": 595,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "permitted takes two arguments, root and resolved, and returns a boolean from resolved.startswith(root).",
+      "The behavior contract states inputs are canonical absolute POSIX paths without symlinks or trailing slash, and only root and its descendants are allowed.",
+      "Line 2 is marked changed; line 1 is unchanged.",
+      "Probe p1 calls permitted('/srv/app', '/srv/application/key'), a sibling path sharing the '/srv/app' prefix.",
+      "Probe p2 calls permitted('/srv/app', '/srv/app/file'), a descendant of root.",
+      "No static findings are reported and no authorization check beyond the prefix comparison is shown."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "db3de7ccfdd3284786dda950b0393419c40649a22d93cb178a8bfec34f608749",
+  "input_tokens": 335,
+  "output_tokens": 140,
+  "elapsed_seconds": 1.141
+}

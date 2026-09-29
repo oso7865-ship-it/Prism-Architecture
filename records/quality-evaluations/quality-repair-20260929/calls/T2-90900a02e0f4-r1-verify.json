@@ -1,0 +1,15 @@
+{
+  "key": "T2-90900a02e0f4-r1-verify",
+  "arm": "T2",
+  "phase": "verify",
+  "at": "2026-09-29T10:21:54.811403+00:00",
+  "input_hash": "23c6e21af3675b5a60f7be5af3c76345ffa62b0979554457ffd603550eb1591b",
+  "system_hash": "ad69f28120867ff33cf1760c6a79fb1cc93825df39ba5dac011fc0f0e1d16a04",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"name이 null이면 name == null이 참이 되어 null.trim()이 실행되어 NullPointerException이 발생하고, 비-null 입력은 trim되지 않고 빈 문자열이 반환되어 계약과 반대 결과가 됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3행 삼항 연산자의 두 분기가 계약과 반대로 배치되어 null 입력 시 NPE가 발생하고 비-null 입력은 빈 문자열로 대체됩니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4019,
+  "output_tokens": 166,
+  "seconds": 1.14
+}

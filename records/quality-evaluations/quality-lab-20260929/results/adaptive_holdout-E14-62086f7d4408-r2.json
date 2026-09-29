@@ -1,0 +1,68 @@
+{
+  "key": "adaptive_holdout-E14-62086f7d4408-r2",
+  "case": "62086f7d4408",
+  "arm": "E14",
+  "split": "adaptive_holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "handle이 ValueError를 잡아 None으로 반환하도록 변경된 부분을 검토했습니다. 팀 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구하므로, 변경된 except 절이 이 규칙과 충돌합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "4~5줄이 예외를 삼키고 None을 정상 반환하므로, 호출자는 실패를 성공적인 None 결과와 구분할 수 없고 표준이 요구하는 기록 및 재던지기가 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "ValueError를 기록 없이 삼켜 실패를 정상 반환으로 숨깁니다",
+        "evidence": "4줄에서 ValueError를 잡고 5줄에서 None을 반환합니다. logger는 시그니처에만 있고 except 절에서 사용되지 않습니다. 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.",
+        "suggestion": "except 절에서 logger.error 등으로 오류를 기록한 뒤 raise로 같은 ValueError를 다시 던지고, None 반환은 제거하세요."
+      }
+    ],
+    "limitations": "handle의 호출부와 operation의 실제 구현은 제공되지 않아 호출자가 None 반환에 의존하는지는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "null",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5936,
+  "output_tokens": 430,
+  "elapsed_seconds": 2.75,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

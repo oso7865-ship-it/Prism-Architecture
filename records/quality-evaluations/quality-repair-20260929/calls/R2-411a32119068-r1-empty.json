@@ -1,0 +1,15 @@
+{
+  "key": "R2-411a32119068-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:10.758098+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 wire_size는 str이면 UTF-8 인코딩 후, bytes면 그대로 len을 반환하도록 변경되어 계약(str/bytes 허용, UTF-8 바이트 수 반환)과 일치합니다. 제공된 범위에서 구체적 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"wire_size의 호출자와 실제 전달되는 입력 타입은 제공되지 않아, 계약 외 타입(예: None, int)이 전달되는지는 확인할 수 없습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"str은 UTF-8 인코딩 길이, bytes는 원래 길이를 반환하여 계약과 일치하며, 제공된 변경 라인에서 구체적 실패 경로는 보이지 않음.\"}]}",
+  "input_tokens": 3100,
+  "output_tokens": 216,
+  "seconds": 1.906
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F2-964c0700fd59-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:00:27.299593+00:00",
+  "input_hash": "44c49e1875f7d91718eabb8dc2f8e7d8772159aff4973ba67d2c269f298a8c58",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 음수인 정수일 때 adjust(value)는 클램프된 0이 아니라 원본 음수를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 계산한 adjusted를 사용하지 않고 3줄에서 원본 value를 반환하여, 제공된 계약 'Return max(value, 0)'과 불일치합니다.\"}]}",
+  "input_tokens": 4576,
+  "output_tokens": 147,
+  "seconds": 1.172
+}

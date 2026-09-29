@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-3a35091fd0ff-r2-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "3a35091fd0ff",
+  "at": "2026-09-29T08:43:13.692032+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "7420e9d52cab0110a539537109aec59e90424a175746ed2d7d0a37d1e6b08354",
+  "payload_sha256": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 invoice 함수는 load 결과의 owner를 actor와 비교해 소유자만 amount를 반환하도록 검사합니다. 제공된 코드와 계약상 이 검사는 소유자 경계를 올바르게 강제하며, 보안상 조치가 필요한 결함은 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "load 함수의 실제 구현과 호출부, actor 값의 신뢰 경계(예: 인증된 사용자 식별자 여부)는 제공되지 않아 전체 인증 흐름의 안전성은 확인할 수 없습니다. 제공된 관련 구현에서는 load가 항상 owner를 가진 객체를 반환하므로 null/undefined 경로는 평가되지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "owner와 actor를 비교하여 소유자만 amount를 반환하도록 하는 접근 제어 검사를 확인했습니다. 제공된 계약상 우회 가능한 경로는 보이지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3581,
+  "output_tokens": 263,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3456,
+  "response_sha256": "815ece639e902e5eb297fc41bc08db6d35265bf02cd15865f3cf36772df503d6",
+  "elapsed_seconds": 6.25
+}

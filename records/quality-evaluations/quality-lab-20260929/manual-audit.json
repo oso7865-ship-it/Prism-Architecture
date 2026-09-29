@@ -1,0 +1,64 @@
+{
+  "reviewer": "coding agent; independent human review pending",
+  "method": "Read source/contracts plus summary, trigger, consequence and suggestion; never execute model-generated code.",
+  "sample": {
+    "baseline": "C0 development + holdout, repeat 1, all 36 outputs",
+    "legacy": "all 12 bridge regression outputs; ca-before drafts/verification decisions inspected",
+    "adaptive": "E14/E15 zero-step broken and fixed, both repeats, 8 outputs",
+    "targeted": "all E07/E08 holdout false positives and incorrect probe outputs; representative development failures"
+  },
+  "findings": [
+    {
+      "key": "development-C0-4c612348a604-r1",
+      "verdict": "FAIL_CAUSE_AND_FIX",
+      "reason": "Location/probes pass but summary contradicts positive-step behavior and suggested step=1 breaks the positive-input contract."
+    },
+    {
+      "key": "development-E03-5e22872c605b-r1",
+      "verdict": "FAIL_OPERATION",
+      "reason": "Reads max(n,1) as step=1 even for positive n despite supplied syntax facts."
+    },
+    {
+      "key": "development-E01c-5e22872c605b-r1",
+      "verdict": "FAIL_NON_ISSUE_EMITTED",
+      "reason": "Emits ERROR while consequence and suggestion say contract is satisfied and no change needed."
+    },
+    {
+      "key": "holdout-E07-898c474a9d7d-r1",
+      "verdict": "FAIL_INVENTED_REQUIREMENT",
+      "reason": "Infers returning adjusted value is required although supplied contract only requires preserving caller state. Same pattern in both E07/E08 repeats."
+    },
+    {
+      "key": "adaptive_development-E14-5e22872c605b-r2",
+      "verdict": "FAIL_OPERATION_AND_FIX",
+      "reason": "Claims empty range returns [0]; supplied generic official language facts did not prevent misapplication."
+    },
+    {
+      "key": "adaptive_development-E15-5e22872c605b-r2",
+      "verdict": "FAIL_NON_ISSUE_EMITTED",
+      "reason": "Consistency instruction did not prevent emitting a contract-satisfied ERROR."
+    },
+    {
+      "key": "bridge-C0-e039b4bf0e2d-r1",
+      "verdict": "FAIL_WRONG_DRAFT_THEN_UNRECOVERED_MISS",
+      "reason": "Draft location hits but incorrectly changes empty string to None. Verification drops that draft and never reconstructs the actual empty-string propagation defect. Same in repeat 2."
+    },
+    {
+      "key": "bridge-C0-898c474a9d7d-r1",
+      "verdict": "FAIL_UNSUPPORTED_REQUIREMENT_SURVIVES_VERIFICATION",
+      "reason": "Production verification retains the assumed requirement to return adjusted value, while actual preserve-caller contract is satisfied."
+    },
+    {
+      "key": "holdout-C0-65d1d2fad0d4-r1",
+      "verdict": "FIX_ALTERNATIVE_UNDERSPECIFIED",
+      "reason": "Integer.compare is sound; alternate long subtraction needs an explicit sign/return-type treatment for the int-returning comparator."
+    },
+    {
+      "key": "development-E02-cd1f9cff7b9c-r2",
+      "verdict": "LABEL_SCOPE_REVIEW_NEEDED",
+      "reason": "root='/' counterexample may depend on interpretation of no-trailing-slash contract. Do not use this one disputed label to assert universal superiority."
+    }
+  ],
+  "decision": "NO_RUNTIME_ADOPTION; overall semantic quality remains failed",
+  "limits": "This targeted agent audit is not a blind human benchmark or automatic semantic accuracy score."
+}

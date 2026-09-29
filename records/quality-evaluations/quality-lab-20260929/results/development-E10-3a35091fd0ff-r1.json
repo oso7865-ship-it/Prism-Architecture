@@ -1,0 +1,54 @@
+{
+  "key": "development-E10-3a35091fd0ff-r1",
+  "case": "3a35091fd0ff",
+  "arm": "E10",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "소유자 검증 후 금액을 반환하는 인가 로직 변경을 검토했습니다. 제공된 코드에서 owner 비교로 접근이 제한되며, 관련 구현상 id=7은 alice 소유이므로 bob 호출은 거부됩니다.",
+    "issues": [],
+    "limitations": "load의 실제 저장소 구현과 호출부, actor의 출처 및 인증 경계는 제공된 범위에서 확인하지 못했습니다. 관련 구현 스니펫이 실제 동작과 다를 수 있으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 3,
+  "pipeline_complete": true,
+  "input_tokens": 17311,
+  "output_tokens": 471,
+  "elapsed_seconds": 4.313,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

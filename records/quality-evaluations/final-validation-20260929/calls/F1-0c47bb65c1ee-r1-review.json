@@ -1,0 +1,12 @@
+{
+  "key": "F1-0c47bb65c1ee-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T12:57:57.490238+00:00",
+  "input_hash": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base.copy()로 얕은 복사만 수행한 뒤 중첩 딕셔너리를 수정하고, 반환값도 복사본이 아닌 base에서 읽습니다. 제공된 계약('base has a nested dictionary. Preserve the caller's base without mutation.')과 비교할 때 얕은 복사로는 중첩 변경이 원본에 전파됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base가 중첩 딕셔너리(예: {'nested': {'limit': 1}})를 포함한 상태로 adjust(base)를 호출할 때\",\"consequence\":\"base.copy()는 최상위만 복사하므로 result['nested']가 base['nested']와 동일한 객체를 가리키고, 3줄의 대입이 호출자의 base['nested']['limit']을 9로 변경합니다. 4줄은 복사본이 아니라 base에서 읽어 9를 반환합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 중첩 딕셔너리가 변경됩니다\",\"evidence\":\"2줄의 base.copy()는 얕은 복사로 중첩 딕셔너리를 공유합니다. 3줄은 공유된 중첩 딕셔너리의 'limit'을 9로 설정하고, 4줄은 base['nested']['limit']을 반환합니다. 제공된 계약은 호출자의 base를 변경하지 않고 보존할 것을 요구합니다.\",\"suggestion\":\"중첩 딕셔너리까지 복사하도록 깊은 복사(예: copy.deepcopy(base))를 사용하거나, result['nested'] = dict(base['nested'])처럼 중첩 수준을 별도로 복사한 뒤 수정하세요. 반환값도 계약에 맞게 복사본 기준으로 일관되게 처리해야 합니다.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과는 확인하지 않았습니다. base의 실제 구조와 호출 지점은 제공되지 않았습니다.\"}",
+  "input_tokens": 4648,
+  "output_tokens": 507,
+  "seconds": 3.531
+}

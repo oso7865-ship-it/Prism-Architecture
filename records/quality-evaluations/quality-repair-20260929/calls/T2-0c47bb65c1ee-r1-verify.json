@@ -1,0 +1,15 @@
+{
+  "key": "T2-0c47bb65c1ee-r1-verify",
+  "arm": "T2",
+  "phase": "verify",
+  "at": "2026-09-29T10:21:35.024448+00:00",
+  "input_hash": "9ed512cdafc1ab578fdf2f59ac119fcbede7ff8bdec27a3d7e8c51d8227c516d",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"base가 중첩 딕셔너리를 가진 경우 base.copy()는 중첩 객체를 공유하므로 3줄의 result['nested']['limit'] = 9 대입이 원본 base['nested']['limit']도 9로 변경하고, 4줄은 변경된 9를 반환합니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 얕은 복사로 중첩 딕셔너리가 공유되어 3줄 대입이 원본 base를 변경하고, 4줄이 변경된 값을 반환합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 3979,
+  "output_tokens": 200,
+  "seconds": 1.406
+}

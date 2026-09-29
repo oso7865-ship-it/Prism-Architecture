@@ -1,0 +1,58 @@
+{
+  "key": "development-E10-b07fc52f42ca-r1-final",
+  "arm": "E10",
+  "phase": "final",
+  "at": "2026-09-29T07:13:05.370560+00:00",
+  "system_sha256": "cfaa6c9cfdc2e90b1ecdeca5545b8b3274a4a6aa675b735a078a66647c282a69",
+  "payload_sha256": "b7bc7c734f792c8e6f4ad81282f761f3cf754bcd3beeff57355a46fcc9ba4c1d",
+  "input_bytes": 2836,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본값 처리 변경을 검토했습니다. `count || 10`은 null/undefined뿐 아니라 0과 같은 falsy 값도 10으로 대체합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)을 호출할 때",
+        "consequence": "0이 falsy로 평가되어 `count || 10`이 10을 반환하므로, 유효한 설정값 0이 기본값으로 덮어써집니다.",
+        "assumptions": [],
+        "title": "유효한 0이 기본값 10으로 대체됩니다",
+        "evidence": "2줄에서 논리 OR로 기본값을 적용하므로 0이 falsy로 평가되어 10이 반환됩니다. behavior_contract는 0을 유효한 설정값으로 규정합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "217e825c9019e5a624fe535842adc199d43a2f61796f34779892bb0fcf43b1b5",
+  "input_tokens": 5928,
+  "output_tokens": 337,
+  "elapsed_seconds": 2.0
+}

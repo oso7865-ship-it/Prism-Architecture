@@ -1,0 +1,15 @@
+{
+  "key": "R2-81c5bd8c7f71-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:36.615499+00:00",
+  "input_hash": "3f502eb17b729135ea4ec815c8ad0ee107d6f056eba254e054f4728a807db9d7",
+  "system_hash": "e885be68bbec2d058eda451e446e21e85955f9a2c7e858b9cd40272f6668dd39",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"profile이 없는 user로 호출하면 user.profile!는 undefined를 그대로 두고 .name 접근에서 TypeError가 발생해 'Unknown' 표시가 되지 않습니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"선택적 profile에 비-null 단언을 사용해 profile 부재 시 TypeError가 발생하며, 계약의 'Unknown' 표시가 누락됩니다.\"}], \"new_findings\": []}",
+  "input_tokens": 3897,
+  "output_tokens": 151,
+  "seconds": 1.281
+}

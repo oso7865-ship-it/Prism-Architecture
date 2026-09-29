@@ -1,0 +1,31 @@
+{
+  "key": "diagnostic-F0-898c474a9d7d-r1",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:39:50.634653+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`adjust`가 `base`를 얕게 복사한 뒤 중첩 딕셔너리를 별도로 복사하여 원본을 변경하지 않도록 수정된 코드를 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "`base`의 구조와 호출부는 제공된 계약 설명 외에는 확인할 수 없으며, 실행 검증은 수행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5202,
+  "output_tokens": 134,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "fb461e0b52cb044efc18f34b6858be22a16ce3499b771550f76f761ca24e5cd1",
+  "elapsed_seconds": 1.422
+}

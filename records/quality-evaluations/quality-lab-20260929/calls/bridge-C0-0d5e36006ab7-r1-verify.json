@@ -1,0 +1,27 @@
+{
+  "key": "bridge-C0-0d5e36006ab7-r1-verify",
+  "arm": "C0",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:50.527676+00:00",
+  "system_sha256": "5b105dccbb8a064f02722f811e7d1135010044596ccf4f383abeafa511439e8a",
+  "payload_sha256": "f7774e711cda685722e0a924832e7b390b2338ad65814f2787a8b9990595d74e",
+  "input_bytes": 1665,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "check가 async라 Promise를 반환하면 await 없이 조건 평가 시 Promise 객체가 항상 truthy이므로, check가 false로 resolve되어도 'allowed'가 반환되어 접근이 허용됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "0edf302075e343cad72499cbd52ac6fb3d770a683083330f25cd627d2bf6d1e0",
+  "input_tokens": 3458,
+  "output_tokens": 86,
+  "elapsed_seconds": 1.109
+}

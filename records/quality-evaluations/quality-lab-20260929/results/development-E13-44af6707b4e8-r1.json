@@ -1,0 +1,77 @@
+{
+  "key": "development-E13-44af6707b4e8-r1",
+  "case": "44af6707b4e8",
+  "arm": "E13",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "`choose`가 `value or default`로 값을 선택해, None이 아닌 falsy 값도 기본값으로 대체됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value가 빈 문자열, 0, False 등 falsy이지만 None이 아닌 값일 때",
+        "consequence": "명시적으로 제공된 값이 유지되지 않고 default로 대체되어, 계약에서 요구하는 'None만 부재로 간주'가 위반됩니다.",
+        "assumptions": [],
+        "title": "None이 아닌 falsy 값이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value의 truthiness로 분기하므로, 빈 문자열·0·False 같은 유효한 값도 default로 바뀝니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 7699,
+  "output_tokens": 328,
+  "elapsed_seconds": 2.266,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

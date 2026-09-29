@@ -1,0 +1,42 @@
+{
+  "key": "bridge-P0-aa5d6b234f6b-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "aa5d6b234f6b",
+  "at": "2026-09-29T08:41:12.371063+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "2b85092893817e6aad007ffeb7a809c5c6b4a0c0d40ba625cff9f7ba3aa5a380",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 빈 리스트를 사용하는 collect 함수를 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket 인자를 생략하고 collect를 두 번 이상 호출할 때",
+        "consequence": "모든 호출이 동일한 기본 리스트를 공유하므로 이전 호출의 항목이 다음 호출 결과에 누적됩니다.",
+        "assumptions": [],
+        "title": "가변 기본 인자가 호출 간 상태를 공유합니다",
+        "evidence": "1줄에서 기본값으로 리스트를 생성하고 2줄에서 그 리스트에 append한 뒤 3줄에서 반환합니다. 파이썬은 함수 정의 시 기본 인자를 한 번만 평가하므로 생략된 호출들이 같은 리스트를 재사용합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 정의만 검토했으며 호출부와 실행 결과는 확인하지 않았습니다."
+  },
+  "input_tokens": 4760,
+  "output_tokens": 304,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "a29a6f8aded727c52ea56edb8aa8e3df72a7355571cd997f6aadafba6be265c1",
+  "elapsed_seconds": 5.328
+}

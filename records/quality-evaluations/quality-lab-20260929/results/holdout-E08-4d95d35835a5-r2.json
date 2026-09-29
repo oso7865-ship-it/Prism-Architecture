@@ -1,0 +1,65 @@
+{
+  "key": "holdout-E08-4d95d35835a5-r2",
+  "case": "4d95d35835a5",
+  "arm": "E08",
+  "split": "holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "리스트 컴프리헨션 안에서 `lambda: i`가 지연 바인딩되어, 각 콜백이 생성 시점의 인덱스가 아니라 공유 변수 `i`의 최종값을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출한 뒤 반환된 콜백들을 실행할 때",
+        "consequence": "세 람다 모두 컴프리헨션이 끝난 뒤의 동일한 `i` 값(2)을 참조하므로 각 콜백이 2를 반환해, 계약이 요구하는 0, 1, 2가 나오지 않습니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 최종값을 반환합니다",
+        "evidence": "2줄의 `lambda: i`는 클로저가 변수 `i` 자체를 캡처하고, 컴프리헨션 종료 후 `i`는 2로 남습니다. 따라서 모든 콜백이 2를 반환합니다.",
+        "suggestion": "각 람다가 생성 시점 값을 바인딩하도록 기본 인자를 사용해 `lambda i=i: i` 형태로 캡처하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[2, 2, 2]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5649,
+  "output_tokens": 577,
+  "elapsed_seconds": 4.313,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

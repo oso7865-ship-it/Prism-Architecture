@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-1e22f33ed8d3-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:22:09.017880+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "input_bytes": 1194,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str은 UTF-8로 인코딩하고 bytes는 그대로 사용하도록 변경된 부분을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "content_length와 prepare의 호출부 및 실제 전송 계층은 제공되지 않았으며, 테스트를 실행하지 않았습니다. 제공된 테스트는 str/bytes 입력에 대해 Content-Length와 body 길이의 일치만 확인합니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "34e33332526f7d31a291a20d730daffc89821411b807ca4298f51b04e7f0a54c",
+  "input_tokens": 5006,
+  "output_tokens": 111,
+  "elapsed_seconds": 1.25
+}

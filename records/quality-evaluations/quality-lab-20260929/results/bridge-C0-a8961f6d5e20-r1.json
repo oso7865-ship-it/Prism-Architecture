@@ -1,0 +1,104 @@
+{
+  "key": "bridge-C0-a8961f6d5e20-r1",
+  "case": "a8961f6d5e20",
+  "arm": "C0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "user_id를 문자열 결합으로 SQL 문에 직접 삽입하는 변경을 검토했습니다. 파라미터 바인딩 자리표시자가 아닌 값 결합이므로 SQL 주입 경로가 성립합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표, OR 1=1, UNION SELECT 등 SQL 문법이 포함된 값이 전달될 때",
+        "consequence": "user_id가 SQL 텍스트로 직접 결합되어 WHERE 절이 변조될 수 있고, 반환된 파라미터 튜플이 비어 있어 드라이버가 값을 바인딩하지 않으므로 SQL 주입이 성립합니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 결합으로 SQL 주입이 가능합니다",
+        "evidence": "2줄에서 user_id를 SQL 문자열에 직접 이어 붙이고 파라미터 튜플은 빈 값으로 반환합니다. behavior_contract는 user_id가 신뢰할 수 없는 텍스트이며 반환값이 드라이버로 전달됨을 명시합니다.",
+        "suggestion": "SQL에는 %s 자리표시자를 쓰고 user_id를 파라미터 튜플로 전달하세요. 예: ('SELECT name FROM users WHERE id = %s', (user_id,))."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: user_id 문자열 결합으로 SQL 주입이 가능합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표, OR 1=1, UNION SELECT 등 SQL 문법이 포함된 값이 전달될 때",
+        "consequence": "user_id가 SQL 텍스트로 직접 결합되어 WHERE 절이 변조될 수 있고, 반환된 파라미터 튜플이 비어 있어 드라이버가 값을 바인딩하지 않으므로 SQL 주입이 성립합니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 결합으로 SQL 주입이 가능합니다",
+        "evidence": "2줄에서 user_id를 SQL 문자열에 직접 이어 붙이고 파라미터 튜플은 빈 값으로 반환합니다. behavior_contract는 user_id가 신뢰할 수 없는 텍스트이며 반환값이 드라이버로 전달됨을 명시합니다.",
+        "suggestion": "SQL에는 %s 자리표시자를 쓰고 user_id를 파라미터 튜플로 전달하세요. 예: ('SELECT name FROM users WHERE id = %s', (user_id,)).",
+        "file_path": "query.py",
+        "key": "1336ac4eeb801a3c5d459c3c24846cd125f85cf8f3ec0534ecbc767f5cd46319"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "query.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8609,
+  "output_tokens": 433,
+  "elapsed_seconds": 3.375
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-4d95d35835a5-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:33.560354+00:00",
+  "input_hash": "17b2f4fd6b5421b84d317e24679a51e9bb7d6c1a67c1e4add786ed03a9551d44",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"callbacks()가 반환한 세 콜백을 모두 호출하면 각각 2를 반환하여, 생성 시점 인덱스를 반환해야 한다는 계약을 위반합니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"리스트 컴프리헨션 내 람다가 i를 클로저로 참조하여 모든 콜백이 최종값 2를 반환합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 3856,
+  "output_tokens": 159,
+  "seconds": 1.219
+}

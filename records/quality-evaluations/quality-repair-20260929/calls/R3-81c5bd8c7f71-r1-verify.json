@@ -1,0 +1,15 @@
+{
+  "key": "R3-81c5bd8c7f71-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:54.693406+00:00",
+  "input_hash": "df160a0c792b8f7b054e7f1f79ac71212507b72c261357ca57e277ec39ac01e6",
+  "system_hash": "e885be68bbec2d058eda451e446e21e85955f9a2c7e858b9cd40272f6668dd39",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"profile이 없는 user로 name(user)을 호출하면 user.profile!.name에서 TypeError가 발생하며 'Unknown'을 반환하지 못합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"profile?: 선언과 user.profile!.name 비단언 접근이 결합되어 profile 누락 시 TypeError가 발생하고, 계약이 요구한 'Unknown' 반환이 이루어지지 않습니다.\"}],\"new_findings\":[]}",
+  "input_tokens": 3888,
+  "output_tokens": 139,
+  "seconds": 1.172
+}

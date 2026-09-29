@@ -1,0 +1,15 @@
+{
+  "key": "R1-6197edcf876e-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:20:00.647579+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "cad31b0656122408a0e337f9a369ef09af51bb16e73a64d3841f45bc484bd2d1",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 3행은 옵셔널 체이닝과 null 병합 연산자를 사용해 profile이 없을 때 'Unknown'을 반환하고, 빈 문자열 name은 그대로 보존합니다. 제공된 계약과 일치하며 구체적 결함 경로가 보이지 않습니다.\", \"issues\": [], \"limitations\": \"단일 파일의 4줄 발췌만 제공되어 실제 호출부, User 객체 생성 경로, name의 다른 사용처는 확인하지 못했습니다. 정적 분석 경고는 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"user.profile?.name ?? 'Unknown'은 profile 부재 시 'Unknown'을 반환하고 빈 문자열 name은 보존하므로, 명시된 동작 계약과 일치합니다.\"}]}",
+  "input_tokens": 3142,
+  "output_tokens": 205,
+  "seconds": 1.594
+}

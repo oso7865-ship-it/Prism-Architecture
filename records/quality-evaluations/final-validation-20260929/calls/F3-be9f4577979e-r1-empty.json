@@ -1,0 +1,12 @@
+{
+  "key": "F3-be9f4577979e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:05:33.136918+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"collect 함수는 bucket이 생략되면 None 검사 후 새 리스트를 생성하고, 명시적으로 전달된 bucket은 그대로 append하여 반환한다. 제공된 계약(생략 시 새 bucket, 명시 시 in-place 수정)과 일치하며, 변경된 라인에서 구체적 결함 경로가 확인되지 않는다.\", \"issues\": [], \"limitations\": \"제공된 5개 라인만 검토했다. collect의 호출자, item 타입, 동시성 사용 여부는 제공되지 않아 확인하지 못했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 생략 시 새 bucket, 명시 시 in-place 수정이 요구된다. None 검사 후 새 리스트를 만들고 전달된 bucket은 그대로 append/반환하므로 요구 동작과 일치한다. 가변 기본값 결함도 없다.\"}]}",
+  "input_tokens": 3529,
+  "output_tokens": 222,
+  "seconds": 2.015
+}

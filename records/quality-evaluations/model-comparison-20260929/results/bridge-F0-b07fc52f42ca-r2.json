@@ -1,0 +1,104 @@
+{
+  "key": "bridge-F0-b07fc52f42ca-r2",
+  "case": "b07fc52f42ca",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 2,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "limit 함수가 null/undefined뿐 아니라 0도 기본값 10으로 대체하도록 변경된 부분을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 유효한 설정값 0이 전달될 때",
+        "consequence": "count가 0이면 count || 10이 10을 반환하므로, 0이 유효한 limit이라는 계약과 달리 0이 10으로 대체됩니다.",
+        "assumptions": [],
+        "title": "유효한 0 설정값이 기본값 10으로 대체됩니다",
+        "evidence": "2줄의 count || 10은 count가 0일 때도 10을 반환합니다. 계약상 0은 유효한 limit입니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 count ?? 10을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 유효한 0 설정값이 기본값 10으로 대체됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 유효한 설정값 0이 전달될 때",
+        "consequence": "count가 0이면 count || 10이 10을 반환하므로, 0이 유효한 limit이라는 계약과 달리 0이 10으로 대체됩니다.",
+        "assumptions": [],
+        "title": "유효한 0 설정값이 기본값 10으로 대체됩니다",
+        "evidence": "2줄의 count || 10은 count가 0일 때도 10을 반환합니다. 계약상 0은 유효한 limit입니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 count ?? 10을 사용하세요.",
+        "file_path": "limits.js",
+        "key": "ef48c6fbc356b1b2ba09f2e04a56b08b35c026e0bf70cccbe1fbdb1c70f2dd56"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "limits.js",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7812,
+  "output_tokens": 323,
+  "elapsed_seconds": 2.828
+}

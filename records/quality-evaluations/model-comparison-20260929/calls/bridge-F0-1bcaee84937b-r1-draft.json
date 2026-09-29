@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-1bcaee84937b-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "1bcaee84937b",
+  "at": "2026-09-29T08:41:30.017293+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "1027e098cdf6fb153b41d6bdbddb183aee9c9af33646c73e09b5c4a7b02e88ee",
+  "payload_sha256": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "status": "FAILED",
+  "output": null,
+  "input_tokens": 5166,
+  "output_tokens": 296,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4864,
+  "response_sha256": "700aa88032904ac302c2997ccd2dd10300f6d05d4c6ba961b68ba452f00b4fd1",
+  "error_class": "ValidationError",
+  "http_status": null,
+  "schema_errors": [
+    {
+      "type": "extra_forbidden",
+      "loc": [
+        "citations"
+      ]
+    }
+  ],
+  "elapsed_seconds": 2.25
+}

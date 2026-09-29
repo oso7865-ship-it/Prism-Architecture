@@ -1,0 +1,52 @@
+{
+  "case": "bfd9478f0fa1",
+  "repeat": 1,
+  "arm": "F3",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "check의 실제 구현, 호출자, user의 nullable 여부는 제공되지 않았습니다. check가 거부(reject)될 때의 처리 정책은 계약에 명시되지 않아 판단하지 않았습니다. 실행 테스트는 수행하지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "access.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 check의 Promise<boolean> 해소 후 동일한 인가 결정을 반환하라고 요구한다. 코드는 await check(user)의 boolean 결과를 그대로 반환하므로 요구된 반환과 일치하며, 제공된 범위에서 결함이 확인되지 않는다.",
+          "file_path": "access.js"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "b38ef19b55f494d81669890fb53d2fd50755da9120801f2ce573e68407e867a0"
+}

@@ -1,0 +1,88 @@
+{
+  "key": "bridge-E12-411a32119068-r1",
+  "case": "411a32119068",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 라인은 wire_size()가 str이면 UTF-8 인코딩 후 바이트 수를, 그 외에는 len()을 그대로 반환하도록 한 부분입니다. 계약(str/bytes 허용)과 일치하며, 명시된 입력에 대해 잘못된 바이트 수를 계산하는 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "헌법상 허용된 str/bytes 외 입력(예: None, int)은 계약 위반 입력이므로 결함으로 보지 않았습니다. wire_size()의 호출 지점과 반환값 사용 방식은 제공되지 않아 실제 사용 맥락은 확인하지 못했습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "헌법상 허용된 str/bytes 외 입력(예: None, int)은 계약 위반 입력이므로 결함으로 보지 않았습니다. wire_size()의 호출 지점과 반환값 사용 방식은 제공되지 않아 실제 사용 맥락은 확인하지 못했습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "wire.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "str이면 encode('utf-8') 결과의 len을, bytes면 len(body)를 반환하여 계약상 바이트 수 계산이 일관됩니다.",
+          "file_path": "wire.py"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str이면 encode('utf-8') 결과의 len을, bytes면 len(body)를 반환하여 계약상 바이트 수 계산이 일관됩니다.",
+        "file_path": "wire.py"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7948,
+  "output_tokens": 632,
+  "elapsed_seconds": 4.438000000000001
+}

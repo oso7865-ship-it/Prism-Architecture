@@ -1,0 +1,87 @@
+{
+  "key": "development-E10-90900a02e0f4-r2",
+  "case": "90900a02e0f4",
+  "arm": "E10",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "name 인자의 null 여부를 반전해 분기하는 변경을 검토했습니다. null일 때 trim을 호출하고 비-null일 때 빈 문자열을 반환해 계약과 반대 동작을 합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출할 때",
+        "consequence": "name == null이 참이므로 name.trim()이 평가되어 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 분기에서 null을 역참조해 NPE가 발생합니다",
+        "evidence": "3줄의 삼항 연산은 name == null이 참일 때 name.trim()을 선택하므로 null 참조에 trim()이 호출됩니다.",
+        "suggestion": "조건을 name != null ? name.trim() : \"\"로 바꿔 null이면 빈 문자열을 반환하도록 하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 null이 아닌 값을 전달할 때",
+        "consequence": "조건이 거짓이 되어 trim이 수행되지 않고 빈 문자열이 반환되므로 공백 제거 결과가 유실됩니다.",
+        "assumptions": [],
+        "title": "비-null 입력의 trim 결과가 버려집니다",
+        "evidence": "3줄은 null이 아닌 경우 \"\"를 선택하므로 \" Ada \"의 trim 결과가 반환되지 않습니다.",
+        "suggestion": "null이 아닌 분기에서 name.trim()을 반환하도록 분기 결과를 함께 바로잡으세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "java.lang.NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 3,
+  "pipeline_complete": true,
+  "input_tokens": 17080,
+  "output_tokens": 1325,
+  "elapsed_seconds": 7.906,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

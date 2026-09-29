@@ -1,0 +1,48 @@
+{
+  "key": "development-E08-7c4f2f03b3b5-r1-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:12:25.896860+00:00",
+  "system_sha256": "3e88b38d11ce52a1d3692f9ea1c06e19d517d053a98bc6eeb808c5ff1ae3be9d",
+  "payload_sha256": "8b0cefe84b9b88443e01b72bae7eab0cdc365e785818b41579717dea477945ac",
+  "input_bytes": 2044,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수 2번째 줄이 print('saved')로 변경되어, 주입된 logger를 사용하지 않고 표준출력으로 기록합니다. 반환값(record)은 그대로라 프로브 관찰값에는 영향이 없습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2번째 줄에 도달할 때",
+        "consequence": "기록이 주입된 logger.info가 아니라 표준출력으로 나가므로, 표준이 요구하는 로깅 채널을 사용하지 않게 됩니다. logger 파라미터는 선언만 되고 본문에서 사용되지 않습니다.",
+        "assumptions": [],
+        "title": "print 사용으로 주입된 logger.info 로깅 규칙 위반",
+        "evidence": "2번째 줄이 print('saved')로 변경되어 있고, 1번째 줄의 logger 파라미터는 본문 어디에서도 참조되지 않습니다. 표준 s1은 print 대신 주입된 logger.info로 기록하도록 요구합니다.",
+        "suggestion": "2번째 줄을 logger.info('saved')로 바꿔 주입된 logger를 사용하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 3개 줄과 표준 s1만 검토했으며, logger 구현과 실제 호출부, 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "1f49d357031c894f5964177a75db32e4b50d7afb8172dc362906efb560214712",
+  "input_tokens": 5843,
+  "output_tokens": 386,
+  "elapsed_seconds": 2.282
+}

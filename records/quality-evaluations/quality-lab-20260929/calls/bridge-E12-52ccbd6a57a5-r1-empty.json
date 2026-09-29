@@ -1,0 +1,29 @@
+{
+  "key": "bridge-E12-52ccbd6a57a5-r1-empty",
+  "arm": "E12",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:22:02.451641+00:00",
+  "system_sha256": "52c2c541b9ad6cbeed1623cf79144c9f54667b842aef4c33e649bcffcad97865",
+  "payload_sha256": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "input_bytes": 455,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄은 값 바인딩(%s + 튜플)을 사용하는 매개변수화 쿼리로, user_id가 문자열로 삽입되지 않아 SQL 인젝션 경로가 보이지 않습니다. 보안 관련 조치가 필요한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "실제 DB-API 호출부(커서 실행, 권한/테넌트 필터)는 제공되지 않아 그 계층의 접근 제어는 검토하지 못했습니다. 정적 분석 경고도 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "user_id를 문자열 결합이 아닌 %s 플레이스홀더와 파라미터 튜플로 전달하므로, 제공된 범위에서 인젝션 싱크로 이어지는 경로가 없습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "8d8a42d54e28b39b1ff4ece80f9128aa0226e3ade41cd5b501efc23f186eab1e",
+  "input_tokens": 3525,
+  "output_tokens": 293,
+  "elapsed_seconds": 2.344
+}

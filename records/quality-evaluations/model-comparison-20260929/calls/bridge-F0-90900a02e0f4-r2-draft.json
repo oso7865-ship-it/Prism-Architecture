@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-90900a02e0f4-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:45:13.605948+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name이 null일 때 trim을 호출하는 조건이 뒤집혀 있어, null 입력에서 예외가 발생하고 비어 있지 않은 입력은 빈 문자열로 반환됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 name(name)을 호출할 때",
+        "consequence": "조건이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다. 계약상 null은 빈 문자열로 표시되어야 합니다.",
+        "assumptions": [],
+        "title": "null 처리 조건이 반대로 되어 NPE가 발생합니다",
+        "evidence": "3줄은 name == null일 때 name.trim()을 실행하고, 그렇지 않으면 \"\"를 반환합니다. 이는 계약(null은 빈 문자열, 그 외는 trim)과 반대입니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null 분기와 trim 분기를 계약에 맞게 교체하세요."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다."
+  },
+  "input_tokens": 4919,
+  "output_tokens": 272,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "0ca5180d0638cc94b4e61d8b5aba0877aaf6aa2187a95c76c9549c94afd8ff01",
+  "elapsed_seconds": 2.078
+}

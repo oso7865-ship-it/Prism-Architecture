@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-1e22f33ed8d3-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "1e22f33ed8d3",
+  "at": "2026-09-29T08:42:46.691854+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 content_length는 str이면 UTF-8 인코딩 후 바이트 수를, bytes면 그대로 길이를 반환하도록 구현되어 계약(전송 바이트 수 일치, bytes 재인코딩 금지)을 만족합니다. 제공된 범위에서 구체적 결함 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "content_length/prepare의 실제 호출자와 네트워크 전송 계층은 제공되지 않아, 반환값이 실제 전송 경로에서 어떻게 사용되는지는 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str은 UTF-8 인코딩 후, bytes는 그대로 len을 적용해 계약과 일치합니다. 빈 문자열/비ASCII/bytes 경계에서도 전송 바이트 수와 동일합니다."
+      }
+    ]
+  },
+  "input_tokens": 3390,
+  "output_tokens": 229,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3200,
+  "response_sha256": "c8d48df1b3558f4ddc5c442cb5e824f10601d1c41474cc9df9bba0d6686b83dd",
+  "elapsed_seconds": 1.985
+}

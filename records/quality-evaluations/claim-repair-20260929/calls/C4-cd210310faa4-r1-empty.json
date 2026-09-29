@@ -1,0 +1,12 @@
+{
+  "key": "C4-cd210310faa4-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:19.096187+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "260aabb3aa5517dba41c0c6f49d806ddf89ac8d63cef719ed998475ff2174b4e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄(3행)은 null 입력을 빈 문자열로, 그 외에는 trim 결과를 반환하며, 제공된 동작 계약과 일치합니다. 추가로 확인된 결함은 없습니다.\", \"issues\": [], \"limitations\": \"호출자와 name 인자의 실제 전달 값 범위는 제공되지 않아, 계약 외 입력(예: 비문자열)에 대한 검토는 불가합니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"3행의 삼항 연산은 null이면 빈 문자열, 아니면 trim 결과를 반환해 'null은 빈 문자열, 그 외 공백 제거' 계약과 일치함을 확인했습니다.\"}]}",
+  "input_tokens": 3508,
+  "output_tokens": 179,
+  "seconds": 1.625
+}

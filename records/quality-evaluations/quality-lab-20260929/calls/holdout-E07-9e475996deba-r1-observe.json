@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-9e475996deba-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:10.664308+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "8ec3dd900f950321e6b8f60a6c6ffd7126ea20480e05ab4e9397e917d5572605",
+  "input_bytes": 468,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a Python function `mean(values)` that divides `sum(values)` by `len(values)`.",
+      "The changed line is the return statement on line 2; line 1 is unchanged.",
+      "The stated behavior contract requires finite numeric lists and specifies empty input should yield 0.0.",
+      "The implementation has no guard for empty input, so `mean([])` would raise ZeroDivisionError rather than return 0.0.",
+      "Probe calls include `mean([])` and `mean([2, 4])`, exercising the empty and non-empty cases.",
+      "No static findings are supplied, and no authorization or state boundaries are present in the provided source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c2d15978dbbc449cfd8266823c8fb5d5d30c0a174947bff436fe72431241dc29",
+  "input_tokens": 313,
+  "output_tokens": 142,
+  "elapsed_seconds": 1.203
+}

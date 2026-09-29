@@ -1,0 +1,53 @@
+{
+  "key": "development-E12-0c543f7d32dd-r2-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:11:27.291766+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "424f191114cd67a6fa5759703ed1c534b31300ddcf3c4bc41572095d1bb6116f",
+  "input_bytes": 595,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 비교로 허용 루트를 검사하는 변경을 검토했습니다. 구분자 경계를 고려하지 않은 문자열 startswith 검사이므로, 루트와 이름이 겹치는 형제 디렉터리 경로가 허용 범위로 통과합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "resolved가 root 문자열로 시작하지만 root의 하위가 아닌 경로일 때, 예를 들어 permitted('/srv/app', '/srv/application/key') 호출 시",
+        "consequence": "'/srv/application/key'는 '/srv/app'로 시작하므로 검사가 True를 반환해, 계약상 허용 대상이 아닌 형제 디렉터리 경로가 허용됩니다. 이 값이 파일 접근 경로 결정에 사용되면 루트 외부 파일에 대한 접근 경계가 우회될 수 있습니다.",
+        "assumptions": [],
+        "title": "경로 접두사 검사가 인접 디렉터리를 허용합니다",
+        "evidence": "f1:2는 resolved.startswith(root)로만 하위 여부를 판정하며, 경로 구분자 경계를 확인하지 않습니다. behavior_contract는 root와 그 하위만 허용한다고 명시되어 있어 '/srv/application/key'는 허용 대상이 아닙니다.",
+        "suggestion": "root + os.sep 접두사로 비교하거나 os.path.commonpath([root, resolved]) == root 형태로 구분자 경계를 포함해 하위 여부를 판정하세요. root 자체를 허용해야 한다면 동일 비교로 함께 처리하세요."
+      }
+    ],
+    "limitations": "permitted의 호출부와 resolved가 어떤 sink(파일 열기 등)로 전달되는지는 제공되지 않아 실제 영향 범위는 확인하지 못했으며, 실행 검증은 수행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "bfc2ab5760ac69c5e6ab038cdd4eea6bcd9d7f098922cec50c27cea488112b9a",
+  "input_tokens": 5552,
+  "output_tokens": 674,
+  "elapsed_seconds": 3.984
+}

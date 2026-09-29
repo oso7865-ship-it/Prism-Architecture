@@ -1,0 +1,27 @@
+{
+  "key": "bridge-C0-81c5bd8c7f71-r1-verify",
+  "arm": "C0",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:54.837175+00:00",
+  "system_sha256": "43ee2c0cd72a3be4f2a90fd0ea076f3d4f4403249946ce9fe93ff44200f45586",
+  "payload_sha256": "c4d15bf8d3f73c94aa1e6fe8549ad90971c620b059acd3eaebb704f1cec4d1ed",
+  "input_bytes": 1788,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "profile이 없는 user로 호출하면 user.profile이 undefined이므로 !.name 접근에서 TypeError가 발생해 'Unknown' 대신 예외가 전파됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "64db69cf4decd1c2b0d34e2a132b0bcad3443ff8c2e5e9a2aec6d4966c49318b",
+  "input_tokens": 3150,
+  "output_tokens": 77,
+  "elapsed_seconds": 1.187
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R1-ff6c59d6fbc8-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:44.564621+00:00",
+  "input_hash": "301e5fa6c3d68b8e7357b25cd715e499181c14a5bcb86b7f398e4f9c2dc0c0e1",
+  "system_hash": "c9f777935f3cb7f46c22f29d786afa8fb7374b6322379743174bb35ab0cf7f02",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 주입된 logger.info 호출로, 팀 로깅 규칙(print 대신 logger.info 사용)을 준수한다. 제공된 범위에서 지원되는 결함은 없다.\", \"issues\": [], \"limitations\": \"save 함수의 호출자, logger 구현, record의 실제 타입은 제공되지 않았다. 변경 라인은 로깅 호출 한 줄뿐이며, 이 호출의 반환값 사용이나 예외 경로는 문맥에 나타나지 않는다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"변경 라인은 주입된 logger.info('saved') 호출로, 표준 s1의 'print 대신 logger.info 사용' 규칙을 충족한다. 반환값 사용이나 예외 처리 등 추가 결함 신호는 보이지 않는다.\"}]}",
+  "input_tokens": 3563,
+  "output_tokens": 209,
+  "seconds": 1.578
+}

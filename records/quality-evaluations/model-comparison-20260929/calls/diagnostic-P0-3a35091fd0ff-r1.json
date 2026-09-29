@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-P0-3a35091fd0ff-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "3a35091fd0ff",
+  "at": "2026-09-29T08:41:02.280840+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "c048176c1e54027817fbfd9068354fc7f193cb62265de066c5a96d6414b67bf5",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 확인 후 금액을 반환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "load 구현과 호출부가 제공되지 않아 실제 데이터 출처와 인증 경계는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5617,
+  "output_tokens": 155,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3840,
+  "response_sha256": "6c55a67e3bb4b664ac3f2b7d3bf8b57f759f82fcf0cba3de6a20a8430872a657",
+  "elapsed_seconds": 3.281
+}

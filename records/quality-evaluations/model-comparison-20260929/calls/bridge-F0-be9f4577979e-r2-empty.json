@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-be9f4577979e-r2-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "be9f4577979e",
+  "at": "2026-09-29T08:40:31.746967+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 collect 함수는 bucket 기본값을 None으로 두고 호출 시 새 리스트를 생성하는 정석적인 패턴으로, 가변 기본 인자 문제가 없다. 제공된 변경 라인에서 구체적 결함 경로가 확인되지 않아 발견 사항 없음.",
+    "issues": [],
+    "limitations": "collect의 호출 지점과 item 타입 계약은 제공되지 않아, 명시적 bucket에 대한 동시 수정이나 잘못된 타입 전달 여부는 판단 범위 밖이다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "bucket이 None일 때 새 리스트를 생성하므로 호출 간 상태 공유가 없고, 명시적 bucket은 의도대로 제자리 수정된다. 변경 라인에서 구체적 실패 경로가 보이지 않는다."
+      }
+    ]
+  },
+  "input_tokens": 3187,
+  "output_tokens": 215,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "ff85a305e460c9934cae548be17a86a436764076f5d3bcb6e678a557c14176e0",
+  "elapsed_seconds": 1.656
+}

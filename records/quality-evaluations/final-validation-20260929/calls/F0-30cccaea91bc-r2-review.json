@@ -1,0 +1,12 @@
+{
+  "key": "F0-30cccaea91bc-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:27.538424+00:00",
+  "input_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47",
+  "system_hash": "68f3e4d489c9367ba1d03c3453caa4b48b8184a0e26973f2fced001923665459",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"scale 함수가 value를 2배로 계산해 scaled에 저장하지만 반환값은 원본 value입니다. 제공된 계약은 입력을 그대로 반환하는 것이므로 현재 동작이 계약과 일치하며, scaled 변수는 사용되지 않는 계산입니다.\",\"issues\":[],\"limitations\":\"제공된 4개 라인만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. scaled 변수의 미사용은 동작상 영향이 없는 계산이므로 별도 결함으로 보고하지 않았습니다.\"}",
+  "input_tokens": 4550,
+  "output_tokens": 124,
+  "seconds": 1.484
+}

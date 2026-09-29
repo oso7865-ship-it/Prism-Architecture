@@ -1,0 +1,52 @@
+{
+  "key": "adaptive_development-E14-0c543f7d32dd-r1-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:40.331655+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "55c820d0ac7a1724fe0b096ac8815ce5c395bd25e97d0e42393f48eb6adbb79a",
+  "input_bytes": 1771,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 여부를 판정하는 변경을 검토했습니다. 문자열 startswith 비교는 경로 경계를 구분하지 못해 형제 디렉터리 우회가 가능합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "resolved가 root의 문자열 접두사이지만 경로상 하위가 아닌 경우, 예: permitted('/srv/app', '/srv/application/key')",
+        "consequence": "'/srv/application/key'는 '/srv/app'로 시작하므로 True가 반환되어 루트 외부 경로가 허용됩니다. 경로 기반 접근 제어가 우회될 수 있습니다.",
+        "assumptions": [],
+        "title": "문자열 접두사 비교로 인한 경로 경계 우회",
+        "evidence": "2줄은 resolved.startswith(root)만 검사하며, 경로 구분자 경계를 확인하지 않습니다. '/srv/application/key'는 '/srv/app' 접두사를 만족합니다.",
+        "suggestion": "root와 정확히 같거나 root + '/'로 시작하는지 검사하도록 경계를 추가하세요(예: resolved == root or resolved.startswith(root + '/'))."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며, root와 resolved의 정규화·심볼릭 링크 처리 및 실제 호출부는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "305bd76aa6713ff019a02d5a7b54c9433214ba0d9d5ad5126e8f5ce965a67fde",
+  "input_tokens": 5797,
+  "output_tokens": 405,
+  "elapsed_seconds": 2.5
+}

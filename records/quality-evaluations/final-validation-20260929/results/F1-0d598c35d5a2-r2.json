@@ -1,0 +1,56 @@
+{
+  "case": "0d598c35d5a2",
+  "repeat": 2,
+  "arm": "F1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "trim.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 0,
+      "dropped": 1,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "동작 계약이 '원본 텍스트를 공백 포함해 반환'이므로 3줄의 value 반환은 계약을 충족하며, 2줄의 미사용 계산은 동작 결함이 아닙니다.",
+          "file_path": "trim.js"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "78637666b6050a31fd521b6d6f83dd56dc8c09c291a916de426df45a37677675"
+}

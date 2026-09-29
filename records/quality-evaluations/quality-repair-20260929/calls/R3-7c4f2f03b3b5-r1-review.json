@@ -1,0 +1,15 @@
+{
+  "key": "R3-7c4f2f03b3b5-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:56.885248+00:00",
+  "input_hash": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "system_hash": "b6dd17841952c8dad8c78d0953bf64563fca6bc117b171ae89e0c9f7c4d21228",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 save 함수에서 변경된 2줄이 print('saved')로 기록을 남기고 있습니다. 주입된 logger 파라미터는 사용되지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"save(record, logger)가 호출되어 2줄에 도달할 때\",\"consequence\":\"기록이 표준 출력으로만 나가고 주입된 logger.info를 통한 로깅이 이루어지지 않아, 팀 표준이 요구하는 로깅 경로를 벗어납니다.\",\"assumptions\":[],\"title\":\"print로 기록하여 주입된 logger를 사용하지 않습니다\",\"evidence\":\"2줄은 print('saved')로 출력하고, 시그니처의 logger 파라미터는 함수 본문 어디에서도 사용되지 않습니다. 표준 s1은 print 대신 주입된 logger.info 사용을 요구합니다.\",\"suggestion\":\"2줄을 logger.info('saved')로 바꿔 주입된 logger를 통해 기록하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"]}],\"limitations\":\"제공된 3줄과 표준 s1만 검토했습니다. logger.info의 실제 출력 대상과 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 5173,
+  "output_tokens": 321,
+  "seconds": 1.907
+}

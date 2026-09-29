@@ -1,0 +1,48 @@
+{
+  "key": "development-E09-7c4f2f03b3b5-r1-final",
+  "arm": "E09",
+  "phase": "final",
+  "at": "2026-09-29T07:12:14.766525+00:00",
+  "system_sha256": "ebe58840b10d4e4835703e6da5586eecda5f8fce2288e0074f94011277a44d3c",
+  "payload_sha256": "5eeb43db1e3cbe16efd575aca636ecab4f49dcab4ec6c7a54647eaad23472886",
+  "input_bytes": 2361,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수에서 변경된 2번 줄이 주입된 logger 대신 print를 사용해 팀 로깅 규칙(s1)과 어긋납니다. 반환값은 record를 그대로 반환하므로 변경되지 않았습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2번 줄에 도달할 때",
+        "consequence": "기록이 주입된 logger.info가 아니라 표준 출력으로 나가므로 팀 규칙이 요구하는 로깅 경로를 우회하고, 로거 설정에 따른 수집·레벨 제어가 적용되지 않습니다.",
+        "assumptions": [],
+        "title": "print 사용으로 주입된 logger.info 로깅 규칙 위반",
+        "evidence": "2번 줄은 'saved'를 print로 출력합니다. 1번 줄 시그니처는 logger를 주입받고, 규칙 s1은 애플리케이션에서 print 대신 주입된 logger.info로 기록하도록 요구합니다.",
+        "suggestion": "2번 줄을 logger.info('saved')로 바꿔 주입된 로거를 사용하세요."
+      }
+    ],
+    "limitations": "logger.info의 실제 구현과 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "dcc4efc958ef39348c7a65a9700c30bdfe097098e2cf7b564aa147466bcbe570",
+  "input_tokens": 6050,
+  "output_tokens": 369,
+  "elapsed_seconds": 1.844
+}

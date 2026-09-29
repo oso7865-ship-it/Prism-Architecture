@@ -1,0 +1,49 @@
+{
+  "key": "diagnostic-P0-898c474a9d7d-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:39:49.737279+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base의 nested 사전을 복사해 원본을 보존하려는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 base['nested']가 존재할 때",
+        "consequence": "result['nested']는 복사본이므로 3줄의 수정은 원본에 영향을 주지 않지만, 4줄에서 base['nested']['limit']를 반환하므로 호출자는 원본의 기존 값(1)을 받게 됩니다.",
+        "assumptions": [],
+        "title": "반환값이 수정된 복사본이 아닌 원본의 limit을 반환합니다",
+        "evidence": "2줄에서 nested를 복사하고 3줄에서 복사본의 limit을 9로 변경하지만, 4줄은 원본 base['nested']['limit']을 반환합니다.",
+        "suggestion": "수정된 값을 반환하려면 return result['nested']['limit']로 변경하세요. 원본 값을 반환하는 것이 의도라면 3줄의 수정이 불필요할 수 있습니다."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5199,
+  "output_tokens": 389,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4352,
+  "response_sha256": "5bdc610c53f1a6b5a22eb6a30e31e7bd5e6191258a0e996e3e9fbda9876e47e8",
+  "elapsed_seconds": 6.578
+}

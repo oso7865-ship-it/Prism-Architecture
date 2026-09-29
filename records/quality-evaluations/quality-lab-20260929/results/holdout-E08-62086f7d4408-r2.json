@@ -1,0 +1,69 @@
+{
+  "key": "holdout-E08-62086f7d4408-r2",
+  "case": "62086f7d4408",
+  "arm": "E08",
+  "split": "holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "handle 함수의 ValueError 처리 변경을 검토했습니다. 변경된 4-5줄은 입력 오류를 기록하지 않고 None으로 반환하여 팀 표준 s1의 재던지기 요구와 실패 은닉 금지를 위반합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "4-5줄이 예외를 삼키고 None을 정상 반환하므로 호출자는 실패를 감지하지 못하고, 표준 s1이 요구하는 기록 및 동일 예외 재던지기가 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "ValueError를 기록 없이 None으로 숨겨 실패가 전파되지 않습니다",
+        "evidence": "1줄에서 logger를 받지만 함수 내에서 사용되지 않으며, 4줄에서 ValueError를 잡아 5줄에서 None을 반환합니다. 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.",
+        "suggestion": "except ValueError 블록에서 logger.error로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 handle 함수와 표준 s1만 검토했으며, 호출부와 logger 구현은 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "null",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6396,
+  "output_tokens": 586,
+  "elapsed_seconds": 4.172,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

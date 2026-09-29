@@ -1,0 +1,39 @@
+{
+  "key": "bridge-E12-44af6707b4e8-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:20:49.274669+00:00",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "input_bytes": 359,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "명시적으로 전달된 falsy 값을 None과 동일하게 처리해 기본값으로 대체하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "value에 0, 빈 문자열, 빈 리스트, False 등 None이 아닌 falsy 값이 전달될 때",
+        "consequence": "or 연산이 falsy를 결측으로 간주해 value 대신 default가 반환되므로, 명시적으로 제공된 값이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "None이 아닌 falsy 값이 default로 대체됩니다",
+        "evidence": "제공된 동작 계약은 'Only None means absent. Preserve all explicitly provided values.'라고 명시하지만, 2줄의 `value or default`는 falsy 전체를 결측으로 처리합니다.",
+        "suggestion": "`return default if value is None else value`처럼 None 여부만 검사하도록 변경하세요."
+      }
+    ],
+    "limitations": "choose의 실제 호출부와 입력 유형은 제공되지 않았으며 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "6d9836f9d4879cb88357f5f314982506d4ae44ef23bdf43bacaededb1e62bd61",
+  "input_tokens": 4763,
+  "output_tokens": 478,
+  "elapsed_seconds": 3.0
+}

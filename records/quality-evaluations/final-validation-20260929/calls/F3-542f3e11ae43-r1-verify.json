@@ -1,0 +1,12 @@
+{
+  "key": "F3-542f3e11ae43-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:16.348685+00:00",
+  "input_hash": "dae7b45ab1fab7a5993ba2f4ecb651b2d08826536053e30fdfeee233b5cfe62d",
+  "system_hash": "53b151a5996ffda1e6a8f7b43cfceb2d3f9e55c7af5bee5e71fa752ae88ddb76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"inspect 호출 시 2줄의 얕은 복사로 scratch.limits가 settings.limits와 같은 객체를 참조하게 되어, 3줄의 cap = 12 대입이 호출자의 settings.limits.cap을 12로 변경하고 4줄은 그 변경된 값 12를 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄의 얕은 복사가 중첩 limits 객체를 공유하여 3줄의 대입이 호출자 상태를 변경하고, 이는 'Leave the caller's nested state unchanged' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4504,
+  "output_tokens": 190,
+  "seconds": 1.5
+}

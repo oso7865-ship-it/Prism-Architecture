@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-cd210310faa4-r2-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "cd210310faa4",
+  "at": "2026-09-29T08:41:37.657172+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edf521b822f29f725576f4e5ad720f6683d28e13d87aad26e4ac4d158d62beac",
+  "payload_sha256": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 name 메서드는 null 입력을 빈 문자열로 안전하게 처리하고, 그 외에는 trim을 적용합니다. 제공된 코드 범위에서는 결함이 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부와 name 메서드의 사용 맥락이 제공되지 않아, trim 결과에 대한 추가 요구사항(예: 내부 공백 정규화)은 확인할 수 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "null 가드와 trim 적용을 확인했으며, 제공된 계약상 오류 경로가 없습니다."
+      }
+    ]
+  },
+  "input_tokens": 3299,
+  "output_tokens": 176,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1792,
+  "response_sha256": "0dfefc84789fd053ed74f2d349815d4f506d1f062193477f3e0ee7a1a3afa227",
+  "elapsed_seconds": 4.219
+}

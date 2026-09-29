@@ -1,0 +1,58 @@
+{
+  "key": "development-E10-44af6707b4e8-r2-draft1",
+  "arm": "E10",
+  "phase": "draft1",
+  "at": "2026-09-29T07:14:33.992461+00:00",
+  "system_sha256": "1132cf5e8cd690ca1acaedabf3f5c197a81052bf90b2e1f6f452d624ba067295",
+  "payload_sha256": "675702fa9714ba1490be140c63ffca268ec6a73869791b5cca7754be124e65b8",
+  "input_bytes": 535,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`는 None뿐 아니라 falsy 값(빈 문자열, False, 0 등)도 대체하므로, 명시적으로 제공된 값을 보존해야 한다는 계약과 어긋납니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 빈 문자열, False, 0 등 falsy이지만 None이 아닌 값이 전달될 때",
+        "consequence": "해당 값이 버려지고 default가 반환되어, 명시적으로 제공된 값이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "falsy 값이 None과 동일하게 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value의 truthiness로 분기하므로 None이 아닌 falsy 값도 default로 대체됩니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 호출부나 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "4c4a7ada9ff39e13413369cc494817d3ae6776c41f53d1a5782f27da83ae9a1d",
+  "input_tokens": 5216,
+  "output_tokens": 333,
+  "elapsed_seconds": 1.984
+}

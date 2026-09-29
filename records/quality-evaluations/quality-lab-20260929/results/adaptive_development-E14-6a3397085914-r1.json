@@ -1,0 +1,77 @@
+{
+  "key": "adaptive_development-E14-6a3397085914-r1",
+  "case": "6a3397085914",
+  "arm": "E14",
+  "split": "adaptive_development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "wire_size가 str과 bytes 모두에 대해 len(body)를 반환하도록 변경되었습니다. bytes 입력에서는 바이트 수가 맞지만, str 입력에서는 문자 수를 반환하므로 UTF-8 인코딩 시 바이트 수와 달라집니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "비ASCII 문자를 포함한 str을 wire_size에 전달할 때(예: '한글')",
+        "consequence": "len은 문자 수를 세므로 UTF-8 인코딩 시 실제 전송 바이트 수(예: '한글'은 6바이트)보다 작은 값을 반환합니다. 계약이 요구하는 '전송 바이트 수'와 불일치합니다.",
+        "assumptions": [],
+        "title": "str 입력에서 문자 수를 반환해 UTF-8 바이트 수와 불일치",
+        "evidence": "2줄은 body 종류를 구분하지 않고 len(body)를 반환합니다. str의 len은 문자 수이며, 계약은 UTF-8 기준 전송 바이트 수를 요구합니다.",
+        "suggestion": "str이면 body.encode('utf-8')의 길이를, bytes면 len(body)를 반환하도록 입력 유형을 구분하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5444,
+  "output_tokens": 408,
+  "elapsed_seconds": 2.344,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

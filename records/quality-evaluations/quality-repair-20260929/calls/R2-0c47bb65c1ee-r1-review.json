@@ -1,0 +1,15 @@
+{
+  "key": "R2-0c47bb65c1ee-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:45.203855+00:00",
+  "input_hash": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"adjust가 base.copy()로 얕은 복사만 수행한 뒤 중첩 딕셔너리를 수정하고, 원본 base의 중첩 값을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base가 중첩 딕셔너리(예: {'nested': {'limit': 0}})를 가진 상태에서 adjust(base)를 호출할 때\",\"consequence\":\"base.copy()는 최상위만 복사하므로 result['nested']는 base['nested']와 동일한 객체입니다. 3줄의 대입이 호출자의 base['nested']['limit']을 9로 변경하고, 4줄은 변경된 9를 반환합니다. 이는 '호출자의 base를 변경하지 않는다'는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 중첩 딕셔너리가 변경됩니다\",\"evidence\":\"2줄의 base.copy()는 중첩 딕셔너리를 공유하고, 3줄이 그 공유 객체의 'limit'을 9로 덮어쓰며, 4줄은 원본 base에서 읽은 값을 반환합니다.\",\"suggestion\":\"중첩 딕셔너리까지 복사하도록 깊은 복사(예: copy.deepcopy(base))를 사용하거나, result['nested'] = {**base['nested']}처럼 중첩 레벨을 별도로 복사한 뒤 수정하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 실제 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4746,
+  "output_tokens": 407,
+  "seconds": 2.391
+}

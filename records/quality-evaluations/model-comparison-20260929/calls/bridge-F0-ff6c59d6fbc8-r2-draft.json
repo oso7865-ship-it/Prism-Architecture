@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-ff6c59d6fbc8-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "ff6c59d6fbc8",
+  "at": "2026-09-29T08:45:16.842874+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "5167925465ea58fc87cf2974fb00e539a362ee19cf46330104a91e51c8048796",
+  "payload_sha256": "301e5fa6c3d68b8e7357b25cd715e499181c14a5bcb86b7f398e4f9c2dc0c0e1",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수에서 print 대신 주입된 logger.info로 기록하도록 변경된 한 줄을 검토했습니다. 제공된 규칙과 코드가 일치하며 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 변경 라인과 로깅 규칙만 검토했으며, logger 구현과 호출부, 실행 검증은 제공되지 않아 확인하지 못했습니다."
+  },
+  "input_tokens": 5220,
+  "output_tokens": 97,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "aeba758b75428ad3b1d19052cbe1f1a8a5163c46a44f5d61211537bdb8f74fe8",
+  "elapsed_seconds": 1.516
+}

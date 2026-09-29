@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-1e22f33ed8d3-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "1e22f33ed8d3",
+  "at": "2026-09-29T08:42:49.222091+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 content_length 함수는 str/bytes 입력을 올바르게 UTF-8 바이트 길이로 변환하며, 제공된 테스트 케이스와 계약을 만족합니다. 제시된 코드 범위에서 지원 가능한 결함은 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "prepare 함수의 호출부와 content_length의 다른 사용처는 제공되지 않아 전체 시스템 안전성은 확인할 수 없습니다. bytes 입력에 대한 인코딩 재처리 방지 로직은 정상으로 보입니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "content_length의 str/bytes 분기 처리와 UTF-8 인코딩이 계약에 부합하며, 테스트 케이스에서도 올바른 길이를 반환합니다."
+      }
+    ]
+  },
+  "input_tokens": 3387,
+  "output_tokens": 221,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "406a5cee7123f2c8796072ae515879b05f643567b2b403fff89a8a28a62be47e",
+  "elapsed_seconds": 4.938
+}

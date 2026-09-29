@@ -1,0 +1,12 @@
+{
+  "key": "C4-65d1d2fad0d4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:33.145853+00:00",
+  "input_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "system_hash": "fc4a425f06be94f85e2eee9080629f7673b09ce1e0bd0e46adff8f3c1764b9b7",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Order.compare가 left - right를 반환하도록 변경된 부분을 검토했습니다. 제공된 계약상 부호 조건은 충족하지만, int 뺄셈의 오버플로 경계에서 부호가 뒤집힐 수 있는 경로가 보입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"left가 양수이고 right가 음수이며 두 값의 차가 int 범위를 초과할 때(예: left = Integer.MAX_VALUE, right = -1)\",\"consequence\":\"int 뺄셈이 오버플로하여 결과가 음수가 되므로, left > right인데도 compare가 음수를 반환해 계약의 부호 조건이 위반됩니다.\",\"assumptions\":[],\"title\":\"int 뺄셈 오버플로로 비교 부호가 뒤집힙니다\",\"evidence\":\"3줄은 int 피연산자 뺄셈 결과를 그대로 반환합니다. Java int 뺄셈은 int 범위에서 오버플로하므로 MAX_VALUE - (-1)은 음수가 되어 left > right인 경우에도 음수가 반환됩니다.\",\"suggestion\":\"Integer.compare(left, right)를 반환하도록 바꾸면 동일한 부호 계약을 오버플로 없이 유지할 수 있습니다.\"}],\"limitations\":\"제공된 파일은 compare 메서드 하나뿐이며, 실제 호출자나 입력 범위 제한은 확인되지 않았습니다. 실행 결과는 검증하지 않았습니다.\"}",
+  "input_tokens": 4678,
+  "output_tokens": 361,
+  "seconds": 2.718
+}

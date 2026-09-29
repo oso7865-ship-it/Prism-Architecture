@@ -1,0 +1,12 @@
+{
+  "key": "F3-42eddd40771d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:06:15.967800+00:00",
+  "input_hash": "eaeccf0c2946933b14c6962a72e10a461b43fb7fd45c885fdec1645bcccf3f89",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"checker(user)가 TimeoutError를 발생시키면 allowed가 True를 반환하여, 계약상 거부해야 하는 불명확한 권한이 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"TimeoutError 처리 경로가 True를 반환하여 'Unknown authorization must deny access' 계약과 반대됩니다.\"}]}",
+  "input_tokens": 4570,
+  "output_tokens": 139,
+  "seconds": 1.5
+}

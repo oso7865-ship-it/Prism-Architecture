@@ -1,0 +1,12 @@
+{
+  "key": "F2-898c474a9d7d-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:00:22.815086+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "6eadd5897cb7ca7b0dc2028d14ee9fec409f6a059ced6c017de5ac73ff3bcb91",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하므로 호출자의 base는 변경되지 않습니다. 제공된 계약을 위반하는 동작은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"base가 None이거나 'nested' 키가 없는 경우는 제공된 계약상 유효 입력이 아니며, 호출자 코드는 제공되지 않았습니다. 중첩 값의 추가 변경 여부는 이 함수 범위에서 확인되지 않습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"base['nested'].copy()로 복사본을 만들어 'limit'을 9로 설정하므로 호출자의 base['nested']는 변경되지 않습니다. 반환값은 base['nested']['limit']으로 계약상 원본 값을 유지합니다.\"}]}",
+  "input_tokens": 3539,
+  "output_tokens": 215,
+  "seconds": 1.922
+}

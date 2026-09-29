@@ -1,0 +1,88 @@
+{
+  "key": "bridge-E12-0e12161a3613-r1",
+  "case": "0e12161a3613",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "제공된 변경 파일 f1은 `Integer.compare(left, right)`를 반환하는 단일 변경 라인으로, left < right에서 음수, 동일 시 0, 그 외 양수를 반환하는 비교자 계약을 그대로 충족합니다. 추가적인 결함 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "변경 파일 f1의 3번 라인만 제공되었으며, 이 비교자를 호출하는 호출부나 정렬/Comparator 사용 지점은 제공되지 않아 호출 맥락에서의 영향은 검토하지 못했습니다. 정적 분석 경고는 제공되지 않았습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "변경 파일 f1의 3번 라인만 제공되었으며, 이 비교자를 호출하는 호출부나 정렬/Comparator 사용 지점은 제공되지 않아 호출 맥락에서의 영향은 검토하지 못했습니다. 정적 분석 경고는 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Order.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "`Integer.compare(left, right)` 반환은 left<right에서 음수, 동일 시 0, 그 외 양수를 반환하여 비교자 계약을 충족합니다. 널 입력이나 경계값 관련 추가 실패 경로는 보이지 않습니다.",
+          "file_path": "Order.java"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "`Integer.compare(left, right)` 반환은 left<right에서 음수, 동일 시 0, 그 외 양수를 반환하여 비교자 계약을 충족합니다. 널 입력이나 경계값 관련 추가 실패 경로는 보이지 않습니다.",
+        "file_path": "Order.java"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8276,
+  "output_tokens": 436,
+  "elapsed_seconds": 3.61
+}

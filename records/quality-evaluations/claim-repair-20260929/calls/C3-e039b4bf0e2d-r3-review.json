@@ -1,0 +1,12 @@
+{
+  "key": "C3-e039b4bf0e2d-r3-review",
+  "phase": "review",
+  "at": "2026-09-29T11:50:18.919402+00:00",
+  "input_hash": "c06a37681b8707de0292d45034060e368270a91afc99fb913ba143a4732a1a53",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"environment_settings의 CA 번들 조회가 or 연산으로 바뀌어 빈 문자열 환경변수 처리가 계약과 달라졌는지 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE 또는 REQUESTS_CA_BUNDLE 키가 빈 문자열로 존재하고 verify가 True(또는 None)일 때\",\"consequence\":\"or 연산이 빈 문자열을 falsy로 평가해 verify가 빈 문자열 \\\"\\\"이 되고, merge_setting에서 session_verify가 True이므로 6줄에서 \\\"\\\"가 그대로 반환되어 명시적 검증 True가 유지되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 환경변수가 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 env.get(...) or env.get(...) 결과를 verify에 대입합니다. 빈 문자열은 or에서 falsy이므로 다른 키도 없으면 결과가 \\\"\\\"가 됩니다. 15·16줄 테스트는 이 경우 True를 기대하지만 path_observations에서 값이 \\\"\\\"로 기록되어 불일치합니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 or 대신 None 여부를 기준으로 선택하세요. 예: env.get(\\\"REQUESTS_CA_BUNDLE\\\") if env.get(\\\"REQUESTS_CA_BUNDLE\\\") is not None else env.get(\\\"CURL_CA_BUNDLE\\\"). 이렇게 하면 17줄의 비어 있지 않은 값 경로와 18줄의 verify=False 경로는 그대로 유지됩니다.\"}],\"limitations\":\"제공된 파일 f1만 검토했으며 실제 테스트 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 session_verify의 실제 출처는 제공되지 않았습니다.\"}",
+  "input_tokens": 5664,
+  "output_tokens": 452,
+  "seconds": 3.11
+}

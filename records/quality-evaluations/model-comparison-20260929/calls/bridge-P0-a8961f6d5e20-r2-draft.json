@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-a8961f6d5e20-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "a8961f6d5e20",
+  "at": "2026-09-29T08:42:16.070180+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "사용자 ID를 SQL 문자열에 직접 연결하는 쿼리 생성 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 공격자 제어 값이 전달될 때",
+        "consequence": "SQL 구문이 문자열 연결로 구성되어 SQL 인젝션이 가능하며, 임의의 데이터베이스 조회나 조작으로 이어질 수 있습니다.",
+        "assumptions": [],
+        "title": "SQL 인젝션에 취약한 쿼리 문자열 구성",
+        "evidence": "2줄에서 user_id를 SQL 문자열에 직접 연결하고 있으며, behavior_contract에 따라 user_id는 신뢰할 수 없는 텍스트입니다.",
+        "suggestion": "파라미터 바인딩을 사용하도록 쿼리를 'SELECT name FROM users WHERE id = %s'로 변경하고 user_id를 파라미터 튜플에 전달하세요."
+      }
+    ],
+    "limitations": "제공된 쿼리 생성 코드와 계약만 검토했으며 실제 실행 환경이나 호출부는 확인하지 않았습니다."
+  },
+  "input_tokens": 5112,
+  "output_tokens": 298,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "5f567b995bc5aad4eafcc2b2bbe329b3b12620d4b4416d80e08fccd6f62ea484",
+  "elapsed_seconds": 5.781
+}

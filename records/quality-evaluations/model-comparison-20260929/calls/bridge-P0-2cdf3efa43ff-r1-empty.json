@@ -1,0 +1,48 @@
+{
+  "key": "bridge-P0-2cdf3efa43ff-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "2cdf3efa43ff",
+  "at": "2026-09-29T08:43:59.718626+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edf521b822f29f725576f4e5ad720f6683d28e13d87aad26e4ac4d158d62beac",
+  "payload_sha256": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 곱셈 연산은 int 피연산자 간 곱셈을 먼저 수행하므로, 두 입력이 모두 양수이고 곱이 int 범위를 초과하면 오버플로가 발생합니다. 계약상 정확한 곱을 long으로 보존해야 하므로 수정이 필요합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count가 모두 양수이고 그 곱이 Integer.MAX_VALUE(2,147,483,647)를 초과하는 경우",
+        "consequence": "int 곱셈이 먼저 수행되어 오버플로가 발생하고, 잘못된 값이 long으로 확장되어 반환됩니다. 계약상 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 오버플로로 정확한 long 결과가 보존되지 않음",
+        "evidence": "return amount * count;에서 두 피연산자가 int이므로 곱셈이 int로 수행된 후 long으로 확장됩니다. 예: amount=100000, count=30000이면 곱은 3,000,000,000으로 int 범위를 초과합니다.",
+        "suggestion": "곱셈 전에 한 피연산자를 long으로 캐스팅하세요: return (long) amount * count;"
+      }
+    ],
+    "limitations": "제공된 코드 범위만 검토했으며, 호출부나 다른 연산은 확인하지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "FINDING",
+        "observation": "int 곱셈이 long으로 확장되기 전에 수행되어 큰 양수 입력에서 오버플로가 발생할 수 있습니다."
+      }
+    ]
+  },
+  "input_tokens": 3301,
+  "output_tokens": 467,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3200,
+  "response_sha256": "16f1b2bc9e0e7bc574605d5e865de8e2ccd84aeaacf66ba6943613afe96f1263",
+  "elapsed_seconds": 8.579
+}

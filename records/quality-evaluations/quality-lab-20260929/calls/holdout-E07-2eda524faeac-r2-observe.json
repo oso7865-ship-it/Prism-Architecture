@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-2eda524faeac-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:15.966954+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "e159307c1e32f20d1bb253119870caea832cc6c91b1b7920fb12feee1a8f8b84",
+  "input_bytes": 635,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is an async function `access(check)` that awaits a caller-supplied `check` callback.",
+      "Line 2 is the changed line: `if (await check()) return 'allowed';` gates the allow path on the awaited result.",
+      "The function returns 'allowed' when the awaited check is truthy and 'denied' otherwise.",
+      "Probe p1 passes `async () => false` and probe p2 passes `async () => true`, exercising both branches.",
+      "The authorization decision depends entirely on the externally supplied `check` callback; no other validation is present.",
+      "No static findings are reported and no related implementation is provided."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "fd54b4f5dff3d0f7078fd153dbbfddf9a8ac8e53b5837707b1904b5626766ae7",
+  "input_tokens": 356,
+  "output_tokens": 137,
+  "elapsed_seconds": 1.375
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R2-4b5f6ff33252-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:18:46.879203+00:00",
+  "input_hash": "2f2091f6b1548615dc724919994078ad96ec3ac662ddabc3e6286a4e5b4ed256",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 9-10은 verify가 True/None일 때 환경변수 CA 번들 경로를 채택하고, 그렇지 않으면 verify를 유지한다. 제공된 테스트 계약(명시적 False 보존, CA 경로 문자열 수용)과 일치하며, 변경 라인에서 입증 가능한 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"merge_setting과 environment_settings의 실제 호출자, verify에 전달되는 값의 타입 범위, env 사전의 실제 구성은 제공되지 않았다. 테스트는 실행하지 않았고 제공된 라인만 정적으로 검토했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 9-10에서 verify가 True/None일 때만 env의 CA 번들 경로를 채택하고, False는 그대로 유지되어 명시적 비활성화 계약과 일치한다. 빈 문자열 환경변수는 or 체인으로 무시된다.\"}]}",
+  "input_tokens": 3755,
+  "output_tokens": 245,
+  "seconds": 1.797
+}

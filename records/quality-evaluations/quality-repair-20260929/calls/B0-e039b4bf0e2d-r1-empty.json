@@ -1,0 +1,15 @@
+{
+  "key": "B0-e039b4bf0e2d-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:17:28.203101+00:00",
+  "input_hash": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8",
+  "system_hash": "c1b104d7a2b4812dac7ace263e24deb30f34e82fdbc2b3c4991cd5412a7e9d0c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10은 `env.get(...) or env.get(...)`로 빈 문자열을 None으로 바꾸지만, 이어지는 merge_setting이 session_verify(기본 True)를 복원하므로 제공된 계약(빈 CURL_CA_BUNDLE은 True 유지)과 테스트가 일관됩니다. 제공된 범위에서 실행 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"merge_setting/environment_settings의 실제 호출자와 session_verify가 False로 전달되는 경로는 제공되지 않았습니다. 테스트는 실행하지 않았고, 정적 분석 경고도 없었습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 10, \"outcome\": \"NO_FINDING\", \"observation\": \"빈 문자열 CA 번들 값이 or 연산으로 None이 되지만 merge_setting이 session_verify(기본 True)로 복원하여 제공된 계약과 테스트를 위반하지 않습니다.\"}]}",
+  "input_tokens": 3602,
+  "output_tokens": 238,
+  "seconds": 1.844
+}

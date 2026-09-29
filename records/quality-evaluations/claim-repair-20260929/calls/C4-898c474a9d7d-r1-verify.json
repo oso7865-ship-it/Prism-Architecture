@@ -1,0 +1,12 @@
+{
+  "key": "C4-898c474a9d7d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:34.588499+00:00",
+  "input_hash": "c5710845dba6b966bde31d90296dd54c7fd4ca1f2ebc5a9a5af4ce6dbc93c547",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"base['nested']에 'limit' 키가 있는 딕셔너리를 전달하면, 3줄은 복사본 result['nested']['limit']만 9로 바꾸고 4줄은 원본 base['nested']['limit']을 반환하므로 반환값은 9가 아니라 원본의 기존 limit 값입니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 base['nested']를 얕은 복사해 result에 넣고 3줄에서 복사본만 수정하지만, 4줄은 원본 base['nested']['limit']을 반환해 수정 결과가 반영되지 않습니다.\"}]}",
+  "input_tokens": 4474,
+  "output_tokens": 220,
+  "seconds": 1.563
+}

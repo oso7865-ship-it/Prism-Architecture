@@ -1,0 +1,74 @@
+{
+  "key": "development-E13-cd1f9cff7b9c-r2",
+  "case": "cd1f9cff7b9c",
+  "arm": "E13",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 1,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로 접두사 검사 함수의 변경된 한 줄을 검토했습니다. root와 그 하위 경로만 허용하는 계약에 대해 '/srv/app'과 '/srv/application/key' 같은 형제 디렉터리 경로가 허용되는지 확인이 필요합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/srv/app'이고 resolved가 '/srv/application/key'처럼 root로 시작하지만 root의 하위가 아닌 경로일 때",
+        "consequence": "startswith(root + '/') 검사는 '/srv/app/' 접두사를 요구하므로 '/srv/application/key'는 이 조건을 통과하지 못합니다. 다만 resolved == root 비교와 결합된 전체 조건의 실제 반환값은 root와 resolved의 정규화 방식에 따라 달라질 수 있습니다.",
+        "assumptions": [
+          "root와 resolved가 항상 정규화된 절대 POSIX 경로이며 심볼릭 링크나 후행 슬래시가 없다는 계약이 실제 호출부에서도 지켜집니다.",
+          "호출부가 이 함수의 반환값을 접근 제어 결정에 사용합니다."
+        ],
+        "title": "root 접두사 검사가 형제 디렉터리를 허용하나요?",
+        "evidence": "2줄은 resolved == root이거나 resolved가 root + '/'로 시작할 때만 True를 반환합니다. '/srv/application/key'는 '/srv/app/'로 시작하지 않으므로 이 경로는 허용되지 않습니다. 계약상 입력이 정규화되어 있다면 형제 디렉터리 우회는 발생하지 않습니다.",
+        "suggestion": "호출부에서 root와 resolved가 계약대로 정규화되어 전달되는지, 그리고 반환값이 실제 접근 제어에 사용되는지 확인하세요. 정규화가 보장되지 않는다면 비교 전에 두 경로를 정규화하는 처리를 추가해야 합니다."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부, 경로 정규화 방식, 접근 제어 적용 지점은 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 8061,
+  "output_tokens": 565,
+  "elapsed_seconds": 3.515,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 1,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-0d5e36006ab7-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:09.493502+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "8ce4cd7a9585216b20c23b0c0f9e2d02b6831516828226a6f76b365095c9f309",
+  "input_bytes": 629,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 calls `check()` without `await`, so the returned Promise is always truthy and the function returns 'allowed' regardless of the resolved boolean.",
+      "The behavior contract states `check` is async and resolves to a boolean, but the code treats the Promise object itself as the condition.",
+      "Probe p1 `await access(async () => false)` is predicted to return 'allowed', violating the contract that expects 'denied'.",
+      "Probe p2 `await access(async () => true)` is predicted to return 'allowed', which matches the contract but does not distinguish correct from incorrect behavior.",
+      "The `async` keyword on `access` is present but no `await` appears anywhere in the function body.",
+      "No static findings were supplied, so the defect is only observable through the changed line 2 and the stated contract."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d8011ecd89e1f0e1398cb60e25d1ef564ed082a1954d8db20b9807698ab2576b",
+  "input_tokens": 356,
+  "output_tokens": 177,
+  "elapsed_seconds": 1.422
+}

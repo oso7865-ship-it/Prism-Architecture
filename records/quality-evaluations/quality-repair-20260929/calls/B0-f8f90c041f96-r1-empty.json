@@ -1,0 +1,15 @@
+{
+  "key": "B0-f8f90c041f96-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:27:45.862606+00:00",
+  "input_hash": "c027588f3195b10149b9ac62e0ccf8b7c6b4ee9882c0e19f337a8533d8b631de",
+  "system_hash": "c1b104d7a2b4812dac7ace263e24deb30f34e82fdbc2b3c4991cd5412a7e9d0c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 allowed 함수는 checker 호출을 try/except TimeoutError로 감싸 타임아웃 시 False를 반환하도록 변경되었습니다. 제공된 계약(권한 불명 시 TimeoutError 발생, 불명 권한은 거부)과 일치하며, 변경 라인에서 구체적인 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"checker의 실제 구현과 호출자, 다른 예외 유형의 발생 여부는 제공되지 않았습니다. TimeoutError 외 예외가 발생할 경우의 동작은 이 발췌만으로 판단할 수 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 4, \"outcome\": \"NO_FINDING\", \"observation\": \"checker 호출을 try로 감싸 TimeoutError 시 False를 반환하는 경로를 확인했습니다. 제공된 계약상 불명 권한은 거부되어야 하므로 반환값 False가 계약과 일치합니다.\"}]}",
+  "input_tokens": 3164,
+  "output_tokens": 238,
+  "seconds": 1.812
+}

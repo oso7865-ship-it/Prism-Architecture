@@ -1,0 +1,49 @@
+{
+  "key": "bridge-P0-4cf224cd4371-r1-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "4cf224cd4371",
+  "at": "2026-09-29T08:43:25.110375+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "prepare()가 문자열을 UTF-8로 인코딩한 wire를 만들지만 Content-Length는 원본 body의 길이로 계산합니다. 비ASCII 문자열에서 Content-Length가 실제 전송 바이트 수와 달라집니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 6,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          6
+        ],
+        "trigger": "prepare()에 비ASCII 문자열(예: '한글')을 전달하면 body는 str이므로 wire는 UTF-8 인코딩된 6바이트가 되지만, content_length(body)는 len(body)=2를 반환합니다.",
+        "consequence": "반환된 Content-Length가 실제 body 바이트 수와 달라 HTTP 프로토콜 계약을 위반합니다. 테스트의 assert도 실패합니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치",
+        "evidence": "line 5에서 str body를 UTF-8로 인코딩해 wire를 만들고, line 6에서 Content-Length를 content_length(body)로 계산합니다. content_length는 line 2에서 len(body)를 반환하므로 str의 문자 수가 사용됩니다.",
+        "suggestion": "Content-Length를 wire 기준으로 계산하도록 변경하세요. 예: return {\"Content-Length\": len(wire), \"body\": wire} 또는 content_length(wire)를 호출하세요."
+      }
+    ],
+    "limitations": "제공된 코드 범위 내에서만 검토했습니다. 다른 호출부나 HTTP 전송 계층은 확인하지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 6,
+        "outcome": "FINDING",
+        "observation": "비ASCII 문자열에서 Content-Length가 인코딩된 바이트 수가 아닌 문자 수로 계산되어 프로토콜 계약을 위반합니다."
+      }
+    ]
+  },
+  "input_tokens": 3371,
+  "output_tokens": 473,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "3cf772e805bc46e5b3ed4c48eb7a5c1a5cbc20891ae67579a2c0ac828dea27ef",
+  "elapsed_seconds": 8.375
+}

@@ -1,0 +1,15 @@
+{
+  "key": "B0-0e12161a3613-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:33.244385+00:00",
+  "input_hash": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "system_hash": "b0cc55fbe27d3e2ba42428640923e967313c9addbeb347dfa1635650971f6b81",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인은 Integer.compare를 사용한 비교 연산으로, 요구된 비교 계약(음수/0/양수)을 정확히 만족합니다. 구체적 결함 경로가 보이지 않아 보고할 항목이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 코드는 단일 정적 비교 메서드뿐이며 호출자, 입력 범위, 오버플로 관련 계약은 제공되지 않았습니다. Integer.compare는 int 범위에서 계약을 만족하므로 추가 검증 경계는 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 3, \"outcome\": \"NO_FINDING\", \"observation\": \"Integer.compare(left, right)는 left<right에서 음수, 동일 시 0, 그 외 양수를 반환하여 명시된 비교 계약을 그대로 만족합니다.\"}]}",
+  "input_tokens": 3297,
+  "output_tokens": 218,
+  "seconds": 1.797
+}

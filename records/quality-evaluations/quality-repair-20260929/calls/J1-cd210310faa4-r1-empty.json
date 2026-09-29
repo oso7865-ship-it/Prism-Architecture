@@ -1,0 +1,15 @@
+{
+  "key": "J1-cd210310faa4-r1-empty",
+  "arm": "J1",
+  "phase": "empty",
+  "at": "2026-09-29T10:20:24.539582+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄(3행)은 null 삼항 연산으로 null을 \\\"\\\"로, 그 외에는 trim() 결과를 반환합니다. 계약과 일치하며 구체적 결함 경로가 보이지 않습니다.\", \"issues\": [], \"limitations\": \"호출자와 name 인자의 실제 입력 범위는 제공되지 않았습니다. 정적 분석 경고도 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"3행의 null 검사 후 trim() 호출은 단락 평가상 null일 때 trim이 실행되지 않아 NPE 경로가 없고, 계약(공백 제거)과 일치합니다.\"}]}",
+  "input_tokens": 4426,
+  "output_tokens": 169,
+  "seconds": 1.546
+}

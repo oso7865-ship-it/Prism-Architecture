@@ -1,0 +1,77 @@
+{
+  "case": "2cdf3efa43ff",
+  "repeat": 2,
+  "arm": "C4",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 곱셈 오버플로로 long 반환에서 곱이 보존되지 않습니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count가 각각 100000인 경우(둘 다 nonnegative int이고 수학적 곱 10000000000이 long 범위에 들어감)",
+        "consequence": "amount=100000, count=100000일 때 int 곱셈이 먼저 수행되어 1410065408이 반환되고, 계약이 요구하는 정확한 곱 10000000000이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 오버플로로 long 반환에서 곱이 보존되지 않습니다",
+        "evidence": "f1:3은 두 int 매개변수를 곱해 long으로 반환하지만, path_observations에서 amount=100000, count=100000일 때 operation_bits=32, returned_long=1410065408, mathematical_product=10000000000, preserves_product=false로 기록되어 int 오버플로가 확인됩니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 승격하세요. 예: return (long) amount * count; — 이 변경은 0, 3*4 등 제공된 성공 사례의 결과를 그대로 유지합니다.",
+        "file_path": "Price.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "ca143432c40bbd3d5569a05becfa62fb9804d4543b23c4783fbd846a4e221e7d"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Price.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "FINDING",
+          "observation": "3줄의 int*int 곱셈이 long 반환 전에 32비트로 오버플로되어, 계약이 요구하는 정확한 곱이 보존되지 않는 경로가 확인됩니다.",
+          "file_path": "Price.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398"
+}

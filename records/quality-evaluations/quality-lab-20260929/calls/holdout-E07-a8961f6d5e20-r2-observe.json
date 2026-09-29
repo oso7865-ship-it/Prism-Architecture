@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-a8961f6d5e20-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:19.229592+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "862bdf0617fc7807aa3b0947ded1ce6e296f0e9b99649ae770f56622292bbc9b",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "query accepts a single argument user_id and returns a tuple of (SQL string, empty parameter tuple).",
+      "The changed line concatenates user_id directly into the SQL text instead of using a placeholder.",
+      "The returned parameter tuple is empty, so the driver receives no bound values for the query.",
+      "The behavior contract states the caller passes the returned SQL and tuple to a DB-API driver using %s placeholders.",
+      "The contract states user_id is untrusted text, and the probe call supplies '0 OR 1=1' as input.",
+      "No authorization or ownership check on user_id appears in the shown function body."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c1cfe2c3ca063493c4caab4bd1f8c116c8384c7a300407d019037245220496a0",
+  "input_tokens": 327,
+  "output_tokens": 133,
+  "elapsed_seconds": 1.359
+}

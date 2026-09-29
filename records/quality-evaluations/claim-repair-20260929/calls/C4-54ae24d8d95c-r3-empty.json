@@ -1,0 +1,12 @@
+{
+  "key": "C4-54ae24d8d95c-r3-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:03:00.620395+00:00",
+  "input_hash": "98a016d1a8706f2a08be80d73404ebb89a68bf32c3af443c3b08235cbaa5d96a",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"변경된 라인 10은 `verify is True or verify is None` 조건에서 환경변수 CA 번들 경로를 우선 적용하고, 빈 문자열은 `or` 체인으로 무시되어 기존 `verify` 값을 유지합니다. 제공된 계약과 5개 경로 관찰이 모두 일치하며, 병합 로직도 명시적 False와 None 처리를 보존합니다.\",\"issues\":[],\"limitations\":\"`env`가 dict 이외의 매핑이거나 값이 문자열이 아닌 경우, 그리고 `merge_setting`의 외부 호출자는 제공되지 않아 검토 범위 밖입니다. 테스트는 정적 투영이며 실행하지 않았습니다.\",\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"NO_FINDING\",\"observation\":\"라인 10의 `or` 체인이 빈 문자열 CA 번들을 무시하고 기존 verify를 유지함을 확인했고, 제공된 5개 계약 케이스와 모두 일치합니다.\"}]}",
+  "input_tokens": 4611,
+  "output_tokens": 233,
+  "seconds": 2.203
+}

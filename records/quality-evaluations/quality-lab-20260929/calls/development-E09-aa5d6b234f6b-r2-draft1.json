@@ -1,0 +1,54 @@
+{
+  "key": "development-E09-aa5d6b234f6b-r2-draft1",
+  "arm": "E09",
+  "phase": "draft1",
+  "at": "2026-09-29T07:15:28.744563+00:00",
+  "system_sha256": "c6c2f3949c622c959a0a947a32736254b8cf8565b1325665cfd292c79b4bd219",
+  "payload_sha256": "dd6012858cbeb48d8780c1f0a147ff91e904a28a32d3664beef3e32070bd13b9",
+  "input_bytes": 624,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 명시적 버킷을 넘기지 않는 호출은 기본 리스트 객체를 공유하므로 호출 간 상태가 누적됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본값 리스트가 함수 정의 시 한 번만 생성되어 모든 생략 호출이 같은 객체를 공유하므로, 두 번째 호출의 반환값에 첫 번째 항목까지 누적됩니다.",
+        "assumptions": [],
+        "title": "기본 버킷이 호출 간에 공유되어 이전 항목이 누적됩니다",
+        "evidence": "1줄의 bucket=[]는 함수 정의 시점에 한 번 평가되어 기본 객체로 재사용되고, 2줄의 append가 그 공유 객체를 변경한 뒤 3줄에서 그대로 반환합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 만들도록 처리하세요."
+      }
+    ],
+    "limitations": "제공된 세 줄만 검토했으며 테스트를 실행하지 않았습니다. 명시적 버킷을 넘기는 호출의 의도는 계약 설명에 근거해 문제로 보지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1], [1, 2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9, 3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "261882ca48acac47068ce7d4ef8640f84e15a035a9cf36c96396e19c2aabb27a",
+  "input_tokens": 5223,
+  "output_tokens": 389,
+  "elapsed_seconds": 2.563
+}

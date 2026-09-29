@@ -1,0 +1,12 @@
+{
+  "key": "F3-5e22872c605b-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:05:33.085656+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 계약(n은 음이 아닌 정수, n=0이면 [], 양수 n이면 [0])과 실제 반환값을 비교했습니다. n=0과 양수 n에 대해 계약을 만족하므로 코드 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"n이 음수인 경우는 계약상 유효 입력이 아니므로 판단 대상에서 제외했습니다. 호출자나 다른 파일은 제공되지 않아 확인하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 n=0일 때 [] , 양수 n일 때 [0]을 요구한다. range(0, n, max(n,1))는 n=0이면 [], n>0이면 [0]을 반환해 계약을 만족한다.\"}]}",
+  "input_tokens": 3588,
+  "output_tokens": 207,
+  "seconds": 1.906
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-be9f4577979e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:14.844971+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 collect 함수는 bucket 기본값을 None으로 두고 호출 시점에 새 리스트를 생성하므로, 가변 기본 인자 공유 문제 없이 계약(생략 시 새 bucket, 명시 시 in-place 수정)을 만족합니다. 변경된 라인에서 지원 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"collect의 호출자와 반환값 사용 방식은 제공되지 않아, 명시적 bucket 전달 시의 in-place 수정이 호출자 기대와 일치하는지는 확인 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"bucket=None 기본값과 None 검사 후 새 리스트 생성으로 생략 호출마다 독립 bucket이 만들어지며, 명시된 계약과 일치합니다.\"}]}",
+  "input_tokens": 3393,
+  "output_tokens": 204,
+  "seconds": 1.875
+}

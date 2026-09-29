@@ -1,0 +1,12 @@
+{
+  "key": "F3-381b3006774b-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:03:35.101772+00:00",
+  "input_hash": "02657f34a5f2269c4f752e90075c3495514f7618b47a2649f4afc1be68ea7a56",
+  "system_hash": "5d0b65565f6b6110269eac27672e595479de9e18ceb10059057c02d8a2d82c76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 음수일 때 normalize는 Math.max(value, 0)인 0이 아니라 원본 음수 value를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄에서 adjusted에 Math.max(value, 0)를 계산하지만 4줄은 value를 반환하여, 계약이 요구하는 조정값이 반환되지 않습니다.\"}]}",
+  "input_tokens": 4542,
+  "output_tokens": 150,
+  "seconds": 1.25
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-65d1d2fad0d4-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:39.893788+00:00",
+  "input_hash": "1da48126dfece5048bb8be55ee90c24021fcfba15c57a2e025188671a59e98f1",
+  "system_hash": "ad69f28120867ff33cf1760c6a79fb1cc93825df39ba5dac011fc0f0e1d16a04",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left - right가 int 범위를 넘으면 오버플로로 반환값의 부호가 뒤집혀, left > right인 경우에도 음수가 반환되어 비교 계약(부호 규칙)이 위반됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"compare가 int 뺄셈을 그대로 반환해 오버플로 시 부호 계약이 깨질 수 있습니다.\"}]}",
+  "input_tokens": 4026,
+  "output_tokens": 151,
+  "seconds": 1.016
+}

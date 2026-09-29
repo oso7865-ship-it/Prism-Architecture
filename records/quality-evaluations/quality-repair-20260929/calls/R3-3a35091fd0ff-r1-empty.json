@@ -1,0 +1,15 @@
+{
+  "key": "R3-3a35091fd0ff-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:54.779832+00:00",
+  "input_hash": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "system_hash": "14f404346b21e2ce7104b7a1b9a36b94f9039de30ec79811f416cf71c4eef0a3",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 변경 라인은 소유자 검증 후 금액을 반환하는 짧은 함수입니다. load가 항상 객체를 반환하는 관련 구현이 제시되어 있어 null 역참조 경로는 확인되지 않으며, 보안 관점에서 지원되는 결함은 없습니다.\",\"issues\":[],\"limitations\":\"load의 실제 구현은 관련 구현으로만 제시되어 있고, 다른 호출자나 id=7 외 입력에 대한 동작은 제공되지 않았습니다. 인증/인가의 상위 계층과 actor 값의 출처는 확인할 수 없습니다.\",\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"NO_FINDING\",\"observation\":\"load(id) 결과의 owner와 actor를 비교해 불일치 시 예외를 던지고, 일치 시 amount만 반환하는 접근 제어 흐름을 확인했습니다. 제공된 범위에서 우회나 정보 노출 경로는 보이지 않습니다.\"}]}",
+  "input_tokens": 3543,
+  "output_tokens": 222,
+  "seconds": 2.062
+}

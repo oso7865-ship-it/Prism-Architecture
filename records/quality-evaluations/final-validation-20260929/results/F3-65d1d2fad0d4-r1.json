@@ -1,0 +1,77 @@
+{
+  "case": "65d1d2fad0d4",
+  "repeat": 1,
+  "arm": "F3",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 뺄셈 비교가 오버플로로 부호를 뒤집습니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right가 int 범위에서 부호가 다르고 그 차이가 int 범위를 벗어나는 경우(예: left = Integer.MIN_VALUE, right = 1)",
+        "consequence": "left = Integer.MIN_VALUE, right = 1일 때 left - right가 int 오버플로로 양수가 되어, left < right임에도 비교기가 양수를 반환해 계약의 부호가 뒤집힙니다.",
+        "assumptions": [],
+        "title": "int 뺄셈 비교가 오버플로로 부호를 뒤집습니다",
+        "evidence": "3줄은 left - right를 그대로 반환합니다. Java int 뺄셈은 int 범위에서 수행되므로 MIN_VALUE - 1 같은 차이가 오버플로되어 부호가 반전됩니다.",
+        "suggestion": "Integer.compare(left, right)를 반환하도록 바꾸면 오버플로 없이 계약의 부호를 보존합니다.",
+        "file_path": "Order.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "119faa7783f0d5db35eea10a1d0b3817aebaa1dfc2660da4d4e7bbdf81d74d14"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Order.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "FINDING",
+          "observation": "compare가 left - right를 반환해 int 오버플로 시 부호가 뒤집힐 수 있음. Integer.compare 사용이 계약 부호를 보존함.",
+          "file_path": "Order.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b"
+}

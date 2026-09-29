@@ -149,3 +149,26 @@ ADR-REVIEW-006 이후 result는 issues/questions/classification 및 확장 cover
 ADR-REVIEW-010: call_attempts CHECK를0..2로 완화하는 migration0008. result.verification은 CHECKED/NO_CANDIDATES와 kept/revised/dropped 집계다. 검증 장애는 FAILED, 초안은 미보관. 관측 사용량은 두 호출 합계이며 실패 시 첫 호출의 관측값을 보존한다. 이전 결과에 필드가 없으면 재검증으로 표시하지 않는다.
 
 ADR-REVIEW-011: 신규 빈 초안은 두 번째 호출을 필수로 하며 result.verification.status=EMPTY_RECHECKED와 file_checks 배열을 보관한다. 각 항목은 file_id/file_path/line/outcome(FINDING/NO_FINDING/LIMITED)/observation(최대240자)다. 이는 간단한 검토 결과이며 소스나 숨은 추론은 보관하지 않는다. CHECKED의 집계는 유지하고 과거 NO_CANDIDATES는 소급 변경하지 않는다. DB DDL 변경은 없다.
+
+## 목적별 리뷰 — migration0009
+
+ReviewRun.purpose varchar16 NOT NULL DEFAULT CODE, CHECK(CODE/SECURITY/STANDARDS). ReviewRun.standard_versions JSONB NOT NULL DEFAULT []는 고정한 StandardVersion UUID 문자열 목록이며 물리 FK는 없다. 목적/문서 버전 목록을 실행 키에 포함한다. 과거 row/result의 내용은 변경하지 않고 CODE 기본값만 제공한다. 새 결과는 purpose, 팀 규칙 결과는 standards/standard_sources/standard_checks를 추가한다. AI 항목 citations는 허용된 문서/버전/섹션 제목 메타데이터이며 원문은 넣지 않는다.
+
+[팀 문서](../../domain/standards/README.md)의 스키마가 신규 두 테이블을 정의한다. 다운그레이드는 새 문서나 CODE 이외의 리뷰가 남으면 원자적으로 거부하여 데이터 손실을 막는다.
+
+
+## ADR-REVIEW-013 — 결과 보강, DDL 변경 없음
+
+verification.CHECKED는 added와 file_checks를 추가한다. 첫 출력 형식 실패를 독립 재검토로 복구하면 OUTPUT_RECOVERED, 빈 초안 재검토는 EMPTY_RECHECKED다. file_checks.line은 서버가 선택한 대표 변경 줄이며 issue.evidence_lines와 별개다. 구형 필드는 그대로 읽고 결과를 소급 변경하지 않는다.
+
+issue.suggestion_check는 status(NOT_VERIFIED/SOURCE_MISMATCH/PRESERVES_SAMPLES/CHANGES_SUCCESSFUL_SAMPLES), samples, 선택 counterexamples(inputs/before/after 최대2개), scope, inferred_from_text를 갖는다. 이는 서버가 작성한 제한 예시의 값 비교이며 대상 프로그램 실행 결과가 아니다. 파일 원문과 before/after 소스 식은 저장하지 않는다.
+
+coverage.context_supplement는 file_id/symbol/status(ADDED/ALREADY_PROVIDED/UNAVAILABLE/SYMBOL_NOT_PROVIDED/SOURCE_MISMATCH/FILE_TOO_LARGE/BUDGET_LIMIT)다. 독립 security_evidence는 rule_id/file_id/file_path/line/source_line/evidence_lines/severity/title/detail. AI 실패 시에도 권한이 유지되면 FAILED 상태와 별도 보안 신호 부분 결과를 제공할 수 있다. 부분 결과의 summary·limitations는 AI 미완료를 명시한다. UI가 실패를 정상0건으로 표현하면 안 된다.
+
+## ADR-REVIEW-014 — 설명 출처와 제안 차단, DDL 변경 없음
+
+공급자 출력의 선택적 contract_quote(최대240자)는 제공된 코드/문서/평가 계약과 정확히 대조하며 result 저장 전에 제거한다. SUPPORTED/NEEDS_CONTEXT와 assumptions·severity 관계는 기존 런타임 검증 외에 JSON Schema 조건으로도 게시한다.
+
+issue.suggestion_check.withheld=true는 제한 예시에서 기존 성공값 변경을 찾아 suggestion을 안전한 확인 안내로 바꿨음을 뜻한다. 반례/결함은 보존한다. 필드가 없다고 제안이 검증된 것은 아니다.
+
+issue.origin=STATIC_PROJECTION은 제공된 순수 코드와 단언의 제한 계산 차이를 서버가 설명한 항목이다. 일반 AI 항목에는 이 필드가 없다. result.grounding은 status=BOUNDED, findings(추가/교체한 항목 수), omitted(결과 공간 부족으로 표시하지 못한 후보 수)다. 이는 전체 파일·입력의 검사율이 아니며 계산의 다른 상한에서 제외한 범위를 모두 세지는 않는다. verification의 kept/revised/dropped/added는 모델 검증 단계 집계이고 grounding과 별개다. 코드 원문·단언 인자·비어 있지 않은 문자열 값은 저장하지 않고 값의 유형/빈 값/정수·불리언과 줄·분기만 표시한다. 과거 결과 필드 부재를 그대로 허용한다.

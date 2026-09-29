@@ -1,0 +1,52 @@
+{
+  "key": "adaptive_holdout-E14-65d1d2fad0d4-r1-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:02.635101+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "8e66a7ec56208b5c48fd53ac882b621af7265751037d8f26fd87349c12a5b02b",
+  "input_bytes": 716,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "정수 비교를 뺄셈으로 구현한 변경을 검토했습니다. 일반적인 값에서는 부호가 계약을 만족하지만, 뺄셈이 int 범위를 넘는 경우 부호가 뒤집힙니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left가 Integer.MIN_VALUE이고 right가 양수인 경우처럼 left - right가 int 범위를 초과할 때",
+        "consequence": "뺄셈 결과가 오버플로되어 부호가 뒤집히므로 left < right인데도 양수가 반환되어 비교 계약(음수/0/양수)이 위반됩니다.",
+        "assumptions": [],
+        "title": "뺄셈 비교가 오버플로로 부호를 뒤집습니다",
+        "evidence": "3줄에서 left - right를 그대로 반환하며, int 뺄셈은 범위를 넘으면 오버플로됩니다.",
+        "suggestion": "Integer.compare(left, right)를 사용하거나 long으로 승격한 뒤 부호를 반환하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d5a0da724bd43a7829f0e2829d6d66b8144365d1b598cca86eb518a7ff95671d",
+  "input_tokens": 5346,
+  "output_tokens": 340,
+  "elapsed_seconds": 2.375
+}

@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-4d95d35835a5-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:02.719077+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "e2a8f742cc4599e9fd235b448f69f871837fad06ab03382f7b33ed894b07dbf5",
+  "input_bytes": 435,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a single Python file f1 with a two-line function `callbacks`; only line 2 is marked changed.",
+      "Line 2 builds a list of three lambdas via a list comprehension over `range(3)`.",
+      "The lambdas close over the comprehension variable `i` rather than binding its per-iteration value.",
+      "The stated behavior contract expects each callback to return the index captured at creation time.",
+      "Probe p1 invokes each returned callback and collects results, exercising the closure behavior.",
+      "No static findings are reported and no authorization or state-mutation boundaries appear in the supplied source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "134fbf843522eef200e6fcd7c60a8c3618974cbf4f4bdcf128b04361a76673f7",
+  "input_tokens": 294,
+  "output_tokens": 132,
+  "elapsed_seconds": 1.344
+}

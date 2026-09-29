@@ -1,0 +1,12 @@
+{
+  "key": "F0-09820d36b31f-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:29.180533+00:00",
+  "input_hash": "c1fa013fdfa75a79c0119efa303ae90706100a07ef825dc52b4f88e8bc12286a",
+  "system_hash": "3888e9ae7efcd79252fa1c0545ea05c84c232b41cbeb5d36fc825b24b50b95fe",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"scale(3)을 호출하면 2줄에서 scaled=6이 계산되지만 3줄이 value를 반환하므로 3이 반환되어, 계약이 요구한 입력의 두 배가 아닌 원래 입력값이 호출자에게 전달됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄에서 value*2를 scaled에 저장하지만 3줄은 value를 반환하여, 'Return double the input' 계약과 달리 원래 입력값이 반환됩니다.\"}]}",
+  "input_tokens": 4326,
+  "output_tokens": 168,
+  "seconds": 1.406
+}

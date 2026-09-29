@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-0c47bb65c1ee-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:13.532522+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "f8217ab6daaa6ba7ffcad52aeb7c62183bae612251960dd1ad34592eef6484ea",
+  "input_bytes": 590,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a function `adjust(base)` where `base` is expected to contain a nested dictionary under key 'nested'.",
+      "Line 2 was changed to `result = base.copy()`, a shallow copy that duplicates only the top-level mapping.",
+      "Line 3 mutates `result['nested']['limit']` to 9; because the copy is shallow, this also mutates the caller's nested dictionary.",
+      "Line 4 returns `base['nested']['limit']`, reading from the original input rather than the local `result`.",
+      "The stated behavior contract requires preserving the caller's `base` without mutation, which the shallow copy does not satisfy for nested structures.",
+      "Probe call `adjust({'nested': {'limit': 1}})` would mutate the caller's nested dict and return 9."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "dea383843c23be27abf3cd22b94098c8bb819d5afa136c2adaf1f1ec9c9e3e06",
+  "input_tokens": 346,
+  "output_tokens": 175,
+  "elapsed_seconds": 1.375
+}

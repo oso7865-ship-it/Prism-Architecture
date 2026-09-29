@@ -1,0 +1,12 @@
+{
+  "key": "C4-2cdf3efa43ff-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:02:56.542880+00:00",
+  "input_hash": "fc15a82065d429794d05c8477e075692651d4cca82aebfacb831ca68665c560d",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount=100000, count=100000처럼 두 int의 곱이 int 범위를 넘지만 long 범위에는 들어가는 입력에서 int 곱셈이 먼저 수행되어 1410065408이 반환되고, 계약이 요구한 정확한 곱 10000000000은 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 int 곱셈이 long 반환 변환 전에 수행되어, 계약상 long 범위에 들어가는 곱도 int 범위를 넘으면 잘린 값이 반환됩니다.\"}]}",
+  "input_tokens": 4737,
+  "output_tokens": 196,
+  "seconds": 1.406
+}

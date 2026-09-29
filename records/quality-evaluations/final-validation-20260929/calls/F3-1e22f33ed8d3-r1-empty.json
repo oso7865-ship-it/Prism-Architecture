@@ -1,0 +1,12 @@
+{
+  "key": "F3-1e22f33ed8d3-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:06:00.432848+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length는 str이면 UTF-8 인코딩 후 바이트 수를, bytes면 그대로 길이를 반환하므로 계약(Content-Length = 전송 UTF-8 바이트 수, bytes 재인코딩 금지)을 만족한다. 테스트의 모든 입력에서 prepare의 body와 Content-Length가 일치한다. 제공된 변경 라인에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 외부 호출자와 실제 전송 계층은 제공되지 않아 검토 범위 밖이다. 테스트는 정적 라인으로만 확인했으며 실행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"line 2는 str이면 UTF-8 인코딩 길이, bytes면 원래 길이를 반환해 계약과 일치한다. line 5-6도 동일 규칙으로 body와 Content-Length를 만들어 테스트 입력 전부에서 일치한다.\"}]}",
+  "input_tokens": 3732,
+  "output_tokens": 243,
+  "seconds": 1.75
+}

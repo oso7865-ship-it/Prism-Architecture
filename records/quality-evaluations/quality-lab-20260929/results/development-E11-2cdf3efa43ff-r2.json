@@ -1,0 +1,71 @@
+{
+  "key": "development-E11-2cdf3efa43ff-r2",
+  "case": "2cdf3efa43ff",
+  "arm": "E11",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "int 타입 두 값을 곱한 뒤 long으로 확장하는 변경으로, 계약상 long 범위 내에 들어야 하는 곱셈 결과가 int 연산에서 먼저 오버플로될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 Integer.MAX_VALUE를 초과할 때(예: total(50000, 50000))",
+        "consequence": "곱셈이 32비트 int로 수행되어 오버플로된 값이 계산된 뒤 long으로 확장되므로, long에 정확히 담기는 곱(2,500,000,000)이 잘못된 값으로 반환됩니다.",
+        "assumptions": [],
+        "title": "int 곱셈 후 확장으로 long 정밀도 손실",
+        "evidence": "3줄에서 두 int 피연산자를 그대로 곱하고, 2줄의 long 반환 타입으로의 확장은 곱셈 이후에만 일어납니다. 계약은 곱이 long에 정확히 보존되어야 한다고 명시합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 캐스팅하여(예: (long) amount * count) long 정밀도로 곱셈이 수행되게 하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스와 변경 라인만 검토했으며 실행 검증은 하지 않았습니다. 호출부와 입력 검증 계층은 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5951,
+  "output_tokens": 640,
+  "elapsed_seconds": 4.781,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,76 @@
+{
+  "key": "diagnostic-P0-b07fc52f42ca-r1",
+  "case": "b07fc52f42ca",
+  "arm": "P0",
+  "repeat": 1,
+  "split": "diagnostic",
+  "output": {
+    "summary": "limit 함수가 count를 반환하되 null/undefined일 때만 기본값 10을 사용하도록 변경되었습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count가 0인 상태로 limit을 호출할 때",
+        "consequence": "0이 falsy로 평가되어 기본값 10이 반환되므로, 유효한 설정값 0이 무시됩니다.",
+        "assumptions": [],
+        "title": "0이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 0을 falsy로 처리하여 기본값을 반환합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하려면 `count ?? 10`을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5184,
+  "output_tokens": 365,
+  "elapsed_seconds": 6.0
+}

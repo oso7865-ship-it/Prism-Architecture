@@ -1,0 +1,35 @@
+{
+  "key": "development-E11-be9f4577979e-r1-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:14:17.282204+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "2ab23a7ce0f5230adaf5c65dac9303fc6956291fb6ec9c7549d4b52fa2210a2d",
+  "input_bytes": 1588,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자 None을 사용해 호출마다 새 리스트를 생성하는 collect 함수 변경을 검토했습니다. 제공된 범위에서 계약과 일치하는 동작이며 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수 본체만 검토했으며 호출부, 입력 타입 계약, 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "4ed151d1072247712e9f8495378c676642c4435c2aba8da3398d2e4a086a8c30",
+  "input_tokens": 5418,
+  "output_tokens": 153,
+  "elapsed_seconds": 1.391
+}

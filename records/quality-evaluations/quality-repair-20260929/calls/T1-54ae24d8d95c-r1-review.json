@@ -1,0 +1,15 @@
+{
+  "key": "T1-54ae24d8d95c-r1-review",
+  "arm": "T1",
+  "phase": "review",
+  "at": "2026-09-29T10:21:18.749723+00:00",
+  "input_hash": "697d30c43f7969376c77cea7617620b1c97473ebd827e132b5914631867af52e",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경 변수 CA 번들 조회 로직이 변경되었고, merge_setting과 테스트가 함께 제공되었습니다. 변경 라인 10의 or 체인과 빈 문자열 처리, 그리고 verify=False 경로를 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,18],\"trigger\":\"verify가 False가 아닌 값(True 또는 None)이고 env에 REQUESTS_CA_BUNDLE 또는 CURL_CA_BUNDLE이 비어 있지 않은 문자열로 설정된 경우\",\"consequence\":\"10줄에서 환경 변수 값이 verify를 덮어씁니다. 그 결과 18줄처럼 verify=False로 명시적 검증 비활성을 요청해도 환경 변수가 설정되어 있으면 검증이 활성화되어, 명시적 False가 무시됩니다.\",\"assumptions\":[],\"title\":\"환경 변수가 명시적 verify=False를 덮어씁니다\",\"evidence\":\"10줄은 verify가 True 또는 None일 때만 env 값을 반영하지만, 18줄 테스트는 verify=False와 CURL_CA_BUNDLE 설정 시 False를 기대합니다. 10줄의 조건은 False를 제외하므로 이 경로는 환경 변수 값이 반영되지 않아야 하나, 조건이 True/None일 때 env 값이 verify를 대체하는 구조입니다.\",\"suggestion\":\"verify=False가 명시적으로 전달된 경우 환경 변수로 덮어쓰지 않도록 조건을 확인하고, False 경로가 유지되는지 테스트로 고정하세요.\"}],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 실제 requests 동작은 제공되지 않았습니다.\"}",
+  "input_tokens": 5245,
+  "output_tokens": 418,
+  "seconds": 2.891
+}

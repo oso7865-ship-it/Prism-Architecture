@@ -1,0 +1,12 @@
+{
+  "key": "C1-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:39:51.618747+00:00",
+  "input_hash": "1cb3b9d388a25bf2525ae2e2c129e542741f22ecaaea233b684558b1378d7831",
+  "system_hash": "7391638facc4b8fc91991b9bd7453570414a9119cbbd6d702e99c2fedc140820",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings 10줄이 REQUESTS_CA_BUNDLE/CURL_CA_BUNDLE 조회를 or 결합으로 변경한 부분을 검토했습니다. 제공된 테스트 계약과 merge_setting 흐름을 대조했을 때, 빈 문자열 환경값이 검증 설정을 덮어쓰는 경로가 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE이 빈 문자열로 존재하고 verify가 True(또는 None)인 상태로 environment_settings를 호출할 때\",\"consequence\":\"10줄의 or 연산이 빈 문자열을 falsy로 평가해 verify에 빈 문자열이 대입되고, 11줄 merge_setting에서 session_verify가 None이면 빈 문자열이 그대로 반환되어 명시적 검증 True가 유지되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 환경값이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 env.get(...) or env.get(...) 결과를 verify에 재대입합니다. 15줄 테스트는 CURL_CA_BUNDLE이 빈 문자열일 때 True를 기대하지만, or는 빈 문자열을 선택하므로 11줄 merge_setting(verify, session_verify)에 빈 문자열이 전달됩니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 조회 결과가 비어 있을 때 기존 verify 값을 유지하도록 조건을 명시하고, 15·16줄 계약이 그대로 성립하는지 확인하세요.\"}],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 실제 호출자와 session_verify 기본값 사용 맥락은 제공되지 않았습니다.\"}",
+  "input_tokens": 5514,
+  "output_tokens": 446,
+  "seconds": 2.953
+}

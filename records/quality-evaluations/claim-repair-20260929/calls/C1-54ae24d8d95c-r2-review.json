@@ -1,0 +1,12 @@
+{
+  "key": "C1-54ae24d8d95c-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T11:39:56.079718+00:00",
+  "input_hash": "697d30c43f7969376c77cea7617620b1c97473ebd827e132b5914631867af52e",
+  "system_hash": "7391638facc4b8fc91991b9bd7453570414a9119cbbd6d702e99c2fedc140820",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 verify가 True/None일 때 환경 변수 CA 번들 값을 우선 적용하도록 변경된 부분을 검토했습니다. 빈 문자열 환경 변수는 or 체인에서 건너뛰고 원래 verify 값이 유지되며, merge_setting이 None 세션 값을 True로 복원하므로 제공된 계약과 테스트가 일관됩니다.\",\"issues\":[],\"limitations\":\"제공된 HEAD 라인만 검토했으며 실행 결과는 확인하지 않았습니다. env 딕셔너리의 실제 생성 경로와 merge_setting 호출자의 다른 사용처는 제공되지 않았습니다.\"}",
+  "input_tokens": 5227,
+  "output_tokens": 146,
+  "seconds": 1.5
+}

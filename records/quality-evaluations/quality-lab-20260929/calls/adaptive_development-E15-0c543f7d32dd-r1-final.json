@@ -1,0 +1,52 @@
+{
+  "key": "adaptive_development-E15-0c543f7d32dd-r1-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:40.659652+00:00",
+  "system_sha256": "285b3f8c2edc3ec1b9c15f0e79b8d5dbb6b301eb1afa2190a331c6504ad69dd2",
+  "payload_sha256": "424f191114cd67a6fa5759703ed1c534b31300ddcf3c4bc41572095d1bb6116f",
+  "input_bytes": 595,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 여부를 판정하는 변경을 검토했습니다. 문자열 접두사 비교는 경로 경계를 구분하지 못해 형제 디렉터리가 허용될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "resolved가 root로 시작하지만 경로 경계를 공유하지 않는 값(예: root='/srv/app', resolved='/srv/application/key')일 때",
+        "consequence": "startswith가 참을 반환하여 root의 하위가 아닌 경로가 허용되고, 경로 기반 접근 제어가 우회됩니다.",
+        "assumptions": [],
+        "title": "경로 접두사 비교로 인접 디렉터리가 허용됩니다",
+        "evidence": "2줄은 resolved.startswith(root)만 검사하므로 '/srv/application/key'가 '/srv/app' 접두사를 만족해 True가 됩니다. 경계 문자('/') 검사가 없습니다.",
+        "suggestion": "root와 정확히 같거나 root + '/'로 시작하는 경우만 허용하도록 경계를 명시하세요(예: resolved == root or resolved.startswith(root + '/'))."
+      }
+    ],
+    "limitations": "permitted의 호출부와 root/resolved 생성 경로는 제공되지 않아 실제 도달 가능한 입력 범위는 확인하지 못했습니다. 테스트는 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "5e8c3d3b0b531a9c03d3db2d30545abacd9db30657d6c7895784f8a73a07ddc0",
+  "input_tokens": 5639,
+  "output_tokens": 390,
+  "elapsed_seconds": 2.641
+}

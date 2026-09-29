@@ -1,0 +1,12 @@
+{
+  "key": "F3-ab8f4435d732-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:12.423551+00:00",
+  "input_hash": "6dfe9947a2ba1802c012a78503f2d63960d9f08e94ae3125a7aedfd84465a935",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"settings['limits']가 중첩 딕셔너리일 때, 3줄의 대입이 원본 settings['limits']['cap']을 12로 바꾸고 4줄은 12를 반환합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"얕은 복사 후 공유된 중첩 딕셔너리를 수정해 호출자 상태가 변경되고, 반환값도 변경된 12가 됩니다.\"}]}",
+  "input_tokens": 4508,
+  "output_tokens": 147,
+  "seconds": 1.234
+}

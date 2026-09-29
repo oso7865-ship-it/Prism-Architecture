@@ -1,0 +1,68 @@
+{
+  "key": "development-E01c-90900a02e0f4-r2-final",
+  "arm": "E01c",
+  "phase": "final",
+  "at": "2026-09-29T07:13:22.534023+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name이 null일 때 trim을 호출하고, null이 아닐 때는 빈 문자열을 반환하도록 조건이 뒤바뀐 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출할 때",
+        "consequence": "name == null이 참이므로 null.trim()이 실행되어 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 분기에서 null을 역참조해 NPE가 발생합니다",
+        "evidence": "3줄의 삼항 연산자는 name == null일 때 name.trim()을 선택하므로 null 역참조가 확정됩니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null일 때 빈 문자열을, 그 외에는 trim 결과를 반환하도록 하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 null이 아닌 값을 전달할 때",
+        "consequence": "조건이 거짓이 되어 trim이 수행되지 않고 빈 문자열이 반환되므로 공백 제거 계약이 위반됩니다.",
+        "assumptions": [],
+        "title": "null이 아닌 입력에서 trim이 실행되지 않습니다",
+        "evidence": "3줄은 name != null인 경우 \"\"를 반환하므로 비-null 입력의 trim 결과가 버려집니다.",
+        "suggestion": "비-null 분기에서 name.trim()을 반환하도록 두 분기의 결과를 서로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e27a409149fb8589d2d8ebde3ebeaf3126d68af083aa98b1efa3b39a5bcd3b63",
+  "input_tokens": 5331,
+  "output_tokens": 455,
+  "elapsed_seconds": 2.656
+}

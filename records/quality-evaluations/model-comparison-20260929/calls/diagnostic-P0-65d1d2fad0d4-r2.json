@@ -1,0 +1,54 @@
+{
+  "key": "diagnostic-P0-65d1d2fad0d4-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "65d1d2fad0d4",
+  "at": "2026-09-29T08:43:19.802288+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "8e66a7ec56208b5c48fd53ac882b621af7265751037d8f26fd87349c12a5b02b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "정수 비교를 뺄셈으로 구현한 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차이가 int 범위를 벗어날 때(예: left=Integer.MIN_VALUE, right=1)",
+        "consequence": "뺄셈 결과가 오버플로되어 부호가 반전되므로 비교자 계약(음수/0/양수)을 위반합니다.",
+        "assumptions": [],
+        "title": "뺄셈 기반 비교가 정수 오버플로로 잘못된 부호를 반환합니다",
+        "evidence": "3줄의 left - right는 두 값의 차이가 int 범위를 벗어나면 오버플로되어 부호가 뒤집힙니다.",
+        "suggestion": "Integer.compare(left, right) 또는 (left < right ? -1 : left > right ? 1 : 0)을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 메서드만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5343,
+  "output_tokens": 381,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5248,
+  "response_sha256": "f1d5ba1249b15be23a24e4e3e66eeb286ea8b42279d3e5428d8b344de8d1220b",
+  "elapsed_seconds": 6.125
+}

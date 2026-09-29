@@ -1,0 +1,15 @@
+{
+  "key": "R1-6a3397085914-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:40.415051+00:00",
+  "input_hash": "5d7430c912ad0cd47d390068a37a9a285f7ffbba47d19bebe1283f82cf79b74a",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"body가 비ASCII 문자를 포함한 str이면 len(body)는 문자 수를 반환하므로, UTF-8 인코딩 시 실제 전송 바이트 수와 다른 값이 반환됩니다(예: '한' → 1, 실제 3바이트).\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"len(body)는 str 입력에서 문자 수를 반환하여 UTF-8 바이트 수 계약과 불일치합니다.\"}]}",
+  "input_tokens": 3821,
+  "output_tokens": 163,
+  "seconds": 1.265
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C1-0add10c208ec-r3-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:39:50.761688+00:00",
+  "input_hash": "37646a23d109b5c19c66a838cf2865ba2c4359344ea47c2028332c13fd4ac11a",
+  "system_hash": "6c37afb63e5f4a5763bf8ce85bf3e1c26f95854162434383526c3897d5b60964",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 (long) amount * count로, 곱셈 이전에 첫 피연산자를 long으로 승격해 int 오버플로를 방지합니다. 제공된 계약(비음수 int, 곱이 long에 정확히 표현됨)과 일치하며, 확인 가능한 결함은 없습니다.\", \"issues\": [], \"limitations\": \"제공된 범위는 Price.total 한 메서드뿐이며, 호출 지점·테스트·다른 오버로드는 제공되지 않아 실제 사용 경로와 입력 분포는 확인하지 못했습니다. 정적 분석 경고도 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"곱셈 전에 (long) 캐스팅으로 int 오버플로를 방지하며, 제공된 비음수 int 계약과 결과 보존 요구를 위반하는 경로가 보이지 않습니다.\"}]}",
+  "input_tokens": 3434,
+  "output_tokens": 230,
+  "seconds": 1.844
+}

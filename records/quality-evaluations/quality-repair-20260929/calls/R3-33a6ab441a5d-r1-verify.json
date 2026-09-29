@@ -1,0 +1,15 @@
+{
+  "key": "R3-33a6ab441a5d-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:28:02.702223+00:00",
+  "input_hash": "4765a4c68553c4483c6ca8b2154854ea32a8082c3c86edcdf9c6ef816f3cd048",
+  "system_hash": "ad69f28120867ff33cf1760c6a79fb1cc93825df39ba5dac011fc0f0e1d16a04",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"비어 있지 않은 배열에서 values.length는 마지막 유효 인덱스(length-1)보다 크므로 항상 ArrayIndexOutOfBoundsException이 발생합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"last()가 values.length를 인덱스로 사용해 비어 있지 않은 배열에서도 항상 ArrayIndexOutOfBoundsException이 발생합니다.\"}],\"new_findings\":[]}",
+  "input_tokens": 3920,
+  "output_tokens": 131,
+  "seconds": 1.063
+}

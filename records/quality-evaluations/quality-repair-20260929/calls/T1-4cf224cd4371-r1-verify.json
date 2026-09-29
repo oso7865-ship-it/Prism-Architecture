@@ -1,0 +1,15 @@
+{
+  "key": "T1-4cf224cd4371-r1-verify",
+  "arm": "T1",
+  "phase": "verify",
+  "at": "2026-09-29T10:21:52.780132+00:00",
+  "input_hash": "dcc092bf573f6b1882705409227fc818f802cef1ac66e3989893d79fc69b1097",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 4000,
+  "reasoning": "high",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"prepare(\\\"한글\\\")에서 content_length는 2(문자 수)를 반환하지만 wire는 UTF-8로 6바이트이므로 반환된 Content-Length가 실제 전송 바이트 수보다 작아지고, 11줄의 동등성 단언도 성립하지 않습니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"content_length가 str에 대해 len(body)(코드포인트 수)을 반환하고 prepare는 body를 UTF-8로 인코딩한 wire를 전송하므로, 비-ASCII 문자열에서 Content-Length가 전송 바이트 수와 불일치합니다. bytes 입력과 ASCII 입력은 일치합니다.\"}]}",
+  "input_tokens": 4239,
+  "output_tokens": 1119,
+  "seconds": 5.328
+}

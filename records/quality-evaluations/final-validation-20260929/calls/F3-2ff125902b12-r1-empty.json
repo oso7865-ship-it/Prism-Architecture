@@ -1,0 +1,12 @@
+{
+  "key": "F3-2ff125902b12-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:06:03.404526+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 content_length의 반환식(len(body)) 하나이며, 제공된 계약('bytes만 허용, 그대로 전송, len(bytes)는 이미 바이트 수')과 테스트 기대값(request[\\\"Content-Length\\\"] == len(body))을 그대로 만족합니다. UTF-8 한글 본문에 대해서도 len(body)는 바이트 수를 반환하므로 문자 수 기반 계산 오류가 없습니다. 지원 가능한 결함이 없습니다.\", \"issues\": [], \"limitations\": \"prepare의 호출자와 실제 전송 계층은 제공되지 않아 Content-Length 헤더가 실제로 어떻게 사용되는지는 확인하지 못했습니다. content_length에 bytes 이외의 입력이 전달되는 경로도 제공된 범위에서는 보이지 않습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 bytes를 그대로 전송하고 len(bytes)가 바이트 수를 센다고 명시한다. 변경된 반환식 len(body)는 이 요구와 테스트 기대값을 그대로 만족하며, 빈 입력에서도 0을 반환한다.\"}]}",
+  "input_tokens": 3703,
+  "output_tokens": 275,
+  "seconds": 2.0
+}

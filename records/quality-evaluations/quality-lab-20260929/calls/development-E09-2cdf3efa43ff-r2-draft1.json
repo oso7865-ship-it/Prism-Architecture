@@ -1,0 +1,52 @@
+{
+  "key": "development-E09-2cdf3efa43ff-r2-draft1",
+  "arm": "E09",
+  "phase": "draft1",
+  "at": "2026-09-29T07:09:01.984849+00:00",
+  "system_sha256": "fc94829c0a41b44b348c321ef5e081475c476b0a3763a60a69bf1b9a94b327f6",
+  "payload_sha256": "2cdb12609e2f08a4d015c3a57e413fba8d2317b51ba791678726db8d54292058",
+  "input_bytes": 675,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈 결과를 long으로 반환하는 total 메서드의 변경을 검토했습니다. 두 인자를 int로 곱한 뒤 long으로 확장하므로, 곱이 int 범위를 넘으면 오버플로가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 int 최대값(2147483647)을 초과할 때, 예를 들어 total(50000, 50000) 호출 시",
+        "consequence": "3줄에서 두 int를 먼저 int 곱셈으로 계산하므로 결과가 int 범위를 넘어 오버플로되고, 잘못된 값이 long으로 확장되어 반환됩니다. 50000*50000=2500000000은 int 범위를 벗어나므로 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 후 long 확장으로 큰 곱에서 오버플로가 발생합니다",
+        "evidence": "3줄은 amount * count를 int 연산으로 수행한 뒤 반환 타입 long으로 확장합니다. behavior_contract는 두 입력이 음이 아니고 정확한 곱이 long에 들어가며 보존되어야 한다고 명시하므로, int 범위를 넘는 곱은 계약을 위반합니다.",
+        "suggestion": "곱셈 전에 피연산자 중 하나를 long으로 확장하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "337019f9672af2062ff0b05bbb61bfe43a3603f58762b6d995158618cb0e75c0",
+  "input_tokens": 5367,
+  "output_tokens": 441,
+  "elapsed_seconds": 3.0
+}

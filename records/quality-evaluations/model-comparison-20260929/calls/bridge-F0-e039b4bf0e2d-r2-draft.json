@@ -1,0 +1,41 @@
+{
+  "key": "bridge-F0-e039b4bf0e2d-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "e039b4bf0e2d",
+  "at": "2026-09-29T08:40:56.607828+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "환경 변수에서 CA 번들 경로를 읽어 verify 설정과 병합하는 변경을 검토했습니다. 빈 문자열 환경 변수 처리와 관련된 동작 계약 위반 가능성이 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 10,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          10,
+          15
+        ],
+        "trigger": "env에 CURL_CA_BUNDLE 또는 REQUESTS_CA_BUNDLE 키가 빈 문자열(\"\")로 존재하고 verify가 True 또는 None일 때",
+        "consequence": "env.get(...)이 빈 문자열을 반환하고 `or` 연산이 이를 falsy로 평가하여 verify가 None이 됩니다. 이후 merge_setting(None, session_verify)에서 session_verify가 None이면 None이 반환되어 명시적 검증 True가 유지되지 않습니다.",
+        "assumptions": [],
+        "title": "빈 문자열 CA 번들 환경 변수가 명시적 verify=True를 덮어씁니다",
+        "evidence": "10줄에서 `env.get(\"REQUESTS_CA_BUNDLE\") or env.get(\"CURL_CA_BUNDLE\")`는 빈 문자열을 falsy로 처리해 None을 반환할 수 있습니다. 15줄 테스트는 빈 CURL_CA_BUNDLE에서 True를 기대하지만, session_verify가 None인 경우 merge_setting이 None을 반환할 수 있습니다.",
+        "suggestion": "빈 문자열을 유효한 미설정으로 취급하려면 `or` 대신 명시적 None/빈 문자열 검사를 사용하고, 빈 문자열일 때 verify를 True로 유지하도록 처리하세요."
+      }
+    ],
+    "limitations": "session_verify의 실제 호출 값과 merge_setting의 다른 호출 경로는 제공되지 않아 session_verify가 None인 경우만 확인했습니다. 테스트를 실행하지 않았습니다."
+  },
+  "input_tokens": 5226,
+  "output_tokens": 423,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "8401042754b73085478db932698b6ffcd1cecd656c3992e68e840750789e64f9",
+  "elapsed_seconds": 2.969
+}

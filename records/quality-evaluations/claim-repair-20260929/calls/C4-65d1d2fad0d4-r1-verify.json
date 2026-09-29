@@ -1,0 +1,12 @@
+{
+  "key": "C4-65d1d2fad0d4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:35.905520+00:00",
+  "input_hash": "6e70197623e1b5516a0e882da7bc1e00322ec57fdc103576804aa33bc7dfa68c",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left = Integer.MAX_VALUE, right = -1일 때 int 뺄셈이 오버플로하여 compare가 음수를 반환하므로, left > right인데도 계약의 부호 조건이 위반됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"compare가 int 뺄셈을 그대로 반환하여 오버플로 경계에서 부호 계약이 위반될 수 있습니다.\"}]}",
+  "input_tokens": 4523,
+  "output_tokens": 158,
+  "seconds": 1.14
+}

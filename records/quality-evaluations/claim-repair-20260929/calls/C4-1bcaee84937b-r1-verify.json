@@ -1,0 +1,12 @@
+{
+  "key": "C4-1bcaee84937b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:23.563109+00:00",
+  "input_hash": "45e338e8eca19ab45fb4825b92decb07abf900d550512a3019d722297e2da5e0",
+  "system_hash": "1e97fe369c08b68771aa374a500e39f6bd11f504706377ae1360d86a4b685be9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"actor가 \\\"alice\\\"가 아닌 값이고 id=7로 호출되면, 소유자 검사 없이 item.amount(40)가 그대로 반환되어 계약이 요구하는 비소유자 차단이 이루어지지 않습니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"변경된 invoice가 load(id) 결과의 amount를 actor-소유자 비교 없이 반환하여, behavior_contract가 요구하는 비소유자 접근 차단이 누락되어 있습니다.\"}]}",
+  "input_tokens": 4768,
+  "output_tokens": 164,
+  "seconds": 1.25
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F3-4a06b424f621-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:06:12.386497+00:00",
+  "input_hash": "260281e964e53cdc2ef7542f67b98751ec5fe1d8ac82a64df544bea2bd4a8c72",
+  "system_hash": "fc65a30673a8e7abfa6a12da0589a67f02863d45a956e18bdb26863c5e12b06a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"ordered 함수가 values.sort로 호출자 배열을 직접 정렬하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"ordered(values)를 호출할 때\",\"consequence\":\"Array.prototype.sort가 배열을 제자리에서 정렬하므로 호출자가 전달한 배열 자체의 순서가 변경됩니다.\",\"assumptions\":[],\"title\":\"호출자 배열을 직접 변경합니다\",\"evidence\":\"2줄의 values.sort는 원본 배열을 제자리에서 정렬하며, 제공된 계약은 호출자 배열을 수정하지 말 것을 요구합니다.\",\"suggestion\":\"정렬 전에 values.slice() 등으로 복사본을 만들어 그 복사본을 정렬해 반환하세요.\",\"contract_quote\":\"Do not modify the caller's array.\"}],\"limitations\":\"제공된 3줄만 검토했으며 실행 결과와 실제 호출자는 확인하지 못했습니다.\"}",
+  "input_tokens": 4610,
+  "output_tokens": 227,
+  "seconds": 1.89
+}

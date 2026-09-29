@@ -1,0 +1,79 @@
+{
+  "case": "e039b4bf0e2d",
+  "repeat": 2,
+  "arm": "C2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 CA 번들 환경값이 명시적 verify=True를 덮어씁니다",
+    "issues": [
+      {
+        "line": 10,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          10,
+          15,
+          16
+        ],
+        "trigger": "env에 CURL_CA_BUNDLE이 빈 문자열로 있고 verify가 True(또는 None)일 때 environment_settings를 호출하는 경우",
+        "consequence": "env에 CURL_CA_BUNDLE=\"\"이고 verify=True이면 verify가 \"\"로 대입되어 merge_setting이 \"\"를 반환하므로, 계약이 요구하는 True가 유지되지 않습니다.",
+        "assumptions": [],
+        "title": "빈 CA 번들 환경값이 명시적 verify=True를 덮어씁니다",
+        "evidence": "10줄은 env.get(...) or env.get(...) 결과를 verify에 대입합니다. 제공된 계약은 빈 CURL_CA_BUNDLE이 True를 보존해야 한다고 명시하고, 15·16줄 테스트는 그 경우 True를 기대하지만 경로 관측은 값이 \"\"로 나옴을 보여줍니다.",
+        "suggestion": "빈 문자열을 미설정으로 취급하려면 조회 결과가 비어 있지 않을 때만 verify를 대입하고, 그렇지 않으면 기존 verify 값을 유지하도록 10줄을 수정하세요.",
+        "file_path": "settings.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "6f9a280192f56e453fed2dbbb5640c868795eb43ab5a889ab007373ee6cbbd38"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "settings.py",
+          "provided_lines": 18
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 10,
+          "outcome": "FINDING",
+          "observation": "10줄의 or 결합이 빈 문자열 환경값을 falsy로 처리해 verify=True를 \"\"로 덮어쓰며, 15·16줄 계약과 경로 관측이 이를 뒷받침합니다.",
+          "file_path": "settings.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8"
+}

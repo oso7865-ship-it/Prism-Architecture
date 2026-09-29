@@ -1,0 +1,26 @@
+{
+  "key": "development-E11-7c4f2f03b3b5-r2-observe",
+  "arm": "E11",
+  "phase": "observe",
+  "at": "2026-09-29T07:10:08.679894+00:00",
+  "system_sha256": "4f469fe1192f5b54d60868d76fc54a80999dd7607500855f56cfade86ba3987f",
+  "payload_sha256": "beb23349e86f8c62ccc39b159769d1a3532684ee2fe93803f483d87b9eaa6f1a",
+  "input_bytes": 989,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "app/service.py line 1 declares `save(record, logger)` but the body never references `logger`; line 2 uses `print('saved')` instead.",
+      "Line 2 is the only changed line and is the sole output path; it writes to stdout rather than the injected logger.",
+      "The untrusted standard s1 (Team standard, section s1, heading 로깅) requires using injected `logger.info` instead of `print`; line 2 conflicts with that requirement.",
+      "Line 3 returns `record` unchanged, so the probe call `save(7, logger)` observes return value 7 regardless of the logging path.",
+      "The behavior contract states `logger.info` exists with no return value or side effects beyond logging, so replacing line 2 with `logger.info('saved')` would not alter the return value.",
+      "No exception handling or authorization checks appear in the three lines; `record` is accepted as any value per the contract."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ab29c72c5582641d27f3b43646d9167e3cc7442eafccce1facd45c970da8123b",
+  "input_tokens": 488,
+  "output_tokens": 207,
+  "elapsed_seconds": 1.406
+}

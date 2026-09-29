@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-0e12161a3613-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "0e12161a3613",
+  "at": "2026-09-29T08:44:24.623296+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "edf521b822f29f725576f4e5ad720f6683d28e13d87aad26e4ac4d158d62beac",
+  "payload_sha256": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 파일 f1의 유일한 변경 라인은 Integer.compare(left, right)를 반환하는 비교 메서드로, 요구된 비교 계약(좌<우 음수, 동일 0, 좌>우 양수)을 정확히 충족한다. 정적 경고도 없고, 제공된 범위에서 구체적 결함 경로가 확인되지 않는다.",
+    "issues": [],
+    "limitations": "호출자와 실제 사용 맥락은 제공되지 않았으며, 비교 메서드 자체의 계약 준수만 검토했다. 테스트 실행은 하지 않았다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "Integer.compare 반환값이 비교 계약(음수/0/양수)을 그대로 만족하며, 경계값·null 관련 결함 경로가 보이지 않는다."
+      }
+    ]
+  },
+  "input_tokens": 3305,
+  "output_tokens": 222,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "95ddf9251da58d24cecdb15b3e3e6ab1cf754b3f0dac93cb4d6af2b6cf904069",
+  "elapsed_seconds": 1.89
+}

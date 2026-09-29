@@ -1,0 +1,41 @@
+{
+  "key": "development-E01b-6a3397085914-r1-final",
+  "arm": "E01b",
+  "phase": "final",
+  "at": "2026-09-29T07:14:12.695577+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "34d408e8799e1af1db77057940a1ff609ee2e84109986b31f230d7e75a91dee5",
+  "input_bytes": 387,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열/바이트열의 길이를 반환하는 wire_size 변경을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "body의 허용 타입과 호출부, 바이트 길이 기준 계약이 제공되지 않아 len()이 문자 수를 세는 것이 의도와 맞는지 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e72746e8916badbccdd190b465b553b2849725d3e378cfdb2e7d153681cdee4e",
+  "input_tokens": 5143,
+  "output_tokens": 176,
+  "elapsed_seconds": 1.469
+}

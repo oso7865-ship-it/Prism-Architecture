@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-cd210310faa4-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "cd210310faa4",
+  "at": "2026-09-29T08:43:46.154552+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "edf521b822f29f725576f4e5ad720f6683d28e13d87aad26e4ac4d158d62beac",
+  "payload_sha256": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄은 null을 빈 문자열로, 그 외에는 trim 결과를 반환하는 단순 삼항 연산으로, 명시된 동작 계약과 일치합니다. 제공된 범위에서 구체적 결함 경로가 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출자와 name 인자의 실제 입력 분포는 제공되지 않았으며, trim()이 반환하는 새 문자열의 사용처도 확인 범위 밖입니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "null 검사 후 trim을 수행하는 삼항 연산으로, null 입력은 빈 문자열로 처리되고 그 외 입력은 trim 결과를 반환합니다. 계약과 일치하며 추가 결함 경로는 보이지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3302,
+  "output_tokens": 199,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "74f01299badff2f50ad59b8f37fa71af2c78d117e9daf0b0438b1eef3282fc32",
+  "elapsed_seconds": 1.797
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-b07fc52f42ca-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:23.061338+00:00",
+  "input_hash": "f7dd8cccc915065493fa01fcbb876b676bd5b2e2d9557e6761fdbd23273c7592",
+  "system_hash": "1a56e991d60418aa89fe99f20cd41a6bc61c971d11c9e7d77aeb0895e7deb601",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count에 0이 전달되면 0 || 10이 10을 반환하므로, 0으로 설정한 제한이 10으로 잘못 적용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"line 2의 count || 10은 falsy 값 0을 기본값 10으로 대체하여, 0을 유효한 설정값으로 규정한 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4278,
+  "output_tokens": 160,
+  "seconds": 1.14
+}

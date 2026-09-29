@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-4d95d35835a5-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:17.431586+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "e2a8f742cc4599e9fd235b448f69f871837fad06ab03382f7b33ed894b07dbf5",
+  "input_bytes": 435,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a Python function `callbacks()` returning a list of three lambdas built from `range(3)`.",
+      "The lambda body references loop variable `i` without a default-argument or other per-iteration binding.",
+      "The stated behavior contract expects each callback to return the index captured at creation time.",
+      "The probe call `[fn() for fn in callbacks()]` invokes all three callbacks after the loop has completed.",
+      "No static findings are reported and no authorization or state-mutation boundaries appear in the supplied source.",
+      "The changed line is the lambda comprehension; the function definition line is unchanged."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b7bc5d1593d6107b277f6285b4cdd58e68ebfe51a0e287be39efa78f8e950042",
+  "input_tokens": 294,
+  "output_tokens": 134,
+  "elapsed_seconds": 1.328
+}

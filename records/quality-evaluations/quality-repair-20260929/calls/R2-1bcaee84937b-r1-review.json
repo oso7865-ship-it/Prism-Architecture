@@ -1,0 +1,15 @@
+{
+  "key": "R2-1bcaee84937b-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:18:34.939981+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "bcb62dadc58925c1fa907bc77de26c9a3c97b47a1f7750fa094fba82d319c06f",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 변경 코드는 invoice 함수가 load(id)로 항목을 조회한 뒤 소유자 검사 없이 amount를 반환하는 부분입니다. behavior_contract상 소유자에게만 금액을 반환해야 하지만 actor 매개변수가 전혀 사용되지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"actor가 항목 소유자와 다른 값(예: \\\"bob\\\")으로 invoice를 호출할 때\",\"consequence\":\"소유자 검사가 없어 비소유자에게도 amount가 반환됩니다. behavior_contract가 요구하는 '다른 actor에게는 Error 발생'이 위반되어 금액이 노출됩니다.\",\"assumptions\":[],\"title\":\"소유자 검사 없이 금액을 반환합니다\",\"evidence\":\"1줄에서 actor 매개변수를 받지만 2~3줄 어디에서도 actor를 사용하지 않습니다. related_implementation의 load는 owner: \\\"alice\\\"를 반환하므로 actor와 owner를 비교할 값이 존재하지만 검사가 없습니다.\",\"suggestion\":\"load(id) 결과의 owner와 actor를 비교하여 불일치 시 Error를 던지는 검사를 3줄 반환 전에 추가하세요.\"}],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인입니다. load의 실제 구현은 related_implementation으로만 제공되어 다른 id나 owner 값의 분기는 확인하지 못했습니다.\"}",
+  "input_tokens": 5120,
+  "output_tokens": 351,
+  "seconds": 2.375
+}

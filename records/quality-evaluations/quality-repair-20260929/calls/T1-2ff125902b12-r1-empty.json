@@ -1,0 +1,15 @@
+{
+  "key": "T1-2ff125902b12-r1-empty",
+  "arm": "T1",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:59.649773+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 4000,
+  "reasoning": "high",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 줄은 content_length가 `len(body)`를 그대로 반환하는지 여부뿐이며, 바이트 입력에 대해 len이 바이트 수를 세는 계약과 테스트 기대값이 일치한다. 제공된 범위에서 구체적 실패 경로가 없어 결함을 보고하지 않는다.\", \"issues\": [], \"limitations\": \"변경은 content_length의 반환 표현식 한 줄뿐이고, 이 함수의 실제 호출자·헤더 직렬화 지점·문자열 입력 허용 여부 같은 주변 계약은 제공되지 않아 검토 범위 밖이다. static_findings는 없었다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"`len(body)`가 bytes의 바이트 수를 세고, prepare/테스트도 같은 값을 기대해 변경된 반환식과 계약이 일치함을 확인했다. 제공된 줄에서 잘못된 길이 계산을 유발하는 분기는 보이지 않는다.\"}]}",
+  "input_tokens": 3345,
+  "output_tokens": 515,
+  "seconds": 3.703
+}

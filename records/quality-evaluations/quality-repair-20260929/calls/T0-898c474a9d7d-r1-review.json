@@ -1,0 +1,15 @@
+{
+  "key": "T0-898c474a9d7d-r1-review",
+  "arm": "T0",
+  "phase": "review",
+  "at": "2026-09-29T10:21:45.515445+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공 코드 검토\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']가 중첩 딕셔너리를 포함하고 adjust를 호출할 때\",\"consequence\":\"2줄에서 base['nested']를 얕게 복사하므로 result['nested']는 base['nested']와 동일한 객체를 참조합니다. 3줄의 result['nested']['limit'] = 9 대입이 원본 base['nested']를 변경하고, 4줄은 변경된 값을 반환합니다.\",\"assumptions\":[],\"title\":\"중첩 딕셔너리 복사가 얕아 원본이 변경됩니다\",\"evidence\":\"2줄은 base['nested'].copy()로 얕은 복사만 수행하고, 3줄은 그 복사본의 중첩 값을 수정합니다. 4줄은 base['nested']['limit']를 반환하므로 원본이 변경되었음을 보여줍니다.\",\"suggestion\":\"base['nested']를 깊은 복사(예: copy.deepcopy)하거나, 중첩 딕셔너리를 새로 만들어 result['nested']에 할당하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 319,
+  "seconds": 2.203
+}

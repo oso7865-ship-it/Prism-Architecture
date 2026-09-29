@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-9e475996deba-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:10.959945+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "8ec3dd900f950321e6b8f60a6c6ffd7126ea20480e05ab4e9397e917d5572605",
+  "input_bytes": 468,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a Python function `mean(values)` taking a single iterable argument.",
+      "Line 2 is marked changed and computes `sum(values) / len(values)`.",
+      "The stated behavior contract says empty input should yield mean 0.0.",
+      "The implementation divides by `len(values)`, so `mean([])` would raise ZeroDivisionError rather than return 0.0.",
+      "Probe p1 calls `mean([])` and probe p2 calls `mean([2, 4])`; no probe results are provided.",
+      "No static findings are reported and no authorization or state boundaries are present in the supplied source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "65bbb6176f86e9c6a7ca0831031de055643cc2c516dbf0b196258f29bad4819e",
+  "input_tokens": 313,
+  "output_tokens": 135,
+  "elapsed_seconds": 1.344
+}

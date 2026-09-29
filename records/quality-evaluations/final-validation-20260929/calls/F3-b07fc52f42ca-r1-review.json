@@ -1,0 +1,12 @@
+{
+  "key": "F3-b07fc52f42ca-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:38.810776+00:00",
+  "input_hash": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "system_hash": "fc65a30673a8e7abfa6a12da0589a67f02863d45a956e18bdb26863c5e12b06a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"limit 함수가 count || 10으로 기본값을 적용하도록 변경된 부분을 검토했습니다. 제공된 계약상 0은 유효한 설정값이지만, || 연산자는 0을 falsy로 처리합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"count에 0이 전달될 때\",\"consequence\":\"0이 falsy로 평가되어 기본값 10이 반환되므로, 유효한 설정값 0이 10으로 대체됩니다.\",\"assumptions\":[],\"title\":\"유효한 설정값 0이 기본값 10으로 대체됩니다\",\"evidence\":\"2줄의 count || 10은 count가 0일 때 10을 반환합니다. 계약은 null 또는 undefined일 때만 기본값 10을 사용하고 0은 유효한 설정값이라고 명시합니다.\",\"suggestion\":\"null 또는 undefined만 기본값으로 처리하도록 count ?? 10으로 변경하세요.\",\"contract_quote\":\"Use default 10 only for null or undefined; zero is a valid configured limit.\"}],\"limitations\":\"제공된 단일 함수와 계약만 검토했으며, 실제 호출자나 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4618,
+  "output_tokens": 290,
+  "seconds": 2.234
+}

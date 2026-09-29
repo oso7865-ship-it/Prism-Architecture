@@ -1,0 +1,15 @@
+{
+  "key": "R2-e039b4bf0e2d-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:17:25.500456+00:00",
+  "input_hash": "81b86358d3d398b99cf93960a8014c3b821a144b3ddbca6f6688e7839a70c1b1",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 10은 `env.get(...) or env.get(...)`로 두 환경변수를 결합합니다. 빈 문자열은 falsy이므로 `REQUESTS_CA_BUNDLE`이 빈 문자열이고 `CURL_CA_BUNDLE`이 없으면 결과가 None이 되지만, 라인 11의 merge_setting이 session_verify(기본 True)를 복원하므로 테스트 라인 15~16의 계약은 유지됩니다. 다만 `REQUESTS_CA_BUNDLE`이 빈 문자열이고 `CURL_CA_BUNDLE`에 유효 경로가 있으면 CURL 값이 채택되는데, 이는 테스트로 검증되지 않은 동작입니다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 10, \"severity\": \"INFO\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [10, 15, 16], \"trigger\": \"env에 REQUESTS_CA_BUNDLE=\\\"\\\"(빈 문자열)과 CURL_CA_BUNDLE=\\\"/ca.pem\\\"이 함께 있을 때.\", \"consequence\": \"`or` 연산이 빈 문자열을 falsy로 평가하여 REQUESTS_CA_BUNDLE 대신 CURL_CA_BUNDLE 값이 반환됩니다. 두 변수가 모두 빈 문자열이면 None이 되지만 라인 11의 merge_setting이 session_verify(기본 True)를 복원하므로 검증은 유지됩니다. 이 우선순위는 테스트 라인 15~16에서 다루지 않습니다.\", \"assumptions\": [\"REQUESTS_CA_BUNDLE이 명시적으로 빈 문자열로 설정될 수 있다.\"], \"title\": \"빈 REQUESTS_CA_BUNDLE이 CURL_CA_BUNDLE로 대체됨\", \"evidence\": \"라인 10은 `env.get(\\\"REQUESTS_CA_BUNDLE\\\") or env.get(\\\"CURL_CA_BUNDLE\\\")`로, 빈 문자열을 falsy로 처리해 두 번째 조회로 넘어갑니다. 라인 15~16은 두 값이 모두 비어 있는 경우만 검증합니다.\", \"suggestion\": \"빈 문자열을 '미설정'과 동일하게 취급하려는 의도라면 현재 동작이 맞습니다. 명시적 빈 문자열을 우선하려면 `env.get(\\\"REQUESTS_CA_BUNDLE\\\") if env.get(\\\"REQUESTS_CA_BUNDLE\\\") is not None else env.get(\\\"CURL_CA_BUNDLE\\\")`처럼 None 검사로 바꾸고, 혼합 케이스 테스트를 추가하세요.\"}], \"limitations\": \"제공된 파일은 단일 모듈과 자체 테스트만 포함하며, environment_settings의 실제 호출자나 requests 라이브러리 연동 코드는 없습니다. 빈 문자열 환경변수가 실제로 설정되는 빈도는 확인할 수 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"라인 10의 `or` 결합은 빈 REQUESTS_CA_BUNDLE을 falsy로 처리해 CURL_CA_BUNDLE로 대체하며, 이 혼합 케이스는 라인 15~16 테스트에 없습니다. 모두 빈 경우는 merge_setting이 True를 복원합니다.\"}]}",
+  "input_tokens": 3632,
+  "output_tokens": 788,
+  "seconds": 4.157
+}

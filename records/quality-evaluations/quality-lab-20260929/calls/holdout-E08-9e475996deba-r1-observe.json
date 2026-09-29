@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-9e475996deba-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:40.660370+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "8ec3dd900f950321e6b8f60a6c6ffd7126ea20480e05ab4e9397e917d5572605",
+  "input_bytes": 468,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed line `return sum(values) / len(values)` divides by `len(values)`, which is 0 for an empty list, so `mean([])` raises ZeroDivisionError rather than returning 0.0 as the behavior_contract states.",
+      "The stated contract 'Empty input has mean 0.0 by this API contract' is not implemented anywhere in the supplied source; there is no guard for empty input.",
+      "Probe p1 `mean([])` is predicted to raise ZeroDivisionError (division by zero), contradicting the contract.",
+      "Probe p2 `mean([2, 4])` is predicted to return 2.0 (sum 6 divided by length 2), consistent with the contract for non-empty finite numeric lists.",
+      "No type validation exists; non-numeric or non-finite elements would propagate errors from `sum`, but the contract restricts input to finite numeric lists so this is out of scope.",
+      "static_findings is empty, so no tooling flagged the empty-input division; the defect is only observable via the contract comparison."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "267ef52a31a25aaa8fe25000051234abfa1e7f88fed30fb9f6a9f3e516614b6c",
+  "input_tokens": 314,
+  "output_tokens": 226,
+  "elapsed_seconds": 1.641
+}

@@ -1,0 +1,71 @@
+{
+  "key": "holdout-E07-65d1d2fad0d4-r2",
+  "case": "65d1d2fad0d4",
+  "arm": "E07",
+  "split": "holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "정수 비교를 `left - right`로 구현한 변경을 검토했습니다. 계약상 부호가 일치해야 하지만, 뺄셈 결과가 int 범위를 넘으면 부호가 뒤집힙니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left가 Integer.MIN_VALUE이고 right가 양수인 경우(예: compare(Integer.MIN_VALUE, 1))",
+        "consequence": "int 오버플로로 뺄셈 결과가 양수가 되어, left < right임에도 양수를 반환해 비교 계약의 부호가 뒤집힙니다.",
+        "assumptions": [],
+        "title": "뺄셈 비교가 int 오버플로로 부호를 뒤집습니다",
+        "evidence": "3줄은 left - right를 그대로 반환합니다. left=Integer.MIN_VALUE, right=1이면 결과가 int 범위를 넘어 부호가 양수로 바뀌어 계약과 반대가 됩니다.",
+        "suggestion": "Integer.compare(left, right)를 사용하거나, 뺄셈 대신 left < right / left > right 분기로 부호를 반환하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 실행 검증은 하지 않았습니다. 호출부와 실제 입력 범위는 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5868,
+  "output_tokens": 502,
+  "elapsed_seconds": 3.797,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-be9f4577979e-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:31.791532+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"collect 함수가 bucket 인자를 생략하면 새 리스트를 생성하고, 명시적으로 전달하면 해당 리스트를 그대로 수정하는 변경입니다.\",\"issues\":[],\"limitations\":\"제공된 5줄만 검토했으며 호출부, 동시성 사용, 실행 결과는 확인하지 못했습니다. 명시적으로 전달된 bucket을 공유 상태로 사용하는 호출자가 있는지 여부는 제공 범위 밖입니다.\"}",
+  "input_tokens": 4757,
+  "output_tokens": 104,
+  "seconds": 1.453
+}

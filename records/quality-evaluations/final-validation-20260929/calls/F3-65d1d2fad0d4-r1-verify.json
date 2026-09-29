@@ -1,0 +1,12 @@
+{
+  "key": "F3-65d1d2fad0d4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:52.197797+00:00",
+  "input_hash": "2c533caccf3d5d35e949b37b2d7a09b9802c2e2e3bc36d55165a069a7443a108",
+  "system_hash": "5d0b65565f6b6110269eac27672e595479de9e18ceb10059057c02d8a2d82c76",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left = Integer.MIN_VALUE, right = 1일 때 left - right가 int 오버플로로 양수가 되어, left < right임에도 비교기가 양수를 반환해 계약의 부호가 뒤집힙니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"compare가 left - right를 반환해 int 오버플로 시 부호가 뒤집힐 수 있음. Integer.compare 사용이 계약 부호를 보존함.\"}]}",
+  "input_tokens": 4588,
+  "output_tokens": 166,
+  "seconds": 1.391
+}

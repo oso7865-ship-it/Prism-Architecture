@@ -1,0 +1,65 @@
+{
+  "key": "holdout-E07-4d95d35835a5-r2",
+  "case": "4d95d35835a5",
+  "arm": "E07",
+  "split": "holdout",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "f1의 2줄에서 리스트 컴프리헨션으로 세 개의 람다를 만들지만, 각 람다가 루프 변수 i를 늦게 바인딩해 생성 시점의 인덱스를 보존하지 못합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()가 반환한 콜백들을 루프 종료 후 호출할 때(예: [fn() for fn in callbacks()])",
+        "consequence": "모든 람다가 클로저 셀의 최종 값 2를 반환하므로 [2, 2, 2]가 되어, 각 콜백이 생성 시점 인덱스를 반환해야 한다는 동작 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 최종 루프 값을 반환합니다",
+        "evidence": "2줄의 lambda: i는 i를 기본 인자로 캡처하지 않아 클로저가 루프 종료 후의 i 값을 참조합니다.",
+        "suggestion": "lambda i=i: i처럼 기본 인자로 현재 값을 캡처하거나, i를 인자로 받는 팩토리 함수를 사용해 생성 시점 값을 고정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[2, 2, 2]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5575,
+  "output_tokens": 515,
+  "elapsed_seconds": 3.875,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

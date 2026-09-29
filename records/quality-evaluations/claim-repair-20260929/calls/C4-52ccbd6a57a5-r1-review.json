@@ -1,0 +1,12 @@
+{
+  "key": "C4-52ccbd6a57a5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:39.718645+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "7598ba0719de43b008983eb2a3fbc85fec13713add6362d49266676260381a34",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 2행은 SQL 문자열과 파라미터 튜플을 분리해 반환하는 구조로, user_id가 %s 자리표시자에 바인딩되도록 되어 있습니다. 제공된 범위에서는 값이 SQL 문자열에 직접 삽입되는 경로가 보이지 않습니다.\",\"issues\":[],\"limitations\":\"제공된 코드는 쿼리 문자열과 파라미터 튜플을 반환하는 부분만 포함하며, 실제 DB-API 호출부와 드라이버의 파라미터 바인딩 동작은 확인되지 않았습니다. 실행 결과나 실제 주입 가능성은 검증하지 않았습니다.\"}",
+  "input_tokens": 4875,
+  "output_tokens": 157,
+  "seconds": 1.266
+}

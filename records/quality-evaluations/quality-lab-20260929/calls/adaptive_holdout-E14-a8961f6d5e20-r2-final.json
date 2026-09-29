@@ -1,0 +1,46 @@
+{
+  "key": "adaptive_holdout-E14-a8961f6d5e20-r2-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:15.014222+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "3a8be567a79725967b561fc8d463e692252e9b4f856806dc51724809628b4e8f",
+  "input_bytes": 1741,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "user_id를 문자열 연결로 SQL에 삽입하는 변경이 있어 SQL 인젝션 경로가 확인됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표나 SQL 구문이 포함된 값(예: \"0 OR 1=1\")이 전달될 때",
+        "consequence": "연결된 문자열이 그대로 SQL로 실행되어 WHERE 절이 조작되고, 파라미터 튜플이 비어 있어 드라이버의 바인딩 보호가 적용되지 않습니다. 결과적으로 인증/조회 경계를 우회한 임의 행 조회가 가능합니다.",
+        "assumptions": [],
+        "title": "문자열 연결로 구성된 SQL에 사용자 입력이 직접 삽입됩니다",
+        "evidence": "2줄에서 'SELECT name FROM users WHERE id = ' 뒤에 user_id를 그대로 이어 붙이고 파라미터는 빈 튜플로 반환합니다. behavior_contract는 이 반환값이 %s 플레이스홀더를 쓰는 DB-API 드라이버에 직접 전달되며 user_id가 신뢰할 수 없는 텍스트라고 명시합니다.",
+        "suggestion": "SQL 문자열에서 user_id 연결을 제거하고 'SELECT name FROM users WHERE id = %s'와 같이 플레이스홀더를 두고 반환 튜플에 user_id를 담아 드라이버가 바인딩하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 실제 호출부, DB 드라이버 종류, 실행 검증은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = 0 OR 1=1\", []]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d9edebe91085a2a2c4624849b7ce7539fdeaf4e0378e97b984db1952bbda5e31",
+  "input_tokens": 5789,
+  "output_tokens": 431,
+  "elapsed_seconds": 2.797
+}

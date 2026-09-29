@@ -1,0 +1,15 @@
+{
+  "key": "B0-62086f7d4408-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:28.841187+00:00",
+  "input_hash": "c4e12637092fa661a82423ecb1cc1efa7e2849cbc488c5f40c4f79fc1360bcb9",
+  "system_hash": "83dfd05343a4da295eaa8de228cbbb415403ef37859fe072cb40da6d922330ca",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"handle 함수의 ValueError 처리 변경을 검토했습니다. 변경된 except 절이 예외를 삼키고 None을 반환하여 팀 표준의 '같은 예외를 다시 던진다' 요구와 충돌합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4,5],\"trigger\":\"operation()이 ValueError를 발생시킬 때\",\"consequence\":\"4줄에서 예외를 잡은 뒤 5줄에서 None을 반환하므로, 실패가 정상 반환값으로 숨겨져 호출자가 오류를 구분할 수 없습니다. 이는 표준이 금지하는 '실패를 정상 반환으로 숨기지 않는다'에 해당합니다.\",\"assumptions\":[],\"title\":\"ValueError를 삼키고 None을 반환해 실패를 숨깁니다\",\"evidence\":\"4-5줄의 except ValueError 절이 예외를 기록하지 않고 None을 반환합니다. 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.\",\"suggestion\":\"except 절에서 logger.error로 오류를 기록한 뒤 raise로 같은 ValueError를 다시 던지도록 변경하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"]}],\"limitations\":\"제공된 handle 함수와 표준 s1만 검토했으며, operation의 실제 구현과 호출부, 테스트 실행은 확인하지 않았습니다.\"}",
+  "input_tokens": 5269,
+  "output_tokens": 369,
+  "seconds": 2.188
+}

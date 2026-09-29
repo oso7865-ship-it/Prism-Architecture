@@ -1,0 +1,12 @@
+{
+  "key": "C4-0c543f7d32dd-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:23.726240+00:00",
+  "input_hash": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "system_hash": "7598ba0719de43b008983eb2a3fbc85fec13713add6362d49266676260381a34",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"경로 접두사 검사 함수의 변경된 한 줄을 보안 관점에서 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"root가 '/data'이고 resolved가 '/database/secret'인 경우\",\"consequence\":\"resolved가 root의 하위 경로가 아님에도 startswith가 True를 반환하여 허용 경계를 벗어난 경로가 통과합니다.\",\"assumptions\":[],\"title\":\"접두사 검사가 형제 디렉터리를 허용합니다\",\"evidence\":\"2줄은 구분자 경계 없이 startswith만 수행하므로 '/data'가 '/database/...'의 접두사가 되어 통과합니다.\",\"suggestion\":\"root와 정확히 같거나 root + '/'로 시작하는 경우만 허용하도록 비교하세요.\",\"citations\":[]}],\"limitations\":\"호출자와 실제 경로 정규화 방식은 제공되지 않아, 이 함수가 어떤 요청 입력에 연결되는지는 확인하지 못했습니다.\"}",
+  "input_tokens": 4858,
+  "output_tokens": 248,
+  "seconds": 2.172
+}

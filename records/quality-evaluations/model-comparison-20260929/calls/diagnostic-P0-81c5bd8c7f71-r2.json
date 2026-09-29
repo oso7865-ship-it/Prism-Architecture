@@ -1,0 +1,54 @@
+{
+  "key": "diagnostic-P0-81c5bd8c7f71-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "81c5bd8c7f71",
+  "at": "2026-09-29T08:41:14.831219+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "8b9632b753e81be29b47d8a592e751a22aff06c9cafdd49428ca13bf11ba7f40",
+  "payload_sha256": "4761f858654c516c9ce745c512a273b1227f92b73999da4606bc3c03ede01646",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "profile이 없을 때 비단언으로 name에 접근하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "profile이 없는 User 객체로 name을 호출할 때",
+        "consequence": "user.profile이 undefined인데 비단언(!)으로 접근하여 런타임 TypeError가 발생합니다.",
+        "assumptions": [],
+        "title": "profile이 없으면 런타임 오류가 발생합니다",
+        "evidence": "3줄에서 user.profile!은 profile이 존재한다고 단언하지만, User 타입은 profile을 선택적으로 정의하고 있어 실제로는 undefined일 수 있습니다.",
+        "suggestion": "profile이 없을 때 'Unknown'을 반환하도록 user.profile?.name ?? 'Unknown' 형태로 안전하게 접근하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "TypeError"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5207,
+  "output_tokens": 345,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4352,
+  "response_sha256": "e5137bda761596f2ba329e4678189d29f5eabbfc80a35c50e5bb7328dce1e1e1",
+  "elapsed_seconds": 6.062
+}

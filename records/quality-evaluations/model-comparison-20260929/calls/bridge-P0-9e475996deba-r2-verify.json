@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-9e475996deba-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "9e475996deba",
+  "at": "2026-09-29T08:44:54.209834+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "6ad1b7f60abe4717e520aed2b7e03d95dc3c303d99b455dd528d0165d36a40ad",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "빈 리스트로 mean을 호출하면 len(values)가 0이 되어 ZeroDivisionError가 발생합니다."
+      }
+    ]
+  },
+  "input_tokens": 3043,
+  "output_tokens": 77,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "ba51237b23c3a057608009e6855ab2e524860d3db10d5178b5d04f84fecaae71",
+  "elapsed_seconds": 2.265
+}

@@ -1,0 +1,71 @@
+{
+  "key": "development-E11-0c543f7d32dd-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:09:09.985695+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "db9d6aca555b3eb351b628bcef3a07fe981cbfc3a954d0febc25617e6ce1aed1",
+  "input_bytes": 1692,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 경로 허용 여부를 판정하는 변경을 검토했습니다. 문자열 접두사 비교는 경로 구성요소 경계를 구분하지 않아 형제 디렉터리 경로가 허용될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/srv/app'이고 resolved가 '/srv/application/key'처럼 root 문자열로 시작하지만 root의 하위가 아닌 경로일 때 permitted를 호출하는 경우",
+        "consequence": "startswith가 True를 반환해 root 외부의 형제 경로가 허용됩니다. 경로 기반 접근 제어가 이 함수에 의존한다면 루트 밖 자원에 대한 접근이 허용될 수 있습니다.",
+        "assumptions": [],
+        "title": "경로 구성요소 경계 없이 접두사만 비교해 형제 경로가 허용됩니다",
+        "evidence": "2줄은 resolved.startswith(root)로만 판정하며, '/srv/app'은 '/srv/application/key'의 접두사이므로 True가 됩니다. 경로 구분자 경계 검사가 없습니다.",
+        "suggestion": "root와 정확히 같거나 root + '/'로 시작하는 경우만 허용하도록 경계를 확인하세요(예: resolved == root or resolved.startswith(root + '/'))."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 빈 문자열이거나 호출자가 정규화되지 않은 경로를 전달할 때 permitted를 호출하는 경우",
+        "consequence": "빈 root이면 모든 입력이 True가 되어 전체 경로가 허용되고, 정규화되지 않은 입력(예: '..' 포함)이 전달되면 접두사 검사가 실제 대상 경로를 반영하지 않을 수 있습니다.",
+        "assumptions": [
+          "호출자가 root를 비어 있지 않은 정규 절대 경로로 전달한다는 보장이 코드에 없습니다.",
+          "호출자가 resolved를 심볼릭 링크나 '..' 없이 정규화해 전달한다는 보장이 코드에 없습니다."
+        ],
+        "title": "root의 비어 있지 않음과 경로 정규화가 호출자에게만 의존하나요?",
+        "evidence": "2줄은 root가 비었는지 또는 두 인자가 정규화되었는지 확인하지 않고 startswith만 수행합니다. 계약은 정규화를 전제하지만 코드에는 검증이 없습니다.",
+        "suggestion": "호출 지점에서 root가 비어 있지 않은 정규 절대 경로이고 resolved가 정규화되어 전달되는지 확인하세요. 보장되지 않는다면 함수 내부에서 root 비어 있음 거부와 경로 정규화를 추가하세요."
+      }
+    ],
+    "limitations": "permitted의 호출부와 접근 제어 적용 지점이 제공되지 않아 실제 보호 자원과 공격자 도달 가능성은 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7f2aecee9658631309008c6362d67edbce72903065f3c1965e13fd8615ed8c08",
+  "input_tokens": 5768,
+  "output_tokens": 770,
+  "elapsed_seconds": 4.391
+}

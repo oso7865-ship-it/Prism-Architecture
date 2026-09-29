@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-65d1d2fad0d4-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "65d1d2fad0d4",
+  "at": "2026-09-29T08:44:36.639048+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "두 정수의 차이를 반환하는 비교 메서드의 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차이가 int 범위를 벗어날 때(예: left = Integer.MAX_VALUE, right = Integer.MIN_VALUE)",
+        "consequence": "left - right가 int 오버플로우를 일으켜 부호가 반전되므로 비교 계약(음수/0/양수)을 위반합니다.",
+        "assumptions": [],
+        "title": "정수 차이 계산에서 오버플로우로 비교 결과가 잘못될 수 있습니다",
+        "evidence": "3줄의 left - right는 int 범위를 벗어나는 차이에서 오버플로우되어 부호가 뒤집힐 수 있습니다.",
+        "suggestion": "Integer.compare(left, right) 또는 (left < right ? -1 : (left == right ? 0 : 1))을 사용하여 오버플로우 없이 비교하세요."
+      }
+    ],
+    "limitations": "제공된 메서드만 검토했으며 호출부와 실행 환경은 확인하지 않았습니다."
+  },
+  "input_tokens": 4916,
+  "output_tokens": 310,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4864,
+  "response_sha256": "3480c6cc6a36b07efe3120ca23e9a414bddd8b4eaba3aab9c0783b50d0902178",
+  "elapsed_seconds": 5.422
+}

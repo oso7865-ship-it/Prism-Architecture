@@ -1,0 +1,12 @@
+{
+  "key": "F0-cea2cfe09062-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:30.975226+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "fc4a425f06be94f85e2eee9080629f7673b09ce1e0bd0e46adff8f3c1764b9b7",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Normalize.normalize가 value를 0으로 클램프한 adjusted를 계산하지만 반환하지 않고 원래 value를 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4],\"trigger\":\"normalize에 음수 value가 전달될 때\",\"consequence\":\"3줄에서 계산한 adjusted(0)가 사용되지 않고 4줄에서 원래 음수 value가 그대로 반환되어, 클램프 결과가 호출자에게 전달되지 않습니다.\",\"assumptions\":[],\"title\":\"클램프한 adjusted 대신 원래 value를 반환합니다\",\"evidence\":\"3줄은 Math.max(value, 0)으로 adjusted를 만들지만 4줄은 adjusted가 아닌 value를 반환하므로, 음수 입력에서 클램프 계산이 결과에 반영되지 않습니다.\",\"suggestion\":\"클램프가 의도라면 4줄의 반환식을 adjusted로 바꾸고, 원래 값 반환이 의도라면 사용되지 않는 3줄의 adjusted 계산을 제거하세요.\"}],\"limitations\":\"제공된 6줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다. behavior_contract가 원래 값 반환을 요구하므로 3줄의 클램프 계산 의도는 제공 범위에서 확정할 수 없습니다.\"}",
+  "input_tokens": 4694,
+  "output_tokens": 328,
+  "seconds": 2.14
+}

@@ -1,0 +1,58 @@
+{
+  "key": "development-E10-b07fc52f42ca-r1-draft2",
+  "arm": "E10",
+  "phase": "draft2",
+  "at": "2026-09-29T07:13:03.381426+00:00",
+  "system_sha256": "e5b8555b4fc82c1640f6b7eb0b698ba6b5a7625834b8772e92c43e00b9021d6d",
+  "payload_sha256": "e146e08b3580e65addcfef4a9de01a69bc4fc7f224ffa4f22cfd1f13da1b70e2",
+  "input_bytes": 545,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본값 처리 변경을 검토했습니다. `count || 10`은 null/undefined뿐 아니라 0과 같은 falsy 값도 10으로 대체합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)을 호출할 때",
+        "consequence": "0이 falsy이므로 `count || 10`이 10을 반환해, 유효한 설정값 0이 기본값으로 덮어써집니다.",
+        "assumptions": [],
+        "title": "유효한 0이 기본값 10으로 대체됩니다",
+        "evidence": "2줄에서 논리 OR로 기본값을 적용하므로 0, '', NaN 등 모든 falsy 값이 10으로 대체됩니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "f52ba4f3436ee200e709190f08b9f3c32518a5e9f45859499160755d5e9e5b3d",
+  "input_tokens": 5232,
+  "output_tokens": 311,
+  "elapsed_seconds": 1.968
+}

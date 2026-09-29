@@ -1,0 +1,78 @@
+{
+  "case": "898c474a9d7d",
+  "arm": "R2",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 복사본을 수정한 뒤 원본 값을 반환해 조정 결과가 반환값에 반영되지 않습니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust(base)를 호출할 때",
+        "consequence": "adjust(base) 호출 시 3줄에서 복사본의 'limit'을 9로 바꾸지만 4줄은 원본 base['nested']['limit']을 반환하므로, 반환값에는 조정 결과가 반영되지 않습니다.",
+        "assumptions": [],
+        "title": "복사본을 수정한 뒤 원본 값을 반환해 조정 결과가 반환값에 반영되지 않습니다",
+        "evidence": "2줄은 base['nested']를 복사해 result에 담고, 3줄은 result['nested']['limit']을 9로 설정하지만, 4줄은 base['nested']['limit']을 반환합니다.",
+        "suggestion": "조정된 값을 반환하려는 의도라면 4줄의 반환 대상을 result['nested']['limit']으로 맞추세요. 원본을 그대로 두고 원본 값을 반환하려는 의도라면 3줄의 수정이 반환값에 영향을 주지 않는다는 점을 확인하세요.",
+        "file_path": "options.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "ae11e850934173290e1ca1216d73323200307914932093f5e71900c95f3eda96"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "options.py",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄에서 복사본을 만들어 3줄에서 수정하지만 4줄은 원본 값을 반환해 조정 결과가 반환값에 반영되지 않습니다. 호출자와 base 구조는 제공되지 않았습니다.",
+          "file_path": "options.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d"
+}

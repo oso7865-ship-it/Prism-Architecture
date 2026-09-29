@@ -2,10 +2,10 @@
 
 > ID: `ADR-REVIEW-011` · 소유: `REVIEW` · 기준: `2026-09-28`
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 근거: 사용자의 빈 결과 버그 수정 및 사이트 내 코드 열람 요청.
 - 대체하는 ADR: [ADR-REVIEW-010](ADR-REVIEW-010-evidence-first-verified-review.md). 빈 초안 처리와 코드 열람 범위를 변경한다.
-- 대체한 ADR: 없음.
+- 대체한 ADR: [ADR-REVIEW-013](ADR-REVIEW-013-recovery-and-evidence-checks.md). 코드 열람·반출·한도는 유지하고 검증·위치 처리를 보강한다.
 
 ## 배경
 

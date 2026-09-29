@@ -1,0 +1,15 @@
+{
+  "key": "B0-81c5bd8c7f71-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:02.563761+00:00",
+  "input_hash": "85b21fd225a3208e0cf3796068dbf6958b7aa0402526f1f1edb6e17f470e0a3c",
+  "system_hash": "bf9345e424dca63872da7d3ab6a1725d394dd778b268b0e450ba5f9c43bb4ad4",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"profile이 없는 user로 호출하면 user.profile이 undefined이므로 !.name 접근에서 TypeError가 발생하고, 계약이 요구한 'Unknown' 반환이 이루어지지 않습니다.\"}]}",
+  "input_tokens": 3088,
+  "output_tokens": 85,
+  "seconds": 1.062
+}

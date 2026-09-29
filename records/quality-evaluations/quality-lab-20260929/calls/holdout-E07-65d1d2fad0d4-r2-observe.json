@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-65d1d2fad0d4-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:37.019212+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "8e66a7ec56208b5c48fd53ac882b621af7265751037d8f26fd87349c12a5b02b",
+  "input_bytes": 716,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a single Java class Order with a static compare(int left, int right) method.",
+      "Line 3 is the only changed line and returns left - right.",
+      "The behavior contract requires negative, zero, or positive sign matching left<right, equality, or left>right.",
+      "Probe p1 calls compare(Integer.MIN_VALUE, 1) and wraps the result in Integer.signum.",
+      "Probe p2 calls compare(3, 3) and wraps the result in Integer.signum.",
+      "No static findings are supplied and no authorization or state boundaries are shown in the source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "d271621fa958079a062d581b39400a237c5af0b3c709c6f7040b7679ce0d23fa",
+  "input_tokens": 386,
+  "output_tokens": 128,
+  "elapsed_seconds": 1.157
+}

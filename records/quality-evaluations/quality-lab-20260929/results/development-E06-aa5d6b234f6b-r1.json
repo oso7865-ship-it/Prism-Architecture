@@ -1,0 +1,73 @@
+{
+  "key": "development-E06-aa5d6b234f6b-r1",
+  "case": "aa5d6b234f6b",
+  "arm": "E06",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 기본 버킷이 호출 간 공유되어 계약과 다른 결과가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간 공유되어 두 번째 호출 결과에 이전 항목이 누적됩니다. 계약이 요구하는 '생략 시 새 버킷'과 달리 첫 호출의 반환값을 이후 호출이 변경합니다.",
+        "assumptions": [],
+        "title": "기본 인자 리스트가 호출 간 공유되어 누적됩니다",
+        "evidence": "1줄의 bucket=[] 기본값은 함수 정의 시 한 번 생성되어 모든 생략 호출이 같은 객체를 사용하고, 2줄의 append가 그 객체를 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1], [1, 2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9, 3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5817,
+  "output_tokens": 433,
+  "elapsed_seconds": 3.11,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

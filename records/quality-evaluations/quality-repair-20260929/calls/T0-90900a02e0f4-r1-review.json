@@ -1,0 +1,15 @@
+{
+  "key": "T0-90900a02e0f4-r1-review",
+  "arm": "T0",
+  "phase": "review",
+  "at": "2026-09-29T10:21:14.247546+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Display.name의 null 처리 분기가 변경되어, null일 때 trim을 호출하고 비어 있지 않을 때 빈 문자열을 반환하는 반전된 동작을 보입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 상태로 name(name)을 호출할 때\",\"consequence\":\"조건이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 분기에서 null을 역참조해 NPE가 발생합니다\",\"evidence\":\"3줄의 삼항 연산자는 name == null이 참일 때 name.trim()을 선택하므로 null 역참조가 실행됩니다.\",\"suggestion\":\"null일 때 빈 문자열을, 그렇지 않을 때 trim 결과를 반환하도록 두 분기를 맞바꾸세요.\"},{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 공백을 포함한 비어 있지 않은 문자열일 때\",\"consequence\":\"name == null이 거짓이므로 \\\"\\\"가 반환되어, 계약이 요구하는 앞뒤 공백 제거가 수행되지 않고 값이 소실됩니다.\",\"assumptions\":[],\"title\":\"비어 있지 않은 입력에서 trim 대신 빈 문자열을 반환합니다\",\"evidence\":\"3줄의 거짓 분기 결과가 \\\"\\\"이므로 실제 name 값이 사용되지 않습니다.\",\"suggestion\":\"거짓 분기에서 name.trim()을 반환하고 null 분기에서 \\\"\\\"를 반환하도록 조건 결과를 교체하세요.\"}],\"limitations\":\"제공된 5줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 414,
+  "seconds": 2.953
+}

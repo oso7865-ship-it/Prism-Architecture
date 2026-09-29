@@ -1,0 +1,12 @@
+{
+  "key": "C4-6a3397085914-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:12.216866+00:00",
+  "input_hash": "e3ca403fff76b1c6f39c68d1422ec013062e91e6f2b96817f3f01f9ef7d84a88",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비ASCII 문자를 포함한 str body에 대해 len(body)는 UTF-8 인코딩 후 바이트 수가 아닌 코드 포인트 수를 반환하므로, 계약이 요구하는 전송 바이트 수보다 작은 값이 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"line 2의 len(body)는 str 입력에서 UTF-8 바이트 수가 아닌 문자 수를 반환하여 제공된 behavior_contract와 불일치합니다.\"}]}",
+  "input_tokens": 4396,
+  "output_tokens": 172,
+  "seconds": 1.375
+}

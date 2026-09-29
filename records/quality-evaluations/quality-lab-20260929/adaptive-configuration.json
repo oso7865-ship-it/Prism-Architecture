@@ -1,0 +1,29 @@
+{
+  "source_digest": "1ab7b59197acb1d9c328914357c401b037ba33904f7d52dff403625ff9e824b7",
+  "reference": {
+    "language": "Python",
+    "scope": "built-in operations, not overloaded user objects",
+    "facts": [
+      "range(start, stop, step) uses the supplied step, not an implicit replacement. With positive step, terms are start + step*i for nonnegative i while below stop. A zero step raises ValueError, even if the interval would be empty.",
+      "max(a, b) selects the larger argument. It is not min(a, b).",
+      "Default argument objects are created when the function is defined and reused when that argument is omitted in later calls.",
+      "A copied list is a separate container. Appending later to the original list does not append to an earlier list copy; a shallow copy still shares nested objects.",
+      "Boolean or returns its left operand when truthy, otherwise its right operand. Falsy values and None are not interchangeable under an explicit None-only contract."
+    ],
+    "sources": [
+      "https://docs.python.org/3/library/stdtypes.html#ranges",
+      "https://docs.python.org/3/library/functions.html#max",
+      "https://docs.python.org/3/tutorial/controlflow.html#default-argument-values"
+    ],
+    "provenance": "Official references checked 2026-09-29; manually paraphrased generic facts."
+  },
+  "consistency": "Before emitting an issue, distinguish actual source behavior from required behavior. An issue needs a concrete reachable condition where they differ, or a cited rule violation. Do not emit an issue that says the code satisfies its contract or requires no change. Do not turn an absence of a test into proof of a bug. Preserve every source-supported defect, including defects whose fix is not yet known. Check that summary, consequence, suggestion and probe predictions do not contradict each other. Return only the requested schema; this does not ask for hidden reasoning or extra explanation fields.",
+  "arms": [
+    "E14",
+    "E15"
+  ],
+  "repeats": 2,
+  "calls": 144,
+  "hypothesis": "Generic operator facts may improve observations; consistency may reduce non-issues.",
+  "selection": "Both arms frozen before first held-out model response; no adaptive winner selection."
+}

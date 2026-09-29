@@ -1,0 +1,12 @@
+{
+  "key": "F3-c5e97ef54254-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:12.814064+00:00",
+  "input_hash": "f1b5cf401e2d9b19eded625f74e4e1c4312ae4265e281c0b6ceca66b5fd10af2",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"제공된 계약은 '호출자의 중첩 상태를 변경하지 말 것'만 요구하며 반환값 요구사항이 없습니다. 2~3줄은 원본을 변경하지 않고, 4줄은 원본 cap을 반환하므로 계약을 위반하지 않습니다.\"}]}",
+  "input_tokens": 4541,
+  "output_tokens": 149,
+  "seconds": 1.453
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F3-d877f97cb5a9-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:06:10.385744+00:00",
+  "input_hash": "a9e3b4300c56f5dff5af2bc96512dc70fba600faa8fdc227fa9718207bfa5467",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1은 opener()가 반환한 컨텍스트 관리 스트림을 with로 열고 read() 결과를 반환하도록 변경되었습니다. 제공된 계약과 코드상 read() 예외 시에도 with가 스트림을 닫으므로 위반이 보이지 않습니다.\",\"issues\":[],\"limitations\":\"opener()의 실제 구현과 반환 객체, read()의 예외 동작은 제공되지 않아 실행 결과는 확인하지 못했습니다. 제공된 범위만 검토했습니다.\"}",
+  "input_tokens": 4608,
+  "output_tokens": 119,
+  "seconds": 1.281
+}

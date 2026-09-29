@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-aa5d6b234f6b-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "aa5d6b234f6b",
+  "at": "2026-09-29T08:41:14.996334+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "c7d69172bf767c6a157ca89a10f3710de9ea8fd8877d05f418053023f26ee1b7",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "bucket을 생략한 호출이 두 번 이상 발생하면 함수 정의 시 생성된 동일한 기본 리스트가 재사용되어, 두 번째 호출의 반환 리스트에 첫 번째 호출의 항목이 함께 포함됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3106,
+  "output_tokens": 92,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "8e71a4ef4097256f5c9972f9866d1981d121f013cfcdec875423a0a2ee231563",
+  "elapsed_seconds": 1.359
+}

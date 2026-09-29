@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-65d1d2fad0d4-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "65d1d2fad0d4",
+  "at": "2026-09-29T08:44:37.807026+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "정수 비교를 뺄셈으로 구현한 변경을 검토했습니다. 뺄셈 결과의 부호는 계약을 만족하지만, int 범위를 벗어나는 차이에서 오버플로가 발생할 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차이가 int 범위를 벗어나는 경우(예: left가 큰 양수, right가 큰 음수)",
+        "consequence": "left - right가 int 오버플로로 감겨 부호가 뒤집혀, left > right인데도 음수를 반환해 비교 계약(부호 규칙)이 위반됩니다.",
+        "assumptions": [],
+        "title": "뺄셈 비교가 int 오버플로로 부호를 뒤집을 수 있습니다",
+        "evidence": "3줄에서 left - right를 그대로 반환합니다. 두 int의 차이는 int 범위를 넘을 수 있어 결과 부호가 실제 순서와 반대로 나올 수 있습니다.",
+        "suggestion": "Integer.compare(left, right)를 사용하거나 long으로 승격해 비교하세요."
+      }
+    ],
+    "limitations": "제공된 비교 메서드만 검토했으며 호출부와 실제 입력 범위, 테스트 실행 여부는 확인하지 못했습니다."
+  },
+  "input_tokens": 4919,
+  "output_tokens": 307,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "2d21d224ebaf55a31b85e33da52005cb4e8fa6ac2f2c8afd9fec1020d1df4064",
+  "elapsed_seconds": 2.453
+}

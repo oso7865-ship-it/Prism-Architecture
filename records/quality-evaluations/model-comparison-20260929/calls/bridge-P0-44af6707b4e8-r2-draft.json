@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-44af6707b4e8-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "44af6707b4e8",
+  "at": "2026-09-29T08:43:29.125189+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "value가 None일 때만 default를 사용하도록 의도된 선택 로직을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value가 0, 빈 문자열, 빈 리스트 등 falsy한 값으로 전달될 때",
+        "consequence": "None이 아님에도 불구하고 default가 반환되어 명시적으로 제공된 값을 보존하지 못합니다.",
+        "assumptions": [],
+        "title": "falsy 값이 default로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 None뿐 아니라 모든 falsy 값을 default로 대체합니다. 계약상 None만 부재로 취급해야 합니다.",
+        "suggestion": "`return default if value is None else value`와 같이 None 여부를 명시적으로 검사하세요."
+      }
+    ],
+    "limitations": "제공된 함수 본문만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "input_tokens": 4735,
+  "output_tokens": 266,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "ed1bbda4bdc5852b6621b1d7648e22085f2d9abe01eb22c4fe9f6dde8700272d",
+  "elapsed_seconds": 4.609
+}

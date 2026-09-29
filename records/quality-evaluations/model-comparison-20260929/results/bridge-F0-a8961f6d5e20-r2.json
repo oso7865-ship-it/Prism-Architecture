@@ -1,0 +1,104 @@
+{
+  "key": "bridge-F0-a8961f6d5e20-r2",
+  "case": "a8961f6d5e20",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 2,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "user_id를 SQL 문자열에 직접 연결해 반환하는 변경을 검토했습니다. 값 바인딩 자리표시자가 아닌 문자열 결합이므로 SQL 주입 경로가 열립니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표나 SQL 구문이 포함된 신뢰할 수 없는 텍스트가 전달될 때",
+        "consequence": "user_id가 SQL 텍스트에 그대로 연결되어 반환되므로, 따옴표나 SQL 구문이 포함된 입력은 WHERE 절을 변조한 쿼리로 실행될 수 있습니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 결합으로 SQL 주입이 가능합니다",
+        "evidence": "2줄에서 'SELECT name FROM users WHERE id = ' 뒤에 user_id를 연결하고 파라미터 튜플은 빈 값으로 반환합니다. behavior_contract에 user_id가 신뢰할 수 없는 텍스트이고 반환값이 드라이버에 직접 전달된다고 명시되어 있습니다.",
+        "suggestion": "user_id를 SQL 문자열에 넣지 말고 자리표시자로 바꾼 뒤 파라미터 튜플로 전달하세요. 예: ('SELECT name FROM users WHERE id = %s', (user_id,))."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: user_id 문자열 결합으로 SQL 주입이 가능합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표나 SQL 구문이 포함된 신뢰할 수 없는 텍스트가 전달될 때",
+        "consequence": "user_id가 SQL 텍스트에 그대로 연결되어 반환되므로, 따옴표나 SQL 구문이 포함된 입력은 WHERE 절을 변조한 쿼리로 실행될 수 있습니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 결합으로 SQL 주입이 가능합니다",
+        "evidence": "2줄에서 'SELECT name FROM users WHERE id = ' 뒤에 user_id를 연결하고 파라미터 튜플은 빈 값으로 반환합니다. behavior_contract에 user_id가 신뢰할 수 없는 텍스트이고 반환값이 드라이버에 직접 전달된다고 명시되어 있습니다.",
+        "suggestion": "user_id를 SQL 문자열에 넣지 말고 자리표시자로 바꾼 뒤 파라미터 튜플로 전달하세요. 예: ('SELECT name FROM users WHERE id = %s', (user_id,)).",
+        "file_path": "query.py",
+        "key": "1336ac4eeb801a3c5d459c3c24846cd125f85cf8f3ec0534ecbc767f5cd46319"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "query.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8628,
+  "output_tokens": 442,
+  "elapsed_seconds": 4.032
+}

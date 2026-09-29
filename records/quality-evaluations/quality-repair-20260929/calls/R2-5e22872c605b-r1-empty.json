@@ -1,0 +1,15 @@
+{
+  "key": "R2-5e22872c605b-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:17:25.916257+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 indices 함수는 n이 음이 아닌 정수라는 계약에서 n=0이면 [], 양수 n이면 [0]을 반환하도록 구현되어 계약을 만족합니다. 변경된 한 줄에서 계약 위반이나 도달 가능한 실패 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"n이 음수이거나 정수가 아닌 경우의 동작은 계약 범위 밖이며, 호출 지점은 제공되지 않았습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"range(0, n, max(n,1))는 n=0이면 빈 리스트, 양수 n이면 step이 n이라 [0]만 생성되어 명시된 계약과 일치합니다.\"}]}",
+  "input_tokens": 3205,
+  "output_tokens": 205,
+  "seconds": 1.593
+}

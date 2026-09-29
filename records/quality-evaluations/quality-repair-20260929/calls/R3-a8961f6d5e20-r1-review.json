@@ -1,0 +1,15 @@
+{
+  "key": "R3-a8961f6d5e20-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:40.948965+00:00",
+  "input_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "system_hash": "1bd8daeca3d7886c5d66607589a6fbf00c98a75e3f720fd4b40690766b3984f9",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"query 함수가 user_id를 SQL 문자열에 직접 결합해 반환하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"user_id에 SQL 구문이 포함된 신뢰할 수 없는 텍스트가 전달될 때\",\"consequence\":\"user_id가 파라미터 바인딩이 아닌 SQL 문자열에 직접 연결되어, 반환된 SQL이 호출자의 DB-API 드라이버에서 실행되면 의도치 않은 SQL 구문이 실행될 수 있습니다.\",\"assumptions\":[],\"title\":\"user_id가 SQL 문자열에 직접 결합되어 SQL 주입이 가능합니다\",\"evidence\":\"2줄에서 user_id를 문자열 연결로 SQL에 삽입하고 파라미터 튜플은 비어 있습니다. behavior_contract에 user_id가 신뢰할 수 없는 텍스트이고 반환값이 드라이버로 전달된다고 명시되어 있습니다.\",\"suggestion\":\"user_id를 SQL 문자열에 연결하지 말고 'SELECT name FROM users WHERE id = %s'와 같이 플레이스홀더를 사용해 파라미터 튜플로 전달하세요.\"}],\"limitations\":\"제공된 변경 라인만 검토했으며 실제 호출부와 DB-API 드라이버의 실행 방식은 확인하지 못했습니다.\"}",
+  "input_tokens": 5069,
+  "output_tokens": 313,
+  "seconds": 2.047
+}

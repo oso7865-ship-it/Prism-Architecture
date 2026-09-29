@@ -1,0 +1,67 @@
+{
+  "key": "development-E11-7c4f2f03b3b5-r2",
+  "case": "7c4f2f03b3b5",
+  "arm": "E11",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "f1의 변경된 2번 줄이 주입된 logger 대신 print로 출력하도록 되어 있어 팀 로깅 규칙(s1)과 충돌합니다. 반환 동작에는 영향이 없습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2번 줄에 도달할 때",
+        "consequence": "기록이 주입된 logger.info가 아니라 stdout으로 출력되어, 표준이 요구하는 로깅 경로를 우회합니다.",
+        "assumptions": [],
+        "title": "print 사용으로 주입된 logger 로깅 규칙 위반",
+        "evidence": "2번 줄은 유일한 출력 경로이며 print('saved')를 사용합니다. 1번 줄에서 logger를 매개변수로 받지만 본문에서 사용하지 않습니다. 표준 s1은 print 대신 주입된 logger.info 사용을 요구합니다.",
+        "suggestion": "2번 줄을 logger.info('saved')로 바꿔 주입된 로거를 사용하세요. 반환값은 그대로 record이므로 동작 변화는 없습니다."
+      }
+    ],
+    "limitations": "제공된 3개 줄만 검토했으며 logger 구현과 실제 호출부는 확인하지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6319,
+  "output_tokens": 572,
+  "elapsed_seconds": 3.953,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

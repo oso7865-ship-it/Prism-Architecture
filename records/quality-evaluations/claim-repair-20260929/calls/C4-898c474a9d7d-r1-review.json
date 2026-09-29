@@ -1,0 +1,12 @@
+{
+  "key": "C4-898c474a9d7d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:31.858997+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하고, 반환값은 원본 base['nested']['limit']을 읽도록 되어 있어 계약과 반환 대상이 어긋납니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']에 'limit' 키가 있는 딕셔너리를 전달해 adjust를 호출하는 경우\",\"consequence\":\"2줄에서 복사한 result['nested']의 'limit'만 9로 바뀌고 원본 base['nested']는 그대로이므로, 4줄은 변경된 9가 아니라 원본의 기존 limit 값을 반환합니다.\",\"assumptions\":[],\"title\":\"복사본을 수정한 뒤 원본 값을 반환합니다\",\"evidence\":\"2줄은 base['nested'].copy()로 새 딕셔너리를 만들어 result에 넣고, 3줄은 result['nested']['limit']만 9로 설정합니다. 4줄은 result가 아닌 base['nested']['limit']을 반환하므로 3줄의 변경이 반환값에 반영되지 않습니다.\",\"suggestion\":\"반환값을 result['nested']['limit']으로 바꾸거나, 원본을 변경하지 않아야 한다는 계약에 맞춰 3줄의 대입 대상을 result로 유지한 채 반환도 result에서 읽도록 맞추세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. base['nested']가 딕셔너리이고 'limit' 키가 있다는 계약은 제공된 설명에 근거합니다.\"}",
+  "input_tokens": 4563,
+  "output_tokens": 424,
+  "seconds": 2.703
+}

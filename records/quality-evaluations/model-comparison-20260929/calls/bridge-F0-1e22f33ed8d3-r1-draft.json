@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-1e22f33ed8d3-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "1e22f33ed8d3",
+  "at": "2026-09-29T08:42:45.134206+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str은 UTF-8로 인코딩한 바이트 수를, bytes는 그대로의 길이를 반환하도록 변경된 부분을 검토했습니다. 제공된 범위에서 계약 위반이나 구체적 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "content_length와 prepare의 호출부, 그리고 str/bytes 외의 입력이 전달될 수 있는지는 제공되지 않았습니다. 테스트는 실행하지 않았습니다."
+  },
+  "input_tokens": 5006,
+  "output_tokens": 110,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4480,
+  "response_sha256": "2785e0f847200f62d29d57729c1448506e8bc2098e1723cc357c8626722ae2b9",
+  "elapsed_seconds": 1.531
+}

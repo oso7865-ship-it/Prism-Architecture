@@ -1,0 +1,104 @@
+{
+  "key": "bridge-E12-a8961f6d5e20-r1",
+  "case": "a8961f6d5e20",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 줄에서 신뢰할 수 없는 user_id 값을 SQL 문자열에 직접 이어 붙여 질의를 구성합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표, OR, 주석 기호 등 SQL 메타문자가 포함된 값이 query에 전달될 때",
+        "consequence": "신뢰할 수 없는 user_id가 바인딩 없이 SQL 문자열에 결합되므로, 메타문자가 포함된 입력은 구문의 일부로 해석되어 WHERE 조건이 변조·무력화되고 의도한 사용자 외의 행이 조회될 수 있습니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 연결로 인한 SQL 주입",
+        "evidence": "f1:2에서 'SELECT name FROM users WHERE id = ' + user_id 로 신뢰할 수 없는 값을 구문에 직접 결합하고, 두 번째 반환 값은 빈 튜플이라 바인딩되는 파라미터가 없습니다. 제공된 계약상 user_id는 신뢰할 수 없는 텍스트이고 반환값은 %s 자리표시자를 쓰는 드라이버로 전달됩니다.",
+        "suggestion": "SQL에는 %s 자리표시자를 두고 user_id를 파라미터 튜플로 전달하도록 변경하세요(예: 'SELECT name FROM users WHERE id = %s', (user_id,))."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: user_id 문자열 연결로 인한 SQL 주입",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 따옴표, OR, 주석 기호 등 SQL 메타문자가 포함된 값이 query에 전달될 때",
+        "consequence": "신뢰할 수 없는 user_id가 바인딩 없이 SQL 문자열에 결합되므로, 메타문자가 포함된 입력은 구문의 일부로 해석되어 WHERE 조건이 변조·무력화되고 의도한 사용자 외의 행이 조회될 수 있습니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 연결로 인한 SQL 주입",
+        "evidence": "f1:2에서 'SELECT name FROM users WHERE id = ' + user_id 로 신뢰할 수 없는 값을 구문에 직접 결합하고, 두 번째 반환 값은 빈 튜플이라 바인딩되는 파라미터가 없습니다. 제공된 계약상 user_id는 신뢰할 수 없는 텍스트이고 반환값은 %s 자리표시자를 쓰는 드라이버로 전달됩니다.",
+        "suggestion": "SQL에는 %s 자리표시자를 두고 user_id를 파라미터 튜플로 전달하도록 변경하세요(예: 'SELECT name FROM users WHERE id = %s', (user_id,)).",
+        "file_path": "query.py",
+        "key": "e2f6e4c81e50dd5c25248a82e2685fe28514990e2a8bc9b04ff1c3207861ec12"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "query.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8704,
+  "output_tokens": 1604,
+  "elapsed_seconds": 8.843
+}

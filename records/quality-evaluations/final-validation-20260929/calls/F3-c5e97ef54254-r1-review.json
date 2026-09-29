@@ -1,0 +1,12 @@
+{
+  "key": "F3-c5e97ef54254-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:09.768844+00:00",
+  "input_hash": "d05f92043b6f01e13ae4e2cf3fbbb476773bafb3a49c9b17cd7a4f561e5c1cf9",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 settings를 얕게 복사한 뒤 limits만 별도로 복사해 cap을 12로 바꾸지만, 반환값은 복사본이 아니라 원본 settings['limits']['cap']을 읽습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"settings['limits']['cap']이 12가 아닌 값(예: 5)인 상태에서 adjust(settings)를 호출하는 경우\",\"consequence\":\"3줄에서 복사본의 cap만 12로 변경되고 원본은 그대로이므로, 4줄은 변경된 12가 아니라 원래 값(예: 5)을 반환합니다.\",\"assumptions\":[],\"title\":\"복사본을 수정한 뒤 원본 값을 반환합니다\",\"evidence\":\"2줄은 limits를 별도로 복사해 원본과 분리하고, 3줄은 scratch['limits']['cap']만 12로 설정합니다. 4줄은 scratch가 아닌 settings['limits']['cap']을 읽으므로 3줄의 변경이 반환값에 반영되지 않습니다.\",\"suggestion\":\"반환값이 조정된 값을 나타내야 한다면 4줄에서 scratch['limits']['cap']을 반환하도록 수정하세요. 원본 값을 반환하는 것이 의도라면 3줄의 복사본 수정이 불필요한 계산인지 확인하세요.\"}],\"limitations\":\"제공된 4개 줄만 검토했으며 adjust의 호출자와 반환값 사용 방식은 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4667,
+  "output_tokens": 387,
+  "seconds": 3.016
+}

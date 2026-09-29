@@ -1,0 +1,29 @@
+{
+  "key": "bridge-E12-411a32119068-r1-empty",
+  "arm": "E12",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:20:56.453073+00:00",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "input_bytes": 409,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 라인은 wire_size()가 str이면 UTF-8 인코딩 후 바이트 수를, 그 외에는 len()을 그대로 반환하도록 한 부분입니다. 계약(str/bytes 허용)과 일치하며, 명시된 입력에 대해 잘못된 바이트 수를 계산하는 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "헌법상 허용된 str/bytes 외 입력(예: None, int)은 계약 위반 입력이므로 결함으로 보지 않았습니다. wire_size()의 호출 지점과 반환값 사용 방식은 제공되지 않아 실제 사용 맥락은 확인하지 못했습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str이면 encode('utf-8') 결과의 len을, bytes면 len(body)를 반환하여 계약상 바이트 수 계산이 일관됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "eb126eb493a7cc69a2c61556b1f67399ab6df639afce08bf5bef7cf115ce0d7f",
+  "input_tokens": 3166,
+  "output_tokens": 360,
+  "elapsed_seconds": 2.359
+}

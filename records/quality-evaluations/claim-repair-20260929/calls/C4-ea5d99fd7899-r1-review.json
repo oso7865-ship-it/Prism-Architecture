@@ -1,0 +1,12 @@
+{
+  "key": "C4-ea5d99fd7899-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:49.657043+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "930fd9ebc3c78578f03e720f801a55d8071181b85e5bf7cf7bf542e9425eeb1f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 load 함수가 order_id와 tenant_id를 함께 조회 조건으로 사용하도록 변경된 부분을 검토했습니다. 제공된 계약과 코드상 테넌트 격리 조건이 유지되고 있습니다.\",\"issues\":[],\"limitations\":\"제공된 두 줄만 검토했으며 db.execute의 실제 구현, 호출자, 테스트 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4515,
+  "output_tokens": 91,
+  "seconds": 1.218
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-4b5f6ff33252-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:47.528604+00:00",
+  "input_hash": "9e68146a45472e620a8416a09cc8be6587371779a0e1f5c6551bf360250bf0b7",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 environment_settings의 verify 처리(9-10행)입니다. 제공된 계약과 테스트(14-21행)를 정적 투영으로 대조한 결과, 명시적 False 보존과 CA 경로 문자열 반환, 빈 문자열 무시 동작이 모두 일치합니다. 변경 라인에서 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 호출자와 실제 런타임 환경 변수 값은 제공되지 않았습니다. 테스트는 정적 투영이며 실행 결과가 아닙니다. verify에 bool/str 이외 타입이 들어오는 경우의 계약은 제공되지 않아 판단하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"9-10행의 verify is True/None 분기와 env.get(...) or verify 폴백을 확인함. 빈 문자열 CA 값은 or 체인에서 무시되어 verify가 유지되고, False는 9행 조건이 거짓이라 그대로 전달되어 테스트 14-21행 기대와 일치함.\"}]}",
+  "input_tokens": 4824,
+  "output_tokens": 272,
+  "seconds": 2.093
+}

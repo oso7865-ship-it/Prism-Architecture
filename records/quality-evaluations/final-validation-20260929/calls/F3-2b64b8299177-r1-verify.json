@@ -1,0 +1,12 @@
+{
+  "key": "F3-2b64b8299177-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:19.348549+00:00",
+  "input_hash": "bc88ca0726ba989652dc5a40541c9676b2313ba1c08aeb063864280d7bfa58f2",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 0이면 `value or 5`가 5를 반환하여 명시적 0이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"`value or 5`는 0을 falsy로 취급해 5를 반환하므로, 0을 보존하라는 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4575,
+  "output_tokens": 146,
+  "seconds": 1.312
+}

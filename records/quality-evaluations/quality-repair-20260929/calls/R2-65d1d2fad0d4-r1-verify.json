@@ -1,0 +1,15 @@
+{
+  "key": "R2-65d1d2fad0d4-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:20.314305+00:00",
+  "input_hash": "1468fcacca305ee0ea3c8f90068ec1aefd804e1f8306f38d252b19129e3df6fa",
+  "system_hash": "ad69f28120867ff33cf1760c6a79fb1cc93825df39ba5dac011fc0f0e1d16a04",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left = Integer.MIN_VALUE, right = 1일 때 left - right는 int 오버플로로 양수가 되어, left < right임에도 Comparator 부호 계약(음수)이 위반됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 left - right 반환은 int 오버플로 시 Comparator 부호 계약을 위반할 수 있습니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4018,
+  "output_tokens": 151,
+  "seconds": 1.062
+}

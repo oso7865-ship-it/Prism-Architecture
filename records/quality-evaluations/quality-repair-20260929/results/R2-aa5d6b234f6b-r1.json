@@ -1,0 +1,78 @@
+{
+  "case": "aa5d6b234f6b",
+  "arm": "R2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 가변 기본 인자로 인해 생략 호출 간 상태가 누적됩니다",
+    "issues": [
+      {
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "bucket을 생략한 호출이 두 번 이상 발생하면 첫 호출에서 append된 항목이 이후 생략 호출의 반환 리스트에도 누적되어, '생략 호출마다 새 bucket'이라는 명시된 동작 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "가변 기본 인자로 인해 생략 호출 간 상태가 누적됩니다",
+        "evidence": "1줄의 기본값 []는 함수 정의 시 한 번 생성되어 모든 생략 호출이 같은 리스트를 공유하고, 2줄의 append가 그 리스트를 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 바꾸세요. 명시적 bucket을 받는 경로는 그대로 in-place 수정을 유지하면 됩니다.",
+        "file_path": "collector.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "5e59eb5517f5de49abae070a58c3977cac8533499e9baa32eea877b36f21d7af"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "collector.py",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "1줄의 가변 기본 인자 []가 정의 시 한 번 생성되어 생략 호출 간 공유되고, 2줄의 append가 이를 변경하여 명시된 계약과 충돌합니다.",
+          "file_path": "collector.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "2b85092893817e6aad007ffeb7a809c5c6b4a0c0d40ba625cff9f7ba3aa5a380"
+}

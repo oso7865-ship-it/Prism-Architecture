@@ -1,0 +1,12 @@
+{
+  "key": "C3-2cdf3efa43ff-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:50:13.802797+00:00",
+  "input_hash": "09e03bd0af154b770018f0f07f11832bb61516e1f2686f31b84cdcf3740e8ac3",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount와 count가 각각 100000일 때 int 곱셈이 32비트에서 수행되어 1410065408이 반환되고, 수학적 곱 10000000000이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 int*int 곱셈이 long 반환 전에 32비트에서 수행되어, 계약이 요구하는 정확한 곱 보존이 큰 입력에서 깨집니다.\"}]}",
+  "input_tokens": 4674,
+  "output_tokens": 174,
+  "seconds": 1.328
+}

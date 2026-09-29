@@ -1,0 +1,41 @@
+{
+  "key": "development-E12-411a32119068-r1-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:09:57.346932+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "47b2320f78109fe85d98ad9fba04c2ed7065b95079fdb1d1c9eaf5bae4c18f30",
+  "input_bytes": 570,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "str 또는 bytes를 받아 UTF-8 인코딩 기준 바이트 길이를 반환하는 변경을 검토했습니다. 계약(str/bytes 입력, UTF-8 바이트 수 반환)과 일치하며 제공된 범위에서 보고할 결함은 없습니다.",
+    "issues": [],
+    "limitations": "호출부와 실제 데이터 출처는 제공되지 않았고, 테스트를 실행하지 않았습니다. bytes 입력이 실제로 wire에 그대로 전송되는지 여부는 이 코드만으로 확인할 수 없습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "b9b3ccf8ffb798707eda928ccf318dd1c584f052dcfaa7503d4a775a16241260",
+  "input_tokens": 5213,
+  "output_tokens": 303,
+  "elapsed_seconds": 2.219
+}

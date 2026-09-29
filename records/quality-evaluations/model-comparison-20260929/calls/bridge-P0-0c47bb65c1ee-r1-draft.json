@@ -1,0 +1,41 @@
+{
+  "key": "bridge-P0-0c47bb65c1ee-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "0c47bb65c1ee",
+  "at": "2026-09-29T08:40:14.325727+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base를 복사한 뒤 중첩 딕셔너리를 수정하고 원본의 중첩 값을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "base['nested']가 dict인 상태에서 adjust(base)를 호출할 때",
+        "consequence": "result['nested']는 base['nested']와 같은 객체를 참조하므로 result['nested']['limit'] = 9가 원본 base의 중첩 딕셔너리도 변경합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 원본 중첩 딕셔너리가 변경됩니다",
+        "evidence": "2줄의 base.copy()는 얕은 복사이므로 중첩 딕셔너리는 공유됩니다. 3줄에서 result['nested']['limit']을 수정하면 원본 base['nested']도 함께 변경됩니다.",
+        "suggestion": "중첩 구조까지 보존하려면 copy.deepcopy를 사용하거나 result['nested'] = dict(base['nested'])처럼 중첩 딕셔너리를 별도로 복사하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4789,
+  "output_tokens": 345,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "0df9c8be3f0e2165d94cc4858ba88da54e9ed74deb5f36e10227e19e11efa84e",
+  "elapsed_seconds": 5.578
+}

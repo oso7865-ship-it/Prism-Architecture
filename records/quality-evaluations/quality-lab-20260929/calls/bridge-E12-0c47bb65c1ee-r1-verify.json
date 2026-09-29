@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-0c47bb65c1ee-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:43.463144+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "c4a77b543914e790e59422955833c7269bdd04e34615c61b1523d3e338d3a97b",
+  "input_bytes": 1969,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "base['nested']가 딕셔너리인 입력에서 base.copy()는 중첩 딕셔너리를 공유하므로 3줄의 result['nested']['limit'] = 9가 호출자의 base['nested']['limit']도 9로 바꾸고, 4줄은 변경된 9를 반환합니다. 이는 제공된 '호출자의 base를 변경하지 않는다'는 계약을 위반합니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "e9ee73656b807cfbd641865ecf3c677be030bf9aacb78597925c686dda55d1f9",
+  "input_tokens": 3272,
+  "output_tokens": 348,
+  "elapsed_seconds": 2.203
+}

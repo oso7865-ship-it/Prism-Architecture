@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-1bcaee84937b-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "1bcaee84937b",
+  "at": "2026-09-29T08:42:03.748984+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4bf0d5ec60bc171a4b987c12ea650e17f1958a223c7f04866aa539a2ad9897f2",
+  "payload_sha256": "556da732c0813aaff0d7b3fe655eecc0328e3d81bd4ebff07f08da104eab9553",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "actor가 \"alice\"가 아닌 값으로 invoice(7, actor)를 호출하면 소유자 검사 없이 item.amount(40)가 그대로 반환되어, 계약상 소유자에게만 허용되어야 할 금액이 다른 actor에게도 노출됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3518,
+  "output_tokens": 105,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "28ea733302697e13e8cc4f30691c574415a653951cf7905827304677f452c134",
+  "elapsed_seconds": 0.953
+}

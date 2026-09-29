@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-3a35091fd0ff-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "3a35091fd0ff",
+  "at": "2026-09-29T08:41:10.107861+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "7420e9d52cab0110a539537109aec59e90424a175746ed2d7d0a37d1e6b08354",
+  "payload_sha256": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 3개 라인(load 호출, 소유자 검사, amount 반환)을 검토했다. load는 id=7에 대해 owner \"alice\"를 반환하고, actor가 \"alice\"가 아니면 예외를 던진 뒤 반환하므로 소유자 경계가 코드상 유지된다. 제공된 범위에서 지원 가능한 보안 결함은 확인되지 않았다.",
+    "issues": [],
+    "limitations": "load의 실제 구현은 관련 파일의 단순 스텁으로만 제공되어 실제 데이터 접근·권한 부여 로직은 검토 범위 밖이다. actor 값의 출처(인증 주체 검증 여부)와 호출 지점은 제공되지 않아 신뢰 경계를 확인할 수 없다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "load(id) 결과의 owner와 actor를 비교해 불일치 시 예외를 던지고, 일치할 때만 amount를 반환한다. 제공된 계약(id=7, owner \"alice\")에서 소유자 외 접근은 차단된다."
+      }
+    ]
+  },
+  "input_tokens": 3584,
+  "output_tokens": 278,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3328,
+  "response_sha256": "ea9d6b6b9a4c99e29c82fbc0d9e814e4af24749c3bdd2192ad6ff7cc9dfe2200",
+  "elapsed_seconds": 2.219
+}

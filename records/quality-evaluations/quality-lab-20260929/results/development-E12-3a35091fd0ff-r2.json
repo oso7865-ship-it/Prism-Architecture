@@ -1,0 +1,54 @@
+{
+  "key": "development-E12-3a35091fd0ff-r2",
+  "case": "3a35091fd0ff",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "invoice 함수가 load(id)로 항목을 조회한 뒤 item.owner와 actor를 비교해 소유자가 아니면 Error를 던지고, 소유자에게만 amount를 반환하도록 변경된 코드를 검토했습니다. 제공된 관련 구현과 동작 계약을 볼 때 인가 검사가 반환 경로 앞에 위치하며, 다른 액터가 금액을 받는 경로는 보이지 않습니다.",
+    "issues": [],
+    "limitations": "load 구현(related_implementation)은 제공되었으나 실제 호출부, actor 값의 출처(인증 주체인지 사용자 입력인지), 테넌트 경계는 제공되지 않았습니다. actor가 신뢰할 수 없는 요청 파라미터로 전달될 수 있는지는 확인하지 못했으며, 이 경우 소유자 이름을 위조해 접근할 수 있는지 여부는 별도 확인이 필요합니다. 테스트 실행은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5645,
+  "output_tokens": 429,
+  "elapsed_seconds": 2.781,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

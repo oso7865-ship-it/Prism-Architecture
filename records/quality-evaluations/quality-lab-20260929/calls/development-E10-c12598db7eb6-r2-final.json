@@ -1,0 +1,41 @@
+{
+  "key": "development-E10-c12598db7eb6-r2-final",
+  "arm": "E10",
+  "phase": "final",
+  "at": "2026-09-29T07:11:22.874593+00:00",
+  "system_sha256": "fa7aa28dce241cf87a0bed615edbabf008f5d993c3d51fe969148e91e43588fa",
+  "payload_sha256": "68aaaeac905ae29edc897541615d538aef626f9493a7056a7577d90d52954ab6",
+  "input_bytes": 1888,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "None만 부재로 간주하고 그 외 명시적으로 전달된 값은 그대로 반환하는 조건부 기본값 선택 로직을 검토했습니다. 제공된 코드는 명시된 계약과 일치합니다.",
+    "issues": [],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "42597db04ad03fbcbd0d2b198e988a2e6fe374b974e23d8acf08f927e90c0a56",
+  "input_tokens": 5594,
+  "output_tokens": 172,
+  "elapsed_seconds": 1.359
+}

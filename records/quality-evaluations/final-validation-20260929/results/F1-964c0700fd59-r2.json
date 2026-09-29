@@ -1,0 +1,79 @@
+{
+  "case": "964c0700fd59",
+  "repeat": 2,
+  "arm": "F1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 보정값 대신 원본 value를 반환합니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "value가 0보다 작은 정수(예: -1)로 adjust를 호출하는 경우",
+        "consequence": "value가 -1일 때 adjust는 max(-1, 0)인 0이 아니라 -1을 반환합니다.",
+        "assumptions": [],
+        "title": "보정값 대신 원본 value를 반환합니다",
+        "evidence": "2줄은 adjusted = max(value, 0)으로 보정값을 계산하지만, 3줄은 adjusted가 아닌 value를 반환합니다.",
+        "suggestion": "3줄의 반환식을 adjusted로 바꿔 계산된 보정값을 반환하도록 하세요.",
+        "file_path": "adjusted.py",
+        "suggestion_check": {
+          "status": "SOURCE_MISMATCH",
+          "samples": 0
+        },
+        "key": "c2584326fcf7b40849db55ed13332e3b6ea9006c1926029da905ec1dfab6da1f"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "adjusted.py",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "2줄에서 계산한 adjusted를 반환하지 않고 3줄에서 원본 value를 반환하여, 계약(Return max(value, 0))과 달리 음수 입력이 그대로 반환됩니다.",
+          "file_path": "adjusted.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "cc9d6b8baad67f4448c68d21df82ec817c669f9f67e708d494bbe71af10e509a"
+}

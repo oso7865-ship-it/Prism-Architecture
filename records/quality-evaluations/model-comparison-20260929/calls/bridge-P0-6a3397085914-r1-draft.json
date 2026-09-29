@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-6a3397085914-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "6a3397085914",
+  "at": "2026-09-29T08:41:05.600121+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "581c977c1e5a9d7e6d22c04d129f67528bde5a2af403d540f43cbfb73a2e4d97",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "body의 전송 바이트 수를 계산하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "body가 str 타입일 때 wire_size를 호출하는 경우",
+        "consequence": "len(body)는 문자 수를 반환하므로 UTF-8 인코딩 시 실제 전송 바이트 수와 달라질 수 있습니다.",
+        "assumptions": [],
+        "title": "str 입력에서 전송 바이트 수가 잘못 계산됩니다",
+        "evidence": "2줄은 body를 인코딩하지 않고 len을 호출합니다. 계약상 str은 UTF-8 바이트 수를 반환해야 하므로 멀티바이트 문자가 포함되면 결과가 부정확해집니다.",
+        "suggestion": "str 입력은 len(body.encode('utf-8'))로 계산하고, bytes 입력은 그대로 len을 사용하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 테스트를 실행하지 않았습니다."
+  },
+  "input_tokens": 4740,
+  "output_tokens": 279,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "2358aa61029551735a5b23b69fa5ada25801feae0303b47a2e6dcabe8c177f7f",
+  "elapsed_seconds": 4.985
+}

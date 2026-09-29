@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-0c543f7d32dd-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "0c543f7d32dd",
+  "at": "2026-09-29T08:44:16.511353+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "경로 접두사 검사로 루트 하위 여부를 판정하는 변경을 검토했습니다. 접두사 비교 방식은 형제 디렉터리를 통과시킬 수 있는 경계 문제가 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/data/app'이고 resolved가 '/data/app-secret/x'처럼 root 문자열로 시작하지만 root 디렉터리 밖인 경로일 때",
+        "consequence": "startswith는 경로 구성요소 경계를 구분하지 않으므로 root의 형제 경로가 허용되어, 이 함수가 접근 제어 판정에 쓰이면 root 밖 자원에 대한 접근이 허용됩니다.",
+        "assumptions": [],
+        "title": "접두사 비교가 형제 경로를 허용합니다",
+        "evidence": "2줄은 resolved.startswith(root)만 검사하며, 경로 구분자 경계를 확인하지 않아 '/data/app-secret'이 '/data/app' 접두사를 만족합니다.",
+        "suggestion": "root와 동일하거나 root + '/'로 시작하는 경우만 허용하도록 경계를 명시하세요(예: resolved == root or resolved.startswith(root + '/'))."
+      }
+    ],
+    "limitations": "호출부와 root/resolved의 실제 생성·정규화 지점은 제공되지 않아 이 판정이 어떤 자원 접근을 통제하는지, 그리고 심볼릭 링크나 대소문자 처리 여부는 확인하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 5099,
+  "output_tokens": 373,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4864,
+  "response_sha256": "0700dd18e04e90e0ce66bfb1a934e87471a7f8340b240f5d3923d8f3ab544416",
+  "elapsed_seconds": 2.516
+}

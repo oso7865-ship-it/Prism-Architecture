@@ -1,0 +1,42 @@
+{
+  "key": "bridge-P0-4cf224cd4371-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "4cf224cd4371",
+  "at": "2026-09-29T08:40:25.585281+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "Content-Length 계산을 len(body)로 변경하고, prepare에서 문자열만 UTF-8로 인코딩하도록 구성했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6
+        ],
+        "trigger": "body가 비ASCII 문자를 포함한 str인 경우 prepare를 호출할 때",
+        "consequence": "content_length(body)는 문자 수를 반환하지만 실제 전송되는 wire는 UTF-8 바이트 수이므로 Content-Length가 실제 전송 바이트 수와 달라집니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 다릅니다",
+        "evidence": "2줄의 len(body)는 str의 문자 수를 반환하고, 5줄에서 body.encode('utf-8')로 생성한 wire는 UTF-8 바이트 수를 가집니다. 6줄에서 Content-Length에 content_length(body)를 사용하므로 비ASCII 문자가 포함되면 두 값이 달라집니다.",
+        "suggestion": "content_length가 str인 경우 UTF-8로 인코딩한 바이트 수를 반환하도록 변경하거나, prepare에서 wire를 먼저 생성한 뒤 len(wire)를 Content-Length로 사용하세요."
+      }
+    ],
+    "limitations": "제공된 코드만 검토했으며 테스트 실행이나 다른 호출부는 확인하지 않았습니다."
+  },
+  "input_tokens": 4987,
+  "output_tokens": 363,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "615201bcd5ecfc436d5f33bdc09f43cc3134173aa2cb98183a6276968be801cf",
+  "elapsed_seconds": 6.828
+}

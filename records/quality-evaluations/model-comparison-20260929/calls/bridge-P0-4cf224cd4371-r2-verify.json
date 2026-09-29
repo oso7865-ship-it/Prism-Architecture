@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-4cf224cd4371-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "4cf224cd4371",
+  "at": "2026-09-29T08:40:32.436543+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "f28d0a0cd8ac9a7f2783ba1b3fe01fc66542e38b35a341c13bb4f171e13eccc6",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "body가 비ASCII 문자를 포함한 str인 경우 content_length(body)는 문자 수를 반환하지만 실제 전송되는 wire는 UTF-8 바이트 수이므로 Content-Length가 실제 전송 바이트 수와 달라집니다."
+      }
+    ]
+  },
+  "input_tokens": 3357,
+  "output_tokens": 105,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "ea5bbcee81c54ab3002f4b1f25aa9bd1b5dfbd583123d1ae9e6f22f80f58ef6c",
+  "elapsed_seconds": 2.219
+}

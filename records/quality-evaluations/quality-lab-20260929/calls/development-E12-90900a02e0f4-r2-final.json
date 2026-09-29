@@ -1,0 +1,68 @@
+{
+  "key": "development-E12-90900a02e0f4-r2-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:09:25.772795+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1 3줄의 삼항 연산자 조건과 결과가 뒤바뀌어, null 입력에서 name.trim()을 호출하고 비-null 입력에서는 빈 문자열을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 Display.name(null)을 호출할 때",
+        "consequence": "조건 name == null이 true가 되어 true 분기의 name.trim()이 평가되므로 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 입력에서 역참조로 NPE가 발생합니다",
+        "evidence": "3줄은 name == null일 때 name.trim()을 실행하고, 그렇지 않을 때 \"\"를 반환하도록 분기가 반대로 작성되어 있습니다.",
+        "suggestion": "분기를 바꿔 null일 때 \"\"를, 비-null일 때 name.trim()을 반환하도록 하세요."
+      },
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "공백을 포함한 비-null 문자열로 Display.name(\" Ada \")를 호출할 때",
+        "consequence": "조건이 false라 \"\"가 반환되어, 계약에서 요구한 앞뒤 공백 제거 결과 대신 빈 문자열이 표시됩니다.",
+        "assumptions": [],
+        "title": "비-null 입력의 공백 제거 결과가 항상 빈 문자열입니다",
+        "evidence": "3줄의 false 분기(else)가 name.trim()이 아니라 빈 문자열 \"\"을 반환하고 있어, 비-null 경로가 trim을 수행하지 않습니다.",
+        "suggestion": "false 분기에서 name.trim()을 반환하고, 빈 문자열은 null 분기로 옮기세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "java.lang.NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "160290245dd44b52f0ec4542004fa8bae14c1fb9bd8544f17a6386b01f701608",
+  "input_tokens": 5356,
+  "output_tokens": 772,
+  "elapsed_seconds": 4.532
+}

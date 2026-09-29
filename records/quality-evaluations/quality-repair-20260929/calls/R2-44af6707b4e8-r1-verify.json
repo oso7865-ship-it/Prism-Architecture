@@ -1,0 +1,15 @@
+{
+  "key": "R2-44af6707b4e8-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:19.476327+00:00",
+  "input_hash": "cef7616ef9aec5aa01d4fb0a56fd8bc1b4fd99faf9d68e08f3c7457066e64872",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 0, \\\"\\\", False 등 falsy이지만 None이 아닌 값일 때 `value or default`가 default를 반환하여 명시적으로 제공된 값이 보존되지 않습니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"`value or default`는 None뿐 아니라 0, \\\"\\\", False도 default로 대체하여 'None만 부재' 계약과 불일치합니다.\"}]}",
+  "input_tokens": 4033,
+  "output_tokens": 149,
+  "seconds": 1.297
+}

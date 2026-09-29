@@ -1,0 +1,53 @@
+{
+  "key": "development-E09-1bcaee84937b-r1-draft1",
+  "arm": "E09",
+  "phase": "draft1",
+  "at": "2026-09-29T07:12:39.969374+00:00",
+  "system_sha256": "f52ff945b78a26d7cddeb6b11c5463c96545a0c75df84417d7bd7d1ff9e8e5e4",
+  "payload_sha256": "dfb594c21421209a63f1e44ae09c8d2f29d8d1617a9ef0cedcd240780728581f",
+  "input_bytes": 688,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 확인 없이 청구 금액을 반환하는 접근 제어 결함을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "invoice(7, \"bob\")처럼 소유자가 아닌 actor로 호출할 때",
+        "consequence": "load가 반환한 항목의 owner가 \"alice\"인데도 actor 검증 없이 amount가 반환되어, 소유자가 아닌 호출자에게 금액이 노출됩니다.",
+        "assumptions": [],
+        "title": "소유자 검증 없이 금액을 반환합니다",
+        "evidence": "f1:2에서 load(id)로 항목을 가져오고 f1:3에서 owner 확인 없이 item.amount를 반환합니다. 관련 구현은 owner가 \"alice\"인 항목을 반환하며, behavior_contract는 소유자 외 actor에게는 Error를 요구합니다.",
+        "suggestion": "item.owner와 actor를 비교하여 일치하지 않으면 Error를 던지고, 일치할 때만 amount를 반환하세요."
+      }
+    ],
+    "limitations": "load의 실제 구현과 호출부 전체를 보지 못했으며, 제공된 관련 구현과 계약 설명에 근거해 판단했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2c1ba9d01367295ba4c546c7cc843415f93ca91cd70f0ec72dc563b30362753c",
+  "input_tokens": 5615,
+  "output_tokens": 362,
+  "elapsed_seconds": 2.579
+}

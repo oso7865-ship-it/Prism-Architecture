@@ -1,0 +1,77 @@
+{
+  "key": "development-E12-b07fc52f42ca-r1",
+  "case": "b07fc52f42ca",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "기본값 처리를 `||`로 구현해 0이 유효한 설정값임에도 기본값 10으로 대체되는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)처럼 0을 유효한 limit 값으로 전달할 때",
+        "consequence": "`0 || 10`은 0을 falsy로 평가해 10을 반환하므로, 계약상 유효한 0 설정이 무시되고 기본값이 적용됩니다.",
+        "assumptions": [],
+        "title": "유효한 0 설정이 기본값 10으로 대체됩니다",
+        "evidence": "2줄은 `count || 10`으로 falsy 값을 모두 기본값으로 처리하며, 0도 falsy이므로 계약에서 유효하다고 명시한 0이 대체됩니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`(또는 `count === undefined || count === null ? 10 : count`)으로 좁히세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5212,
+  "output_tokens": 493,
+  "elapsed_seconds": 2.875,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

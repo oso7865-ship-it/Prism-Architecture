@@ -1,0 +1,15 @@
+{
+  "key": "R1-cd210310faa4-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:18:52.955753+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 null 검사 후 trim을 수행하는 삼항 연산으로, null 입력은 빈 문자열로 처리되고 그 외에는 공백 제거가 적용됩니다. 단락 평가 경로를 확인한 결과 null 역참조 경로는 없으며, 제공된 범위에서 조치가 필요한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"name()의 호출자와 반환값 사용처, trim 대상 문자열의 실제 입력 분포는 제공되지 않아 그 영향 범위는 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"line 3의 삼항 연산은 name == null일 때 빈 문자열을 반환하고, 그 외에는 trim()을 호출하므로 null 역참조 경로가 없습니다. 계약과 일치합니다.\"}]}",
+  "input_tokens": 3261,
+  "output_tokens": 217,
+  "seconds": 1.594
+}

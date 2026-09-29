@@ -1,0 +1,15 @@
+{
+  "key": "R2-4d95d35835a5-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:18:28.124226+00:00",
+  "input_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 callbacks가 리스트 컴프리헨션으로 세 개의 람다를 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"callbacks()가 반환한 콜백을 호출할 때\",\"consequence\":\"람다가 i를 클로저로 공유하므로 모든 콜백이 2를 반환하여, 생성 시점의 인덱스를 반환한다는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"콜백이 생성 시점 인덱스 대신 최종 값을 반환합니다\",\"evidence\":\"2줄의 람다는 i를 기본 인자로 캡처하지 않아 컴프리헨션 종료 후 i의 최종 값(2)을 참조합니다.\",\"suggestion\":\"lambda i=i: i처럼 기본 인자로 현재 값을 캡처하도록 변경하세요.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4697,
+  "output_tokens": 256,
+  "seconds": 2.157
+}

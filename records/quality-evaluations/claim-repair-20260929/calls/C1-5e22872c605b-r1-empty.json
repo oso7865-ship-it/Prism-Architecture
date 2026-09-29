@@ -1,0 +1,12 @@
+{
+  "key": "C1-5e22872c605b-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:39:42.646186+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "2f6d4a5ca10b9172e4a0c123f361a45548e33e2d4740ecb89c5ed4b7c49a96e4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 `range(0, n, max(n, 1))`로, 계약상 n≥0 정수에 대해 n=0이면 [], 양수 n이면 [0]을 반환합니다. 제공된 계약 범위 내에서는 위반이 확인되지 않습니다.\", \"issues\": [], \"limitations\": \"n이 음수이거나 정수가 아닌 경우의 계약은 제공되지 않았고, 호출자나 실제 입력 분포도 제공되지 않아 해당 경계는 판단 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"n=0이면 range(0,0,1)이 비어 [], 양수 n이면 step=max(n,1)=n이라 range(0,n,n)이 [0]만 생성하여 계약과 일치합니다.\"}]}",
+  "input_tokens": 3373,
+  "output_tokens": 206,
+  "seconds": 1.906
+}

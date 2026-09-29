@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-2cdf3efa43ff-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "2cdf3efa43ff",
+  "at": "2026-09-29T08:41:25.718639+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "e5f6e2998eef288b0ed47d4a302c7879bd170ac759f8f5600a63a3a5b37ee4d7",
+  "payload_sha256": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다. 계약상 곱이 long 범위에 들어가지만, 곱셈이 int로 수행되어 결과가 int 범위를 넘으면 long으로 승격되기 전에 값이 잘릴 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count가 모두 int이고 두 값의 곱이 Integer.MAX_VALUE를 초과할 때 total을 호출하는 경우",
+        "consequence": "3줄의 곱셈이 int 정밀도로 수행되어 오버플로가 발생하고, 잘린 int 값이 long으로 변환되어 반환되므로 계약에서 요구하는 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 오버플로로 정확한 곱이 보존되지 않습니다",
+        "evidence": "3줄에서 두 int 매개변수를 곱한 뒤에야 long으로 변환하므로, 곱셈 자체는 int 범위에서 수행됩니다. 계약은 두 입력이 음수가 아니고 정확한 곱이 long에 들어간다고 명시합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 클래스 한 곳만 검토했으며 호출부와 테스트는 제공되지 않아 실제 입력 범위는 확인하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4920,
+  "output_tokens": 363,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "6613d704d630a439f3b9fd860a924346e4c8cfbc2a2ea3e31bab635e9320b0e6",
+  "elapsed_seconds": 2.891
+}

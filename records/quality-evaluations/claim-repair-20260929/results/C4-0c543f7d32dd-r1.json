@@ -1,0 +1,77 @@
+{
+  "case": "0c543f7d32dd",
+  "repeat": 1,
+  "arm": "C4",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 접두사 검사가 형제 디렉터리를 허용합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/data'이고 resolved가 '/database/secret'인 경우",
+        "consequence": "root가 '/data'이고 resolved가 '/database/secret'일 때 startswith가 True를 반환하여 root의 하위 경로가 아닌 경로가 허용됩니다.",
+        "assumptions": [],
+        "title": "접두사 검사가 형제 디렉터리를 허용합니다",
+        "evidence": "2줄은 구분자 경계 없이 startswith만 수행하므로 '/data'가 '/database/...'의 접두사가 되어 통과합니다.",
+        "suggestion": "root와 정확히 같거나 root + '/'로 시작하는 경우만 허용하도록 비교하세요.",
+        "file_path": "paths.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "3e5c2e0449d6e78f5573a7f3ac544aae92d04a3ff99475e05d6650c03effbc5f"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "paths.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "구분자 경계 없는 startswith 비교로 형제 디렉터리('/database')가 root('/data') 하위로 오인되어 허용됩니다.",
+          "file_path": "paths.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76"
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-0e12161a3613-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:56.176837+00:00",
+  "input_hash": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 Integer.compare(left, right)로, left < right이면 음수, 같으면 0, 크면 양수를 반환한다. 명시된 비교기 계약을 그대로 만족하며, 제공된 범위에서 구체적 결함 경로가 보이지 않는다.\", \"issues\": [], \"limitations\": \"compare 메서드의 호출자와 사용 맥락(정렬 대상, 입력 범위)은 제공되지 않았다. Integer.compare는 int 오버플로 없이 부호를 반환하므로 경계값 처리도 계약과 일치한다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"Integer.compare(left, right)는 left<right에서 음수, 동일 시 0, 그 외 양수를 반환해 명시된 비교기 부호 계약을 충족한다. 경계값에서도 오버플로 없이 동작한다.\"}]}",
+  "input_tokens": 3264,
+  "output_tokens": 224,
+  "seconds": 1.828
+}

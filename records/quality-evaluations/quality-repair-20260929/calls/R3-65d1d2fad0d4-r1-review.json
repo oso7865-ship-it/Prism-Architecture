@@ -1,0 +1,15 @@
+{
+  "key": "R3-65d1d2fad0d4-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:37.600139+00:00",
+  "input_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Order.compare가 두 int의 차이를 그대로 반환하도록 변경된 코드를 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"left와 right의 차이가 int 범위를 넘는 경우(예: left가 Integer.MAX_VALUE, right가 음수)\",\"consequence\":\"int 뺄셈이 오버플로되어 반환값의 부호가 뒤집힙니다. 예를 들어 left > right인데 결과가 음수가 되어 비교 계약(부호 규칙)이 위반되고, 이를 사용하는 정렬/비교 로직이 잘못된 순서를 낼 수 있습니다.\",\"assumptions\":[],\"title\":\"int 뺄셈 오버플로로 비교 부호가 뒤집힐 수 있습니다\",\"evidence\":\"3줄에서 left - right를 그대로 반환하며, int 뺄셈은 범위를 넘으면 오버플로됩니다.\",\"suggestion\":\"Integer.compare(left, right)를 반환하도록 바꾸면 오버플로 없이 부호 계약을 지킬 수 있습니다.\"}],\"limitations\":\"제공된 단일 메서드만 검토했으며, 호출 지점과 실제 입력 범위는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 308,
+  "seconds": 2.266
+}

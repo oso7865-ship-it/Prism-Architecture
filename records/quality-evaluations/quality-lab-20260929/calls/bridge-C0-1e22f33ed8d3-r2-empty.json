@@ -1,0 +1,29 @@
+{
+  "key": "bridge-C0-1e22f33ed8d3-r2-empty",
+  "arm": "C0",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:22:10.754546+00:00",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "input_bytes": 1194,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str은 UTF-8 인코딩 후, bytes는 그대로 len을 계산하도록 변경되어 계약(전송 바이트 수)과 일치합니다. 제공된 범위에서 구체적 결함 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "content_length/prepare의 실제 호출자와 Content-Length 헤더가 사용되는 전송 계층은 제공되지 않아, 헤더 값과 실제 전송 바이트의 일치 여부는 이 발췌만으로 검증할 수 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "str은 UTF-8 인코딩 후, bytes는 재인코딩 없이 len을 계산해 계약과 일치합니다. 빈 문자열/비ASCII/bytes 경계도 테스트 라인에서 다뤄집니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e529c6e3e47a66891f6a05b592e8129e5dad23734169ed06756d9c4ecf17b479",
+  "input_tokens": 3390,
+  "output_tokens": 220,
+  "elapsed_seconds": 1.672
+}

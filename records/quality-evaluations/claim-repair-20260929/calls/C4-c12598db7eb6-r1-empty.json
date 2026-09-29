@@ -1,0 +1,12 @@
+{
+  "key": "C4-c12598db7eb6-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:11.227056+00:00",
+  "input_hash": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 None일 때만 default를 반환하고 그 외 값은 그대로 반환한다. 제공된 계약과 일치하며 추가 조치는 보이지 않는다.\", \"issues\": [], \"limitations\": \"호출자와 value의 실제 타입 범위는 제공되지 않아, None 이외의 값에 대한 별도 검증 필요 여부는 판단하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"value is None일 때만 default를 반환하고 그 외에는 value를 반환하여 'Only None means absent' 계약과 일치한다.\"}]}",
+  "input_tokens": 3332,
+  "output_tokens": 157,
+  "seconds": 1.343
+}

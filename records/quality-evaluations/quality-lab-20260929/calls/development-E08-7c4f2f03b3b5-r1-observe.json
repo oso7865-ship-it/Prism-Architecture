@@ -1,0 +1,26 @@
+{
+  "key": "development-E08-7c4f2f03b3b5-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:12:24.130655+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "beb23349e86f8c62ccc39b159769d1a3532684ee2fe93803f483d87b9eaa6f1a",
+  "input_bytes": 989,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses print('saved') instead of the injected logger.info, violating the untrusted standard s1 (로깅) which requires logging via the injected logger rather than print.",
+      "The logger parameter is declared in the signature (line 1) but never referenced in the body, so the injected dependency is unused.",
+      "The behavior contract states logger.info exists and has no return value or side effects beyond logging; the code never calls it, so that contract is not exercised.",
+      "The probe call save(7, logger) observing only the return value would return 7 (line 3 returns record unchanged), so the print-vs-logger defect is not observable via the specified probe's return-value-only observation.",
+      "No static_findings are supplied, so the print/logger mismatch is only detectable by reading line 2 against the standard.",
+      "A normal comparison input would be a version of line 2 calling logger.info('saved'); the observable difference is the logging channel (stdout print vs logger), not the return value."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c22d7a264b0227ae4e5f00ef843ad592ccdf76072e6f916c83088eb06d28e7d6",
+  "input_tokens": 487,
+  "output_tokens": 219,
+  "elapsed_seconds": 1.734
+}

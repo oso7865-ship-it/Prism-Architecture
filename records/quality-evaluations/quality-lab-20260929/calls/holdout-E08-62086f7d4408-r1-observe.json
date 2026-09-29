@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-62086f7d4408-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:47.407000+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "903325a8d802ca294a70a740c37984238633c61312ad395f41a7c655fa83e790",
+  "input_bytes": 1196,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed lines 4-5 catch ValueError and return None, which converts a failure into a normal return value.",
+      "The untrusted standard s1 (required) states input errors must be logged and the same exception re-raised, and failures must not be hidden as normal returns.",
+      "The handler never calls logger.error, so the standard's logging requirement is unmet.",
+      "The behavior contract states logger.error returns normally, so logging then re-raising is feasible without altering control flow.",
+      "Probe p1 (operation raising ValueError) would return None instead of propagating ValueError, contradicting the standard.",
+      "No static findings are supplied, so the mismatch is only visible by comparing the changed lines against standard s1."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "87f38d441808182187d45b62d1bf215bf82b7d89bcbc9cd2d3387f52c0821e18",
+  "input_tokens": 537,
+  "output_tokens": 148,
+  "elapsed_seconds": 1.344
+}

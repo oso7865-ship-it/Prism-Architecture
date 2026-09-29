@@ -1,0 +1,15 @@
+{
+  "key": "B0-52ccbd6a57a5-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:36.433575+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "36f5d77dcf8196e4cc451c73e367150f90f96a27da400dbd742d06076ed24649",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 SQL 문자열과 파라미터 튜플을 반환하는 쿼리 빌더로, user_id가 %s 플레이스홀더에 바인딩되어 전달됩니다. 값이 문자열 보간으로 SQL에 삽입되지 않으므로 주입 경로가 보이지 않습니다.\", \"issues\": [], \"limitations\": \"호출부와 실제 DB-API 드라이버가 제공되지 않아 반환된 튜플이 그대로 파라미터 바인딩에 사용되는지는 계약 설명에 의존했습니다. user_id의 출처·검증 여부와 권한 경계는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 2, \"outcome\": \"NO_FINDING\", \"observation\": \"user_id가 %s 플레이스홀더의 파라미터 튜플로 전달되어 SQL 문자열에 직접 삽입되지 않습니다. 제공된 범위에서 주입으로 이어지는 경로가 보이지 않습니다.\"}]}",
+  "input_tokens": 3492,
+  "output_tokens": 246,
+  "seconds": 1.922
+}

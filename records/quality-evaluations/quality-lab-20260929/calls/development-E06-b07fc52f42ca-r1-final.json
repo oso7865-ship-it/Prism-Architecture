@@ -1,0 +1,58 @@
+{
+  "key": "development-E06-b07fc52f42ca-r1-final",
+  "arm": "E06",
+  "phase": "final",
+  "at": "2026-09-29T07:15:11.427119+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "dfa59b2d1e37865ec1e1fdacae4d7e86bb5e47931e4c6830d7ed6a78b9e7eb1e",
+  "input_bytes": 839,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`limit` 함수가 `||` 연산자로 기본값을 적용하도록 변경되어, 0이 유효한 설정값임에도 기본값 10으로 대체됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)을 호출할 때",
+        "consequence": "0이 falsy 값이므로 `count || 10`이 10을 반환하여, 유효한 설정값 0이 무시되고 기본값 10이 적용됩니다.",
+        "assumptions": [],
+        "title": "0이 유효한 설정값인데도 기본값으로 대체됩니다",
+        "evidence": "2줄에서 `||` 연산자를 사용하므로 0, 빈 문자열, NaN 등 모든 falsy 값이 기본값 10으로 대체됩니다. behavior_contract는 null/undefined에만 기본값을 적용하고 0은 유효한 값으로 명시합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하려면 `count ?? 10`(nullish 병합)을 사용하세요."
+      }
+    ],
+    "limitations": "제공된 함수와 명시된 동작 계약만 검토했으며, 실제 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "689f2f0819bee889f204a0ff7c22e6ed44b6fdaa33bbffbdc5b7dc703b0ad179",
+  "input_tokens": 5291,
+  "output_tokens": 362,
+  "elapsed_seconds": 2.25
+}

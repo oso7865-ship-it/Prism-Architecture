@@ -1,0 +1,12 @@
+{
+  "key": "C4-aa5d6b234f6b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:16.049053+00:00",
+  "input_hash": "5e1201f63b23d0020c54305883f4895d18751a852789448758305ccd054b94bd",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"bucket을 생략한 두 번째 호출은 첫 호출에서 append된 항목이 남아 있는 동일한 기본 리스트를 반환하므로, 생략 호출마다 새 bucket을 준다는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"기본 인자 bucket=[]이 정의 시 한 번 생성되어 생략 호출 간 공유되며, append로 변경된 리스트가 그대로 반환되어 'Each omitted-bucket call gets a fresh bucket' 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4521,
+  "output_tokens": 183,
+  "seconds": 1.672
+}

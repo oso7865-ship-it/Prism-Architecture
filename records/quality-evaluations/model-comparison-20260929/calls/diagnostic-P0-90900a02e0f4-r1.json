@@ -1,0 +1,54 @@
+{
+  "key": "diagnostic-P0-90900a02e0f4-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "90900a02e0f4",
+  "at": "2026-09-29T08:42:48.717612+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name 메서드의 null 처리 분기를 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 상태로 name 메서드를 호출할 때",
+        "consequence": "삼항 연산자의 참 분기에서 name.trim()이 실행되어 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 입력 시 NullPointerException이 발생합니다",
+        "evidence": "3줄의 조건식은 name == null일 때 name.trim()을 호출하도록 되어 있어 null 참조에 대한 메서드 호출이 발생합니다.",
+        "suggestion": "null일 때 빈 문자열을 반환하고, 그 외에는 trim() 결과를 반환하도록 조건 분기를 수정하세요."
+      }
+    ],
+    "limitations": "제공된 코드만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"Ada\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5328,
+  "output_tokens": 331,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5248,
+  "response_sha256": "9033c26880df2487a10ed250a7a06bb300a0552982f95adb1aa58cede290482c",
+  "elapsed_seconds": 5.25
+}

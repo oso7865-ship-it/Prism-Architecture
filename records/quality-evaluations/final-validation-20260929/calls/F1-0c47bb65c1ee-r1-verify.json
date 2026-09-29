@@ -1,0 +1,12 @@
+{
+  "key": "F1-0c47bb65c1ee-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:58:01.049083+00:00",
+  "input_hash": "f6bae291f29cb68125f09dbf0befb57e3be6026cd4c5a20e2ac630e4bc107143",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"base.copy()는 얕은 복사이므로 result['nested']가 base['nested']와 같은 객체를 가리키고, 3줄의 대입이 호출자의 base['nested']['limit']을 9로 변경합니다. 4줄은 base에서 읽어 9를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 얕은 복사 후 3줄에서 공유된 중첩 딕셔너리를 변경하여 제공된 'Preserve the caller's base without mutation' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4642,
+  "output_tokens": 196,
+  "seconds": 1.344
+}

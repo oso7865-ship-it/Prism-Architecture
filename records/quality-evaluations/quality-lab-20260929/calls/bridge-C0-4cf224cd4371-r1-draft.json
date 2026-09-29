@@ -1,0 +1,41 @@
+{
+  "key": "bridge-C0-4cf224cd4371-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:22:07.247928+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf",
+  "input_bytes": 1141,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str 입력에 대해 문자 수를 반환하도록 변경되어, prepare가 UTF-8 바이트로 인코딩한 본문과 Content-Length가 불일치합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6,
+          11
+        ],
+        "trigger": "prepare에 비ASCII 문자열(예: \"한글\")을 전달하면",
+        "consequence": "5줄에서 body를 UTF-8로 인코딩해 wire는 6바이트가 되지만, content_length는 len(body)로 2를 반환해 Content-Length가 실제 전송 바이트 수와 2 대신 6으로 어긋납니다. 이는 11줄의 테스트 불변식(Content-Length == len(body))을 위반합니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치",
+        "evidence": "2줄은 len(body)를 반환해 str의 경우 문자 수를 세고, 5줄은 str을 UTF-8로 인코딩해 바이트열로 만듭니다. 6줄은 인코딩된 wire가 아닌 원본 body로 길이를 계산하므로 11줄의 불변식이 비ASCII 입력에서 깨집니다.",
+        "suggestion": "content_length가 str 입력에 대해 len(body.encode(\"utf-8\"))를 반환하도록 하거나, prepare에서 인코딩된 wire의 길이를 사용하세요."
+      }
+    ],
+    "limitations": "제공된 파일만 검토했으며 테스트를 실행하지 않았습니다. content_length의 다른 호출부는 제공되지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "8e42904bd67ffc6fa5e527627748cdfff685bf6a1759e5166d774d5b67bda759",
+  "input_tokens": 4990,
+  "output_tokens": 388,
+  "elapsed_seconds": 2.625
+}

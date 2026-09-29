@@ -1,0 +1,48 @@
+{
+  "key": "bridge-P0-0c543f7d32dd-r2-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "0c543f7d32dd",
+  "at": "2026-09-29T08:44:19.981996+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "52c2c541b9ad6cbeed1623cf79144c9f54667b842aef4c33e649bcffcad97865",
+  "payload_sha256": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 permitted 함수는 resolved가 root로 시작하는지만 검사하여 경로 접두어 우회 가능성이 있습니다. 예를 들어 root='/a/b', resolved='/a/bc'인 경우 startswith가 참이 되어 허용됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root='/a/b', resolved='/a/bc'와 같이 resolved가 root 문자열로 시작하지만 실제로는 root의 하위 경로가 아닌 경우",
+        "consequence": "허용되지 않아야 할 경로가 permitted 함수에서 허용되어, 이후 파일 접근 시 의도하지 않은 파일 노출 또는 접근 제어 우회가 발생할 수 있습니다.",
+        "assumptions": [],
+        "title": "경로 접두어 검사로 인한 접근 제어 우회",
+        "evidence": "resolved.startswith(root)는 문자열 접두어만 비교하므로 '/a/bc'가 '/a/b'로 시작하는 것으로 판단됩니다.",
+        "suggestion": "경계를 명확히 하기 위해 resolved == root 또는 resolved.startswith(root + '/')와 같이 경로 구분자를 포함하여 비교하거나, os.path.commonpath를 사용하여 root가 resolved의 공통 경로인지 확인하세요."
+      }
+    ],
+    "limitations": "제공된 코드만으로는 permitted 함수의 호출부와 실제 파일 접근 로직을 확인할 수 없어, 우회 시 영향 범위를 정확히 파악하기 어렵습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "FINDING",
+        "observation": "startswith를 사용한 경로 검사가 접두어 우회에 취약합니다."
+      }
+    ]
+  },
+  "input_tokens": 3480,
+  "output_tokens": 443,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3328,
+  "response_sha256": "88126fad23ac7cf4833004f01c436ef778047a1560cd6b6a0ecf9ad1e45fec33",
+  "elapsed_seconds": 9.109
+}

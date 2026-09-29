@@ -1,0 +1,15 @@
+{
+  "key": "R3-be9f4577979e-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:33.272519+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 collect 함수는 bucket 기본값을 None으로 두고 호출 시 새 리스트를 생성하는 표준적인 패턴으로, 변경된 라인에서 구체적인 결함 경로가 확인되지 않았다.\", \"issues\": [], \"limitations\": \"collect의 호출부와 item 타입 계약이 제공되지 않아 반환된 bucket의 사용 방식이나 동시 호출 여부는 확인하지 못했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"bucket이 None일 때 새 리스트를 생성하고 그 외에는 전달된 리스트를 그대로 사용해 반환하는 흐름을 확인했으며, 변경 라인에서 가변 기본값 재사용이나 None 역참조 경로는 보이지 않는다.\"}]}",
+  "input_tokens": 3146,
+  "output_tokens": 188,
+  "seconds": 1.875
+}

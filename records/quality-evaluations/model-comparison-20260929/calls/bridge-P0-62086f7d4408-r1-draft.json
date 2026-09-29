@@ -1,0 +1,43 @@
+{
+  "key": "bridge-P0-62086f7d4408-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "62086f7d4408",
+  "at": "2026-09-29T08:40:36.177014+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "5167925465ea58fc87cf2974fb00e539a362ee19cf46330104a91e51c8048796",
+  "payload_sha256": "c4e12637092fa661a82423ecb1cc1efa7e2849cbc488c5f40c4f79fc1360bcb9",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "ValueError를 잡아 None으로 변환하는 예외 처리 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 5,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 던질 때",
+        "consequence": "입력 오류가 정상 반환값 None으로 숨겨져 호출자가 실패를 인지하지 못합니다.",
+        "assumptions": [],
+        "title": "입력 오류를 정상 반환으로 숨깁니다",
+        "evidence": "4-5줄에서 ValueError를 잡아 None을 반환합니다. 팀 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 않도록 요구합니다.",
+        "suggestion": "ValueError를 기록한 뒤 다시 던지거나, 호출 계약상 None이 유효한 실패 표현이라면 해당 계약을 명시하고 표준과의 차이를 조정하세요."
+      }
+    ],
+    "limitations": "제공된 함수와 표준 조항만 검토했으며 실제 호출부와 로깅 구현은 확인하지 않았습니다."
+  },
+  "input_tokens": 5266,
+  "output_tokens": 336,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3840,
+  "response_sha256": "e22845036bace5422039d9dbcf11de657c0e02b7dbd6d37873ced7227be181c6",
+  "elapsed_seconds": 6.609
+}

@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-7c4f2f03b3b5-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "7c4f2f03b3b5",
+  "at": "2026-09-29T08:44:57.330018+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "2609a13795f243de22c0a7d8dbe1a054a1aab289ca81d29302a0b1cb0326d5bf",
+  "payload_sha256": "5c0ac5b6f37a2b2e19375c8a10183808c5d22e5f804cc0afd92e747f62bc374c",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "save가 호출되어 2줄에 도달하면 'saved'가 print로 출력되어, 주입된 logger.info 대신 표준 출력으로 기록되므로 팀 로깅 규칙(s1)을 위반합니다."
+      }
+    ]
+  },
+  "input_tokens": 3608,
+  "output_tokens": 92,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "1fc427cd17ad4dafd908e34d2493bf66d2de610348764a14f6e4d92465e4a82b",
+  "elapsed_seconds": 1.531
+}

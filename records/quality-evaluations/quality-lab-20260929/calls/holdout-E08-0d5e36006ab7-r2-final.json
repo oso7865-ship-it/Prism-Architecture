@@ -1,0 +1,52 @@
+{
+  "key": "holdout-E08-0d5e36006ab7-r2-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:18:10.960464+00:00",
+  "system_sha256": "99b285a15cd6dc42ca7a1f3da6dc36ba033045e3e721a4af4afd3e6c690fa789",
+  "payload_sha256": "0f5b1ad9a990025773b8e65b7f12ebfe11c5eaecabe08867bc92a9018f49b4b2",
+  "input_bytes": 1482,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "async 검사 함수의 결과를 await하지 않고 Promise 객체 자체를 조건으로 사용해, 검사가 false로 resolve되어도 항상 'allowed'를 반환하는 접근 제어 우회가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "check가 async 함수이고 false로 resolve될 때 access(check)를 호출하는 경우",
+        "consequence": "await되지 않은 Promise 객체는 항상 truthy이므로 2줄의 조건이 참이 되어 'denied' 분기에 도달하지 못하고 'allowed'가 반환됩니다. 즉 검사 결과와 무관하게 접근이 허용됩니다.",
+        "assumptions": [],
+        "title": "async 검사 결과를 await하지 않아 접근이 항상 허용됩니다",
+        "evidence": "2줄은 check()의 반환값을 그대로 조건으로 사용합니다. behavior_contract는 check가 boolean으로 resolve되는 async 함수임을 명시하므로, Promise 객체가 아닌 resolve된 값으로 판정해야 합니다.",
+        "suggestion": "2줄을 `if (await check()) return 'allowed';`로 변경해 resolve된 boolean을 조건으로 사용하세요."
+      }
+    ],
+    "limitations": "제공된 4줄과 계약만 검토했으며 check의 실제 구현, 호출부, 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ee131d617371d59e29594720437e923c47d4830f6c11a98749773ef69eef53fa",
+  "input_tokens": 5735,
+  "output_tokens": 371,
+  "elapsed_seconds": 2.547
+}

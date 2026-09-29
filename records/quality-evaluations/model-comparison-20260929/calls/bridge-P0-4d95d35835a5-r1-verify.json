@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-4d95d35835a5-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "4d95d35835a5",
+  "at": "2026-09-29T08:40:40.265791+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "69cb1a7eefe813ae6f827afc91abe44c9fa5974ae22aab527115c0f07ca03bad",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "callbacks()가 반환한 각 람다를 호출하면 모두 마지막 루프 값인 2를 반환합니다."
+      }
+    ]
+  },
+  "input_tokens": 3036,
+  "output_tokens": 85,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "e2fc22f527c101c8261e8b7a8a301fd4510f0d8ec5f2b9b6ad62705a70775091",
+  "elapsed_seconds": 2.032
+}

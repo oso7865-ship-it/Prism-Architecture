@@ -1,0 +1,15 @@
+{
+  "key": "B0-4cf224cd4371-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:17:36.479770+00:00",
+  "input_hash": "8b964ef86472d912eebc1974b2a98f9b1210c3335bc85debe3da5c8128948e74",
+  "system_hash": "8a3abb984c24bdaf0f817aeafdb887873fe511ce4e309779202bfd2443868155",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"prepare에 \\\"한글\\\" 같은 비-ASCII 문자열을 전달하면 wire는 UTF-8로 6바이트가 되지만 Content-Length는 len(body)=2로 기록되어, 명시된 계약(전송 바이트 수와 일치)을 위반하고 11줄의 단언도 실패합니다.\"}]}",
+  "input_tokens": 3415,
+  "output_tokens": 111,
+  "seconds": 1.078
+}

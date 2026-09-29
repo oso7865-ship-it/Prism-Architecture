@@ -1,0 +1,12 @@
+{
+  "key": "F3-6a3397085914-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:05:30.397209+00:00",
+  "input_hash": "4dc39917f5b8f7c7285ee45850c1af72a0d8cc9394ba4f7448cb52450335ac4f",
+  "system_hash": "51aed5130c53ab913e5b16d5aaea3f8c32c294d129d674e9ce3464684b939eda",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비ASCII 문자를 포함한 str이 전달되면 len(body)는 문자 수를 반환하므로 UTF-8 인코딩 시 실제 전송 바이트 수와 다른 값을 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"계약은 str/bytes 입력에 대해 UTF-8 전송 바이트 수를 요구하지만, 변경된 2줄은 str에 대해 문자 수를 반환합니다.\"}]}",
+  "input_tokens": 4479,
+  "output_tokens": 160,
+  "seconds": 1.204
+}

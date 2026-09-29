@@ -1,0 +1,67 @@
+{
+  "key": "holdout-C0-0c47bb65c1ee-r1",
+  "case": "0c47bb65c1ee",
+  "arm": "C0",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "base.copy()는 얕은 복사이므로 중첩 딕셔너리를 수정하면 호출자의 원본도 함께 변경됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "2줄의 base.copy()는 최상위 키만 복사하므로 result['nested']는 base['nested']와 같은 객체입니다. 3줄에서 그 공유 객체의 'limit'을 9로 바꾸면 호출자의 base['nested']['limit']도 9가 되어, 4줄은 원래 값 1이 아니라 9를 반환합니다. 이는 '호출자의 base를 변경하지 않는다'는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 호출자의 중첩 딕셔너리가 변경됩니다",
+        "evidence": "2줄은 base.copy()로 최상위만 복사하고, 3줄은 복사본과 원본이 공유하는 중첩 딕셔너리를 직접 수정하며, 4줄은 그 변경된 값을 반환합니다.",
+        "suggestion": "copy.deepcopy(base)로 중첩 구조까지 복사하거나, 중첩 딕셔너리도 별도로 복사한 뒤 수정하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5190,
+  "output_tokens": 414,
+  "elapsed_seconds": 2.422,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

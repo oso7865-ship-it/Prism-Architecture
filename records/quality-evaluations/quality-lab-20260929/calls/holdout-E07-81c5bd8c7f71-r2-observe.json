@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-81c5bd8c7f71-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:10.753390+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "4761f858654c516c9ce745c512a273b1227f92b73999da4606bc3c03ede01646",
+  "input_bytes": 631,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input type User declares profile as optional with a nested required name string.",
+      "Line 3 uses a non-null assertion on user.profile before reading .name.",
+      "The behavior contract requires missing profile to display Unknown while preserving an existing empty name.",
+      "Probe p1 calls name({}) with no profile, which the non-null assertion does not guard at runtime.",
+      "Probe p2 calls name({profile: {name: \"\"}}) with an empty string name.",
+      "No static findings are reported and no authorization or state-mutation logic is present."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "0b5093c82e520936b4940a64eab2aae096ab4ea85805232ab1aceb175e12cc6d",
+  "input_tokens": 360,
+  "output_tokens": 120,
+  "elapsed_seconds": 1.656
+}

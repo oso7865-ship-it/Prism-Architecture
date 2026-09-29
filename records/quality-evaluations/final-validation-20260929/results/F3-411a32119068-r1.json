@@ -1,0 +1,52 @@
+{
+  "case": "411a32119068",
+  "repeat": 1,
+  "arm": "F3",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "wire_size의 호출자와 실제 전달 값 분포는 제공되지 않았다. 계약에 명시된 str/bytes 외 입력(예: None, int)에 대한 동작은 검토 범위 밖이며, 테스트 실행이나 미제공 코드 확인은 수행하지 않았다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "wire.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 str/bytes 입력에 대해 UTF-8 기준 전송 바이트 수를 요구한다. str은 encode('utf-8') 후 len, bytes는 len을 반환하므로 요구된 반환값과 일치하며 위반 사례가 보이지 않는다.",
+          "file_path": "wire.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf"
+}

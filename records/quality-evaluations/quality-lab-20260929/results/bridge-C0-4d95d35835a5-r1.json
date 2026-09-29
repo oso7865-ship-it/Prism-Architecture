@@ -1,0 +1,104 @@
+{
+  "key": "bridge-C0-4d95d35835a5-r1",
+  "case": "4d95d35835a5",
+  "arm": "C0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "콜백 목록을 만드는 변경에서 지연 바인딩(late binding)으로 인해 각 람다가 생성 시점의 인덱스가 아닌 최종 값을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출한 뒤 반환된 람다 중 하나를 호출할 때",
+        "consequence": "callbacks()가 반환한 세 람다는 모두 클로저 변수 i를 공유하므로, 호출 시점에 i는 2로 평가되어 세 콜백 모두 2를 반환합니다. 이는 '생성 시점의 인덱스를 반환한다'는 동작 계약과 어긋납니다.",
+        "assumptions": [],
+        "title": "람다가 생성 시점 인덱스 대신 최종 값을 반환합니다",
+        "evidence": "2줄의 리스트 컴프리헨션은 각 반복에서 i를 캡처하지 않고 동일한 클로저 변수 i를 참조하는 람다를 만듭니다.",
+        "suggestion": "기본 인자로 값을 고정하거나(예: lambda i=i: i) 팩토리 함수를 사용해 각 콜백이 생성 시점의 i를 캡처하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 람다가 생성 시점 인덱스 대신 최종 값을 반환합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출한 뒤 반환된 람다 중 하나를 호출할 때",
+        "consequence": "callbacks()가 반환한 세 람다는 모두 클로저 변수 i를 공유하므로, 호출 시점에 i는 2로 평가되어 세 콜백 모두 2를 반환합니다. 이는 '생성 시점의 인덱스를 반환한다'는 동작 계약과 어긋납니다.",
+        "assumptions": [],
+        "title": "람다가 생성 시점 인덱스 대신 최종 값을 반환합니다",
+        "evidence": "2줄의 리스트 컴프리헨션은 각 반복에서 i를 캡처하지 않고 동일한 클로저 변수 i를 참조하는 람다를 만듭니다.",
+        "suggestion": "기본 인자로 값을 고정하거나(예: lambda i=i: i) 팩토리 함수를 사용해 각 콜백이 생성 시점의 i를 캡처하도록 하세요.",
+        "file_path": "callbacks.py",
+        "key": "cc33c0177e785573c20bfd4fbcfc4eb93291f366efc7569d27f258d4a79b20d1"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "callbacks.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7865,
+  "output_tokens": 449,
+  "elapsed_seconds": 3.436
+}

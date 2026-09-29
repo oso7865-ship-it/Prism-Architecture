@@ -1,0 +1,88 @@
+{
+  "key": "bridge-P0-3a35091fd0ff-r2",
+  "case": "3a35091fd0ff",
+  "arm": "P0",
+  "split": "bridge",
+  "repeat": 2,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 invoice 함수는 load 결과의 owner를 actor와 비교해 소유자만 amount를 반환하도록 검사합니다. 제공된 코드와 계약상 이 검사는 소유자 경계를 올바르게 강제하며, 보안상 조치가 필요한 결함은 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "load 함수의 실제 구현과 호출부, actor 값의 신뢰 경계(예: 인증된 사용자 식별자 여부)는 제공되지 않아 전체 인증 흐름의 안전성은 확인할 수 없습니다. 제공된 관련 구현에서는 load가 항상 owner를 가진 객체를 반환하므로 null/undefined 경로는 평가되지 않았습니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "load 함수의 실제 구현과 호출부, actor 값의 신뢰 경계(예: 인증된 사용자 식별자 여부)는 제공되지 않아 전체 인증 흐름의 안전성은 확인할 수 없습니다. 제공된 관련 구현에서는 load가 항상 owner를 가진 객체를 반환하므로 null/undefined 경로는 평가되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "invoice.ts",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "owner와 actor를 비교하여 소유자만 amount를 반환하도록 하는 접근 제어 검사를 확인했습니다. 제공된 계약상 우회 가능한 경로는 보이지 않습니다.",
+          "file_path": "invoice.ts"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "owner와 actor를 비교하여 소유자만 amount를 반환하도록 하는 접근 제어 검사를 확인했습니다. 제공된 계약상 우회 가능한 경로는 보이지 않습니다.",
+        "file_path": "invoice.ts"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8778,
+  "output_tokens": 334,
+  "elapsed_seconds": 8.563
+}

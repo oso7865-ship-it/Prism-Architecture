@@ -1,0 +1,12 @@
+{
+  "key": "F3-ff808c0b8406-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T13:06:07.432704+00:00",
+  "input_hash": "ae1eedb636c6c092f39fae31d86d6df8f4cd4686efc969a3104f229ccacdba29",
+  "system_hash": "eb076b0664d105ef0bff1092ff35db96c11ca44a8c26498d14152601cbfbc2a1",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"store.save(value)의 완료를 기다리지 않고 true가 반환되어, 저장이 끝나기 전이거나 저장이 실패한 경우에도 호출자는 성공(true)을 관찰합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"async submit이 save의 Promise를 await 없이 호출하고 즉시 true를 반환하여, 제공된 계약('Must finish persistence before returning true')을 위반합니다.\"}]}",
+  "input_tokens": 4434,
+  "output_tokens": 144,
+  "seconds": 1.407
+}

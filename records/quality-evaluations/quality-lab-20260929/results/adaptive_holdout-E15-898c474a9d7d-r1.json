@@ -1,0 +1,48 @@
+{
+  "key": "adaptive_holdout-E15-898c474a9d7d-r1",
+  "case": "898c474a9d7d",
+  "arm": "E15",
+  "split": "adaptive_holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "`adjust`는 `base`를 얕게 복사한 뒤 `nested`를 별도로 복사해 수정하므로 호출자의 `base`를 변경하지 않습니다. 제공된 범위에서 동작 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "`base`의 실제 호출자와 `nested` 값의 타입 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "9",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5314,
+  "output_tokens": 133,
+  "elapsed_seconds": 1.672,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

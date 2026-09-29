@@ -1,0 +1,15 @@
+{
+  "key": "R3-4d95d35835a5-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:31.247593+00:00",
+  "input_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 callbacks 함수가 range(3)을 순회하며 지연 평가되는 람다 리스트를 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"callbacks()를 호출한 뒤 반환된 콜백을 실행할 때\",\"consequence\":\"람다가 i를 값이 아니라 클로저 변수로 참조하고 리스트 컴프리헨션이 i를 함수 스코프에 남기므로, 세 콜백 모두 최종값 2를 반환해 명시된 계약(생성 시점의 인덱스 반환)을 위반합니다.\",\"assumptions\":[],\"title\":\"콜백이 생성 시점 인덱스 대신 최종값을 반환합니다\",\"evidence\":\"2줄의 lambda는 i를 즉시 평가하지 않고 클로저로 참조하며, 리스트 컴프리헨션 변수 i는 함수 스코프에 남아 호출 시점에는 2입니다.\",\"suggestion\":\"각 반복에서 i를 기본 인자로 바인딩하도록 lambda i=i: i 형태로 캡처하세요.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과나 실제 호출부는 확인하지 않았습니다.\"}",
+  "input_tokens": 4697,
+  "output_tokens": 313,
+  "seconds": 2.282
+}

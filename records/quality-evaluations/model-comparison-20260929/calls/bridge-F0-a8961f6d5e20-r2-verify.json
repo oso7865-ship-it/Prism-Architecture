@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-a8961f6d5e20-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "a8961f6d5e20",
+  "at": "2026-09-29T08:42:21.601354+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "dfe93ffd977769bf9583395d5cecb1d53959cb961eaf417bd55d8b297305122b",
+  "payload_sha256": "e1a754a34c4030d453dc010eb459ec610aa2861171066bd1957b5bc61cea68a5",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "user_id가 SQL 텍스트에 그대로 연결되어 반환되므로, 따옴표나 SQL 구문이 포함된 입력은 WHERE 절을 변조한 쿼리로 실행될 수 있습니다."
+      }
+    ]
+  },
+  "input_tokens": 3513,
+  "output_tokens": 86,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "acabfb353ecf040f061d17858e1860ba6ea55a730693f7ba9a7d5f5ca76e982a",
+  "elapsed_seconds": 1.36
+}

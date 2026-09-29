@@ -1,0 +1,31 @@
+{
+  "key": "diagnostic-P0-ff6c59d6fbc8-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "ff6c59d6fbc8",
+  "at": "2026-09-29T08:42:09.942442+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "3e88b38d11ce52a1d3692f9ea1c06e19d517d053a98bc6eeb808c5ff1ae3be9d",
+  "payload_sha256": "9d251d7ae808586b844148f91a19ca1c10e7a01c472abaeff5762f2dcf0216b9",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "save 함수가 주입된 logger.info로 저장을 기록하고 record를 그대로 반환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수와 표준 문서만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5614,
+  "output_tokens": 113,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5504,
+  "response_sha256": "552c08628d6da1af5304ebb9ce30be4355f7732a06707c0d4605783e342b2999",
+  "elapsed_seconds": 2.625
+}

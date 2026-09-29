@@ -1,0 +1,58 @@
+{
+  "key": "development-E08-44af6707b4e8-r2-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:11:29.868257+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "85e6b24ab668e23609b0c7d560e967a5c4ebc4241df8a9397c5bd7d69c6214ab",
+  "input_bytes": 1311,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`choose`가 `value or default`로 값을 선택해, 계약상 'None만 부재'로 규정된 것과 달리 빈 문자열·0·False 같은 falsy 값도 부재로 취급합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`choose('', 'default')`, `choose(False, True)`, `choose(0, 1)`처럼 명시적으로 제공된 값이 falsy이지만 None이 아닐 때",
+        "consequence": "제공된 값이 무시되고 default가 반환되어, 계약이 요구하는 '명시적으로 제공된 값 보존'이 위반됩니다.",
+        "assumptions": [],
+        "title": "falsy 값이 부재로 오인되어 명시적 값이 대체됩니다",
+        "evidence": "2줄의 `value or default`는 truthiness로 판정하므로 ''·0·False·[]·{} 모두 default로 대체됩니다. 계약은 None만 부재로 규정합니다.",
+        "suggestion": "`return default if value is None else value`로 None 여부만 검사하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수와 계약만 검토했으며, 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "cdd148ce573bda61b1299e39fd7adf94e5da7ba48caaaffa4ded5cc6af182650",
+  "input_tokens": 5359,
+  "output_tokens": 380,
+  "elapsed_seconds": 2.297
+}

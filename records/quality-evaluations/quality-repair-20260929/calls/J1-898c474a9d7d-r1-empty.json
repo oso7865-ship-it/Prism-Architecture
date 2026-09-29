@@ -1,0 +1,15 @@
+{
+  "key": "J1-898c474a9d7d-r1-empty",
+  "arm": "J1",
+  "phase": "empty",
+  "at": "2026-09-29T10:20:32.144785+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하므로 호출자의 base는 변경되지 않습니다. 다만 반환값이 복사본이 아니라 원본 base['nested']['limit']을 읽어, 계약상 기대와 어긋날 수 있는 지점이 있습니다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 4, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2, 3, 4], \"trigger\": \"adjust(base)를 호출하면 2~3행에서 result['nested']['limit']을 9로 설정하지만, 4행은 result가 아닌 base['nested']['limit']을 반환한다.\", \"consequence\": \"복사본에 적용한 변경(9)이 반환값에 반영되지 않아, 호출자는 9를 기대하면 원래 값을 받는다. base 자체는 변경되지 않으므로 비변경 계약은 지켜진다.\", \"assumptions\": [\"base['nested']가 'limit' 키를 가진 dict라는 계약을 따른다.\"], \"title\": \"복사본이 아닌 원본에서 값을 반환\", \"evidence\": \"2행에서 result는 base['nested']의 복사본을 갖고, 3행은 result['nested']['limit']을 9로 바꾼다. 그런데 4행은 base['nested']['limit']을 반환하므로 복사본의 변경이 반환값에 반영되지 않는다.\", \"suggestion\": \"복사본의 변경을 반영하려면 4행을 return result['nested']['limit']으로 바꾼다. 원본 값을 반환하는 것이 의도라면 3행의 대입이 불필요하므로 제거하거나 주석으로 의도를 명시한다.\", \"expression_repair\": {\"line\": 4, \"before\": \"return base['nested']['limit']\", \"after\": \"return result['nested']['limit']\"}}], \"limitations\": \"base['nested']가 dict이고 'limit' 키가 존재한다는 계약만 주어졌으며, 실제 호출자와 반환값 사용 방식은 제공되지 않아 반환값 불일치의 실제 영향 범위는 확인하지 못했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2행에서 base['nested']를 복사해 원본 비변경은 지키지만, 4행이 복사본이 아닌 원본 base['nested']['limit']을 반환해 3행의 변경이 반환값에 반영되지 않는다.\"}]}",
+  "input_tokens": 4312,
+  "output_tokens": 628,
+  "seconds": 3.281
+}

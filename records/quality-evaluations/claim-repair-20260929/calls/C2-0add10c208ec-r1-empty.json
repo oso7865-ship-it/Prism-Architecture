@@ -1,0 +1,12 @@
+{
+  "key": "C2-0add10c208ec-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:45:34.893288+00:00",
+  "input_hash": "28aa823ae8d90a38b47759d4ec6230801990eaabc8e683a8f4a622a780f130e2",
+  "system_hash": "1d02f816a1c8e1b24f9be86ded9ec2383c412246eeb31699a699b13d72c09d08",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 곱셈 연산은 (long) 캐스트로 int 오버플로를 방지하며, 제공된 경로 관측값(0, 12, 10000000000)과 계약을 모두 만족합니다. 지원 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"amount/count의 실제 호출자와 상위 검증 로직은 제공되지 않았습니다. 제공된 계약상 두 입력은 음수가 아니며 곱이 long에 맞는다고 명시되어 있어 추가 경계 문제는 확인되지 않습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"(long) amount * count로 좌측 피연산자가 long으로 승격되어 int 곱셈 오버플로가 발생하지 않으며, 제공된 관측값과 계약을 만족합니다.\"}]}",
+  "input_tokens": 3563,
+  "output_tokens": 214,
+  "seconds": 1.64
+}

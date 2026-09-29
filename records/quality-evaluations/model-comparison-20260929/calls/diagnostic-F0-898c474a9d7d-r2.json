@@ -1,0 +1,31 @@
+{
+  "key": "diagnostic-F0-898c474a9d7d-r2",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:41:53.772191+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`adjust`가 `base`를 얕게 복사한 뒤 중첩 딕셔너리를 `.copy()`로 복사하고, 복사본의 `limit`만 변경한 다음 원본 `base['nested']['limit']`을 반환하는 변경을 검토했습니다. 제공된 코드에서는 원본이 변경되지 않으며 반환값은 항상 원본의 `limit` 값입니다.",
+    "issues": [],
+    "limitations": "`base`의 구조(중첩 딕셔너리 존재)와 호출부는 제공된 계약 설명에만 의존하며, 실제 호출 맥락과 테스트 실행은 확인하지 않았습니다. `base['nested']`가 딕셔너리가 아니거나 키가 없을 때의 동작은 제공 범위 밖입니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5202,
+  "output_tokens": 212,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "ca916f339c3af1b6e0448425a6ac84e0e2814e3b7c61a54ecc8f89acf64ad243",
+  "elapsed_seconds": 1.938
+}

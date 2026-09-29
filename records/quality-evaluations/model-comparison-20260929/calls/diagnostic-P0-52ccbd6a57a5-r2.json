@@ -1,0 +1,31 @@
+{
+  "key": "diagnostic-P0-52ccbd6a57a5-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "52ccbd6a57a5",
+  "at": "2026-09-29T08:40:08.387458+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "사용자 ID를 매개변수화된 SQL 쿼리로 변환하는 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 코드는 DB-API 드라이버의 %s 자리표시자를 사용하여 매개변수 바인딩을 수행하므로 SQL 인젝션 위험이 없습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]]",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5517,
+  "output_tokens": 164,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3840,
+  "response_sha256": "b9195bfdfe1f4c9e8188e0225ee378d34b57d876a29f0ad109a062b381060ef9",
+  "elapsed_seconds": 3.485
+}

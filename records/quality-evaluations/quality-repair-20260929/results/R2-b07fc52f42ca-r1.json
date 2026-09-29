@@ -1,0 +1,76 @@
+{
+  "case": "b07fc52f42ca",
+  "arm": "R2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 0인 유효한 limit 값이 기본값 10으로 대체됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count가 0으로 호출될 때",
+        "consequence": "count가 0으로 호출되면 `count || 10`이 10을 반환하여 유효한 설정값 0이 무시되고 기본 한도 10이 적용됩니다.",
+        "assumptions": [],
+        "title": "0인 유효한 limit 값이 기본값 10으로 대체됩니다",
+        "evidence": "2줄에서 `||` 연산자는 falsy 값(0 포함)을 기본값으로 대체합니다. behavior_contract는 0을 유효한 설정값으로 명시하고 기본값은 null/undefined에만 적용되어야 한다고 명시합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 변경하세요.",
+        "file_path": "limits.js",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "2b45da84408d55ae5abb9195d56e610fa573a1f05e50ec70ec388ca2723caa38"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "limits.js",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "`count || 10`은 0을 falsy로 처리해 유효한 0 설정값을 기본값 10으로 대체합니다. 계약상 null/undefined에만 기본값을 적용해야 합니다.",
+          "file_path": "limits.js"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704"
+}

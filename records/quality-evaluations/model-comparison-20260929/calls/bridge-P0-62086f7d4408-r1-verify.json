@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-62086f7d4408-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "62086f7d4408",
+  "at": "2026-09-29T08:40:42.820983+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "2609a13795f243de22c0a7d8dbe1a054a1aab289ca81d29302a0b1cb0326d5bf",
+  "payload_sha256": "02f68e7f1e3c4b258db038f8ddaab57a65c95d784203cadc899ebdf7e5629fa4",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "operation()이 ValueError를 던지면 handle은 None을 반환하여 실패를 정상 반환으로 숨깁니다."
+      }
+    ]
+  },
+  "input_tokens": 3603,
+  "output_tokens": 82,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1664,
+  "response_sha256": "08fa8e2d986d5b42ef565cd755305827685b1eac2b4ce1d2ad89daacad6f8fd9",
+  "elapsed_seconds": 2.313
+}

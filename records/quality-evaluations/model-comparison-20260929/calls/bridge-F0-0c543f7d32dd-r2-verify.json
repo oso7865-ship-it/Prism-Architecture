@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-0c543f7d32dd-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "0c543f7d32dd",
+  "at": "2026-09-29T08:44:19.065640+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "dfe93ffd977769bf9583395d5cecb1d53959cb961eaf417bd55d8b297305122b",
+  "payload_sha256": "474e8a5b5d3851a82d786429ac056f896306c506ef999c173031f8104aec7942",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "root가 '/data/app'이고 resolved가 '/data/app-secret/x'이면 startswith(root)가 True를 반환하여 root 디렉터리 밖의 형제 경로가 허용됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3514,
+  "output_tokens": 86,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "a47e875cc7b74cd490a4a8193c26425d432a4b6e7b6092082c6827a47cce8d2c",
+  "elapsed_seconds": 0.922
+}

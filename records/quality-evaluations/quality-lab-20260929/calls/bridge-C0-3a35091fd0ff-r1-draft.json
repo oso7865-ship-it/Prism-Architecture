@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-3a35091fd0ff-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:16.448136+00:00",
+  "system_sha256": "6a3c0dacc8789048f3e4fe3896c749957f0376e64a22d7b0fd02c9eddb39b38b",
+  "payload_sha256": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "input_bytes": 666,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "소유자 확인 후 금액을 반환하는 변경을 검토했습니다. 제공된 코드에서 소유권 검사가 존재하며 구체적인 보안 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "load의 실제 구현과 호출부, actor 값의 출처가 제공되지 않아 소유권 검사 우회 가능성은 확인하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "351336a06d71e8d8445da992f771c952baa485e02e8f839639a59f972b23760a",
+  "input_tokens": 5200,
+  "output_tokens": 98,
+  "elapsed_seconds": 1.406
+}

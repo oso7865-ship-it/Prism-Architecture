@@ -1,0 +1,54 @@
+{
+  "key": "holdout-E07-81c556ef32df-r1",
+  "case": "81c556ef32df",
+  "arm": "E07",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "빈 입력을 0.0으로 처리하는 mean 함수의 변경된 한 줄을 검토했습니다. 제공된 계약(유한 숫자 리스트, 빈 입력은 0.0)과 코드가 일치하며, 제공 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "values의 실제 호출부와 원소 타입 계약은 제공되지 않았으며, 테스트를 실행하지 않았습니다. 비숫자 원소나 무한대 값에 대한 동작은 검증 범위 밖입니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0.0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5619,
+  "output_tokens": 310,
+  "elapsed_seconds": 3.078,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

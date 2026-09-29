@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-898c474a9d7d-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:12.050610+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "08871b43ce1888c04257dda8d262794ff177a6d1645ccaf715c5a20d92961816",
+  "input_bytes": 620,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a dict `base` containing a nested dict under key 'nested'.",
+      "Line 2 builds `result` via dict unpacking and copies `base['nested']` with `.copy()` (shallow copy).",
+      "Line 3 mutates `result['nested']['limit']` to 9, affecting only the copied nested dict.",
+      "Line 4 returns `base['nested']['limit']`, reading from the original input rather than `result`.",
+      "Behavior contract states the caller's `base` must be preserved without mutation.",
+      "Probe call `adjust({'nested': {'limit': 1}})` returns the original value 1, not the mutated 9."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "3c2714abf8d8d11d451e3a5d7b783c4d67ce305e6fa615d56f86abf95c822af3",
+  "input_tokens": 358,
+  "output_tokens": 152,
+  "elapsed_seconds": 1.359
+}

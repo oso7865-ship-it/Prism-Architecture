@@ -1,0 +1,29 @@
+{
+  "key": "holdout-E08-52ccbd6a57a5-r2-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:18:02.511942+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "14279eaf9a361dceaf49a6793efb1bbfca048c25b0181da92558915e44977aa2",
+  "input_bytes": 1517,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 2번 줄은 SQL 문자열과 파라미터 튜플을 분리해 반환하는 파라미터 바인딩 방식이며, 제공된 범위에서 SQL 주입으로 이어지는 문자열 결합이나 보간은 보이지 않습니다.",
+    "issues": [],
+    "limitations": "호출부가 반환된 SQL과 파라미터 튜플을 실제로 DB-API 드라이버에 그대로 전달하는지는 제공되지 않아 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6f546a5b2f59c97396deb9f86613f0d0a1ad8eab45572a32f630bf890a6f9af0",
+  "input_tokens": 5739,
+  "output_tokens": 173,
+  "elapsed_seconds": 1.703
+}

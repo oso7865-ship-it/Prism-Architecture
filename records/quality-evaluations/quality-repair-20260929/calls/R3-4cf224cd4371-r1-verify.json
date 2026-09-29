@@ -1,0 +1,15 @@
+{
+  "key": "R3-4cf224cd4371-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:23:34.902404+00:00",
+  "input_hash": "c94cc74d19dc8de79aa2802edf3a6c6c4f2546d201496d9f8ec29b9fd6c91e40",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"prepare(\\\"한글\\\")에서 wire는 UTF-8 6바이트가 되지만 Content-Length는 content_length(body)가 반환한 문자 수 2가 되어 실제 전송 바이트 수와 불일치하고, 11줄의 단언도 실패합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"content_length가 str일 때 문자 수를 반환해 prepare의 UTF-8 인코딩된 wire 바이트 수와 불일치합니다.\"}]}",
+  "input_tokens": 4262,
+  "output_tokens": 170,
+  "seconds": 1.39
+}

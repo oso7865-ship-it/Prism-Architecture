@@ -1,0 +1,38 @@
+{
+  "key": "development-E06-c12598db7eb6-r1-observe",
+  "arm": "E06",
+  "phase": "observe",
+  "at": "2026-09-29T07:14:10.290590+00:00",
+  "system_sha256": "b555fe449920716d70a4fd860b5021b6da0e9cb6cbe6633b015be1569cd49971",
+  "payload_sha256": "e0a1c9a03111e48784aa3c7d86bff14a2f86411d7ae8a99e6bd3e38ec0d789e1",
+  "input_bytes": 554,
+  "status": "COMPLETED",
+  "output": {
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2d9c921b6904fd3b5b2e5439755a46a8bd31492a71ee86a5a2e3d2ec113c3a70",
+  "input_tokens": 521,
+  "output_tokens": 78,
+  "elapsed_seconds": 0.703
+}

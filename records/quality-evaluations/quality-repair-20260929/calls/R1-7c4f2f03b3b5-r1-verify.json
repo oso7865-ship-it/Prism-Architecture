@@ -1,0 +1,15 @@
+{
+  "key": "R1-7c4f2f03b3b5-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:58.009965+00:00",
+  "input_hash": "99f97824d8679967212cf9eb0c20285e3f14e13ccc348cc98a85fcbd5ce7ab99",
+  "system_hash": "4d8e157a3169c033ef72fc1ebbdf48333059e435aaf082740cac3c76b3a8bf02",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"save가 호출되면 2번째 줄에서 표준이 금지하는 print로 기록되고, 주입된 logger 파라미터는 사용되지 않습니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2번째 줄이 print('saved')로 변경되어 주입된 logger.info 사용을 요구하는 표준 s1과 충돌합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4356,
+  "output_tokens": 147,
+  "seconds": 1.11
+}

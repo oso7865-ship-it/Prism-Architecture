@@ -1,0 +1,39 @@
+{
+  "key": "bridge-C0-81c5bd8c7f71-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:52.760108+00:00",
+  "system_sha256": "d9891e2d69816e57e2f0bf17d9673f3fd270442118bbd4c0a88dd82664d5ba3e",
+  "payload_sha256": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "input_bytes": 513,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "선택적 profile에 비단언 연산자(!)를 사용해 이름을 반환하는 변경을 검토했습니다. profile이 없을 때 'Unknown'을 표시해야 한다는 계약과 충돌하는 경로가 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          3
+        ],
+        "trigger": "profile 속성이 없는 user로 name을 호출할 때",
+        "consequence": "user.profile이 undefined이므로 !.name 접근에서 TypeError가 발생하고, 계약에서 요구한 'Unknown' 표시 대신 예외가 전파됩니다.",
+        "assumptions": [],
+        "title": "profile이 없으면 'Unknown' 대신 TypeError가 발생합니다",
+        "evidence": "1줄에서 profile이 선택적(profile?:)으로 선언되어 없을 수 있고, 3줄은 비단언 연산자로 그 값을 강제로 역참조합니다. 계약은 profile 부재 시 'Unknown'을 요구합니다.",
+        "suggestion": "profile 존재 여부를 확인해 없으면 'Unknown'을 반환하고, 있을 때만 name을 반환하도록 분기하세요. 빈 문자열 name은 그대로 보존해야 합니다."
+      }
+    ],
+    "limitations": "name 함수의 호출부와 테스트는 제공되지 않았으며 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "51faf5fa807beea29ca6a7e764da593f663ec227c8095847d3d9b08ab4d5b019",
+  "input_tokens": 4796,
+  "output_tokens": 306,
+  "elapsed_seconds": 2.062
+}

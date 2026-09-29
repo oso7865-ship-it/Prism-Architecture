@@ -1,0 +1,52 @@
+{
+  "key": "adaptive_development-E15-90900a02e0f4-r1-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:29.199176+00:00",
+  "system_sha256": "6ae9f3128a491882def06792fa0e7bddf5ab796093dfe8ee44a37bc1239f0bdc",
+  "payload_sha256": "7373f81f2e3ce3e5524fdcae544185f1e4e68361521321e535e8ad45bffbe281",
+  "input_bytes": 667,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name 인자의 null 여부에 따라 분기하는 변경을 검토했습니다. null일 때는 빈 문자열을 반환하지만, null이 아닐 때 trim을 호출하지 않고 빈 문자열을 반환해 공백 제거 계약을 위반합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(\" Ada \")처럼 null이 아닌 문자열을 전달할 때",
+        "consequence": "삼항 연산자의 조건이 false가 되어 name.trim()이 실행되지 않고 \"\"가 반환되므로, 주변 공백을 제거한 값이 아니라 빈 문자열이 표시됩니다.",
+        "assumptions": [],
+        "title": "null이 아닌 입력에서 trim이 실행되지 않고 빈 문자열이 반환됩니다",
+        "evidence": "3줄은 name == null이면 name.trim()을, 그렇지 않으면 \"\"를 반환하도록 작성되어 있어 두 분기가 계약과 반대로 연결되어 있습니다.",
+        "suggestion": "분기 결과를 바꿔 null일 때 \"\"를, null이 아닐 때 name.trim()을 반환하도록 수정하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c58665e6f10a80cc4151c1c12854056ffb246992ba35f069214191dacbe29683",
+  "input_tokens": 5443,
+  "output_tokens": 353,
+  "elapsed_seconds": 2.578
+}

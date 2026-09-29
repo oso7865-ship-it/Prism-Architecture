@@ -1,0 +1,29 @@
+{
+  "key": "bridge-C0-6197edcf876e-r1-empty",
+  "arm": "C0",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:56.521684+00:00",
+  "system_sha256": "13036fba1788e5c31aedb919af6beb73c92a5a60637ca0f2e63d3020cc218217",
+  "payload_sha256": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "input_bytes": 526,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄은 옵셔널 체이닝과 null 병합 연산자로 profile 부재 시 'Unknown'을 반환하도록 되어 있어, 제공된 계약(profile 없으면 Unknown, 빈 name은 보존)과 일치합니다. 지원 가능한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "name 함수의 호출자와 실제 입력 분포는 제공되지 않았습니다. 타입 정의상 profile은 선택적이며 name은 string이므로, 빈 문자열 name은 ?? 연산자에서 보존됩니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "user.profile?.name ?? 'Unknown'은 profile이 undefined일 때만 'Unknown'을 반환하고, 빈 문자열 name은 그대로 반환되어 명시된 계약과 일치합니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b68774c61aac07f0c9e4a07e5917b5e62b5cceb27ee1e5a51ebf69d9dfb1164a",
+  "input_tokens": 3183,
+  "output_tokens": 212,
+  "elapsed_seconds": 1.813
+}

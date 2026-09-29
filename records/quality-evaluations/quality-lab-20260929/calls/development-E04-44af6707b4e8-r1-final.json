@@ -1,0 +1,58 @@
+{
+  "key": "development-E04-44af6707b4e8-r1-final",
+  "arm": "E04",
+  "phase": "final",
+  "at": "2026-09-29T07:09:50.018820+00:00",
+  "system_sha256": "0f3186e93e20cefeaec722ec0226720df6931eb3b12eb492d899b6e68d626633",
+  "payload_sha256": "675702fa9714ba1490be140c63ffca268ec6a73869791b5cca7754be124e65b8",
+  "input_bytes": 535,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`로 값의 존재 여부를 판단하는 변경을 검토했습니다. 계약상 None만 부재로 간주해야 하지만, 이 구현은 falsy 값도 부재로 취급합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 빈 문자열, 0, False 등 falsy이지만 명시적으로 제공된 값이 전달될 때",
+        "consequence": "`or` 연산이 falsy 값을 부재로 판단해 default를 반환하므로, 명시적으로 제공된 값이 보존되지 않고 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "falsy 값이 부재로 오인되어 기본값으로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value가 falsy이면 default를 반환합니다. 계약은 None만 부재로 규정하고 명시적 값은 보존하도록 요구합니다.",
+        "suggestion": "`return default if value is None else value`로 None만 부재로 판단하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "019714ef7bf8844bd605dde14d5a895bb758a0828301f2df33c51994fd7cb0b6",
+  "input_tokens": 5194,
+  "output_tokens": 364,
+  "elapsed_seconds": 2.563
+}

@@ -1,0 +1,12 @@
+{
+  "key": "F0-31df49812a87-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:25.772049+00:00",
+  "input_hash": "0d6b63cf80752bd821914db74b79c8abf07f3caaf3220a53921d19f61f71e203",
+  "system_hash": "1a56e991d60418aa89fe99f20cd41a6bc61c971d11c9e7d77aeb0895e7deb601",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"앞뒤 공백이 있는 문자열을 전달하면 2줄에서 계산한 trimmed 대신 원본 value가 반환되어 공백이 제거되지 않은 문자열이 반환됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄에서 value.trim() 결과를 trimmed에 저장하지만 3줄은 원본 value를 반환하여 계약(앞뒤 공백 제거)을 위반합니다.\"}]}",
+  "input_tokens": 4293,
+  "output_tokens": 148,
+  "seconds": 1.235
+}

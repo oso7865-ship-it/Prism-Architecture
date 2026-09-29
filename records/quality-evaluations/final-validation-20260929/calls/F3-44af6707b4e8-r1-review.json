@@ -1,0 +1,12 @@
+{
+  "key": "F3-44af6707b4e8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:27.512656+00:00",
+  "input_hash": "a6de390e70bce22d93d11a81ec23ddd9eb0c164543c96913c604fa2fc7df8679",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 2줄이 `value or default`로 변경되어, None뿐 아니라 0, 빈 문자열, False 같은 falsy 값도 default로 대체됩니다. 제공된 계약은 'None만 부재로 간주하고 명시적으로 제공된 모든 값을 보존'하라고 요구하므로, 명시적 falsy 값이 보존되지 않는 동작 불일치가 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value에 0, 빈 문자열, False 등 falsy 값이 명시적으로 전달될 때\",\"consequence\":\"`value or default`가 falsy 값을 부재로 취급하여 해당 값 대신 default가 반환되므로, 명시적으로 제공된 값이 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"falsy 값이 default로 대체되어 명시적 값이 보존되지 않습니다\",\"evidence\":\"2줄의 `value or default`는 value가 falsy이면 default를 반환합니다. 제공된 계약은 None만 부재로 간주하고 명시적으로 제공된 모든 값을 보존하라고 요구합니다. semantic_observations에서도 value=0, \\\"\\\", false일 때 default(-1)가 반환됩니다.\",\"suggestion\":\"None만 부재로 처리하도록 `return default if value is None else value`로 변경하세요.\",\"contract_quote\":\"Only None means absent. Preserve all explicitly provided values.\",\"expression_repair\":{\"line\":2,\"before\":\"value or default\",\"after\":\"default if value is None else value\"}}],\"limitations\":\"제공된 단일 파일과 2줄만 검토했으며, 실행 결과나 호출자 맥락은 확인하지 않았습니다.\"}",
+  "input_tokens": 4784,
+  "output_tokens": 405,
+  "seconds": 2.906
+}

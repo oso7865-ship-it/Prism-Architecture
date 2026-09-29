@@ -1,0 +1,15 @@
+{
+  "key": "R1-aa5d6b234f6b-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:18:54.582726+00:00",
+  "input_hash": "2b85092893817e6aad007ffeb7a809c5c6b4a0c0d40ba625cff9f7ba3aa5a380",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"collect 함수가 기본 인자로 가변 리스트를 사용하는 변경이 제공되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":1,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"bucket을 생략한 채 collect를 두 번 이상 호출할 때\",\"consequence\":\"기본 인자 리스트가 호출 간에 공유되어 이전 호출의 항목이 누적되므로, 각 호출이 새 버킷을 받는다는 behavior_contract와 달리 반환값이 계속 커집니다.\",\"assumptions\":[],\"title\":\"기본 인자 가변 리스트가 호출 간 공유됩니다\",\"evidence\":\"1줄의 기본값 []는 함수 정의 시 한 번만 생성되고, 2줄의 append가 그 동일 객체를 수정하며 3줄이 이를 반환합니다.\",\"suggestion\":\"기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 바꾸세요.\"}],\"limitations\":\"제공된 3줄만 검토했으며 실제 호출부와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4717,
+  "output_tokens": 267,
+  "seconds": 1.891
+}

@@ -1,0 +1,15 @@
+{
+  "key": "J1-1e22f33ed8d3-r1-review",
+  "arm": "J1",
+  "phase": "review",
+  "at": "2026-09-29T10:20:23.073596+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"content_length가 str/bytes를 구분해 UTF-8 바이트 길이를 계산하도록 변경된 부분을 검토했습니다. 제공된 계약(Content-Length = 전송 UTF-8 바이트 수, bytes 재인코딩 금지)과 테스트 케이스를 기준으로 볼 때 새 구현은 두 분기 모두 계약을 만족합니다.\",\"issues\":[],\"limitations\":\"제공된 11개 라인만 검토했으며 실행 결과나 테스트 통과 여부는 확인하지 않았습니다. content_length/prepare의 외부 호출자와 실제 전송 계층은 제공되지 않아 범위 밖입니다.\",\"context_requests\":[]}",
+  "input_tokens": 5905,
+  "output_tokens": 155,
+  "seconds": 2.0
+}

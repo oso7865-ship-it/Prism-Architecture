@@ -1,0 +1,15 @@
+{
+  "key": "B0-1bcaee84937b-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:13.308332+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "6a3c0dacc8789048f3e4fe3896c749957f0376e64a22d7b0fd02c9eddb39b38b",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"소유자 확인 없이 청구 금액을 반환하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"actor가 \\\"alice\\\"가 아닌 값으로 invoice를 호출할 때\",\"consequence\":\"load가 반환한 항목의 소유자와 actor를 비교하는 검사가 없어, 소유자가 아닌 호출자에게도 amount가 반환됩니다.\",\"assumptions\":[],\"title\":\"소유자 검증 없이 청구 금액을 반환합니다\",\"evidence\":\"f1:2에서 load(id)로 항목을 가져오지만 f1:3에서 owner와 actor를 비교하지 않고 amount를 그대로 반환합니다. 관련 구현은 owner가 \\\"alice\\\"인 항목을 반환하며, 동작 계약은 소유자 외 actor에게 Error를 요구합니다.\",\"suggestion\":\"amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지세요.\",\"citations\":[]}],\"limitations\":\"load의 실제 구현과 호출부는 제공된 관련 구현 요약에 의존했으며 실행 검증은 하지 않았습니다.\"}",
+  "input_tokens": 5166,
+  "output_tokens": 288,
+  "seconds": 1.953
+}

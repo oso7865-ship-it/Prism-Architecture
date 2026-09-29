@@ -1,0 +1,31 @@
+{
+  "key": "bridge-P0-5e22872c605b-r2-empty",
+  "arm": "P0",
+  "phase": "product_empty",
+  "case": "5e22872c605b",
+  "at": "2026-09-29T08:40:13.877332+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "f15686c3ef0bfff52b5f015111a7f68b020c8a010bdf8971fdae2d3fec0fd798",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 indices 함수는 계약에 따라 n=0이면 빈 리스트, 양수 n이면 [0]을 반환합니다. 제공된 코드에서 결함이 발견되지 않았습니다.",
+    "issues": [],
+    "limitations": "호출부와 n의 실제 값 범위가 제공되지 않아 음수 입력 등 계약 외 상황은 확인할 수 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "range(0, n, max(n, 1))이 n=0에서 빈 리스트, 양수 n에서 [0]을 생성하여 계약을 충족합니다."
+      }
+    ]
+  },
+  "input_tokens": 3137,
+  "output_tokens": 178,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "81396b6be4e3c26a58a2b7bc73d2e1a3c774b3b6d26743d475ded3d71e67f66f",
+  "elapsed_seconds": 3.687
+}

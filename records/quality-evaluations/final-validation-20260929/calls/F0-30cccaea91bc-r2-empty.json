@@ -1,0 +1,12 @@
+{
+  "key": "F0-30cccaea91bc-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:56:29.050854+00:00",
+  "input_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47",
+  "system_hash": "92e0dd179c6b07202477f282824b60561507e69e670ae960e2bbb1af7feb39d6",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 scale 함수는 계약상 '입력을 그대로 반환'을 요구하며, 실제 반환문도 value를 그대로 반환하므로 계약과 일치합니다. scaled 변수는 계산되지만 사용되지 않아 동작상 영향은 없습니다.\", \"issues\": [], \"limitations\": \"scale의 호출자와 실제 사용처는 제공되지 않아 반환값 소비 방식은 확인할 수 없습니다. 미사용 변수(scaled)는 정적 스타일 경고 대상일 수 있으나 동작 결함은 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약이 '입력 그대로 반환'을 요구하고 반환문이 value를 반환하므로 일치합니다. scaled는 미사용 지역 변수로 관찰 가능한 동작 영향이 없습니다.\"}]}",
+  "input_tokens": 3381,
+  "output_tokens": 210,
+  "seconds": 2.062
+}

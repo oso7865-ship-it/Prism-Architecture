@@ -1,0 +1,88 @@
+{
+  "key": "bridge-C0-b97e39c6de2b-r1",
+  "case": "b97e39c6de2b",
+  "arm": "C0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "f1의 변경 라인은 기본 인자 `i=i`로 클로저를 캡처해 각 콜백이 생성 시점의 인덱스를 반환하도록 한 코드로, 지연 바인딩 문제를 회피하는 정상적인 패턴입니다. 제공된 범위에서 구체적 결함 경로가 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "콜백의 실제 호출부와 반환값 사용 방식은 제공되지 않아, 반환된 리스트의 소비 방식이나 인덱스 범위 가정은 검토 범위 밖입니다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "콜백의 실제 호출부와 반환값 사용 방식은 제공되지 않아, 반환된 리스트의 소비 방식이나 인덱스 범위 가정은 검토 범위 밖입니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "callbacks.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "기본 인자 i=i로 각 람다가 생성 시점의 i를 캡처하므로 range(3)의 0,1,2가 각각 반환됩니다. 지연 바인딩으로 인한 공유 값 문제는 보이지 않습니다.",
+          "file_path": "callbacks.py"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "기본 인자 i=i로 각 람다가 생성 시점의 i를 캡처하므로 range(3)의 0,1,2가 각각 반환됩니다. 지연 바인딩으로 인한 공유 값 문제는 보이지 않습니다.",
+        "file_path": "callbacks.py"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7874,
+  "output_tokens": 345,
+  "elapsed_seconds": 3.298
+}

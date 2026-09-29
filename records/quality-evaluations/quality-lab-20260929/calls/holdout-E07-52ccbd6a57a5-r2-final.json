@@ -1,0 +1,29 @@
+{
+  "key": "holdout-E07-52ccbd6a57a5-r2-final",
+  "arm": "E07",
+  "phase": "final",
+  "at": "2026-09-29T07:17:27.586158+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "86cd0d1005b58d4b2c23cd9bc71b568a4fe56a4a5ccf194ff14224e6192007c1",
+  "input_bytes": 1245,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "SQL 문자열과 파라미터 튜플을 분리해 반환하는 변경을 검토했습니다. user_id는 SQL 텍스트에 삽입되지 않고 %s 플레이스홀더의 바인딩 값으로 전달되므로 제공된 범위에서 주입 결함은 확인되지 않습니다.",
+    "issues": [],
+    "limitations": "DB-API 드라이버가 실제로 파라미터 바인딩을 수행하는지, 반환된 SQL이 다른 경로에서 문자열 결합에 재사용되는지는 제공되지 않아 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "c38603f7e56b834e20469959d0c4d6106968937f33f63a9a2bec193cd01d7a65",
+  "input_tokens": 5667,
+  "output_tokens": 190,
+  "elapsed_seconds": 1.656
+}

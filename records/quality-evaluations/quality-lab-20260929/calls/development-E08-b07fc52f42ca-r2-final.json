@@ -1,0 +1,58 @@
+{
+  "key": "development-E08-b07fc52f42ca-r2-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:08:48.522081+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "acaf4d1e2eba9b4e1c301b635191f93a0c8a5c4b55fd5eac899d5e12123f50e6",
+  "input_bytes": 1156,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본값 처리에서 null/undefined만 10으로 대체해야 한다는 계약과 달리, `count || 10`은 0도 falsy로 취급해 10을 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "limit(0)을 호출할 때",
+        "consequence": "0이 유효한 설정값임에도 falsy로 평가되어 10이 반환되므로, 계약에서 요구한 0이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "0이 유효한 limit인데 기본값 10으로 대체됩니다",
+        "evidence": "2줄의 `count || 10`은 0을 falsy로 평가해 10을 반환합니다. behavior_contract는 null/undefined에만 기본값 10을 적용하고 0은 유효한 값으로 규정합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "28521848a86739660ada594f44f53dd340da190da935d26d0f19f8756823f85c",
+  "input_tokens": 5349,
+  "output_tokens": 343,
+  "elapsed_seconds": 2.063
+}

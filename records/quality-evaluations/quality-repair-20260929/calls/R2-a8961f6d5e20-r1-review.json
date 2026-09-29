@@ -1,0 +1,15 @@
+{
+  "key": "R2-a8961f6d5e20-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:18:57.930414+00:00",
+  "input_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "system_hash": "1bd8daeca3d7886c5d66607589a6fbf00c98a75e3f720fd4b40690766b3984f9",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"query 함수가 user_id를 문자열 결합으로 SQL에 삽입하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"user_id에 SQL 구문이 포함된 신뢰할 수 없는 텍스트가 전달될 때\",\"consequence\":\"user_id가 파라미터 바인딩이 아니라 SQL 문자열에 직접 결합되므로, 호출자가 반환된 SQL을 그대로 실행하면 해당 입력이 SQL 구문으로 해석되어 조건절 조작 등 SQL 주입이 발생할 수 있습니다.\",\"assumptions\":[],\"title\":\"user_id 문자열 결합으로 SQL 주입이 가능합니다\",\"evidence\":\"2줄에서 user_id를 '+'로 SQL 문자열에 직접 결합하고 파라미터 튜플은 빈 값으로 반환합니다.\",\"suggestion\":\"user_id를 SQL 문자열에 결합하지 말고 WHERE id = %s로 두고 파라미터 튜플에 user_id를 담아 반환하세요.\",\"citations\":[]}],\"limitations\":\"제공된 두 줄만 검토했으며 실제 호출부와 DB-API 드라이버 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 5069,
+  "output_tokens": 279,
+  "seconds": 1.844
+}

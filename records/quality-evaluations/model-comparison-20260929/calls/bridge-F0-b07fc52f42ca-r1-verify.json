@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-b07fc52f42ca-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "b07fc52f42ca",
+  "at": "2026-09-29T08:39:54.094606+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "e6e5be44b68e2d64201df938c9a103574574dc1639f126c42db05925fcb55748",
+  "payload_sha256": "8d576e8266eb0615361d1b0fd7faa364fc7c9daad9847f0d6ab96bfbdcc02a13",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "count가 0이면 count || 10은 10을 반환하므로, 계약상 유효한 설정값 0이 기본값 10으로 대체됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3040,
+  "output_tokens": 79,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2560,
+  "response_sha256": "be8c18705dc5ce94771c1debd5f395c3468ea1aeca4deb203af20e19b204f2e6",
+  "elapsed_seconds": 0.954
+}

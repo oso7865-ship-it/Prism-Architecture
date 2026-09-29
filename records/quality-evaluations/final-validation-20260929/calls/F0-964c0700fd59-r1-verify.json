@@ -1,0 +1,12 @@
+{
+  "key": "F0-964c0700fd59-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:22.611471+00:00",
+  "input_hash": "d2933eda0ff5c7684c26457183078562e02d59d54df1e0d72d838d5eab30f3db",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 음수일 때 adjusted에는 0이 저장되지만 3줄이 원래의 음수 value를 반환하므로, 계약이 요구하는 max(value, 0) 결과가 반환되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 max(value, 0)을 adjusted에 대입하지만 3줄은 value를 반환하여, 음수 입력에서 계약(Return max(value, 0))과 다른 값이 반환됩니다.\"}]}",
+  "input_tokens": 4496,
+  "output_tokens": 177,
+  "seconds": 1.297
+}

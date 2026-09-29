@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-81c5bd8c7f71-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:59.183003+00:00",
+  "system_sha256": "43ee2c0cd72a3be4f2a90fd0ea076f3d4f4403249946ce9fe93ff44200f45586",
+  "payload_sha256": "2893cbd102515999469ea7a53d3c9f9fac83672a4b801416f951db89ab1ff33d",
+  "input_bytes": 1765,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "profile이 없는 User로 호출하면 user.profile이 undefined이므로 .name 접근에서 TypeError가 발생하며, 계약이 요구한 'Unknown' 반환이 이루어지지 않습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "0c92749a083d3b412f471c8340c132fc6fb1409870341abec89a002a6838f08b",
+  "input_tokens": 3172,
+  "output_tokens": 394,
+  "elapsed_seconds": 2.563
+}

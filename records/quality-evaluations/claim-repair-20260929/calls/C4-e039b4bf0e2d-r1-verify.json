@@ -1,0 +1,12 @@
+{
+  "key": "C4-e039b4bf0e2d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:46.709702+00:00",
+  "input_hash": "6e3f03f568af925762a16336b50036e0de14c19f7f86f9f155a33698fc6cd748",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"env에 CURL_CA_BUNDLE(또는 REQUESTS_CA_BUNDLE)가 빈 문자열로 존재하고 verify가 True이면, 10줄의 `or` 연쇄가 빈 문자열을 falsy로 평가해 verify가 빈 문자열이 되고 merge_setting이 이를 그대로 반환하여 15·16줄의 `is True` 계약이 깨집니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"10줄의 `or` 연쇄가 빈 문자열 CA 번들 값을 falsy로 처리해 verify=True를 덮어쓰고, 15·16줄 계약과 불일치합니다.\"}]}",
+  "input_tokens": 5799,
+  "output_tokens": 218,
+  "seconds": 1.391
+}

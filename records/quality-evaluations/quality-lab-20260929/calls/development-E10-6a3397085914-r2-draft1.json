@@ -1,0 +1,58 @@
+{
+  "key": "development-E10-6a3397085914-r2-draft1",
+  "arm": "E10",
+  "phase": "draft1",
+  "at": "2026-09-29T07:12:28.290548+00:00",
+  "system_sha256": "1132cf5e8cd690ca1acaedabf3f5c197a81052bf90b2e1f6f452d624ba067295",
+  "payload_sha256": "97d7a1da1a3d4c6b9df8e7ae69d397cf6c437255deba56daaed1417d2619f018",
+  "input_bytes": 519,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열 또는 바이트를 받아 전송 바이트 수를 반환하는 함수의 변경을 검토했습니다. 제공된 계약은 UTF-8 인코딩 기준 바이트 수를 요구하지만, 구현은 len(body)로 문자 수를 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "비ASCII 문자를 포함한 str을 wire_size에 전달할 때(예: '한글')",
+        "consequence": "len(body)는 UTF-8 인코딩 후의 바이트 수가 아니라 코드 포인트 수를 반환하므로, 계약이 요구하는 전송 바이트 수보다 작은 값이 반환됩니다. 예를 들어 '한글'은 2를 반환하지만 UTF-8로는 6바이트입니다.",
+        "assumptions": [],
+        "title": "str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환합니다",
+        "evidence": "2줄은 body의 길이를 그대로 반환합니다. behavior_contract는 str 또는 bytes를 받아 UTF-8 기준 전송 바이트 수를 반환해야 한다고 명시합니다. str에 대해서는 len이 문자 수를 세므로 계약과 불일치합니다.",
+        "suggestion": "str인 경우 body.encode('utf-8')의 길이를 반환하고, bytes인 경우 len(body)를 반환하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "6a8113d48216cb35d0d14b614742dde17664d8398db6ec5d2f6b0387bfdf991d",
+  "input_tokens": 5218,
+  "output_tokens": 441,
+  "elapsed_seconds": 2.578
+}

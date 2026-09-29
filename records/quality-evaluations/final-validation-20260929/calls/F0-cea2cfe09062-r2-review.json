@@ -1,0 +1,12 @@
+{
+  "key": "F0-cea2cfe09062-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:31.149013+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "fc4a425f06be94f85e2eee9080629f7673b09ce1e0bd0e46adff8f3c1764b9b7",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Normalize.normalize가 value를 0 이상으로 보정한 adjusted를 계산하지만 반환하지 않고 원래 value를 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4],\"trigger\":\"normalize에 음수 int value가 전달될 때\",\"consequence\":\"3줄에서 adjusted가 0으로 보정되지만 4줄이 원래 value를 반환하므로 음수가 그대로 반환됩니다.\",\"assumptions\":[],\"title\":\"보정값 대신 원래 값이 반환됩니다\",\"evidence\":\"3줄은 Math.max(value, 0)으로 adjusted를 만들지만 4줄은 adjusted가 아닌 value를 반환합니다.\",\"suggestion\":\"보정 결과를 반환하려면 4줄을 adjusted 반환으로 바꾸고, 원래 값 반환이 의도라면 3줄의 미사용 계산을 제거하세요.\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4694,
+  "output_tokens": 257,
+  "seconds": 1.86
+}

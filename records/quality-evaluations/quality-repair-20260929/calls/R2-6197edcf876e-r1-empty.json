@@ -1,0 +1,15 @@
+{
+  "key": "R2-6197edcf876e-r1-empty",
+  "arm": "R2",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:12.391985+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "cad31b0656122408a0e337f9a369ef09af51bb16e73a64d3841f45bc484bd2d1",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 3행은 옵셔널 체이닝과 null 병합으로 profile 부재 시 'Unknown'을 반환하고, 빈 문자열 name은 그대로 보존한다. 계약과 일치하며 도출 가능한 결함이 없다.\", \"issues\": [], \"limitations\": \"제공된 코드는 단일 함수와 타입 선언뿐이며, 호출자나 실제 입력 분포는 확인할 수 없다. 정적 분석 경고도 제공되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"user.profile?.name ?? 'Unknown' 경로를 확인함. profile이 없으면 'Unknown', name이 빈 문자열이면 ''가 반환되어 계약과 일치한다.\"}]}",
+  "input_tokens": 3142,
+  "output_tokens": 187,
+  "seconds": 1.656
+}

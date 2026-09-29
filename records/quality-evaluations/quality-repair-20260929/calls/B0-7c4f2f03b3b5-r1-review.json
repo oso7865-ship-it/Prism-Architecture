@@ -1,0 +1,15 @@
+{
+  "key": "B0-7c4f2f03b3b5-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:44.524593+00:00",
+  "input_hash": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "system_hash": "83dfd05343a4da295eaa8de228cbbb415403ef37859fe072cb40da6d922330ca",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 save 함수에서 print('saved')로 기록하도록 변경된 부분을 검토했습니다. 주입된 logger가 있음에도 print를 사용해 팀 로깅 규칙과 어긋납니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"save(record, logger)가 호출되어 저장 지점에 도달할 때\",\"consequence\":\"기록이 표준 출력으로만 나가고 주입된 logger.info를 통한 로깅이 이루어지지 않아, 팀 규칙이 요구하는 로깅 경로를 우회합니다.\",\"assumptions\":[],\"title\":\"print로 기록해 주입된 logger 사용 규칙을 위반합니다\",\"evidence\":\"2줄에서 print('saved')로 기록하며, 동일 함수의 매개변수로 logger가 제공되고 표준 s1은 print 대신 주입된 logger.info 사용을 요구합니다.\",\"suggestion\":\"2줄을 logger.info('saved')로 바꿔 주입된 logger를 통해 기록하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"]}],\"limitations\":\"logger.info의 실제 출력 형식과 로깅 설정은 제공되지 않았으며, 실행 검증은 하지 않았습니다.\"}",
+  "input_tokens": 5219,
+  "output_tokens": 315,
+  "seconds": 2.5
+}

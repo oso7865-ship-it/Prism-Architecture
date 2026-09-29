@@ -1,0 +1,26 @@
+{
+  "key": "development-E11-ff6c59d6fbc8-r1-observe",
+  "arm": "E11",
+  "phase": "observe",
+  "at": "2026-09-29T07:12:04.852774+00:00",
+  "system_sha256": "4f469fe1192f5b54d60868d76fc54a80999dd7607500855f56cfade86ba3987f",
+  "payload_sha256": "9d251d7ae808586b844148f91a19ca1c10e7a01c472abaeff5762f2dcf0216b9",
+  "input_bytes": 995,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "app/service.py:1 defines save(record, logger) with no type annotations or validation of record.",
+      "app/service.py:2 is the only changed line: logger.info('saved') is called before returning, so logging occurs on every invocation.",
+      "app/service.py:3 returns record unchanged, matching the probe p1 expectation of observing the return value only.",
+      "The behavior contract states logger.info has no return value or side effects beyond logging, so line 2 cannot alter the returned record.",
+      "The untrusted standard s1 (로깅) requires using injected logger.info instead of print; line 2 satisfies this by using the injected logger parameter.",
+      "No exception handling exists around logger.info at line 2, so a failing logger would propagate before line 3 returns record."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "87d8942c7fc817936e544d172b45b52cc4858f514dc453456202f65a33371ab2",
+  "input_tokens": 489,
+  "output_tokens": 166,
+  "elapsed_seconds": 1.563
+}

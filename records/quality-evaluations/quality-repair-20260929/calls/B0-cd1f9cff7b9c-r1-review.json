@@ -1,0 +1,15 @@
+{
+  "key": "B0-cd1f9cff7b9c-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:18:34.877450+00:00",
+  "input_hash": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "system_hash": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"경로 접두사 검사로 루트 하위 여부를 판정하는 변경을 검토했습니다. 제공된 계약(정규화된 절대 경로, 심볼릭 링크 없음)에서는 접두사 경계가 '/'로 구분되어 있어 명확한 우회 경로는 보이지 않습니다.\",\"issues\":[],\"limitations\":\"root와 resolved를 생성·정규화하는 호출부가 제공되지 않아 실제 입력 경계(심볼릭 링크 해석, 대소문자, 유니코드 정규화, 상대 경로 여부)를 확인하지 못했습니다. 테스트는 실행하지 않았습니다.\"}",
+  "input_tokens": 5106,
+  "output_tokens": 157,
+  "seconds": 1.578
+}

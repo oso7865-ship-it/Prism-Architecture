@@ -1,0 +1,15 @@
+{
+  "key": "R2-9e475996deba-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:39.956855+00:00",
+  "input_hash": "25948f575d1cd62caaf55dcb575187b03626995fb91355f76e4c98e4d47749c8",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"values가 빈 리스트이면 len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하고, 계약이 명시한 0.0이 반환되지 않습니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"빈 입력에 대해 계약이 0.0을 요구하지만 2줄은 len(values)로 나누어 ZeroDivisionError가 발생합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 3793,
+  "output_tokens": 164,
+  "seconds": 1.829
+}

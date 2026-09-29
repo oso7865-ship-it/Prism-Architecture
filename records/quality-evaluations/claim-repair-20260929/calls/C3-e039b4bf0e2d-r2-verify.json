@@ -1,0 +1,12 @@
+{
+  "key": "C3-e039b4bf0e2d-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:50:21.981402+00:00",
+  "input_hash": "0655085e5b41bf60868cb0d648cb90ec01714c3cfcd97d333574527f15e6c5e8",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"env={\\\"CURL_CA_BUNDLE\\\": \\\"\\\"}와 verify=True로 호출하면 10줄의 `or`가 빈 문자열을 falsy로 평가해 verify가 \\\"\\\"가 되고, merge_setting이 session_verify=True 대신 \\\"\\\"를 반환하여 명시적 verify=True가 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"10줄의 `or` 연쇄가 빈 CA 번들 환경변수를 falsy로 처리해 verify=True를 \\\"\\\"로 덮어쓰고, merge_setting은 None만 대체하므로 테스트 15·16줄의 True 계약이 깨집니다.\"}]}",
+  "input_tokens": 5646,
+  "output_tokens": 218,
+  "seconds": 1.547
+}

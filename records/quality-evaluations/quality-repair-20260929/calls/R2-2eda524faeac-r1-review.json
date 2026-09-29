@@ -1,0 +1,15 @@
+{
+  "key": "R2-2eda524faeac-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:40.012280+00:00",
+  "input_hash": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f",
+  "system_hash": "1072974dba0eb8d353e958d793d7e3f1eac65d1f46393030673718734a3b67bb",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"async check()의 반환값을 await하여 접근 허용 여부를 결정하는 변경을 검토했습니다. 제공된 계약상 check는 boolean으로 resolve되며, 변경된 2행은 그 값을 await해 truthy일 때만 'allowed'를 반환합니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인입니다. check의 실제 구현과 호출자, check가 boolean 이외의 값을 resolve할 가능성은 제공되지 않아 확인할 수 없습니다.\",\"context_requests\":[]}",
+  "input_tokens": 5090,
+  "output_tokens": 127,
+  "seconds": 1.437
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C2-e039b4bf0e2d-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T11:45:37.267003+00:00",
+  "input_hash": "44c7590efa01b9512880a8aa3451df4905b4b41bf03452dacbf612ffc601c2c6",
+  "system_hash": "aece580a68d1e259e966fb3a45a00b19e6e7786baf7edc4b9ab6d21762dcae49",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings 10줄이 REQUESTS_CA_BUNDLE/CURL_CA_BUNDLE 조회를 or로 결합하도록 변경되었고, 제공된 테스트 계약과 경로 관측은 빈 문자열 환경값이 True 검증을 덮어쓰는 동작을 보여줍니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE이 빈 문자열로 있고 verify가 True(또는 None)일 때 environment_settings를 호출하는 경우\",\"consequence\":\"10줄의 or가 빈 문자열을 falsy로 평가해 verify가 \\\"\\\"로 바뀌고, merge_setting이 이를 반환하므로 명시적 검증 True가 유지되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 환경값이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 env.get(...) or env.get(...) 결과를 verify에 대입합니다. 제공된 계약은 빈 CURL_CA_BUNDLE이 True를 보존해야 한다고 명시하고, 15·16줄 테스트는 그 경우 True를 기대하지만 경로 관측은 값이 \\\"\\\"로 나옴을 보여줍니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 조회 결과가 비어 있지 않을 때만 verify를 대입하고, 그렇지 않으면 기존 verify 값을 유지하도록 10줄을 수정하세요.\"}],\"limitations\":\"제공된 f1 범위만 검토했으며 실제 테스트 실행이나 다른 호출자의 동작은 확인하지 않았습니다.\"}",
+  "input_tokens": 6105,
+  "output_tokens": 407,
+  "seconds": 2.969
+}

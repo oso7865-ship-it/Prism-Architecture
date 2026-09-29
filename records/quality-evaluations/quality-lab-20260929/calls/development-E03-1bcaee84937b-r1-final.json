@@ -1,0 +1,53 @@
+{
+  "key": "development-E03-1bcaee84937b-r1-final",
+  "arm": "E03",
+  "phase": "final",
+  "at": "2026-09-29T07:11:05.427140+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "41d356905b8bb4808aed21dad8060458e74832878d0023cac9a1484ee9e0d879",
+  "input_bytes": 2635,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "invoice 함수가 actor를 전혀 사용하지 않고 load(id)의 amount를 그대로 반환합니다. behavior_contract는 소유자에게만 금액을 반환하고 다른 actor에게는 Error를 던져야 한다고 명시하며, load는 owner \"alice\"를 반환하므로 bob과 같은 비소유자 호출에도 금액이 노출됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "invoice(7, \"bob\")처럼 소유자가 아닌 actor로 호출할 때",
+        "consequence": "소유권 검사 없이 item.amount가 반환되어 비소유자에게 금액이 노출됩니다. behavior_contract가 요구하는 Error 발생이 일어나지 않습니다.",
+        "assumptions": [],
+        "title": "소유권 검사 없이 금액을 반환해 비소유자에게 노출됩니다",
+        "evidence": "2줄에서 load(id)로 항목을 가져오지만 actor는 어디에서도 사용되지 않고, 3줄에서 item.amount를 그대로 반환합니다. 관련 구현 c2는 owner \"alice\"를 반환하므로 actor가 \"bob\"이어도 동일하게 금액이 반환됩니다.",
+        "suggestion": "반환 전에 item.owner와 actor를 비교하고, 일치하지 않으면 Error를 던지도록 검사를 추가하세요."
+      }
+    ],
+    "limitations": "load의 실제 구현과 호출부 전체, actor 값의 출처는 제공되지 않았습니다. 제공된 관련 구현과 behavior_contract만 근거로 판단했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2a21eab9e89c510b30c3492c2fee51f530e4a98051b5cacdccbf02db2f7983c2",
+  "input_tokens": 6306,
+  "output_tokens": 438,
+  "elapsed_seconds": 2.468
+}

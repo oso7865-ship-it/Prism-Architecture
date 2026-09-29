@@ -1,0 +1,71 @@
+{
+  "key": "development-E05-2cdf3efa43ff-r1",
+  "case": "2cdf3efa43ff",
+  "arm": "E05",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "이전 소스의 `(long) amount * count` 캐스팅이 제거되어 `amount * count`가 int 곱셈으로 수행된 뒤 long으로 확장됩니다. 계약상 곱이 long 범위에 들어가더라도 int 범위를 넘으면 결과가 잘못됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 Integer.MAX_VALUE를 초과할 때(예: 50000 * 50000)",
+        "consequence": "int 곱셈이 먼저 수행되어 오버플로가 발생하고, 그 잘린 값이 long으로 확장되어 반환되므로 계약이 요구하는 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈으로 인한 오버플로로 정확한 곱이 손실됩니다",
+        "evidence": "3줄에서 두 int를 곱한 결과를 long으로 반환하지만, 피연산자 중 하나를 long으로 승격하지 않아 곱셈 자체가 int로 수행됩니다. 이전 소스의 (long) 캐스팅이 제거되었습니다.",
+        "suggestion": "곱셈 전에 피연산자 중 하나를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5410,
+  "output_tokens": 398,
+  "elapsed_seconds": 2.703,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

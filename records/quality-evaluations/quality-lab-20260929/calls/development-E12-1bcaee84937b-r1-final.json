@@ -1,0 +1,53 @@
+{
+  "key": "development-E12-1bcaee84937b-r1-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:11:07.878930+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "dfb594c21421209a63f1e44ae09c8d2f29d8d1617a9ef0cedcd240780728581f",
+  "input_bytes": 688,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "invoice가 actor를 확인하지 않고 load(id)의 결과를 그대로 반환하는 변경입니다. 소유자가 아닌 actor에게도 금액이 노출되는 접근 제어 결함이 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "소유자가 아닌 actor(예: invoice(7, \"bob\"))로 invoice를 호출할 때",
+        "consequence": "actor 검증 없이 item.amount가 반환되어, 제공된 계약(소유자에게만 반환, 그 외에는 Error)과 달리 비소유자에게 금액 40이 노출됩니다.",
+        "assumptions": [],
+        "title": "actor 검증 없이 금액을 반환하는 접근 제어 우회",
+        "evidence": "2줄에서 load(id) 결과를 받고 3줄에서 item.amount를 그대로 반환합니다. actor 매개변수는 어디에서도 비교되지 않으며, 관련 구현은 owner가 \"alice\"임을 보여줍니다(f1:3).",
+        "suggestion": "load(id) 결과의 owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던진 뒤 일치할 때만 amount를 반환하세요."
+      }
+    ],
+    "limitations": "load 구현은 관련 컨텍스트 문자열로만 제공되었고 실제 런타임 검증은 수행하지 않았습니다. 호출부 및 actor 값의 신뢰 경계는 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "1a197d2db618cb2193bff1da37e90d702f8afd24f6a21ae2710cfd206b4c8a0b",
+  "input_tokens": 5611,
+  "output_tokens": 633,
+  "elapsed_seconds": 3.484
+}

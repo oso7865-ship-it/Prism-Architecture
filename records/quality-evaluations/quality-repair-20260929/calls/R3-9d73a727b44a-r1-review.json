@@ -1,0 +1,15 @@
+{
+  "key": "R3-9d73a727b44a-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:27:44.102852+00:00",
+  "input_hash": "2770aa2f43884b9ea3b9b26a8e98c3d753447e7112d8f702a7bd9c6c56486f01",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 load 함수가 order_id만으로 주문을 조회하도록 변경되었습니다. 제공된 계약상 order_id는 테넌트 간 중복될 수 있고 인증된 테넌트의 주문만 반환해야 합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2],\"trigger\":\"order_id가 서로 다른 테넌트에서 중복되고, 호출자가 tenant_id를 전달한 상태에서 load가 실행될 때\",\"consequence\":\"tenant_id가 SQL 조건에 사용되지 않으므로 다른 테넌트의 주문 행이 반환될 수 있어, 명시된 '인증된 테넌트의 주문만 반환' 계약이 위반됩니다.\",\"assumptions\":[],\"title\":\"테넌트 조건 없이 주문을 조회해 다른 테넌트 주문이 반환될 수 있습니다\",\"evidence\":\"1줄은 tenant_id를 매개변수로 받지만, 2줄의 SELECT는 id 조건만 사용하고 tenant_id를 바인딩하지 않습니다. 계약상 order_id는 테넌트 간 중복될 수 있습니다.\",\"suggestion\":\"WHERE 절에 tenant_id 조건을 추가하고 바인딩 값에 tenant_id를 포함하세요.\"}],\"limitations\":\"제공된 두 줄만 검토했으며, db.execute의 실제 스키마·테이블 제약과 호출자 측 테넌트 검증 여부는 제공되지 않아 확인하지 못했습니다.\"}",
+  "input_tokens": 4703,
+  "output_tokens": 350,
+  "seconds": 2.703
+}

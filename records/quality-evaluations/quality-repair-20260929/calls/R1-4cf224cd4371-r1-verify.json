@@ -1,0 +1,15 @@
+{
+  "key": "R1-4cf224cd4371-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:17:32.860728+00:00",
+  "input_hash": "c0797f360a8c905a6d889d1adc9ba0d86ac202aa168b181f86cf463d57309c34",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"\\\"한글\\\" 같은 비ASCII str을 prepare에 전달하면 wire는 UTF-8 6바이트가 되지만 content_length(body)는 문자 수 2를 반환해 Content-Length가 실제 전송 바이트 수와 불일치하고, 11줄의 불변식도 깨집니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"content_length가 str에 대해 문자 수를 세어 prepare의 UTF-8 인코딩된 wire와 Content-Length가 불일치합니다.\"}]}",
+  "input_tokens": 4194,
+  "output_tokens": 177,
+  "seconds": 1.453
+}

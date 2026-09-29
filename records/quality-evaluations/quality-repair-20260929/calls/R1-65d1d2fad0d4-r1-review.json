@@ -1,0 +1,15 @@
+{
+  "key": "R1-65d1d2fad0d4-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:18:41.110542+00:00",
+  "input_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공 코드 검토\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"left와 right의 차이가 int 범위를 넘는 경우(예: left가 큰 양수, right가 큰 음수)\",\"consequence\":\"int 뺄셈이 오버플로되어 부호가 뒤집히므로 left > right인데도 음수를 반환해 비교 계약(부호)이 위반됩니다.\",\"assumptions\":[],\"title\":\"int 뺄셈 비교가 오버플로로 부호를 뒤집습니다\",\"evidence\":\"3줄에서 left - right를 그대로 반환하며, int 뺄셈은 결과가 int 범위를 넘으면 오버플로됩니다.\",\"suggestion\":\"Integer.compare(left, right)를 사용하거나 long으로 승격해 비교하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 224,
+  "seconds": 1.687
+}

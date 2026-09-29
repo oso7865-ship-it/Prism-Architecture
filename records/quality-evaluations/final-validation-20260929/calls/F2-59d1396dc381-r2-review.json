@@ -1,0 +1,12 @@
+{
+  "key": "F2-59d1396dc381-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T13:00:25.534140+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 계산된 adjusted 값이 사용되지 않고 원본 value가 그대로 반환되는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"INFO\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"value가 음수인 경우(예: -1)\",\"consequence\":\"2줄에서 max(value, 0)으로 0을 계산하지만 3줄에서 원본 value를 반환하므로 반환값은 -1이 됩니다.\",\"assumptions\":[],\"title\":\"계산된 adjusted가 반환되지 않음\",\"evidence\":\"2줄의 adjusted 계산 결과가 어떤 경로에서도 사용되지 않고, 3줄은 원본 value를 반환합니다.\",\"suggestion\":\"adjusted를 사용할 의도였다면 3줄에서 adjusted를 반환하고, 원본 유지가 의도라면 2줄의 미사용 계산을 제거하세요.\"}],\"limitations\":\"제공된 단일 함수 범위만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4761,
+  "output_tokens": 249,
+  "seconds": 2.0
+}

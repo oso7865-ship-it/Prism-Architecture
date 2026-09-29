@@ -1,0 +1,40 @@
+{
+  "key": "bridge-P0-4d95d35835a5-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "4d95d35835a5",
+  "at": "2026-09-29T08:40:34.697870+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "리스트 컴프리헨션으로 생성한 람다들이 지연 바인딩으로 인해 동일한 값을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()가 반환한 각 람다를 호출할 때",
+        "consequence": "모든 람다가 생성 시점의 인덱스가 아니라 마지막 값인 2를 반환합니다.",
+        "assumptions": [],
+        "title": "람다가 생성 시점의 인덱스를 캡처하지 않습니다",
+        "evidence": "2줄의 람다는 i를 참조하지만 i는 컴프리헨션 루프 변수로, 호출 시점에 마지막 값 2로 평가됩니다.",
+        "suggestion": "기본 인자를 사용해 각 반복의 값을 고정하세요. 예: lambda i=i: i"
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4740,
+  "output_tokens": 290,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "dfdf37ecc53e1bf34ae90c6c059f02c2be8a87f46de30bdea48dace31a9b0953",
+  "elapsed_seconds": 5.547
+}

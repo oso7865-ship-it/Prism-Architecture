@@ -1,0 +1,15 @@
+{
+  "key": "R2-9e475996deba-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:38.356428+00:00",
+  "input_hash": "989b51e913a4db30cfdefcc0b7a4c3035c2baa169a3d980ca7b8bd0ceb2730b5",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"mean 함수가 값 목록의 합을 길이로 나누는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"values가 빈 리스트일 때 mean을 호출하는 경우\",\"consequence\":\"len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하며, 계약상 기대값인 0.0이 반환되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 입력에서 평균 계산이 실패합니다\",\"evidence\":\"2줄은 sum(values)를 len(values)로 나누는데, 빈 리스트에서는 길이가 0이 되어 나눗셈이 성립하지 않습니다.\",\"suggestion\":\"나눗셈 전에 values가 비어 있는지 확인하고 계약대로 0.0을 반환하도록 분기를 추가하세요.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과나 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 4700,
+  "output_tokens": 247,
+  "seconds": 1.562
+}

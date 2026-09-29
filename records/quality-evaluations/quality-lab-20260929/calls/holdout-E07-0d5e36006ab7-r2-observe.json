@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-0d5e36006ab7-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:56.203268+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "8ce4cd7a9585216b20c23b0c0f9e2d02b6831516828226a6f76b365095c9f309",
+  "input_bytes": 629,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The function `access` takes a single parameter `check` and is declared async.",
+      "Line 2 calls `check()` and returns 'allowed' when the returned value is truthy, without awaiting it.",
+      "The behavior contract states `check` is async and resolves to a boolean, and access should allow only when it resolves true.",
+      "Because the promise returned by `check()` is not awaited, a promise object is always truthy, so line 2 returns 'allowed' regardless of the resolved boolean.",
+      "Probe p1 passes `async () => false`; under the current code the unawaited promise is truthy and the result is 'allowed', contradicting the contract.",
+      "Probe p2 passes `async () => true`; the result is also 'allowed', so both probes yield the same outcome."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e7fd14a4716f67943fafac2956df69874e5c448cba81e7b58a1dfcf49becc94f",
+  "input_tokens": 355,
+  "output_tokens": 174,
+  "elapsed_seconds": 1.437
+}

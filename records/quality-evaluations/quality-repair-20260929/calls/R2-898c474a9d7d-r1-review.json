@@ -1,0 +1,15 @@
+{
+  "key": "R2-898c474a9d7d-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:19:12.712931+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하고, 반환값은 원본 base['nested']['limit']을 읽도록 되어 있어 동작 계약(호출자의 base를 변경하지 않음)과 반환값의 출처가 어긋나는지 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"adjust(base)를 호출할 때\",\"consequence\":\"2줄에서 base['nested']를 얕게 복사해 result['nested']를 별도 객체로 만들고 3줄에서 그 복사본의 'limit'만 9로 바꾸지만, 4줄은 원본 base['nested']['limit']을 반환합니다. 따라서 호출자가 기대하는 'limit' 변경 결과가 반환값에 반영되지 않고, 원본 base는 변경되지 않은 채 복사본만 수정되어 반환값이 실제 조정 결과와 불일치합니다.\",\"assumptions\":[],\"title\":\"복사본을 수정한 뒤 원본 값을 반환해 조정 결과가 반영되지 않습니다\",\"evidence\":\"2줄은 base['nested']를 복사해 result에 담고, 3줄은 result['nested']['limit']을 9로 설정하지만, 4줄은 base['nested']['limit']을 반환합니다.\",\"suggestion\":\"반환값을 result['nested']['limit']으로 바꾸거나, 원본을 그대로 두고 조정된 값을 반환하려는 의도라면 3줄의 대상과 4줄의 반환 대상을 일치시키세요.\"}],\"limitations\":\"제공된 4개 라인만 검토했으며, adjust의 호출자와 base의 실제 구조(중첩 깊이, 'limit' 키 존재 여부)는 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 461,
+  "seconds": 2.75
+}

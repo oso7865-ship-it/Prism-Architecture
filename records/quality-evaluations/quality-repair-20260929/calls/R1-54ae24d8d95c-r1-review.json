@@ -1,0 +1,15 @@
+{
+  "key": "R1-54ae24d8d95c-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:36.864408+00:00",
+  "input_hash": "c3b2c767366cb7d0f198053156a1504ce2c9381688fa52228092824d8c7cacd5",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"environment_settings의 CA 번들 환경변수 병합 로직 변경과 관련 테스트를 검토했습니다. 빈 문자열 환경변수가 명시적 verify=True를 덮어쓰지 않도록 하는 계약은 10줄의 or 체인으로 충족됩니다.\",\"issues\":[],\"limitations\":\"제공된 18줄만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 session_verify의 실제 전달 값 범위는 제공되지 않았습니다.\",\"context_requests\":[]}",
+  "input_tokens": 5182,
+  "output_tokens": 124,
+  "seconds": 1.265
+}

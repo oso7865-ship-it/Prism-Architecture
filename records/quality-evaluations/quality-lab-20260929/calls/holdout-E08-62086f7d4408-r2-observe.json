@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-62086f7d4408-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:15.134774+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "903325a8d802ca294a70a740c37984238633c61312ad395f41a7c655fa83e790",
+  "input_bytes": 1196,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The except ValueError block at lines 4-5 returns None instead of re-raising, so the ValueError is swallowed and converted into a normal return value.",
+      "The standard s1 requires logging the input error and re-raising the same exception, and explicitly forbids hiding failure as a normal return; the changed lines 4-5 violate both parts.",
+      "The logger parameter is accepted at line 1 but never used anywhere in the function, so no error is recorded as the standard requires.",
+      "The behavior contract states logger.error returns normally, so a compliant implementation could log and re-raise without the logger itself raising.",
+      "Probe p1 (operation raising ValueError) would return None under the current code, whereas the standard expects the ValueError to propagate to the caller.",
+      "No static findings are reported, so the defect is only observable through the changed lines 4-5 and the standard text."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "f045a217fd48eb6f7ad0260f1355cc33e7b8c12f8a1be6c22fd8481e10ab9c92",
+  "input_tokens": 537,
+  "output_tokens": 185,
+  "elapsed_seconds": 1.672
+}

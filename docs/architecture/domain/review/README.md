@@ -5,7 +5,7 @@
 
 ## 실행과 소유권
 
-현재 계약은 [ADR-REVIEW-011](../../adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md)이다. 빈 초안은 변경 파일별로 재검토하며 검토 파일은 사이트에서 열람한다. 문맥 선택과 입력 예산을 V4로 확대하고, 지적이 있는 초안에 별도 근거 검증 호출을 추가한다.009의 서버 요약 조합은 유지한다. 과거 결과 불변이며 모델 판단을 실행으로 확인한 결과로 표현하지 않는다. 실제 품질·비용은 backend Report가 소유한다.
+현재 계약은 [ADR-REVIEW-014](../../adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md)와 목적별 ADR-REVIEW-012다. 아래 과거 변경 설명보다 마지막 ADR-REVIEW-014 보강 절이 우선한다. 빈 초안은 변경 파일별로 재검토하며 검토 파일은 사이트에서 열람한다. 문맥 선택과 입력 예산을 V4로 확대하고, 지적이 있는 초안에 별도 근거 검증 호출을 추가한다.009의 서버 요약 조합은 유지한다. 과거 결과 불변이며 모델 판단을 실행으로 확인한 결과로 표현하지 않는다. 실제 품질·비용 기록은 architecture의 records에서 관리한다.
 
 [ADR-REVIEW-003](../../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md)이 초기 FINDINGS_ONLY 설계를 대체한다. 정적 Finding은 변경하지 않는다. `review`가 router/service/models/policy/provider/worker를 소유하며 analysis/repository/pull_request/workspace의 공개 API만 사용한다. LangChain ChatDeepSeek의 JSON mode와 Pydantic strict 검증을 사용한다. 서버 기본 OFF이며 로컬 검증 설정에서만 명시적으로 켠다. 기본 모델은 deepseek-flash, API 모델 목록에서 가용성을 확인한다.
 
@@ -13,7 +13,7 @@
 
 ## 입력과 출력
 
-BOUNDED_CODE_V4: GitHub PR의 첫100개 변경 파일 중 지원 언어 변경 파일 최대8개와 관련 파일 최대4개, patch/파일 JSON16KiB, 전체 코드 JSON48KiB. 고정 base/head를 취득 전후 확인하며 HEAD 변경·주변 줄만 전송한다. 삭제 줄·PR 본문·GitHub 사람 코멘트는 보내지 않는다. Git tree 일반 파일과 안전한 HEAD 소스의 import/식별자/경로로 후보 파일12개, 함수·메서드 구간24개까지 모은다. 구간은 최대160줄이며 변경 줄을 보존한다. 전체 파일 취득은 메모리에서200KB 이하로 제한한다. 제외 경로·비밀 의심 파일을 걸러내며 실제 경로 대신 f1… ID를 사용한다. 비밀 탐지는 완전하지 않다. 기밀 코드 전송 권한은 요청자가 판단해야 한다.
+BOUNDED_CODE_V5: GitHub PR의 첫100개 변경 파일 중 지원 언어 변경 파일 최대8개와 관련 파일 최대4개, patch/파일 JSON16KiB, 전체 코드 JSON48KiB. 고정 base/head를 취득 전후 확인하며 HEAD 변경·주변 줄만 전송한다. 삭제 줄·PR 본문·GitHub 사람 코멘트는 보내지 않는다. Git tree 일반 파일과 안전한 HEAD 소스의 import/식별자/경로로 후보 파일12개, 함수·메서드 구간24개까지 모은다. 구간은 최대160줄이며 변경 줄을 보존한다. 전체 파일 취득은 메모리에서200KB 이하로 제한한다. 제외 경로·비밀 의심 파일을 걸러내며 실제 경로 대신 f1… ID를 사용한다. 비밀 탐지는 완전하지 않다. 기밀 코드 전송 권한은 요청자가 판단해야 한다.
 
 기본 선택은 결정적 규칙이다. 선택적 CPU 리랭커는 함수별 후보의 보조 순위를 정하며 직접 호출 이름과 정의가 일치하는 구간을 제거할 수 없다. 기본 OFF다. 모델 revision/파일 해시를 고정하고 별도 로컬 컨테이너의 loopback endpoint만 호출한다. 사용자 원문·질의를 저장하거나 요청 경로에서 모델을 다운로드하지 않는다. 추가 추론2초 제한, 오류·비정상 점수·중단 시 규칙 순서로 복귀한다. 전체 호출 그래프·상속/동적 호출·alias 해석은 보장하지 않는다. 도입 여부는 같은 후보의 근거 포함률·리뷰 품질·지연을 비교한 구현 Report로 결정한다.
 
@@ -98,4 +98,39 @@ ADR-REVIEW-011에 따라 빈 초안도 두 번째 호출을 진행한다. 모든
 
 삭제만 있어 제공된 변경 HEAD 줄이 없는 파일은 기존 제공 문맥 줄을 대표 줄로 삼고 LIMITED로만 표시한다. 삭제 코드를 읽었다고 주장하거나 근거 줄을 만들지 않는다.
 
-현재 품질 상태는 [2026-09-29 실제 PR·품질 검증 보고서](../../../../records/2026-09-29_predeploy-quality-report.md)를 따른다. 실제 파일별 재검토·코드 열람은 확인했지만 의미 품질 최소 게이트는 미통과다. 평가 전용 추론/혼합 모델 설정을 제품 설정으로 채택하지 않았다.
+현재 품질 상태는 [2026-09-29 최종 검증 보고서](../../../../records/2026-09-29_final-validation-report.md)를 따른다. 실제 세 목적별 리뷰·문서 근거·코드 열람을 확인했고 최종 합성88평가의 위치·형식·정상 오탐 게이트를 통과했다. 독립 사람 검수와 범용 의미/수정안 품질은 미완료다. 평가 전용 추론/혼합 모델 설정을 제품 설정으로 채택하지 않았다.
+
+## 목적별 리뷰와 팀 문서 — ADR-REVIEW-012
+
+[ADR-REVIEW-012](../../adr/review/ADR-REVIEW-012-purpose-and-team-standards.md)와 [Standards](../standards/README.md)가 확장 계약이다. ReviewRun.purpose는 CODE/SECURITY/STANDARDS, 기존 행의 기본은 CODE다. standard_versions는 요청 시 고정한 팀 문서 버전 UUID 목록이다. 실행 키는 목적과 버전 목록을 포함하며 같은 분석 결과라도 서로 다른 목적의 결과를 재사용하지 않는다. 재실행·이력·이전 개인 메모도 같은 목적 안에서만 비교한다.
+
+POST /analyses/{aid}/reviews의 purpose는 선택(기본 CODE), GET 이력도 같은 purpose를 받는다. 팀당 하루30회·동시1개·요청당2회 제한은 모든 목적 합산이다. 취약점은 별도 server-owned security.prompt를 초안·검증·빈 결과 재검토에 적용하며 기존 보안 Finding과 분리한다. 코드 실행·공격·CVE 취득은 하지 않는다.
+
+STANDARDS는 동의한 문서 섹션과 경로를 입력에 추가하고 citations를 요구한다. 출력에는 실제 전달/적용 가능한 섹션만 허용하며 문서 원문은 리뷰 result에 복제하지 않는다. standard_sources와 standards에는 출처 메타데이터·검색 범위를, standard_checks에는 결정적 규칙 결과를 보관한다. 새 필드로 인해 과거 평가의 출력 스키마가 변하지 않도록 FrozenBaselineProvider는 기존 system SHA-256와 일치하는 별도 baseline-schema.json을 읽는다. 기존 동결 자료는 재작성하지 않는다.
+
+
+## V5 품질 보수 — 2026-09-29
+
+첫 출력이 schema/근거 검증에 실패하면 남은 한 호출로 원래 입력을 독립 재검토한다. invalid 초안은 전송하지 않는다. 두 번째 실패는 FAILED이며 정상0건으로 치환하지 않는다. 검증자는 원래 항목별 결정과 new_findings·file_checks를 반환한다. 새 후보도 원래 위치·근거·기준 문서 검증을 거친다. 정확히 같은 파일/줄/trigger/consequence만 중복 제거한다. 모든 변경 파일 점검이 필요하다. 파일 점검 대표 줄은 서버가 변경 줄(삭제만 있으면 문맥 줄)에서 결정하며 실제 결함 근거 줄은 수정하지 않는다. 과거 line 필드는 제공 범위 안일 때만 받아들인다.
+
+첫 출력의 context_requests는 최대2개의 제공 file_id/보이는 symbol/need만 받는다. 요청당4초 내 같은 저장소·SHA의 기존 제공 파일을 최대160줄 전체로 보충한다. 임의 경로·다른 저장소·웹 검색은 없다. 파일16KiB/코드48KiB/팀 문서 별도12KiB를 유지하며 실패/미확보 이유를 coverage.context_supplement에 남긴다. 보충 후 권한·취소·lease와 원격 SHA를 다시 확인한다. 이는 전체 호출 그래프 검색이 아니다.
+
+좁은 Python 식에 서버 계산 예시를 제공한다. None/빈 값, 제한 산술·range와 builtin dict.get/or의 순서를 다루며 이름 값은 예시다. 원래 소스의 eval/exec/import/build를 하지 않는다. Java/JS의 일반 실행 의미나 동적 객체는 검사하지 않는다. 자연어 주장의 진실성을 자동 증명하지 않는다.
+
+선택적 expression_repair(line,before,after)는 제공된 정확한 Python return 식만 비교한다. 정수·빈 값 등 최대49개 예시에서 원래 반환이 성공했던 동작의 변화를 확인하고 suggestion_check로 표시한다. range 대안을 자연어에서 명확히 식별할 수 있으면 언급된 식만 제한 비교하고 inferred_from_text를 표시한다. 변경된 성공값을 발견해도 원래 결함은 보존한다. PRESERVES_SAMPLES는 전체 수정안의 정답/계약 준수/문제 해결 인증이 아니다. 원본 식·수정 식은 결과에 저장하지 않는다.
+
+SECURITY의 독립 검사 PY-INPUT-SHELL-1은 제공된 연속 Python 코드에서 Flask 요청 값→직접 셸 전달만 추적한다. 별칭·이름 덮어쓰기·미제공 줄·알 수 없는 가드/호출은 보수적으로 다룬다. 완전한 taint 분석이나 공격 가능성 입증이 아니다. result.security_evidence는 AI가 삭제하지 못하며 AI 실패 때도 별도 부분 결과로 보존한다. 접근 철회 시에는 기존 정책대로 결과를 폐기한다. OSV 어댑터는 public registry lockfile의 정확한 패키지/버전만 처리하며 제품 자동 전송에는 연결하지 않았다. 조회 실패/페이지 누락과 안전함을 구별한다.
+
+DeepSeek Responses json_schema와 높은 추론은 평가용 어댑터만 준비했다. 이번 결과로 우월성이 입증되지 않아 제품은 ChatDeepSeek·Flash·추론OFF·2,000토큰/회·최대2회 유지. 전체 실험과 남은 실패는 [보수 보고서](../../../../records/2026-09-29_quality-repair-report.md)를 따른다.
+
+## 설명과 수정안 보강 — ADR-REVIEW-014
+
+이미 제공된 계약/타입/기본값은 발생 조건에 쓰고 미확인 전제로 중복하지 않는다. 이 조건 관계를 출력 JSON Schema에도 게시하며 기존 strict 검증을 유지한다. contract_quote는 제공 범위의 정확한 짧은 인용인지 확인한 뒤 저장하지 않는다. 문장 검증은 발생 조건·직접 결과·근거·수정안 전체를 대상으로 한다. 검증용 반례와 초안은 합계24,000byte 상한이며 코드 입력을 줄여 진단을 넣지 않는다.
+
+최종 수정안에 기존 성공값을 바꾸는 제한 예시가 남으면 제안 문장을 확인 안내로 바꾸고 withheld=true로 표시한다. 잘못된 expression_repair가 있어도 자연어의 명확한 range 대안에 대한 검사를 우회하지 못한다. 결함/반례는 유지하며 자연어 전체 패치 검증은 아니다.
+
+초안과 빈 결과 재검토는 제공된 요구사항과 관측을 먼저 비교한다. 호출자 상태 보존은 조정한 값을 반환해야 한다는 요구가 아니다. CODE에서 버려진 유한 지역 계산만으로 결함/질문을 만들지 않고, STANDARDS의 명시적으로 적용되는 정리 규칙은 별도로 취급한다. 파일별 점검을 먼저 정리해 정상 초안을 재검토가 근거 없는 지적으로 바꾸는 실패를 줄인다.
+
+작은 순수 Python 함수의 리터럴 단언과 기본값·분기·반환값, 완전한 단일 Java 산술 반환식의 유한 관측을 제공한다. 코드 생성·eval/exec/import·프로젝트 런타임 실행은 없고 지원 밖은 계산하지 않는다. Python의16KiB/500 AST노드·160단계·깊이4·인자4·관측6개/파일·4파일 한도를 적용한다. 정확한 세부 구문은 구현의 허용 목록과 회귀 테스트가 소유한다.
+
+CODE에서 제공 단언과 계산의 불일치가 변경 경로에 있으면 서버 소유 설명을 최대4개 후보로 만든다. 같은 파일/대표 줄의 모델 설명만 교체하고 나머지는 유지한다. 전체10개 결과가 가득 차면 추가하지 않고 누락 수를 알린다. origin=STATIC_PROJECTION은 계산된 차이이며 실행 테스트나 전체 결함 증명이 아니다. 이 기능은 유효한 모델 응답 후 적용하고 모델 실패를 성공으로 치환하지 않는다. 최신 수치·오탐·제한은 [최종 검증 보고서](../../../../records/2026-09-29_final-validation-report.md)가 기준이다.

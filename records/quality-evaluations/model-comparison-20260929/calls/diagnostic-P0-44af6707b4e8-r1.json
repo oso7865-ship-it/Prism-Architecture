@@ -1,0 +1,60 @@
+{
+  "key": "diagnostic-P0-44af6707b4e8-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "44af6707b4e8",
+  "at": "2026-09-29T08:39:19.290180+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "675702fa9714ba1490be140c63ffca268ec6a73869791b5cca7754be124e65b8",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "value가 falsy한 값이면 default를 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value가 빈 문자열('') 또는 False인 경우",
+        "consequence": "명시적으로 제공된 값이 default로 대체되어 계약(Only None means absent)을 위반합니다.",
+        "assumptions": [],
+        "title": "falsy 값이 default로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 None뿐 아니라 빈 문자열, False, 0 등 모든 falsy 값을 default로 대체합니다.",
+        "suggestion": "`return default if value is None else value`와 같이 None 여부만 확인하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5169,
+  "output_tokens": 370,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 0,
+  "response_sha256": "74130663da738fcee84d53bb38bcc7a25317780ffb60cd0b325cd95b81afeff1",
+  "elapsed_seconds": 6.687
+}

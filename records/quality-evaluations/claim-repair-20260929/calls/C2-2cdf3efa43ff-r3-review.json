@@ -1,0 +1,12 @@
+{
+  "key": "C2-2cdf3efa43ff-r3-review",
+  "phase": "review",
+  "at": "2026-09-29T11:45:33.399598+00:00",
+  "input_hash": "e7156eefa105a3fcb88ad656c44f4029d530c2051cad6965d08513147563c361",
+  "system_hash": "f8bd7771defad4974c45d3d86f5b9e877ea0e66aa475329ce3d555fdf6e03a7d",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 total에서 int 곱셈 결과를 long으로 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count가 모두 int이고 그 곱이 int 범위를 넘을 때(예: 100000 * 100000)\",\"consequence\":\"int 곱셈이 먼저 수행되어 32비트에서 오버플로한 뒤 long으로 변환되므로, 반환값이 수학적 곱과 달라집니다(예: 10000000000 대신 1410065408).\",\"assumptions\":[],\"title\":\"int 곱셈 오버플로로 long 반환값이 부정확해집니다\",\"evidence\":\"3줄에서 두 int 피연산자를 곱합니다. Java는 반환 타입 변환 전에 피연산자 타입으로 곱셈을 수행하므로, path_observations의 100000*100000 예시처럼 결과가 32비트로 잘립니다.\",\"suggestion\":\"곱셈 전에 한 피연산자를 long으로 승격하세요(예: (long) amount * count).\"}],\"limitations\":\"제공된 단일 파일과 정적 투영만 검토했으며 실행 검증은 하지 않았습니다.\"}",
+  "input_tokens": 4985,
+  "output_tokens": 313,
+  "seconds": 2.516
+}

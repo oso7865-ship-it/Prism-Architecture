@@ -1,0 +1,12 @@
+{
+  "key": "F3-542f3e11ae43-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:13.638952+00:00",
+  "input_hash": "72a8cbb1bfe717cd589a1073a53949b4cef0de5481fe500159d1117f979fc662",
+  "system_hash": "af5426223e75630654d6b5d3cc857f372f5fdbf2e915de8d0682263cbca6ecb2",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 TypeScript 함수는 settings를 얕은 복사한 뒤 중첩된 limits.cap을 수정하고 원본 settings의 값을 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"inspect가 호출될 때\",\"consequence\":\"2줄의 얕은 복사는 중첩 객체 limits를 공유하므로 3줄의 대입이 호출자의 settings.limits.cap을 12로 변경하고, 4줄은 변경된 값을 반환합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 중첩 상태가 변경됩니다\",\"evidence\":\"2줄의 {...settings}는 최상위 속성만 복사해 scratch.limits가 settings.limits와 같은 객체를 참조합니다. 3줄이 그 공유 객체의 cap을 12로 바꾸고 4줄이 settings.limits.cap을 반환하므로 호출자 상태가 그대로 변경됩니다.\",\"suggestion\":\"중첩 객체까지 복사하도록 limits를 별도로 펼쳐 복사한 뒤 cap을 수정하세요.\",\"contract_quote\":\"Leave the caller's nested state unchanged\"}],\"limitations\":\"제공된 단일 함수만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4691,
+  "output_tokens": 325,
+  "seconds": 2.672
+}

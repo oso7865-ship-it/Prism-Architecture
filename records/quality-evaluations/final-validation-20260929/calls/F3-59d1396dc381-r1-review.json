@@ -1,0 +1,12 @@
+{
+  "key": "F3-59d1396dc381-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:03:22.853887+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "44a9aff3e67a93886be24c74b3c2a43722c739e402b73f74876982a89ae17c36",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 계산된 adjusted 값이 사용되지 않고 원본 value가 그대로 반환되는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"INFO\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"value가 음수인 경우(예: -1)\",\"consequence\":\"2줄에서 adjusted가 0으로 계산되지만 3줄이 원본 value를 반환하므로 호출자는 음수를 그대로 받습니다.\",\"assumptions\":[],\"title\":\"계산된 adjusted가 반환되지 않아 음수 조정이 적용되지 않습니다\",\"evidence\":\"2줄은 max(value, 0)으로 adjusted를 만들지만 3줄은 adjusted 대신 value를 반환합니다. 제공된 계약은 원본 값 반환을 요구하므로 이 동작 자체는 계약과 일치하며, adjusted 계산만 결과에 반영되지 않습니다.\",\"suggestion\":\"adjusted를 사용할 의도가 없다면 2줄의 계산을 제거해 불필요한 연산을 없애고, 조정값을 반환할 의도라면 계약과 함께 반환 대상을 adjusted로 바꾸는 방안을 검토하세요.\"}],\"limitations\":\"제공된 단일 파일과 계약만 검토했으며 실행 결과나 호출자 사용 방식은 확인하지 않았습니다.\"}",
+  "input_tokens": 4761,
+  "output_tokens": 314,
+  "seconds": 2.985
+}

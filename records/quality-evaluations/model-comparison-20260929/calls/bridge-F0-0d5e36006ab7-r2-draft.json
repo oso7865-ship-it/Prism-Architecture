@@ -1,0 +1,40 @@
+{
+  "key": "bridge-F0-0d5e36006ab7-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "0d5e36006ab7",
+  "at": "2026-09-29T08:45:02.536593+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "46511d3edf9d1d3610959ff4547190d0730cafc38a31d837493f22ddf0d005dc",
+  "payload_sha256": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 권한 검사 함수의 변경된 조건문을 검토했습니다. `check()`가 Promise를 반환하는데 이를 동기 조건으로 평가하여 인가 판정이 잘못될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`check`가 async 함수여서 Promise를 반환하는 상태에서 `access(check)`를 호출할 때",
+        "consequence": "`if (check())`는 Promise 객체 자체를 truthy로 평가하므로 `check`가 나중에 false로 resolve되어도 항상 'allowed'가 반환되어 인가 검사가 우회됩니다.",
+        "assumptions": [],
+        "title": "async 검사 결과를 await 없이 평가해 인가가 항상 허용됩니다",
+        "evidence": "동작 계약은 check가 async이며 boolean으로 resolve된다고 명시합니다. 2줄은 `await` 없이 `check()`의 반환값(Promise)을 조건으로 사용하므로 resolve 값이 아닌 Promise 객체의 truthiness로 분기합니다.",
+        "suggestion": "`if (await check())`로 resolve된 boolean을 평가하도록 수정하세요."
+      }
+    ],
+    "limitations": "제공된 4줄의 함수만 검토했으며 `check` 구현과 호출부, 테스트 실행은 확인하지 않았습니다."
+  },
+  "input_tokens": 5135,
+  "output_tokens": 314,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "184871145095e43f5752804c49c1ea98dd13d93b7e8d0725085d2099aabd60c5",
+  "elapsed_seconds": 2.531
+}

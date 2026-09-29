@@ -1,0 +1,60 @@
+{
+  "key": "development-E01c-d9318706b943-r2",
+  "case": "d9318706b943",
+  "arm": "E01c",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "count에 대해 null/undefined일 때만 기본값 10을 적용하도록 `??` 연산자를 사용한 변경을 검토했습니다. 0은 유효한 설정값으로 그대로 반환되며, 제공된 범위에서 동작 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부와 count의 실제 입력 계약, 테스트 실행 여부는 확인하지 못했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5187,
+  "output_tokens": 182,
+  "elapsed_seconds": 1.406,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 3,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

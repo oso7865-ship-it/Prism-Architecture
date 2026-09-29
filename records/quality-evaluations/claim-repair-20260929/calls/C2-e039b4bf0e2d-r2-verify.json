@@ -1,0 +1,12 @@
+{
+  "key": "C2-e039b4bf0e2d-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:45:40.258581+00:00",
+  "input_hash": "0dec62302969800934b31dd7bdc38a262ceb92f987baeb20db0f58e41605ef21",
+  "system_hash": "9ee5a48f92790a2a3bb665bb3b7aed354a9e45fac94fb46e404e33cbe964d873",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"env에 CURL_CA_BUNDLE=\\\"\\\"이고 verify=True이면 verify가 \\\"\\\"로 대입되어 merge_setting이 \\\"\\\"를 반환하므로, 계약이 요구하는 True가 유지되지 않습니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"10줄의 or 결합이 빈 문자열 환경값을 falsy로 처리해 verify=True를 \\\"\\\"로 덮어쓰며, 15·16줄 계약과 경로 관측이 이를 뒷받침합니다.\"}]}",
+  "input_tokens": 5678,
+  "output_tokens": 172,
+  "seconds": 1.407
+}

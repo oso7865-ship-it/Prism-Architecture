@@ -1,0 +1,19 @@
+{
+  "revision": 1,
+  "harness": "rh1-5db67223f0344233",
+  "modules": "71ab31ebbee76bc88fa77ffe173579b664746066c9ab1a6312058388a2ad23b8",
+  "baseline": "1f7b78365b2ef7e81888afa6c1cb6956fde768bef832c722ac0e82fc4adee059",
+  "cases": "d70ca29b35ddc004d1936d83968474dc3ea65246265aad7674b307b2c1b58047",
+  "cap": 600,
+  "model": "deepseek-flash",
+  "concurrency": 4,
+  "arms": {
+    "B0": "frozen original two-call path",
+    "R1": "recovery contract",
+    "R2": "recovery + bounded operation observations",
+    "J1": "R2 Responses JSON schema",
+    "T0": "R2 4000 nonthinking",
+    "T1": "R2 conditional high reasoning 4000",
+    "T2": "R2 conditional high reasoning 2000"
+  }
+}

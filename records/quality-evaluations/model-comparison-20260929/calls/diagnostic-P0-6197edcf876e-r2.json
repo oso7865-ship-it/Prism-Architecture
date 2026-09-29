@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-P0-6197edcf876e-r2",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "6197edcf876e",
+  "at": "2026-09-29T08:40:43.684511+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "8b9632b753e81be29b47d8a592e751a22aff06c9cafdd49428ca13bf11ba7f40",
+  "payload_sha256": "d37d92043b3a4ff2aba34ebebb4c290aeab13c8eb15d2d3a00083cd755bea0ad",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "프로필 이름 조회 시 누락된 프로필은 Unknown으로 표시하고 빈 이름은 그대로 반환하도록 변경했습니다.",
+    "issues": [],
+    "limitations": "제공된 함수와 계약만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"Unknown\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5210,
+  "output_tokens": 158,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3840,
+  "response_sha256": "b163272a0d41363e7904a1f2e04eabcf2c50e87a10f9e058f7873034c0b2006d",
+  "elapsed_seconds": 3.5
+}

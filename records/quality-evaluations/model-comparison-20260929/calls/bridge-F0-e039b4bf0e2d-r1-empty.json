@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-e039b4bf0e2d-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "e039b4bf0e2d",
+  "at": "2026-09-29T08:40:09.788993+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 변경 라인 10은 `env.get(...) or env.get(...)`로 빈 문자열을 None처럼 처리하여, 빈 CURL_CA_BUNDLE/REQUESTS_CA_BUNDLE일 때 verify가 None이 되고 이후 merge_setting이 session_verify(기본 True)를 반환합니다. 제공된 테스트 계약(라인 15~16)과 일치하므로 동작상 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "merge_setting과 environment_settings의 실제 호출자, session_verify에 False가 전달되는 경로, env 사전의 실제 값 범위는 제공되지 않았습니다. 테스트는 실행하지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 10,
+        "outcome": "NO_FINDING",
+        "observation": "빈 문자열 CA 번들 값은 `or`로 None이 되지만 merge_setting이 session_verify(기본 True)를 반환해 라인 15~16 계약과 일치합니다. 명시적 False 경로(라인 18)도 유지됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3610,
+  "output_tokens": 264,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3072,
+  "response_sha256": "426513042e212a7ff828ee999492cf41f679f1b907f1fc87a9b8b74f98d13273",
+  "elapsed_seconds": 2.328
+}

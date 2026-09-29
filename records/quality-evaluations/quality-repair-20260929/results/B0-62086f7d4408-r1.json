@@ -1,0 +1,73 @@
+{
+  "case": "62086f7d4408",
+  "arm": "B0",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: ValueError를 삼키고 None을 반환해 실패를 숨깁니다",
+    "issues": [
+      {
+        "line": 5,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "operation()이 ValueError를 발생시키면 4줄에서 이를 잡고 5줄에서 None을 반환하므로, 실패가 정상 반환값으로 숨겨지고 표준 s1이 요구하는 재던지기와 기록이 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "ValueError를 삼키고 None을 반환해 실패를 숨깁니다",
+        "evidence": "4-5줄의 except ValueError 절이 예외를 기록하지 않고 None을 반환합니다. 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.",
+        "suggestion": "except 절에서 logger.error로 오류를 기록한 뒤 raise로 같은 ValueError를 다시 던지도록 변경하세요.",
+        "file_path": "app/handler.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "citations": [
+          {
+            "id": "00000000-0000-0000-0000-000000000001:s1",
+            "document_id": "00000000-0000-0000-0000-000000000002",
+            "version_id": "00000000-0000-0000-0000-000000000001",
+            "version": 1,
+            "title": "Team standard",
+            "kind": "CONVENTION",
+            "section": "s1",
+            "heading": "오류 처리"
+          }
+        ],
+        "key": "97af96c132ecf0133f1aa33c2f34b44dc2f702f52511247b79dd3ca236b93844"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "app/handler.py",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "c4e12637092fa661a82423ecb1cc1efa7e2849cbc488c5f40c4f79fc1360bcb9"
+}

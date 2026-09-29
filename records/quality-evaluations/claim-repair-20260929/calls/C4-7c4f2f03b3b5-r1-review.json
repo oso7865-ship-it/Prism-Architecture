@@ -1,0 +1,12 @@
+{
+  "key": "C4-7c4f2f03b3b5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:24.847966+00:00",
+  "input_hash": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "system_hash": "991df089a311c2ce145084e61b707bb1df5a22be5d18c722b6cca16357a69325",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 save 함수에서 변경된 2행이 주입된 logger 대신 print를 사용하고 있어, 제공된 팀 로깅 규칙과 어긋납니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"save(record, logger)가 호출되어 2행이 실행될 때\",\"consequence\":\"기록이 주입된 logger.info가 아니라 표준 출력으로 나가므로, 제공된 규칙이 요구하는 로깅 경로를 따르지 않습니다.\",\"assumptions\":[],\"title\":\"print 대신 주입된 logger.info를 사용해야 합니다\",\"evidence\":\"2행은 'saved'를 print로 출력합니다. behavior_contract에 logger.info가 존재한다고 명시되어 있고, s1은 print 대신 주입된 logger.info로 기록하도록 요구합니다.\",\"suggestion\":\"2행을 logger.info('saved')로 바꿔 주입된 logger를 통해 기록하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"],\"contract_quote\":\"애플리케이션에서는 print 대신 주입된 logger.info로 기록한다.\"}],\"limitations\":\"제공된 3개 행과 명시된 계약만 검토했으며, 실행 결과나 다른 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 4978,
+  "output_tokens": 322,
+  "seconds": 2.344
+}

@@ -1,0 +1,41 @@
+{
+  "key": "adaptive_development-E14-c12598db7eb6-r1-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:09.211909+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "1621cef85b6df15b8597e27070b1c280de9064490e12181094ef18754a9bd121",
+  "input_bytes": 1730,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`choose`가 None만을 부재로 취급하도록 명시적 None 검사를 사용하는 변경을 검토했습니다. 제공된 계약과 구현이 일치하며, 빈 문자열·False 같은 falsy 값도 그대로 보존됩니다.",
+    "issues": [],
+    "limitations": "제공된 단일 함수와 계약만 검토했으며 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "8b07633738052971484d186301a752f22984b6e3496ab0c63cd0313cf178e3f8",
+  "input_tokens": 5446,
+  "output_tokens": 172,
+  "elapsed_seconds": 1.609
+}

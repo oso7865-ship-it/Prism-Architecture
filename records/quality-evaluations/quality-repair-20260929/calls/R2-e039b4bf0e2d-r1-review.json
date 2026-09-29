@@ -1,0 +1,15 @@
+{
+  "key": "R2-e039b4bf0e2d-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:17:23.980184+00:00",
+  "input_hash": "81b86358d3d398b99cf93960a8014c3b821a144b3ddbca6f6688e7839a70c1b1",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경 변수 CA 번들 조회가 `or` 연산으로 변경된 부분과 merge_setting 병합 동작을 검토했습니다. 빈 문자열 환경 변수가 None으로 처리되어 세션 값 병합으로 복원되는 경로가 확인됩니다.\",\"issues\":[],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 session_verify의 실제 전달 값 분포는 제공되지 않았습니다.\"}",
+  "input_tokens": 5243,
+  "output_tokens": 120,
+  "seconds": 1.484
+}

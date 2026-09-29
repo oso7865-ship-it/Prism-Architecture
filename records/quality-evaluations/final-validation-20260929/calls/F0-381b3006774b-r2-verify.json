@@ -1,0 +1,12 @@
+{
+  "key": "F0-381b3006774b-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:32.729689+00:00",
+  "input_hash": "2a6f4b3d5d6a61c6c700de87c92526f80979811cb84d92d8e28b817259d6d589",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"음수 value가 전달되면 3줄에서 계산한 adjusted 대신 원래 value가 반환되어, 계약이 요구하는 0이 아닌 음수가 그대로 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄에서 Math.max(value, 0)으로 adjusted를 계산하지만 4줄은 value를 반환하여, 음수 입력에서 계약(모든 int에 대해 Math.max(value, 0) 반환)을 위반합니다.\"}]}",
+  "input_tokens": 4476,
+  "output_tokens": 176,
+  "seconds": 1.125
+}

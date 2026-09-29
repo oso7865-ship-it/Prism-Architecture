@@ -1,0 +1,53 @@
+{
+  "key": "development-E05-1bcaee84937b-r2-final",
+  "arm": "E05",
+  "phase": "final",
+  "at": "2026-09-29T07:10:43.479220+00:00",
+  "system_sha256": "09950fb95c0e278cf94a8bc40841e2ede92af7216b5576c0ce4e7911c70620cf",
+  "payload_sha256": "6636e3a6f3d902f7870a5115525d54b388a9a05eef31fe5218a813f93bbd0a01",
+  "input_bytes": 883,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "이전 버전에 있던 소유자 검사(`item.owner !== actor`일 때 예외)가 현재 HEAD에서 제거되어, `invoice`가 actor와 무관하게 항목 금액을 반환합니다. 관련 구현 `load`는 `{owner: \"alice\", amount: 40}`을 반환하므로, `invoice(7, \"bob\")`처럼 소유자가 아닌 actor로 호출해도 금액이 노출됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "`invoice(7, \"bob\")`처럼 `load(id)`가 반환한 항목의 `owner`와 다른 actor로 호출할 때",
+        "consequence": "소유자 검사가 없어 `item.amount`가 그대로 반환되므로, 소유자가 아닌 호출자에게 금액이 노출됩니다. behavior_contract가 요구하는 '소유자에게만 반환, 그 외에는 Error' 조건이 위반됩니다.",
+        "assumptions": [],
+        "title": "소유자 검사 제거로 비소유자에게 금액이 반환됩니다",
+        "evidence": "f1:2에서 `load(id)` 결과를 받고, f1:3에서 `item.amount`를 조건 없이 반환합니다. 관련 구현은 `owner: \"alice\"`를 반환하므로 actor가 \"bob\"이어도 동일하게 반환됩니다. 이전 소스에 있던 `item.owner !== actor` 검사가 현재 HEAD에는 없습니다.",
+        "suggestion": "`return item.amount;` 앞에 `if (item.owner !== actor) throw new Error(\"denied\");`를 복원해 소유자만 금액을 받도록 하세요."
+      }
+    ],
+    "limitations": "제공된 단일 함수와 관련 구현만 검토했으며, `load`의 실제 데이터 소스·호출 경로·인증 미들웨어는 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "69637a3b5f1541625ba260dc008c193643c16ab8df3dfbf48e80c64221f039c8",
+  "input_tokens": 5676,
+  "output_tokens": 521,
+  "elapsed_seconds": 2.922
+}

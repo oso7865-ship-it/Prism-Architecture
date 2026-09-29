@@ -1,0 +1,29 @@
+{
+  "key": "holdout-C0-52ccbd6a57a5-r2-final",
+  "arm": "C0",
+  "phase": "final",
+  "at": "2026-09-29T07:17:10.991503+00:00",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "SQL 문자열과 파라미터 튜플을 분리해 반환하는 변경을 검토했습니다. 값은 %s 플레이스홀더로 바인딩되므로 제공된 범위에서 주입 결함은 보이지 않습니다.",
+    "issues": [],
+    "limitations": "DB-API 드라이버가 실제로 파라미터 바인딩을 수행하는 호출부는 제공되지 않았으며, 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b7634cea773c6bc91112e0c3ccdd4d572536e099f6f43baff89dba00f3796941",
+  "input_tokens": 5520,
+  "output_tokens": 157,
+  "elapsed_seconds": 1.484
+}

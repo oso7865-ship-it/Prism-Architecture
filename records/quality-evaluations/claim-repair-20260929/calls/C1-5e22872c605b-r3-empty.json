@@ -1,0 +1,12 @@
+{
+  "key": "C1-5e22872c605b-r3-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:39:45.871099+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "2f6d4a5ca10b9172e4a0c123f361a45548e33e2d4740ecb89c5ed4b7c49a96e4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 n이 양수일 때 [0]을, n=0일 때 []를 반환하는 계약을 만족하지만, n이 2 이상일 때도 [0]만 반환하여 계약이 명시한 범위 내에서 의도한 인덱스 목록을 생성하지 못합니다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 2, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2], \"trigger\": \"n이 2 이상인 비음수 정수일 때(예: n=3), range의 step이 max(n, 1)=n이 되어 range(0, n, n)은 0만 생성합니다.\", \"consequence\": \"n=3에 대해 [0, 1, 2]가 아닌 [0]을 반환하여, 함수 이름과 계약이 암시하는 n개의 인덱스 목록을 생성하지 못합니다.\", \"assumptions\": [], \"title\": \"n>=2에서 step이 n이 되어 인덱스가 하나만 반환됨\", \"evidence\": \"line 2의 range(0, n, max(n, 1))에서 n>=2이면 step이 n이므로 0만 포함됩니다. semantic_observations도 n=3에 대해 [0]을 확인합니다.\", \"suggestion\": \"step을 1로 고정하거나 range(n)을 사용하여 n개의 인덱스를 반환하도록 수정하세요. 예: return list(range(n)).\", \"expression_repair\": {\"line\": 2, \"before\": \"return list(range(0, n, max(n, 1)))\", \"after\": \"return list(range(n))\"}}], \"limitations\": \"n이 음수일 때의 동작은 계약에 명시되지 않아 검토 대상에서 제외했습니다. 호출 지점은 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"range의 step이 max(n,1)이라 n>=2에서 0만 생성되어 계약상 n개의 인덱스를 반환하지 못함을 확인했습니다.\"}]}",
+  "input_tokens": 3373,
+  "output_tokens": 505,
+  "seconds": 3.11
+}

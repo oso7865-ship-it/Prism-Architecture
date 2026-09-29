@@ -1,0 +1,12 @@
+{
+  "key": "C2-5e22872c605b-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T11:45:29.599754+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "aece580a68d1e259e966fb3a45a00b19e6e7786baf7edc4b9ab6d21762dcae49",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 indices 함수에서 range의 step으로 max(n, 1)을 사용하도록 변경된 한 줄을 검토했습니다. n이 1보다 큰 경우 step이 n이 되어 결과가 [0]으로 잘리는 동작이 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"n이 1보다 큰 정수(예: 3)일 때 indices(n)을 호출하는 경우\",\"consequence\":\"step이 max(n, 1)=n이 되어 range(0, n, n)은 0만 생성하므로, 반환값이 [0]이 되어 n이 1보다 큰 경우에도 0..n-1 목록이 아닌 단일 원소만 반환됩니다.\",\"assumptions\":[],\"title\":\"n>1일 때 step이 n이 되어 인덱스 목록이 [0]으로 잘림\",\"evidence\":\"2줄에서 range의 step으로 max(n, 1)을 사용합니다. n=3이면 range(0, 3, 3)은 0만 생성하므로 반환값은 [0]입니다. 제공된 semantic_observations도 n=3에 대해 [0]을 보여줍니다.\",\"suggestion\":\"step을 1로 고정하거나, n이 0일 때 빈 목록을 반환하도록 별도로 처리하세요. 예: return list(range(n)) — n=0이면 [], n>0이면 0..n-1을 반환합니다.\"}],\"limitations\":\"제공된 한 줄만 검토했으며 실행 결과는 확인하지 않았습니다. n이 음수인 경우의 계약은 명시되어 있지 않습니다.\"}",
+  "input_tokens": 4757,
+  "output_tokens": 396,
+  "seconds": 2.672
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-90900a02e0f4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:58:20.234958+00:00",
+  "input_hash": "c2ccd0b3c6adfc38826d9298d07cf203816525f1a05998ee4a87ef461798de60",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"name이 null이면 name == null이 true가 되어 null.trim()이 평가되고 NullPointerException이 발생합니다.\"}, {\"index\": 1, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비-null name이 전달되면 조건이 false가 되어 빈 문자열 \\\"\\\"가 반환되므로 주변 공백 제거가 수행되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 삼항 연산자 분기 결과가 뒤바뀌어 null 입력에서 NPE가 발생하고 비-null 입력에서 trim이 수행되지 않습니다.\"}]}",
+  "input_tokens": 4616,
+  "output_tokens": 210,
+  "seconds": 1.484
+}

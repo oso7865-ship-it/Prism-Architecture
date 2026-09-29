@@ -1,0 +1,12 @@
+{
+  "key": "C2-2cdf3efa43ff-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:45:35.934958+00:00",
+  "input_hash": "e36e00838e04f9112d6f7edf1cdf986358835ec016cc894ad2cdf27286daac79",
+  "system_hash": "1360a2b05daafea7809c20c7f96776abd693730dc42e656b8dc0f7dbf1aa2ece",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"amount=100000, count=100000일 때 int 곱셈이 32비트에서 오버플로한 뒤 long으로 변환되어 1410065408이 반환되며, 이는 수학적 곱 10000000000과 다릅니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3행에서 두 int 피연산자를 곱해 long으로 반환하므로, 곱이 int 범위를 넘으면 32비트 오버플로가 발생합니다.\"}]}",
+  "input_tokens": 4462,
+  "output_tokens": 162,
+  "seconds": 1.297
+}

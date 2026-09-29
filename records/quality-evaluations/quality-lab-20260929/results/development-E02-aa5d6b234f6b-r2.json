@@ -1,0 +1,73 @@
+{
+  "key": "development-E02-aa5d6b234f6b-r2",
+  "case": "aa5d6b234f6b",
+  "arm": "E02",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "기본 인자로 가변 리스트 `bucket=[]`를 사용하는 `collect` 함수가 추가되었습니다. 기본 인자는 함수 정의 시 한 번만 생성되어 호출 간에 공유되므로, bucket을 생략한 호출들이 같은 리스트를 누적합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket 인자를 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트가 호출 간에 공유되어 두 번째 호출의 반환값에 이전 호출의 항목이 함께 들어갑니다. 예를 들어 collect(1) 후 collect(2)는 [1, 2]를 반환하여 각 호출이 새 bucket을 받아야 한다는 계약을 위반합니다.",
+        "assumptions": [],
+        "title": "가변 기본 인자로 인해 호출 간 상태가 누적됩니다",
+        "evidence": "1줄의 기본값 `bucket=[]`는 정의 시 한 번 생성되어 모든 생략 호출이 공유하고, 2줄의 append가 그 리스트를 변경한 뒤 3줄에서 반환합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 `if bucket is None: bucket = []`로 새 리스트를 만들거나, 명시적 bucket을 그대로 사용하도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 테스트를 실행하지 않았습니다. 명시적 bucket을 전달하는 호출의 제자리 수정 동작은 계약과 일치합니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[1,2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 5604,
+  "output_tokens": 447,
+  "elapsed_seconds": 3.095,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

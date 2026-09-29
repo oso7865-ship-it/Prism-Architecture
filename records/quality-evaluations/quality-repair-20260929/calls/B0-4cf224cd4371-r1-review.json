@@ -1,0 +1,15 @@
+{
+  "key": "B0-4cf224cd4371-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:17:34.055205+00:00",
+  "input_hash": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"content_length가 문자열의 문자 수를 반환하도록 변경되어, prepare가 전송하는 UTF-8 바이트 수와 Content-Length가 불일치할 수 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,5,6,11],\"trigger\":\"prepare에 비-ASCII 문자열(예: \\\"한글\\\")을 전달하면\",\"consequence\":\"5줄에서 body를 UTF-8로 인코딩한 wire의 바이트 수는 6이지만, 2줄의 len(body)는 문자 수 2를 반환해 6줄의 Content-Length가 2로 기록됩니다. 이는 명시된 계약(전송된 UTF-8 바이트 수와 일치)을 위반하며, 11줄의 테스트도 실패합니다.\",\"assumptions\":[],\"title\":\"비-ASCII 문자열에서 Content-Length가 실제 전송 바이트 수와 불일치\",\"evidence\":\"2줄은 len(body)로 문자 수를 세지만, 5줄은 문자열을 UTF-8로 인코딩해 전송하고 6줄은 그 인코딩 전 길이를 헤더로 사용합니다. 11줄의 단언은 두 값이 같아야 함을 보여줍니다.\",\"suggestion\":\"content_length가 문자열일 때 인코딩된 바이트 수를 반환하도록 하거나, prepare에서 wire의 길이를 Content-Length로 사용하세요.\"}],\"limitations\":\"제공된 파일만 검토했으며 테스트를 실행하지 않았습니다. content_length의 다른 호출부는 제공되지 않았습니다.\"}",
+  "input_tokens": 4990,
+  "output_tokens": 382,
+  "seconds": 2.406
+}

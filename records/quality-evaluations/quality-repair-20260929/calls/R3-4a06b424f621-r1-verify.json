@@ -1,0 +1,15 @@
+{
+  "key": "R3-4a06b424f621-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:27:50.075812+00:00",
+  "input_hash": "34588ccbac61a7ebfd9048064e7fbffa47a7161e0d7c85a517cfedc0ac509dfb",
+  "system_hash": "0e44a5b1ed2ae67d0be460766232f03381bbefdbadfc9132fc9b0f033133966b",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"호출자가 넘긴 배열로 ordered를 호출하면 Array.prototype.sort가 해당 배열을 제자리에서 정렬하므로 호출자의 원본 배열 순서가 변경되어 '호출자의 배열을 수정하지 않는다'는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"values.sort(...)가 호출자 배열을 제자리에서 정렬해 '호출자의 배열을 수정하지 않는다'는 계약을 위반합니다.\"}]}",
+  "input_tokens": 3865,
+  "output_tokens": 172,
+  "seconds": 1.563
+}

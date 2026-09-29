@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-898c474a9d7d-r2-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:45:09.215807+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base를 복사한 뒤 nested 사전을 별도로 복사해 수정하는 변경을 검토했습니다. 제공된 범위에서 계약 위반 경로는 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "base의 실제 호출부와 nested 키의 존재 여부는 제공되지 않았으며, 테스트를 실행하지 않았습니다. 반환값이 base의 원본 limit을 참조한다는 점은 계약상 의도일 수 있어 결함으로 단정하지 않았습니다."
+  },
+  "input_tokens": 4804,
+  "output_tokens": 118,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "f5c0a412d6c6a1dedc645b2fcc9ff810a404fcac0083f2ce16bfb51161b7d0e3",
+  "elapsed_seconds": 1.391
+}

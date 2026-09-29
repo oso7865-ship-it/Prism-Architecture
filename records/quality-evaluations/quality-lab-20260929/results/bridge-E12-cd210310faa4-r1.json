@@ -1,0 +1,88 @@
+{
+  "key": "bridge-E12-cd210310faa4-r1",
+  "case": "cd210310faa4",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "변경된 단일 파일(f1)의 유일한 변경 라인은 null 방어 후 trim을 수행하는 삼항 연산이다. 명시된 동작 계약(null은 빈 문자열, 그 외 공백 제거)과 일치하며, 실제 도달 경로에서 잘못된 결과를 만드는 지점은 확인되지 않았다.",
+    "issues": [],
+    "limitations": "제공된 코드는 5줄 클래스 하나뿐이며, 이 메서드의 호출자·반환값 사용처·테스트는 제공되지 않아 실제 사용 맥락에서의 검증은 수행하지 못했다. 정적 분석 경고도 없었다."
+  },
+  "normalized": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 코드는 5줄 클래스 하나뿐이며, 이 메서드의 호출자·반환값 사용처·테스트는 제공되지 않아 실제 사용 맥락에서의 검증은 수행하지 못했다. 정적 분석 경고도 없었다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Display.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "name == null 조건이 참일 때 \"\"를 반환하고, 거짓일 때만 name.trim()을 호출하므로 null 역참조 없이 계약(null→빈 문자열, 그 외 trim)을 만족한다.",
+          "file_path": "Display.java"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 3,
+        "outcome": "NO_FINDING",
+        "observation": "name == null 조건이 참일 때 \"\"를 반환하고, 거짓일 때만 name.trim()을 호출하므로 null 역참조 없이 계약(null→빈 문자열, 그 외 trim)을 만족한다.",
+        "file_path": "Display.java"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8270,
+  "output_tokens": 434,
+  "elapsed_seconds": 3.7030000000000003
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R3-42eddd40771d-r1-verify",
+  "arm": "R3",
+  "phase": "verify",
+  "at": "2026-09-29T10:27:49.758844+00:00",
+  "input_hash": "d275d10a6f968e1bf1fe7cf222323ced78268bcb61d4a313873bfed392c1dc3e",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"checker(user)가 TimeoutError를 발생시키면 4줄에서 이를 잡아 5줄에서 True를 반환하므로, 계약상 거부되어야 할 불명확한 권한이 허용됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"TimeoutError 처리에서 True를 반환해 '알 수 없는 권한은 거부' 계약과 정면으로 충돌합니다.\"}], \"new_findings\": []}",
+  "input_tokens": 3975,
+  "output_tokens": 160,
+  "seconds": 1.36
+}

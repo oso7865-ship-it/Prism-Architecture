@@ -1,0 +1,41 @@
+{
+  "key": "bridge-F0-81c5bd8c7f71-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "81c5bd8c7f71",
+  "at": "2026-09-29T08:45:27.199804+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "97ca26af4f7a92a3f3b64dfd6b5d6a837e140b8473074e875f6f346baf58d064",
+  "payload_sha256": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "선택적 profile에 비단언 연산자를 사용해 이름을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          3
+        ],
+        "trigger": "profile이 없는 user로 name을 호출할 때",
+        "consequence": "user.profile이 undefined이므로 ! 단언은 런타임에 제거되어 .name 접근에서 TypeError가 발생하고, 계약에서 요구한 Unknown 표시가 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "profile이 없으면 Unknown 대신 TypeError가 발생합니다",
+        "evidence": "1줄에서 profile이 선택적 속성으로 선언되어 있고, 3줄에서 !로 단언한 뒤 name을 읽습니다. 계약은 profile 누락 시 Unknown 표시를 요구합니다.",
+        "suggestion": "profile 존재 여부를 확인해 없으면 'Unknown'을 반환하고, 있을 때만 name을 읽도록 분기하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 곳만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다."
+  },
+  "input_tokens": 4796,
+  "output_tokens": 255,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "62abfec71d78b559a7a1ad64a31e1d8ddbd5e92f3be69a848547f1ed2abc49cc",
+  "elapsed_seconds": 2.265
+}

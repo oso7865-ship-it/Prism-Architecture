@@ -1,0 +1,73 @@
+{
+  "case": "5e22872c605b",
+  "repeat": 2,
+  "arm": "C1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: n>=2에서 step이 n이 되어 인덱스가 하나만 반환됨",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "n이 2 이상인 비음수 정수일 때(예: n=3), range의 step이 max(n, 1)=n이 되어 range(0, n, n)은 0만 생성합니다.",
+        "consequence": "n=3에 대해 [0, 1, 2]가 아닌 [0]을 반환하여, 함수 이름과 계약이 암시하는 n개의 인덱스 목록을 생성하지 못합니다.",
+        "assumptions": [],
+        "title": "n>=2에서 step이 n이 되어 인덱스가 하나만 반환됨",
+        "evidence": "line 2의 range(0, n, max(n, 1))에서 n>=2이면 step이 n이므로 0만 포함됩니다. semantic_observations도 n=3에 대해 [0]을 확인합니다.",
+        "suggestion": "step을 1로 고정하거나 range(n)을 사용하여 n개의 인덱스를 반환하도록 수정하세요. 예: return list(range(n)).",
+        "file_path": "indices.py",
+        "suggestion_check": {
+          "status": "SOURCE_MISMATCH",
+          "samples": 0
+        },
+        "key": "4a797a7bcccbb7ad751d4785d45c8eafd598d3004011fa11215e0837ef57aa01"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "n이 음수일 때의 동작은 계약에 명시되지 않아 검토 대상에서 제외했습니다. 호출 지점은 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "indices.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "range의 step이 max(n,1)이라 n>=2에서 0만 생성되어 계약상 n개의 인덱스를 반환하지 못함을 확인했습니다.",
+          "file_path": "indices.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "f15686c3ef0bfff52b5f015111a7f68b020c8a010bdf8971fdae2d3fec0fd798"
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C3-2cdf3efa43ff-r3-review",
+  "phase": "review",
+  "at": "2026-09-29T11:50:12.278587+00:00",
+  "input_hash": "08e61641e4d219f753c2fea5d81736cb35f913ce52fbef355baed7a36dbdda40",
+  "system_hash": "fc4a425f06be94f85e2eee9080629f7673b09ce1e0bd0e46adff8f3c1764b9b7",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 total 메서드에서 int 곱셈 결과를 long으로 반환하도록 변경된 부분을 검토했습니다. 계약상 두 입력의 곱이 long 범위에 들어가더라도 int 연산이 먼저 수행되어 값이 보존되지 않는 경로가 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count가 각각 100000인 경우처럼 두 int의 곱이 int 범위를 넘지만 long 범위에는 들어가는 값을 total에 전달할 때\",\"consequence\":\"int 곱셈이 먼저 수행되어 32비트로 넘침한 값 1410065408이 long으로 변환·반환되므로, 계약이 요구하는 정확한 곱 10000000000이 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"int 곱셈이 먼저 수행되어 long 반환 시 곱이 보존되지 않습니다\",\"evidence\":\"f1:3의 amount * count는 두 피연산자가 int이므로 int 정밀도로 계산된 뒤 반환 형식 long으로 변환됩니다. 제공된 path_observations에서도 amount=100000, count=100000일 때 반환값이 1410065408로 수학적 곱과 다릅니다.\",\"suggestion\":\"곱셈 전에 한 피연산자를 long으로 승격하세요. 예: return (long) amount * count;\"}],\"limitations\":\"제공된 단일 파일과 정적 투영만 검토했으며 실제 컴파일·실행 및 외부 호출자의 입력 범위는 확인하지 않았습니다.\"}",
+  "input_tokens": 4870,
+  "output_tokens": 389,
+  "seconds": 3.015
+}

@@ -1,0 +1,15 @@
+{
+  "key": "R1-0e12161a3613-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:21.417260+00:00",
+  "input_hash": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Order.compare가 Integer.compare로 위임하도록 변경된 한 줄을 검토했습니다. 제공된 계약(부호 규약)과 Integer.compare의 표준 동작이 일치하며, 표시된 범위에서 구체적 결함 경로는 확인되지 않았습니다.\",\"issues\":[],\"limitations\":\"제공된 5줄 외의 호출부, 정렬 파이프라인, 테스트 실행 결과는 확인하지 못했습니다. Integer.compare의 표준 부호 규약 외 추가 계약은 제공되지 않았습니다.\"}",
+  "input_tokens": 4875,
+  "output_tokens": 125,
+  "seconds": 1.359
+}

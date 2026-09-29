@@ -1,0 +1,15 @@
+{
+  "key": "T2-5e22872c605b-r1-empty",
+  "arm": "T2",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:41.058697+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": "high",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 range(0, n, max(n, 1))로 인덱스 목록을 만든다. 명시된 계약(n은 음이 아닌 정수, n=0이면 [], 양수면 [0])을 모든 경계값에서 그대로 만족하므로, 제공된 범위에서는 조치가 필요한 결함이 확인되지 않았다.\", \"issues\": [], \"limitations\": \"n이 음수이거나 정수가 아닌 경우는 계약상 유효 입력이 아니어서 판단 근거로 삼지 않았다. 이 함수를 호출하는 지점이나 실제 입력 분포는 제공되지 않아, 계약 외 값이 유입되는지는 확인할 수 없다. 테스트 실행은 하지 않았고 제공된 HEAD 한 줄만 검토했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"range(0, n, max(n, 1))를 계약 경계값으로 추적: n=0이면 [], 양수 n이면 step=n>=1이라 [0]만 생성되어 명시된 계약과 일치한다. max(n,1)은 n=0일 때 step 0으로 인한 ValueError를 막는 실제 가드다.\"}], \"context_requests\": []}",
+  "input_tokens": 3230,
+  "output_tokens": 863,
+  "seconds": 4.422
+}

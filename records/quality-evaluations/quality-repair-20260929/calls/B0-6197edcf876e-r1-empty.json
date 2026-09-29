@@ -1,0 +1,15 @@
+{
+  "key": "B0-6197edcf876e-r1-empty",
+  "arm": "B0",
+  "phase": "empty",
+  "at": "2026-09-29T10:19:29.908380+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "9a6da7fe1aaf75d220500971493d8b849c26c9de05d10115f96a77068abffc7d",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"단일 변경 라인(user.profile?.name ?? 'Unknown')은 옵셔널 체이닝과 nullish 병합으로 profile 부재 시 'Unknown'을 반환하고, 빈 문자열 name은 그대로 보존한다. 제공된 계약과 일치하며 실행 가능한 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"name 함수의 호출부와 User 객체 생성 지점은 제공되지 않아 실제 입력 분포는 확인하지 못했다. 정적 분석 경고도 없었다.\", \"file_checks\": [{\"file_id\": \"f1\", \"line\": 3, \"outcome\": \"NO_FINDING\", \"observation\": \"profile이 undefined면 옵셔널 체이닝으로 undefined가 되고 ??가 'Unknown'을 반환한다. name이 빈 문자열이면 ??는 이를 유효값으로 유지하므로 계약과 일치한다.\"}]}",
+  "input_tokens": 3175,
+  "output_tokens": 211,
+  "seconds": 1.921
+}

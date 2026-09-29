@@ -1,0 +1,12 @@
+{
+  "key": "F2-cea2cfe09062-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:00:38.610097+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "33ab6bf3439173d1b1942968e9aa8889a34a3bf5e0742a690483f2f79f1a2f35",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 계약은 '모든 int 값에 대해 원본 값을 그대로 반환(음수 포함)'이므로, normalize가 value를 그대로 반환하는 것은 계약을 충족한다. adjusted 지역 변수는 사용되지 않지만 이는 스타일 수준이며 동작 결함이 아니다.\", \"issues\": [], \"limitations\": \"normalize의 호출자와 adjusted 사용 여부는 제공되지 않았다. 제공된 범위에서는 반환 계약 위반이 확인되지 않는다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"normalize는 계약대로 원본 value를 반환하며, Math.max 결과를 담은 adjusted는 미사용 지역 변수일 뿐 관찰 가능한 실패 경로가 없다.\"}]}",
+  "input_tokens": 3670,
+  "output_tokens": 189,
+  "seconds": 1.828
+}

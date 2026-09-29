@@ -1,0 +1,12 @@
+{
+  "key": "F3-0d5e36006ab7-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:50.919198+00:00",
+  "input_hash": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "system_hash": "20634b75630d1a1830cc1ce6ec59cea85cad44bbf9973e7a35334215d5475ef4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"access 함수의 2번째 줄 변경을 검토했습니다. check가 async로 boolean을 반환하는 계약이므로, await 없이 호출하면 Promise 객체의 truthy 여부로 판정됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"check가 async 함수여서 Promise를 반환할 때 access를 호출하는 경우\",\"consequence\":\"check()가 Promise 객체를 반환하고, 이 객체는 항상 truthy이므로 await 없이 평가되는 조건이 항상 참이 되어 'allowed'가 반환됩니다. 즉 check가 false로 resolve되어도 접근이 허용됩니다.\",\"assumptions\":[],\"title\":\"async check를 await 없이 평가해 접근이 항상 허용됩니다\",\"evidence\":\"2줄은 check()의 반환값을 조건으로 사용합니다. 제공된 계약에 따르면 check는 async이며 boolean으로 resolve되므로, await 없이 평가되는 값은 Promise 객체이고 이는 항상 truthy입니다.\",\"suggestion\":\"2줄을 `if (await check()) return 'allowed';`로 수정해 resolve된 boolean 값을 판정하도록 하세요.\",\"citations\":[]}],\"limitations\":\"제공된 4줄만 검토했으며 check의 실제 구현과 호출자는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4991,
+  "output_tokens": 314,
+  "seconds": 2.218
+}

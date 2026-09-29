@@ -1,0 +1,15 @@
+{
+  "key": "R3-6197edcf876e-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:30.694371+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "3c80249efd2dff9ef917b8c7ca0bbebfbc6545eb792e844a88e372f5684b7620",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3번 줄은 선택적 profile에 대해 옵셔널 체이닝과 null 병합을 사용해, profile이 없으면 'Unknown'을 반환하고 빈 문자열 name은 그대로 보존합니다. 제공된 계약과 일치하는 변경으로 보입니다.\",\"issues\":[],\"limitations\":\"제공된 4개 줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. name이 빈 문자열일 때의 표시 동작은 계약상 보존으로 명시되어 있어 별도 문제로 보지 않았습니다.\",\"context_requests\":[]}",
+  "input_tokens": 4753,
+  "output_tokens": 140,
+  "seconds": 1.265
+}

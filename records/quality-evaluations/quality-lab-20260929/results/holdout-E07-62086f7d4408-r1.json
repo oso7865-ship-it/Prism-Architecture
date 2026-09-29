@@ -1,0 +1,68 @@
+{
+  "key": "holdout-E07-62086f7d4408-r1",
+  "case": "62086f7d4408",
+  "arm": "E07",
+  "split": "holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "handle 함수의 ValueError 처리 변경을 검토했습니다. 변경된 except 절이 예외를 기록하지 않고 None을 반환하여, 팀 표준 s1이 요구하는 '기록 후 재던짐'과 충돌합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "4-5줄에서 예외를 잡아 None을 반환하므로 실패가 정상 반환값으로 숨겨지고, 전달받은 logger로 기록되지 않아 호출자가 오류를 인지하지 못할 수 있습니다.",
+        "assumptions": [],
+        "title": "ValueError를 기록 없이 None으로 숨겨 표준의 재던짐 요구를 위반합니다",
+        "evidence": "4줄에서 ValueError를 잡고 5줄에서 None을 반환합니다. logger는 어느 줄에서도 사용되지 않아 기록이 없으며, 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.",
+        "suggestion": "except 절에서 logger.error 등으로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 handle 함수와 표준 s1만 검토했으며, 호출부와 logger 구현은 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "null",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6343,
+  "output_tokens": 534,
+  "elapsed_seconds": 4.265,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

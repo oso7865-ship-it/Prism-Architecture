@@ -1,0 +1,46 @@
+{
+  "key": "holdout-C0-4d95d35835a5-r1-final",
+  "arm": "C0",
+  "phase": "final",
+  "at": "2026-09-29T07:17:30.415020+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "e2a8f742cc4599e9fd235b448f69f871837fad06ab03382f7b33ed894b07dbf5",
+  "input_bytes": 435,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "callbacks()가 반환하는 람다들이 생성 시점의 인덱스가 아니라 클로저 변수 i의 최종 값을 참조하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출해 반환된 콜백들을 실행할 때",
+        "consequence": "모든 람다가 동일한 클로저 셀 i를 공유하므로 range(3) 완료 후 i는 2가 되고, 각 콜백은 0,1,2가 아닌 2만 반환합니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 최종 i 값을 반환합니다",
+        "evidence": "2줄의 람다는 i를 인자로 바인딩하지 않고 외부 스코프 변수 i를 참조하므로, 리스트 컴프리헨션이 끝난 뒤 i의 최종 값 2를 모든 람다가 공유합니다.",
+        "suggestion": "각 람다가 생성 시점 값을 캡처하도록 기본 인자(예: lambda i=i: i)나 별도 팩토리 함수로 i를 바인딩하세요."
+      }
+    ],
+    "limitations": "제공된 두 줄만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[2, 2, 2]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "581d9e16e8084e4a002d12fc9edfffbf98bada3ed5a5850041aedcfb9195376a",
+  "input_tokens": 5138,
+  "output_tokens": 361,
+  "elapsed_seconds": 2.391
+}

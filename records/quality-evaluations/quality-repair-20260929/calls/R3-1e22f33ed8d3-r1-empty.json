@@ -1,0 +1,15 @@
+{
+  "key": "R3-1e22f33ed8d3-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:50.880253+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length가 str은 UTF-8 인코딩 후 바이트 수를, bytes는 그대로 길이를 반환하도록 변경되어 계약(Content-Length = 전송 바이트 수)과 일치합니다. 제공된 범위에서 구체적 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 실제 호출자와 네트워크 전송 계층은 제공되지 않아, 반환값이 실제 전송 경로에서 어떻게 사용되는지는 확인하지 못했습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"str은 UTF-8 인코딩 후, bytes는 재인코딩 없이 길이를 계산해 Content-Length 계약과 일치합니다. 빈 문자열/비ASCII/bytes 경계 모두 동일한 바이트 수를 산출합니다.\"}]}",
+  "input_tokens": 3349,
+  "output_tokens": 221,
+  "seconds": 1.969
+}

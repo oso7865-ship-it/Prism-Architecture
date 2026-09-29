@@ -1,0 +1,128 @@
+{
+  "key": "bridge-F0-6a3397085914-r1",
+  "case": "6a3397085914",
+  "arm": "F0",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": true,
+    "normal_false_positive": false,
+    "questions": 1,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": true,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "f1의 변경된 반환식 `len(body)`는 UTF-8 인코딩 기준 바이트 수를 반환한다는 계약과 불일치할 수 있습니다. str 입력 시 문자 수를 반환하므로 계약 위반 가능성이 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "body가 str이고 ASCII 이외 문자(예: 한글, 이모지)를 포함할 때 `len(body)`가 실행되면",
+        "consequence": "문자 수가 반환되어 UTF-8 바이트 수와 달라지고, 계약상 'wire bytes'를 기대하는 호출자에서 크기 계산이 과소평가될 수 있습니다.",
+        "assumptions": [
+          "계약의 'UTF-8'이 str 입력에도 바이트 수를 요구한다는 해석"
+        ],
+        "title": "str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환",
+        "evidence": "line 1은 `def wire_size(body):`로 str/bytes를 받는다고 명시되어 있고, line 2의 변경된 `return len(body)`는 str에 대해 문자 수를 반환합니다. UTF-8에서 비-ASCII 문자는 1바이트를 초과하므로 계약과 불일치합니다.",
+        "suggestion": "str인 경우 `len(body.encode('utf-8'))`를, bytes인 경우 `len(body)`를 반환하도록 분기하거나, 계약을 문자 수 기준으로 명확히 수정하세요."
+      }
+    ],
+    "limitations": "호출자와 실제 입력 타입 분포는 제공되지 않았습니다. 계약이 str에 대해 문자 수를 의도한 것인지 확인이 필요합니다."
+  },
+  "normalized": {
+    "summary": "추가 확인 1건이 있어요.\n추가 확인할 내용: str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환",
+    "issues": [],
+    "questions": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "body가 str이고 ASCII 이외 문자(예: 한글, 이모지)를 포함할 때 `len(body)`가 실행되면",
+        "consequence": "문자 수가 반환되어 UTF-8 바이트 수와 달라지고, 계약상 'wire bytes'를 기대하는 호출자에서 크기 계산이 과소평가될 수 있습니다.",
+        "assumptions": [
+          "계약의 'UTF-8'이 str 입력에도 바이트 수를 요구한다는 해석"
+        ],
+        "title": "str 입력에서 UTF-8 바이트 수 대신 문자 수를 반환",
+        "evidence": "line 1은 `def wire_size(body):`로 str/bytes를 받는다고 명시되어 있고, line 2의 변경된 `return len(body)`는 str에 대해 문자 수를 반환합니다. UTF-8에서 비-ASCII 문자는 1바이트를 초과하므로 계약과 불일치합니다.",
+        "suggestion": "str인 경우 `len(body.encode('utf-8'))`를, bytes인 경우 `len(body)`를 반환하도록 분기하거나, 계약을 문자 수 기준으로 명확히 수정하세요.",
+        "file_path": "wire.py",
+        "key": "d209d7d0c5aca885f34d3533f9f763c56d24f65ebc83b1237c902bdc3645553b"
+      }
+    ],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "호출자와 실제 입력 타입 분포는 제공되지 않았습니다. 계약이 str에 대해 문자 수를 의도한 것인지 확인이 필요합니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "wire.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "변경된 `len(body)`는 str 입력에서 UTF-8 바이트 수가 아닌 문자 수를 반환해 계약과 불일치할 수 있음.",
+          "file_path": "wire.py"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "status": "EMPTY_RECHECKED",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "FINDING",
+        "observation": "변경된 `len(body)`는 str 입력에서 UTF-8 바이트 수가 아닌 문자 수를 반환해 계약과 불일치할 수 있음.",
+        "file_path": "wire.py"
+      }
+    ]
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7870,
+  "output_tokens": 610,
+  "elapsed_seconds": 4.907
+}

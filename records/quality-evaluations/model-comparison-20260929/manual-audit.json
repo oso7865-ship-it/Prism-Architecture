@@ -1,0 +1,79 @@
+{
+  "reviewer": "Codex source/output comparison; independent human audit pending",
+  "scope": "Targeted semantic audit of earlier failures and new automatic anomalies, not all prose in all results",
+  "whole_quality_pass": false,
+  "findings": [
+    {
+      "keys": ["bridge-F0-e039b4bf0e2d-r1", "bridge-F0-e039b4bf0e2d-r2", "bridge-P0-e039b4bf0e2d-r1", "bridge-P0-e039b4bf0e2d-r2"],
+      "classification": "MISSED_DEFECT_AND_WRONG_OPERATOR_SEMANTICS",
+      "expected": "When REQUESTS_CA_BUNDLE is absent and CURL_CA_BUNDLE is empty, None or empty-string returns empty-string, not None. merge_setting preserves non-None empty-string instead of True.",
+      "observed": "Both models deliver zero final issues in both repeats. Pro NO_FINDING explains that empty strings are converted to None or restored to True, contradicting the supplied implementation. Flash r1 has the same error; r2 drops a draft without recovering the actual defect."
+    },
+    {
+      "keys": ["bridge-P0-4c612348a604-r2"],
+      "classification": "WRONG_TARGET_THEN_REAL_DEFECT_NOT_RECOVERED",
+      "expected": "n=0 must return []; range(0,0,0) raises ValueError. Positive n must return [0].",
+      "observed": "Draft labels the correct positive-n result [0] as a finding. Verifier appropriately drops that unsupported finding, but the zero-step defect is not recovered. This is not deletion of a correctly explained zero-step bug."
+    },
+    {
+      "keys": ["bridge-P0-4c612348a604-r1", "diagnostic-P0-4c612348a604-r1"],
+      "classification": "UNSAFE_ALTERNATIVE_FIX",
+      "expected": "Preserve positive-n output [0] while handling n=0.",
+      "observed": "Pro correctly identifies ValueError and offers a valid n=0 branch, but also recommends fixing step to 1/range(n), which yields [0,1,2] for n=3. The alternative violates the supplied contract. Flash product r1/r2 instead recommend an n=0 branch."
+    },
+    {
+      "keys": ["diagnostic-P0-0c47bb65c1ee-r1", "diagnostic-P0-0c47bb65c1ee-r2"],
+      "classification": "PROBE_CONTRADICTS_CORRECT_CAUSE",
+      "expected": "Shallow copy shares nested dict; mutation makes both original and returned limit 9.",
+      "observed": "Pro describes the shared nested mutation correctly but predicts the original return as 1 in both repeats. In r2 it anchors the same defect at mutation line3 rather than expected copy line2: strict location miss is a scoring limitation, not absence of the defect explanation. Raw scores are preserved."
+    },
+    {
+      "keys": ["diagnostic-P0-90900a02e0f4-r1", "diagnostic-P0-90900a02e0f4-r2", "bridge-P0-90900a02e0f4-r1"],
+      "classification": "DESIRED_BEHAVIOR_SUBSTITUTED_FOR_ACTUAL",
+      "expected": "Reversed ternary throws on null, and returns empty-string on non-null input, not trimmed Ada.",
+      "observed": "Pro detects the null dereference but predicts Ada for the non-null branch twice. Product r1 summary describes the desired safe behavior while the issue correctly identifies the implemented unsafe branch."
+    },
+    {
+      "keys": ["bridge-F0-898c474a9d7d-r1", "bridge-P0-898c474a9d7d-r1", "bridge-P0-898c474a9d7d-r2", "diagnostic-P0-898c474a9d7d-r1"],
+      "classification": "INVENTED_RETURN_REQUIREMENT",
+      "expected": "Contract requires preserving caller nested data. Returning original limit is permitted.",
+      "observed": "Both product paths label returning the original limit a supported bug and propose returning the adjusted copy instead. No provided requirement demands that return value."
+    },
+    {
+      "keys": ["bridge-P0-65d1d2fad0d4-r2"],
+      "classification": "WRONG_RELATION_IN_VERIFIED_CONSEQUENCE",
+      "expected": "Integer.MAX_VALUE > Integer.MIN_VALUE, but int subtraction overflows to -1.",
+      "observed": "The verified consequence states left < right for these values while saying a positive result is required. Cause and Integer.compare fix are otherwise correct; location accuracy cannot catch the contradictory relation."
+    },
+    {
+      "keys": ["bridge-P0-4cf224cd4371-r1"],
+      "classification": "CORRECT_RECHECK_BLOCKED_BY_FILE_CHECK_CONTRACT",
+      "expected": "Actual non-ASCII character/byte mismatch is at changed line2; file_checks must anchor a changed line.",
+      "observed": "Empty recheck correctly explains Content-Length 2 versus actual6 bytes and proposes len(wire). It anchors file_checks at unchanged consumer line6; validate_empty_review rejects INVALID_FILE_CHECK. End-to-end failure, not failure to understand the defect in the final model response."
+    },
+    {
+      "keys": ["bridge-F0-6a3397085914-r1", "bridge-P0-6a3397085914-r1", "bridge-P0-6a3397085914-r2"],
+      "classification": "UNNECESSARY_UNCERTAINTY_VS_SUPPORTED_FINDING",
+      "expected": "Explicit UTF-8 byte-count contract supports a finding for non-ASCII str.",
+      "observed": "Flash r1 describes the defect but unnecessarily downgrades it to NEEDS_CONTEXT; it is visible as a question, not an absent response. Pro makes supported, correctly explained findings in both repeats."
+    },
+    {
+      "keys": ["diagnostic-P0-2cdf3efa43ff-r1", "diagnostic-P0-2cdf3efa43ff-r2"],
+      "classification": "INT_PROMOTION_MISUNDERSTOOD",
+      "expected": "50000 * 50000 with int operands overflows to -1794967296 before conversion to long.",
+      "observed": "Pro predicts 2500000000 and returns no issues in both diagnostic repeats. Flash predicts the overflow and detects it. Pro product pipeline does detect it, showing prompt/output-task sensitivity rather than a universal inability."
+    },
+    {
+      "keys": ["bridge-F0-0c543f7d32dd-r1", "bridge-P0-0c543f7d32dd-r1", "bridge-P0-0c543f7d32dd-r2", "bridge-F0-898c474a9d7d-r2"],
+      "classification": "UNNECESSARY_CONTEXT_QUESTIONS",
+      "expected": "Explicit path-boundary and nested-dictionary contracts are usable supplied requirements; missing product call sites do not negate function-level contract violations.",
+      "observed": "Flash downgrades the correctly described sibling-path bug to a question and asks two questions on clean nested-copy code. Pro reports the sibling-path defect as supported. Root slash edge remains an earlier known fixture-scope caveat; main sibling-path example is unambiguous."
+    },
+    {
+      "keys": ["bridge-F0-1bcaee84937b-r1", "bridge-P0-1bcaee84937b-r1", "bridge-P0-1bcaee84937b-r2"],
+      "classification": "SCHEMA_FAILURE_VS_VALID_SECURITY_FINDING",
+      "expected": "Missing actor/owner check leaks another owner's amount; JSON has no top-level citations.",
+      "observed": "Flash r1 fails schema with top-level citations; Pro produces correctly explained supported authorization findings in both repeats."
+    }
+  ]
+}

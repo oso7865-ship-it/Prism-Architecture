@@ -1,0 +1,54 @@
+{
+  "key": "development-E06-aa5d6b234f6b-r1-final",
+  "arm": "E06",
+  "phase": "final",
+  "at": "2026-09-29T07:10:10.573522+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "6a86fd968770448321d3e035a92ee7b4466b16c47325a2f28f8b3a50ed2bab5e",
+  "input_bytes": 849,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 기본 버킷이 호출 간 공유되어 계약과 다른 결과가 발생합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간 공유되어 두 번째 호출 결과에 이전 항목이 누적됩니다. 계약이 요구하는 '생략 시 새 버킷'과 달리 첫 호출의 반환값을 이후 호출이 변경합니다.",
+        "assumptions": [],
+        "title": "기본 인자 리스트가 호출 간 공유되어 누적됩니다",
+        "evidence": "1줄의 bucket=[] 기본값은 함수 정의 시 한 번 생성되어 모든 생략 호출이 같은 객체를 사용하고, 2줄의 append가 그 객체를 변경합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 생성하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 실제 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1], [1, 2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9, 3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "45b5432715a005bbea263a03dafb85ee8a4c5aba31ce71ca4540f76867411736",
+  "input_tokens": 5278,
+  "output_tokens": 356,
+  "elapsed_seconds": 2.219
+}

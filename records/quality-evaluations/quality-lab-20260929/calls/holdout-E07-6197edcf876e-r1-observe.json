@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-6197edcf876e-r1-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:51.206926+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "d37d92043b3a4ff2aba34ebebb4c290aeab13c8eb15d2d3a00083cd755bea0ad",
+  "input_bytes": 644,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a TypeScript function `name` taking a `User` with an optional `profile` containing a required `name` string.",
+      "Line 3 was changed and uses optional chaining `user.profile?.name` with nullish coalescing `?? 'Unknown'`.",
+      "For probe p1 `name({})`, `user.profile` is undefined, so the expression returns the fallback 'Unknown'.",
+      "For probe p2 `name({profile: {name: \"\"}})`, the empty string is not nullish, so `??` preserves it and returns \"\".",
+      "The behavior contract states missing profile must display Unknown while an existing empty name is preserved, matching the observed `??` semantics.",
+      "No static findings are reported and no authorization or state-mutation logic is present in the shown source."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "fe2e15218170e0236c91bf98ffbabe716645501e72eb971f938ced06b2263881",
+  "input_tokens": 363,
+  "output_tokens": 177,
+  "elapsed_seconds": 1.312
+}

@@ -1,0 +1,67 @@
+{
+  "key": "adaptive_holdout-E14-898c474a9d7d-r1",
+  "case": "898c474a9d7d",
+  "arm": "E14",
+  "split": "adaptive_holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "base의 중첩 딕셔너리를 복사해 result를 만든 뒤 result의 limit만 변경하고, 반환값은 base의 limit을 읽습니다. 제공된 계약(호출자의 base 불변 유지)과 관련해 반환값이 갱신된 값이 아니라 원본 값을 돌려주는 동작을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust({'nested': {'limit': 1}})처럼 중첩 딕셔너리를 가진 base로 호출할 때",
+        "consequence": "2줄에서 base['nested']를 복사해 result['nested']를 별도 객체로 만들고 3줄에서 result['nested']['limit']만 9로 바꾸므로, 4줄의 base['nested']['limit']은 변경되지 않은 원래 값(예: 1)을 반환합니다. 호출자는 limit이 9로 조정된 결과를 기대할 수 있어 반환값이 갱신 결과와 불일치합니다.",
+        "assumptions": [],
+        "title": "복사본을 수정한 뒤 원본 값을 반환합니다",
+        "evidence": "2줄은 base['nested'].copy()로 별도 중첩 딕셔너리를 만들어 result에 넣고, 3줄은 result['nested']['limit']만 9로 설정합니다. 4줄은 수정된 result가 아니라 base['nested']['limit']을 반환하므로 복사본 변경이 반환값에 반영되지 않습니다.",
+        "suggestion": "반환 의도가 조정된 값이라면 4줄에서 result['nested']['limit']을 반환하세요. 원본 값을 반환하는 것이 의도라면 3줄의 수정이 반환값에 영향을 주지 않는다는 점을 명확히 하고 불필요한 복사를 제거하는 방향을 검토하세요."
+      }
+    ],
+    "limitations": "제공된 4줄만 검토했으며 호출부와 테스트는 제공되지 않아 반환값에 대한 실제 기대 계약은 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5473,
+  "output_tokens": 540,
+  "elapsed_seconds": 3.172,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

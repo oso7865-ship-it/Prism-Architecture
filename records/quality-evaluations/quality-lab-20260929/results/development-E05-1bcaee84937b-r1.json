@@ -1,0 +1,72 @@
+{
+  "key": "development-E05-1bcaee84937b-r1",
+  "case": "1bcaee84937b",
+  "arm": "E05",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "이전 버전에 있던 소유자 검사(`item.owner !== actor`일 때 예외 발생)가 현재 HEAD에서 제거되어, `invoice`가 소유자 확인 없이 금액을 반환합니다. `load`는 `{owner: \"alice\", amount: 40}`을 반환하므로 bob과 같은 비소유자도 금액을 받게 됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "`invoice(7, \"bob\")`처럼 `load(id).owner`와 다른 actor로 호출될 때",
+        "consequence": "소유자 검사가 없어 비소유자에게도 `item.amount`(40)가 반환됩니다. behavior_contract가 요구하는 '소유자에게만 반환, 그 외에는 Error'를 위반하는 접근 통제 실패입니다.",
+        "assumptions": [],
+        "title": "소유자 검사 제거로 비소유자에게 금액이 노출됩니다",
+        "evidence": "2줄에서 `load(id)` 결과를 받고 3줄에서 곧바로 `item.amount`를 반환합니다. 이전 소스에 있던 `item.owner !== actor` 검사가 HEAD에는 없습니다.",
+        "suggestion": "3줄의 반환 전에 `if (item.owner !== actor) throw new Error(\"denied\");`를 복원해 소유자만 금액을 받도록 하세요."
+      }
+    ],
+    "limitations": "`load`의 실제 구현과 호출부, actor 값의 출처는 제공된 범위 밖이며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5676,
+  "output_tokens": 441,
+  "elapsed_seconds": 2.859,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

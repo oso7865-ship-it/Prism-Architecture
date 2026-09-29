@@ -1,0 +1,104 @@
+{
+  "key": "bridge-E12-b07fc52f42ca-r1",
+  "case": "b07fc52f42ca",
+  "arm": "E12",
+  "split": "bridge",
+  "repeat": 1,
+  "legacy_id": null,
+  "legacy_seen_before": false,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 3,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "기본값 처리에서 `||`를 사용해 0과 같은 falsy 값도 기본값 10으로 대체되는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 0이 전달될 때(0은 계약상 유효한 설정값)",
+        "consequence": "count에 0이 전달되면 0은 falsy이므로 `count || 10`이 10을 반환하여, 계약상 유효한 limit 값 0이 무시되고 기본값 10이 적용됩니다.",
+        "assumptions": [],
+        "title": "limit 값 0이 기본값 10으로 잘못 대체됩니다",
+        "evidence": "2줄은 `||` 연산자로 기본값을 적용하므로 좌항이 falsy이면 우항을 반환합니다. 계약상 0은 유효한 limit이지만 0은 falsy입니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 좁히세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: limit 값 0이 기본값 10으로 잘못 대체됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 0이 전달될 때(0은 계약상 유효한 설정값)",
+        "consequence": "count에 0이 전달되면 0은 falsy이므로 `count || 10`이 10을 반환하여, 계약상 유효한 limit 값 0이 무시되고 기본값 10이 적용됩니다.",
+        "assumptions": [],
+        "title": "limit 값 0이 기본값 10으로 잘못 대체됩니다",
+        "evidence": "2줄은 `||` 연산자로 기본값을 적용하므로 좌항이 falsy이면 우항을 반환합니다. 계약상 0은 유효한 limit이지만 0은 falsy입니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 좁히세요.",
+        "file_path": "limits.js",
+        "key": "49e4c0c5504e486856079088e0a193f05949ba7c65570dde97a3e480e542c5f4"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "limits.js",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 7891,
+  "output_tokens": 496,
+  "elapsed_seconds": 3.5460000000000003
+}

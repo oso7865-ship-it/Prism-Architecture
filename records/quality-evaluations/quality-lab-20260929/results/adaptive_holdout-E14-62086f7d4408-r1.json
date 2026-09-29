@@ -1,0 +1,68 @@
+{
+  "key": "adaptive_holdout-E14-62086f7d4408-r1",
+  "case": "62086f7d4408",
+  "arm": "E14",
+  "split": "adaptive_holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "handle이 ValueError를 잡아 None으로 반환하도록 변경된 부분을 검토했습니다. 팀 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구하는데, 변경된 except 절은 기록 없이 None을 반환합니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 5,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          4,
+          5
+        ],
+        "trigger": "operation()이 ValueError를 발생시킬 때",
+        "consequence": "예외가 기록되지 않고 None으로 반환되어 호출자가 실패를 정상 결과로 오인할 수 있으며, s1이 요구하는 기록 후 재던지기가 수행되지 않습니다.",
+        "assumptions": [],
+        "title": "ValueError를 기록 없이 None으로 숨겨 실패가 정상 반환처럼 보입니다",
+        "evidence": "4-5줄에서 ValueError를 잡아 logger 호출 없이 None을 반환합니다. s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.",
+        "suggestion": "except 절에서 logger.error 등으로 오류를 기록한 뒤 raise로 같은 ValueError를 다시 던지고, None 반환은 제거하세요."
+      }
+    ],
+    "limitations": "logger의 구체적 인터페이스와 handle 호출부는 제공되지 않았으며, 테스트를 실행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "null",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5936,
+  "output_tokens": 390,
+  "elapsed_seconds": 2.859,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

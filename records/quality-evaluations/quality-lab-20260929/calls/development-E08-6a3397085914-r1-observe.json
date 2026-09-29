@@ -1,0 +1,26 @@
+{
+  "key": "development-E08-6a3397085914-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:13:13.470010+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "97d7a1da1a3d4c6b9df8e7ae69d397cf6c437255deba56daaed1417d2619f018",
+  "input_bytes": 519,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "wire_size returns len(body), which counts characters for str, not UTF-8 bytes as the behavior_contract requires.",
+      "For str input, len('한글') is 2 while UTF-8 encoding is 6 bytes, so the contract is violated for non-ASCII text.",
+      "For bytes input, len(b'AB') is 2, which matches byte count, so bytes inputs behave consistently with the contract.",
+      "wire_size('') returns 0, which is correct for both character and byte counting.",
+      "No encoding step (e.g., body.encode('utf-8')) is present in the changed line, so the stated UTF-8 semantics are not implemented.",
+      "static_findings is empty, so no tooling flagged the str/bytes length discrepancy."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "168b619c9f7740df4a52529fb9558c6be5e17866162471f109ca535ff239938b",
+  "input_tokens": 331,
+  "output_tokens": 164,
+  "elapsed_seconds": 1.329
+}

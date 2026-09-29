@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-a8961f6d5e20-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:21.805901+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "862bdf0617fc7807aa3b0947ded1ce6e296f0e9b99649ae770f56622292bbc9b",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 concatenates untrusted user_id directly into the SQL string instead of using the empty parameter tuple, so the returned tuple carries no bound parameters.",
+      "The behavior contract states the caller uses %s placeholders, but the returned SQL contains no %s placeholder, so the driver would receive a fully literal query.",
+      "Probe p1 input '0 OR 1=1' would produce the literal SQL 'SELECT name FROM users WHERE id = 0 OR 1=1' with an empty parameter tuple, a classic tautology injection.",
+      "A normal comparison input such as query('42') would return 'SELECT name FROM users WHERE id = 42' with an empty tuple, showing the same concatenation path with no parameterization.",
+      "The empty tuple () is returned unconditionally, so no value is ever passed as a bound parameter regardless of input.",
+      "No validation, quoting, or escaping of user_id appears in the supplied lines."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "dc6e61f6c50e3741877a6bb7921b2eaa44b6c0a4f2cfc0d7906ee1235d3d2269",
+  "input_tokens": 328,
+  "output_tokens": 198,
+  "elapsed_seconds": 1.484
+}

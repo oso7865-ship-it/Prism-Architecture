@@ -1,0 +1,15 @@
+{
+  "key": "R1-1bcaee84937b-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:18:34.613456+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "bcb62dadc58925c1fa907bc77de26c9a3c97b47a1f7750fa094fba82d319c06f",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 변경 코드는 invoice가 load(id) 결과의 amount를 반환하는 부분만 보여 주며, 소유자 검사 로직은 포함되어 있지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"actor가 \\\"alice\\\"가 아닌 값으로 invoice(7, actor)를 호출할 때\",\"consequence\":\"load가 반환한 항목의 owner와 actor를 비교하는 검사가 2~3줄에 없으므로, 비소유자에게도 amount가 그대로 반환되어 계약(소유자에게만 반환, 그 외에는 Error)이 위반됩니다.\",\"assumptions\":[],\"title\":\"소유자 검사 없이 금액이 반환됩니다\",\"evidence\":\"2줄에서 load(id) 결과를 받고 3줄에서 owner 확인 없이 item.amount를 반환합니다. 관련 구현은 owner가 \\\"alice\\\"인 항목을 반환하므로 actor가 다른 경우에도 동일한 값이 반환됩니다.\",\"suggestion\":\"item.owner와 actor를 비교하여 일치하지 않으면 Error를 던지는 검사를 3줄의 반환 전에 추가하세요.\"}],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인입니다. load의 실제 구현과 invoice 호출 지점은 제공되지 않았습니다.\"}",
+  "input_tokens": 5120,
+  "output_tokens": 325,
+  "seconds": 2.047
+}

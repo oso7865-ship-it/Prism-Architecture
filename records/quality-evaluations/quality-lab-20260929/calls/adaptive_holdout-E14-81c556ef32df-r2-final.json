@@ -1,0 +1,35 @@
+{
+  "key": "adaptive_holdout-E14-81c556ef32df-r2-final",
+  "arm": "E14",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:19:52.601147+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "2ab09949f900c917ef35031d257e0cc8a1c72458965688f764ca6aeb98533c16",
+  "input_bytes": 1663,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "mean 함수가 빈 리스트에 대해 0.0을 반환하도록 조건부 표현식으로 변경된 부분을 검토했습니다. 제공된 계약(빈 입력은 0.0)과 일치하며, 비어 있지 않은 경우 sum/len 나눗셈이 정상 동작합니다.",
+    "issues": [],
+    "limitations": "제공된 두 줄만 검토했으며 호출부, 입력 타입 검증, 테스트 실행은 확인하지 않았습니다. 비숫자 원소나 비리스트 반복 가능 객체에 대한 동작은 계약 범위 밖이라 판단하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0.0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "3.0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "3766e9c32fbf27467d60af97585b948ccde4ecd01b04a6602467aab0e5b79176",
+  "input_tokens": 5435,
+  "output_tokens": 201,
+  "elapsed_seconds": 1.516
+}

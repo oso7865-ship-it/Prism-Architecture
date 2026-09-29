@@ -1,0 +1,71 @@
+{
+  "key": "development-E10-2cdf3efa43ff-r2",
+  "case": "2cdf3efa43ff",
+  "arm": "E10",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "int 두 값을 곱해 long으로 반환하는 total 메서드의 변경을 검토했습니다. 계약상 곱이 long 범위에 들어가도 곱셈이 int 정밀도로 수행되어 값이 잘못될 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 Integer.MAX_VALUE(2147483647)를 초과하지만 long 범위에는 들어가는 값으로 total을 호출할 때(예: 50000 * 50000 = 2500000000)",
+        "consequence": "3줄의 곱셈이 두 int 피연산자의 int 연산으로 먼저 수행되어 32비트에서 넘친 뒤 long으로 확장되므로, 계약이 요구하는 정확한 곱이 보존되지 않고 잘못된 값이 반환됩니다.",
+        "assumptions": [],
+        "title": "int 곱셈 오버플로로 long 반환값이 잘못됩니다",
+        "evidence": "3줄은 두 int 매개변수를 곱해 long으로 반환합니다. Java에서 int * int는 int로 평가된 후 long으로 변환되므로, 곱이 int 범위를 넘으면 오버플로가 발생합니다. behavior_contract는 곱이 long에 들어가고 보존되어야 한다고 명시합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 실제 입력 범위, 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 3,
+  "pipeline_complete": true,
+  "input_tokens": 17071,
+  "output_tokens": 1294,
+  "elapsed_seconds": 8.156,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

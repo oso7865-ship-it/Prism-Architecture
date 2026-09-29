@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-0d5e36006ab7-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:37.058256+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "8ce4cd7a9585216b20c23b0c0f9e2d02b6831516828226a6f76b365095c9f309",
+  "input_bytes": 629,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 calls check() without await, so the returned Promise is tested for truthiness instead of its resolved boolean value.",
+      "Because a Promise object is always truthy, the condition on line 2 is satisfied for both probe p1 (async () => false) and probe p2 (async () => true).",
+      "Predicted observable outcome: await access(async () => false) returns 'allowed', violating the behavior contract that only a resolved true should allow.",
+      "Predicted observable outcome: await access(async () => true) returns 'allowed', which matches the contract but for the wrong reason (truthy Promise, not resolved true).",
+      "The function is declared async but contains no await, so it never observes the resolution of check's Promise.",
+      "static_findings is empty, so no automated finding currently flags the missing await on line 2."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b5b38d79b0c6168ea7f678c086afd7dc01e0d0fd1c44b8967dec582e93f1b048",
+  "input_tokens": 356,
+  "output_tokens": 180,
+  "elapsed_seconds": 1.766
+}

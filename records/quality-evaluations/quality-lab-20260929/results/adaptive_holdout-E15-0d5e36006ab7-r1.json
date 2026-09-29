@@ -1,0 +1,71 @@
+{
+  "key": "adaptive_holdout-E15-0d5e36006ab7-r1",
+  "case": "0d5e36006ab7",
+  "arm": "E15",
+  "split": "adaptive_holdout",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "비동기 권한 판정 함수 `access`에서 `check()`의 반환값을 await하지 않고 truthy 검사합니다. `check`가 async이고 boolean으로 resolve된다는 계약이 제공되어 있으므로, Promise 객체는 항상 truthy이므로 실제 판정 결과와 무관하게 'allowed'가 반환됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`check`가 async 함수이고 `access`를 호출할 때(예: `await access(async () => false)`)",
+        "consequence": "`check()`가 반환하는 Promise 객체는 resolve 값과 무관하게 항상 truthy이므로 2줄의 조건이 항상 참이 되어, 판정이 false여도 'allowed'가 반환됩니다. 즉 권한이 없는 호출자에게도 접근이 허용됩니다.",
+        "assumptions": [],
+        "title": "async check의 Promise를 await하지 않아 항상 허용됩니다",
+        "evidence": "2줄은 `check()`의 반환값을 그대로 조건으로 사용합니다. 제공된 계약에 따르면 `check`는 async이며 boolean으로 resolve되므로, 이 조건은 Promise 객체의 truthiness를 검사하게 됩니다.",
+        "suggestion": "`if (await check()) return 'allowed';`로 await하여 resolve된 boolean을 검사하세요."
+      }
+    ],
+    "limitations": "제공된 4줄의 함수만 검토했으며, `check`의 실제 구현과 호출부, 테스트 실행은 확인하지 못했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5661,
+  "output_tokens": 413,
+  "elapsed_seconds": 2.75,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

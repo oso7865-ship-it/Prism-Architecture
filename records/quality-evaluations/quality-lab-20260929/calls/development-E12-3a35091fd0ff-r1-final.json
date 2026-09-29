@@ -1,0 +1,35 @@
+{
+  "key": "development-E12-3a35091fd0ff-r1-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:14:36.040659+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "c048176c1e54027817fbfd9068354fc7f193cb62265de066c5a96d6414b67bf5",
+  "input_bytes": 787,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "invoice가 소유자 확인 후 금액을 반환하는 변경을 검토했습니다. 제공된 범위에서 소유자 검사가 존재하며 이를 우회하는 경로는 보이지 않습니다.",
+    "issues": [],
+    "limitations": "load의 반환 계약(예: 존재하지 않는 id에서 null/undefined 반환 여부)과 실제 호출부, 인증 주체(actor)의 신뢰 경계는 제공되지 않아 확인하지 못했습니다. 테스트나 실행 검증은 수행하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "84d8ce43a0a9bd5af17277ee23ba4a527d2b4acc249d519ae5a5b5a095b0bac7",
+  "input_tokens": 5645,
+  "output_tokens": 277,
+  "elapsed_seconds": 1.937
+}

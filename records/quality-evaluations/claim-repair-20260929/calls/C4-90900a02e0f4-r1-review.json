@@ -1,0 +1,12 @@
+{
+  "key": "C4-90900a02e0f4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:17.439084+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "fc4a425f06be94f85e2eee9080629f7673b09ce1e0bd0e46adff8f3c1764b9b7",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄 변경은 null 조건 분기의 결과가 뒤바뀐 상태로, null 입력에서 NPE가 발생하고 비-null 입력에서는 공백 제거가 수행되지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name 인자로 null이 전달될 때\",\"consequence\":\"name == null이 true가 되어 null.trim()이 평가되고 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 입력에서 trim 호출로 NPE가 발생합니다\",\"evidence\":\"3줄은 name == null이면 name.trim()을 반환하도록 되어 있어, null일 때 null에 trim을 호출합니다.\",\"suggestion\":\"null일 때 빈 문자열을 반환하고 그 외에는 trim을 적용하도록 두 분기의 결과를 맞바꾸세요.\",\"contract_quote\":\"A null name is displayed as empty; otherwise strip surrounding whitespace.\"},{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"공백을 포함한 비-null name이 전달될 때\",\"consequence\":\"조건이 false가 되어 \\\"\\\"가 반환되므로 주변 공백 제거가 수행되지 않고 값이 사라집니다.\",\"assumptions\":[],\"title\":\"비-null 입력에서 trim이 수행되지 않습니다\",\"evidence\":\"3줄의 삼항 연산자는 name != null인 경우 \\\"\\\"를 반환하므로 trim 경로가 비-null 입력에서 실행되지 않습니다.\",\"suggestion\":\"비-null 분기에서 name.trim()을 반환하도록 조건과 결과를 함께 수정하세요.\",\"contract_quote\":\"A null name is displayed as empty; otherwise strip surrounding whitespace.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4678,
+  "output_tokens": 433,
+  "seconds": 2.75
+}

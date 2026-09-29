@@ -1,0 +1,54 @@
+{
+  "key": "development-E01b-aa5d6b234f6b-r2-final",
+  "arm": "E01b",
+  "phase": "final",
+  "at": "2026-09-29T07:09:32.061784+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "1fa7a4b5e24d384d6c1fc3794a7393c71af5df3cf6d38a9975846a3c47c363ea",
+  "input_bytes": 484,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트를 사용하는 collect 함수 변경을 검토했습니다. 호출 간 상태가 공유되는 경로가 확인됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket 인자를 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간에 공유되어 이전 호출의 항목이 이후 반환값에 누적됩니다.",
+        "assumptions": [],
+        "title": "기본 인자 리스트가 호출 간 공유됩니다",
+        "evidence": "1줄의 기본값 []는 함수 정의 시 한 번 생성되고, 2줄의 append가 그 객체를 변경하며 3줄이 같은 객체를 반환합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 새 리스트를 생성해 반환하세요."
+      }
+    ],
+    "limitations": "제공된 함수 정의만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[1,2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7ad1b96765dcf920f322dff4adecf27dd28a561e88800f9e33a0faf232be03a4",
+  "input_tokens": 5165,
+  "output_tokens": 305,
+  "elapsed_seconds": 2.11
+}

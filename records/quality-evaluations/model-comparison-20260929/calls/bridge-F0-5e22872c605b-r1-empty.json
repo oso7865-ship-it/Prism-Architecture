@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-5e22872c605b-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "5e22872c605b",
+  "at": "2026-09-29T08:40:43.888322+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "f15686c3ef0bfff52b5f015111a7f68b020c8a010bdf8971fdae2d3fec0fd798",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 indices 함수는 n이 양수일 때 [0]을, n=0일 때 []를 반환하여 명시된 계약을 만족합니다. n이 음수인 경우는 계약상 유효 입력이 아니므로 결함으로 보지 않았습니다.",
+    "issues": [],
+    "limitations": "n이 음수이거나 정수가 아닌 경우의 동작은 계약에 정의되어 있지 않아 검토 범위에서 제외했습니다. 호출 지점은 제공되지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "range(0, n, max(n,1))는 n>0이면 [0], n=0이면 []를 반환해 계약과 일치합니다. 음수 n은 계약 외 입력입니다."
+      }
+    ]
+  },
+  "input_tokens": 3140,
+  "output_tokens": 202,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "65bfc7e5301a3f039ea29aab7b8ee0af54b08a30fed35519bb3911444dba7fe3",
+  "elapsed_seconds": 1.688
+}

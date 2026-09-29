@@ -1,0 +1,15 @@
+{
+  "key": "R3-898c474a9d7d-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:44.490554+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base를 얕게 복사한 뒤 nested를 별도로 복사해 수정하고, 원본 base의 nested['limit']을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']에 'limit' 키가 없거나 base에 'nested' 키가 없을 때 adjust를 호출하는 경우\",\"consequence\":\"2줄의 base['nested'] 접근 또는 3줄의 result['nested']['limit'] 대입에서 KeyError가 발생합니다.\",\"assumptions\":[],\"title\":\"nested 또는 limit 키가 없으면 KeyError가 발생합니다\",\"evidence\":\"2줄은 base['nested']를 직접 인덱싱하고, 3줄은 result['nested']['limit']을 대입합니다. 제공된 계약은 nested 사전의 존재만 언급하고 limit 키의 존재는 보장하지 않습니다.\",\"suggestion\":\"limit 키가 선택 사항이라면 3줄에서 setdefault나 존재 확인 후 대입하도록 하고, nested 자체가 필수라면 호출 계약에 명시하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과와 실제 호출자는 확인하지 못했습니다. base의 구조와 limit 키 존재 여부에 대한 계약은 제공되지 않았습니다.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 329,
+  "seconds": 2.281
+}

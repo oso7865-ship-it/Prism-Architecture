@@ -1,0 +1,15 @@
+{
+  "key": "R1-44af6707b4e8-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:49.045577+00:00",
+  "input_hash": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 2줄이 `value or default`로 변경되어, None이 아닌 거짓 같은 값(0, '', False, 빈 컨테이너)도 default로 대체됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value에 0, '', False 또는 빈 컨테이너처럼 falsy이지만 명시적으로 제공된 값이 전달될 때\",\"consequence\":\"`or` 연산이 falsy 값을 거짓으로 평가하므로 해당 값이 default로 대체되어, 제공된 값이 보존되지 않고 반환값이 달라집니다.\",\"assumptions\":[],\"title\":\"falsy 값이 default로 대체되어 명시적 값이 보존되지 않습니다\",\"evidence\":\"2줄의 `value or default`는 value가 falsy이면 default를 반환합니다. 계약은 None만 부재로 간주하고 명시적으로 제공된 모든 값을 보존하도록 요구합니다.\",\"suggestion\":\"`return default if value is None else value`로 바꿔 None일 때만 default를 사용하도록 하세요.\"}],\"limitations\":\"제공된 2줄만 검토했으며, choose의 호출자와 실제 입력 유형은 제공되지 않아 falsy 값이 실제로 전달되는 빈도는 확인하지 못했습니다.\"}",
+  "input_tokens": 4692,
+  "output_tokens": 322,
+  "seconds": 2.235
+}

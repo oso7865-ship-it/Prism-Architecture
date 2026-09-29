@@ -1,0 +1,12 @@
+{
+  "key": "C2-5e22872c605b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:45:28.726292+00:00",
+  "input_hash": "ba60da35c867729579fbfd5c445efaec8a8f8be9b3e8dfccb55c4938e732a671",
+  "system_hash": "9ee5a48f92790a2a3bb665bb3b7aed354a9e45fac94fb46e404e33cbe964d873",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"제공된 계약은 n=0일 때 [] , 양수 n일 때 [0]을 요구하며, 변경된 range(0, n, max(n, 1))는 n=0과 모든 양수 n에서 이 계약을 만족합니다. n이 2 이상일 때 전체 인덱스 목록을 반환해야 한다는 요구는 제공된 계약에 없습니다.\"}]}",
+  "input_tokens": 4198,
+  "output_tokens": 167,
+  "seconds": 1.594
+}

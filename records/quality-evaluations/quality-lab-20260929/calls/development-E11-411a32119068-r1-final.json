@@ -1,0 +1,41 @@
+{
+  "key": "development-E11-411a32119068-r1-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:15:15.792222+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "e70f9993b4c742f3d62016608b2b2ae8ae962890494658eb4b8e2d0f8791aeb4",
+  "input_bytes": 1350,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "문자열 또는 바이트 입력의 전송 바이트 수를 계산하는 wire_size 변경을 검토했습니다. str은 UTF-8로 인코딩 후 길이를 반환하고 bytes는 그대로 길이를 반환하여 명시된 계약과 일치합니다.",
+    "issues": [],
+    "limitations": "제공된 2줄만 검토했으며 호출부, 타입 계약 강제 여부, 테스트 실행은 확인하지 않았습니다. 비-str/비-bytes 입력은 계약 범위 밖이므로 결함으로 판단하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "2",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "f9418728b1876fe8aa680aa901ac43a884a664c5732ce0f3f84514d1e29d13cb",
+  "input_tokens": 5385,
+  "output_tokens": 208,
+  "elapsed_seconds": 1.547
+}

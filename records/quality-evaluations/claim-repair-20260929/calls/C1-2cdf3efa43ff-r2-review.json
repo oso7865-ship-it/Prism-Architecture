@@ -1,0 +1,12 @@
+{
+  "key": "C1-2cdf3efa43ff-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T11:39:45.302776+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "ff74cfda1051b3ec356be3545ad5062df096fc45e499df9ed10f32c99bf1836c",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄에서 int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다. 제공된 계약상 두 입력은 음수가 아니고 정확한 곱이 long에 들어가지만, 곱셈이 int로 수행된 뒤 확장됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"amount와 count의 곱이 Integer.MAX_VALUE를 초과하지만 long 범위에는 들어가는 경우(예: amount=100000, count=100000)\",\"consequence\":\"int 곱셈이 먼저 수행되어 오버플로가 발생하고, 그 결과가 long으로 확장되어 반환되므로 계약이 요구하는 정확한 곱이 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"int 곱셈 후 long 확장으로 큰 곱이 오버플로됩니다\",\"evidence\":\"3줄은 두 int 매개변수를 그대로 곱해 int 연산을 수행한 뒤 long 반환 타입으로 확장합니다. 계약은 정확한 곱이 long에 보존되어야 한다고 명시합니다.\",\"suggestion\":\"곱셈 전에 한 피연산자를 long으로 변환하세요(예: (long) amount * count).\"}],\"limitations\":\"제공된 5줄만 검토했으며 호출자와 실제 입력 범위는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4856,
+  "output_tokens": 342,
+  "seconds": 2.437
+}

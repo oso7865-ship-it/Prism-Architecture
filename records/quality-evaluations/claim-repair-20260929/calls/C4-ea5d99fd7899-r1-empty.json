@@ -1,0 +1,12 @@
+{
+  "key": "C4-ea5d99fd7899-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T11:58:50.905568+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "0e1ef0445e15a07b7d88f2b45298a2525112bded4d4636e17a90449b1d854801",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 load 함수는 order_id와 tenant_id를 함께 WHERE 절에 바인딩하여 조회하므로, 계약(order_id가 테넌트 간 중복 가능, 인증된 테넌트의 주문만 반환)을 충족하는 것으로 보입니다. 변경 라인에서 구체적인 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"db.execute의 반환 타입과 fetchone의 None 반환 여부, 호출자의 tenant_id 인증 방식은 제공되지 않아 검증 범위 밖입니다. 테스트나 실행은 수행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"order_id와 tenant_id를 모두 WHERE 조건에 바인딩해 조회하므로, 계약이 요구하는 테넌트 격리 조건이 쿼리에 반영되어 있습니다. 변경 라인에서 구체적 실패 경로는 보이지 않습니다.\"}]}",
+  "input_tokens": 3346,
+  "output_tokens": 234,
+  "seconds": 1.75
+}

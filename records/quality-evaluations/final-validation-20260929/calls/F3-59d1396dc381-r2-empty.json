@@ -1,0 +1,12 @@
+{
+  "key": "F3-59d1396dc381-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:03:24.350565+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "a3d516f0987f391e087b55f79a10a3c245fef2b3602c8886101d0bb93f6f6b44",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 코드는 `adjusted = max(value, 0)`로 계산하지만 `return value`로 원본을 반환합니다. 제공된 behavior_contract가 \\\"Return the original value unchanged, including negatives\\\"이므로 현재 반환은 계약을 충족하며, 계산된 `adjusted`는 사용되지 않는 지역 변수일 뿐입니다. 따라서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"제공된 범위는 f1의 3개 라인뿐이며, `adjust`의 호출자나 `adjusted` 사용 여부는 확인할 수 없습니다. 정적 경고는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 음수를 포함한 원본 값 반환을 요구하고, line 3의 `return value`가 이를 그대로 충족합니다. line 2의 `adjusted`는 사용되지 않는 계산이지만 반환 계약 위반이나 자원 한계 위반은 아닙니다.\"}]}",
+  "input_tokens": 3631,
+  "output_tokens": 245,
+  "seconds": 2.015
+}

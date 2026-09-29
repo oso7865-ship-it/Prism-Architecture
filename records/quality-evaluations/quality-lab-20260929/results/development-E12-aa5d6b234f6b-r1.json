@@ -1,0 +1,73 @@
+{
+  "key": "development-E12-aa5d6b234f6b-r1",
+  "case": "aa5d6b234f6b",
+  "arm": "E12",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "기본 인자로 가변 리스트 bucket=[]를 사용해 호출 간 상태가 공유되는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket을 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트 객체가 호출 간에 재사용되어 이전 호출의 원소가 이후 결과에 누적됩니다. 예를 들어 collect(1) 이후 collect(2)는 [2]가 아니라 [1, 2]를 반환하며, 명시적으로 전달하지 않은 호출자끼리 상태가 새어 나갑니다.",
+        "assumptions": [],
+        "title": "기본 인자 리스트가 호출 간 공유되어 이전 결과가 누적됩니다",
+        "evidence": "1줄에서 bucket=[]로 기본값을 정의하고 2줄에서 append, 3줄에서 그 객체를 그대로 반환합니다. 기본 인자 값은 함수 정의 시 한 번만 평가되므로 생략 호출들은 동일 리스트를 참조합니다.",
+        "suggestion": "기본값을 None으로 두고 함수 내부에서 bucket이 None일 때 새 리스트를 생성한 뒤 append하도록 변경하세요. 명시적으로 전달된 리스트는 그대로 수정하는 현재 동작을 유지할 수 있습니다."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 실제 호출부나 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5219,
+  "output_tokens": 802,
+  "elapsed_seconds": 4.766,
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

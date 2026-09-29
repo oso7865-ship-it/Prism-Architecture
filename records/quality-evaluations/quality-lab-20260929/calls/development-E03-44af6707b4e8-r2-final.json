@@ -1,0 +1,58 @@
+{
+  "key": "development-E03-44af6707b4e8-r2-final",
+  "arm": "E03",
+  "phase": "final",
+  "at": "2026-09-29T07:12:09.556842+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "bf8432a19902042d314a382f45f07f445c714eef7081b80ec6b4928b3f693f78",
+  "input_bytes": 1423,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`choose`가 `value or default`로 값을 선택해, None뿐 아니라 거짓으로 평가되는 값도 기본값으로 대체됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 빈 문자열, 0, False, 빈 컨테이너 등 거짓으로 평가되는 값이 전달될 때",
+        "consequence": "명시적으로 제공된 값이 유지되지 않고 default로 대체되어, 계약에서 요구하는 'None만 부재로 간주' 동작과 다릅니다.",
+        "assumptions": [],
+        "title": "거짓으로 평가되는 명시적 값이 기본값으로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value의 진릿값을 기준으로 선택하므로 None이 아닌 거짓 값도 default를 반환합니다.",
+        "suggestion": "`value if value is not None else default`처럼 None 여부를 명시적으로 검사하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 개만 검토했으며 호출부나 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "63ea0b588dffa9f6073cfe15cc06d916ccb60d82e40c2f4450c6cb282dc9caf6",
+  "input_tokens": 5485,
+  "output_tokens": 345,
+  "elapsed_seconds": 2.39
+}

@@ -1,0 +1,12 @@
+{
+  "key": "C4-b07fc52f42ca-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:58:20.705922+00:00",
+  "input_hash": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "system_hash": "46f0cd9956d7617606f7a64c035c62cfdad7ef20333c38738f958c14a3754b69",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"limit 함수가 count에 대해 null/undefined만 기본값 10을 적용해야 한다는 계약과 달리, || 연산자로 인해 0도 10으로 대체되는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"count에 유효한 설정값 0이 전달될 때\",\"consequence\":\"0이 falsy로 평가되어 반환값이 0이 아니라 10이 되므로, 0으로 설정한 제한이 10으로 잘못 적용됩니다.\",\"assumptions\":[],\"title\":\"0인 유효한 limit이 기본값 10으로 대체됩니다\",\"evidence\":\"f1:2의 count || 10은 count가 falsy일 때 10을 반환하며, 계약은 null 또는 undefined일 때만 기본값 10을 요구하고 0은 유효한 값으로 명시합니다.\",\"suggestion\":\"null/undefined만 기본값으로 처리하도록 count ?? 10으로 변경하세요.\"}],\"limitations\":\"제공된 단일 함수와 계약만 검토했으며, 실제 호출자나 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4521,
+  "output_tokens": 272,
+  "seconds": 2.329
+}

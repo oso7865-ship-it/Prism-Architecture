@@ -1,0 +1,23 @@
+{
+  "key": "bridge-F0-e039b4bf0e2d-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "e039b4bf0e2d",
+  "at": "2026-09-29T08:40:08.174460+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "258edfbcb8950dad42931ccf0dcbdbbf21e200da37badf1551b1e8ff58f230e8",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "환경 변수에서 CA 번들 경로를 읽어 verify 설정과 병합하는 변경을 검토했습니다. 제공된 테스트 계약과 코드 경로를 대조한 결과 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 파일의 변경 라인과 테스트만 검토했으며 실행 검증은 하지 않았습니다. merge_setting의 호출부와 session_verify의 실제 전달 값 범위는 제공되지 않았습니다."
+  },
+  "input_tokens": 5226,
+  "output_tokens": 113,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4608,
+  "response_sha256": "73b0d308c70e9d89322093561c2d58964e6aed360404c5b4cb985005a2bb0b74",
+  "elapsed_seconds": 1.593
+}

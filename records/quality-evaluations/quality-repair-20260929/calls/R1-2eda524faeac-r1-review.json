@@ -1,0 +1,15 @@
+{
+  "key": "R1-2eda524faeac-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:18:57.062821+00:00",
+  "input_hash": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f",
+  "system_hash": "1072974dba0eb8d353e958d793d7e3f1eac65d1f46393030673718734a3b67bb",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 변경은 access 함수가 비동기 check()의 결과를 await하여 true일 때만 'allowed'를 반환하도록 한 부분입니다.\",\"issues\":[],\"limitations\":\"check의 실제 구현과 호출 지점이 제공되지 않아 반환값의 신뢰성과 접근 경계는 확인하지 못했습니다. 제공 범위만 검토했으며 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 5090,
+  "output_tokens": 96,
+  "seconds": 1.547
+}

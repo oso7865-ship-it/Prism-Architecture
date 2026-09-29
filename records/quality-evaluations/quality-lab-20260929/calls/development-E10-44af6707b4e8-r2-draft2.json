@@ -1,0 +1,58 @@
+{
+  "key": "development-E10-44af6707b4e8-r2-draft2",
+  "arm": "E10",
+  "phase": "draft2",
+  "at": "2026-09-29T07:14:35.998792+00:00",
+  "system_sha256": "320ab5a17375887a17b5fe926538668c6e12a203a9db7b9aba9f1e12890477e7",
+  "payload_sha256": "675702fa9714ba1490be140c63ffca268ec6a73869791b5cca7754be124e65b8",
+  "input_bytes": 535,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`는 None뿐 아니라 빈 문자열·False 같은 falsy 값도 대체하므로, 명시된 계약('None만 부재로 간주, 명시적으로 제공된 값은 보존')을 위반합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 빈 문자열, 0, False 등 falsy이지만 명시적으로 제공된 값이 전달될 때",
+        "consequence": "해당 값이 default로 대체되어 호출자가 제공한 값이 보존되지 않습니다. 예를 들어 choose('', 'default')는 '' 대신 'default'를 반환합니다.",
+        "assumptions": [],
+        "title": "falsy 값이 default로 대체되어 명시 값이 보존되지 않습니다",
+        "evidence": "2줄은 `value or default`로 truthiness를 검사하므로 None 외의 falsy 값도 default를 선택합니다. 이는 'None만 부재'라는 계약과 어긋납니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꾸어 falsy 값을 보존하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부나 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "0f57858ddce582efe79875cdf9e4c21eb8055a50b4061550dcfbf10819f0e7ba",
+  "input_tokens": 5217,
+  "output_tokens": 382,
+  "elapsed_seconds": 2.406
+}

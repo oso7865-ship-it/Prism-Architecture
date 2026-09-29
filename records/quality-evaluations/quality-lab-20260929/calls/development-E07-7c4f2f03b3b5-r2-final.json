@@ -1,0 +1,49 @@
+{
+  "key": "development-E07-7c4f2f03b3b5-r2-final",
+  "arm": "E07",
+  "phase": "final",
+  "at": "2026-09-29T07:08:46.879177+00:00",
+  "system_sha256": "3e88b38d11ce52a1d3692f9ea1c06e19d517d053a98bc6eeb808c5ff1ae3be9d",
+  "payload_sha256": "ad74a25bbdf88585f506087831b60dbe9fa9716086f762721a56de065803ed48",
+  "input_bytes": 1568,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수에서 변경된 2줄이 주입된 logger 대신 print를 사용해 로깅하고 있습니다. 표준 s1(로깅)은 애플리케이션에서 print 대신 주입된 logger.info를 사용하도록 요구하며, logger 매개변수는 시그니처에 존재하지만 본문에서 사용되지 않습니다. 반환 동작 자체는 record를 그대로 반환하므로 변경되지 않았습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2줄이 실행될 때",
+        "consequence": "표준 s1이 요구하는 주입된 logger.info 대신 print로 기록되어, 로거 기반 로깅 파이프라인(레벨/핸들러/수집)을 우회한 출력이 발생합니다.",
+        "assumptions": [],
+        "title": "print 사용으로 주입된 logger.info 로깅 규칙 위반",
+        "evidence": "1줄에서 logger 매개변수를 받지만 본문에서 참조되지 않고, 변경된 2줄은 print('saved')로 기록합니다. 표준 s1은 print 대신 주입된 logger.info 사용을 요구합니다.",
+        "suggestion": "2줄을 logger.info('saved')로 바꿔 주입된 로거를 사용하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 f1의 3줄만 검토했으며, logger 구현과 실제 호출부, 로깅 설정은 제공되지 않아 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "e2887fee82592377e07de35626d9fae42b35564cd766485ae51a1bc5293f51ab",
+  "input_tokens": 5738,
+  "output_tokens": 432,
+  "elapsed_seconds": 2.609
+}

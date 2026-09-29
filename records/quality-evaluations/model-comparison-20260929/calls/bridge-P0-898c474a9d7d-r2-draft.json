@@ -1,0 +1,42 @@
+{
+  "key": "bridge-P0-898c474a9d7d-r2-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "898c474a9d7d",
+  "at": "2026-09-29T08:45:08.010457+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base의 중첩 딕셔너리를 복사해 원본 변경 없이 limit을 조정하는 코드를 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "base['nested']가 존재하고 adjust가 호출될 때",
+        "consequence": "result['nested']['limit']을 9로 변경한 뒤 base['nested']['limit']을 반환하므로, 반환값은 조정된 값이 아니라 원본의 기존 limit 값이 됩니다.",
+        "assumptions": [],
+        "title": "조정된 값 대신 원본 limit을 반환합니다",
+        "evidence": "2줄에서 nested를 복사하고 3줄에서 복사본의 limit을 9로 변경하지만, 4줄은 원본 base의 limit을 반환합니다.",
+        "suggestion": "조정된 값을 반환하려면 4줄을 result['nested']['limit']으로 변경하세요. 원본 값을 의도적으로 반환하는 것이라면 함수 계약을 명확히 문서화하세요."
+      }
+    ],
+    "limitations": "제공된 함수 본문만 검토했으며 호출부와 base의 실제 구조는 확인하지 않았습니다. 실행 검증은 하지 않았습니다."
+  },
+  "input_tokens": 4801,
+  "output_tokens": 339,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "b586ae435b87737e09395a755ac92a23344a23d75f737247396539b61b4c19a0",
+  "elapsed_seconds": 5.75
+}

@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-2eda524faeac-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:47.574416+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "e159307c1e32f20d1bb253119870caea832cc6c91b1b7920fb12feee1a8f8b84",
+  "input_bytes": 635,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 uses `if (await check())`, so the resolved value is coerced to boolean; a resolved `false` yields 'denied' and a resolved `true` yields 'allowed', matching the stated contract.",
+      "Probe p1 (`check` resolves false) is predicted to return 'denied'; probe p2 (`check` resolves true) is predicted to return 'allowed'.",
+      "No static findings are supplied, and the four-line function contains no other branching, so no additional defect is observable from the source.",
+      "The function does not validate that `check` is a function or that it returns a promise; a non-promise truthy return would still be awaited and treated as allowed, but this is outside the stated contract.",
+      "No failing input is identifiable from the supplied source: the only changed line correctly awaits the async predicate before the truthiness test."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "fbf804f9b0e8d4087e60d99a9177d792080ee5770246617f4bab73228bdfc9f5",
+  "input_tokens": 357,
+  "output_tokens": 185,
+  "elapsed_seconds": 1.39
+}

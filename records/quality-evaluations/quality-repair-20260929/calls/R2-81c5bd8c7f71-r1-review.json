@@ -1,0 +1,15 @@
+{
+  "key": "R2-81c5bd8c7f71-r1-review",
+  "arm": "R2",
+  "phase": "review",
+  "at": "2026-09-29T10:18:34.220160+00:00",
+  "input_hash": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "system_hash": "3c80249efd2dff9ef917b8c7ca0bbebfbc6545eb792e844a88e372f5684b7620",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄에서 선택적 profile에 비-null 단언(!)을 적용해 이름을 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"profile이 없는 user로 name(user)을 호출할 때\",\"consequence\":\"user.profile!는 런타임에 undefined를 제거하지 않으므로 undefined.name 접근에서 TypeError가 발생하고, 계약에서 요구한 'Unknown' 표시가 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"profile이 없으면 비-null 단언으로 인해 TypeError가 발생합니다\",\"evidence\":\"1줄에서 profile이 선택적(profile?:)으로 선언되어 없을 수 있고, 3줄에서 !로 null 검사를 제거한 뒤 name에 접근합니다.\",\"suggestion\":\"profile이 없을 때 'Unknown'을 반환하도록 옵셔널 체이닝과 기본값(예: user.profile?.name ?? 'Unknown')을 사용하세요. 이 경우 profile은 있지만 name이 빈 문자열인 값은 그대로 보존됩니다.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 실제 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 4750,
+  "output_tokens": 300,
+  "seconds": 2.359
+}

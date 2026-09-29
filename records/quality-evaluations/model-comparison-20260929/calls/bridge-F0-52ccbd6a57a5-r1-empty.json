@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-52ccbd6a57a5-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "52ccbd6a57a5",
+  "at": "2026-09-29T08:43:04.543131+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "52c2c541b9ad6cbeed1623cf79144c9f54667b842aef4c33e649bcffcad97865",
+  "payload_sha256": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 한 줄은 SQL 문자열과 파라미터 튜플을 분리해 반환하며, 값은 %s 플레이스홀더로 바인딩되도록 구성되어 있습니다. 제공된 범위에서는 사용자 입력이 SQL 문자열에 직접 삽입되는 경로가 보이지 않아 주입 취약점으로 볼 근거가 없습니다.",
+    "issues": [],
+    "limitations": "호출자가 반환된 SQL과 파라미터를 실제로 드라이버에 전달하는 코드는 제공되지 않았습니다. user_id의 타입/검증 여부와 DB-API 드라이버의 플레이스홀더 해석 방식은 이 조각만으로 확인할 수 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "SQL 문자열과 user_id 파라미터 튜플을 분리해 %s 바인딩으로 반환하므로, 제공된 범위에서 입력이 쿼리 문자열에 직접 결합되는 경로가 없습니다."
+      }
+    ]
+  },
+  "input_tokens": 3500,
+  "output_tokens": 252,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 3328,
+  "response_sha256": "e2c49d481e65050323b7a181139c9383c05c2ff1e79db67bdd3603f3faa612c2",
+  "elapsed_seconds": 2.156
+}

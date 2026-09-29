@@ -75,3 +75,5 @@ API response_model은 반환 필드를 allowlist로 제한한다. ORM 전체를 
 GET /workspaces/{w}/repositories/{r}/syncs/latest는 현재 연결 세대의 최신 RECENT/PAGE 동기화 또는 null을 반환한다. SINGLE/webhook 실행은 목록 페이지 커서를 덮어쓰지 않는다. 팀 멤버 읽기 권한과 활성 연결을 검증한다.
 GET /workspaces/{w}/members는 기존 user_id/role에 login/display_name(비활성 계정 null)을 추가한다. User 공개 API로 제한된 프로필만 조회한다.
 GET/PUT feedback과 GET source 계약은 [Review](../domain/review/README.md)의 소유 계약을 따른다. 모든 경로는 인증·팀 범위와 no-store를 유지한다.
+
+2026-09-29 추가: [팀 문서 API](../domain/standards/README.md)의 등록/버전/미리보기/사용 상태/삭제와 [목적별 리뷰](../domain/review/README.md)를 제공한다. findings GET의 category=SECURITY는 보안 Finding만 서버에서 필터링한 뒤 페이지네이션한다. 기본 조회는 기존과 동일하다.

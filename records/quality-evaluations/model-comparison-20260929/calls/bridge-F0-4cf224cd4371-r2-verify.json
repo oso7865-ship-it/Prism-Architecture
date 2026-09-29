@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-4cf224cd4371-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "4cf224cd4371",
+  "at": "2026-09-29T08:40:29.384439+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "44b42817f32b382acd10fd9d6b15670a6c705933de4d43fb7201c43bff039f75",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "prepare(\"한글\")에서 content_length는 2를 반환하지만 wire는 UTF-8 6바이트이므로 Content-Length가 실제 전송 바이트 수와 불일치하고, 11줄의 불변식도 위반됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3393,
+  "output_tokens": 98,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2816,
+  "response_sha256": "31501daa1c1c2ffe2a6991f193aa6d99e85274612511dd33c12e8f86f00fc459",
+  "elapsed_seconds": 1.078
+}

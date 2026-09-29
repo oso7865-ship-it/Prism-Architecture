@@ -1,0 +1,12 @@
+{
+  "key": "C2-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T11:45:36.587926+00:00",
+  "input_hash": "44c7590efa01b9512880a8aa3451df4905b4b41bf03452dacbf612ffc601c2c6",
+  "system_hash": "aece580a68d1e259e966fb3a45a00b19e6e7786baf7edc4b9ab6d21762dcae49",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings 10줄에서 환경 변수 조회가 `or` 연산으로 변경되었고, 제공된 테스트 계약과 경로 관측이 이 동작을 검증합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE이 빈 문자열(\\\"\\\")로 설정되고 verify가 True 또는 None일 때\",\"consequence\":\"10줄의 `or` 연산이 빈 문자열을 falsy로 평가하여 None을 반환하고, merge_setting이 session_verify(기본 True)를 반환하므로 테스트 15줄의 `is True` 단언이 실패합니다.\",\"assumptions\":[],\"title\":\"빈 CURL_CA_BUNDLE이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 `env.get(\\\"REQUESTS_CA_BUNDLE\\\") or env.get(\\\"CURL_CA_BUNDLE\\\")`로 빈 문자열을 None으로 만듭니다. 15줄과 16줄은 빈 CURL_CA_BUNDLE에서 True를 기대합니다.\",\"suggestion\":\"빈 문자열을 유효한 값으로 보존하려면 `or` 대신 명시적 None 검사를 사용하세요(예: REQUESTS_CA_BUNDLE이 None일 때만 CURL_CA_BUNDLE 사용).\"}],\"limitations\":\"제공된 f1 범위만 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 호출자와 실제 환경 변수 설정 방식은 제공되지 않았습니다.\"}",
+  "input_tokens": 6105,
+  "output_tokens": 386,
+  "seconds": 2.547
+}

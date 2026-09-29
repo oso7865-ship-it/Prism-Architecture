@@ -1,0 +1,15 @@
+{
+  "key": "R3-2ff125902b12-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:23:30.763593+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 content_length의 반환식(len(body))뿐이며, bytes 입력에 대해 바이트 수를 정확히 반환합니다. 제공된 계약과 테스트도 이 동작과 일치하여 실행 가능한 결함은 보이지 않습니다.\", \"issues\": [], \"limitations\": \"content_length의 호출부와 실제 입력 타입 검증은 제공되지 않았습니다. bytes 이외의 입력이 전달되는 경로는 이 발췌만으로 확인할 수 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"len(body)는 bytes의 바이트 길이를 반환하며, 제공된 계약('bytes만 허용, len(bytes)는 바이트 수') 및 테스트 기대값과 일치합니다. 변경 라인에서 구체적 실패 경로는 보이지 않습니다.\"}]}",
+  "input_tokens": 3320,
+  "output_tokens": 211,
+  "seconds": 1.593
+}

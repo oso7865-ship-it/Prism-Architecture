@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-0c47bb65c1ee-r1-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "0c47bb65c1ee",
+  "at": "2026-09-29T08:40:14.861830+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "441d21288d6e3a19fbe2275705a314fae983ba4899294c42577679e37e4331f4",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "base가 중첩 딕셔너리를 가진 경우 base.copy()는 최상위만 복사하므로 result['nested']는 base['nested']와 같은 객체이고, 3줄의 'limit'=9 수정이 호출자의 base에도 반영되어 4줄은 수정된 9를 반환합니다."
+      }
+    ]
+  },
+  "input_tokens": 3277,
+  "output_tokens": 118,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2688,
+  "response_sha256": "63c5e0c9ed7c961dd46b05d219b6443fdfe8d57fdefa1afbab7fde4eb0f867c7",
+  "elapsed_seconds": 1.094
+}

@@ -1,0 +1,42 @@
+{
+  "key": "bridge-F0-7c4f2f03b3b5-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "7c4f2f03b3b5",
+  "at": "2026-09-29T08:44:54.833191+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "5167925465ea58fc87cf2974fb00e539a362ee19cf46330104a91e51c8048796",
+  "payload_sha256": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 save 함수에서 변경된 2줄이 print('saved')로 기록하도록 바뀌었습니다. 팀 로깅 규칙과 관련해 확인이 필요한 항목이 하나 있습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save(record, logger)가 호출되어 2줄에 도달할 때",
+        "consequence": "주입된 logger.info 대신 print로 기록되어 팀 로깅 규칙(s1)을 위반하고, 로거 설정에 따른 로그 수집·레벨 제어가 적용되지 않습니다.",
+        "assumptions": [],
+        "title": "print로 기록하여 주입된 logger 사용 규칙을 위반합니다",
+        "evidence": "2줄은 'saved'를 print로 출력합니다. s1은 애플리케이션에서 print 대신 주입된 logger.info로 기록하도록 요구하며, 이 파일(f1)에 적용됩니다. behavior_contract에 logger.info가 존재한다고 명시되어 있어 대체 사용이 가능합니다.",
+        "suggestion": "2줄을 logger.info('saved')로 바꾸어 주입된 로거로 기록하세요."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 테스트를 실행하지 않았습니다. logger의 구체 구현과 호출부는 제공되지 않았습니다."
+  },
+  "input_tokens": 5219,
+  "output_tokens": 347,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "e5c89859e8c06964637d1d7cbe27f17e4f6b518c3f639a5b2bc1353bfcba5bef",
+  "elapsed_seconds": 2.469
+}

@@ -1,0 +1,71 @@
+{
+  "key": "adaptive_development-E14-cd1f9cff7b9c-r1",
+  "case": "cd1f9cff7b9c",
+  "arm": "E14",
+  "split": "adaptive_development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로가 root 하위인지 검사하는 permitted 함수의 변경된 비교 로직을 검토했습니다. root + '/' 접두사 검사로 형제 디렉터리('/srv/application')는 차단되지만, root가 '/'인 경우 접두사가 '//'가 되어 모든 절대 경로가 거부되는 경계 동작이 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/'이고 resolved가 '/srv/app/file'처럼 root의 하위인 절대 경로일 때",
+        "consequence": "root + '/'가 '//'가 되어 startswith('//')가 거짓이 되고, resolved == root도 아니므로 하위 경로가 허용되지 않습니다. 이는 계약상 허용되어야 할 경로를 거부하는 동작입니다.",
+        "assumptions": [],
+        "title": "root가 '/'일 때 모든 하위 경로가 거부됩니다",
+        "evidence": "2줄은 resolved.startswith(root + '/')로 하위 여부를 판정합니다. root가 '/'이면 접두사가 '//'가 되어 '/srv/app/file' 같은 정상 하위 경로가 매칭되지 않습니다.",
+        "suggestion": "root가 '/'인 경우를 별도로 처리하거나, 접두사를 root.rstrip('/') + '/'로 구성해 루트 경로에서도 하위 판정이 성립하도록 하세요."
+      }
+    ],
+    "limitations": "permitted의 호출부와 root/resolved가 실제로 어떤 경로 값을 받는지 제공되지 않아, root='/' 경로가 실제로 도달하는지는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5804,
+  "output_tokens": 451,
+  "elapsed_seconds": 3.141,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": true,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-0c543f7d32dd-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:28.936120+00:00",
+  "system_sha256": "dfe93ffd977769bf9583395d5cecb1d53959cb961eaf417bd55d8b297305122b",
+  "payload_sha256": "1072e1d14915638f534684b0bcf79c8a14b04e9f5e79c1f1b1b6c97639f0ccd6",
+  "input_bytes": 2121,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "root=\"/srv/app\", resolved=\"/srv/app-secret/key\"인 경우 resolved.startswith(root)가 True를 반환하여, 계약상 허용 범위(root 및 그 하위)를 벗어난 형제 경로가 허용됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "f5261a2cfd18e7351e2a9505ac8f6f50294127f5493af256cd9e06747b43855e",
+  "input_tokens": 3588,
+  "output_tokens": 274,
+  "elapsed_seconds": 1.797
+}

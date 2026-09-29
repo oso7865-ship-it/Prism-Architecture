@@ -1,0 +1,54 @@
+{
+  "key": "development-E04-0add10c208ec-r1",
+  "case": "0add10c208ec",
+  "arm": "E04",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "amount와 count의 곱을 long으로 반환하는 변경을 검토했습니다. 계약상 두 입력은 음수가 아니고 곱이 long 범위에 들어가므로, (long) 캐스팅으로 int 오버플로를 피한 구현은 계약을 충족합니다.",
+    "issues": [],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 실제 입력 범위 검증 코드는 제공되지 않았습니다. 테스트를 실행하지 않았고, 곱이 long 범위를 넘는 입력은 계약에서 제외되어 있습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2500000000",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 1,
+  "pipeline_complete": true,
+  "input_tokens": 5363,
+  "output_tokens": 189,
+  "elapsed_seconds": 1.672,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

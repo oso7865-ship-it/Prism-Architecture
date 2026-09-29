@@ -1,0 +1,43 @@
+{
+  "key": "bridge-E12-898c474a9d7d-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:40.632296+00:00",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "input_bytes": 539,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "중첩 딕셔너리를 복사해 원본 base의 변경을 피하도록 수정된 adjust 함수를 검토했습니다. 표시된 변경 자체는 base를 보존하지만, 복사본에 적용한 조정값이 반환 경로에 반영되지 않는 구조가 보입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 4,
+        "severity": "WARNING",
+        "basis": "NEEDS_CONTEXT",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "adjust(base)를 호출했을 때, 3줄에서 result['nested']['limit']에 9를 대입한 뒤 4줄이 base['nested']['limit']를 반환하는 경우",
+        "consequence": "2줄의 copy()로 result['nested']가 base['nested']와 분리되므로 3줄의 조정은 result에만 적용되고, 반환값은 조정 전 base의 값이 됩니다. 즉 함수가 계산한 조정 결과가 호출자에게 전달되지 않습니다.",
+        "assumptions": [
+          "호출자가 adjust의 반환값으로 조정된 limit(9) 값을 기대합니다.",
+          "base['nested']에 'limit' 키가 이미 존재하여 4줄이 KeyError 없이 실행됩니다."
+        ],
+        "title": "복사본에 적용한 조정값이 반환되지 않는 구조가 의도된 것인가요?",
+        "evidence": "2줄에서 base['nested'].copy()로 별도 사전을 만들고 3줄에서 그 사본의 limit을 9로 바꾸지만, 4줄은 사본이 아닌 base['nested']['limit']를 반환합니다. 사본 result는 반환되지 않습니다.",
+        "suggestion": "조정된 값을 반환하는 것이 목적이라면 4줄을 result['nested']['limit']로 바꾸고, 원본 불변 검증이 목적이라면 3줄 대입이 필요한지 확인해 의도를 주석이나 테스트로 명확히 하세요."
+      }
+    ],
+    "limitations": "base['nested']의 실제 키 구성과 adjust 호출부/테스트 기대값이 제공되지 않아, 4줄의 반환값이 의도된 관찰인지 조정 결과여야 하는지 확정하지 못했습니다. 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "55603414c200589acc6fdebcb61443b105af17165132d79497d95031c108e004",
+  "input_tokens": 4829,
+  "output_tokens": 2569,
+  "elapsed_seconds": 12.547
+}

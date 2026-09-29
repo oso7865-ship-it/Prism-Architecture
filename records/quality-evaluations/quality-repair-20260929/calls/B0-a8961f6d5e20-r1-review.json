@@ -1,0 +1,15 @@
+{
+  "key": "B0-a8961f6d5e20-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:34.752859+00:00",
+  "input_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "system_hash": "056bc71947c0fe860950e688efa2b93f31dac014fb59aac8abb579e054ba9535",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"user_id를 SQL 문자열에 직접 연결해 반환하는 변경을 검토했습니다. 제공된 계약상 user_id는 신뢰할 수 없는 텍스트이며 반환값이 DB-API 드라이버로 전달됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"user_id에 SQL 구문을 포함한 값(예: 따옴표와 조건절)이 전달될 때\",\"consequence\":\"user_id가 이스케이프 없이 SQL 텍스트에 결합되어 WHERE 절이 조작되고, 드라이버가 이를 단일 쿼리로 실행하면 의도하지 않은 조건이나 추가 구문이 실행될 수 있습니다.\",\"assumptions\":[],\"title\":\"신뢰할 수 없는 user_id를 SQL 문자열에 직접 결합합니다\",\"evidence\":\"2줄에서 user_id를 문자열 연결로 SQL에 삽입하고 파라미터 튜플은 빈 값으로 반환합니다. 계약상 user_id는 신뢰할 수 없는 텍스트이고 반환값은 DB-API 드라이버로 전달됩니다.\",\"suggestion\":\"user_id를 SQL 텍스트에 넣지 말고 플레이스홀더로 바꾸어 두 번째 요소의 파라미터 튜플로 전달하세요(예: WHERE id = %s와 (user_id,)).\",\"citations\":[]}],\"limitations\":\"호출부와 실제 드라이버 구현은 제공되지 않아 실행 경로를 검증하지 않았으며, 반환된 SQL이 어떤 드라이버에서 어떻게 실행되는지는 확인하지 못했습니다.\"}",
+  "input_tokens": 5115,
+  "output_tokens": 376,
+  "seconds": 2.547
+}

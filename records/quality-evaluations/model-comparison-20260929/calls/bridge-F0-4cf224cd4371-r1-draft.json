@@ -1,0 +1,43 @@
+{
+  "key": "bridge-F0-4cf224cd4371-r1-draft",
+  "arm": "F0",
+  "phase": "product_draft",
+  "case": "4cf224cd4371",
+  "at": "2026-09-29T08:43:22.500276+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "ad6d4b84f35c6349c01d418262f273dad6af68011c7dc6ed48db12f2e290b0bf",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "content_length가 str과 bytes 모두에 대해 len(body)를 반환하도록 변경되어, 비ASCII 문자열에서 UTF-8 바이트 수가 아닌 문자 수를 반환합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6,
+          11
+        ],
+        "trigger": "prepare에 비ASCII 문자열(예: \"한글\")을 전달하면 5줄에서 wire는 UTF-8로 인코딩되지만 6줄은 원본 str을 content_length로 넘깁니다.",
+        "consequence": "2줄의 len(body)가 문자 수를 반환하여 Content-Length가 실제 전송 바이트 수보다 작아지고, 11줄의 테스트 단언도 실패합니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 바이트 수와 불일치합니다",
+        "evidence": "5줄은 str을 UTF-8 바이트로 인코딩해 body로 전송하지만, 6줄은 인코딩된 wire가 아니라 원본 body로 content_length를 호출합니다. 2줄의 len(body)는 str에 대해 문자 수를 세므로 \"한글\"은 2를 반환하지만 전송 바이트는 6입니다.",
+        "suggestion": "content_length가 str을 받으면 UTF-8로 인코딩한 뒤 바이트 길이를 반환하거나, prepare에서 이미 인코딩된 wire의 길이를 사용하도록 하세요."
+      }
+    ],
+    "limitations": "제공된 파일만 검토했으며 테스트를 실행하지 않았습니다. content_length의 다른 호출부는 제공되지 않았습니다."
+  },
+  "input_tokens": 4990,
+  "output_tokens": 381,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4736,
+  "response_sha256": "5ef45266cc41692089c292707e9e6847abbe0c4e9b3f5f65013fcf42fa2d6714",
+  "elapsed_seconds": 2.531
+}

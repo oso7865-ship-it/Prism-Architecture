@@ -1,0 +1,108 @@
+{
+  "key": "bridge-P0-4cf224cd4371-r2",
+  "case": "4cf224cd4371",
+  "arm": "P0",
+  "split": "bridge",
+  "repeat": 2,
+  "legacy_id": "length-before",
+  "legacy_seen_before": true,
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "draft_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "verifier_induced_miss": false,
+  "output": {
+    "summary": "Content-Length 계산을 len(body)로 변경하고, prepare에서 문자열만 UTF-8로 인코딩하도록 구성했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6
+        ],
+        "trigger": "body가 비ASCII 문자를 포함한 str인 경우 prepare를 호출할 때",
+        "consequence": "body가 비ASCII 문자를 포함한 str인 경우 content_length(body)는 문자 수를 반환하지만 실제 전송되는 wire는 UTF-8 바이트 수이므로 Content-Length가 실제 전송 바이트 수와 달라집니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 다릅니다",
+        "evidence": "2줄의 len(body)는 str의 문자 수를 반환하고, 5줄에서 body.encode('utf-8')로 생성한 wire는 UTF-8 바이트 수를 가집니다. 6줄에서 Content-Length에 content_length(body)를 사용하므로 비ASCII 문자가 포함되면 두 값이 달라집니다.",
+        "suggestion": "content_length가 str인 경우 UTF-8로 인코딩한 바이트 수를 반환하도록 변경하거나, prepare에서 wire를 먼저 생성한 뒤 len(wire)를 Content-Length로 사용하세요."
+      }
+    ],
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요."
+  },
+  "normalized": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비ASCII 문자열에서 Content-Length가 실제 바이트 수와 다릅니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          5,
+          6
+        ],
+        "trigger": "body가 비ASCII 문자를 포함한 str인 경우 prepare를 호출할 때",
+        "consequence": "body가 비ASCII 문자를 포함한 str인 경우 content_length(body)는 문자 수를 반환하지만 실제 전송되는 wire는 UTF-8 바이트 수이므로 Content-Length가 실제 전송 바이트 수와 달라집니다.",
+        "assumptions": [],
+        "title": "비ASCII 문자열에서 Content-Length가 실제 바이트 수와 다릅니다",
+        "evidence": "2줄의 len(body)는 str의 문자 수를 반환하고, 5줄에서 body.encode('utf-8')로 생성한 wire는 UTF-8 바이트 수를 가집니다. 6줄에서 Content-Length에 content_length(body)를 사용하므로 비ASCII 문자가 포함되면 두 값이 달라집니다.",
+        "suggestion": "content_length가 str인 경우 UTF-8로 인코딩한 바이트 수를 반환하도록 변경하거나, prepare에서 wire를 먼저 생성한 뒤 len(wire)를 Content-Length로 사용하세요.",
+        "file_path": "length.py",
+        "key": "6f5cf3a7182bd94dcd73fc6930415daa70034c5fa8a8b53b8959539c7206375b"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "length.py",
+          "provided_lines": 11
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+  },
+  "verification": {
+    "status": "CHECKED",
+    "kept": 0,
+    "revised": 1,
+    "dropped": 0
+  },
+  "validation_error": null,
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 8344,
+  "output_tokens": 468,
+  "elapsed_seconds": 9.047
+}

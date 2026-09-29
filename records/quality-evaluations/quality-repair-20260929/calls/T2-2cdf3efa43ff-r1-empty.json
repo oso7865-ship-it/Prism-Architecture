@@ -1,0 +1,15 @@
+{
+  "key": "T2-2cdf3efa43ff-r1-empty",
+  "arm": "T2",
+  "phase": "empty",
+  "at": "2026-09-29T10:21:15.362318+00:00",
+  "input_hash": "efbbf6b34f29e8beb8c3f101e9f9f11132188ff763a3730759a3a50da1d6f398",
+  "system_hash": "f9c7747564d447e4ce4022dd3baf8c83b36137e780e91f6145a645b09a0483ec",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄(amount * count)은 int 곱셈을 먼저 수행한 뒤 long으로 확장하므로, 계약상 허용되는 큰 입력에서 int 오버플로가 발생해 long 결과가 잘못될 수 있습니다. 그 외 변경 라인에서 추가 결함은 보이지 않습니다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 3, \"severity\": \"ERROR\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2, 3], \"trigger\": \"amount와 count가 모두 int이고, 두 값의 곱이 Integer.MAX_VALUE(2,147,483,647)를 초과하는 경우. 예: amount = 100000, count = 100000.\", \"consequence\": \"int 곱셈이 먼저 수행되어 32비트에서 오버플로된 값이 long으로 확장되므로, 계약이 요구하는 정확한 곱(10,000,000,000)이 아닌 잘못된 long 값이 반환됩니다.\", \"assumptions\": [\"두 입력은 계약대로 음수가 아닌 int이며, 곱은 long 범위 안에 들어간다.\"], \"title\": \"int 곱셈 후 long 확장으로 인한 오버플로\", \"evidence\": \"반환식이 amount * count로, 두 피연산자가 int이므로 곱셈이 int 정밀도로 수행된 뒤 long으로 확장됩니다. 계약은 곱이 long에 정확히 보존되어야 한다고 명시합니다.\", \"suggestion\": \"곱셈 전에 피연산자 중 하나를 long으로 승격하세요. 예: return (long) amount * count;\", \"expression_repair\": {\"line\": 3, \"before\": \"return amount * count;\", \"after\": \"return (long) amount * count;\"}}], \"limitations\": \"제공된 범위는 단일 클래스와 변경된 한 줄뿐이며, 실제 호출자나 입력 분포는 확인할 수 없습니다. 다만 계약이 long 범위 내 정확한 곱을 요구하므로 int 오버플로 경로는 코드만으로 성립합니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"amount * count가 int 정밀도로 계산된 후 long으로 확장되어, 곱이 int 범위를 넘는 계약상 유효 입력에서 결과가 잘못될 수 있음을 확인했습니다.\"}]}",
+  "input_tokens": 3263,
+  "output_tokens": 574,
+  "seconds": 3.5
+}

@@ -1,0 +1,38 @@
+{
+  "key": "bridge-E12-4d95d35835a5-r1-draft",
+  "arm": "E12",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:21:35.612080+00:00",
+  "system_sha256": "4b2e386134cf3c77836d2170abc9c0de942375bca8e7d5cf2fec1d322191bb72",
+  "payload_sha256": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "input_bytes": 358,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "콜백 목록을 만드는 컴프리헨션에서 람다가 루프 변수를 늦게 바인딩해, 계약과 달리 각 콜백이 생성 시점의 인덱스를 반환하지 않습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "callbacks()를 호출해 반환된 세 콜백을 각각 호출할 때",
+        "consequence": "세 람다 모두 클로저 변수 i를 호출 시점에 읽으므로 전부 2를 반환하고, 0과 1을 반환하는 콜백은 존재하지 않습니다.",
+        "assumptions": [],
+        "title": "콜백이 생성 시점 인덱스 대신 마지막 값을 반환합니다",
+        "evidence": "2줄의 람다는 i를 인자로 캡처하지 않고 외부 스코프 변수 i를 참조하며, 컴프리헨션이 끝난 뒤 i는 마지막 값 2입니다. 이는 각 콜백이 생성 시점 인덱스를 반환한다는 계약과 어긋납니다.",
+        "suggestion": "각 람다가 값을 생성 시점에 캡처하도록 기본 인자를 사용하세요 (예: lambda i=i: i)."
+      }
+    ],
+    "limitations": "제공된 단일 함수만 검토했으며 콜백의 실제 호출부와 테스트 실행은 확인하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "cf22d6c021fbf4a1230bd9a61e161ed5836abb6f8fe57f47aec729616cd7251b",
+  "input_tokens": 4768,
+  "output_tokens": 490,
+  "elapsed_seconds": 3.125
+}

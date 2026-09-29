@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-52ccbd6a57a5-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:26.382935+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The function query accepts a single parameter user_id and returns a tuple containing a SQL string and a parameter tuple.",
+      "The returned SQL string uses a %s placeholder for the id value rather than string interpolation.",
+      "The user_id value is placed in the second element of the returned tuple, not embedded in the SQL text.",
+      "The behavior contract states the caller passes the returned SQL and parameter tuple directly to a DB-API driver using %s placeholders.",
+      "The behavior contract states user_id is untrusted text.",
+      "The probe call passes the string '0 OR 1=1' as user_id and JSON-encodes the returned tuple as an array."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "3c54b294738a2e0d75772d566a8423159caa6d69dc186511decc695cbc78c11e",
+  "input_tokens": 328,
+  "output_tokens": 139,
+  "elapsed_seconds": 1.187
+}

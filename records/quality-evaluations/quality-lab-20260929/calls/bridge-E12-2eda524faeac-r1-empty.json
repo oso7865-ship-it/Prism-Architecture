@@ -1,0 +1,29 @@
+{
+  "key": "bridge-E12-2eda524faeac-r1-empty",
+  "arm": "E12",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:53.527622+00:00",
+  "system_sha256": "86788bfc9d81b2904532aa7b102cd3aabc7cc0e6afd8dd7dd4bbb5cf237145cd",
+  "payload_sha256": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f",
+  "input_bytes": 493,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "변경된 라인 2는 `if (await check())`로, 계약(비동기 check가 boolean으로 resolve)에 따라 true일 때만 'allowed'를 반환하고 그 외에는 'denied'를 반환합니다. check()의 rejection은 await에서 그대로 전파되어 'allowed'로 이어지지 않으므로, 제공된 코드 범위에서는 권한 우회로 이어지는 구체적 경로가 보이지 않습니다.",
+    "issues": [],
+    "limitations": "check 함수의 실제 구현과 access 호출부(특히 rejection 처리 방식)가 제공되지 않아, 거부 시 상위 경계에서의 fail-open 여부는 확인할 수 없습니다. truthy 비-boolean 반환 가능성도 check 구현 미제공으로 판단 불가합니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "await check() 결과를 조건으로 사용하며 true일 때만 'allowed'를 반환합니다. 계약상 boolean resolve이고 rejection은 전파되어 허용으로 이어지지 않는 것으로 보입니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "a581a6e4c20ca69013201c944d20bbc9042a25492fcc6acdcc0eae66f0233075",
+  "input_tokens": 3545,
+  "output_tokens": 638,
+  "elapsed_seconds": 3.797
+}

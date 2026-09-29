@@ -1,0 +1,37 @@
+{
+  "key": "diagnostic-F0-0add10c208ec-r1",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "0add10c208ec",
+  "at": "2026-09-29T08:44:17.917126+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "6161ca8a35fd266aab283bb39120b7d2c60e6eb21a509e8a8a10af0d34d62487",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈을 long으로 확장한 뒤 수행하도록 변경된 total 메서드를 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 단일 메서드만 검토했으며 호출부와 테스트는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "2500000000",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5341,
+  "output_tokens": 127,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5120,
+  "response_sha256": "d7bdb9d846d82db497b0d8bd657d3566c9b471e6ef08c6397cf7e0bbc29348f5",
+  "elapsed_seconds": 1.359
+}

@@ -1,0 +1,41 @@
+{
+  "key": "development-E11-d9318706b943-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:13:43.929444+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "583b15396bc62ac89ba6a3b332b63a3970a7d65d67d3e08798c34e1bd7d2dc85",
+  "input_bytes": 1226,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "null/undefined에만 기본값 10을 적용하는 `??` 사용을 검토했습니다. 0은 그대로 반환되어 명시된 계약과 일치하며, 제공된 범위에서 보고할 결함은 찾지 못했습니다.",
+    "issues": [],
+    "limitations": "제공된 3줄 함수만 검토했으며 호출부, 입력 타입 계약, 테스트 실행은 확인하지 않았습니다. 비숫자 입력 처리 방침은 계약에 명시되지 않아 판단하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "0",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "a10d8aa779930e22d43b4ef8db16e7c0c125bf02bcb580d578c29f1f253d19d4",
+  "input_tokens": 5355,
+  "output_tokens": 197,
+  "elapsed_seconds": 1.406
+}

@@ -1,0 +1,52 @@
+{
+  "key": "development-E07-2cdf3efa43ff-r2-final",
+  "arm": "E07",
+  "phase": "final",
+  "at": "2026-09-29T07:10:38.457039+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "45a1e4c24c96aad29a60a7d1a6446c412ee8cf633e892bb88df4503919bc07e6",
+  "input_bytes": 1465,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "int 곱셈 결과를 long으로 반환하는 변경을 검토했습니다. 두 int의 곱이 int 범위를 넘으면 오버플로가 발생한 뒤 long으로 확장됩니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "amount와 count의 곱이 Integer.MAX_VALUE를 초과할 때(예: 50000 * 50000)",
+        "consequence": "곱셈이 int 정밀도로 수행되어 오버플로된 값이 계산되고, 그 값이 long으로 확장되어 반환되므로 계약이 요구하는 정확한 곱이 보존되지 않습니다.",
+        "assumptions": [],
+        "title": "int 곱셈 후 long 확장으로 큰 곱이 오버플로됩니다",
+        "evidence": "3줄에서 두 int 매개변수를 그대로 곱해 int 산술로 결과를 만든 뒤 long 반환 타입으로 확장합니다. 계약은 두 입력이 음이 아닌 int이고 정확한 곱이 long에 들어가야 한다고 명시합니다.",
+        "suggestion": "곱셈 전에 한쪽 피연산자를 long으로 승격하세요(예: (long) amount * count)."
+      }
+    ],
+    "limitations": "제공된 클래스와 두 프로브 호출만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "-1794967296",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "6",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "2344c0432bb8db56fd89bb41b1ca925248ee31838b1d34e7525b14adb94508e5",
+  "input_tokens": 5533,
+  "output_tokens": 373,
+  "elapsed_seconds": 2.578
+}

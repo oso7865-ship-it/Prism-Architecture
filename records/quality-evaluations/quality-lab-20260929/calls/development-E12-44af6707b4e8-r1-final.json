@@ -1,0 +1,58 @@
+{
+  "key": "development-E12-44af6707b4e8-r1-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:15:22.556395+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "675702fa9714ba1490be140c63ffca268ec6a73869791b5cca7754be124e65b8",
+  "input_bytes": 535,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`로 대체 값을 선택해, None이 아닌 거짓 값('', False, 0)도 기본값으로 바뀌는 변경입니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "choose에 '', False, 0 등 falsy이지만 None이 아닌 value를 전달할 때",
+        "consequence": "명시적으로 전달된 값이 유지되지 않고 default로 대체되어, 계약(Only None means absent. Preserve all explicitly provided values.)과 다르게 반환됩니다.",
+        "assumptions": [],
+        "title": "None이 아닌 거짓 값도 기본값으로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value의 truthiness로 분기하므로 '', False, 0에서 default를 반환합니다. 계약은 None일 때만 부재로 간주하고 명시된 값은 보존하도록 요구합니다.",
+        "suggestion": "`return default if value is None else value`처럼 None 여부를 명시적으로 비교하도록 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트 실행 결과는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "3373c8db9955446813dd228d79d6b59b645b0e9bbe55657371128da26431fe57",
+  "input_tokens": 5197,
+  "output_tokens": 528,
+  "elapsed_seconds": 3.171
+}

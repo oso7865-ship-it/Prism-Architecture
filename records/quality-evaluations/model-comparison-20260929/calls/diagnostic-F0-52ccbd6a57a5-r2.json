@@ -1,0 +1,31 @@
+{
+  "key": "diagnostic-F0-52ccbd6a57a5-r2",
+  "arm": "F0",
+  "phase": "diagnostic",
+  "case": "52ccbd6a57a5",
+  "at": "2026-09-29T08:40:09.504102+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "9fa02a4070bc7bcf3c3a215a3aa432b1a560770d033ca7fff064d43e54c2f715",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "SQL 문자열과 파라미터 튜플을 분리해 반환하는 변경을 검토했습니다. 값이 %s 플레이스홀더로 바인딩되므로 제공된 범위에서 주입 결함은 보이지 않습니다.",
+    "issues": [],
+    "limitations": "DB-API 드라이버가 실제로 파라미터 바인딩을 수행하는지, 호출부가 반환된 SQL을 변형 없이 전달하는지는 제공된 코드만으로 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]]",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5520,
+  "output_tokens": 176,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5376,
+  "response_sha256": "a53b0b3d379ce7cfc61a7e96f20bb65b9ba034cf5edd8b14c3cf306c95912f37",
+  "elapsed_seconds": 1.672
+}

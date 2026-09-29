@@ -1,0 +1,58 @@
+{
+  "key": "development-E11-b07fc52f42ca-r2-final",
+  "arm": "E11",
+  "phase": "final",
+  "at": "2026-09-29T07:12:09.923177+00:00",
+  "system_sha256": "4602d351dab4d554e056d06aa752bca2fbbf4ce9810fb9b8be6346b9e358c3fa",
+  "payload_sha256": "3f7396495df4b580c13a041b2cf3ac55e88cde2f508bd9817a178d10dfc388b1",
+  "input_bytes": 1233,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`limit` 함수가 기본값 처리에 논리 OR(`||`)를 사용해 null/undefined뿐 아니라 0, NaN, 빈 문자열 같은 모든 falsy 값을 10으로 대체합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "count에 0, NaN, 빈 문자열 등 falsy 값이 전달될 때",
+        "consequence": "해당 값이 유효한 설정값이어도 10으로 대체되어, 계약에서 요구한 '0은 유효한 limit'이 위반됩니다.",
+        "assumptions": [],
+        "title": "falsy 값 전체를 기본값으로 대체해 0이 유효한 limit으로 처리되지 않습니다",
+        "evidence": "2줄의 `count || 10`은 좌항이 falsy이면 10을 반환하므로 0도 10이 됩니다. 계약은 null/undefined에만 기본값 10을 요구합니다.",
+        "suggestion": "null/undefined만 기본값으로 처리하도록 `count ?? 10`으로 바꾸세요."
+      }
+    ],
+    "limitations": "제공된 함수 본문만 검토했으며 호출부와 테스트는 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "10",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "5",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "159588c097d3aa6865c045be19470cb04ca4f17dade37ac8118b4e8a279882f9",
+  "input_tokens": 5369,
+  "output_tokens": 358,
+  "elapsed_seconds": 2.171
+}

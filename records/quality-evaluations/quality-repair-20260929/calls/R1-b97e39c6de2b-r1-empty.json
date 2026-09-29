@@ -1,0 +1,15 @@
+{
+  "key": "R1-b97e39c6de2b-r1-empty",
+  "arm": "R1",
+  "phase": "empty",
+  "at": "2026-09-29T10:18:32.292553+00:00",
+  "input_hash": "ab027f0444ce97595f19d90835a614129ff8024195fdd947a54ce64821ca1c7f",
+  "system_hash": "2f1df246bdde9dbf5a2ab5fd774a14d8fdd49ad20d25f3b1cebdbc1b0f4c1e53",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 기본 인자 i=i로 각 람다가 생성 시점의 인덱스를 캡처하므로, 계약(각 콜백이 생성 시 인덱스 반환)을 만족한다. 지연 바인딩으로 인한 값 오염 경로가 없어 조치할 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"콜백의 실제 호출부와 사용 방식은 제공되지 않아 반환값의 소비 형태는 확인하지 못했다. 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"기본 인자 i=i로 루프 변수를 즉시 바인딩해 각 람다가 0,1,2를 반환한다. 지연 바인딩으로 인한 공유 상태 문제나 경계값 오류는 보이지 않는다.\"}]}",
+  "input_tokens": 3088,
+  "output_tokens": 229,
+  "seconds": 1.891
+}

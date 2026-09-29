@@ -1,0 +1,41 @@
+{
+  "key": "development-E12-c12598db7eb6-r2-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:12:20.777537+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "e0a1c9a03111e48784aa3c7d86bff14a2f86411d7ae8a99e6bd3e38ec0d789e1",
+  "input_bytes": 554,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`choose`는 값이 None일 때만 default를 반환하고, 그 외에는 명시적으로 전달된 값을 그대로 보존하도록 변경되었습니다. 제공된 계약과 일치하며, 빈 문자열·False 같은 falsy 값도 보존됩니다.",
+    "issues": [],
+    "limitations": "함수의 호출부와 default 인자의 계약은 제공되지 않았으며, 테스트를 실행하지 않아 실제 런타임 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p3",
+        "outcome": "RETURN",
+        "value_json": "\"default\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "f07825e5f76f2627d101c5ef5999355846c96332e423292c3a06ca270806b121",
+  "input_tokens": 5201,
+  "output_tokens": 424,
+  "elapsed_seconds": 2.375
+}

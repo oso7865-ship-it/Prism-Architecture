@@ -1,0 +1,15 @@
+{
+  "key": "B0-1e22f33ed8d3-r1-review",
+  "arm": "B0",
+  "phase": "review",
+  "at": "2026-09-29T10:19:46.176546+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"content_length가 str은 UTF-8로 인코딩하고 bytes는 그대로 사용하도록 변경된 부분을 검토했습니다. 제공된 범위에서 보고할 결함은 찾지 못했습니다.\",\"issues\":[],\"limitations\":\"content_length와 prepare의 호출부 및 실제 전송 계층은 제공되지 않았으며 테스트를 실행하지 않았습니다. 제공된 라인만으로는 바이트 계산과 실제 전송 바이트의 일치 여부를 검증할 수 없습니다.\"}",
+  "input_tokens": 5006,
+  "output_tokens": 114,
+  "seconds": 1.156
+}

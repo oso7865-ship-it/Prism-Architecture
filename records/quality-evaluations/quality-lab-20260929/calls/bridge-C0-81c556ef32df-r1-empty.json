@@ -1,0 +1,29 @@
+{
+  "key": "bridge-C0-81c556ef32df-r1-empty",
+  "arm": "C0",
+  "phase": "product_empty",
+  "at": "2026-09-29T07:21:33.923825+00:00",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "95b30ed60ead40d5393f7d50dec199fbb65d0fa38a0210c156decf1ec93feaa9",
+  "input_bytes": 386,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 mean 함수는 빈 입력에 대해 0.0을 반환하도록 명시된 계약을 조건식으로 정확히 구현하고 있습니다. 제공된 변경 라인에서 구체적인 실패 경로가 확인되지 않아 조치할 항목이 없습니다.",
+    "issues": [],
+    "limitations": "values의 원소 타입과 비수치 입력 처리는 제공되지 않았으나, 계약이 유한 수치 리스트로 한정하므로 검토 범위 밖입니다. 호출부는 제공되지 않았습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "빈 리스트는 조건식으로 0.0을 반환하고, 비어 있지 않으면 sum/len을 계산합니다. 명시된 계약과 일치하며 제공된 범위에서 실패 경로가 보이지 않습니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "5c4d059b771c9092aba80486e9f0183f4fb6a997d1b9a5d8d9e0e6b9a58ffb1a",
+  "input_tokens": 3138,
+  "output_tokens": 218,
+  "elapsed_seconds": 1.656
+}

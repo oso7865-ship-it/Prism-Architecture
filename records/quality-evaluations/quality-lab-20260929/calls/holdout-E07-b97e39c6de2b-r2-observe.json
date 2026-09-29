@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E07-b97e39c6de2b-r2-observe",
+  "arm": "E07",
+  "phase": "observe",
+  "at": "2026-09-29T07:18:06.892848+00:00",
+  "system_sha256": "284db2264908e71281084147bf9db60dafcf6acf619003e4663c62ff5fc71a77",
+  "payload_sha256": "1f73f33e502d262769bb7ce825e9b90114a072e3047eb7e5ddd5a92771ca1caf",
+  "input_bytes": 439,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Input is a Python function `callbacks()` returning a list of three lambdas.",
+      "Each lambda uses a default argument `i=i` to bind the current loop value at creation time.",
+      "The loop iterates `range(3)`, so three callbacks are created for i values 0, 1, 2.",
+      "Probe call `[fn() for fn in callbacks()]` invokes each callback with no arguments.",
+      "Because of default-argument binding, each callback returns its captured index rather than the final loop value.",
+      "No authorization, state mutation, or external input boundaries are present in the shown code."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ce3a28a4e4e494daab917c61a8456ce5ca5e018f057882f7d4d829581cab8488",
+  "input_tokens": 296,
+  "output_tokens": 136,
+  "elapsed_seconds": 1.172
+}

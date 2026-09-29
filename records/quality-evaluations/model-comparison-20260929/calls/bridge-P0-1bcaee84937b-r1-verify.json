@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-1bcaee84937b-r1-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "1bcaee84937b",
+  "at": "2026-09-29T08:41:36.576996+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "4bf0d5ec60bc171a4b987c12ea650e17f1958a223c7f04866aa539a2ad9897f2",
+  "payload_sha256": "7a6a80110ced6ba2ec052ac347dff2018a4d1103cd7c8c93b613c44c542a0079",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "actor가 소유자가 아닌 경우에도 item.amount가 반환되어 소유자 외의 행위자에게 금액이 노출됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3475,
+  "output_tokens": 84,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1664,
+  "response_sha256": "1f66571e18d7d297592dcc28355d7a9f8c3e7e72d0cbacba5405112d39174b31",
+  "elapsed_seconds": 1.969
+}

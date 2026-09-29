@@ -1,0 +1,545 @@
+[
+  {
+    "id": "ab8f4435d732",
+    "family": "copy-py",
+    "fixed": false,
+    "path": "snapshot.py",
+    "source": "def adjust(settings):\n    scratch = settings.copy()\n    scratch['limits']['cap'] = 12\n    return settings['limits']['cap']",
+    "previous_source": "",
+    "contract": "settings contains a plain limits dictionary with integer cap. Leave the caller's nested state unchanged. No return-value requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [
+      2,
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "c5e97ef54254",
+    "family": "copy-py",
+    "fixed": true,
+    "path": "snapshot.py",
+    "source": "def adjust(settings):\n    scratch = {**settings, 'limits': settings['limits'].copy()}\n    scratch['limits']['cap'] = 12\n    return settings['limits']['cap']",
+    "previous_source": "",
+    "contract": "settings contains a plain limits dictionary with integer cap. Leave the caller's nested state unchanged. No return-value requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "a3c59f5a0dc8",
+    "family": "copy-js",
+    "fixed": false,
+    "path": "scratch.js",
+    "source": "function inspect(values) {\n  const scratch = values;\n  scratch.sort((a,b) => a-b);\n  return values;\n}",
+    "previous_source": "",
+    "contract": "values is an array of finite numbers. Do not modify the caller's array; no return-order requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_lines": [
+      2,
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "d9eb1acaa23f",
+    "family": "copy-js",
+    "fixed": true,
+    "path": "scratch.js",
+    "source": "function inspect(values) {\n  const scratch = values.slice();\n  scratch.sort((a,b) => a-b);\n  return values;\n}",
+    "previous_source": "",
+    "contract": "values is an array of finite numbers. Do not modify the caller's array; no return-order requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "542f3e11ae43",
+    "family": "copy-ts",
+    "fixed": false,
+    "path": "profile.ts",
+    "source": "function inspect(settings: {limits: {cap: number}}) {\n  const scratch = {...settings};\n  scratch.limits.cap = 12;\n  return settings.limits.cap;\n}",
+    "previous_source": "",
+    "contract": "settings.limits.cap is a number. Leave the caller's nested state unchanged; no return-value requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_lines": [
+      2,
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "40c63e42486d",
+    "family": "copy-ts",
+    "fixed": true,
+    "path": "profile.ts",
+    "source": "function inspect(settings: {limits: {cap: number}}) {\n  const scratch = {...settings, limits: {...settings.limits}};\n  scratch.limits.cap = 12;\n  return settings.limits.cap;\n}",
+    "previous_source": "",
+    "contract": "settings.limits.cap is a number. Leave the caller's nested state unchanged; no return-value requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "291b4388e144",
+    "family": "copy-java",
+    "fixed": false,
+    "path": "Scratch.java",
+    "source": "class Scratch {\n  int inspect(int[] values) {\n    int[] scratch = values;\n    scratch[0] = 12;\n    return values[0];\n  }\n}",
+    "previous_source": "",
+    "contract": "values is a non-null nonempty int array. Do not mutate the caller's array; no return-value requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "expected_lines": [
+      3,
+      4
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "c7731f61b10d",
+    "family": "copy-java",
+    "fixed": true,
+    "path": "Scratch.java",
+    "source": "class Scratch {\n  int inspect(int[] values) {\n    int[] scratch = values.clone();\n    scratch[0] = 12;\n    return values[0];\n  }\n}",
+    "previous_source": "",
+    "contract": "values is a non-null nonempty int array. Do not mutate the caller's array; no return-value requirement is specified.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "2b64b8299177",
+    "family": "zero-default",
+    "fixed": false,
+    "path": "retries.py",
+    "source": "def retries(value):\n    return value or 5",
+    "previous_source": "",
+    "contract": "value is None or a nonnegative int. Preserve explicit zero; use 5 only for None.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2
+    ],
+    "expected_lines": [
+      2
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "bd5cd8f66c32",
+    "family": "zero-default",
+    "fixed": true,
+    "path": "retries.py",
+    "source": "def retries(value):\n    return 5 if value is None else value",
+    "previous_source": "",
+    "contract": "value is None or a nonnegative int. Preserve explicit zero; use 5 only for None.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "5257a830c624",
+    "family": "await-check",
+    "fixed": false,
+    "path": "access.js",
+    "source": "async function allowed(check, user) {\n  if (check(user)) return true;\n  return false;\n}",
+    "previous_source": "",
+    "contract": "check returns a Promise<boolean>. Return the same authorization decision after it resolves.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [
+      2
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "bfd9478f0fa1",
+    "family": "await-check",
+    "fixed": true,
+    "path": "access.js",
+    "source": "async function allowed(check, user) {\n  if (await check(user)) return true;\n  return false;\n}",
+    "previous_source": "",
+    "contract": "check returns a Promise<boolean>. Return the same authorization decision after it resolves.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "2d4679c2fde0",
+    "family": "null-guard",
+    "fixed": false,
+    "path": "length.ts",
+    "source": "function size(value: string | null): number {\n  if (value === null && value.length === 0) return 0;\n  return value.length;\n}",
+    "previous_source": "",
+    "contract": "For null return zero, otherwise return string length.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [
+      2,
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "776da2ea767a",
+    "family": "null-guard",
+    "fixed": true,
+    "path": "length.ts",
+    "source": "function size(value: string | null): number {\n  if (value === null || value.length === 0) return 0;\n  return value.length;\n}",
+    "previous_source": "",
+    "contract": "For null return zero, otherwise return string length.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "1125fb1f397e",
+    "family": "java-index",
+    "fixed": false,
+    "path": "Tail.java",
+    "source": "class Tail {\n  int read(int[] values) {\n    return values[values.length];\n  }\n}",
+    "previous_source": "",
+    "contract": "values is a non-null, nonempty int array. Return its final element.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_lines": [
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "e70c32ec97a7",
+    "family": "java-index",
+    "fixed": true,
+    "path": "Tail.java",
+    "source": "class Tail {\n  int read(int[] values) {\n    return values[values.length - 1];\n  }\n}",
+    "previous_source": "",
+    "contract": "values is a non-null, nonempty int array. Return its final element.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "964c0700fd59",
+    "family": "contract-py",
+    "fixed": false,
+    "path": "adjusted.py",
+    "source": "def adjust(value):\n    adjusted = max(value, 0)\n    return value",
+    "previous_source": "",
+    "contract": "value is an int. Return max(value, 0).",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3
+    ],
+    "expected_lines": [
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "59d1396dc381",
+    "family": "contract-py",
+    "fixed": true,
+    "path": "adjusted.py",
+    "source": "def adjust(value):\n    adjusted = max(value, 0)\n    return value",
+    "previous_source": "",
+    "contract": "value is an int. Return the original value unchanged, including negatives.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "31df49812a87",
+    "family": "contract-js",
+    "fixed": false,
+    "path": "trim.js",
+    "source": "function trim(value) {\n  const trimmed = value.trim();\n  return value;\n}",
+    "previous_source": "",
+    "contract": "value is a string. Return its text with leading and trailing whitespace removed.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "0d598c35d5a2",
+    "family": "contract-js",
+    "fixed": true,
+    "path": "trim.js",
+    "source": "function trim(value) {\n  const trimmed = value.trim();\n  return value;\n}",
+    "previous_source": "",
+    "contract": "value is a string. Return its original text including all whitespace.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "09820d36b31f",
+    "family": "contract-ts",
+    "fixed": false,
+    "path": "scale.ts",
+    "source": "function scale(value: number): number {\n  const scaled = value * 2;\n  return value;\n}",
+    "previous_source": "",
+    "contract": "value is a finite number with absolute value below 100. Return double the input.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [
+      3
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "30cccaea91bc",
+    "family": "contract-ts",
+    "fixed": true,
+    "path": "scale.ts",
+    "source": "function scale(value: number): number {\n  const scaled = value * 2;\n  return value;\n}",
+    "previous_source": "",
+    "contract": "value is a finite number with absolute value below 100. Return the input unchanged.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "381b3006774b",
+    "family": "contract-java",
+    "fixed": false,
+    "path": "Normalize.java",
+    "source": "class Normalize {\n  int normalize(int value) {\n    int adjusted = Math.max(value, 0);\n    return value;\n  }\n}",
+    "previous_source": "",
+    "contract": "For every int value return Math.max(value, 0).",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "expected_lines": [
+      4
+    ],
+    "probes": [],
+    "oracle": []
+  },
+  {
+    "id": "cea2cfe09062",
+    "family": "contract-java",
+    "fixed": true,
+    "path": "Normalize.java",
+    "source": "class Normalize {\n  int normalize(int value) {\n    int adjusted = Math.max(value, 0);\n    return value;\n  }\n}",
+    "previous_source": "",
+    "contract": "For every int value return that original value, including negatives.",
+    "extra": "",
+    "purpose": "CODE",
+    "document": null,
+    "changed_lines": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "expected_lines": [],
+    "probes": [],
+    "oracle": []
+  }
+]

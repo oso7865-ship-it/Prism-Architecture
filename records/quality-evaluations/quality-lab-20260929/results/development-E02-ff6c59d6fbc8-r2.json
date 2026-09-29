@@ -1,0 +1,48 @@
+{
+  "key": "development-E02-ff6c59d6fbc8-r2",
+  "case": "ff6c59d6fbc8",
+  "arm": "E02",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "f1의 save 함수에서 print 대신 주입된 logger.info를 사용하도록 변경된 부분을 검토했습니다. 제공된 표준(로깅)을 충족하며, record를 그대로 반환하는 동작에는 결함이 보이지 않습니다.",
+    "issues": [],
+    "limitations": "logger 구현과 호출부는 제공되지 않았으며, 실행 검증은 수행하지 않았습니다. record의 타입 계약은 '임의 값'으로 명시되어 있어 별도 검증이 필요하지 않습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6162,
+  "output_tokens": 157,
+  "elapsed_seconds": 2.141,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

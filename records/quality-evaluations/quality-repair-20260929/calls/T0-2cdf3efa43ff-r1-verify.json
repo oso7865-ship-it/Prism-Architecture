@@ -1,0 +1,15 @@
+{
+  "key": "T0-2cdf3efa43ff-r1-verify",
+  "arm": "T0",
+  "phase": "verify",
+  "at": "2026-09-29T10:21:20.350033+00:00",
+  "input_hash": "57c5a50d6a9e6c7238944b8a132227eabafcbf003e3e95c635fa40d72b497867",
+  "system_hash": "ad69f28120867ff33cf1760c6a79fb1cc93825df39ba5dac011fc0f0e1d16a04",
+  "budget": 4000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount와 count의 곱이 int 범위를 초과하지만 long 범위에는 들어오는 값이면, int 정밀도로 곱셈이 수행되어 오버플로된 값이 long으로 반환됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"line 3에서 int 피연산자 곱셈 결과를 long으로 반환하여, 계약이 요구하는 정확한 곱이 int 범위 초과 시 보존되지 않습니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4036,
+  "output_tokens": 173,
+  "seconds": 1.188
+}

@@ -1,0 +1,52 @@
+{
+  "case": "30cccaea91bc",
+  "repeat": 1,
+  "arm": "F3",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "scale의 호출자와 실제 사용처는 제공되지 않아 반환값 사용 방식은 확인하지 못했습니다. 미사용 지역 변수(scaled)는 계약 위반이 아니므로 결함으로 보고하지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "scale.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 입력을 그대로 반환하는 것인데 line 3이 value를 그대로 반환하므로 요구사항을 충족합니다. line 2의 scaled는 미사용 계산일 뿐 반환 계약을 위반하지 않습니다.",
+          "file_path": "scale.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47"
+}

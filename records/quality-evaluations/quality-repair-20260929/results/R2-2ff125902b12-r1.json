@@ -1,0 +1,51 @@
+{
+  "case": "2ff125902b12",
+  "arm": "R2",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "content_length의 실제 호출 지점과 body에 전달되는 값의 출처는 제공되지 않았습니다. prepare 및 테스트는 변경되지 않은 컨텍스트로, 실행 검증은 수행하지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "length.py",
+          "provided_lines": 10
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "content_length가 len(body)로 바이트 길이를 반환하는 변경을 확인했습니다. bytes 계약과 일치하며 제공된 범위에서 실패 경로는 보이지 않습니다.",
+          "file_path": "length.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "bca5ff34e21e5387b1f30dd7ee3f3a772343d662beb265209f368f40a526cea1"
+}

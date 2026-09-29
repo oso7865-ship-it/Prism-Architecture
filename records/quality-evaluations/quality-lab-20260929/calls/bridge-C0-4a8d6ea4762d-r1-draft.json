@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-4a8d6ea4762d-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:22:04.834968+00:00",
+  "system_sha256": "83dfd05343a4da295eaa8de228cbbb415403ef37859fe072cb40da6d922330ca",
+  "payload_sha256": "6b9a4676a296ec44ad68c9681be41e5cbfe3a20122281f22956be6a1d41510f2",
+  "input_bytes": 1154,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "handle 함수의 ValueError 처리 변경을 검토했습니다. 변경된 except 블록은 오류를 기록한 뒤 같은 예외를 다시 던지며, 제공된 팀 표준의 오류 처리 규칙과 일치합니다.",
+    "issues": [],
+    "limitations": "제공된 변경 라인과 관련 표준 섹션만 검토했으며, operation 및 logger의 실제 구현과 호출부는 제공되지 않아 실행 검증은 하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "21a1074779866a8f749bc499ef02d4e39a826a3d20780456640ddc76c9f528c1",
+  "input_tokens": 5290,
+  "output_tokens": 106,
+  "elapsed_seconds": 1.422
+}

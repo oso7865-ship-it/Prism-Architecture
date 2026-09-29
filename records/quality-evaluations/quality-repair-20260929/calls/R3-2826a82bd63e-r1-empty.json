@@ -1,0 +1,15 @@
+{
+  "key": "R3-2826a82bd63e-r1-empty",
+  "arm": "R3",
+  "phase": "empty",
+  "at": "2026-09-29T10:27:52.451595+00:00",
+  "input_hash": "7938527fda708e96c42d4ffa33e07ec9adf25b16eb805d0dfa9a51a480d73d2a",
+  "system_hash": "3fd6f139aff098a43d58198a23c043cd44ffb3c5062febc3e190ed1d13cab6a6",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 ordered 함수는 입력을 복사한 뒤 숫자 오름차순으로 정렬해 반환하므로, 호출자 배열을 변경하지 않고 유한 숫자에 대해 계약을 충족합니다. 제공된 변경 라인에서 구체적인 결함 경로는 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"호출자와 실제 입력값(비유한 수, 비숫자 요소 포함 여부)은 제공되지 않아 계약 위반 입력에 대한 동작은 검토 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"스프레드로 배열을 복사한 후 숫자 비교자로 정렬하며, 원본 배열을 변경하지 않고 유한 숫자에 대해 오름차순 결과를 반환하는 것을 확인했습니다.\"}]}",
+  "input_tokens": 3099,
+  "output_tokens": 202,
+  "seconds": 1.688
+}

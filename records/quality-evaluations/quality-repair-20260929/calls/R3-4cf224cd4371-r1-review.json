@@ -1,0 +1,15 @@
+{
+  "key": "R3-4cf224cd4371-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:32.407064+00:00",
+  "input_hash": "5d61655ea8321801b64579b8dc707a4fc48ae385d0666c1aedf3fae62100dec2",
+  "system_hash": "13b8737fbe89142adab4c390f45143b18de2d27457cae4f58a0360913c5620c7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"content_length가 str/bytes 모두에서 len(body)를 반환하도록 변경된 부분을 검토했습니다. prepare는 str을 UTF-8로 인코딩한 wire를 만들지만 Content-Length는 원본 body의 len을 사용하므로 비ASCII 문자열에서 바이트 수와 불일치합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,5,6,9,11],\"trigger\":\"prepare에 비ASCII 문자열(예: \\\"한글\\\")을 전달하면\",\"consequence\":\"wire는 UTF-8 인코딩되어 6바이트가 되지만 content_length는 문자 수 2를 반환해 Content-Length가 실제 전송 바이트 수와 불일치합니다. 제공된 테스트 11줄의 단언도 이 경우 실패합니다.\",\"assumptions\":[],\"title\":\"비ASCII 문자열에서 Content-Length가 실제 바이트 수와 불일치합니다\",\"evidence\":\"5줄은 str을 UTF-8로 인코딩해 wire를 만들고, 6줄은 인코딩된 wire가 아니라 원본 body로 content_length를 호출합니다. 2줄의 len(body)는 str일 때 문자 수를 세므로 9줄의 \\\"한글\\\" 케이스에서 11줄 단언과 어긋납니다.\",\"suggestion\":\"prepare에서 인코딩된 wire를 기준으로 길이를 계산하도록 content_length(wire)를 호출하거나, content_length가 str 입력을 UTF-8로 인코딩한 뒤 len을 반환하도록 맞추세요. bytes 경로는 그대로 유지되어야 합니다.\"}],\"limitations\":\"제공된 파일 범위만 검토했으며 실제 테스트 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 5004,
+  "output_tokens": 408,
+  "seconds": 2.468
+}

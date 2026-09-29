@@ -1,0 +1,54 @@
+{
+  "key": "development-E08-3a35091fd0ff-r1",
+  "case": "3a35091fd0ff",
+  "arm": "E08",
+  "split": "development",
+  "repeat": 1,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "소유자 검증 후 금액을 반환하는 invoice 변경을 검토했습니다. 제공된 load 구현과 두 프로브 경로에서 계약과 일치하는 동작만 확인되었습니다.",
+    "issues": [],
+    "limitations": "load의 실제 구현은 제공된 단순 스텁만 확인했으며, 다른 id나 null 반환 가능성, 호출부의 actor 출처는 제공되지 않았습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "Error"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6322,
+  "output_tokens": 428,
+  "elapsed_seconds": 3.532,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

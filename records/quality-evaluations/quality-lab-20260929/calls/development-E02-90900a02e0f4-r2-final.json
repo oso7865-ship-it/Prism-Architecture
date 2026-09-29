@@ -1,0 +1,52 @@
+{
+  "key": "development-E02-90900a02e0f4-r2-final",
+  "arm": "E02",
+  "phase": "final",
+  "at": "2026-09-29T07:12:06.248602+00:00",
+  "system_sha256": "4179c39fdc5a732185f34b3950f3a11406e2c6664a4975af8b216381d0c14a80",
+  "payload_sha256": "9264d491a47a8b4c6e43adb9e57c5a7f8558e3abe8546b5dad3ec5ba730568e4",
+  "input_bytes": 829,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "name 인자의 null 여부에 따라 분기하는 변경을 검토했습니다. null일 때 trim을 호출하고, null이 아닐 때 빈 문자열을 반환하는 조건이 뒤바뀌어 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "Display.name(null)을 호출하는 경우",
+        "consequence": "name == null이 참이므로 null.trim()이 실행되어 NullPointerException이 발생합니다. 반대로 공백을 포함한 비-null 문자열은 trim되지 않고 빈 문자열로 대체됩니다.",
+        "assumptions": [],
+        "title": "null 분기와 비-null 분기가 반대로 되어 있습니다",
+        "evidence": "3줄의 삼항 연산자는 name == null일 때 name.trim()을, 그렇지 않을 때 \"\"를 반환합니다. 이는 behavior_contract의 'null은 빈 문자열, 그 외는 공백 제거' 요구와 정반대입니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null 분기와 trim 분기를 계약에 맞게 교체하세요."
+      }
+    ],
+    "limitations": "제공된 단일 클래스만 검토했으며 호출부와 테스트 실행은 확인하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RAISE",
+        "value_json": null,
+        "exception_type": "java.lang.NullPointerException"
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "0e2b49d8bb9458a2a8f40acffcdc858b555cecb915e9ab16097be951d8080662",
+  "input_tokens": 5367,
+  "output_tokens": 353,
+  "elapsed_seconds": 2.328
+}

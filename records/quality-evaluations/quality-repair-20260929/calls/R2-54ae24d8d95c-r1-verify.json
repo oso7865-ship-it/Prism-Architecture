@@ -1,0 +1,15 @@
+{
+  "key": "R2-54ae24d8d95c-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:35.310359+00:00",
+  "input_hash": "07166743fee50ce18c8a890ea77d07e1fbe4e89957cfefd8ca9d0157efb6014f",
+  "system_hash": "6aa908820d0e6c63bca254de24cefcc72420597036554af075ceabf9114a5065",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"변경된 10줄의 or 기반 병합은 빈 문자열을 미설정으로 취급하지만, 제공된 계약(빈 CURL_CA_BUNDLE이 True를 보존해야 함)과 15~16줄 테스트를 위반하지 않습니다. 한쪽만 빈 문자열인 조합의 기대 동작을 규정한 계약이 없어 결함으로 확정할 수 없습니다.\"}]}",
+  "input_tokens": 4680,
+  "output_tokens": 176,
+  "seconds": 1.515
+}

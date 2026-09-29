@@ -1,0 +1,38 @@
+{
+  "key": "bridge-C0-44af6707b4e8-r1-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:20:49.093245+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "30381441d93208a10d3abe86efe6471a8b16cc62eb76b9618e3232c89efa67d9",
+  "input_bytes": 359,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "`value or default`가 None뿐 아니라 모든 falsy 값(0, '', False, 빈 컨테이너)을 부재로 취급해 명시적으로 제공된 값을 대체합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "value에 0, '', False, [] 등 falsy이지만 명시적으로 제공된 값이 전달될 때",
+        "consequence": "or 연산이 falsy 값을 부재로 간주해 default를 반환하므로, 제공된 값이 보존되지 않고 계약('Only None means absent')을 위반합니다.",
+        "assumptions": [],
+        "title": "falsy 값이 부재로 오인되어 default로 대체됩니다",
+        "evidence": "2줄의 `value or default`는 value의 truthiness로 판단하므로 None 외의 falsy 값도 default로 대체됩니다.",
+        "suggestion": "`return default if value is None else value`처럼 명시적 None 검사로 바꿔 falsy 값을 보존하세요."
+      }
+    ],
+    "limitations": "제공된 함수 한 줄만 검토했으며 호출부와 테스트는 확인하지 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "7564ed136ba2675d78719422fae5981eb1494c3c20444e0c53bcc22965fa1c82",
+  "input_tokens": 4738,
+  "output_tokens": 274,
+  "elapsed_seconds": 2.125
+}

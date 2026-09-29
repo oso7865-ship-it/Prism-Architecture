@@ -1,0 +1,12 @@
+{
+  "key": "F3-62086f7d4408-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:05:56.781775+00:00",
+  "input_hash": "686444d79a9f8d1279ce6c049bc9a9cfcb672325aeb32e281ed6cba54899b89d",
+  "system_hash": "a63decaa2f0f6c2d71938a4b10124abe0a5f6c84e082034c3b01b94b5d4fe1d7",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 handle이 ValueError를 잡아 None을 반환하도록 변경된 부분을 팀 표준(오류 처리)과 대조했습니다. 표준은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 않도록 요구하므로, 변경된 except 절이 이에 어긋납니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4,5],\"trigger\":\"operation()이 ValueError를 발생시키는 경우(제공된 동작 계약의 probe)\",\"consequence\":\"ValueError가 전파되지 않고 5줄에서 None이 반환되어 호출자가 실패를 정상 결과로 오인하게 됩니다.\",\"assumptions\":[],\"title\":\"ValueError를 삼키고 None을 반환해 실패를 숨깁니다\",\"evidence\":\"4줄의 except ValueError가 예외를 잡고 5줄에서 None을 반환합니다. 표준 s1은 입력 오류를 기록한 뒤 같은 예외를 다시 던지고 실패를 정상 반환으로 숨기지 말 것을 요구합니다.\",\"suggestion\":\"except 절에서 logger.error로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"],\"contract_quote\":\"입력 오류는 호출자가 처리하도록 기록한 뒤 같은 예외를 다시 던진다. 실패를 정상 반환으로 숨기지 않는다.\"}],\"limitations\":\"제공된 f1의 5줄만 검토했으며, operation()의 실제 구현과 handle 호출자, logger의 구체 동작은 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 5180,
+  "output_tokens": 426,
+  "seconds": 2.75
+}

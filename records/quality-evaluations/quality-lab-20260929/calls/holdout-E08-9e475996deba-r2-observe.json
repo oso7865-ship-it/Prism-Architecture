@@ -1,0 +1,25 @@
+{
+  "key": "holdout-E08-9e475996deba-r2-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:40.920125+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "8ec3dd900f950321e6b8f60a6c6ffd7126ea20480e05ab4e9397e917d5572605",
+  "input_bytes": 468,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "Line 2 computes sum(values) / len(values) with no guard for empty input, so mean([]) raises ZeroDivisionError, contradicting the stated contract that empty input has mean 0.0.",
+      "Probe p1 (mean([])) is predicted to raise ZeroDivisionError rather than return 0.0.",
+      "Probe p2 (mean([2, 4])) is predicted to return 3.0, matching the finite-numeric-list contract.",
+      "The changed line is the sole return statement; no type validation or empty-list handling exists in the supplied source.",
+      "No static findings are supplied, so the empty-input defect is only observable via runtime behavior."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "ca8fd4545370ee3baf54dfc8f8e0dfb0536d69253999391ac0d12e7d331e1fbe",
+  "input_tokens": 314,
+  "output_tokens": 144,
+  "elapsed_seconds": 1.218
+}

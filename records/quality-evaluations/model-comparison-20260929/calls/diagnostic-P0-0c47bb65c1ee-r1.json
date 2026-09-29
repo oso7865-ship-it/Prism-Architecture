@@ -1,0 +1,49 @@
+{
+  "key": "diagnostic-P0-0c47bb65c1ee-r1",
+  "arm": "P0",
+  "phase": "diagnostic",
+  "case": "0c47bb65c1ee",
+  "at": "2026-09-29T08:41:43.522878+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "f8217ab6daaa6ba7ffcad52aeb7c62183bae612251960dd1ad34592eef6484ea",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "base.copy()를 사용해 얕은 복사 후 중첩 딕셔너리를 수정하고, 원본의 limit 값을 반환하는 변경을 검토했습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "base가 중첩 딕셔너리를 포함한 상태에서 adjust를 호출할 때",
+        "consequence": "result['nested']는 base['nested']와 같은 객체를 참조하므로 3줄의 수정이 원본 base의 중첩 딕셔너리까지 변경합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 인해 원본 중첩 딕셔너리가 변경됩니다",
+        "evidence": "2줄의 copy()는 얕은 복사이므로 중첩 객체는 공유됩니다. 3줄에서 result['nested']['limit']에 값을 대입하면 공유된 원본 중첩 딕셔너리의 값도 바뀝니다.",
+        "suggestion": "중첩 구조까지 복사하려면 copy.deepcopy를 사용하거나, 중첩 딕셔너리만 별도로 복사한 후 수정하세요."
+      }
+    ],
+    "limitations": "제공된 함수만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "1",
+        "exception_type": null
+      }
+    ]
+  },
+  "input_tokens": 5187,
+  "output_tokens": 395,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 5120,
+  "response_sha256": "ed14ed7c8f183c795575a0a452ee20d8b26ceeceb343567e9997dd974fbd42cc",
+  "elapsed_seconds": 6.516
+}

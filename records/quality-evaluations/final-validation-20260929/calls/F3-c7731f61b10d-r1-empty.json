@@ -1,0 +1,12 @@
+{
+  "key": "F3-c7731f61b10d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T13:05:15.836393+00:00",
+  "input_hash": "16d5d56decd650f87a742a0f290528ca922e236f5034616c672952648043dd51",
+  "system_hash": "ae4d8222a281e9bb64544d325c5f9865c53415d8c6c3225cd7605441ef824e8d",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 계약은 values가 non-null, non-empty이며 호출자 배열을 변경하지 말라는 것입니다. 코드는 clone()으로 복사본을 만들어 복사본만 수정하고 원본을 반환하므로 계약을 위반하지 않습니다. 반환값 요구사항이 없어 반환값 관련 결함도 성립하지 않습니다.\", \"issues\": [], \"limitations\": \"inspect의 호출자와 반환값 사용처는 제공되지 않았습니다. values가 non-null non-empty라는 계약이 전제이므로 null/빈 배열 입력은 검토 대상이 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"values.clone()으로 복사본을 만들고 scratch[0]만 수정한 뒤 원본 values[0]을 반환합니다. 호출자 배열을 변경하지 않는다는 계약을 충족하며, 반환값 요구사항이 없어 결함이 없습니다.\"}]}",
+  "input_tokens": 3699,
+  "output_tokens": 237,
+  "seconds": 1.844
+}

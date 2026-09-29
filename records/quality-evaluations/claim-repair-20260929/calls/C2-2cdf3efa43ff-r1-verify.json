@@ -1,0 +1,12 @@
+{
+  "key": "C2-2cdf3efa43ff-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T11:45:32.611808+00:00",
+  "input_hash": "0b4a20da6b6d5267c7aa591c90244b63a0b328f3e8f1c937c001d1ca3e72a5a6",
+  "system_hash": "1360a2b05daafea7809c20c7f96776abd693730dc42e656b8dc0f7dbf1aa2ece",
+  "status": "RECEIVED",
+  "raw": "{\"type\": \"json_object\", \"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount=100000, count=100000일 때 int 곱셈이 먼저 수행되어 1410065408이 long으로 반환되며, 계약이 요구하는 10000000000이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3행의 int*int 곱셈이 long 반환 전에 32비트로 수행되어 큰 곱에서 오버플로가 발생합니다.\"}]}",
+  "input_tokens": 4486,
+  "output_tokens": 171,
+  "seconds": 1.375
+}

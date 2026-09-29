@@ -1,0 +1,31 @@
+{
+  "key": "bridge-F0-be9f4577979e-r1-empty",
+  "arm": "F0",
+  "phase": "product_empty",
+  "case": "be9f4577979e",
+  "at": "2026-09-29T08:43:52.591035+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "242fc5e93c331f1db2be5f268c032a84f58bff94f64ecf60908aa55527082c4a",
+  "payload_sha256": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "f1의 collect 함수는 bucket이 None일 때 새 리스트를 생성하므로 mutable default 인자 문제를 회피하고, 명시적으로 전달된 bucket은 제자리에서 수정하는 계약과 일치합니다. 제공된 변경 라인에서 지원 가능한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "collect의 호출부와 반환값 사용 방식은 제공되지 않아, 명시적 bucket 공유로 인한 별칭(aliasing) 영향은 이 발췌만으로 판단할 수 없습니다.",
+    "file_checks": [
+      {
+        "file_id": "f1",
+        "line": 2,
+        "outcome": "NO_FINDING",
+        "observation": "bucket이 None이면 새 리스트를 생성하고, 아니면 전달된 리스트에 append 후 반환합니다. None 경로에서의 역참조 실패나 mutable default 공유 문제는 보이지 않습니다."
+      }
+    ]
+  },
+  "input_tokens": 3187,
+  "output_tokens": 216,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "25656f4b36485feda1b9649daa910c7fe22831417bc18fc1948feb01a14ec92a",
+  "elapsed_seconds": 1.938
+}

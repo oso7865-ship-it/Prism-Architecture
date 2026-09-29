@@ -1,0 +1,15 @@
+{
+  "key": "R1-81c5bd8c7f71-r1-review",
+  "arm": "R1",
+  "phase": "review",
+  "at": "2026-09-29T10:19:16.348360+00:00",
+  "input_hash": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "system_hash": "3c80249efd2dff9ef917b8c7ca0bbebfbc6545eb792e844a88e372f5684b7620",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄에서 선택적 profile에 비단언 연산자(!)를 사용해 name을 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"profile이 없는 User로 name(user)을 호출할 때\",\"consequence\":\"user.profile이 undefined이므로 !.name 접근에서 TypeError가 발생하고, 계약에서 요구한 'Unknown' 표시가 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"profile이 없을 때 Unknown 대신 TypeError가 발생합니다\",\"evidence\":\"1줄에서 profile이 선택적(profile?:)임이 선언되어 있고, 3줄에서 비단언 연산자로 undefined일 수 있는 profile에 접근합니다.\",\"suggestion\":\"profile 존재 여부를 확인하고 없으면 'Unknown'을 반환하며, 있으면 profile.name을 반환하도록 3줄을 수정하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 다른 호출 지점은 확인하지 못했습니다.\"}",
+  "input_tokens": 4750,
+  "output_tokens": 260,
+  "seconds": 2.047
+}

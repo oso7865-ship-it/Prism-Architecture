@@ -1,0 +1,15 @@
+{
+  "key": "R3-90900a02e0f4-r1-review",
+  "arm": "R3",
+  "phase": "review",
+  "at": "2026-09-29T10:23:33.511129+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "cd530063204a5f1ba64458da4368a8cda9eeb2448db905a70eb10190349dc602",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Display.name의 변경된 3줄은 null일 때 name.trim()을 호출하고, null이 아닐 때 빈 문자열을 반환하도록 조건이 뒤바뀌어 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 상태로 Display.name을 호출할 때\",\"consequence\":\"삼항 연산자의 조건이 참이 되어 null.trim()이 실행되므로 NullPointerException이 발생합니다. 반대로 null이 아닌 값은 trim되지 않고 빈 문자열로 대체되어 계약과 반대 결과가 나옵니다.\",\"assumptions\":[],\"title\":\"null 분기에서 trim을 호출하고 비-null 값을 빈 문자열로 반환합니다\",\"evidence\":\"3줄의 조건 name == null이 참일 때 name.trim()을 평가하고, 거짓(비-null)일 때 \\\"\\\"를 반환합니다. 이는 behavior_contract의 'null은 빈 문자열, 그 외는 공백 제거'와 정반대입니다.\",\"suggestion\":\"조건과 결과를 계약에 맞게 뒤집어, null이면 \\\"\\\"를, 그 외에는 name.trim()을 반환하도록 수정하세요.\"}],\"limitations\":\"제공된 단일 파일과 HEAD 라인만 검토했으며 실행 결과나 호출 지점은 확인하지 않았습니다.\"}",
+  "input_tokens": 4873,
+  "output_tokens": 320,
+  "seconds": 2.469
+}

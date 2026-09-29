@@ -1,0 +1,15 @@
+{
+  "key": "B0-65d1d2fad0d4-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:50.101038+00:00",
+  "input_hash": "16673ff6ac53c50bbd903bb561aae742f603b7922fcf6a08fe55faaf0d397408",
+  "system_hash": "d8dae1f07b1ce34aa63d0c27b1f95f2a63c61c5fc38d34409c3cf4b0763e2ea7",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left = Integer.MAX_VALUE, right = -1일 때 left - right는 int 범위를 넘어 오버플로되어 음수가 반환되므로, left > right인데도 계약이 요구하는 양수가 아닌 음수가 반환됩니다.\"}]}",
+  "input_tokens": 3321,
+  "output_tokens": 96,
+  "seconds": 1.063
+}

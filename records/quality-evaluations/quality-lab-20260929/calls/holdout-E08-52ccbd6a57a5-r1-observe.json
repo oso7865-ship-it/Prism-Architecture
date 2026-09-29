@@ -1,0 +1,26 @@
+{
+  "key": "holdout-E08-52ccbd6a57a5-r1-observe",
+  "arm": "E08",
+  "phase": "observe",
+  "at": "2026-09-29T07:17:25.230694+00:00",
+  "system_sha256": "59e3475f37f72798fab1564a8fb1de51111408f77aba771431fc98395956cc70",
+  "payload_sha256": "0932aa77dabe93787e6fdaa9ddc6157b04643d3ba16ff0e7c8d56e9847cf6fe3",
+  "input_bytes": 565,
+  "status": "COMPLETED",
+  "output": {
+    "observations": [
+      "The changed line returns a two-element tuple: a SQL string with a single %s placeholder and a one-element parameter tuple (user_id,).",
+      "The SQL text is a fixed literal; user_id is not interpolated into the string, so the value is passed as a bound parameter.",
+      "The behavior contract states the caller passes the returned SQL and parameter tuple directly to a DB-API driver using %s placeholders, matching the returned shape.",
+      "No static findings are reported, so no automated defect signal is present in the supplied data.",
+      "For probe p1, query('0 OR 1=1') returns ('SELECT name FROM users WHERE id = %s', ('0 OR 1=1',)); JSON-encoding the tuple as an array yields [\"SELECT name FROM users WHERE id = %s\", [\"0 OR 1=1\"]].",
+      "A normal comparison input such as query('42') returns ('SELECT name FROM users WHERE id = %s', ('42',)), JSON-encoded as [\"SELECT name FROM users WHERE id = %s\", [\"42\"]], differing only in the parameter value."
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "b2779c36f2627e0c7aff683b177db9658a5b7a92883311d02914f86f38349749",
+  "input_tokens": 329,
+  "output_tokens": 241,
+  "elapsed_seconds": 1.469
+}

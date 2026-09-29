@@ -1,0 +1,29 @@
+{
+  "key": "bridge-F0-0d5e36006ab7-r2-verify",
+  "arm": "F0",
+  "phase": "product_verify",
+  "case": "0d5e36006ab7",
+  "at": "2026-09-29T08:45:05.097744+00:00",
+  "model": "deepseek-flash",
+  "system_sha256": "5b105dccbb8a064f02722f811e7d1135010044596ccf4f383abeafa511439e8a",
+  "payload_sha256": "29e42fe5ebd1d8cd8d0e2157a88391f27276026d8154476d388929fa3f321767",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "`check()`가 async라 Promise를 반환하므로 `if (check())`는 항상 truthy로 평가되어, check가 false로 resolve되어도 'allowed'가 반환됩니다."
+      }
+    ]
+  },
+  "input_tokens": 3491,
+  "output_tokens": 82,
+  "response_model": "deepseek-flash",
+  "finish_reason": "stop",
+  "cached_input_tokens": 2944,
+  "response_sha256": "b6e9ffb5049c01271c3ee5a0f9ef7cd5cf082cbecf40223e1cdf09dfdb12cb0c",
+  "elapsed_seconds": 1.313
+}

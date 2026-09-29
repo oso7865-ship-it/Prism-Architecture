@@ -1,0 +1,12 @@
+{
+  "key": "C4-2cdf3efa43ff-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:02:56.871250+00:00",
+  "input_hash": "d30c5f7bdd03a422e58d54db1a1092d6221b439b9795ac7a10bf59bad674792e",
+  "system_hash": "357d87ec0f134d0f9f80fb9abb533d183724664667f8432cc6a19a24cfc44cbb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"amount=100000, count=100000일 때 int 곱셈이 먼저 수행되어 1410065408이 반환되고, 계약이 요구하는 정확한 곱 10000000000이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 int*int 곱셈이 long 반환 전에 32비트로 오버플로되어, 계약이 요구하는 정확한 곱이 보존되지 않는 경로가 확인됩니다.\"}]}",
+  "input_tokens": 4762,
+  "output_tokens": 181,
+  "seconds": 1.235
+}

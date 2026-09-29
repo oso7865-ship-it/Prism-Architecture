@@ -1,0 +1,52 @@
+{
+  "key": "adaptive_holdout-E15-0d5e36006ab7-r2-final",
+  "arm": "E15",
+  "phase": "adaptive_final",
+  "at": "2026-09-29T07:20:07.841583+00:00",
+  "system_sha256": "9d19719a67c239c4ba931823dc54422f76db05f6a721f6e0e478de2182649b75",
+  "payload_sha256": "8ce4cd7a9585216b20c23b0c0f9e2d02b6831516828226a6f76b365095c9f309",
+  "input_bytes": 629,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "비동기 권한 판정 함수 `access`에서 `check()`의 반환값을 await하지 않고 truthy 검사합니다. `check`가 async이고 boolean으로 resolve된다는 계약이 제공되어 있어, Promise 객체 자체가 항상 truthy이므로 판정이 계약과 다르게 동작합니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "`check`가 async 함수이고 `access`를 호출할 때(예: `await access(async () => false)`)",
+        "consequence": "`check()`는 Promise를 반환하고 Promise 객체는 항상 truthy이므로, resolve 값이 false여도 2줄의 조건이 참이 되어 'allowed'가 반환됩니다. 즉 거부되어야 할 요청이 허용되는 권한 우회가 발생합니다.",
+        "assumptions": [],
+        "title": "async check의 Promise를 await하지 않아 항상 허용됩니다",
+        "evidence": "2줄에서 `check()`의 반환값을 await 없이 조건으로 사용합니다. 제공된 계약에 따르면 `check`는 async이며 boolean으로 resolve되므로, Promise 객체 자체가 truthy로 평가됩니다.",
+        "suggestion": "`if (await check()) return 'allowed';`로 await하여 resolve된 boolean을 검사하세요."
+      }
+    ],
+    "limitations": "`check`의 실제 구현과 호출부는 제공되지 않았으며, 제공된 계약 설명에 근거해 판정했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "\"allowed\"",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "19e770a84d0060379329283352d4bdf9e6a6581ee4f5b8b006ec5cf161ba97b6",
+  "input_tokens": 5661,
+  "output_tokens": 409,
+  "elapsed_seconds": 2.782
+}

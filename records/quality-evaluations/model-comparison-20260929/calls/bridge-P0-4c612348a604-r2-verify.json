@@ -1,0 +1,29 @@
+{
+  "key": "bridge-P0-4c612348a604-r2-verify",
+  "arm": "P0",
+  "phase": "product_verify",
+  "case": "4c612348a604",
+  "at": "2026-09-29T08:40:07.871331+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "7dc92a865de1d708ab4f41a26ca76f743c6b0241bd5793047e4ec4ab722e07b3",
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "DROP",
+        "reason": "MISSING_CONTRACT",
+        "revised": null,
+        "checked_consequence": null
+      }
+    ]
+  },
+  "input_tokens": 3082,
+  "output_tokens": 54,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 1664,
+  "response_sha256": "f8d4d0c29a676223b516cf2df4e2e8d25aee511ebcbdb6bd867784ab3849b245",
+  "elapsed_seconds": 1.593
+}

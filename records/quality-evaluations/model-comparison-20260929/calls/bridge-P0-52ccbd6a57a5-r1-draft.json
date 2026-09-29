@@ -1,0 +1,23 @@
+{
+  "key": "bridge-P0-52ccbd6a57a5-r1-draft",
+  "arm": "P0",
+  "phase": "product_draft",
+  "case": "52ccbd6a57a5",
+  "at": "2026-09-29T08:43:03.756315+00:00",
+  "model": "deepseek-v4-pro",
+  "system_sha256": "25123f4d926a4bcce61591d010d4d107c4fb545c6586b32dc9f707470e7ebea5",
+  "payload_sha256": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "status": "COMPLETED",
+  "output": {
+    "summary": "사용자 ID를 파라미터 바인딩으로 전달하는 SQL 조회 변경을 검토했습니다.",
+    "issues": [],
+    "limitations": "제공된 코드는 %s 플레이스홀더와 파라미터 튜플을 사용하여 SQL 인젝션을 방지하고 있습니다. 실제 DB 드라이버 호출부와 user_id의 검증/인가 경계는 제공되지 않아 추가 확인은 하지 않았습니다."
+  },
+  "input_tokens": 5113,
+  "output_tokens": 111,
+  "response_model": "deepseek-v4-pro",
+  "finish_reason": "stop",
+  "cached_input_tokens": 4992,
+  "response_sha256": "cb775828b5acdc25cc8e27c86c78f4910f2ba8f9a975f9082711024a03139d38",
+  "elapsed_seconds": 3.14
+}

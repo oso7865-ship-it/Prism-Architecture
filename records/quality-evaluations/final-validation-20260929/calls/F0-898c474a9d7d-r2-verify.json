@@ -1,0 +1,12 @@
+{
+  "key": "F0-898c474a9d7d-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T12:56:19.060635+00:00",
+  "input_hash": "9f1b3250ad58a0d194ba6fa45bb77978b5f9d6434407802758eff7dbda0608f2",
+  "system_hash": "1d3dfbd05122d4a618091e35c3f7688dc58eff43b9d37d076986564a928eb6d9",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"2줄의 중첩 복사는 원본 base를 변경하지 않아 'Preserve the caller's base without mutation' 계약을 만족하며, 4줄의 base['nested']['limit'] 접근은 원본에 limit이 있다는 계약이 제공되지 않아 결함으로 확정할 수 없습니다.\"}]}",
+  "input_tokens": 4442,
+  "output_tokens": 152,
+  "seconds": 1.375
+}

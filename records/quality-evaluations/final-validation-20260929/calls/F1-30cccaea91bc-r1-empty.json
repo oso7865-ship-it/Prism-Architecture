@@ -1,0 +1,12 @@
+{
+  "key": "F1-30cccaea91bc-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T12:58:09.988306+00:00",
+  "input_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47",
+  "system_hash": "c13cd54a97ff8d1711a4f1159972915a4dbe08544143867748906008e7d78ac6",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 파일 f1에서 계약 위반 소지가 있는 연산을 확인했습니다. 계약은 입력을 그대로 반환하는 것이나, 변경된 코드는 scaled를 계산하고도 value를 반환합니다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 2, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2, 3], \"trigger\": \"임의의 유한한 number 입력(절댓값 100 미만)으로 scale을 호출하면, 2행에서 scaled = value * 2를 계산하지만 3행에서 원래 value를 반환한다.\", \"consequence\": \"함수는 계약대로 입력을 그대로 반환하므로 반환값 자체는 계약을 만족하지만, 2행의 scaled 계산은 어떤 경로에서도 사용되지 않아 죽은 연산이 된다.\", \"assumptions\": [], \"title\": \"사용되지 않는 scaled 계산이 남아 있음\", \"evidence\": \"2행에서 scaled를 계산하지만 3행은 value를 반환한다. 계약은 'Return the input unchanged'이므로 반환값은 계약을 충족하며, scaled는 반환·부수효과 어디에도 쓰이지 않는다.\", \"suggestion\": \"계약이 입력을 그대로 반환하는 것이라면 2행의 scaled 계산을 제거해 의도를 명확히 하거나, 반환값을 scaled로 바꾸려는 의도였다면 계약과 함께 3행을 조정해야 한다.\", \"contract_quote\": \"Return the input unchanged.\", \"expression_repair\": null}], \"limitations\": \"scale의 호출자와 실제 사용 맥락은 제공되지 않아, scaled 계산이 향후 사용될 예정인지 여부는 확인할 수 없습니다. 정적 분석 경고는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2행에서 scaled = value * 2를 계산하지만 3행은 value를 반환한다. 계약상 반환값은 유효하나 scaled는 사용되지 않는 죽은 연산이다.\"}]}",
+  "input_tokens": 3478,
+  "output_tokens": 504,
+  "seconds": 3.391
+}

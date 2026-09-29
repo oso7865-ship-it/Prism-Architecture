@@ -1,0 +1,51 @@
+{
+  "case": "2eda524faeac",
+  "arm": "R1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "check 함수의 실제 구현과 호출자, 반환값의 신뢰 경계는 제공되지 않았습니다. check가 boolean이 아닌 truthy 값을 반환하거나 외부 입력을 검증 없이 신뢰하는지는 이 조각만으로 판단할 수 없습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "access.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "NO_FINDING",
+          "observation": "await check()의 boolean 결과로 허용/거부를 분기하며, 제공된 범위에서 우회 가능한 권한 판단이나 위험한 싱크로의 입력 전달은 확인되지 않음.",
+          "file_path": "access.js"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "683c9adef6223cac57f7a23a892b76fffce726a5dbda4c69d88184f9625ad39f"
+}

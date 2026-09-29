@@ -1,0 +1,54 @@
+{
+  "key": "development-E08-cd1f9cff7b9c-r2",
+  "case": "cd1f9cff7b9c",
+  "arm": "E08",
+  "split": "development",
+  "repeat": 2,
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "output": {
+    "summary": "경로 포함 여부를 문자열 접두사 비교로 판정하는 변경을 검토했습니다. 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크 없음, 후행 슬래시 없음)에서는 동일 경로 또는 root + '/' 접두사 조건이 하위 경로를 올바르게 허용하고 형제 디렉터리 접두사도 거부합니다. 제공된 범위에서 보안 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "permitted의 호출부, root/resolved 값의 생성·정규화 경계, 심볼릭 링크 해석 여부가 제공되지 않아 계약 위반 입력이 실제로 도달하는지는 확인하지 못했습니다. 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "false",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "true",
+        "exception_type": null
+      }
+    ]
+  },
+  "stages": 2,
+  "pipeline_complete": true,
+  "input_tokens": 6129,
+  "output_tokens": 483,
+  "elapsed_seconds": 3.547,
+  "original_strict_metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 2,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "scoring_revision": "standard-exception-aliases-1"
+}

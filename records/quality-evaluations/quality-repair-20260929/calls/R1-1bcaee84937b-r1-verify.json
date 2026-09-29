@@ -1,0 +1,15 @@
+{
+  "key": "R1-1bcaee84937b-r1-verify",
+  "arm": "R1",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:36.695211+00:00",
+  "input_hash": "5bce7b0bde54ef9251927d5d6d92f1f604950b2c250cb41de98573c17862b35b",
+  "system_hash": "6be146c64063d1321e8e87b68cc0abde68f280cc28bb050b05c9977938d7cfc3",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"actor가 \\\"alice\\\"가 아닌 값으로 invoice(7, actor)를 호출해도 2~3줄에 owner와 actor를 비교하는 검사가 없어 load가 반환한 항목의 amount가 그대로 반환되며, 이는 소유자에게만 반환하고 그 외에는 Error를 던지라는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"load(id) 결과의 owner를 actor와 비교하는 인가 검사 없이 amount를 반환하여, 비소유자에게도 금액이 노출되는 계약 위반 경로가 있습니다.\"}]}",
+  "input_tokens": 4292,
+  "output_tokens": 203,
+  "seconds": 1.531
+}

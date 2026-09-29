@@ -1,0 +1,12 @@
+{
+  "key": "F0-30cccaea91bc-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T12:56:27.257313+00:00",
+  "input_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47",
+  "system_hash": "68f3e4d489c9367ba1d03c3453caa4b48b8184a0e26973f2fced001923665459",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"scale 함수가 value를 2배로 계산한 scaled를 만들지만 반환하지 않고 원래 value를 반환하도록 변경된 코드를 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"scale(value)를 호출할 때\",\"consequence\":\"2줄에서 계산한 scaled가 사용되지 않고 3줄에서 원래 value가 반환되어, 곱셈 결과가 호출자에게 전달되지 않습니다.\",\"assumptions\":[],\"title\":\"계산된 scaled 대신 원래 value가 반환됩니다\",\"evidence\":\"2줄은 value * 2를 scaled에 저장하지만, 3줄은 scaled가 아닌 value를 반환하므로 계산 결과가 버려집니다.\",\"suggestion\":\"반환 의도가 2배 값이라면 3줄을 scaled 반환으로 바꾸고, 원래 값 반환이 의도라면 2줄의 미사용 계산을 제거하세요.\"}],\"limitations\":\"제공된 4줄 외의 호출자나 테스트는 확인하지 못했으며, 실행 결과는 검증하지 않았습니다.\"}",
+  "input_tokens": 4550,
+  "output_tokens": 279,
+  "seconds": 2.094
+}

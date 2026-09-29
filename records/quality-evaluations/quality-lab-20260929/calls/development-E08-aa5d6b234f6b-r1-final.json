@@ -1,0 +1,54 @@
+{
+  "key": "development-E08-aa5d6b234f6b-r1-final",
+  "arm": "E08",
+  "phase": "final",
+  "at": "2026-09-29T07:09:35.605674+00:00",
+  "system_sha256": "edcf206aa36043240a09c3af282cfe35c099cfde13f5fe6cda013d7a19334974",
+  "payload_sha256": "49fa8844b12704b2ac03ed9b940d016c75f43ae8839e1e748b3c19d30942b114",
+  "input_bytes": 1458,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "기본 인자로 가변 리스트 `bucket=[]`를 사용해, 인자를 생략한 호출들이 같은 리스트 객체를 공유합니다. 이는 '생략 시 매번 새 버킷'이라는 명시된 동작 계약과 어긋납니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 1,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "bucket 인자를 생략한 채 collect를 두 번 이상 호출할 때",
+        "consequence": "기본 리스트가 함수 정의 시점에 한 번만 생성되어 모든 생략 호출이 같은 객체를 공유하므로, 두 번째 호출의 반환값에 이전 호출의 항목이 누적됩니다(예: collect(1) → [1], 이후 collect(2) → [1, 2]). 명시된 계약(생략 시 새 버킷)을 위반합니다.",
+        "assumptions": [],
+        "title": "가변 기본 인자로 인한 호출 간 상태 누적",
+        "evidence": "1줄의 `bucket=[]`는 정의 시 한 번 생성되어 재사용되고, 2줄의 append가 그 공유 리스트를 변경하며 3줄이 그대로 반환합니다.",
+        "suggestion": "기본값을 `None`으로 두고 함수 내부에서 `if bucket is None: bucket = []`로 새 리스트를 만들면, 명시적 버킷은 그대로 제자리 수정하면서 생략 호출은 매번 새 버킷을 받습니다."
+      }
+    ],
+    "limitations": "제공된 3줄만 검토했으며 테스트를 실행하지 않았습니다. 호출부와 모듈 수명 주기는 제공되지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "[[1],[1,2]]",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "[9,3]",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "eae715b45541d8a227bbf75198619a7b75e04adbc6611360005446da5baf64ac",
+  "input_tokens": 5387,
+  "output_tokens": 456,
+  "elapsed_seconds": 2.719
+}

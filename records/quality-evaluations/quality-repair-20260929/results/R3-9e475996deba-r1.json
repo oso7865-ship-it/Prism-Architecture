@@ -1,0 +1,76 @@
+{
+  "case": "9e475996deba",
+  "arm": "R3",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 입력에서 평균 계산이 실패합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "values가 빈 리스트일 때 mean을 호출하는 경우",
+        "consequence": "values가 빈 리스트이면 len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하여, 계약이 규정한 0.0 반환이 이루어지지 않습니다.",
+        "assumptions": [],
+        "title": "빈 입력에서 평균 계산이 실패합니다",
+        "evidence": "2줄은 len(values)로 나누는데, 제공된 behavior_contract는 빈 입력의 평균을 0.0으로 규정합니다.",
+        "suggestion": "나눗셈 전에 values가 비어 있는지 확인하고 계약대로 0.0을 반환하도록 처리하세요.",
+        "file_path": "mean.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "7b5ff99669ad77317d15500fdf61418d61ed5c3e735e8a24c7fb3096966bda33"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "mean.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄의 나눗셈이 빈 입력에서 ZeroDivisionError를 발생시켜 계약(빈 입력 평균 0.0)과 충돌합니다.",
+          "file_path": "mean.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "989b51e913a4db30cfdefcc0b7a4c3035c2baa169a3d980ca7b8bd0ceb2730b5"
+}

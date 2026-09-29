@@ -1,0 +1,21 @@
+{
+  "key": "bridge-C0-54ae24d8d95c-r2-draft",
+  "arm": "C0",
+  "phase": "product_draft",
+  "at": "2026-09-29T07:22:12.463493+00:00",
+  "system_sha256": "d485e1617d2f0d2b17008a8b541d57358df84e6d7f28e0cb5298b1068eb9113c",
+  "payload_sha256": "c3b2c767366cb7d0f198053156a1504ce2c9381688fa52228092824d8c7cacd5",
+  "input_bytes": 1939,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "환경 변수 기반 CA 번들 설정 병합 로직의 변경을 검토했습니다. 제공된 테스트 계약과 코드 경로를 대조한 결과, 보고할 만한 결함은 확인되지 않았습니다.",
+    "issues": [],
+    "limitations": "merge_setting의 호출부와 session_value의 실제 전달 값은 제공되지 않았으며, 테스트를 실행하여 동작을 검증하지는 않았습니다."
+  },
+  "model": "deepseek-flash",
+  "reasoning": "disabled",
+  "response_sha256": "367d241255986ca9fd54a226992bdfba3f69ce61c3795816292bc779208fc3b8",
+  "input_tokens": 5228,
+  "output_tokens": 100,
+  "elapsed_seconds": 1.062
+}

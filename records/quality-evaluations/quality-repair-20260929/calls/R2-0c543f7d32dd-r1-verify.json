@@ -1,0 +1,15 @@
+{
+  "key": "R2-0c543f7d32dd-r1-verify",
+  "arm": "R2",
+  "phase": "verify",
+  "at": "2026-09-29T10:18:40.841827+00:00",
+  "input_hash": "cddb4d7f0c5d49f1f862a387251fa8d533285793d4e1f8f7250d8ef6d90c4aa4",
+  "system_hash": "d823289bc38da9376c7374abb742d3e24fa2ab981764ec22f61a9645dd3c96a8",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"root='/data', resolved='/database/secret'일 때 startswith가 True를 반환하여 root 디렉터리 밖 경로가 허용됩니다.\"}], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"경로 구분자 경계 없는 startswith 비교로 인접 디렉터리 경로가 허용되는 접근 제어 결함이 확인됩니다.\"}], \"new_findings\": []}",
+  "input_tokens": 4181,
+  "output_tokens": 147,
+  "seconds": 1.188
+}

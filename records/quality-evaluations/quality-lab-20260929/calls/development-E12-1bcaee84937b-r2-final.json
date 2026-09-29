@@ -1,0 +1,53 @@
+{
+  "key": "development-E12-1bcaee84937b-r2-final",
+  "arm": "E12",
+  "phase": "final",
+  "at": "2026-09-29T07:08:58.532365+00:00",
+  "system_sha256": "1477d2d828342ff308d5703f940afd59dbfca9db6967af184fef1e06bc9a498f",
+  "payload_sha256": "dfb594c21421209a63f1e44ae09c8d2f29d8d1617a9ef0cedcd240780728581f",
+  "input_bytes": 688,
+  "status": "COMPLETED",
+  "output": {
+    "summary": "load로 조회한 항목의 owner와 호출자 actor를 비교하지 않고 금액을 반환하는 변경으로, 소유자가 아닌 호출자도 금액을 얻을 수 있습니다.",
+    "issues": [
+      {
+        "citations": [],
+        "file_id": "f1",
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "invoice(7, \"bob\")처럼 항목의 owner(alice)와 다른 actor로 호출할 때",
+        "consequence": "동작 계약이 요구하는 소유자 검증이 없어 bob에게도 alice 소유 항목의 amount(40)가 그대로 반환됩니다. 즉 인가 경계가 우회되어 타인 자원의 금액이 노출됩니다.",
+        "assumptions": [],
+        "title": "소유자 검증 없이 항목 금액을 반환해 인가가 우회됩니다",
+        "evidence": "f1:2에서 load(id)로 항목을 가져오지만 actor 매개변수는 어디에서도 사용되지 않고, f1:3에서 owner 확인 없이 item.amount를 반환합니다. 관련 구현은 {owner: \"alice\", amount: 40}을 반환하므로 actor가 \"bob\"이어도 동일한 값이 반환됩니다.",
+        "suggestion": "f1:3 반환 전에 item.owner와 actor를 비교하고, 다르면 계약대로 Error를 던지는 검증을 추가하세요(예: owner 불일치 시 throw)."
+      }
+    ],
+    "limitations": "load의 실제 반환 계약과 호출부/인가 계층은 제공된 범위 밖이며, 테스트를 실행해 검증하지는 않았습니다. 제공된 관련 구현은 owner와 amount를 반환한다는 점만 확인했습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      },
+      {
+        "probe_id": "p2",
+        "outcome": "RETURN",
+        "value_json": "40",
+        "exception_type": null
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "93e143c03fdae2f5a0844e9e51051bf769a964976728016a1b3ef0fe10dbbd02",
+  "input_tokens": 5611,
+  "output_tokens": 592,
+  "elapsed_seconds": 3.406
+}

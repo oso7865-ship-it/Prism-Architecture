@@ -1,0 +1,27 @@
+{
+  "key": "bridge-E12-4c612348a604-r1-verify",
+  "arm": "E12",
+  "phase": "product_verify",
+  "at": "2026-09-29T07:21:00.941698+00:00",
+  "system_sha256": "27d40a0a8a0264b3e58fbf74be1b98d27a11e73396f4f7217aaee59441ce15b4",
+  "payload_sha256": "a881e129689e90595cea94157edfbf98662d9672b1e854d52765dc63c66e18bc",
+  "input_bytes": 1573,
+  "status": "COMPLETED",
+  "output": {
+    "decisions": [
+      {
+        "index": 0,
+        "action": "KEEP",
+        "reason": "CONFIRMED",
+        "revised": null,
+        "checked_consequence": "계약이 허용하는 n=0으로 호출되면 range(0, 0, 0)의 step이 0이므로 ValueError가 발생하여, 계약이 요구하는 빈 리스트 대신 예외가 호출자에게 전파됩니다."
+      }
+    ]
+  },
+  "model": "deepseek-flash",
+  "reasoning": "low",
+  "response_sha256": "46d7385e8f9549a56e2cc9cb7a46bdeb5514a2f5eb011b1fa73feaf20bc9eaad",
+  "input_tokens": 3157,
+  "output_tokens": 370,
+  "elapsed_seconds": 2.235
+}

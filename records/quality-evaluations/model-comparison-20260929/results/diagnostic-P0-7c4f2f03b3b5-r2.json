@@ -1,0 +1,66 @@
+{
+  "key": "diagnostic-P0-7c4f2f03b3b5-r2",
+  "case": "7c4f2f03b3b5",
+  "arm": "P0",
+  "repeat": 2,
+  "split": "diagnostic",
+  "output": {
+    "summary": "save 함수가 print로 기록하도록 변경되었습니다.",
+    "issues": [
+      {
+        "citations": [
+          "00000000-0000-0000-0000-000000000001:s1"
+        ],
+        "file_id": "f1",
+        "line": 2,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "save 함수가 호출될 때",
+        "consequence": "팀 표준에서 요구하는 logger.info 대신 print로 기록되어 로깅 경로가 표준 출력으로 고정됩니다.",
+        "assumptions": [],
+        "title": "print 대신 logger.info를 사용해야 합니다",
+        "evidence": "2줄에서 print('saved')를 사용하지만, 표준 s1은 주입된 logger.info로 기록하도록 요구합니다.",
+        "suggestion": "print('saved')를 logger.info('saved')로 변경하세요."
+      }
+    ],
+    "limitations": "제공된 함수 본문과 표준 문서만 검토했으며 실행 검증은 하지 않았습니다.",
+    "probes": [
+      {
+        "probe_id": "p1",
+        "outcome": "RETURN",
+        "value_json": "7",
+        "exception_type": null
+      }
+    ]
+  },
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "original_strict_metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 1,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "pipeline_complete": true,
+  "stages": 1,
+  "input_tokens": 5613,
+  "output_tokens": 305,
+  "elapsed_seconds": 5.047
+}

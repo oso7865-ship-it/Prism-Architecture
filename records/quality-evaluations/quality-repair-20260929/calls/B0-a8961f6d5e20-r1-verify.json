@@ -1,0 +1,15 @@
+{
+  "key": "B0-a8961f6d5e20-r1-verify",
+  "arm": "B0",
+  "phase": "verify",
+  "at": "2026-09-29T10:19:37.335509+00:00",
+  "input_hash": "4d337e36446e2e9a62c237af6d54cbaa6f5b7a9f98689a2f2be03e6a53c9b3b1",
+  "system_hash": "8c709055e94f01421950cef10a2b6cd7c8241721682bc72d877f04b4ce63cee8",
+  "budget": 2000,
+  "reasoning": null,
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"user_id가 이스케이프 없이 SQL 텍스트에 결합되어 반환되므로, 따옴표·조건절 등이 포함된 값이 전달되면 WHERE 절이 조작된 SQL 문자열이 생성됩니다.\"}]}",
+  "input_tokens": 3532,
+  "output_tokens": 93,
+  "seconds": 0.985
+}
