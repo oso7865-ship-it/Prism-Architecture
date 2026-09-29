@@ -1,0 +1,12 @@
+{
+  "key": "H2-40c63e42486d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:36.645531+00:00",
+  "input_hash": "c2cc21d92b2a7a28fe09f5ac6c9a8bf1cbe8126a61642c81115a55affbec65a8",
+  "system_hash": "16df5b4e84dd48a9e856056d144e6992f406c5c081dbb7973b341bfa992b5c30",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 inspect는 settings를 얕은 복사한 뒤 limits를 다시 복사해 scratch.limits.cap을 12로 바꾸지만, 반환은 원본 settings.limits.cap이다. 제공된 계약은 호출자의 중첩 상태를 변경하지 않는 것만 요구하므로, 원본을 변경하지 않고 원본 값을 반환하는 현재 동작은 계약을 위반하지 않는다. 다만 scratch에 대한 쓰기가 반환값에 반영되지 않아 계산이 버려지는 형태이며, 이는 동작 결함이 아니라 스타일 관찰로 남긴다.\", \"issues\": [], \"limitations\": \"inspect의 호출자와 반환값 사용처가 제공되지 않아, 버려진 scratch 쓰기가 의도된 것인지 판단할 수 없다. 제공된 계약에는 반환값 요구사항이 없으므로 반환값 관련 결함은 성립하지 않는다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 호출자의 중첩 상태를 변경하지 말 것만 요구한다. scratch는 별도 복사본이라 원본 settings.limits.cap은 12로 바뀌지 않고, 반환값도 원본 값이므로 계약을 위반하지 않는다. scratch 쓰기는 반환에 쓰이지 않는 계산일 뿐이다.\"}]}",
+  "input_tokens": 3593,
+  "output_tokens": 328,
+  "seconds": 2.532
+}

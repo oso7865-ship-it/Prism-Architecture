@@ -1,0 +1,12 @@
+{
+  "key": "H4-ab8f4435d732-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:29.520127+00:00",
+  "input_hash": "ee657d9b9644404ba175242b628d32ac454bd69e095947f4f3d90aa0ef233e6f",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"settings['limits']가 중첩 딕셔너리일 때, 3줄의 대입은 얕은 복사본을 통해 원본 settings['limits']['cap']을 12로 변경하고 4줄은 12를 반환합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"settings.copy()는 중첩 limits를 공유하므로 3줄이 호출자의 중첩 상태를 변경하며, 이는 'Leave the caller's nested state unchanged' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4606,
+  "output_tokens": 159,
+  "seconds": 1.282
+}

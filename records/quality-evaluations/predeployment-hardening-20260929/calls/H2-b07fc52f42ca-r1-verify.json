@@ -1,0 +1,12 @@
+{
+  "key": "H2-b07fc52f42ca-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:04:53.413556+00:00",
+  "input_hash": "2cc06565ca3f1568c593822736339c502efe77639032e46925c3d7cd2b0c3e34",
+  "system_hash": "9f27f64aede51ed6c32d4d7b69969d1c53c3bf2bc934c19ada0be74983865ad5",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count가 0으로 호출되면 0이 falsy로 평가되어 반환값이 10이 되므로, 유효한 설정값 0이 무시됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"line 2의 count || 10은 0을 falsy로 처리해 계약(null/undefined에만 기본값 적용, 0은 유효)을 위반합니다.\"}]}",
+  "input_tokens": 4353,
+  "output_tokens": 154,
+  "seconds": 1.391
+}

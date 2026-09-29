@@ -1,0 +1,12 @@
+{
+  "key": "H1-2d4679c2fde0-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:21.491428+00:00",
+  "input_hash": "a9f0f38d5407e2f548876e090da403b4c61dd196fcb4b419c369234a686a3aa2",
+  "system_hash": "3c6457167f7f927046cfa7859cc82d3883e868fa6fb83ee11140f23220767a8d",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"value가 null이면 2줄의 value === null이 참이 되어 &&의 오른쪽 value.length가 평가되고, null에서 length 접근으로 TypeError가 발생해 0을 반환하지 못합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"null 입력 시 조건식의 && 오른쪽 평가로 TypeError가 발생해 계약의 'null이면 0 반환'을 위반합니다.\"}]}",
+  "input_tokens": 4552,
+  "output_tokens": 140,
+  "seconds": 1.625
+}

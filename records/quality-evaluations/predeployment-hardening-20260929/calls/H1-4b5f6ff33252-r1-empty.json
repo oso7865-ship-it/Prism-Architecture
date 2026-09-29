@@ -1,0 +1,12 @@
+{
+  "key": "H1-4b5f6ff33252-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:56.100286+00:00",
+  "input_hash": "9e68146a45472e620a8416a09cc8be6587371779a0e1f5c6551bf360250bf0b7",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인 9-10은 verify가 True 또는 None일 때 환경변수 CA 번들 경로를 우선 적용하고, 그렇지 않으면 verify를 그대로 유지한다. 제공된 계약(명시적 False 보존, CA 경로 문자열 허용)과 테스트 5건의 정적 투영이 모두 일치하며, 지원 가능한 결함은 확인되지 않았다.\", \"issues\": [], \"limitations\": \"merge_setting의 다른 호출자, session_verify의 실제 전달 경로, env 사전의 실제 구성은 제공되지 않아 검토 범위 밖이다. 테스트는 정적 투영이며 실행되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 9-10은 verify가 True/None일 때만 env의 CA 경로를 채택하고 False는 그대로 두어 '명시적 False 보존, CA 경로 문자열 허용' 계약과 일치한다. 테스트 14-18, 21의 정적 투영도 모두 기대값과 일치한다.\"}]}",
+  "input_tokens": 5084,
+  "output_tokens": 261,
+  "seconds": 2.031
+}

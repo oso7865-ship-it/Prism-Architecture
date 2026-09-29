@@ -1,0 +1,12 @@
+{
+  "key": "H4-ea5d99fd7899-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:19.447071+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "8a1ed62515e2efaae31087074b140efa74401d0e91f54633fcad779021ff4220",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 라인은 테넌트 조건을 포함한 단일 조회 함수로, 계약(order_id가 테넌트 간 반복될 수 있으며 인증된 테넌트의 주문만 반환)과 일치합니다. 정적 경고도 없고, 표시된 코드에서 구체적 결함 경로를 확인할 수 없어 발견 사항이 없습니다.\", \"issues\": [], \"limitations\": \"db.execute의 반환 형태, 파라미터 바인딩 방식, 호출자의 tenant_id 인증 출처는 제공되지 않아 검증하지 못했습니다. 테스트나 실행은 수행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 인증된 테넌트의 주문만 반환하도록 요구하며, 코드는 id와 tenant_id를 함께 WHERE 조건으로 바인딩해 fetchone으로 반환하므로 요구사항과 일치합니다. 표시된 범위에서 null/경계 실패 경로는 확인되지 않습니다.\"}]}",
+  "input_tokens": 3539,
+  "output_tokens": 254,
+  "seconds": 2.203
+}

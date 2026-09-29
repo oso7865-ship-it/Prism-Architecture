@@ -1,0 +1,54 @@
+{
+  "case": "59d1396dc381",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": false,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "`adjust`의 호출자와 실제 사용 맥락은 제공되지 않았습니다. 미사용 계산 `adjusted`가 향후 사용을 위한 것인지 여부는 제공된 HEAD 라인만으로 판단할 수 없으며, 정적 스타일 경고도 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "adjusted.py",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 '음수 포함 원래 값 그대로 반환'을 요구하고, line 3은 `value`를 그대로 반환하므로 요구사항을 충족합니다. line 2의 `adjusted`는 사용되지 않지만 이는 유한한 미사용 계산으로 동작 결함이 아닙니다.",
+          "file_path": "adjusted.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "04ee87ca82fa3253480ced452b0e303cf6665e0e2bcbd61b32be1377183477d0"
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-90900a02e0f4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:46.385663+00:00",
+  "input_hash": "5486f365da3ef833a396fd9d09f279dd241cc664d3a242cbdd9db41bbfbb0485",
+  "system_hash": "09b193779b22df8c7f6b2ae9f176c3f749c7b0cbe43624d24e1192eabe93578b",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"name이 null이면 name == null이 참이 되어 name.trim()이 평가되고 NullPointerException이 발생합니다.\"},{\"index\":1,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"name이 null이 아닌 비어 있지 않은 문자열이면 조건이 거짓이 되어 trim() 결과 대신 빈 문자열 \\\"\\\"이 반환됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3줄의 삼항 연산자 분기가 뒤집혀 있어 null 입력 시 NPE가 발생하고, 비-null 입력은 빈 문자열로 반환됩니다.\"}]}",
+  "input_tokens": 4806,
+  "output_tokens": 184,
+  "seconds": 1.562
+}

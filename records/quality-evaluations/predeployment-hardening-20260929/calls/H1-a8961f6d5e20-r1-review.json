@@ -1,0 +1,12 @@
+{
+  "key": "H1-a8961f6d5e20-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:45.821259+00:00",
+  "input_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "system_hash": "673ab329ef260e3d8d1a1ead67ac0aa2a7824fee65cc6eafdc6e71c3af7421cf",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 2행은 user_id를 문자열 결합으로 SQL에 삽입하고 파라미터 튜플은 비워 둡니다. 제공된 계약상 user_id는 신뢰할 수 없는 텍스트이고 반환값은 DB-API 드라이버로 직접 전달되므로 SQL 주입 경로가 성립합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"user_id에 SQL 구문을 포함한 신뢰할 수 없는 텍스트(예: 따옴표와 조건절)가 전달될 때\",\"consequence\":\"user_id가 이스케이프 없이 SQL 문자열에 결합되고 파라미터 튜플이 비어 있어, 드라이버가 결합된 문자열을 하나의 SQL로 실행하므로 공격자가 조건절을 변조할 수 있습니다.\",\"assumptions\":[],\"title\":\"user_id 문자열 결합으로 SQL 주입이 가능합니다\",\"evidence\":\"2행은 'SELECT ... WHERE id = ' + user_id로 쿼리를 만들고 두 번째 반환값을 빈 튜플 ()로 둡니다. 계약에 따르면 이 반환값은 %s 플레이스홀더를 쓰는 DB-API 드라이버로 직접 전달되며 user_id는 신뢰할 수 없는 텍스트입니다.\",\"suggestion\":\"쿼리를 'SELECT name FROM users WHERE id = %s'로 고정하고 user_id를 파라미터 튜플에 담아 반환하세요.\",\"citations\":[]}],\"limitations\":\"제공된 단일 함수와 계약만 검토했으며 실제 호출부, 드라이버 종류, 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 5095,
+  "output_tokens": 404,
+  "seconds": 2.891
+}

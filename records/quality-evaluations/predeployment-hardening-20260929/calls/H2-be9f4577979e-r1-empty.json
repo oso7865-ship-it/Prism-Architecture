@@ -1,0 +1,12 @@
+{
+  "key": "H2-be9f4577979e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:04:45.914824+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 라인은 `bucket=None` 기본값을 사용하고 함수 내부에서 새 리스트를 생성하는 전형적인 가변 기본 인자 회피 패턴입니다. 명시된 계약(생략 시 새 버킷, 명시 시 제자리 수정)과 실제 동작이 일치하며, 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"제공된 5개 라인만 검토했으며, 호출자나 다른 모듈의 사용 방식은 확인하지 않았습니다. 정적 분석 경고도 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 생략된 bucket은 매 호출 새 리스트여야 하며, `bucket is None` 검사 후 `bucket = []`로 새 리스트를 만들어 append·반환하므로 계약을 충족합니다. 명시된 bucket은 그대로 append되어 제자리 수정 요구도 만족합니다.\"}]}",
+  "input_tokens": 3552,
+  "output_tokens": 240,
+  "seconds": 2.016
+}

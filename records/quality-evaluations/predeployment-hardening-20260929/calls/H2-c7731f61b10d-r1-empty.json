@@ -1,0 +1,12 @@
+{
+  "key": "H2-c7731f61b10d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:39.273842+00:00",
+  "input_hash": "16d5d56decd650f87a742a0f290528ca922e236f5034616c672952648043dd51",
+  "system_hash": "ae56199f6cb16412ffcf0b8ae2ccf2b34b4f74043633d001189ef1e30eefe1d2",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 코드는 `values.clone()`으로 복사본을 만든 뒤 복사본만 수정하고 원본 배열을 반환하므로, 명시된 계약(호출자 배열 비변경, 반환값 요구 없음)을 위반하지 않습니다. 다만 `values`가 비어 있으면 `scratch[0]` 접근이 실패하지만, 계약이 nonempty를 전제로 하므로 결함으로 성립하지 않습니다. 지원 가능한 실행 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"제공된 범위는 단일 클래스의 7개 라인뿐이며, `inspect`의 호출자나 실제 입력 분포는 확인할 수 없습니다. 계약이 non-null nonempty를 명시하므로 빈 배열/`null` 입력은 검토 대상 외로 두었습니다. 정적 분석 경고는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: values는 non-null nonempty, 호출자 배열 비변경, 반환값 요구 없음. 코드는 clone 후 복사본만 수정하고 원본 values[0]을 반환하므로 계약을 충족하며, 명시된 전제에서 실행 결함이 확인되지 않음.\"}]}",
+  "input_tokens": 3722,
+  "output_tokens": 318,
+  "seconds": 2.282
+}

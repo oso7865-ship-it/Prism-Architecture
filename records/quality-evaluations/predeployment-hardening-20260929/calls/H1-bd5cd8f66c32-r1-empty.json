@@ -1,0 +1,12 @@
+{
+  "key": "H1-bd5cd8f66c32-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:01:17.161000+00:00",
+  "input_hash": "45a1156c3c359631da4e07ccaf2f65d9bce9c53a7c6f8044238242056a84378e",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 두 줄은 계약(value가 None이면 5, 그 외에는 value 그대로, 0 보존)을 그대로 만족한다. 명시적 None 검사 후 반환이며, 0은 falsy이지만 `is None` 비교이므로 0이 보존된다. 지원 가능한 결함이 없다.\", \"issues\": [], \"limitations\": \"제공된 것은 f1의 두 줄뿐이며, 호출자나 value의 실제 타입 분포는 확인하지 않았다. 정적 경고도 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 None일 때만 5, 그 외에는 value를 그대로 반환하고 0을 보존하라고 요구한다. `value is None` 조건과 `else value` 반환이 이를 정확히 만족하며, 0은 None이 아니므로 보존된다.\"}]}",
+  "input_tokens": 3601,
+  "output_tokens": 222,
+  "seconds": 1.922
+}

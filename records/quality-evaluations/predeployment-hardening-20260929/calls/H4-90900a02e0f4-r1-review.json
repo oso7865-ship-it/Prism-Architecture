@@ -1,0 +1,12 @@
+{
+  "key": "H4-90900a02e0f4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:43.057837+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "eb6588ce3f08b974ea81ccb686ef139f85afc0866ae56803836768fdedfc48c0",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄에서 null 처리 분기가 뒤집혀 있어, null이면 trim()을 호출하고 비어 있지 않은 값이면 빈 문자열을 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 상태로 Display.name을 호출하는 경우\",\"consequence\":\"조건이 참이 되어 null.trim()이 실행되고 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 분기에서 trim()을 호출해 NPE가 발생합니다\",\"evidence\":\"3줄의 조건 name == null이 참일 때 삼항 연산자는 name.trim()을 선택하므로 null 참조에 trim()이 호출됩니다.\",\"suggestion\":\"조건을 name != null로 바꿔 null일 때 \\\"\\\"를, 그렇지 않을 때 name.trim()을 반환하도록 하세요.\",\"contract_quote\":\"A null name is displayed as empty; otherwise strip surrounding whitespace.\"},{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 공백을 포함한 비어 있지 않은 문자열인 경우\",\"consequence\":\"조건이 거짓이 되어 trim() 결과 대신 빈 문자열이 반환됩니다.\",\"assumptions\":[],\"title\":\"비어 있지 않은 이름이 빈 문자열로 표시됩니다\",\"evidence\":\"3줄은 name == null이 거짓일 때 \\\"\\\"를 반환하므로, 전달된 이름의 공백 제거 결과가 표시되지 않습니다.\",\"suggestion\":\"조건을 name != null로 바꿔 비어 있지 않은 값에 대해 name.trim()을 반환하도록 하세요.\",\"contract_quote\":\"A null name is displayed as empty; otherwise strip surrounding whitespace.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과와 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4739,
+  "output_tokens": 448,
+  "seconds": 3.282
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-2826a82bd63e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:24.853473+00:00",
+  "input_hash": "7938527fda708e96c42d4ffa33e07ec9adf25b16eb805d0dfa9a51a480d73d2a",
+  "system_hash": "5d8efa4e492ffdf0fc7c70de480e25ffcd980562b7bf1352252cd744fede696a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"ordered(values)는 [...values]로 복사한 뒤 오름차순 정렬해 반환하므로, 호출자 배열을 변경하지 않고 유한한 숫자를 오름차순으로 반환한다는 계약을 충족한다. 제공된 변경 라인에서 지원되는 결함은 확인되지 않았다.\", \"issues\": [], \"limitations\": \"values가 유한한 숫자 배열이라는 계약만 제공되었고, 호출자나 실제 입력 분포는 제공되지 않았다. NaN/Infinity나 비숫자 입력에 대한 동작은 계약 범위 밖이므로 별도로 검토하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 유한한 숫자를 오름차순으로 반환하고 호출자 배열을 변경하지 않는 것이다. [...values] 복사 후 a-b 비교로 정렬해 반환하므로 두 요구를 모두 만족하며, 변경 라인에서 지원되는 결함이 없다.\"}]}",
+  "input_tokens": 3505,
+  "output_tokens": 237,
+  "seconds": 2.125
+}

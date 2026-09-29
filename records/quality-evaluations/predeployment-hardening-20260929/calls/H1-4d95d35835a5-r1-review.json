@@ -1,0 +1,12 @@
+{
+  "key": "H1-4d95d35835a5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:37.031536+00:00",
+  "input_hash": "82c7e8ac27cb298f2fa448516c6e51d547c82559f92372efed2d248f4121a024",
+  "system_hash": "7f86864500727e391921ead9a569d47d2006c154f391957be13578a6f3db9b1e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 callbacks 함수가 range(3) 각 반복에서 생성되는 람다 목록을 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"callbacks()를 호출해 반환된 콜백을 실행할 때\",\"consequence\":\"세 람다 모두 클로저 변수 i를 공유하므로 각각 0, 1, 2가 아니라 모두 2를 반환합니다.\",\"assumptions\":[],\"title\":\"콜백이 생성 시점의 인덱스를 캡처하지 않습니다\",\"evidence\":\"2줄의 람다는 i를 기본 인자로 바인딩하지 않아 반복이 끝난 뒤의 i 값을 참조합니다.\",\"suggestion\":\"각 반복에서 값을 고정하도록 기본 인자를 사용해 lambda i=i: i 형태로 캡처하세요.\",\"contract_quote\":\"Each callback returns the index captured when it was created.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4723,
+  "output_tokens": 264,
+  "seconds": 2.172
+}

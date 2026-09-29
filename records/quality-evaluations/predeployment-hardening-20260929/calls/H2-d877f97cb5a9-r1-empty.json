@@ -1,0 +1,12 @@
+{
+  "key": "H2-d877f97cb5a9-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:28.348796+00:00",
+  "input_hash": "a9e3b4300c56f5dff5af2bc96512dc70fba600faa8fdc227fa9718207bfa5467",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 f1은 `with opener() as stream:`으로 스트림을 열고 `stream.read()` 결과를 반환한다. 제공된 계약(예외 발생 시에도 스트림을 닫을 것, opener가 표준 컨텍스트 관리 스트림을 반환할 것)과 비교할 때, `with` 블록이 정상 경로와 `read()` 예외 경로 모두에서 스트림을 닫으므로 계약을 위반하는 동작은 확인되지 않는다. 정적 경고도 없어 제기할 만한 구체적 결함이 없다.\", \"issues\": [], \"limitations\": \"opener()가 실제로 어떤 스트림을 반환하는지, read()가 어떤 예외를 던질 수 있는지는 제공되지 않았다. 제공된 3개 라인만으로 판단했으며 테스트 실행이나 외부 호출자 검증은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 예외 시에도 스트림을 닫는 것을 요구한다. `with opener() as stream:`은 정상 반환과 `stream.read()` 예외 경로 모두에서 컨텍스트 관리자를 종료하므로 계약을 충족하며, 반환값도 read() 결과 그대로다.\"}]}",
+  "input_tokens": 3501,
+  "output_tokens": 313,
+  "seconds": 2.343
+}

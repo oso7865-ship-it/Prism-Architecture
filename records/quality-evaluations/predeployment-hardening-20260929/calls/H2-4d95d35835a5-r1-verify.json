@@ -1,0 +1,12 @@
+{
+  "key": "H2-4d95d35835a5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:02.443530+00:00",
+  "input_hash": "2b38c17f9b7997838b64ad5ebc2c6a6e31c8ec511bc02d11f904be79449bca3a",
+  "system_hash": "93be5e42a34eaec1e22a310768fd1d342cb6f9a7e53867487f11212c9f3c73f4",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"callbacks()가 반환한 세 콜백을 모두 실행하면 각각 2를 반환하여, 생성 시점 인덱스(0,1,2)를 반환해야 한다는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"람다가 i를 지연 바인딩하여 모든 콜백이 최종 값 2를 반환하므로 '생성 시점 인덱스 반환' 계약과 불일치합니다.\"}]}",
+  "input_tokens": 4448,
+  "output_tokens": 174,
+  "seconds": 1.359
+}

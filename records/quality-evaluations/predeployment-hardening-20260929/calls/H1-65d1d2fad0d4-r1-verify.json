@@ -1,0 +1,12 @@
+{
+  "key": "H1-65d1d2fad0d4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:42.900090+00:00",
+  "input_hash": "9cf89336f41c2b18b65618a1412f9aa18851d74b05be185f963755cf76e52644",
+  "system_hash": "4128d5b13d648c6d956190e980b4696225afbf2dd8cc1c4e921054ee4d6fb70f",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"left = Integer.MAX_VALUE, right = -1일 때 left - right는 int 오버플로로 Integer.MIN_VALUE를 반환하여, left > right임에도 음수가 반환됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3줄의 int 뺄셈 반환은 큰 값 차이에서 오버플로하여 비교 부호 계약을 위반할 수 있습니다.\"}]}",
+  "input_tokens": 4672,
+  "output_tokens": 137,
+  "seconds": 1.438
+}

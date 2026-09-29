@@ -1,0 +1,12 @@
+{
+  "key": "H1-d848633407e8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:04.474825+00:00",
+  "input_hash": "3ac96c649ec17640a8a99b476e5dcf8dcdd110670258e2abec5e09c1ebc120c4",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"read()가 예외를 던지면 4줄의 stream.close()가 실행되지 않아 스트림이 닫히지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"opener()로 연 스트림을 read() 성공 후에만 close하므로 read() 예외 시 close가 누락되어 제공된 계약과 어긋납니다.\"}]}",
+  "input_tokens": 4761,
+  "output_tokens": 150,
+  "seconds": 1.297
+}

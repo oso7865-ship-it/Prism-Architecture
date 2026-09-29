@@ -1,0 +1,54 @@
+{
+  "case": "0d598c35d5a2",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": false,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 코드는 4줄의 단일 함수뿐이며, 호출자나 실제 입력 타입 검증, 테스트는 제공되지 않았습니다. value가 문자열이라는 전제는 계약에 명시되어 있어 별도 확인이 필요하지 않습니다. line 2의 미사용 계산은 동작 결함이 아닌 스타일 관찰로, CODE 목적에서는 보고하지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "trim.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 원본 텍스트를 공백 포함 그대로 반환하도록 요구하며, line 3의 `return value;`가 이를 충족합니다. line 2의 trim 결과는 사용되지 않지만 유한한 지역 계산으로 반환 계약 위반이나 자원 문제가 아닙니다.",
+          "file_path": "trim.js"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "78637666b6050a31fd521b6d6f83dd56dc8c09c291a916de426df45a37677675"
+}

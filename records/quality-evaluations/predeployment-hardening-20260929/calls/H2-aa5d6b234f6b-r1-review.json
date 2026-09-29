@@ -1,0 +1,12 @@
+{
+  "key": "H2-aa5d6b234f6b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:44.209899+00:00",
+  "input_hash": "98f6ec45542d20354bb1020149d64b19fc1bd0221df1b8d0d1f62da3a39fd164",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"collect 함수가 기본 인자 bucket=[]을 사용해 호출 간 상태를 공유하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":1,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"bucket을 생략한 채 collect를 두 번 이상 호출할 때\",\"consequence\":\"기본 리스트 객체가 최초 정의 시 한 번만 생성되어 호출 간에 재사용되므로, 두 번째 호출의 반환값에 이전 호출에서 추가한 item이 함께 들어갑니다. 이는 '생략 시 매번 새 bucket'이라는 제공된 동작 계약과 어긋납니다.\",\"assumptions\":[],\"title\":\"기본 인자 리스트가 호출 간 공유됩니다\",\"evidence\":\"1줄의 기본값 []는 함수 정의 시 한 번 평가되어 이후 생략 호출마다 같은 객체가 전달되고, 2줄의 append가 그 객체를 누적합니다.\",\"suggestion\":\"기본값을 None으로 두고 함수 안에서 bucket이 None이면 새 리스트를 만들도록 바꾸세요. 명시적으로 전달된 bucket은 그대로 수정되어야 하므로 None 검사로 분기해야 합니다.\",\"contract_quote\":\"Each omitted-bucket call gets a fresh bucket. Explicit buckets are modified in place.\",\"expression_repair\":{\"line\":1,\"before\":\"def collect(item, bucket=[]):\",\"after\":\"def collect(item, bucket=None):\"}}],\"limitations\":\"제공된 3줄만 검토했으며 실제 호출부와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4747,
+  "output_tokens": 363,
+  "seconds": 2.859
+}

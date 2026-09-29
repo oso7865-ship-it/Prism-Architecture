@@ -1,0 +1,12 @@
+{
+  "key": "H1-a8961f6d5e20-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:48.763084+00:00",
+  "input_hash": "bd24d49fba1c5235e786b0a6876a211e6ec41a9120615c5ef75c137ec2f4fdbe",
+  "system_hash": "4fee51e30896ef6e06ad2c96486397eee621826e05d512683a5c1cd383d88aae",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"user_id가 이스케이프 없이 SQL 문자열에 결합되고 파라미터 튜플이 비어 있어, 드라이버가 결합된 문자열을 하나의 SQL로 실행하므로 공격자가 조건절을 변조할 수 있습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2행에서 신뢰할 수 없는 user_id를 문자열 결합으로 SQL에 삽입하고 파라미터 튜플을 비워 두어 SQL 주입 경로가 성립합니다.\"}]}",
+  "input_tokens": 4984,
+  "output_tokens": 177,
+  "seconds": 1.266
+}

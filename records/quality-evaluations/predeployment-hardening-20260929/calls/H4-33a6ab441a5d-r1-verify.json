@@ -1,0 +1,12 @@
+{
+  "key": "H4-33a6ab441a5d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:21.202495+00:00",
+  "input_hash": "e5311a1b9eaf6fe2af3cb64ce595ed0605479dfe6851e940abb45c9db20e77d9",
+  "system_hash": "09b193779b22df8c7f6b2ae9f176c3f749c7b0cbe43624d24e1192eabe93578b",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비어 있지 않은 배열에서 values.length는 유효 인덱스 범위(0..length-1)를 벗어나므로 values[values.length] 접근이 ArrayIndexOutOfBoundsException을 던져 마지막 원소를 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄이 values[values.length]로 항상 범위를 벗어난 인덱스에 접근해 계약(마지막 원소 반환)을 위반합니다.\"}]}",
+  "input_tokens": 4661,
+  "output_tokens": 180,
+  "seconds": 1.672
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-291b4388e144-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:13.761536+00:00",
+  "input_hash": "fdbcb9566689fa5e24add0d732b10643f3e7aaf4a7232379189a0e9c9180e672",
+  "system_hash": "03a065a7c66d5007e335c425186ce4db89e7cb484522b33358522087943f4ad8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 Java 코드는 매개변수 배열을 별칭으로 복사한 뒤 원소를 수정하고 원래 배열을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4,5],\"trigger\":\"비어 있지 않은 int[] values로 inspect를 호출할 때\",\"consequence\":\"3줄의 대입은 배열을 복사하지 않고 같은 배열을 가리키는 별칭을 만들 뿐이므로, 4줄의 scratch[0] = 12가 호출자의 원본 배열 원소를 변경합니다.\",\"assumptions\":[],\"title\":\"배열 별칭으로 인해 호출자 배열이 변경됩니다\",\"evidence\":\"3줄은 values를 새 배열로 복사하지 않고 동일 참조를 scratch에 대입하며, 4줄은 그 참조를 통해 원소를 수정합니다. 계약은 호출자 배열을 변경하지 말 것을 요구합니다.\",\"suggestion\":\"호출자 배열을 보존하려면 3줄에서 java.util.Arrays.copyOf(values, values.length) 등으로 실제 복사본을 만든 뒤 복사본을 수정하세요.\",\"contract_quote\":\"Do not mutate the caller's array\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4952,
+  "output_tokens": 317,
+  "seconds": 2.157
+}

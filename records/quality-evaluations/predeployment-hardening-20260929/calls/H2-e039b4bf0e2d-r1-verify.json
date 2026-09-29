@@ -1,0 +1,12 @@
+{
+  "key": "H2-e039b4bf0e2d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:18.609816+00:00",
+  "input_hash": "80b30460c203455b9c87576294879c50898874e41e89268a50cf1f8924d86937",
+  "system_hash": "93be5e42a34eaec1e22a310768fd1d342cb6f9a7e53867487f11212c9f3c73f4",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"REVISE\",\"reason\":\"OVERSTATED\",\"revised\":{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE이 빈 문자열(\\\"\\\")로 존재하고 verify가 True일 때 environment_settings를 호출하는 경우\",\"consequence\":\"`env.get(\\\"CURL_CA_BUNDLE\\\")`가 \\\"\\\"를 반환하고 `or`가 이를 거짓으로 평가해 REQUESTS_CA_BUNDLE 조회로 넘어가며, 둘 다 없으면 verify가 None이 됩니다. 이후 merge_setting(11줄)에서 session_verify가 True이므로 5줄이 True를 반환해 15·16줄의 `is True` 단언이 실패합니다.\",\"assumptions\":[],\"title\":\"빈 CURL_CA_BUNDLE이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 `env.get(\\\"CURL_CA_BUNDLE\\\") or env.get(\\\"REQUESTS_CA_BUNDLE\\\")`로 빈 문자열을 건너뜁니다. 제공된 path_observations는 15·16줄 호출에서 값이 \\\"\\\"가 되어 `is True` 단언과 불일치한다고 기록하며, behavior_contract도 빈 CURL_CA_BUNDLE이 True를 보존해야 한다고 명시합니다.\",\"suggestion\":\"빈 문자열을 유효한 명시 값으로 취급하도록 키 존재 여부를 기준으로 선택하세요. 예: `verify = env[\\\"CURL_CA_BUNDLE\\\"] if \\\"CURL_CA_BUNDLE\\\" in env else env.get(\\\"REQUESTS_CA_BUNDLE\\\")`. 이렇게 하면 14줄(둘 다 없음→None→True), 17줄(REQUESTS_CA_BUNDLE 경로), 18줄(verify=False) 동작이 유지됩니다.\",\"expression_repair\":{\"line\":10,\"before\":\"verify = env.get(\\\"REQUESTS_CA_BUNDLE\\\") or env.get(\\\"CURL_CA_BUNDLE\\\")\",\"after\":\"verify = env[\\\"CURL_CA_BUNDLE\\\"] if \\\"CURL_CA_BUNDLE\\\" in env else env.get(\\\"REQUESTS_CA_BUNDLE\\\")\"}},\"checked_consequence\":\"env에 CURL_CA_BUNDLE=\\\"\\\"만 있고 verify=True이면 10줄이 None을 반환하고, merge_setting이 session_verify=True를 반환해 15줄의 `is True` 단언이 실패합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"10줄의 `or` 연쇄가 빈 CURL_CA_BUNDLE을 건너뛰어 15·16줄 계약(빈 값이 True 보존)과 불일치합니다.\"}]}",
+  "input_tokens": 6030,
+  "output_tokens": 692,
+  "seconds": 2.953
+}

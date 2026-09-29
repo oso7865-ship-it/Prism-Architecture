@@ -1,0 +1,12 @@
+{
+  "key": "H1-0e12161a3613-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:42.235652+00:00",
+  "input_hash": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "system_hash": "3db167f22ca71c68196115e456c7d574758c8cc61da9363e5c29a01a33d141ce",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 단일 파일(f1)은 `Integer.compare(left, right)`를 반환하는 비교 메서드로, 제공된 계약(좌<우 음수, 동일 0, 그 외 양수)을 그대로 충족한다. 정적 경고도 없고, 제공된 컨텍스트에서 입증 가능한 결함이 없어 발견 사항 없음으로 판단한다.\", \"issues\": [], \"limitations\": \"제공된 변경 라인은 f1의 3행뿐이며, 호출자·테스트·다른 비교 경로는 제공되지 않아 실제 사용 맥락에서의 정렬 안정성이나 입력 범위는 검토하지 못했다. 실행 테스트는 수행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 좌<우일 때 음수, 동일할 때 0, 그 외 양수를 요구한다. `Integer.compare(left, right)`는 이 세 경우를 정확히 반환하므로 반환값이 계약을 위반하지 않는다.\"}]}",
+  "input_tokens": 3771,
+  "output_tokens": 259,
+  "seconds": 2.235
+}

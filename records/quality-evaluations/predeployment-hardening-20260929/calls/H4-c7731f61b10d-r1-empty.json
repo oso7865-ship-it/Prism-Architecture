@@ -1,0 +1,12 @@
+{
+  "key": "H4-c7731f61b10d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:35.581542+00:00",
+  "input_hash": "16d5d56decd650f87a742a0f290528ca922e236f5034616c672952648043dd51",
+  "system_hash": "ae56199f6cb16412ffcf0b8ae2ccf2b34b4f74043633d001189ef1e30eefe1d2",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 코드는 `values.clone()`으로 복사본을 만든 뒤 복사본만 수정하고 원본 배열을 반환하므로, 명시된 계약(호출자 배열 비변경, 반환값 요구 없음)을 위반하지 않습니다. 정적 경고도 없으며, 제공된 범위에서 지원되는 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"`values`가 non-null nonempty라는 계약이 주어졌으므로 null/빈 배열 경로는 검토 대상이 아닙니다. `inspect`의 호출자, 반환값 사용 방식, `values`의 실제 출처는 제공되지 않아 확인하지 못했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: 호출자 배열을 변경하지 말 것, 반환값 요구 없음. `values.clone()`으로 복사 후 `scratch[0]`만 수정하고 원본 `values[0]`을 반환하므로 원본은 변경되지 않아 계약을 충족합니다.\"}]}",
+  "input_tokens": 3722,
+  "output_tokens": 262,
+  "seconds": 2.016
+}

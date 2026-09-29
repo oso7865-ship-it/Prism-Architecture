@@ -1,0 +1,12 @@
+{
+  "key": "H2-0c47bb65c1ee-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:02.155475+00:00",
+  "input_hash": "b7823d7f13ef11649dd2f674c759a657e2f411d67c8a10f5d7daaa5c79329cab",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base.copy()로 얕은 복사만 수행한 뒤 중첩 딕셔너리를 수정하고, 원본 base의 중첩 값을 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base가 중첩 딕셔너리(예: {'nested': {'limit': 1}})를 포함한 상태로 adjust(base)를 호출할 때\",\"consequence\":\"2줄의 base.copy()는 최상위만 복사하므로 3줄의 result['nested']['limit'] = 9가 원본 base['nested']를 변경하고, 4줄은 변경된 값 9를 반환합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 base가 변경됩니다\",\"evidence\":\"2줄은 base.copy()로 새 최상위 딕셔너리를 만들지만 중첩 딕셔너리는 공유됩니다. 3줄이 공유된 중첩 딕셔너리를 수정하고 4줄이 base에서 읽으므로 호출자의 base가 변경됩니다.\",\"suggestion\":\"중첩 딕셔너리까지 복사하도록 copy.deepcopy(base)를 사용하거나, result['nested'] = dict(base['nested'])처럼 중첩 수준을 별도로 복사한 뒤 수정하세요.\",\"contract_quote\":\"Preserve the caller's base without mutation.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과는 확인하지 않았습니다. base의 실제 구조와 호출 지점은 제공되지 않았습니다.\"}",
+  "input_tokens": 4631,
+  "output_tokens": 394,
+  "seconds": 2.984
+}

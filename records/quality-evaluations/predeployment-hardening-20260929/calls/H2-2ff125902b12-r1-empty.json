@@ -1,0 +1,12 @@
+{
+  "key": "H2-2ff125902b12-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:18.749245+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 content_length의 반환식(len(body))이며, 제공된 계약('bytes만 허용되고 그대로 전송, len(bytes)는 이미 바이트 수를 센다')과 테스트 기대값(request[\\\"Content-Length\\\"] == len(body))에 부합합니다. 제공된 범위에서 지원되는 결함이 없습니다.\", \"issues\": [], \"limitations\": \"prepare의 호출자, 실제 HTTP 전송 계층, content_length에 대한 외부 입력 검증 여부는 제공되지 않아 확인하지 못했습니다. 정적 분석 결과는 없으며, 제공된 라인만 검토했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 bytes를 그대로 전송하고 len(bytes)가 바이트 수를 센다고 명시한다. 반환식 len(body)는 이 요구와 테스트 기대값을 충족하며, 빈 입력에서도 0을 반환한다.\"}]}",
+  "input_tokens": 3726,
+  "output_tokens": 233,
+  "seconds": 2.0
+}

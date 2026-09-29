@@ -1,0 +1,12 @@
+{
+  "key": "H4-be9f4577979e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:11:41.227901+00:00",
+  "input_hash": "f264cb0d7afc8cc1d0b5aac034a05a8bca130cc62faa3de9fac77e388e68c3bf",
+  "system_hash": "8a1ed62515e2efaae31087074b140efa74401d0e91f54633fcad779021ff4220",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 라인은 `bucket=None` 기본값을 사용해 호출마다 새 리스트를 생성하는 전형적인 mutable default 회피 패턴이며, 명시된 계약(생략 시 새 버킷, 명시 시 in-place 수정)과 일치합니다. 지원 가능한 결함이 없습니다.\", \"issues\": [], \"limitations\": \"함수 호출자와 실제 사용 빈도는 제공되지 않았으나, 이는 판단에 필요한 전제가 아니며 변경 라인 자체에서 결함 경로가 보이지 않습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 생략된 bucket은 호출마다 새 리스트여야 하며, `if bucket is None: bucket = []`가 이를 보장합니다. 명시된 리스트는 그대로 append되어 in-place 수정 계약도 충족합니다.\"}]}",
+  "input_tokens": 3586,
+  "output_tokens": 229,
+  "seconds": 1.796
+}

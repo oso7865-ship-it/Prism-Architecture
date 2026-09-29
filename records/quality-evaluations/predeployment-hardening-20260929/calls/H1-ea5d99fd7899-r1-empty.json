@@ -1,0 +1,12 @@
+{
+  "key": "H1-ea5d99fd7899-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:01:00.132462+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 파일 f1은 테넌트 조건을 포함한 단일 SELECT 조회로, 계약(order_id가 테넌트 간 반복될 수 있고 인증된 테넌트의 주문만 반환)을 충족합니다. 정적 경고도 없고, 제공된 라인에서 구체적 실패 경로가 확인되지 않아 보고할 결함이 없습니다.\", \"issues\": [], \"limitations\": \"db.execute의 반환 타입/예외 계약, 호출자, 테넌트 인증 주입 방식은 제공되지 않아 검토 범위 밖입니다. 테스트 실행이나 미제공 코드 검사는 수행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 인증된 테넌트의 주문만 반환하도록 요구하며, 쿼리가 id와 tenant_id를 함께 바인딩해 조건을 충족합니다. 제공된 라인에서 null/경계 실패 경로는 보이지 않습니다.\"}]}",
+  "input_tokens": 3606,
+  "output_tokens": 252,
+  "seconds": 2.25
+}

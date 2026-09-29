@@ -1,0 +1,12 @@
+{
+  "key": "H2-bd5cd8f66c32-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:40.433685+00:00",
+  "input_hash": "45a1156c3c359631da4e07ccaf2f65d9bce9c53a7c6f8044238242056a84378e",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 retries 함수는 계약(value가 None 또는 음수가 아닌 정수, None일 때만 5 사용, 명시적 0 보존)을 그대로 만족한다. None이면 5를, 그 외에는 전달된 값을 반환하므로 0도 보존된다. 제공된 변경 라인에서 지원 가능한 결함이 없다.\", \"issues\": [], \"limitations\": \"retries의 호출자나 반환값 사용처가 제공되지 않아, 반환값이 이후 어떻게 소비되는지는 검토 범위 밖이다. 정적 분석 경고도 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 None일 때만 5, 그 외 값(0 포함)은 그대로 반환하도록 요구한다. 코드는 `5 if value is None else value`로 None→5, 0→0을 반환해 요구사항과 일치하며 위반이 없다.\"}]}",
+  "input_tokens": 3500,
+  "output_tokens": 234,
+  "seconds": 2.047
+}

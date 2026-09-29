@@ -1,0 +1,12 @@
+{
+  "key": "H4-cd1f9cff7b9c-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:11:51.465084+00:00",
+  "input_hash": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "system_hash": "540df2fc24c262c033d0fbf2746ac1bf5121e98e008271d2b33448a5fd44ec8f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 라인은 경로 포함 검사 함수 `permitted(root, resolved)`로, `resolved == root`이거나 `resolved`가 `root + '/'`로 시작할 때만 True를 반환한다. 계약상 입력은 심볼릭 링크·후행 슬래시가 없는 정규 절대 POSIX 경로이므로, 이 조건은 root 자신과 root의 하위 경로를 정확히 허용하며 접두사만 같은 형제 경로(예: `/a/bc` vs root `/a/b`)는 배제한다. 제공된 범위에서 보안 결함은 확인되지 않았다.\", \"issues\": [], \"limitations\": \"`permitted`의 호출자, root의 출처(사용자 입력 여부), 경로 정규화·심볼릭 링크 해석이 어디서 수행되는지는 제공되지 않았다. 계약이 정규 절대 POSIX 경로를 전제하므로 정규화 누락이나 링크 기반 우회는 이 조각만으로 판단할 수 없다. 테스트나 실행은 수행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 root 및 그 하위 경로만 허용하도록 요구한다. `resolved == root or resolved.startswith(root + '/')`는 root 자신과 root+구분자로 시작하는 하위 경로만 True로 반환하고, 접두사만 공유하는 형제 경로는 거부하므로 요구사항과 일치한다.\"}]}",
+  "input_tokens": 3889,
+  "output_tokens": 368,
+  "seconds": 2.547
+}

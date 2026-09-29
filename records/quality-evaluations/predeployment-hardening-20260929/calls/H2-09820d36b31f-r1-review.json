@@ -1,0 +1,12 @@
+{
+  "key": "H2-09820d36b31f-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:49.361206+00:00",
+  "input_hash": "74a357d6a9ab2d0cf835ad5d56620cd18bd23e2a2ba249956dcb410ed77d3464",
+  "system_hash": "7aa80d966c310852ee816fa755673aaaef44c070607c7ac7e70df7dfc8949851",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"scale 함수가 입력을 두 배로 계산하지만 반환하지 않고 원래 값을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"scale에 유한한 수(절댓값 100 미만)를 전달해 호출할 때\",\"consequence\":\"2줄에서 계산한 두 배 값이 반환되지 않고 원래 입력값이 반환되어, 계약에서 요구한 '입력의 두 배' 대신 입력 그대로가 호출자에게 전달됩니다.\",\"assumptions\":[],\"title\":\"scale이 두 배 값을 반환하지 않고 원래 값을 반환합니다\",\"evidence\":\"f1:2에서 value * 2를 scaled에 저장하지만 f1:3은 scaled가 아닌 value를 반환합니다. 제공된 behavior_contract는 'Return double the input'을 요구합니다.\",\"suggestion\":\"3줄의 반환식을 scaled로 바꿔 계산된 두 배 값을 반환하세요.\",\"contract_quote\":\"Return double the input.\",\"expression_repair\":{\"line\":3,\"before\":\"return value;\",\"after\":\"return scaled;\"}}],\"limitations\":\"제공된 단일 함수만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4630,
+  "output_tokens": 302,
+  "seconds": 2.297
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-4a06b424f621-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:25.299138+00:00",
+  "input_hash": "43d31ed64f95a6bc49fb83a7527716948887bf00888fc249ee4d753f6a6f8a80",
+  "system_hash": "e307a53d73a20459789e2855239f03856475cf824e1fb35d159bffed3c0d1edc",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"Array.prototype.sort가 values를 제자리에서 정렬하므로 호출자가 전달한 배열 자체의 순서가 변경되어, 제공된 계약의 '호출자의 배열을 수정하지 않는다'는 조건을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"values.sort(...)가 원본 배열을 제자리에서 정렬해 반환하므로 '호출자의 배열을 수정하지 않는다'는 계약을 위반합니다.\"}]}",
+  "input_tokens": 4460,
+  "output_tokens": 170,
+  "seconds": 1.312
+}

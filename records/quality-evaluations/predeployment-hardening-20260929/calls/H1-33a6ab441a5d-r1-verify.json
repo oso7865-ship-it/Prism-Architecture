@@ -1,0 +1,12 @@
+{
+  "key": "H1-33a6ab441a5d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:02.476524+00:00",
+  "input_hash": "dafab3db7a94eeaf8b1b4a772f59e68e77ae2c8f3d8bc876047365624ce7a243",
+  "system_hash": "4128d5b13d648c6d956190e980b4696225afbf2dd8cc1c4e921054ee4d6fb70f",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비어 있지 않은 int 배열에 대해 values[values.length]는 유효 인덱스 범위를 벗어나 ArrayIndexOutOfBoundsException을 발생시키고 마지막 요소를 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"last 메서드가 values[values.length]로 마지막 요소 대신 범위 밖 인덱스에 접근해 비어 있지 않은 배열에서도 예외가 발생합니다.\"}]}",
+  "input_tokens": 4668,
+  "output_tokens": 168,
+  "seconds": 1.312
+}

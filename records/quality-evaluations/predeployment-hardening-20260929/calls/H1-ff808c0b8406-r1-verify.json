@@ -1,0 +1,12 @@
+{
+  "key": "H1-ff808c0b8406-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:58.667005+00:00",
+  "input_hash": "cc6589b591d33e3da652bb49aa0f614a4c471e61735fbcd60acf1a894f1e8731",
+  "system_hash": "6fd7084d3b5269cf67fa6751c21eaf23ed06f7779409ba3c5e23a8d55d572204",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"store.save(value)의 Promise 완료를 기다리지 않고 true가 반환되어, 저장이 끝나기 전에 호출자가 성공으로 처리할 수 있습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"async submit이 save의 Promise를 await하지 않고 true를 반환하여 'Must finish persistence before returning true' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4568,
+  "output_tokens": 144,
+  "seconds": 1.313
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-291b4388e144-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:36.176998+00:00",
+  "input_hash": "fdbcb9566689fa5e24add0d732b10643f3e7aaf4a7232379189a0e9c9180e672",
+  "system_hash": "e706625939347f4263a38b00a09edbb8eb0fb425d1cdc097599eaf5754b74b9c",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 Java 코드는 `values`를 `scratch`에 별칭으로 복사한 뒤 `scratch[0]`을 수정하고 `values[0]`을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4,5],\"trigger\":\"`values`가 비어 있지 않은 배열로 `inspect`가 호출될 때\",\"consequence\":\"`scratch`가 `values`와 같은 배열을 가리키므로 4줄의 대입이 호출자의 배열 원소를 12로 변경하고, 5줄은 변경된 값을 반환합니다.\",\"assumptions\":[],\"title\":\"별칭 배열 수정으로 호출자 배열이 변경됩니다\",\"evidence\":\"3줄에서 `scratch = values`로 같은 배열 참조를 복사하고, 4줄에서 `scratch[0]`에 대입하므로 호출자가 전달한 배열 자체가 수정됩니다.\",\"suggestion\":\"호출자 배열을 보존하려면 `int[] scratch = values.clone();`처럼 복사본을 만들어 수정하세요.\",\"contract_quote\":\"Do not mutate the caller's array\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4811,
+  "output_tokens": 306,
+  "seconds": 2.484
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:15.016069+00:00",
+  "input_hash": "f48c2b86205d43bbe17d3bbd76d833a995476d146e4e5252dda72b45a04f2dd8",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"environment_settings의 10줄이 환경 변수 조회를 `or` 연쇄로 변경했고, 제공된 테스트 계약은 빈 CURL_CA_BUNDLE이 명시적 True를 보존해야 한다고 명시합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE이 빈 문자열(\\\"\\\")로 존재하고 verify가 True일 때 environment_settings를 호출하는 경우\",\"consequence\":\"`env.get(\\\"CURL_CA_BUNDLE\\\")`가 \\\"\\\"를 반환하고 `or`가 이를 거짓으로 평가해 REQUESTS_CA_BUNDLE 조회로 넘어가며, 둘 다 없으면 verify가 None이 됩니다. 이후 merge_setting(11줄)에서 session_verify가 True이므로 5줄이 True를 반환해 15·16줄의 `is True` 단언이 실패합니다.\",\"assumptions\":[],\"title\":\"빈 CURL_CA_BUNDLE이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 `env.get(\\\"CURL_CA_BUNDLE\\\") or env.get(\\\"REQUESTS_CA_BUNDLE\\\")`로 빈 문자열을 건너뜁니다. 제공된 path_observations는 15·16줄 호출에서 값이 \\\"\\\"가 되어 `is True` 단언과 불일치한다고 기록하며, behavior_contract도 빈 CURL_CA_BUNDLE이 True를 보존해야 한다고 명시합니다.\",\"suggestion\":\"빈 문자열을 유효한 명시 값으로 취급하도록 키 존재 여부를 기준으로 선택하세요. 예: `verify = env[\\\"CURL_CA_BUNDLE\\\"] if \\\"CURL_CA_BUNDLE\\\" in env else env.get(\\\"REQUESTS_CA_BUNDLE\\\")`. 이렇게 하면 14줄(둘 다 없음→None→True), 17줄(REQUESTS_CA_BUNDLE 경로), 18줄(verify=False) 동작이 유지됩니다.\",\"expression_repair\":{\"line\":10,\"before\":\"verify = env.get(\\\"REQUESTS_CA_BUNDLE\\\") or env.get(\\\"CURL_CA_BUNDLE\\\")\",\"after\":\"verify = env[\\\"CURL_CA_BUNDLE\\\"] if \\\"CURL_CA_BUNDLE\\\" in env else env.get(\\\"REQUESTS_CA_BUNDLE\\\")\"}}],\"limitations\":\"제공된 파일과 정적 투영만 검토했으며 실행 결과는 확인하지 않았습니다. 실제 호출자와 환경 변수 설정 방식은 제공되지 않았습니다.\"}",
+  "input_tokens": 5856,
+  "output_tokens": 641,
+  "seconds": 3.515
+}

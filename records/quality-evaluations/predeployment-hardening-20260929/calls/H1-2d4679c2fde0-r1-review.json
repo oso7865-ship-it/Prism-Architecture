@@ -1,0 +1,12 @@
+{
+  "key": "H1-2d4679c2fde0-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:19.075070+00:00",
+  "input_hash": "7d089e73985e499fa4be2342563ce0b62e8312fdd9b58eb28663236b51aa9a70",
+  "system_hash": "0e0aaa3d87f48fda6ee5c0ece3547996a491fea1667ea5797703012cdf779734",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 size 함수는 null 처리 조건과 이후 길이 반환 경로를 변경한 코드로 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"value가 null인 상태로 size를 호출하는 경우\",\"consequence\":\"2줄의 조건식이 value === null이 참이어도 &&의 오른쪽 value.length를 평가하므로 TypeError가 발생하고, 3줄의 반환에 도달하지 못합니다.\",\"assumptions\":[],\"title\":\"null 입력에서 조건 평가 중 예외가 발생합니다\",\"evidence\":\"1줄은 value가 string | null임을 나타내고, 2줄은 value === null일 때도 && 오른쪽에서 value.length를 평가합니다. 계약은 null이면 0을 반환하도록 요구합니다.\",\"suggestion\":\"2줄의 조건을 value === null 단독 검사로 바꾸거나, null과 빈 문자열을 각각 처리하도록 분리하세요.\",\"contract_quote\":\"For null return zero, otherwise return string length.\"}],\"limitations\":\"제공된 단일 파일과 계약만 검토했으며 실행 결과나 다른 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4775,
+  "output_tokens": 289,
+  "seconds": 2.391
+}

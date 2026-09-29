@@ -1,0 +1,12 @@
+{
+  "key": "H4-2ff125902b12-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:14.800223+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "8a1ed62515e2efaae31087074b140efa74401d0e91f54633fcad779021ff4220",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 파일 f1은 `content_length`가 `len(body)`를 반환하도록 한 단순 변경입니다. 제공된 계약(\\\"Only bytes accepted and sent unchanged; len(bytes) already counts bytes.\\\")과 테스트(`assert request[\\\"Content-Length\\\"] == len(body)`)를 비교하면, 반환값은 바이트 길이를 그대로 계산하여 계약과 일치합니다. 정적 경고도 없고, 제공된 범위에서 지원 가능한 결함은 확인되지 않습니다.\", \"issues\": [], \"limitations\": \"제공된 코드는 f1의 10개 라인과 하나의 표현식 관찰(빈 바이트열 → 0)뿐입니다. `prepare`의 호출자, 실제 HTTP 전송 계층, 다른 입력 타입의 사용 여부는 제공되지 않아 검토 범위 밖입니다. 테스트 실행이나 미제공 코드 검사는 수행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 bytes를 그대로 받아 len(bytes)로 바이트 수를 세는 것을 요구하며, 변경된 `return len(body)`는 이를 그대로 수행합니다. 테스트의 기대값 `len(body)`와도 일치하고, 빈 입력 관찰값 0도 정상입니다.\"}]}",
+  "input_tokens": 3760,
+  "output_tokens": 311,
+  "seconds": 2.422
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-964c0700fd59-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:42.815118+00:00",
+  "input_hash": "4ff22b8f191a5d6cf92bf7eb5f949bfd7ff0f6962d109d02616c7d218aa4ad61",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수는 value를 int로 받아 max(value, 0)을 반환해야 한다는 계약이지만, 2줄에서 계산한 adjusted를 사용하지 않고 3줄에서 원래 value를 그대로 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"value가 음수인 int(예: -1)로 adjust를 호출할 때\",\"consequence\":\"2줄에서 max(value, 0)으로 0을 계산하지만 반환되지 않고, 3줄에서 원래 음수 value가 그대로 반환되어 계약(Return max(value, 0))을 위반합니다.\",\"assumptions\":[],\"title\":\"음수 입력에서 max(value, 0) 대신 원래 값이 반환됩니다\",\"evidence\":\"2줄은 adjusted = max(value, 0)을 계산하지만 이후 사용되지 않고, 3줄은 value를 그대로 반환합니다. 계약은 max(value, 0) 반환을 요구합니다.\",\"suggestion\":\"3줄의 반환식을 value 대신 adjusted로 바꾸어 계산된 값을 반환하세요.\",\"contract_quote\":\"value is an int. Return max(value, 0).\",\"expression_repair\":{\"line\":3,\"before\":\"return value\",\"after\":\"return adjusted\"}}],\"limitations\":\"제공된 단일 파일과 계약만 검토했으며, 실행 결과나 외부 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 349,
+  "seconds": 2.25
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-4b5f6ff33252-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:20.261363+00:00",
+  "input_hash": "9e68146a45472e620a8416a09cc8be6587371779a0e1f5c6551bf360250bf0b7",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 environment_settings의 verify 처리 조건(9-10행)입니다. 제공된 계약(명시적 False 보존, CA 경로 문자열 허용)과 테스트 케이스 5건을 대조한 결과, 모든 경로에서 요구된 반환값과 일치하며 위반 사례가 확인되지 않았습니다. 정적 경고도 없습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 다른 호출자, env 딕셔너리의 실제 출처, verify에 전달될 수 있는 비-bool 타입의 계약은 제공되지 않아 검토 범위 밖입니다. 테스트는 정적 투영이며 실제 실행 결과가 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 명시적 False 보존과 CA 경로 문자열 허용을 요구한다. 9행 조건은 verify가 True/None일 때만 env를 조회하므로 False는 그대로 유지되고, 10행은 빈 문자열을 or로 걸러 verify로 폴백한다. 테스트 5건 모두 기대값과 일치한다.\"}]}",
+  "input_tokens": 4983,
+  "output_tokens": 276,
+  "seconds": 2.625
+}

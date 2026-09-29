@@ -1,0 +1,12 @@
+{
+  "key": "H4-0c543f7d32dd-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:52.088508+00:00",
+  "input_hash": "f077983734a78fe350195f1b85a874e9fc8fa1f9b4df7ae2641797e3f2b6f302",
+  "system_hash": "887ab3555940fac45eeb1425e2924691c7d9c0a36d3ebcc4693dc8f4fea68eaa",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"root가 '/srv/app'이고 resolved가 '/srv/app-evil/secret'일 때 startswith가 True를 반환하여, 계약상 허용 범위(루트 및 하위 경로)를 벗어난 형제 디렉터리 경로가 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 resolved.startswith(root)는 디렉터리 경계 없이 접두사만 비교하여 '/srv/app-evil/...' 같은 형제 경로를 허용합니다.\"}]}",
+  "input_tokens": 4867,
+  "output_tokens": 185,
+  "seconds": 1.562
+}

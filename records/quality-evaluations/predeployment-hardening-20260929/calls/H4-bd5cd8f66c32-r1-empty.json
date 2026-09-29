@@ -1,0 +1,12 @@
+{
+  "key": "H4-bd5cd8f66c32-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:36.759973+00:00",
+  "input_hash": "45a1156c3c359631da4e07ccaf2f65d9bce9c53a7c6f8044238242056a84378e",
+  "system_hash": "8a1ed62515e2efaae31087074b140efa74401d0e91f54633fcad779021ff4220",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"단일 변경 파일(f1)의 `retries` 함수는 계약 조건(None이면 5, 그 외에는 전달값 유지)을 그대로 만족합니다. 명시적 0은 `value is None` 검사로 보존되며, None 경로에서만 5가 반환됩니다. 제공된 HEAD 라인에서 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"제공된 것은 2줄짜리 함수 정의뿐이며, 호출자·입력 검증·음수 처리 등은 컨텍스트에 없어 검토 범위를 벗어납니다. 정적 분석 경고도 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 None일 때만 5, 그 외에는 값을 유지하라고 요구한다. `value is None` 조건으로 0을 포함한 유효 입력이 그대로 반환되고 None 경로만 5가 되므로 요구사항과 일치한다.\"}]}",
+  "input_tokens": 3534,
+  "output_tokens": 254,
+  "seconds": 2.422
+}

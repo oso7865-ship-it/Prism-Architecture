@@ -1,0 +1,12 @@
+{
+  "key": "H2-2826a82bd63e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:29.266093+00:00",
+  "input_hash": "7938527fda708e96c42d4ffa33e07ec9adf25b16eb805d0dfa9a51a480d73d2a",
+  "system_hash": "5d8efa4e492ffdf0fc7c70de480e25ffcd980562b7bf1352252cd744fede696a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 `ordered` 함수는 `[...values]`로 복사본을 만든 뒤 정렬하므로 호출자의 배열을 변경하지 않고, 숫자 비교자 `a - b`로 오름차순 정렬을 반환합니다. 명시된 계약(호출자 배열 비변경, 오름차순)을 위반하는 경로가 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"`values`의 실제 호출자와 입력 분포(비숫자, NaN, 희소 배열 등)는 제공되지 않아 검증 범위 밖입니다. 정적 분석 결과도 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 호출자 배열 비변경과 오름차순 반환을 요구한다. `[...values]`가 복사본을 만들어 정렬하므로 원본은 변경되지 않고, `a - b` 비교자로 오름차순이 반환되어 계약을 충족한다.\"}]}",
+  "input_tokens": 3505,
+  "output_tokens": 244,
+  "seconds": 1.782
+}

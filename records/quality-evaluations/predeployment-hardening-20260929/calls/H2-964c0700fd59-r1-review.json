@@ -1,0 +1,12 @@
+{
+  "key": "H2-964c0700fd59-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:45.828026+00:00",
+  "input_hash": "4ff22b8f191a5d6cf92bf7eb5f949bfd7ff0f6962d109d02616c7d218aa4ad61",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"adjust 함수가 max(value, 0)을 계산해 adjusted에 저장하지만 반환은 원래 value를 그대로 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"value가 0보다 작은 정수(예: -1)로 adjust를 호출할 때\",\"consequence\":\"2줄에서 계산한 max(value, 0)이 반환되지 않고 원래의 음수 value가 그대로 반환되어, 계약이 요구하는 max(value, 0) 결과와 다릅니다.\",\"assumptions\":[],\"title\":\"음수 입력에서 계약과 다른 값이 반환됩니다\",\"evidence\":\"계약은 'Return max(value, 0)'을 요구합니다. 2줄은 adjusted = max(value, 0)을 계산하지만 3줄은 value를 반환하므로, value가 음수일 때 반환값이 계약 결과와 불일치합니다.\",\"suggestion\":\"3줄의 반환식을 adjusted로 바꿔 계산된 max(value, 0)을 반환하도록 하세요.\",\"contract_quote\":\"Return max(value, 0).\",\"expression_repair\":{\"line\":3,\"before\":\"return value\",\"after\":\"return adjusted\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4743,
+  "output_tokens": 320,
+  "seconds": 2.062
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-9d73a727b44a-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:19.930370+00:00",
+  "input_hash": "9b1a9207f22169800366a9d776107ebfe087b2cadba9d2dd176ad47aed33e749",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"order_id가 여러 테넌트에 중복될 때, id만으로 조회하므로 다른 테넌트의 주문 행이 반환되어 '인증된 테넌트의 주문만 반환' 계약이 위반됩니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"load가 tenant_id를 받지만 SQL은 id만 조건으로 사용하여 테넌트 격리 계약을 위반합니다.\"}]}",
+  "input_tokens": 4612,
+  "output_tokens": 138,
+  "seconds": 1.297
+}

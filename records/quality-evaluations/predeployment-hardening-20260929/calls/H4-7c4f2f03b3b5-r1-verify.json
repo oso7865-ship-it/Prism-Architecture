@@ -1,0 +1,12 @@
+{
+  "key": "H4-7c4f2f03b3b5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:52.849254+00:00",
+  "input_hash": "6078875b5d6992e09d2bdad57dfb1c9ad6d3e486868d536472dc646e070941cf",
+  "system_hash": "ba988cec7158f8007523ab1e0585d0e34efeb62776963b3d28e733643be2450e",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"save가 호출되면 'saved'가 표준 출력으로만 기록되고, 주입된 logger.info를 통한 기록은 발생하지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄이 print로 기록하여 주입된 logger.info 사용을 요구하는 표준 s1을 위반합니다.\"}]}",
+  "input_tokens": 5032,
+  "output_tokens": 137,
+  "seconds": 1.484
+}

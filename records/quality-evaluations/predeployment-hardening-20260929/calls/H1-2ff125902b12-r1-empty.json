@@ -1,0 +1,12 @@
+{
+  "key": "H1-2ff125902b12-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:55.545769+00:00",
+  "input_hash": "a0ff575295ac10c1da4d42500b659104acfa198ce827e30b23fb66b6bfd488b7",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 `content_length`는 `len(body)`를 반환하며, 이는 bytes의 바이트 수를 정확히 계산합니다. 제공된 계약('bytes만 허용, 그대로 전송, len(bytes)는 이미 바이트 수')과 일치하므로 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 코드는 단일 파일의 일부이며, `prepare`의 호출자나 실제 HTTP 전송 계층은 확인할 수 없습니다. 테스트는 실행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 bytes 입력에 대해 len(bytes)가 바이트 수를 센다고 명시하며, 변경된 반환식 `len(body)`가 이를 그대로 만족합니다. 빈 bytes 입력도 0을 반환해 경계값이 정상입니다.\"}]}",
+  "input_tokens": 3827,
+  "output_tokens": 210,
+  "seconds": 1.656
+}

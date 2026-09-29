@@ -1,0 +1,12 @@
+{
+  "key": "H1-ab8f4435d732-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:10.085531+00:00",
+  "input_hash": "e319a194432290fac6fb2a0033ad956ce640e630cfd9c19f326ea71e9df51a01",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scratch['limits']가 원본 settings['limits']와 같은 객체이므로 3줄의 대입으로 호출자의 중첩 딕셔너리 cap 값이 12로 변경됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"settings.copy()는 얕은 복사이므로 3줄의 중첩 값 대입이 호출자의 중첩 상태를 변경하며, 이는 'Leave the caller's nested state unchanged' 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4615,
+  "output_tokens": 175,
+  "seconds": 1.422
+}

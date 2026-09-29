@@ -1,0 +1,12 @@
+{
+  "key": "H1-411a32119068-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:20.082484+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 str이면 UTF-8 인코딩 후 바이트 수를, bytes면 길이를 반환한다. 제공된 계약('str 또는 bytes를 받아 UTF-8 기준 전송 바이트 수 반환')과 일치하며, 명시된 실패 경로가 보이지 않는다.\", \"issues\": [], \"limitations\": \"호출자와 실제 입력 분포는 제공되지 않았다. str/bytes 외 타입(예: None, bytearray)에 대한 계약은 명시되지 않아 판단하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 str/bytes 입력에 대해 UTF-8 전송 바이트 수 반환을 요구한다. str은 encode('utf-8') 후 len, bytes는 len으로 바이트 수를 반환하므로 요구사항과 일치한다.\"}]}",
+  "input_tokens": 3607,
+  "output_tokens": 216,
+  "seconds": 1.734
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-1bcaee84937b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:32.863377+00:00",
+  "input_hash": "efe10b01bc3f1288f67f0fc56886cae45105120ebe20effe62d5375aa219ef8d",
+  "system_hash": "a7f992ab27ede5aa6a11827162665682a25d5fb1efb2407f150820d2913d8092",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"actor가 item.owner와 다른 값(예: actor=\\\"bob\\\", id=7)으로 호출하면 Error 없이 item.amount(40)가 그대로 반환되어 소유자가 아닌 actor에게 금액이 노출됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"f1:2에서 load(id) 결과를 받아 f1:3에서 item.amount를 반환하지만, 계약이 요구하는 actor와 item.owner 비교/Error 발생이 없어 비소유자에게 금액이 노출됩니다.\"}]}",
+  "input_tokens": 5039,
+  "output_tokens": 169,
+  "seconds": 1.61
+}

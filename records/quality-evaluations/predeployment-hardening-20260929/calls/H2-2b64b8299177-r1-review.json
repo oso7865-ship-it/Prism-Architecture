@@ -1,0 +1,12 @@
+{
+  "key": "H2-2b64b8299177-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:38.818265+00:00",
+  "input_hash": "e8727eabae41d294598492d58066822a55b49b90b35a58a739121d85dc7abb4f",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"retries 함수가 value or 5로 기본값을 처리하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value가 0인 경우(계약상 유효한 음이 아닌 정수)\",\"consequence\":\"0이 falsy로 평가되어 5가 반환되므로 명시적 0이 보존되지 않습니다.\",\"assumptions\":[],\"title\":\"명시적 0이 기본값 5로 대체됩니다\",\"evidence\":\"f1:2의 `value or 5`는 value가 falsy일 때 5를 반환합니다. 계약은 value가 None 또는 음이 아닌 정수이며 0을 보존하고 None에만 5를 사용하라고 명시합니다.\",\"suggestion\":\"`return 5 if value is None else value`로 변경해 None일 때만 5를 반환하고 0을 그대로 보존하세요.\",\"contract_quote\":\"value is None or a nonnegative int. Preserve explicit zero; use 5 only for None.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4734,
+  "output_tokens": 273,
+  "seconds": 2.172
+}

@@ -1,0 +1,54 @@
+{
+  "case": "6197edcf876e",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": false,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "user 자체가 null/undefined로 전달되는 경우는 타입상 허용되지 않으므로 검토 대상에서 제외했다. 호출자 코드와 실제 런타임 입력은 제공되지 않아 확인하지 못했다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "profile.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 profile 부재 시 'Unknown', 빈 name은 보존을 요구한다. `user.profile?.name ?? 'Unknown'`은 profile이 undefined면 'Unknown'을, name이 ''면 ''를 반환하므로 요구사항과 일치한다.",
+          "file_path": "profile.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa"
+}

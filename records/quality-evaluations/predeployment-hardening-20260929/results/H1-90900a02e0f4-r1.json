@@ -1,0 +1,77 @@
+{
+  "case": "90900a02e0f4",
+  "repeat": 1,
+  "arm": "H1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 입력에서 trim 호출로 NPE가 발생합니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "name이 null인 경우",
+        "consequence": "name이 null이면 조건이 참이 되어 name.trim()이 평가되고 NullPointerException이 발생합니다.",
+        "assumptions": [],
+        "title": "null 입력에서 trim 호출로 NPE가 발생합니다",
+        "evidence": "3줄의 조건은 name == null일 때 참이므로 삼항 연산자가 name.trim()을 선택합니다. 계약은 null을 빈 문자열로 표시하도록 요구합니다.",
+        "suggestion": "조건을 name == null ? \"\" : name.trim()으로 바꿔 null 분기에서 빈 문자열을 반환하고, 비-null 입력은 trim을 유지하세요.",
+        "file_path": "Display.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "c73f7e7412c768b7315e630a5e1e6da9b16f05fba65f273ac50770391450134a"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Display.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "FINDING",
+          "observation": "3줄의 삼항 조건이 반대로 되어 null 입력에서 trim을 호출해 NPE가 발생하며, 계약의 'null은 빈 문자열' 요구와 충돌합니다.",
+          "file_path": "Display.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64"
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-30cccaea91bc-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:52.196222+00:00",
+  "input_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47",
+  "system_hash": "16df5b4e84dd48a9e856056d144e6992f406c5c081dbb7973b341bfa992b5c30",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 계약은 '입력을 그대로 반환'이며, scale 함수는 value를 변경 없이 반환하므로 계약을 충족합니다. scaled 지역 변수는 계산되지만 사용되지 않으나, 이는 동작 결함이 아니라 스타일 문제이며 정적 경고도 없습니다. 지원 가능한 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"scale의 호출자와 실제 사용 맥락은 제공되지 않았습니다. 제공된 4개 라인만 검토했으며 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 입력을 그대로 반환하는 것이고 line 3의 return value가 이를 충족합니다. line 2의 scaled는 사용되지 않지만 동작 영향이 없는 미사용 계산으로 결함이 아닙니다.\"}]}",
+  "input_tokens": 3540,
+  "output_tokens": 215,
+  "seconds": 1.86
+}

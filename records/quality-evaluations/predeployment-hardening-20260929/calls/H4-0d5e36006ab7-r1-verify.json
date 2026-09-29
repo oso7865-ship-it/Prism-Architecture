@@ -1,0 +1,12 @@
+{
+  "key": "H4-0d5e36006ab7-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:04.376281+00:00",
+  "input_hash": "3b025a6be28b028568a7b6692434326326797aba1ff5ea5d1086e54287aa0f08",
+  "system_hash": "75b02cd1d50dc61e31361652dc7adbaec9193ac55e2eaa7ef7dbe63e4c40d18b",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"check()가 Promise를 반환하므로 조건이 항상 truthy가 되어, check가 false로 resolve되어도 'allowed'가 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"async check의 Promise를 await 없이 조건으로 사용해 false resolve 시에도 'allowed'가 반환되는 인가 우회가 확인됩니다.\"}]}",
+  "input_tokens": 4786,
+  "output_tokens": 140,
+  "seconds": 1.265
+}

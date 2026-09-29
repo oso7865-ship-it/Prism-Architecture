@@ -1,0 +1,12 @@
+{
+  "key": "H2-9e475996deba-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:58.704278+00:00",
+  "input_hash": "989b51e913a4db30cfdefcc0b7a4c3035c2baa169a3d980ca7b8bd0ceb2730b5",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"mean 함수가 values의 합을 길이로 나누는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"values가 빈 리스트일 때 mean(values)를 호출하는 경우\",\"consequence\":\"len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하며, 계약이 요구하는 0.0을 반환하지 못합니다.\",\"assumptions\":[],\"title\":\"빈 입력에서 계약된 0.0 대신 ZeroDivisionError가 발생합니다\",\"evidence\":\"f1:2는 sum(values)를 len(values)로 나눕니다. 빈 리스트에서는 len이 0이 되어 나눗셈이 실패하고, 이는 'Empty input has mean 0.0'이라는 제공된 계약과 어긋납니다.\",\"suggestion\":\"나눗셈 전에 values가 비었는지 확인해 0.0을 반환하도록 하세요.\",\"contract_quote\":\"Empty input has mean 0.0 by this API contract.\",\"expression_repair\":{\"line\":2,\"before\":\"    return sum(values) / len(values)\",\"after\":\"    return sum(values) / len(values) if values else 0.0\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4585,
+  "output_tokens": 321,
+  "seconds": 2.062
+}

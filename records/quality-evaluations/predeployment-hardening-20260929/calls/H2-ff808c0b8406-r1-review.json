@@ -1,0 +1,12 @@
+{
+  "key": "H2-ff808c0b8406-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:19.649930+00:00",
+  "input_hash": "7175cd85d770a42b11b9ce19a40624892149770ee0541ba0433cda042a3ca76f",
+  "system_hash": "74f694018ca9111bfaa4940e3f678feb28bbcdb518603dd2980c278b9cd9aa88",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"submit 함수가 store.save(value)의 Promise를 기다리지 않고 true를 반환하도록 변경된 부분을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"store.save(value)가 비동기 Promise를 반환하는 상태에서 submit을 호출하는 경우\",\"consequence\":\"save의 완료를 기다리지 않고 3줄에서 true가 반환되어, 영속화가 끝나기 전에 호출자가 성공으로 처리할 수 있습니다.\",\"assumptions\":[],\"title\":\"save 완료 전에 true를 반환합니다\",\"evidence\":\"f1:2에서 save의 Promise를 await하지 않고, f1:3에서 즉시 true를 반환합니다. 제공된 계약은 save가 Promise를 반환하며 반환 전에 영속화가 끝나야 한다고 명시합니다.\",\"suggestion\":\"2줄을 await store.save(value);로 바꿔 영속화 완료 후 true를 반환하도록 하세요.\"}],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 확인하지 않았습니다. store.save의 실제 구현과 호출자는 제공되지 않았습니다.\"}",
+  "input_tokens": 4605,
+  "output_tokens": 280,
+  "seconds": 2.266
+}

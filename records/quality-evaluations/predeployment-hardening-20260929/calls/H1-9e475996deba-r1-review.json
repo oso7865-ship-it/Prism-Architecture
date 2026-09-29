@@ -1,0 +1,12 @@
+{
+  "key": "H1-9e475996deba-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:34.265069+00:00",
+  "input_hash": "989b51e913a4db30cfdefcc0b7a4c3035c2baa169a3d980ca7b8bd0ceb2730b5",
+  "system_hash": "7f86864500727e391921ead9a569d47d2006c154f391957be13578a6f3db9b1e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"mean 함수의 변경된 반환식이 빈 입력에 대한 명시된 계약(빈 입력의 평균은 0.0)을 위반하는지 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"values가 빈 리스트일 때 mean(values)를 호출하는 경우\",\"consequence\":\"len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하여, 빈 입력에 대해 0.0을 반환해야 한다는 계약을 지키지 못합니다.\",\"assumptions\":[],\"title\":\"빈 입력에서 평균 계산이 ZeroDivisionError로 실패합니다\",\"evidence\":\"2줄은 sum(values) / len(values)를 반환합니다. 빈 리스트에서는 len(values)가 0이 되어 나눗셈이 실패하며, 이는 'Empty input has mean 0.0 by this API contract'라는 제공된 계약과 충돌합니다.\",\"suggestion\":\"나눗셈 전에 빈 입력을 처리하여 계약대로 0.0을 반환하도록 하세요. 예: len(values)가 0이면 0.0을 반환하고, 그렇지 않으면 기존 나눗셈을 수행합니다.\",\"contract_quote\":\"Empty input has mean 0.0 by this API contract.\"}],\"limitations\":\"제공된 변경 라인과 계약만 검토했으며, 실행 결과나 다른 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4726,
+  "output_tokens": 357,
+  "seconds": 2.469
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-3a35091fd0ff-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:53.300501+00:00",
+  "input_hash": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "system_hash": "b19ea611ff9255ea645af2dd7437d718e3e6b9b9234d98eba775ca42d910f721",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 invoice 함수에서 load(id) 결과의 owner와 actor를 비교해 소유자만 amount를 반환하도록 변경된 부분을 검토했습니다. 제공된 계약(id=7 존재, 소유자만 반환)과 관련 구현(load가 owner/amount 객체 반환)을 기준으로 볼 때, 인가 검사가 반환 전에 수행되며 우회 경로는 보이지 않습니다.\",\"issues\":[],\"limitations\":\"제공된 변경 라인과 관련 구현만 검토했으며 실행 결과는 확인하지 않았습니다. load의 실제 데이터 소스, actor의 출처와 신뢰 경계, 다른 호출자 및 인가 실패 시 상위 처리 방식은 제공 범위 밖입니다.\",\"context_requests\":[]}",
+  "input_tokens": 5039,
+  "output_tokens": 175,
+  "seconds": 1.828
+}

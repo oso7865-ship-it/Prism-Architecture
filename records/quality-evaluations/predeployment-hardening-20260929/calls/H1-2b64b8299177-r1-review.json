@@ -1,0 +1,12 @@
+{
+  "key": "H1-2b64b8299177-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:15.041262+00:00",
+  "input_hash": "e8727eabae41d294598492d58066822a55b49b90b35a58a739121d85dc7abb4f",
+  "system_hash": "7f86864500727e391921ead9a569d47d2006c154f391957be13578a6f3db9b1e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"retries 함수가 value or 5로 기본값을 처리하는 변경을 검토했습니다. 계약상 0은 유효한 값으로 보존되어야 하지만, or 연산의 truthiness로 인해 0이 5로 대체됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2],\"trigger\":\"value가 0(유효한 비음수 정수)으로 전달될 때\",\"consequence\":\"0이 falsy이므로 or 연산이 5를 반환하여, 보존되어야 할 명시적 0이 5로 대체됩니다.\",\"assumptions\":[],\"title\":\"명시적 0이 기본값 5로 대체됩니다\",\"evidence\":\"2줄의 value or 5는 value가 falsy일 때 5를 반환합니다. 계약은 value가 None 또는 비음수 정수이고 0을 보존하며 5는 None에만 사용한다고 명시합니다.\",\"suggestion\":\"None만 기본값으로 처리하도록 명시적 None 검사를 사용하세요(예: 5 if value is None else value). 이렇게 하면 0과 다른 유효한 비음수 정수가 그대로 반환됩니다.\",\"contract_quote\":\"value is None or a nonnegative int. Preserve explicit zero; use 5 only for None.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4875,
+  "output_tokens": 339,
+  "seconds": 2.453
+}

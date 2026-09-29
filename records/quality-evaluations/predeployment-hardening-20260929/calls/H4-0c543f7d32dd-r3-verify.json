@@ -1,0 +1,12 @@
+{
+  "key": "H4-0c543f7d32dd-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:16:31.267749+00:00",
+  "input_hash": "a0b2a9ae93feacf5a659e2fa617ee50106170fd50856c7f28d21744e72522d69",
+  "system_hash": "887ab3555940fac45eeb1425e2924691c7d9c0a36d3ebcc4693dc8f4fea68eaa",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"root가 '/srv/app'이고 resolved가 '/srv/app-evil/x'일 때 startswith가 참을 반환하여 root의 하위가 아닌 경로가 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 startswith 접두사 비교는 디렉터리 경계를 구분하지 않아 '/srv/app-evil/x' 같은 인접 경로가 허용됩니다.\"}]}",
+  "input_tokens": 4862,
+  "output_tokens": 160,
+  "seconds": 1.188
+}

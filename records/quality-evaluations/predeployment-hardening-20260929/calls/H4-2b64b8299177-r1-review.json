@@ -1,0 +1,12 @@
+{
+  "key": "H4-2b64b8299177-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:34.980327+00:00",
+  "input_hash": "e8727eabae41d294598492d58066822a55b49b90b35a58a739121d85dc7abb4f",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 retries 함수가 `value or 5`로 기본값을 처리하도록 변경되었습니다. 제공된 계약은 value가 None 또는 음이 아닌 정수이고, 명시적 0을 보존하며 None에만 5를 사용하라고 요구합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value가 0(유효한 음이 아닌 정수)으로 retries를 호출하는 경우\",\"consequence\":\"`0 or 5`가 5로 평가되어 명시적 0이 5로 대체되므로, 계약이 요구하는 0 보존이 위반됩니다.\",\"assumptions\":[],\"title\":\"명시적 0이 기본값 5로 대체됩니다\",\"evidence\":\"2줄의 `value or 5`는 falsy 값에서 5를 반환합니다. 제공된 semantic_observations에서 value=0일 때 결과가 5로 기록되어, 계약의 'Preserve explicit zero' 요구와 직접 충돌합니다.\",\"suggestion\":\"None만 5로 대체하도록 `return 5 if value is None else value`로 변경하세요. 이 변경은 value=0을 0으로, None을 5로, 나머지 음이 아닌 정수를 그대로 반환하여 계약의 모든 유효 입력을 보존합니다.\"}],\"limitations\":\"제공된 f1의 두 줄만 검토했으며, 실행 결과나 호출자 코드는 확인하지 않았습니다.\"}",
+  "input_tokens": 4749,
+  "output_tokens": 357,
+  "seconds": 2.422
+}

@@ -1,0 +1,54 @@
+{
+  "case": "e8ead1564f3f",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": false,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "`store.save`의 실제 구현, 호출자, 오류 전파 경계는 제공되지 않았습니다. 따라서 저장 실패 시의 처리 방식이나 반환값 계약은 검토 범위 밖입니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "save.js",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 save의 Promise 완료 후 true 반환을 요구하며, 코드는 `await store.save(value)` 후 `return true`를 수행하므로 요구된 순서와 반환값을 위반하지 않습니다.",
+          "file_path": "save.js"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "7cb9f09b7eab09d1c2b2a60a3711afbe0db9cf1ee6a688ecdc7951f5ce183dfd"
+}

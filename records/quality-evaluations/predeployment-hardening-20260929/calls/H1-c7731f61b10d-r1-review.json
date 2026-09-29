@@ -1,0 +1,12 @@
+{
+  "key": "H1-c7731f61b10d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:14.299755+00:00",
+  "input_hash": "16d5d56decd650f87a742a0f290528ca922e236f5034616c672952648043dd51",
+  "system_hash": "03a065a7c66d5007e335c425186ce4db89e7cb484522b33358522087943f4ad8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 Java 코드는 values를 clone한 뒤 복사본만 수정하고 원본 values[0]을 반환하는 변경입니다. 계약상 비어 있지 않은 비-null 배열이 전제되며, 원본 배열을 변경하지 않는다는 요구와 일치합니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인. values가 비-null이고 비어 있지 않다는 계약은 입력으로 주어졌으므로 별도 방어 코드는 요구되지 않습니다.\"}",
+  "input_tokens": 4953,
+  "output_tokens": 127,
+  "seconds": 1.328
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-3a35091fd0ff-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:04:55.164772+00:00",
+  "input_hash": "20eba369538bb693e3e66d2485048a5d7069e5b0aff3e6a25c3a6b046e9ca8db",
+  "system_hash": "146e10140af0663ca63abee1b09a5c82c03c3951c90aca4fa57cf6bc779f743f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"소유자 검증 로직(actor와 item.owner 비교 후 불일치 시 예외)이 추가된 변경으로, 제공된 계약(소유자에게만 amount 반환, 그 외 actor는 Error)을 코드가 그대로 만족합니다. 제공된 범위에서 보안 관련 결함은 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"load()의 실제 구현(DB 조회, 테넌트 격리, id 검증)과 actor의 출처·신뢰 경계는 제공되지 않아 확인하지 못했습니다. 또한 이 함수를 호출하는 엔드포인트의 인증/인가 계층은 리뷰 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 소유자에게만 amount를 반환하고 그 외 actor에는 Error를 요구한다. 코드는 item.owner !== actor일 때 예외를 던지고, 일치 시 amount를 반환하므로 요구된 반환/예외 동작과 일치한다.\"}]}",
+  "input_tokens": 3949,
+  "output_tokens": 257,
+  "seconds": 2.093
+}

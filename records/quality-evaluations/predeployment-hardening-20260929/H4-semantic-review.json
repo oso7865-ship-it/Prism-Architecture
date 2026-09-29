@@ -1,0 +1,13 @@
+{
+  "scope": "Manual review of 12 focused outputs (4 synthetic cases, 3 repeats each); no target code executed",
+  "reviewer": "Codex",
+  "candidate": "H4",
+  "original_metrics_preserved": true,
+  "cases": [
+    {"case": "0c543f7d32dd", "repeats": [1, 2, 3], "verdict": "PASS", "reason": "Each output explains sibling-prefix escape and explicitly preserves root equality plus descendants in its repair. Contract assumes canonical POSIX paths, no symlinks or trailing slash; this is not a universal filesystem policy."},
+    {"case": "cd1f9cff7b9c", "repeats": [1, 2, 3], "verdict": "PASS", "reason": "Correct boundary variant produces no findings or questions."},
+    {"case": "0c47bb65c1ee", "repeats": [1, 2, 3], "verdict": "PASS", "reason": "All strict primary-line misses anchor line 3, the actual nested write, and cite lines 2, 3, 4. They correctly explain shared nested identity after shallow copy, original-base mutation and a separate nested mapping/deep-copy repair. Expected line 2 is included in evidence. This is a primary-location mismatch, not an observed semantic miss."},
+    {"case": "898c474a9d7d", "repeats": [1, 2, 3], "verdict": "PASS", "reason": "Nested mapping copied before mutation produces no findings or questions; H2 false positive did not recur in these repeats."}
+  ],
+  "limitations": ["Not a blind independent holdout", "Only these 12 focused outputs received semantic adjudication", "Evidence-line matches across the other 74 outputs do not establish fully correct causal explanations or repairs", "Suggestions remain NOT_VERIFIED in product output; no repository code or suggested patches were executed"]
+}

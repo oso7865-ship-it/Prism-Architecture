@@ -1,0 +1,79 @@
+{
+  "case": "291b4388e144",
+  "repeat": 1,
+  "arm": "H2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 별칭 배열 수정으로 호출자 배열이 변경됩니다",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3,
+          4,
+          5
+        ],
+        "trigger": "`values`가 비어 있지 않은 배열로 `inspect`가 호출될 때",
+        "consequence": "`scratch`가 `values`와 동일한 배열을 참조하므로 4줄의 `scratch[0] = 12`가 호출자가 전달한 배열의 0번 원소를 12로 변경하고, 5줄은 그 변경된 값 12를 반환합니다.",
+        "assumptions": [],
+        "title": "별칭 배열 수정으로 호출자 배열이 변경됩니다",
+        "evidence": "3줄에서 `scratch = values`로 같은 배열 참조를 복사하고, 4줄에서 `scratch[0]`에 대입하므로 호출자가 전달한 배열 자체가 수정됩니다.",
+        "suggestion": "호출자 배열을 보존하려면 `int[] scratch = values.clone();`처럼 복사본을 만들어 수정하세요.",
+        "file_path": "Scratch.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "78f0ad433aacb2258bdfa30075b2e418c80bf47b94ca0e028e2e0e3fcfe34d94"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Scratch.java",
+          "provided_lines": 7
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "3줄의 참조 복사로 별칭이 생겨 4줄 대입이 호출자 배열을 변경하며, 이는 'Do not mutate the caller's array' 계약을 위반합니다.",
+          "file_path": "Scratch.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "fdbcb9566689fa5e24add0d732b10643f3e7aaf4a7232379189a0e9c9180e672"
+}

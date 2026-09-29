@@ -1,0 +1,12 @@
+{
+  "key": "H4-898c474a9d7d-r2-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:16:35.831692+00:00",
+  "input_hash": "506db82b2c7358a59331d19079688c9b3f959c336c660a6c0806159c538d2b37",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"DROP\",\"reason\":\"MISSING_CONTRACT\",\"revised\":null,\"checked_consequence\":null}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"NO_FINDING\",\"observation\":\"2줄에서 base['nested']를 별도 복사해 result에 넣고 3줄은 복사본만 수정하므로, 4줄이 원본 base['nested']['limit']을 반환해도 제공된 '호출자의 base를 변경하지 않음' 계약은 위반되지 않습니다. 반환값 계약은 제공되지 않았습니다.\"}],\"new_findings\":[]}",
+  "input_tokens": 4732,
+  "output_tokens": 150,
+  "seconds": 1.328
+}

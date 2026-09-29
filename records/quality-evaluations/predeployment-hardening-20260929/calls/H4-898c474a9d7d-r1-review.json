@@ -1,0 +1,12 @@
+{
+  "key": "H4-898c474a9d7d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:57.900492+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base를 얕게 복사한 뒤 중첩 딕셔너리를 별도로 복사하여 result['nested']를 수정하고, 원본 base['nested']['limit']을 반환합니다. 제공된 계약과 코드만으로는 반환값과 비변경 조건의 충족 여부가 확정되지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"NEEDS_CONTEXT\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']에 'limit' 키가 있고 adjust가 호출될 때\",\"consequence\":\"2~3줄에서 복사본의 limit만 9로 바뀌므로, 4줄은 원본 base['nested']['limit'] 값을 반환합니다. 이 값이 9가 아니면 호출자가 기대하는 결과와 다를 수 있습니다.\",\"assumptions\":[\"호출자가 adjust의 반환값으로 수정된 limit(9)을 기대합니다.\",\"base['nested']에 'limit' 키가 존재합니다.\"],\"title\":\"반환값이 수정된 복사본이 아니라 원본 limit인 것이 의도인가요?\",\"evidence\":\"2줄은 base['nested']를 별도 복사해 result에 넣고, 3줄은 result['nested']['limit']만 9로 설정합니다. 4줄은 base['nested']['limit']을 반환하므로 수정된 값이 아닌 원본 값을 돌려줍니다.\",\"suggestion\":\"호출자가 수정된 값을 기대하는지 확인하세요. 수정된 값을 반환해야 한다면 4줄을 result['nested']['limit']으로 바꾸고, 원본 값을 반환하는 것이 의도라면 현재 동작을 유지하세요.\"}],\"limitations\":\"제공된 f1의 4줄만 검토했습니다. 호출자와 base의 실제 구조, 'limit' 키 존재 여부, 반환값에 대한 계약은 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4658,
+  "output_tokens": 473,
+  "seconds": 3.282
+}

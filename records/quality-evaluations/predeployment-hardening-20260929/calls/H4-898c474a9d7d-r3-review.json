@@ -1,0 +1,12 @@
+{
+  "key": "H4-898c474a9d7d-r3-review",
+  "phase": "review",
+  "at": "2026-09-29T14:16:33.074234+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base를 얕게 복사한 뒤 중첩 딕셔너리를 별도로 복사하여 result['nested']를 수정하고, 원본 base['nested']['limit']을 반환합니다. 제공된 계약과 코드만으로는 반환값과 원본 보존 여부가 일치하지 않는지 판단할 근거가 부족합니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인. base['nested']가 실제로 딕셔너리인지, 반환값에 대한 기대 계약이 무엇인지는 제공되지 않았습니다.\"}",
+  "input_tokens": 4658,
+  "output_tokens": 152,
+  "seconds": 1.813
+}

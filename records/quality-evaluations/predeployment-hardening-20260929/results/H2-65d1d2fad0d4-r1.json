@@ -1,0 +1,77 @@
+{
+  "case": "65d1d2fad0d4",
+  "repeat": 1,
+  "arm": "H2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 뺄셈 오버플로로 비교 부호가 뒤집힙니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차가 int 범위를 벗어나는 경우(예: left = Integer.MIN_VALUE, right = 1)",
+        "consequence": "left = Integer.MIN_VALUE, right = 1일 때 int 뺄셈이 오버플로하여 left < right인데도 양수가 반환되어 비교 계약의 부호가 뒤집힙니다.",
+        "assumptions": [],
+        "title": "int 뺄셈 오버플로로 비교 부호가 뒤집힙니다",
+        "evidence": "f1:3은 left - right를 int로 계산해 반환합니다. int 뺄셈은 결과가 int 범위를 넘으면 오버플로하며, 예시 값에서 MIN_VALUE - 1은 양수로 감싸집니다.",
+        "suggestion": "Integer.compare(left, right)를 반환하도록 변경하세요.",
+        "file_path": "Order.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "5f72f10c1e71522b90005233fcfdb0eee3ed36c8c1136458fd234575ee5ce9a8"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Order.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "FINDING",
+          "observation": "compare가 left - right를 int로 반환하여 MIN_VALUE/1 같은 입력에서 오버플로로 부호가 뒤집힙니다.",
+          "file_path": "Order.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b"
+}

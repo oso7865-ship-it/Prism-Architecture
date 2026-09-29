@@ -1,0 +1,12 @@
+{
+  "key": "H1-ff6c59d6fbc8-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:34.819751+00:00",
+  "input_hash": "301e5fa6c3d68b8e7357b25cd715e499181c14a5bcb86b7f398e4f9c2dc0c0e1",
+  "system_hash": "2ae8988bfc777ed4116d2eceac0f29be1808f8eafd9f82cf0386167f6e325c82",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 f1의 유일한 변경 라인은 logger.info('saved') 호출이며, 제공된 표준 s1(print 대신 주입된 logger.info 사용)을 그대로 준수한다. 제공된 계약상 logger.info는 반환값이나 로깅 외 부작용이 없으므로 반환값 미사용도 문제가 아니며, 억제된 예외나 자원 정리 문제도 보이지 않는다. 따라서 채택할 만한 발견 사항이 없다.\", \"issues\": [], \"limitations\": \"f1의 save 함수 호출자, logger 구현, record의 실제 타입은 제공되지 않았다. 제공된 표준 섹션은 s1 하나뿐이며, 변경 라인은 해당 규칙과 일치한다. 정적 분석 결과는 제공되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"변경 라인 2는 주입된 logger.info로 기록하며 표준 s1의 'print 대신 logger.info' 요구를 충족한다. 계약상 logger.info는 반환값/부작용이 없어 반환값 미사용도 결함이 아니고, 3행은 record를 그대로 반환한다.\"}]}",
+  "input_tokens": 4070,
+  "output_tokens": 291,
+  "seconds": 2.156
+}

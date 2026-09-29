@@ -1,0 +1,12 @@
+{
+  "key": "H1-cd210310faa4-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:27.672432+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "3db167f22ca71c68196115e456c7d574758c8cc61da9363e5c29a01a33d141ce",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 f1의 유일한 변경 라인은 `name == null ? \\\"\\\" : name.trim()`으로, null이면 빈 문자열을, 그 외에는 앞뒤 공백을 제거한 값을 반환합니다. 제공된 계약(\\\"null은 빈 문자열, 그 외에는 앞뒤 공백 제거\\\")과 정확히 일치하며, null 분기에서 trim을 호출하지 않으므로 NPE 경로도 없습니다. 지원 가능한 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 파일은 단일 클래스의 5개 라인뿐이며, 호출자·테스트·기타 컨텍스트는 제공되지 않았습니다. 정적 분석 경고도 없습니다. 변경 라인 외의 동작은 검토 범위가 아닙니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 null→빈 문자열, 그 외→앞뒤 공백 제거입니다. 변경 라인은 삼항 연산자로 null일 때 trim을 호출하지 않고 \\\"\\\"를 반환하며, 그 외에는 trim 결과를 반환하므로 요구 동작과 일치하고 NPE 경로가 없습니다.\"}]}",
+  "input_tokens": 3768,
+  "output_tokens": 298,
+  "seconds": 2.25
+}

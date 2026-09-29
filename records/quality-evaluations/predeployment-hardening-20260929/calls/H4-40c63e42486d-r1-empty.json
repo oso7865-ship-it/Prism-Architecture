@@ -1,0 +1,12 @@
+{
+  "key": "H4-40c63e42486d-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:32.924783+00:00",
+  "input_hash": "c2cc21d92b2a7a28fe09f5ac6c9a8bf1cbe8126a61642c81115a55affbec65a8",
+  "system_hash": "16df5b4e84dd48a9e856056d144e6992f406c5c081dbb7973b341bfa992b5c30",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 inspect는 settings를 얕은 복사한 뒤 limits를 다시 복사해 scratch.limits.cap만 12로 바꾸고, 원본 settings.limits.cap을 반환합니다. 중첩 객체까지 복사했으므로 호출자의 중첩 상태는 변경되지 않고, 반환값 요구사항도 없어 제공된 계약을 위반하지 않습니다. 지원 가능한 결함은 없습니다.\", \"issues\": [], \"limitations\": \"inspect의 호출자와 반환값 사용처는 제공되지 않았습니다. 제공된 5개 라인만 검토했으며 테스트 실행이나 미제공 코드 검사는 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"settings를 얕은 복사하고 limits를 별도로 복사한 뒤 scratch.limits.cap만 12로 설정하므로 원본 settings.limits.cap은 유지됩니다. 반환값 요구사항이 없어 원본 cap 반환도 계약 위반이 아닙니다.\"}]}",
+  "input_tokens": 3593,
+  "output_tokens": 259,
+  "seconds": 2.297
+}

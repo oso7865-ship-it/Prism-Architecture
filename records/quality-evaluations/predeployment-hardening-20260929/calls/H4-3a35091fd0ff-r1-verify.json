@@ -1,0 +1,12 @@
+{
+  "key": "H4-3a35091fd0ff-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:50.997736+00:00",
+  "input_hash": "d8a89b26a45d4d2354b023debe39b31a18dbec5944fb3dd23ec76c0eb45f734e",
+  "system_hash": "1ac890f0010d30e27a04246b6911cb3bf5d94a9f797ab5c964d639175af3a4f6",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"f1:2-4는 load(id) 결과의 owner와 actor를 비교해 소유자에게만 amount를 반환합니다. 제공된 load는 id를 무시하는 고정 반환이지만, 이는 관련 구현의 한계이며 변경된 코드에서 id 검증 누락을 입증하는 계약 위반은 보이지 않습니다.\"}]}",
+  "input_tokens": 4998,
+  "output_tokens": 155,
+  "seconds": 1.375
+}

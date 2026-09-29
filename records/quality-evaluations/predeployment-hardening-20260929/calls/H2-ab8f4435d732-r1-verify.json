@@ -1,0 +1,12 @@
+{
+  "key": "H2-ab8f4435d732-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:33.293423+00:00",
+  "input_hash": "270602258b9cb70fb827fa72a55baee15532aadea6dc8c141a5c4a9fc555940b",
+  "system_hash": "93be5e42a34eaec1e22a310768fd1d342cb6f9a7e53867487f11212c9f3c73f4",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"settings['limits']가 중첩 딕셔너리일 때, 2줄의 얕은 복사로 scratch['limits']가 원본과 같은 객체를 참조하므로 3줄의 대입이 호출자의 settings['limits']['cap']을 12로 변경합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"settings.copy()는 얕은 복사이므로 3줄의 중첩 대입이 호출자 상태를 변경하며, 이는 'Leave the caller's nested state unchanged' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4505,
+  "output_tokens": 191,
+  "seconds": 1.594
+}

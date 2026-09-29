@@ -1,0 +1,12 @@
+{
+  "key": "H4-4cf224cd4371-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:12.811702+00:00",
+  "input_hash": "c32e8a6847be368baa97b11f58bdb78f33a364b14f972865b9da5d794cf222c6",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"prepare(\\\"한글\\\")에서 wire는 UTF-8 6바이트이지만 Content-Length는 len(\\\"한글\\\")=2로 계산되어 전송 바이트 수와 헤더 값이 불일치하고, f1:11의 단언이 실패합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"content_length가 str에 대해 문자 수를 반환하는데 prepare는 UTF-8 인코딩된 wire를 전송하므로 비ASCII str에서 Content-Length가 실제 바이트 수와 불일치합니다.\"}]}",
+  "input_tokens": 4931,
+  "output_tokens": 186,
+  "seconds": 1.297
+}

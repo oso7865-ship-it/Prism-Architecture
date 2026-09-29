@@ -1,0 +1,12 @@
+{
+  "key": "H2-42eddd40771d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:28.624134+00:00",
+  "input_hash": "e59c34729e1f8a77b5d6ef45def8ff068d90c679136c212876725ba37791d938",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"allowed()가 checker 호출 중 TimeoutError를 포착해 True를 반환하도록 변경된 부분을 검토했습니다. 제공된 계약과 정면으로 충돌하는 fail-open 경로가 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3,4,5],\"trigger\":\"checker(user)가 TimeoutError를 발생시켜 권한 여부가 불명확한 경우\",\"consequence\":\"4줄에서 예외를 포착해 5줄에서 True를 반환하므로, 불명확한 권한이 허용으로 처리됩니다.\",\"assumptions\":[],\"title\":\"권한 불명확 시 허용으로 반환되어 접근이 통과됩니다\",\"evidence\":\"1~3줄은 checker(user)의 반환값을 그대로 권한 판정으로 사용하고, 4~5줄은 TimeoutError를 포착해 True를 반환합니다. 제공된 계약은 checker가 TimeoutError를 발생시키면 권한이 불명확하므로 거부해야 한다고 명시합니다.\",\"suggestion\":\"TimeoutError 처리에서 True 대신 False를 반환하도록 5줄을 수정하세요.\",\"contract_quote\":\"checker raises TimeoutError when authorization is unknown. Unknown authorization must deny access.\",\"expression_repair\":{\"line\":5,\"before\":\"return True\",\"after\":\"return False\"}}],\"limitations\":\"제공된 5줄만 검토했으며 checker 구현과 호출자는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4682,
+  "output_tokens": 361,
+  "seconds": 2.609
+}

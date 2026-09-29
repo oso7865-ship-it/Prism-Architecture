@@ -1,0 +1,12 @@
+{
+  "key": "H1-44af6707b4e8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:18.131869+00:00",
+  "input_hash": "a6de390e70bce22d93d11a81ec23ddd9eb0c164543c96913c604fa2fc7df8679",
+  "system_hash": "7f86864500727e391921ead9a569d47d2006c154f391957be13578a6f3db9b1e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 2줄이 `value or default`로 변경되어, None뿐 아니라 0, 빈 문자열, False 같은 falsy 값도 default로 대체됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"value에 0, 빈 문자열, False 등 falsy이지만 명시적으로 제공된 값이 전달될 때\",\"consequence\":\"`value or default`가 해당 값을 falsy로 평가해 default를 반환하므로, 제공된 값이 보존되지 않고 대체됩니다.\",\"assumptions\":[],\"title\":\"falsy 값이 default로 대체되어 명시적 값이 보존되지 않습니다\",\"evidence\":\"2줄의 `value or default`는 value의 truthiness로 분기합니다. semantic_observations에서 value=0, \\\"\\\", false일 때 각각 default(-1)가 반환됩니다.\",\"suggestion\":\"None만 부재로 취급하도록 `return default if value is None else value`로 변경하세요.\",\"contract_quote\":\"Only None means absent. Preserve all explicitly provided values.\"}],\"limitations\":\"제공된 f1의 2줄만 검토했으며, 실행 결과나 호출자 컨텍스트는 확인하지 않았습니다.\"}",
+  "input_tokens": 4908,
+  "output_tokens": 297,
+  "seconds": 2.39
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-0c47bb65c1ee-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:16:35.179526+00:00",
+  "input_hash": "ac6848ea63eb6b253f78c7da7af7254a226e4ac4f0c37f3d7759f0f1a2d2a237",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"base['nested']가 result['nested']와 같은 객체이므로 3줄의 대입이 호출자의 base['nested']['limit']을 9로 바꾸고, 4줄은 9를 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"base.copy()는 최상위 매핑만 복사하여 중첩 딕셔너리가 공유되고, 3줄의 수정이 호출자의 base를 변경해 'Preserve the caller's base without mutation' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4641,
+  "output_tokens": 174,
+  "seconds": 1.282
+}

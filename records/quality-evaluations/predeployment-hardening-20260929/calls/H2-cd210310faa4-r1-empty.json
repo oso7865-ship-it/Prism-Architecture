@@ -1,0 +1,12 @@
+{
+  "key": "H2-cd210310faa4-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:04:50.114436+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "ae56199f6cb16412ffcf0b8ae2ccf2b34b4f74043633d001189ef1e30eefe1d2",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄(3행)은 null이면 빈 문자열, 아니면 trim 결과를 반환한다. 제공된 계약(\\\"null name is displayed as empty; otherwise strip surrounding whitespace\\\")과 정확히 일치하므로 반환 결함은 없다. 정적 경고도 없으며, 제공된 범위에서 지원되는 추가 결함은 확인되지 않았다.\", \"issues\": [], \"limitations\": \"name()의 호출자, trim() 결과의 사용 방식, 그리고 이 클래스의 다른 메서드는 제공되지 않아 검토 범위 밖이다. 제공된 HEAD 라인은 3행 한 줄뿐이다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 null이면 빈 문자열, 그 외에는 앞뒤 공백 제거를 요구한다. 3행은 name == null일 때 \\\"\\\"를, 그 외에는 name.trim()을 반환하므로 요구된 반환과 일치한다.\"}]}",
+  "input_tokens": 3667,
+  "output_tokens": 238,
+  "seconds": 2.172
+}

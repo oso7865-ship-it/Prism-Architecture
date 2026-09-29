@@ -1,0 +1,12 @@
+{
+  "key": "H1-0d5e36006ab7-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:42.713897+00:00",
+  "input_hash": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "system_hash": "295706971f8aab47a4ad1b5e8027bc82a90fa5de131c34994290d900c7332c55",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 access 함수에서 async check 호출 결과를 await하지 않고 truthy 판정에 사용하는 변경만 확인되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"check가 async이고 Promise를 반환하는 상태에서 access(check)를 호출할 때\",\"consequence\":\"check()가 반환한 Promise 객체는 항상 truthy이므로 await 없이 평가되면 check가 false로 resolve되어도 2줄의 조건이 참이 되어 'allowed'가 반환됩니다.\",\"assumptions\":[],\"title\":\"async check 결과를 await하지 않아 인가 판정이 항상 허용됩니다\",\"evidence\":\"2줄은 check()의 반환값을 조건으로 사용하지만 await가 없습니다. 제공된 계약에 따르면 check는 async이며 boolean으로 resolve되므로, Promise 객체 자체가 truthy로 평가되어 resolve 값과 무관하게 허용 분기가 선택됩니다.\",\"suggestion\":\"2줄을 `if (await check()) return 'allowed';`로 수정하여 resolve된 boolean 값을 판정에 사용하세요.\",\"citations\":[]}],\"limitations\":\"check의 실제 구현과 호출 지점은 제공되지 않아 resolve 값의 출처와 실패 경로는 확인하지 못했습니다.\"}",
+  "input_tokens": 5115,
+  "output_tokens": 298,
+  "seconds": 2.828
+}

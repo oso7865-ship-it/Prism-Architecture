@@ -1,0 +1,52 @@
+{
+  "case": "40c63e42486d",
+  "repeat": 1,
+  "arm": "H1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "inspect의 호출자와 반환값 사용처는 제공되지 않아, 반환값에 대한 추가 계약이 있는지는 확인할 수 없습니다. 제공된 HEAD 라인만 검토했습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "profile.ts",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "2행에서 limits를 별도 복사하므로 3행의 cap 변경은 복사본에만 적용되고, 4행은 원본 settings.limits.cap을 반환합니다. 계약상 호출자 중첩 상태는 유지되며 반환값 요구도 없어 위반이 없습니다.",
+          "file_path": "profile.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "c2cc21d92b2a7a28fe09f5ac6c9a8bf1cbe8126a61642c81115a55affbec65a8"
+}

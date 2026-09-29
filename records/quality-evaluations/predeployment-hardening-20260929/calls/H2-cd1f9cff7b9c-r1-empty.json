@@ -1,0 +1,12 @@
+{
+  "key": "H2-cd1f9cff7b9c-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:04:56.630248+00:00",
+  "input_hash": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "system_hash": "ff89731dcd8e52ade3286fe5fda637a2ac77ec34b4e1d830f522ae7e762c6b64",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"경로 포함(path containment) 검사 함수 `permitted`의 변경된 반환식만 검토했다. 계약상 입력은 심볼릭 링크·후행 슬래시가 없는 정규 절대 POSIX 경로이며, `resolved == root` 또는 `root + '/'` 접두사 일치로 root 자신과 하위 경로를 정확히 허용한다. 접두사 경계 문제(예: `/a/bc` vs root `/a/b`)도 '/' 구분자로 방지되어 있어, 제공된 범위에서 보안 결함은 확인되지 않았다.\", \"issues\": [], \"limitations\": \"`root`/`resolved`의 실제 생성·정규화 경로와 호출자, 그리고 이 함수의 반환값이 어떤 접근 제어 결정에 사용되는지는 제공되지 않아 확인하지 못했다. 계약에 명시된 정규화·심볼릭 링크 부재 전제가 호출 측에서 실제로 보장되는지는 이 조각만으로 검증할 수 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: root와 그 하위만 허용. 반환식은 `resolved == root`로 root 자신을, `resolved.startswith(root + '/')`로 '/' 경계를 포함한 하위 경로를 허용한다. 접두사만 비교하는 우회(예: root '/a/b'에 '/a/bc')는 '/' 추가로 차단되어 계약과 일치한다.\"}]}",
+  "input_tokens": 3855,
+  "output_tokens": 358,
+  "seconds": 2.734
+}

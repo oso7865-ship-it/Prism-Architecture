@@ -1,0 +1,12 @@
+{
+  "key": "H2-898c474a9d7d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:02.384885+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust 함수에서 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하고, 반환값은 원본 base['nested']['limit']을 읽습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']가 중첩된 가변 값을 포함하고 adjust(base)를 호출할 때\",\"consequence\":\"result['nested']는 base['nested']와 같은 중첩 객체를 공유하므로, 3줄에서 result['nested']['limit']을 9로 바꾸면 base['nested']['limit']도 9로 변경되어 호출자의 base가 변경됩니다.\",\"assumptions\":[],\"title\":\"중첩 복사본 수정이 원본 base를 변경합니다\",\"evidence\":\"2줄의 base['nested'].copy()는 얕은 복사이므로 result['nested']와 base['nested']가 동일한 중첩 객체를 참조합니다. 3줄은 그 공유 객체의 'limit'을 9로 설정하고, 4줄은 원본 base['nested']['limit']을 반환합니다.\",\"suggestion\":\"base['nested']의 중첩 가변 값까지 복사하도록 깊은 복사(예: copy.deepcopy)를 사용하거나, 변경 대상 중첩 객체를 새로 만들어 result['nested']에 할당하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4643,
+  "output_tokens": 366,
+  "seconds": 2.891
+}

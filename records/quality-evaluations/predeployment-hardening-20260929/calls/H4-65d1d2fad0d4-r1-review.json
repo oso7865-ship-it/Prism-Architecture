@@ -1,0 +1,12 @@
+{
+  "key": "H4-65d1d2fad0d4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:58.278190+00:00",
+  "input_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b",
+  "system_hash": "eb6588ce3f08b974ea81ccb686ef139f85afc0866ae56803836768fdedfc48c0",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 compare가 left - right로 변경되었습니다. 제공된 계약(비교기 부호 규칙)과 int 뺄셈의 오버플로 가능성을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"left와 right가 int 범위의 양 끝 값이어서 left - right의 수학적 결과가 int 범위를 벗어나는 경우(예: left = Integer.MIN_VALUE, right = 1)\",\"consequence\":\"int 뺄셈이 오버플로되어 결과의 부호가 뒤집히고, left < right인데도 양수가 반환되어 제공된 비교기 계약(음수/0/양수 부호 규칙)을 위반합니다.\",\"assumptions\":[],\"title\":\"int 뺄셈 비교가 오버플로로 부호를 뒤집습니다\",\"evidence\":\"3줄은 left - right를 int로 계산해 반환합니다. 제공된 계약은 left < right일 때 음수 부호를 요구하지만, int 범위를 벗어나는 차이는 부호가 반전됩니다.\",\"suggestion\":\"Integer.compare(left, right)를 반환하도록 바꾸면 오버플로 없이 계약의 부호 규칙을 유지합니다.\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 compare의 호출자와 실제 입력 범위는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4739,
+  "output_tokens": 349,
+  "seconds": 2.656
+}

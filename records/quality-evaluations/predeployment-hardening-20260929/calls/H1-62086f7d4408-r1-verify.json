@@ -1,0 +1,12 @@
+{
+  "key": "H1-62086f7d4408-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:50.976499+00:00",
+  "input_hash": "84705400ad46618424f656ca128ab472717ac9431702e8dccf78e6f79cc95eee",
+  "system_hash": "e0699b85a5d76e7a1dabc46e4b9fdc4c6b3814ba47fda63ce1c379739ea68a79",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"operation()이 ValueError를 발생시키면 4줄의 except 절이 이를 포착하고 5줄에서 None을 정상 반환값으로 반환하여 호출자가 실패를 구분할 수 없게 됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"4줄에서 ValueError를 포착한 뒤 5줄에서 재던지지 않고 None을 반환하여, 표준 s1이 금지하는 실패의 정상 반환 은닉에 해당합니다.\"}]}",
+  "input_tokens": 5221,
+  "output_tokens": 175,
+  "seconds": 1.547
+}

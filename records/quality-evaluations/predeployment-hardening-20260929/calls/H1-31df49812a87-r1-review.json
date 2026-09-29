@@ -1,0 +1,12 @@
+{
+  "key": "H1-31df49812a87-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:25.039764+00:00",
+  "input_hash": "4c5609b85b6c9e4d69384a2226b77b845363c4e610757573cb6d09f2da07ee1c",
+  "system_hash": "e1072740df3705f240842c60db96677f274a903823ff084a2787d836afdcdb34",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 trim 함수는 문자열을 trim한 결과를 지역 변수에 저장하지만 원본 value를 반환하도록 변경되었습니다. 제공된 계약과 비교해 반환값이 요구사항을 충족하지 못하는지 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"앞뒤 공백이 있는 문자열을 trim(value)에 전달할 때\",\"consequence\":\"2줄에서 계산한 trimmed 값이 반환되지 않고 원본 value가 그대로 반환되어, 앞뒤 공백이 제거되지 않은 문자열이 호출자에게 전달됩니다.\",\"assumptions\":[],\"title\":\"trim 결과 대신 원본 문자열을 반환합니다\",\"evidence\":\"2줄은 value.trim() 결과를 trimmed에 저장하지만, 3줄은 trimmed가 아닌 value를 반환합니다. 계약은 앞뒤 공백이 제거된 텍스트를 반환하도록 요구합니다.\",\"suggestion\":\"3줄의 반환값을 trimmed로 바꿔 계산된 trim 결과를 반환하도록 하세요.\",\"contract_quote\":\"Return its text with leading and trailing whitespace removed.\",\"expression_repair\":{\"line\":3,\"before\":\"return value;\",\"after\":\"return trimmed;\"}}],\"limitations\":\"제공된 4개 줄만 검토했으며 실행 결과나 호출자 동작은 확인하지 않았습니다.\"}",
+  "input_tokens": 4761,
+  "output_tokens": 340,
+  "seconds": 2.531
+}

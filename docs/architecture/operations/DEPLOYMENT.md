@@ -35,6 +35,10 @@ Dockerfile의 비root·단일 worker·PORT·health 구성을 기반으로 한다
 
 백엔드 Dockerfile 및 config/production.example은 기존 구현이다. deployment/render.example.yaml은 과거 Render 예시이며 현행 AWS 명세가 아니다. EC2 실행 자원, 최소 권한, HTTPS 진입점, 비밀 주입, 이미지 전달·배포 방식과 호스트/컨테이너 운영 설정을 준비한다. PostgreSQL을 동일 EC2, 별도 인스턴스, 관리형 DB 중 어디에 배치할지는 별도 결정이다.
 
+`deployment/compose.ec2.yaml`은 EC2 Docker 실행 설정이다. 호스트 HTTPS 프록시 뒤의 127.0.0.1:8000만 열고, 비루트 이미지·읽기 전용 파일시스템·64MiB 임시 영역·권한 제거·1GiB/1CPU/128 PID 제한·45초 종료 대기·자동 재시작·준비 상태 healthcheck·30MiB 로그 회전을 적용한다. EC2 인스턴스 전체 요구 메모리를 1GiB로 정한 것은 아니며 OS/프록시 여유가 별도로 필요하다. 실행 파일·환경 변수·운영 순서는 [배포 전 실행 안내](../../../records/2026-09-29_ec2-release-runbook.md)에 있다.
+
+`python -m app.shared.config.preflight --image <digest>`는 네트워크 접근 없이 운영 모드·불변 이미지·인증/앱/worker/AI 활성화·팀30회·CA 파일 존재·예시 값 미교체를 검사한다. 출력은 검사명과 참/거짓뿐이다. PASS는 설정 검사이며 실제 키 유효성·CA 신뢰·TLS/프록시/DB 연결·AWS 성능의 증거가 아니다. 기존 기본 OFF 설정은 유지하고 실제 전체 기능 출시의 최종 preflight에서만 활성화를 요구한다.
+
 설계·리포트는 Prism-Architecture에서만 관리한다. 구현 저장소에는 실행 코드와 배포 설정만 둔다. [중앙 기록](../../../records/README.md)과 실제 테스트 결과로 구현·배포 상태를 확인한다.
 
 ## CI/CD와 복구

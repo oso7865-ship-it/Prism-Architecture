@@ -1,0 +1,12 @@
+{
+  "key": "H4-42eddd40771d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:25.517790+00:00",
+  "input_hash": "e59c34729e1f8a77b5d6ef45def8ff068d90c679136c212876725ba37791d938",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 allowed 함수는 checker 호출이 TimeoutError를 낼 때 True를 반환하도록 변경되었습니다. 제공된 계약은 인증이 불명확할 때 접근을 거부해야 한다고 명시하므로, 이 예외 경로는 계약과 반대되는 허용 결과를 냅니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4,5],\"trigger\":\"checker(user)가 TimeoutError를 발생시켜 4줄의 except 절이 실행될 때\",\"consequence\":\"allowed가 True를 반환해 불명확한 인증이 허용으로 처리됩니다.\",\"assumptions\":[],\"title\":\"TimeoutError 시 허용을 반환해 불명확한 인증이 통과합니다\",\"evidence\":\"3줄에서 checker(user)를 호출하고, 4줄이 TimeoutError를 잡아 5줄에서 True를 반환합니다. 제공된 계약은 인증이 불명확할 때 거부해야 한다고 명시합니다.\",\"suggestion\":\"TimeoutError 처리에서 False를 반환하도록 5줄을 수정해 불명확한 인증을 거부하세요.\",\"contract_quote\":\"checker raises TimeoutError when authorization is unknown. Unknown authorization must deny access.\",\"expression_repair\":{\"line\":5,\"before\":\"return True\",\"after\":\"return False\"}}],\"limitations\":\"제공된 f1의 5줄만 검토했으며 checker 구현과 호출자는 제공되지 않아 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4697,
+  "output_tokens": 364,
+  "seconds": 2.407
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-1bcaee84937b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:52.328405+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "b19ea611ff9255ea645af2dd7437d718e3e6b9b9234d98eba775ca42d910f721",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 invoice 함수가 load(id) 결과의 amount를 반환하는 경로를 검토했습니다. 제공된 계약은 소유자에게만 amount를 반환하고 다른 actor에게는 Error를 던져야 한다고 명시하지만, 변경된 코드에는 actor 검사가 없습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"actor가 \\\"alice\\\"가 아닌 값(예: \\\"bob\\\")으로 invoice(7, actor)를 호출할 때\",\"consequence\":\"소유자 확인 없이 item.amount가 반환되어, 계약이 요구하는 Error 발생 대신 다른 actor에게 금액이 노출됩니다.\",\"assumptions\":[],\"title\":\"소유자가 아닌 actor에게도 amount가 반환됩니다\",\"evidence\":\"f1:2에서 load(id) 결과를 받고 f1:3에서 actor를 확인하지 않은 채 item.amount를 반환합니다. 제공된 계약은 소유자 외 actor에게 Error를 요구하며, 관련 구현은 owner가 \\\"alice\\\"임을 보여줍니다.\",\"suggestion\":\"item.amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지세요.\",\"contract_quote\":\"Return the amount only to its owner; throw Error for other actors.\",\"citations\":[]}],\"limitations\":\"load의 실제 구현 본문과 호출자, actor 값의 출처는 제공되지 않았습니다. 제공된 범위만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 5005,
+  "output_tokens": 370,
+  "seconds": 2.328
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-a8961f6d5e20-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:08.403887+00:00",
+  "input_hash": "29fcf766de0cdcfb58aae04bb6b3f73f07903ac3ce7b5dcf40d5ce6a35d19f62",
+  "system_hash": "887ab3555940fac45eeb1425e2924691c7d9c0a36d3ebcc4693dc8f4fea68eaa",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"user_id가 SQL 문자열에 직접 연결되어 반환되고, 호출자가 이를 %s 플레이스홀더를 쓰는 DB-API 드라이버에 그대로 전달하므로 해당 입력이 SQL 구문으로 해석되어 주입이 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 untrusted user_id가 파라미터 바인딩 없이 SQL 문자열에 연결되어 반환됩니다.\"}]}",
+  "input_tokens": 4926,
+  "output_tokens": 161,
+  "seconds": 1.531
+}

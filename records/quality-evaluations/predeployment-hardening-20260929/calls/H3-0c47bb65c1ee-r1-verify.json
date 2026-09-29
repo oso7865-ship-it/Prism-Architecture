@@ -1,0 +1,12 @@
+{
+  "key": "H3-0c47bb65c1ee-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:08:57.289583+00:00",
+  "input_hash": "14ee4673321735e2057211f07c4387fdba052b6f762af804bcd262cc07ccc9e8",
+  "system_hash": "7223543441ac1ff48afcfe02a8d529a608d5a6ea81e2d1e292e9c4cdbab51fcf",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"REVISE\", \"reason\": \"MISSING_CONTRACT\", \"revised\": {\"file_id\": \"f1\", \"line\": 3, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [2, 3, 4], \"trigger\": \"base가 중첩 딕셔너리를 가진 매핑이고(계약: 'base has a nested dictionary'), adjust(base)를 호출하는 경우\", \"consequence\": \"result['nested']가 base['nested']와 같은 객체이므로 3줄의 대입이 호출자의 base['nested']['limit']을 9로 바꾸고, 4줄은 변경된 9를 반환합니다.\", \"assumptions\": [], \"title\": \"base.copy()가 중첩 딕셔너리를 공유해 호출자의 base가 변경됨\", \"evidence\": \"2줄의 base.copy()는 최상위 매핑만 복사하므로 3줄의 result['nested']['limit'] 대입은 base['nested']가 같은 객체일 때 원본 하위 딕셔너리를 변경합니다. 4줄은 그 원본 값을 반환합니다. 제공된 계약은 'Preserve the caller's base without mutation'입니다.\", \"suggestion\": \"하위 딕셔너리도 복사한 뒤 수정하도록 바꾸세요. 예: result = base.copy(); result['nested'] = base['nested'].copy(); result['nested']['limit'] = 9. 이렇게 하면 호출자의 base는 변경되지 않고 4줄은 원래 limit 값을 반환합니다.\", \"contract_quote\": \"Preserve the caller's base without mutation.\"}, \"checked_consequence\": \"base['nested']가 딕셔너리이면 3줄의 대입이 호출자의 base['nested']['limit']을 9로 바꾸고, 4줄은 변경된 9를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"base.copy()는 얕은 복사이므로 3줄이 공유된 하위 딕셔너리를 변경해 호출자의 base를 변경하고, 4줄은 변경된 값을 반환합니다.\"}]}",
+  "input_tokens": 4692,
+  "output_tokens": 551,
+  "seconds": 2.672
+}

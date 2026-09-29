@@ -1,0 +1,12 @@
+{
+  "key": "H2-7c4f2f03b3b5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:56.195574+00:00",
+  "input_hash": "da07d64478eebd49b32f1ec2bf1d591a0a8dd9b1631507d0f607c220dd28c3b5",
+  "system_hash": "3d109637548fa649bd859a517c788a4407aa1d5f8d4fa70a832cd408bb370987",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 save 함수에서 변경된 2줄이 print('saved')로 기록을 남기고 있습니다. 제공된 팀 표준 s1은 애플리케이션에서 print 대신 주입된 logger.info를 사용하도록 요구하며, 이 파일은 해당 표준의 적용 대상입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"save(record, logger)가 호출되어 2줄에 도달할 때\",\"consequence\":\"표준이 요구하는 주입된 logger.info 대신 표준 출력으로 기록되어, 로깅 규칙을 위반하고 logger 인자가 사용되지 않습니다.\",\"assumptions\":[],\"title\":\"print 사용이 팀 로깅 표준을 위반합니다\",\"evidence\":\"2줄은 print('saved')로 기록합니다. s1은 애플리케이션에서 print 대신 주입된 logger.info로 기록하도록 요구하고, 해당 섹션의 file_ids에 f1이 포함됩니다. behavior_contract에 따르면 logger.info는 반환값 없이 로깅 외 부작용이 없습니다.\",\"suggestion\":\"2줄을 logger.info('saved')로 바꿔 주입된 logger를 사용하도록 하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"],\"contract_quote\":\"애플리케이션에서는 print 대신 주입된 logger.info로 기록한다.\"}],\"limitations\":\"제공된 HEAD 3줄과 표준 s1만 검토했습니다. 실행 결과나 실제 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 5058,
+  "output_tokens": 385,
+  "seconds": 2.641
+}

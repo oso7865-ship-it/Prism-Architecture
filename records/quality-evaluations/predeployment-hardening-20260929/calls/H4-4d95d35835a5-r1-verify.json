@@ -1,0 +1,12 @@
+{
+  "key": "H4-4d95d35835a5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:56.675986+00:00",
+  "input_hash": "8a4597c1810415ef74bd4f3afeb003c4667ab381258d0df15cd763c882a0e297",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"callbacks()가 반환한 세 콜백을 호출하면 모두 2를 반환하며, 이는 각 콜백이 생성 시점의 인덱스를 반환해야 한다는 계약과 어긋납니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 람다가 클로저 변수 i를 공유해 모든 콜백이 최종 값 2를 반환하므로, 생성 시점 인덱스를 반환하라는 계약을 위반합니다.\"}]}",
+  "input_tokens": 4533,
+  "output_tokens": 181,
+  "seconds": 1.547
+}

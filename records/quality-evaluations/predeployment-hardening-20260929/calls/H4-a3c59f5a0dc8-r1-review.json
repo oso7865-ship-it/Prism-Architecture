@@ -1,0 +1,12 @@
+{
+  "key": "H4-a3c59f5a0dc8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:29.470328+00:00",
+  "input_hash": "f583d94df1023c0d9cf8578b9c5f22b2f4b3631c5c6c21915d67734974f49183",
+  "system_hash": "cd76257b9d2949607842355b8d9d518f3b1d894a25ebca2e5cc3bf814bd6ff90",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 inspect 함수는 values를 그대로 참조하는 scratch에 대해 정렬을 수행하므로 호출자의 배열을 제자리에서 변경합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"inspect(values)가 호출되어 3줄의 sort가 실행될 때\",\"consequence\":\"scratch가 values와 같은 배열을 참조하므로 sort가 호출자의 배열을 제자리에서 재정렬하고, 4줄은 정렬된 동일 배열을 반환합니다.\",\"assumptions\":[],\"title\":\"호출자 배열을 제자리에서 변경함\",\"evidence\":\"2줄의 const scratch = values는 복사본이 아니라 동일 배열 참조를 만들고, 3줄의 Array.prototype.sort는 그 배열을 제자리에서 정렬합니다. 계약은 호출자 배열을 수정하지 말 것을 요구합니다.\",\"suggestion\":\"정렬 전에 values의 복사본을 만들어(예: values.slice()) 그 복사본을 정렬하고 반환하세요.\",\"contract_quote\":\"Do not modify the caller's array; no return-order requirement is specified.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4634,
+  "output_tokens": 305,
+  "seconds": 2.328
+}

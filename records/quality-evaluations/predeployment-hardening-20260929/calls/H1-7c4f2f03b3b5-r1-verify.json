@@ -1,0 +1,12 @@
+{
+  "key": "H1-7c4f2f03b3b5-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:35.603660+00:00",
+  "input_hash": "23aa1f5ca090c1a1e0f55866700b7761d6a44e3514a968e5e18ad27a43ea9f0e",
+  "system_hash": "e0699b85a5d76e7a1dabc46e4b9fdc4c6b3814ba47fda63ce1c379739ea68a79",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"save가 호출되어 2행에 도달하면 'saved'가 주입된 logger.info가 아니라 표준 출력으로 기록되어, print 대신 logger.info를 쓰라는 팀 규칙을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2행이 print를 사용해 s1의 'print 대신 주입된 logger.info' 규칙과 충돌합니다.\"}]}",
+  "input_tokens": 5015,
+  "output_tokens": 152,
+  "seconds": 1.516
+}

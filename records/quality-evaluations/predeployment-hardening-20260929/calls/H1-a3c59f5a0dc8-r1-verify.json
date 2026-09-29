@@ -1,0 +1,12 @@
+{
+  "key": "H1-a3c59f5a0dc8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:12.221713+00:00",
+  "input_hash": "503c355089d477de410357f4934bd9f980436805d0c20508bb68bbe535191031",
+  "system_hash": "6fd7084d3b5269cf67fa6751c21eaf23ed06f7779409ba3c5e23a8d55d572204",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"inspect(values) 호출 시 scratch가 values와 같은 배열을 참조하므로 3줄의 sort가 호출자의 배열을 제자리에서 재정렬하고, 4줄은 그 변경된 배열을 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄의 별칭 할당과 3줄의 제자리 sort로 호출자 배열이 수정되며, 이는 'Do not modify the caller's array' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4557,
+  "output_tokens": 161,
+  "seconds": 1.5
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-30cccaea91bc-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:50.422151+00:00",
+  "input_hash": "0f008902a65f6ee4baeb2938f12cb7419c8b919913162b099504c34501563f47",
+  "system_hash": "7aa80d966c310852ee816fa755673aaaef44c070607c7ac7e70df7dfc8949851",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"scale 함수가 value를 두 배로 계산해 scaled에 저장하지만 반환은 원본 value를 그대로 반환하는 변경입니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. behavior_contract가 '입력을 그대로 반환'을 요구하므로 3줄의 반환은 계약과 일치하고, 2줄의 scaled는 사용되지 않는 계산이지만 계약 위반이나 자원 한계 위반이 보이지 않아 결함으로 보고하지 않았습니다.\"}",
+  "input_tokens": 4630,
+  "output_tokens": 137,
+  "seconds": 1.734
+}

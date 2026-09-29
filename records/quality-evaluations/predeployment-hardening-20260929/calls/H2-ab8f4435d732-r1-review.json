@@ -1,0 +1,12 @@
+{
+  "key": "H2-ab8f4435d732-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:30.731246+00:00",
+  "input_hash": "3729324b700b34bf0f97a0a9795d41eef150fb6510db747624a097b5a7c17210",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 settings.copy()로 만든 얕은 복사본의 중첩 딕셔너리를 수정한 뒤 원본 settings의 값을 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"settings['limits']가 중첩 딕셔너리인 상태에서 adjust(settings)를 호출할 때\",\"consequence\":\"2줄의 copy()는 얕은 복사라 scratch['limits']가 원본 settings['limits']와 같은 객체이므로, 3줄의 대입이 호출자의 중첩 상태를 변경합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 중첩 상태가 변경됩니다\",\"evidence\":\"2줄의 settings.copy()는 최상위 키만 복사하고 중첩 딕셔너리는 공유합니다. 3줄은 scratch['limits']['cap']에 12를 대입하므로 원본 settings['limits']['cap']도 12가 됩니다.\",\"suggestion\":\"중첩 딕셔너리까지 복사하도록 scratch['limits'] = dict(settings['limits']) 같은 깊은 복사 단계를 추가하거나 copy.deepcopy(settings)를 사용하세요.\",\"contract_quote\":\"Leave the caller's nested state unchanged.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4640,
+  "output_tokens": 337,
+  "seconds": 2.531
+}

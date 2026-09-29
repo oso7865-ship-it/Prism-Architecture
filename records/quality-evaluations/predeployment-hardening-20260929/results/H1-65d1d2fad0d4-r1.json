@@ -1,0 +1,77 @@
+{
+  "case": "65d1d2fad0d4",
+  "repeat": 1,
+  "arm": "H1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 뺄셈 오버플로로 비교 부호가 뒤집힐 수 있습니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3
+        ],
+        "trigger": "left와 right의 차이가 int 범위를 넘는 경우(예: left = Integer.MAX_VALUE, right = -1)",
+        "consequence": "left = Integer.MAX_VALUE, right = -1일 때 left - right는 int 오버플로로 Integer.MIN_VALUE를 반환하여, left > right임에도 음수가 반환됩니다.",
+        "assumptions": [],
+        "title": "int 뺄셈 오버플로로 비교 부호가 뒤집힐 수 있습니다",
+        "evidence": "3줄은 int 피연산자 뺄셈 결과를 그대로 반환합니다. Java int 뺄셈은 int 범위에서 수행되므로 큰 값 차이에서 부호가 뒤집힙니다.",
+        "suggestion": "Integer.compare(left, right)를 반환하도록 바꾸면 동일한 부호 계약을 유지하면서 오버플로를 피할 수 있습니다.",
+        "file_path": "Order.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "32ce17a5e1730bb3e9338def679762ee30993a3bcbde4c79a0bd0834667f8d5d"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Order.java",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 3,
+          "outcome": "FINDING",
+          "observation": "3줄의 int 뺄셈 반환은 큰 값 차이에서 오버플로하여 비교 부호 계약을 위반할 수 있습니다.",
+          "file_path": "Order.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "d1eb55b7f0c441ee9eb99309b57028b7a0d3928fb1426b375fa7679586e0947b"
+}

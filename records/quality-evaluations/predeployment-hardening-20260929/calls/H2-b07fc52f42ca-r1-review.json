@@ -1,0 +1,12 @@
+{
+  "key": "H2-b07fc52f42ca-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:51.689462+00:00",
+  "input_hash": "3a11451cb3ecf3b24cf0eeb15595f7674d5fb831042786e6f6ff4fbf4f7be704",
+  "system_hash": "74f694018ca9111bfaa4940e3f678feb28bbcdb518603dd2980c278b9cd9aa88",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"limit 함수가 count || 10으로 기본값을 적용하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"count가 0으로 호출될 때\",\"consequence\":\"0이 falsy로 평가되어 반환값이 0이 아니라 10이 되므로, 유효한 설정값 0이 무시됩니다.\",\"assumptions\":[],\"title\":\"0이 유효한 값인데 기본값 10으로 대체됩니다\",\"evidence\":\"f1:2는 논리 OR로 기본값을 적용하므로 count가 0이면 10을 반환합니다. 계약은 null/undefined에만 기본값 10을 적용하고 0은 유효한 설정값으로 규정합니다.\",\"suggestion\":\"null/undefined만 기본값으로 처리하도록 count ?? 10으로 변경하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4601,
+  "output_tokens": 227,
+  "seconds": 1.688
+}

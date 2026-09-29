@@ -1,0 +1,79 @@
+{
+  "case": "a8961f6d5e20",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 1,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": true,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: user_id 문자열 연결로 인한 SQL 주입",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "user_id에 SQL 구문이 포함된 untrusted text가 전달될 때",
+        "consequence": "user_id가 SQL 문자열에 직접 연결되어 반환되고, 호출자가 이를 %s 플레이스홀더를 쓰는 DB-API 드라이버에 그대로 전달하므로 해당 입력이 SQL 구문으로 해석되어 주입이 발생합니다.",
+        "assumptions": [],
+        "title": "user_id 문자열 연결로 인한 SQL 주입",
+        "evidence": "2줄은 user_id를 'SELECT name FROM users WHERE id = ' 뒤에 + 연산으로 붙여 반환하며, 파라미터 튜플은 빈 값입니다. 제공된 계약은 user_id가 untrusted text이고 반환값이 %s 플레이스홀더를 쓰는 DB-API 드라이버로 직접 전달된다고 명시합니다.",
+        "suggestion": "SQL 문자열에 값을 연결하지 말고 'SELECT name FROM users WHERE id = %s'와 같이 플레이스홀더를 두고 user_id를 파라미터 튜플로 반환하도록 수정하세요.",
+        "file_path": "query.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "e2f6e4c81e50dd5c25248a82e2685fe28514990e2a8bc9b04ff1c3207861ec12"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "query.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "2줄에서 untrusted user_id가 파라미터 바인딩 없이 SQL 문자열에 연결되어 반환됩니다.",
+          "file_path": "query.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c"
+}

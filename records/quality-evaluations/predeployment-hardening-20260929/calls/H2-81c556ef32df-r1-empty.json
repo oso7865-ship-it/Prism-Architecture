@@ -1,0 +1,12 @@
+{
+  "key": "H2-81c556ef32df-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:00.678135+00:00",
+  "input_hash": "95b30ed60ead40d5393f7d50dec199fbb65d0fa38a0210c156decf1ec93feaa9",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"mean 함수는 빈 입력에 대해 계약대로 0.0을 반환하고, 비어 있지 않은 입력에서는 sum/len으로 평균을 계산합니다. 제공된 변경 라인에서 계약 위반이나 언어 수준 실패 경로는 확인되지 않습니다.\", \"issues\": [], \"limitations\": \"values의 원소 타입(예: Decimal, bool, 문자열)과 호출자 측 검증 여부는 제공되지 않았습니다. 계약이 '유한 수치 리스트'로 제한하므로 비수치 입력은 검토 범위 밖입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 빈 입력 시 0.0을 요구하며, 조건식이 빈 리스트에서 0.0을 반환하고 그 외에는 sum/len 평균을 반환하므로 요구된 반환값과 일치합니다.\"}]}",
+  "input_tokens": 3503,
+  "output_tokens": 220,
+  "seconds": 1.672
+}

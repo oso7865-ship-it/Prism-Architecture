@@ -1,0 +1,12 @@
+{
+  "key": "H4-964c0700fd59-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:45.112529+00:00",
+  "input_hash": "26b8c01b508b9570b98a5a2ffb565936ea2ee51642a0acf95a1895a8b381d3b8",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value=-1로 호출하면 2줄에서 adjusted=0이 계산되지만 반환되지 않고, 3줄에서 원래 값 -1이 반환되어 'Return max(value, 0)' 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 adjusted 계산 결과가 반환되지 않아 음수 입력에서 계약(max(value,0))과 다른 값이 반환됩니다.\"}]}",
+  "input_tokens": 4715,
+  "output_tokens": 161,
+  "seconds": 1.36
+}

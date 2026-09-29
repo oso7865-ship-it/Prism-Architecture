@@ -1,0 +1,12 @@
+{
+  "key": "H2-776da2ea767a-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:43.865467+00:00",
+  "input_hash": "be14a10a47e448c68b4ff257448795df053d4fa6f430d49463e1217b0cbb02ef",
+  "system_hash": "16df5b4e84dd48a9e856056d144e6992f406c5c081dbb7973b341bfa992b5c30",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 size 함수는 null이면 0을, 그 외에는 문자열 길이를 반환하며, 제공된 계약(\\\"For null return zero, otherwise return string length.\\\")과 일치합니다. 변경된 4개 라인에서 런타임 실패 경로나 계약 위반이 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"size 함수의 호출자와 실제 입력 분포는 제공되지 않았습니다. 제공된 변경 라인만 검토했으며 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 null이면 0, 그 외에는 문자열 길이 반환을 요구합니다. line 2에서 null과 빈 문자열을 0으로 처리하고 line 3에서 value.length를 반환하므로 요구된 반환값과 일치하며, null 역참조 경로도 없습니다.\"}]}",
+  "input_tokens": 3544,
+  "output_tokens": 225,
+  "seconds": 1.61
+}

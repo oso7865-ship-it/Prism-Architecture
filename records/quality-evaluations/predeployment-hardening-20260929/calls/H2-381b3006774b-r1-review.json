@@ -1,0 +1,12 @@
+{
+  "key": "H2-381b3006774b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:52.272299+00:00",
+  "input_hash": "36c0d23b0e4d1089afd5d9e0f8f6ff5ea2dd3f88e67a89c4848cc4318f2f7b90",
+  "system_hash": "e706625939347f4263a38b00a09edbb8eb0fb425d1cdc097599eaf5754b74b9c",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Normalize.normalize가 value를 0 이상으로 보정한 adjusted를 계산하지만 반환하지 않고 원래 value를 반환하도록 변경된 코드를 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4],\"trigger\":\"normalize에 음수 int value가 전달될 때\",\"consequence\":\"3줄에서 adjusted가 0으로 보정되지만 4줄이 보정되지 않은 원래 value를 반환하므로, 음수 입력에 대해 계약이 요구하는 Math.max(value, 0) 결과가 반환되지 않습니다.\",\"assumptions\":[],\"title\":\"음수 입력에서 보정값 대신 원래 값이 반환됩니다\",\"evidence\":\"f1:3은 Math.max(value, 0)으로 adjusted를 계산하지만 f1:4는 adjusted가 아닌 value를 반환합니다. 제공된 behavior_contract는 모든 int value에 대해 Math.max(value, 0)을 반환하도록 요구합니다.\",\"suggestion\":\"4줄의 반환식을 adjusted로 바꿔 계산된 보정값을 반환하도록 하세요.\",\"contract_quote\":\"For every int value return Math.max(value, 0).\"}],\"limitations\":\"제공된 단일 파일의 HEAD 라인만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4775,
+  "output_tokens": 317,
+  "seconds": 2.219
+}

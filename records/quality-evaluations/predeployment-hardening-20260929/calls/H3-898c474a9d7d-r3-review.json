@@ -1,0 +1,12 @@
+{
+  "key": "H3-898c474a9d7d-r3-review",
+  "phase": "review",
+  "at": "2026-09-29T14:09:00.021116+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base를 얕게 복사한 뒤 중첩 딕셔너리를 별도로 복사하여 result['nested']['limit']을 9로 설정하고, 원본 base['nested']['limit']을 반환합니다. 제공된 계약(base를 변경하지 않음)과 반환 동작을 대조했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"base['nested']가 딕셔너리이고 base['nested']['limit']이 9가 아닌 값일 때 adjust(base)를 호출하는 경우\",\"consequence\":\"result['nested']는 base['nested']의 복사본이므로 3줄의 대입은 복사본만 변경하고, 4줄은 변경되지 않은 원본 base['nested']['limit'] 값을 반환합니다. 호출자는 limit이 9로 조정된 값을 받지 못합니다.\",\"assumptions\":[],\"title\":\"복사본을 수정한 뒤 원본 값을 반환해 조정 결과가 반영되지 않습니다\",\"evidence\":\"2줄에서 base['nested'].copy()로 별도 복사본을 만들어 result['nested']에 넣고, 3줄은 그 복사본의 limit만 9로 바꿉니다. 4줄은 base['nested']['limit']을 반환하므로 3줄의 변경이 반환값에 반영되지 않습니다.\",\"suggestion\":\"반환값이 조정된 limit이어야 한다면 4줄을 result['nested']['limit'] 반환으로 바꾸세요. 원본 limit 반환이 의도라면 3줄의 대입이 반환값에 영향을 주지 않는다는 점을 확인하세요.\"}],\"limitations\":\"제공된 f1의 4줄만 검토했으며, adjust의 호출자와 반환값 사용 방식, base['nested']의 실제 타입은 제공되지 않아 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4658,
+  "output_tokens": 475,
+  "seconds": 2.907
+}

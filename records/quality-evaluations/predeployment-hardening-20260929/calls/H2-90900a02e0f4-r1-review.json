@@ -1,0 +1,12 @@
+{
+  "key": "H2-90900a02e0f4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:04:48.649789+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "e706625939347f4263a38b00a09edbb8eb0fb425d1cdc097599eaf5754b74b9c",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Display.name의 null 처리 분기가 변경되어, null이 아닌 입력에서 공백 제거 대신 빈 문자열을 반환하고 null 입력에서는 null을 역참조합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name에 null이 아닌 문자열이 전달될 때\",\"consequence\":\"name.trim()이 실행되지 않고 \\\"\\\"가 반환되어, 공백을 제거한 이름 대신 빈 문자열이 표시됩니다.\",\"assumptions\":[],\"title\":\"null이 아닌 이름이 빈 문자열로 표시됩니다\",\"evidence\":\"3줄의 조건은 name == null일 때 name.trim()을 선택하므로, null이 아닌 입력에서는 삼항 연산자가 \\\"\\\"를 반환합니다.\",\"suggestion\":\"조건을 뒤집어 null일 때 \\\"\\\"를, 그렇지 않을 때 name.trim()을 반환하도록 하세요.\"},{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name에 null이 전달될 때\",\"consequence\":\"name == null이 참이 되어 null.trim()이 실행되고 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 이름에서 NullPointerException이 발생합니다\",\"evidence\":\"3줄은 name == null인 경우 name.trim()을 선택하므로 null 역참조가 발생합니다.\",\"suggestion\":\"null 분기에서 \\\"\\\"를 반환하고, trim()은 null이 아닌 분기에서만 호출하도록 조건과 결과를 바꾸세요.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4758,
+  "output_tokens": 392,
+  "seconds": 2.782
+}

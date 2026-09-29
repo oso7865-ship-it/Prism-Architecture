@@ -1,0 +1,81 @@
+{
+  "case": "542f3e11ae43",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": true,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 얕은 복사로 호출자의 중첩 상태가 변경됩니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "WARNING",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3,
+          4
+        ],
+        "trigger": "inspect(settings)를 호출할 때",
+        "consequence": "scratch.limits가 settings.limits와 같은 객체를 참조하므로 3줄의 cap 대입이 호출자의 settings.limits.cap을 12로 변경하고, 4줄은 변경된 값 12를 반환합니다.",
+        "assumptions": [],
+        "title": "얕은 복사로 호출자의 중첩 상태가 변경됩니다",
+        "evidence": "2줄의 {...settings}는 중첩된 limits 객체를 공유하고, 3줄은 그 공유 객체의 cap을 수정하며, 4줄은 원본 settings에서 읽어 변경된 값을 반환합니다.",
+        "suggestion": "중첩 객체도 복사하도록 limits를 별도로 펼쳐 새 객체로 만들거나, 원본을 변경하지 않는 계산으로 바꾸세요.",
+        "file_path": "profile.ts",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "a435da2d55ca64f933570ee9a7dc0181423b131fac5bf621d4e5683e253476d1"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "profile.ts",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "얕은 스프레드 복사 후 중첩 객체를 수정하여 호출자의 settings.limits.cap이 12로 변경되고 그 값이 반환됩니다.",
+          "file_path": "profile.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "72a8cbb1bfe717cd589a1073a53949b4cef0de5481fe500159d1117f979fc662"
+}

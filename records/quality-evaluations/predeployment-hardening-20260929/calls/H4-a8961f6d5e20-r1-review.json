@@ -1,0 +1,12 @@
+{
+  "key": "H4-a8961f6d5e20-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:05.688105+00:00",
+  "input_hash": "8b74a574b43a00d28da67a68bdd0f4146a72fd2084762a32d241ded8f5cad98c",
+  "system_hash": "364272ddf327c8d00c4f257e6a52b33a6a0cf4944da7db96a69ce6d65209f8d9",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 2줄은 user_id를 SQL 문자열에 직접 연결해 반환하므로, 제공된 계약상 untrusted text가 파라미터 바인딩 없이 SQL로 전달됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"user_id에 SQL 구문이 포함된 untrusted text가 전달될 때\",\"consequence\":\"user_id가 SQL 문자열에 직접 연결되어 반환되고, 호출자가 이를 DB-API 드라이버에 그대로 전달하므로 해당 입력이 SQL 구문으로 해석되어 주입이 발생합니다.\",\"assumptions\":[],\"title\":\"user_id 문자열 연결로 인한 SQL 주입\",\"evidence\":\"2줄은 user_id를 'SELECT name FROM users WHERE id = ' 뒤에 + 연산으로 붙여 반환하며, 파라미터 튜플은 빈 값입니다. 제공된 계약은 user_id가 untrusted text이고 반환값이 %s 플레이스홀더를 쓰는 DB-API 드라이버로 직접 전달된다고 명시합니다.\",\"suggestion\":\"SQL 문자열에 값을 연결하지 말고 'SELECT name FROM users WHERE id = %s'와 같이 플레이스홀더를 두고 user_id를 파라미터 튜플로 반환하도록 수정하세요.\",\"citations\":[]}],\"limitations\":\"제공된 단일 함수와 계약만 검토했으며 실제 호출자·DB 드라이버 동작·실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4969,
+  "output_tokens": 358,
+  "seconds": 2.672
+}

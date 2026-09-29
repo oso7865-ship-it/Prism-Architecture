@@ -1,0 +1,12 @@
+{
+  "key": "H2-5257a830c624-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:40.044894+00:00",
+  "input_hash": "798f74ad91ce16baae0c3a1c3f34a718466923956dee4362a7f793802bac194c",
+  "system_hash": "74f694018ca9111bfaa4940e3f678feb28bbcdb518603dd2980c278b9cd9aa88",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"allowed 함수가 check(user)의 Promise를 기다리지 않고 그대로 반환하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"check(user)가 Promise<boolean>을 반환할 때 allowed를 호출하는 경우\",\"consequence\":\"2줄에서 Promise 객체가 즉시 반환되므로 async 함수의 반환값이 boolean으로 해석되지 않고, 호출자가 이를 boolean으로 사용하면 항상 truthy로 평가되어 인가 판정이 무력화됩니다.\",\"assumptions\":[],\"title\":\"Promise를 await하지 않아 인가 판정이 boolean으로 반환되지 않습니다\",\"evidence\":\"f1:2는 check(user)의 반환값을 await 없이 그대로 반환합니다. 제공된 behavior_contract는 check가 Promise<boolean>을 반환하고 그 해소 후 동일한 인가 결정을 반환해야 한다고 명시합니다.\",\"suggestion\":\"2줄을 `if (await check(user)) return true;`로 수정해 해소된 boolean 값을 기준으로 판정하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 check의 실제 구현과 호출자의 반환값 사용 방식은 확인하지 못했습니다.\"}",
+  "input_tokens": 4625,
+  "output_tokens": 294,
+  "seconds": 2.547
+}

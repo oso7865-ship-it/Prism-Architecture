@@ -1,0 +1,12 @@
+{
+  "key": "H4-6a3397085914-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:34.815475+00:00",
+  "input_hash": "d735866dd0e86f94b7af28b98a464bbe6edfa722fcee55348eced7ce54f12fe4",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 wire_size가 body의 길이를 반환하도록 변경되었습니다. 제공된 계약은 str 또는 bytes를 받아 UTF-8 기준 전송 바이트 수를 반환하는 것인데, 현재 구현은 len(body)로 문자 수를 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"비ASCII 문자(예: '한글')를 포함한 str을 wire_size에 전달할 때\",\"consequence\":\"len(body)는 문자 수를 반환하므로 UTF-8 인코딩 시 실제 전송 바이트 수보다 작은 값이 반환됩니다.\",\"assumptions\":[],\"title\":\"str 입력에서 UTF-8 바이트 수가 아닌 문자 수를 반환합니다\",\"evidence\":\"2줄은 len(body)를 반환합니다. 계약은 str 또는 bytes를 받아 UTF-8 기준 전송 바이트 수를 반환하도록 요구합니다. str에 대해 len은 문자 수를 세므로 비ASCII 문자에서 바이트 수와 불일치합니다.\",\"suggestion\":\"str인 경우 body.encode('utf-8')의 길이를 반환하고, bytes는 그대로 len을 적용하도록 분기하세요.\",\"contract_quote\":\"Accept str or bytes; return the number of bytes sent on the wire using UTF-8.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4657,
+  "output_tokens": 329,
+  "seconds": 2.469
+}

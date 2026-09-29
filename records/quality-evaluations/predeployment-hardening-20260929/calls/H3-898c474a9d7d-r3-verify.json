@@ -1,0 +1,12 @@
+{
+  "key": "H3-898c474a9d7d-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:09:02.969559+00:00",
+  "input_hash": "cb60f093f74d46d94f7befbdf5e35273433f44fad06580374474bac2b13eec0c",
+  "system_hash": "7223543441ac1ff48afcfe02a8d529a608d5a6ea81e2d1e292e9c4cdbab51fcf",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"2줄의 base['nested'].copy()는 중첩 딕셔너리를 복사하므로 3줄의 대입은 호출자의 base를 변경하지 않아 'Preserve the caller's base without mutation' 계약을 만족합니다. 4줄이 원본 limit을 반환하는 것은 조정값 반환을 요구하는 계약이 없어 결함으로 볼 수 없습니다.\"}]}",
+  "input_tokens": 4679,
+  "output_tokens": 172,
+  "seconds": 1.468
+}

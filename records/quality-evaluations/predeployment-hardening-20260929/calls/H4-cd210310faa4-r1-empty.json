@@ -1,0 +1,12 @@
+{
+  "key": "H4-cd210310faa4-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:11:44.679173+00:00",
+  "input_hash": "dc5d98d1854179c559c22f2c9f2f39b2358f271f06298f340f48e472a07baf4a",
+  "system_hash": "ae56199f6cb16412ffcf0b8ae2ccf2b34b4f74043633d001189ef1e30eefe1d2",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄(3행)은 null이면 빈 문자열, 아니면 trim 결과를 반환한다. 제공된 계약(\\\"null은 빈 문자열, 그 외에는 주변 공백 제거\\\")과 정확히 일치하므로 결함이 없다.\", \"issues\": [], \"limitations\": \"단일 파일의 5줄만 제공되어 호출자, 다른 오버로드, 실제 사용 경로는 확인하지 못했다. 정적 경고도 없었다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 null→빈 문자열, 그 외→주변 공백 제거를 요구한다. 3행은 name==null이면 \\\"\\\"를, 아니면 name.trim()을 반환하여 요구 동작과 일치한다.\"}]}",
+  "input_tokens": 3667,
+  "output_tokens": 198,
+  "seconds": 1.75
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-0d5e36006ab7-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:45.606952+00:00",
+  "input_hash": "4cd653c96bb2de3be65f67b0244715e27e480613211dd88bc2ddfae2b07b63c7",
+  "system_hash": "25e8fa2daa4b2ddff166e6f9d02ec75a61036ba3b7d9d6eb4463ff022419aef2",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"check가 async이고 Promise를 반환하므로 await 없이 평가된 2줄의 조건은 항상 참이 되어, check가 false로 resolve되어도 'allowed'가 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 async check()의 Promise를 await 없이 조건으로 사용해 인가 판정이 항상 허용으로 귀결됩니다.\"}]}",
+  "input_tokens": 4898,
+  "output_tokens": 151,
+  "seconds": 1.515
+}

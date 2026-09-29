@@ -1,0 +1,12 @@
+{
+  "key": "H4-411a32119068-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:34.920505+00:00",
+  "input_hash": "a756eacbbfaee232465ee168e78f62993a19c12a36748836efd55bf5df230acf",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 wire_size가 str이면 UTF-8 인코딩 길이를, 그 외에는 len(body)를 반환하도록 변경된 부분을 검토했습니다. 제공된 계약(str 또는 bytes 허용, UTF-8 바이트 수 반환)과 일치하며, 표시된 범위에서 구체적 결함 경로는 확인되지 않았습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인. bytearray/memoryview 등 bytes 이외 타입의 처리와 실제 호출자 측 입력 검증은 제공되지 않아 판단하지 않았습니다.\"}",
+  "input_tokens": 4611,
+  "output_tokens": 145,
+  "seconds": 1.437
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-9d73a727b44a-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:21.603829+00:00",
+  "input_hash": "2770aa2f43884b9ea3b9b26a8e98c3d753447e7112d8f702a7bd9c6c56486f01",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 load 함수가 order_id만으로 주문을 조회하도록 변경되었습니다. 제공된 계약은 인증된 테넌트의 주문만 반환해야 함을 명시합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2],\"trigger\":\"order_id가 서로 다른 테넌트에서 반복되고, 호출자가 tenant_id를 인증된 테넌트로 전달한 상태에서 load(db, order_id, tenant_id)를 호출할 때\",\"consequence\":\"2줄의 쿼리가 tenant_id 조건 없이 id만으로 행을 선택하므로, 다른 테넌트가 소유한 주문이 반환될 수 있습니다.\",\"assumptions\":[],\"title\":\"테넌트 필터 없이 주문을 조회해 다른 테넌트의 주문이 반환됩니다\",\"evidence\":\"1줄은 tenant_id를 매개변수로 받지만, 2줄의 SELECT는 id 조건만 사용하고 tenant_id를 바인딩하지 않습니다. 계약은 order_id가 테넌트 간 반복될 수 있고 인증된 테넌트의 주문만 반환해야 한다고 명시합니다.\",\"suggestion\":\"2줄의 WHERE 절에 tenant_id 조건을 추가하고 tenant_id를 바인딩하세요(예: WHERE id = ? AND tenant_id = ?).\",\"contract_quote\":\"order_id may repeat across tenants. Return only the authenticated tenant's order.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+  "input_tokens": 4588,
+  "output_tokens": 366,
+  "seconds": 2.218
+}

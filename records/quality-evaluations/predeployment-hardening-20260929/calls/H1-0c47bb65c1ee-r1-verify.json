@@ -1,0 +1,12 @@
+{
+  "key": "H1-0c47bb65c1ee-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:41.339518+00:00",
+  "input_hash": "e2656fb127e701d172c1be5b381c744e62e498a14a13aedbc896b95e35c0543d",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"base가 중첩 딕셔너리를 가진 상태에서 adjust(base)를 호출하면 3줄이 공유된 중첩 객체를 수정해 원본 base['nested']['limit']이 9로 바뀌고, 4줄은 9를 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄의 얕은 복사 후 3줄이 공유 중첩 딕셔너리를 수정하여 'Preserve the caller's base without mutation' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4624,
+  "output_tokens": 175,
+  "seconds": 1.328
+}

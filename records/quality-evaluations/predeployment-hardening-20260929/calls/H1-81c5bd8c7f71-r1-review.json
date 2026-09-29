@@ -1,0 +1,12 @@
+{
+  "key": "H1-81c5bd8c7f71-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:44.369090+00:00",
+  "input_hash": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "system_hash": "0e0aaa3d87f48fda6ee5c0ece3547996a491fea1667ea5797703012cdf779734",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 name 함수에서 profile이 선택적임에도 비단언 연산자(!)로 접근하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"profile 속성이 없는 User 객체로 name(user)를 호출할 때\",\"consequence\":\"user.profile이 undefined이므로 user.profile!.name 접근에서 TypeError가 발생하고, 계약에서 요구한 'Unknown' 표시가 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"profile이 없을 때 'Unknown' 대신 TypeError가 발생합니다\",\"evidence\":\"1줄에서 profile이 선택적(profile?:)으로 선언되어 있고, 3줄은 비단언 연산자로 user.profile!.name을 읽습니다. 계약은 profile 누락 시 'Unknown'을 표시해야 한다고 명시합니다.\",\"suggestion\":\"profile이 없을 때 'Unknown'을 반환하고, 존재하면 name을 그대로 반환하도록 3줄을 조건 처리로 바꾸세요.\",\"contract_quote\":\"Missing profile must display Unknown; an existing empty name is preserved.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 다른 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4776,
+  "output_tokens": 298,
+  "seconds": 2.187
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-c12598db7eb6-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:04:41.954284+00:00",
+  "input_hash": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"choose 함수는 value가 None일 때만 default를 반환하고, 그 외에는 value를 그대로 반환한다. 제공된 계약('Only None means absent. Preserve all explicitly provided values.')과 일치하므로 지원 가능한 결함이 없다.\", \"issues\": [], \"limitations\": \"제공된 변경 라인은 f1의 2행뿐이며, 호출자나 default의 실제 값은 제공되지 않았다. 정적 분석 경고는 없었다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 None만 부재로 간주하고 명시적으로 제공된 값은 보존하라고 요구한다. 2행은 value is None일 때만 default를 반환하고 그 외에는 value를 반환하므로 요구사항을 위반하지 않는다.\"}]}",
+  "input_tokens": 3491,
+  "output_tokens": 201,
+  "seconds": 1.781
+}

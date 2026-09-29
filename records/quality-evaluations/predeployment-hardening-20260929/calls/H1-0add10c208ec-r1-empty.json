@@ -1,0 +1,12 @@
+{
+  "key": "H1-0add10c208ec-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:27.310002+00:00",
+  "input_hash": "56c210edbb0a33b95331838666085fced4f5619e0a2548e7fd056426110dfed3",
+  "system_hash": "3db167f22ca71c68196115e456c7d574758c8cc61da9363e5c29a01a33d141ce",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 `(long) amount * count`로, 곱셈 이전에 첫 피연산자를 long으로 승격하므로 64비트 연산이 수행됩니다. 제공된 계약(비음수 int, 곱이 long에 정확히 표현됨)과 path_observations의 세 사례 모두에서 곱이 보존되어 결함이 확인되지 않습니다.\", \"issues\": [], \"limitations\": \"제공된 변경 라인은 단일 곱셈 연산이며, 호출자나 추가 입력 검증 코드는 제공되지 않았습니다. 계약상 입력이 비음수이고 곱이 long 범위 내라는 전제는 제공된 계약에 근거한 것으로, 이를 벗어나는 호출자에 대해서는 판단하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 비음수 int 두 값의 곱을 long으로 정확히 보존하라고 요구한다. `(long) amount * count`는 곱셈 전에 long으로 승격해 64비트 연산을 수행하며, 제공된 세 사례(0*1, 3*4, 100000*100000) 모두 반환값이 수학적 곱과 일치한다.\"}]}",
+  "input_tokens": 3964,
+  "output_tokens": 309,
+  "seconds": 2.547
+}

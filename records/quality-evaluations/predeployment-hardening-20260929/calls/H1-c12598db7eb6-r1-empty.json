@@ -1,0 +1,12 @@
+{
+  "key": "H1-c12598db7eb6-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:19.644637+00:00",
+  "input_hash": "bed0f729f2cced4facbcfc7da592c836faddeddd42c6a4d78044db3bfe7d43b8",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 계약과 일치합니다. 계약은 'None만 부재를 의미하며 명시적으로 제공된 모든 값을 보존한다'이고, 코드는 `value is None`일 때만 default를 반환하며 그 외에는 value를 그대로 반환합니다. 0, False, 빈 문자열 등 명시적 값도 보존되므로 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 변경 라인은 단일 함수 한 줄이며 호출자나 테스트는 제공되지 않았습니다. 정적 경고도 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 None만 부재이므로 None일 때 default 반환, 그 외 값은 그대로 반환해야 한다. 코드는 `value is None` 조건으로 정확히 이를 수행하며 0/False/빈 문자열도 보존한다.\"}]}",
+  "input_tokens": 3592,
+  "output_tokens": 219,
+  "seconds": 2.032
+}

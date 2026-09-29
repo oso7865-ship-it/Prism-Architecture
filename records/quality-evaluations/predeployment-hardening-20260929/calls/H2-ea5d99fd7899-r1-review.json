@@ -1,0 +1,12 @@
+{
+  "key": "H2-ea5d99fd7899-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:22.939090+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 load 함수가 order_id와 tenant_id를 함께 조회 조건으로 사용하는 변경을 검토했습니다. 제공된 계약과 일치하는 단일 쿼리이며, 표시된 범위에서 구체적 결함 경로는 확인되지 않았습니다.\",\"issues\":[],\"limitations\":\"db.execute의 반환 타입과 fetchone의 동작, 호출자의 tenant_id 인증 경계는 제공되지 않아 실행 결과 및 권한 검증 흐름은 확인하지 못했습니다. 제공 범위만 검토했으며 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 4595,
+  "output_tokens": 133,
+  "seconds": 1.594
+}

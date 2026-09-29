@@ -1,0 +1,12 @@
+{
+  "key": "H2-e8ead1564f3f-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:22.279082+00:00",
+  "input_hash": "7cb9f09b7eab09d1c2b2a60a3711afbe0db9cf1ee6a688ecdc7951f5ce183dfd",
+  "system_hash": "5d8efa4e492ffdf0fc7c70de480e25ffcd980562b7bf1352252cd744fede696a",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 4줄짜리 async 함수는 store.save(value)를 await한 뒤 true를 반환하므로, 명시된 계약('save의 Promise가 완료된 후 true 반환')을 그대로 만족합니다. 정적 경고도 없고, 변경 라인에서 구체적인 실패 경로가 확인되지 않아 보고할 결함이 없습니다.\", \"issues\": [], \"limitations\": \"store.save의 실제 구현, 호출자, 오류 전파 경계는 제공되지 않았습니다. save가 reject하는 경우 await가 예외를 전파하여 true가 반환되지 않지만, 이는 계약상 정상적인 실패 전파로 보이며 제공된 범위에서 결함으로 단정할 근거가 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 save의 Promise 완료 후 true 반환을 요구한다. 2행에서 await로 완료를 기다린 뒤 3행에서 true를 반환하므로 요구된 반환/상태 변화를 위반하지 않는다.\"}]}",
+  "input_tokens": 3516,
+  "output_tokens": 259,
+  "seconds": 2.125
+}

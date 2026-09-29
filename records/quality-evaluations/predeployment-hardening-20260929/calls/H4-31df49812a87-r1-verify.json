@@ -1,0 +1,12 @@
+{
+  "key": "H4-31df49812a87-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:47.387867+00:00",
+  "input_hash": "24c0f0795aef10aa077b1fe4ca4249782c21b8da9763e7d0a52abf0f11747a9a",
+  "system_hash": "e307a53d73a20459789e2855239f03856475cf824e1fb35d159bffed3c0d1edc",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"앞뒤 공백이 포함된 문자열 입력에 대해 함수는 공백이 제거된 trimmed가 아니라 원본 value를 반환하므로, 계약이 요구하는 공백 제거 결과가 호출자에게 전달되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"trim 함수가 value.trim() 결과를 저장한 trimmed 대신 원본 value를 반환하여, 제공된 계약(앞뒤 공백 제거 텍스트 반환)을 위반합니다.\"}]}",
+  "input_tokens": 4578,
+  "output_tokens": 178,
+  "seconds": 1.531
+}

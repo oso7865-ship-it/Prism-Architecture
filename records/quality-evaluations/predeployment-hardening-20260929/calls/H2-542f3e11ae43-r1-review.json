@@ -1,0 +1,12 @@
+{
+  "key": "H2-542f3e11ae43-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:34.924520+00:00",
+  "input_hash": "72a8cbb1bfe717cd589a1073a53949b4cef0de5481fe500159d1117f979fc662",
+  "system_hash": "7aa80d966c310852ee816fa755673aaaef44c070607c7ac7e70df7dfc8949851",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"inspect 함수가 settings를 얕은 복사한 뒤 중첩된 limits.cap을 수정하고 원본 settings.limits.cap을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"inspect(settings)를 호출할 때\",\"consequence\":\"2줄의 얕은 복사는 최상위 객체만 새로 만들고 limits 객체는 원본과 공유되므로, 3줄의 대입이 호출자의 settings.limits.cap까지 12로 변경합니다. 이는 '호출자의 중첩 상태를 변경하지 않는다'는 계약과 어긋납니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 중첩 상태가 변경됩니다\",\"evidence\":\"f1:2의 {...settings}는 중첩된 limits를 복사하지 않고 참조를 공유합니다. f1:3에서 scratch.limits.cap에 대입하면 같은 객체를 가리키는 호출자의 settings.limits.cap도 12가 됩니다.\",\"suggestion\":\"limits까지 복사하도록 scratch의 limits를 새 객체로 만들어 대입하세요(예: limits: {...settings.limits}).\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과와 실제 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4674,
+  "output_tokens": 330,
+  "seconds": 2.297
+}

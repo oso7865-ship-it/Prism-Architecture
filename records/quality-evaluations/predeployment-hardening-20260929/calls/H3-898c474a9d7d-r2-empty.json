@@ -1,0 +1,12 @@
+{
+  "key": "H3-898c474a9d7d-r2-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:09:00.348368+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "8a1ed62515e2efaae31087074b140efa74401d0e91f54633fcad779021ff4220",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 base['nested']를 얕은 복사한 뒤 복사본의 'limit'만 변경하므로 호출자의 base는 변경되지 않습니다. 제공된 계약(호출자 base 비변경)을 위반하는 경로가 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"base가 'nested' 키를 항상 포함하는지, base['nested']가 dict인지는 제공된 코드만으로 확인할 수 없으나, 이는 계약에 명시된 전제 조건입니다. adjust의 호출자와 실제 사용 맥락은 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 호출자의 base를 변경하지 않는 것입니다. line 2에서 base['nested'].copy()로 새 dict를 만들어 result['nested']에 넣고, line 3은 그 복사본의 'limit'만 수정하므로 base['nested']는 변경되지 않습니다. line 4는 base의 값을 읽기만 합니다.\"}]}",
+  "input_tokens": 3587,
+  "output_tokens": 252,
+  "seconds": 2.218
+}

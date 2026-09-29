@@ -1,0 +1,12 @@
+{
+  "key": "H1-6197edcf876e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:45.749676+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "a9838e9de19e6afc8666fcb12d16332f5bd5a0de7c1efd1ef1934b5281bd093e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"단일 변경 라인(user.profile?.name ?? 'Unknown')은 제공된 계약과 일치합니다. profile이 없으면 옵셔널 체이닝이 undefined를 반환하고 ??가 'Unknown'을 반환하며, name이 빈 문자열이면 ??는 null/undefined만 대체하므로 빈 이름이 보존됩니다. 지원 가능한 결함이 없습니다.\", \"issues\": [], \"limitations\": \"name()의 호출자와 실제 런타임 입력은 제공되지 않았습니다. 제공된 라인만 검토했으며 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 profile 누락 시 'Unknown', 빈 name 보존이 요구됩니다. profile?.name은 누락 시 undefined를 반환해 ??가 'Unknown'을 주고, 빈 문자열은 ??가 대체하지 않아 보존되므로 계약을 위반하지 않습니다.\"}]}",
+  "input_tokens": 3649,
+  "output_tokens": 234,
+  "seconds": 1.969
+}

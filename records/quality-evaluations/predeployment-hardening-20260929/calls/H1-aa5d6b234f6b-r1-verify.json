@@ -1,0 +1,12 @@
+{
+  "key": "H1-aa5d6b234f6b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:24.663331+00:00",
+  "input_hash": "5c842a97e959d59caadb3215c449d719b5e60be5b55581d91bc285214545d275",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"bucket을 생략한 두 번째 호출의 append가 첫 호출이 반환한 동일 리스트에 누적되어, 생략 호출마다 새 bucket을 요구하는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"기본 인자 bucket=[]가 정의 시 한 번 생성되어 생략 호출 간 공유되고, append가 이를 변경해 'Each omitted-bucket call gets a fresh bucket' 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4736,
+  "output_tokens": 170,
+  "seconds": 1.547
+}

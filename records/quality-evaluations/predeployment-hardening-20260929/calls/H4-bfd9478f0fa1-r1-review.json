@@ -1,0 +1,12 @@
+{
+  "key": "H4-bfd9478f0fa1-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:37.638467+00:00",
+  "input_hash": "b38ef19b55f494d81669890fb53d2fd50755da9120801f2ce573e68407e867a0",
+  "system_hash": "cd76257b9d2949607842355b8d9d518f3b1d894a25ebca2e5cc3bf814bd6ff90",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 allowed 함수는 check(user)의 Promise를 await한 뒤 그 boolean 결과를 그대로 반환하도록 변경되었습니다. 제공된 계약(Promise<boolean> 반환, 해소된 동일 결정 반환)과 일치하며, 제공 범위에서 구체적 결함 경로는 보이지 않습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 check의 실제 구현, 호출자, 예외 처리 경계는 제공되지 않아 실행 결과나 거부(rejection) 전파 동작은 확인하지 못했습니다.\"}",
+  "input_tokens": 4607,
+  "output_tokens": 134,
+  "seconds": 1.422
+}

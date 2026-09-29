@@ -1,0 +1,43 @@
+{
+  "at": "2026-09-29T14:25:37.785081+00:00",
+  "scope": "100 small files, 4 exact-size upper-bound files, oversize rejection, 64 in-process concurrent health requests; not AWS load",
+  "network": "none",
+  "memory_limit_mb": 512,
+  "result": {
+    "uid": 999,
+    "files": 100,
+    "languages": 4,
+    "statuses": [
+      "INCLUDED"
+    ],
+    "elapsed_seconds": 31.919,
+    "parser_timeout": "PASS",
+    "live": 200,
+    "ready_without_db": 503,
+    "upper_bound_cases": [
+      {
+        "path": "A.java",
+        "bytes": 204800,
+        "status": "INCLUDED"
+      },
+      {
+        "path": "a.py",
+        "bytes": 204800,
+        "status": "INCLUDED"
+      },
+      {
+        "path": "a.js",
+        "bytes": 204800,
+        "status": "INCLUDED"
+      },
+      {
+        "path": "a.ts",
+        "bytes": 204800,
+        "status": "INCLUDED"
+      }
+    ],
+    "http_threads": 16,
+    "http_requests": 64,
+    "cgroup_peak_bytes": 145276928
+  }
+}

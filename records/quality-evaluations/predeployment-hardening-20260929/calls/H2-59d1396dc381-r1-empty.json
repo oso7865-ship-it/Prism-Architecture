@@ -1,0 +1,12 @@
+{
+  "key": "H2-59d1396dc381-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:48.213584+00:00",
+  "input_hash": "decdc56a06a81dfc045f64f2f20f5e1e6335d2051a496d316d33715346abf5c5",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 코드는 `adjust(value)`가 `max(value, 0)`으로 계산한 `adjusted`를 버리고 원래 `value`를 그대로 반환합니다. 명시된 계약이 \\\"원래 값(음수 포함)을 변경 없이 반환\\\"이므로 반환 자체는 계약을 충족하며, 계산된 `adjusted`가 사용되지 않는 것은 계약상 요구되지 않는 유한 계산입니다. 따라서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"`adjust`의 호출자와 실제 사용 맥락은 제공되지 않았습니다. 제공된 계약이 원본 값 반환을 요구하므로 미사용 `adjusted` 계산은 결함으로 성립하지 않습니다. 테스트 실행이나 미제공 코드 검사는 수행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 value를 변경 없이(음수 포함) 반환하도록 요구하며, line 3의 `return value`가 이를 그대로 충족합니다. line 2의 `adjusted`는 사용되지 않지만 유한 계산이며 계약 위반이 아닙니다.\"}]}",
+  "input_tokens": 3654,
+  "output_tokens": 280,
+  "seconds": 2.156
+}

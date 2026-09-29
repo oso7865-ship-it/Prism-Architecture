@@ -1,0 +1,12 @@
+{
+  "key": "H1-381b3006774b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:31.316106+00:00",
+  "input_hash": "4272bfd62c8302395d425091ff306266d9af0356a9dbe91a598f23ace2ec405c",
+  "system_hash": "4128d5b13d648c6d956190e980b4696225afbf2dd8cc1c4e921054ee4d6fb70f",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"음수 value가 전달되면 3줄에서 adjusted가 0으로 계산되지만 4줄은 원래 value를 반환하므로 음수가 그대로 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"normalize는 계약과 달리 보정값 adjusted 대신 원래 value를 반환해 음수 입력에서 계약을 위반합니다.\"}]}",
+  "input_tokens": 4664,
+  "output_tokens": 150,
+  "seconds": 1.563
+}

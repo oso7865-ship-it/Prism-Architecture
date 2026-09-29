@@ -1,0 +1,12 @@
+{
+  "key": "H2-1125fb1f397e-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:44.660242+00:00",
+  "input_hash": "7677078b297f8020e1dea6b65ee39eb4b646469f21058341037d318fdd7c0125",
+  "system_hash": "e706625939347f4263a38b00a09edbb8eb0fb425d1cdc097599eaf5754b74b9c",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"Tail.read가 배열의 마지막 요소를 반환해야 한다는 계약과 달리, values.length를 인덱스로 사용해 항상 범위를 벗어난 접근을 수행합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"비어 있지 않은 int 배열 values로 read를 호출할 때(예: values = {1, 2, 3})\",\"consequence\":\"values.length가 유효한 마지막 인덱스가 아니라 길이 자체이므로, 3줄의 values[values.length] 접근이 ArrayIndexOutOfBoundsException을 던지고 마지막 요소를 반환하지 못합니다.\",\"assumptions\":[],\"title\":\"마지막 요소 대신 범위를 벗어난 인덱스에 접근합니다\",\"evidence\":\"3줄은 values.length를 인덱스로 사용합니다. 길이가 n인 배열의 유효 인덱스는 0..n-1이므로 values.length는 항상 범위를 벗어나며, 이는 'Return its final element' 계약을 위반합니다.\",\"suggestion\":\"인덱스를 values.length - 1로 바꿔 마지막 요소를 반환하도록 수정하세요.\"}],\"limitations\":\"제공된 단일 클래스만 검토했으며 실행 결과는 확인하지 않았습니다. 호출자와 테스트는 제공되지 않았습니다.\"}",
+  "input_tokens": 4755,
+  "output_tokens": 340,
+  "seconds": 2.484
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-ea5d99fd7899-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:24.576236+00:00",
+  "input_hash": "e936229dbed90823e9701912c3618dbfd0736a32e6ea82e78fc37510d0d420e8",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 라인은 테넌트 조건을 포함한 단일 파라미터화 쿼리로, 명시된 계약(인증된 테넌트의 주문만 반환)을 충족합니다. 정적 경고도 없고, 제공된 범위에서 입증 가능한 결함이 없습니다.\", \"issues\": [], \"limitations\": \"db.execute의 반환 타입/커서 계약, 호출자, 테넌트 인증 주입 방식은 제공되지 않아 검토 범위 밖입니다. 테스트 실행이나 미제공 코드 검사는 수행하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 인증된 테넌트의 주문만 반환하도록 요구하며, 쿼리가 id와 tenant_id를 모두 바인딩해 조건을 만족합니다. order_id가 테넌트 간 반복되어도 tenant_id 조건으로 필터링됩니다.\"}]}",
+  "input_tokens": 3505,
+  "output_tokens": 240,
+  "seconds": 1.953
+}

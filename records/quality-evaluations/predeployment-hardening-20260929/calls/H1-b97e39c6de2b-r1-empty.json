@@ -1,0 +1,12 @@
+{
+  "key": "H1-b97e39c6de2b-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:00:38.573317+00:00",
+  "input_hash": "ab027f0444ce97595f19d90835a614129ff8024195fdd947a54ce64821ca1c7f",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 변경된 한 줄은 기본 인자 `i=i`로 각 람다가 생성 시점의 인덱스를 캡처하도록 하여, 제공된 계약(\\\"Each callback returns the index captured when it was created.\\\")을 그대로 만족한다. 지연 바인딩으로 인한 값 오류는 발생하지 않으며, 제공된 범위에서 지원되는 결함이 없다.\", \"issues\": [], \"limitations\": \"변경된 파일은 f1 한 개이며, 콜백의 호출자나 사용 방식은 제공되지 않아 반환값의 실제 사용 맥락은 검토 범위 밖이다. 정적 분석 경고도 제공되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 각 콜백이 생성 시점의 인덱스를 반환할 것을 요구한다. 기본 인자 i=i가 호출 시점이 아닌 정의 시점의 i를 캡처하므로, 세 람다는 각각 0, 1, 2를 반환해 요구사항을 위반하지 않는다.\"}]}",
+  "input_tokens": 3595,
+  "output_tokens": 270,
+  "seconds": 2.109
+}

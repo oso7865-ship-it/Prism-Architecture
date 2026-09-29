@@ -1,0 +1,12 @@
+{
+  "key": "H1-5257a830c624-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:19.877491+00:00",
+  "input_hash": "bda10b103bfd30f33eb6e8182ca5db602b96076e0f64770aa30a331eeba4c53b",
+  "system_hash": "6fd7084d3b5269cf67fa6751c21eaf23ed06f7779409ba3c5e23a8d55d572204",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"check가 Promise<boolean>을 반환하면 2행의 if 조건은 Promise 객체를 평가해 항상 truthy가 되므로, check가 false로 resolve되어도 allowed는 true를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"allowed는 async이지만 2행에서 check(user)의 Promise를 await 없이 조건으로 사용해, 계약상 resolve된 boolean 결정 대신 항상 truthy인 Promise 객체를 평가합니다.\"}]}",
+  "input_tokens": 4623,
+  "output_tokens": 164,
+  "seconds": 1.687
+}

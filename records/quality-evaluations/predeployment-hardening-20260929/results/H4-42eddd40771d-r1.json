@@ -1,0 +1,81 @@
+{
+  "case": "42eddd40771d",
+  "repeat": 1,
+  "arm": "H4",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false,
+    "evidence_location_hit": true,
+    "evidence_miss": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: TimeoutError 시 허용을 반환해 불명확한 인증이 통과합니다",
+    "issues": [
+      {
+        "line": 5,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3,
+          4,
+          5
+        ],
+        "trigger": "checker(user)가 TimeoutError를 발생시켜 4줄의 except 절이 실행될 때",
+        "consequence": "checker(user)가 TimeoutError를 발생시키면 allowed가 True를 반환하여 불명확한 인증이 허용으로 처리됩니다.",
+        "assumptions": [],
+        "title": "TimeoutError 시 허용을 반환해 불명확한 인증이 통과합니다",
+        "evidence": "3줄에서 checker(user)를 호출하고, 4줄이 TimeoutError를 잡아 5줄에서 True를 반환합니다. 제공된 계약은 인증이 불명확할 때 거부해야 한다고 명시합니다.",
+        "suggestion": "TimeoutError 처리에서 False를 반환하도록 5줄을 수정해 불명확한 인증을 거부하세요.",
+        "file_path": "access.py",
+        "suggestion_check": {
+          "status": "SOURCE_MISMATCH",
+          "samples": 0
+        },
+        "key": "e07b355e4e85142c5c72057b7508ef42a9ccd571cbf79dae84395a07e34aeeb4"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "access.py",
+          "provided_lines": 5
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "TimeoutError 처리 경로가 True를 반환해 '인증 불명확 시 거부' 계약과 반대됩니다.",
+          "file_path": "access.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "f260cc29434a703b6c79b806ba22fabcfd4366946abc33fb3763555d07c82339"
+}

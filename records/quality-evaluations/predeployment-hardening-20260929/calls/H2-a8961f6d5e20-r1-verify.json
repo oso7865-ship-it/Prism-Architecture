@@ -1,0 +1,12 @@
+{
+  "key": "H2-a8961f6d5e20-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:13.044238+00:00",
+  "input_hash": "004fc2f7fbc33ebc2a4e81b92c26a1e955eb68eade80fa706d29110193e6fb2a",
+  "system_hash": "b693baadd7bf72d94c4eb05047b8f2bd7beba872462e5d42c2b0ae3d7f8eb72c",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"user_id가 이스케이프 없이 SQL 문자열에 결합되어 반환되므로, 이를 실행하는 호출자에서 주입된 SQL 구문이 실행될 수 있습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 신뢰할 수 없는 user_id를 문자열 연결로 SQL에 삽입하고 빈 파라미터 튜플을 반환하여 SQL 주입 경로가 성립합니다.\"}]}",
+  "input_tokens": 4830,
+  "output_tokens": 162,
+  "seconds": 1.343
+}

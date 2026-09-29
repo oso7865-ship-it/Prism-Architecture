@@ -1,0 +1,12 @@
+{
+  "key": "H2-90900a02e0f4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:04:51.468491+00:00",
+  "input_hash": "4b115f6432c02cc1ae8ee64f7ef4c8623d72ede372caf68f4c5be907212055d0",
+  "system_hash": "03191a451d7eed8720465290a39cd6ecbcad40e63c5625389aef6ed66f8b5c53",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"null이 아닌 name이 전달되면 조건이 거짓이 되어 \\\"\\\"가 반환되고, 공백 제거된 이름이 표시되지 않습니다.\"}, {\"index\": 1, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"name이 null이면 조건이 참이 되어 null.trim()이 실행되고 NullPointerException이 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 삼항 연산자가 뒤집혀 있어 null 입력에서 NPE가 발생하고, null이 아닌 입력에서는 trim 결과 대신 빈 문자열을 반환합니다.\"}]}",
+  "input_tokens": 4693,
+  "output_tokens": 211,
+  "seconds": 1.797
+}

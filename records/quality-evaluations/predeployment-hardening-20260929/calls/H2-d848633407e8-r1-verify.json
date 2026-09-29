@@ -1,0 +1,12 @@
+{
+  "key": "H2-d848633407e8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:27.591238+00:00",
+  "input_hash": "4cc2a3366654e066bde48d4d0d8ef1d96cd42e6175709a16177900540243d044",
+  "system_hash": "93be5e42a34eaec1e22a310768fd1d342cb6f9a7e53867487f11212c9f3c73f4",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"read()가 예외를 던지면 4줄의 stream.close()가 실행되지 않아 스트림이 닫히지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"read() 예외 시 close()가 실행되지 않아 'Always close streams including when read raises' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4621,
+  "output_tokens": 138,
+  "seconds": 1.0
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-90900a02e0f4-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:25.860275+00:00",
+  "input_hash": "4395ff12a0390fe433b2062063f341ed4fc20f0d26707c7fa69496a46d9c9f64",
+  "system_hash": "03a065a7c66d5007e335c425186ce4db89e7cb484522b33358522087943f4ad8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄 변경은 null 처리 분기가 계약과 반대로 뒤집혀 있습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"name이 null인 경우\",\"consequence\":\"name.trim()이 평가되어 NullPointerException이 발생합니다.\",\"assumptions\":[],\"title\":\"null 입력에서 trim 호출로 NPE가 발생합니다\",\"evidence\":\"3줄의 조건은 name == null일 때 참이므로 삼항 연산자가 name.trim()을 선택합니다. 계약은 null을 빈 문자열로 표시하도록 요구합니다.\",\"suggestion\":\"조건을 name == null ? \\\"\\\" : name.trim()으로 바꿔 null 분기에서 빈 문자열을 반환하고, 비-null 입력은 trim을 유지하세요.\",\"contract_quote\":\"A null name is displayed as empty; otherwise strip surrounding whitespace.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4899,
+  "output_tokens": 239,
+  "seconds": 2.235
+}

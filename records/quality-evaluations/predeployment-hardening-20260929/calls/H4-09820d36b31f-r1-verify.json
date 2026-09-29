@@ -1,0 +1,12 @@
+{
+  "key": "H4-09820d36b31f-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:48.744656+00:00",
+  "input_hash": "25ab6e59cbb914cae4c624cc2f71a8e8e24c46c4fae71ee27a74af76a923f407",
+  "system_hash": "ea0e194b375e676a6e832e967f097a215aec6761a6d0f792dff3ffbc3bed4d26",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scale(5)는 10이 아니라 5를 반환하여, 계약이 요구하는 두 배 결과를 반환하지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 value * 2를 계산하지만 3줄에서 value를 반환하여 'Return double the input' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4469,
+  "output_tokens": 143,
+  "seconds": 1.312
+}

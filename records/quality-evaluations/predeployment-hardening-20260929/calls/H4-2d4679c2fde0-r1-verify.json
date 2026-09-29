@@ -1,0 +1,12 @@
+{
+  "key": "H4-2d4679c2fde0-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:41.751678+00:00",
+  "input_hash": "e7cb3fe10d13f8bc904e8d8d87eb501835582afce272d278d926e68a72038633",
+  "system_hash": "ea0e194b375e676a6e832e967f097a215aec6761a6d0f792dff3ffbc3bed4d26",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 null이면 value === null이 참이 되어 &&의 오른쪽 value.length가 평가되고, null에서 length를 읽으려다 TypeError가 발생하여 계약이 요구하는 0 반환이 이루어지지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"null 분기에서 value.length를 평가해 TypeError가 발생하며, 계약이 요구하는 null→0 반환이 깨집니다.\"}]}",
+  "input_tokens": 4539,
+  "output_tokens": 160,
+  "seconds": 1.687
+}

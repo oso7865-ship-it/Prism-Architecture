@@ -1,0 +1,12 @@
+{
+  "key": "H1-4a06b424f621-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:03.449728+00:00",
+  "input_hash": "260281e964e53cdc2ef7542f67b98751ec5fe1d8ac82a64df544bea2bd4a8c72",
+  "system_hash": "e1072740df3705f240842c60db96677f274a903823ff084a2787d836afdcdb34",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 ordered 함수가 values.sort로 배열을 정렬해 반환하는 변경입니다. 계약상 호출자 배열을 수정하지 않아야 한다는 요구와 비교 함수의 숫자 가정을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2],\"trigger\":\"호출자가 전달한 배열에 대해 ordered(values)를 호출할 때\",\"consequence\":\"Array.prototype.sort가 원본 배열을 제자리에서 정렬하므로 호출자의 배열 순서가 변경되어 '호출자 배열을 수정하지 않는다'는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"정렬이 호출자 배열을 제자리에서 변경합니다\",\"evidence\":\"2줄은 values.sort(...)의 결과를 그대로 반환합니다. sort는 원본 배열을 제자리에서 정렬하고 같은 배열 참조를 반환하므로, 반환값과 호출자의 values가 동일한 변경된 배열이 됩니다.\",\"suggestion\":\"정렬 전에 복사본을 만들어 정렬하세요(예: values.slice().sort((a, b) => a - b) 또는 [...values].sort(...)).\",\"contract_quote\":\"Do not modify the caller's array.\"}],\"limitations\":\"제공된 3줄만 검토했으며 실행 결과나 실제 호출자는 확인하지 않았습니다. 비교 함수가 숫자 입력을 전제로 한다는 점은 계약의 'finite numbers' 조건과 일치하므로 별도 결함으로 보지 않았습니다.\"}",
+  "input_tokens": 4734,
+  "output_tokens": 361,
+  "seconds": 2.688
+}

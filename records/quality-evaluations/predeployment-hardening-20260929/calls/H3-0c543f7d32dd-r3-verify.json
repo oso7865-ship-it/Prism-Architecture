@@ -1,0 +1,12 @@
+{
+  "key": "H3-0c543f7d32dd-r3-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:08:52.287088+00:00",
+  "input_hash": "8e04051d569a0e8da003404f9ff6d6d5ad15babc187378e71795335e7e187981",
+  "system_hash": "f049c6da4134e5ee73084c84613c5d7b0737ad1a3d84f7d18b16ccf85a73f6fb",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"root가 '/srv/data'이고 resolved가 '/srv/database/secret'일 때 startswith(root)가 True를 반환하여 root의 하위가 아닌 형제 경로가 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2행의 startswith(root)는 디렉터리 경계를 확인하지 않아 '/srv/data'가 '/srv/database'를 접두사로 포함한다고 판정합니다.\"}]}",
+  "input_tokens": 4767,
+  "output_tokens": 166,
+  "seconds": 1.438
+}

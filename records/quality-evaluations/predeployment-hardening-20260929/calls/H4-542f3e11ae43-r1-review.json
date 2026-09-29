@@ -1,0 +1,12 @@
+{
+  "key": "H4-542f3e11ae43-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:30.850377+00:00",
+  "input_hash": "72a8cbb1bfe717cd589a1073a53949b4cef0de5481fe500159d1117f979fc662",
+  "system_hash": "f6c76fcfd68c841036ed116a46cbc33b0c1cdc5d6e1c862b58dd4bef7102dac8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 inspect 함수는 얕은 복사 후 중첩 객체를 수정하고 원본 settings의 값을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"inspect(settings)를 호출할 때\",\"consequence\":\"2줄의 스프레드 복사는 최상위 속성만 복사하므로 scratch.limits는 settings.limits와 같은 객체를 참조합니다. 따라서 3줄의 cap 대입이 호출자의 settings.limits.cap을 12로 변경하고, 4줄은 변경된 값 12를 반환합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 호출자의 중첩 상태가 변경됩니다\",\"evidence\":\"2줄의 {...settings}는 중첩된 limits 객체를 공유하고, 3줄은 그 공유 객체의 cap을 수정하며, 4줄은 원본 settings에서 읽어 변경된 값을 반환합니다.\",\"suggestion\":\"중첩 객체도 복사하도록 limits를 별도로 펼쳐 새 객체로 만들거나, 원본을 변경하지 않는 계산으로 바꾸세요.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과와 실제 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4655,
+  "output_tokens": 315,
+  "seconds": 2.484
+}

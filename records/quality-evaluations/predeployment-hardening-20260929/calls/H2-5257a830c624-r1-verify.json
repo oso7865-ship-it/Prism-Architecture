@@ -1,0 +1,12 @@
+{
+  "key": "H2-5257a830c624-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:42.620647+00:00",
+  "input_hash": "a53d28f560cc457aa17dec2a3f45f01a9fc11138b4ec1493716f12a18050b89c",
+  "system_hash": "9f27f64aede51ed6c32d4d7b69969d1c53c3bf2bc934c19ada0be74983865ad5",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"REVISE\",\"reason\":\"WRONG_CONSEQUENCE\",\"revised\":{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"check(user)가 Promise<boolean>을 반환하고 allowed를 호출하는 경우\",\"consequence\":\"allowed는 async 함수이므로 2줄의 `return check(user)`는 Promise를 await하지 않고 반환하지만, async 함수의 반환값은 자동으로 채택(adopt)되어 호출자가 받는 Promise는 check의 해소된 boolean으로 이행합니다. 다만 check가 거부(reject)되면 allowed의 반환 Promise도 거부되어, 계약이 요구하는 '해소 후 동일한 인가 결정 반환'과 달리 boolean 결정이 나오지 않습니다.\",\"assumptions\":[],\"title\":\"check의 Promise를 await하지 않아 거부 시 boolean 인가 결정이 반환되지 않습니다\",\"evidence\":\"f1:2는 `if (check(user)) return true;`로, check(user)의 반환값(Promise)을 await 없이 조건으로 평가합니다. behavior_contract는 check가 Promise<boolean>을 반환하고 그 해소 후 동일한 인가 결정을 반환해야 한다고 명시합니다. Promise 객체는 항상 truthy이므로 조건은 해소 여부와 무관하게 참이 되고, check가 거부되면 그 거부가 allowed의 반환 Promise로 전파되어 boolean 결정이 반환되지 않습니다.\",\"suggestion\":\"2줄을 `if (await check(user)) return true;`로 수정해 해소된 boolean 값을 기준으로 판정하고, 거부 시에도 계약에 맞는 결정을 반환하도록 하세요.\"},\"checked_consequence\":\"check가 Promise<boolean>을 반환할 때 2줄의 조건은 Promise 객체를 평가해 항상 참이 되어 true를 반환하고, check가 거부되면 그 거부가 allowed의 반환 Promise로 전파되어 boolean 인가 결정이 반환되지 않습니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄이 check(user)의 Promise를 await 없이 조건으로 평가해 항상 참이 되고, 거부 시 boolean 결정이 반환되지 않습니다.\"}]}",
+  "input_tokens": 4444,
+  "output_tokens": 527,
+  "seconds": 3.172
+}

@@ -1,0 +1,52 @@
+{
+  "case": "776da2ea767a",
+  "repeat": 1,
+  "arm": "H2",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "size 함수의 호출자와 실제 입력 분포는 제공되지 않았습니다. 제공된 변경 라인만 검토했으며 테스트 실행은 하지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "length.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 null이면 0, 그 외에는 문자열 길이 반환을 요구합니다. line 2에서 null과 빈 문자열을 0으로 처리하고 line 3에서 value.length를 반환하므로 요구된 반환값과 일치하며, null 역참조 경로도 없습니다.",
+          "file_path": "length.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "be14a10a47e448c68b4ff257448795df053d4fa6f430d49463e1217b0cbb02ef"
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-a3c59f5a0dc8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:09.811356+00:00",
+  "input_hash": "f583d94df1023c0d9cf8578b9c5f22b2f4b3631c5c6c21915d67734974f49183",
+  "system_hash": "e1072740df3705f240842c60db96677f274a903823ff084a2787d836afdcdb34",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"제공된 f1의 inspect 함수는 values를 복사하지 않고 같은 배열 참조를 scratch에 할당한 뒤 정렬하고, 정렬된 values를 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"inspect(values)가 호출될 때\",\"consequence\":\"scratch가 values와 같은 배열을 가리키므로 3줄의 sort가 호출자의 배열을 제자리에서 재정렬하고, 4줄은 그 변경된 배열을 반환합니다.\",\"assumptions\":[],\"title\":\"호출자의 배열을 직접 정렬하여 수정합니다\",\"evidence\":\"2줄에서 scratch = values로 별칭이 만들어지고, 3줄의 Array.prototype.sort는 배열을 제자리에서 정렬하며, 4줄은 같은 배열을 반환합니다.\",\"suggestion\":\"정렬 전에 values의 복사본을 만들어 정렬하세요(예: const scratch = values.slice();).\",\"contract_quote\":\"Do not modify the caller's array\"}],\"limitations\":\"제공된 f1만 검토했으며 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4794,
+  "output_tokens": 274,
+  "seconds": 2.375
+}

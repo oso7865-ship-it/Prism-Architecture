@@ -1,0 +1,12 @@
+{
+  "key": "H1-cea2cfe09062-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:01:30.654040+00:00",
+  "input_hash": "83001112c795d8743ffa204029261fe1d359e1136a9fc2e462f5c72868fd446a",
+  "system_hash": "3db167f22ca71c68196115e456c7d574758c8cc61da9363e5c29a01a33d141ce",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 계약은 '모든 int 값에 대해 원본 값을 그대로 반환(음수 포함)'이며, normalize는 value를 그대로 반환하므로 계약을 충족한다. 3행의 adjusted 계산은 사용되지 않지만, 이는 동작 결함이 아니라 스타일 문제이며 CODE 목적에서는 별도 결함으로 보고하지 않는다. 제출된 변경 라인에서 지원되는 동작 결함은 없다.\", \"issues\": [], \"limitations\": \"normalize의 호출자, 테스트, 그리고 adjusted를 사용하는 다른 코드 경로는 제공되지 않아 확인하지 못했다. 제공된 범위는 단일 클래스의 6개 라인뿐이다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 모든 int(음수 포함)에 대해 원본 값을 반환하라고 요구하며, 4행 return value가 이를 그대로 만족한다. 3행 adjusted는 사용되지 않는 계산이지만 반환 동작을 바꾸지 않으므로 CODE 결함이 아니다.\"}]}",
+  "input_tokens": 3785,
+  "output_tokens": 256,
+  "seconds": 2.203
+}

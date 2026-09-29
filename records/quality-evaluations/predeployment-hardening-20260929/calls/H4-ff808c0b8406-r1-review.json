@@ -1,0 +1,12 @@
+{
+  "key": "H4-ff808c0b8406-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:14.752065+00:00",
+  "input_hash": "7175cd85d770a42b11b9ce19a40624892149770ee0541ba0433cda042a3ca76f",
+  "system_hash": "cd76257b9d2949607842355b8d9d518f3b1d894a25ebca2e5cc3bf814bd6ff90",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 submit은 async 함수이지만 store.save(value)의 Promise를 await하지 않고 즉시 true를 반환합니다. 제공된 계약상 save는 Promise를 반환하고 저장 완료 후 true를 반환해야 하므로, 저장 실패나 지연이 반환값에 반영되지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"submit이 호출되어 store.save(value)가 아직 완료되지 않았거나 거부될 때\",\"consequence\":\"await 없이 3줄에서 true가 반환되므로 저장이 끝나기 전에 성공이 보고되고, save의 거부도 submit 호출자에게 전파되지 않습니다.\",\"assumptions\":[],\"title\":\"save 완료 전에 true를 반환합니다\",\"evidence\":\"1줄은 async 함수이고, 2줄은 Promise를 반환하는 save를 await 없이 호출하며, 3줄이 즉시 true를 반환합니다. 계약은 저장 완료 후 true 반환을 요구합니다.\",\"suggestion\":\"2줄을 await store.save(value)로 바꿔 저장 완료를 기다린 뒤 3줄에서 true를 반환하도록 하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 store.save의 실제 구현과 호출자, 실행 결과는 확인하지 못했습니다.\"}",
+  "input_tokens": 4586,
+  "output_tokens": 328,
+  "seconds": 2.594
+}

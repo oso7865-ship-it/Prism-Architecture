@@ -1,0 +1,12 @@
+{
+  "key": "H1-c5e97ef54254-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:01:09.160313+00:00",
+  "input_hash": "d05f92043b6f01e13ae4e2cf3fbbb476773bafb3a49c9b17cd7a4f561e5c1cf9",
+  "system_hash": "6a049e126f5a58bfcf598614c3bba7a45b2793720969830f1896857bd46af776",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 adjust는 settings['limits']를 얕은 복사한 scratch를 만들어 cap을 12로 바꾸지만, 반환은 원본 settings['limits']['cap']을 읽습니다. 계약상 '호출자의 중첩 상태를 변경하지 않는다'는 요구는 지켜지지만(복사본만 수정), 반환값이 조정된 값이 아니라 원본 값이라는 점이 동작상 혼란을 줄 수 있습니다. 다만 계약에 반환값 요구가 명시되지 않아 결함으로 단정하지 않습니다.\", \"issues\": [], \"limitations\": \"behavior_contract에 반환값 요구가 명시되지 않아, 원본 cap 반환과 조정된 cap 반환 중 어느 쪽이 의도인지 판단할 근거가 없습니다. 호출자 코드와 settings의 실제 사용처는 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"scratch는 settings의 얕은 복사본이며 limits만 별도로 copy되어 원본 중첩 상태는 변경되지 않습니다. 반환값은 원본 settings['limits']['cap']이지만 계약에 반환값 요구가 없어 위반으로 볼 수 없습니다.\"}]}",
+  "input_tokens": 3661,
+  "output_tokens": 301,
+  "seconds": 2.281
+}

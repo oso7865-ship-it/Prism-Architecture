@@ -1,0 +1,12 @@
+{
+  "key": "H4-1e22f33ed8d3-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:12:11.289955+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "8a1ed62515e2efaae31087074b140efa74401d0e91f54633fcad779021ff4220",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length는 str이면 UTF-8 인코딩 후 바이트 수를, bytes이면 그대로의 길이를 반환하여 계약(Content-Length = 전송 UTF-8 바이트 수, bytes 재인코딩 금지)을 만족한다. prepare와 테스트도 동일한 규칙을 따르며, 제공된 변경 라인에서 지원 가능한 결함은 확인되지 않았다.\", \"issues\": [], \"limitations\": \"prepare의 실제 호출자, 네트워크 전송 계층, 그리고 content_length가 다른 곳에서 사용되는 방식은 제공되지 않아 검토 범위 밖이다. 제공된 라인만으로 판단했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 Content-Length는 전송 UTF-8 바이트 수여야 하며 bytes는 재인코딩하지 않아야 한다. content_length는 str을 UTF-8로 인코딩한 뒤 len을 반환하고 bytes는 그대로 len을 반환하므로 계약을 위반하지 않는다.\"}]}",
+  "input_tokens": 3789,
+  "output_tokens": 256,
+  "seconds": 1.922
+}

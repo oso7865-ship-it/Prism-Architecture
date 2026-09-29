@@ -1,0 +1,52 @@
+{
+  "case": "59d1396dc381",
+  "repeat": 1,
+  "arm": "H1",
+  "metrics": {
+    "expected_bug": false,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": false,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+    "issues": [],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "line 2의 adjusted 계산이 사용되지 않는 점은 스타일 관찰이며, 제공된 계약(원본 값 반환)을 위반하지 않아 CODE 결함으로 채택하지 않았습니다. adjust의 호출자나 value의 실제 타입 보장은 제공되지 않았습니다.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "adjusted.py",
+          "provided_lines": 3
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "EMPTY_RECHECKED",
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "NO_FINDING",
+          "observation": "계약은 value를 변경 없이 반환하는 것입니다. line 3이 value를 그대로 반환하므로 음수(-1), 0, 양수(1,3) 모두 계약을 충족합니다. line 2의 max 계산은 미사용 지역 계산일 뿐 반환 동작을 바꾸지 않습니다.",
+          "file_path": "adjusted.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "04ee87ca82fa3253480ced452b0e303cf6665e0e2bcbd61b32be1377183477d0"
+}

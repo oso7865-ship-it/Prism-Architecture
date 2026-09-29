@@ -1,0 +1,12 @@
+{
+  "key": "H2-f8f90c041f96-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:31.674799+00:00",
+  "input_hash": "6c31988384dfd29b64d3920ed2eca7a652063777760d63db3bc11385b031d429",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"f1의 allowed는 checker(user) 호출에서 TimeoutError가 발생하면 False를 반환하여, 제공된 계약(\\\"Unknown authorization must deny access\\\")과 일치합니다. 변경된 5개 라인 전체를 검토했으며, 계약 위반이나 언어 수준 실패 경로가 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"checker의 실제 구현, 다른 예외 유형, allowed의 호출자 및 반환값 사용 방식은 제공되지 않아 검토 범위 밖입니다. TimeoutError 이외의 예외 전파가 의도된 것인지는 제공된 계약만으로 판단하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 인증 불명 시 TimeoutError가 발생하고 접근을 거부해야 하며, line 4-5에서 TimeoutError를 포착해 False를 반환하므로 요구된 거부 동작과 일치합니다. 다른 예외는 전파되며 이는 계약과 충돌하지 않습니다.\"}]}",
+  "input_tokens": 3592,
+  "output_tokens": 257,
+  "seconds": 2.297
+}

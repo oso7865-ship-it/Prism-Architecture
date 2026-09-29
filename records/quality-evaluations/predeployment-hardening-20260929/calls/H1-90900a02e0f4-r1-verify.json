@@ -1,0 +1,12 @@
+{
+  "key": "H1-90900a02e0f4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:28.127213+00:00",
+  "input_hash": "0faca6b7d9272c33eaea5caf29f1a96a6c4c3a3f557ffdc6f57d744bc82b89a6",
+  "system_hash": "4128d5b13d648c6d956190e980b4696225afbf2dd8cc1c4e921054ee4d6fb70f",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"name이 null이면 조건이 참이 되어 name.trim()이 평가되고 NullPointerException이 발생합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3줄의 삼항 조건이 반대로 되어 null 입력에서 trim을 호출해 NPE가 발생하며, 계약의 'null은 빈 문자열' 요구와 충돌합니다.\"}]}",
+  "input_tokens": 4624,
+  "output_tokens": 126,
+  "seconds": 1.422
+}

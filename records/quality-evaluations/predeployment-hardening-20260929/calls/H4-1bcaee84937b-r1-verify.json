@@ -1,0 +1,12 @@
+{
+  "key": "H4-1bcaee84937b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:48.946152+00:00",
+  "input_hash": "7a535ba2f491a9c959f836efe701c80aa83b08bf966c4ae5a426610f7214c3b6",
+  "system_hash": "1ac890f0010d30e27a04246b6911cb3bf5d94a9f797ab5c964d639175af3a4f6",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"actor가 \\\"alice\\\"가 아닌 값으로 호출되면 소유권 검사 없이 item.amount(40)가 반환되어 비소유자에게 금액이 노출됩니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"actor 매개변수가 소유권 검사에 사용되지 않고 item.amount가 그대로 반환되어, 제공된 계약(소유자 외 actor에게 Error)을 위반하는 접근 제어 누락이 확인됩니다.\"}]}",
+  "input_tokens": 4954,
+  "output_tokens": 148,
+  "seconds": 1.328
+}

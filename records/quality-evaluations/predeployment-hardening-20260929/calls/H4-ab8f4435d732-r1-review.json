@@ -1,0 +1,12 @@
+{
+  "key": "H4-ab8f4435d732-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:26.657056+00:00",
+  "input_hash": "3729324b700b34bf0f97a0a9795d41eef150fb6510db747624a097b5a7c17210",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 settings.copy()로 만든 얕은 복사본의 중첩 딕셔너리를 수정한 뒤 원본 settings의 값을 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"settings['limits']가 중첩 딕셔너리인 상태에서 adjust(settings)를 호출하는 경우\",\"consequence\":\"2줄의 copy()는 최상위 매핑만 복사하므로 3줄의 scratch['limits']['cap'] = 12는 원본 settings['limits']를 그대로 변경하고, 4줄은 변경된 값 12를 반환합니다.\",\"assumptions\":[],\"title\":\"얕은 복사로 인해 호출자의 중첩 상태가 변경됩니다\",\"evidence\":\"2줄의 settings.copy()는 중첩 딕셔너리를 공유하고, 3줄은 그 공유 객체의 'cap'을 12로 덮어씁니다. behavior_contract는 호출자의 중첩 상태를 변경하지 말라고 요구합니다.\",\"suggestion\":\"중첩 딕셔너리까지 복사하도록 limits를 별도로 복사한 뒤 수정하세요(예: scratch['limits'] = dict(settings['limits'])).\"}],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인입니다. settings의 실제 생성 지점과 다른 호출자는 제공되지 않았습니다.\"}",
+  "input_tokens": 4655,
+  "output_tokens": 350,
+  "seconds": 2.828
+}

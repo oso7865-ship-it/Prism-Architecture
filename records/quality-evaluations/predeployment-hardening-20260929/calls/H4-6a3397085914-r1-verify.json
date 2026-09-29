@@ -1,0 +1,12 @@
+{
+  "key": "H4-6a3397085914-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:11:37.319185+00:00",
+  "input_hash": "b16abde384924b875c29f3f3c950a8b73700df07ff2092865fefa76d0e5836b3",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비ASCII 문자를 포함한 str 입력에서 len(body)는 문자 수를 반환하므로 UTF-8 인코딩 시 실제 전송 바이트 수보다 작은 값이 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"wire_size가 len(body)를 반환하여 str 입력에서 UTF-8 바이트 수 계약을 위반합니다.\"}]}",
+  "input_tokens": 4586,
+  "output_tokens": 145,
+  "seconds": 1.141
+}

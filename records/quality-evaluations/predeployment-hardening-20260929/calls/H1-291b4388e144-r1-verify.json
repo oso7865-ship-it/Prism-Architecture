@@ -1,0 +1,12 @@
+{
+  "key": "H1-291b4388e144-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:15.961895+00:00",
+  "input_hash": "3b6da6199a6ff43407bee89696980b8de8bf769f253972aebbdb98d87f43e45c",
+  "system_hash": "4128d5b13d648c6d956190e980b4696225afbf2dd8cc1c4e921054ee4d6fb70f",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scratch는 values와 같은 배열을 가리키므로 scratch[0] = 12가 호출자의 원본 배열 첫 원소를 12로 변경하고, 이후 values[0]은 12를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 대입은 배열 복사가 아닌 별칭 생성이며, 4줄의 원소 수정이 호출자 배열을 변경해 '호출자 배열을 변경하지 말 것' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4757,
+  "output_tokens": 179,
+  "seconds": 1.391
+}

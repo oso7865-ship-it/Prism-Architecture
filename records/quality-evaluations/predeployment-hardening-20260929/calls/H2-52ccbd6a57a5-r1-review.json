@@ -1,0 +1,12 @@
+{
+  "key": "H2-52ccbd6a57a5-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:10.593050+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "9a86aed1ff5a414362c469bae82c1336c62f19f1e6f0348bb18b994e1e6f2718",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"query 함수가 SQL 문자열과 파라미터 튜플을 분리해 반환하도록 변경된 부분을 보안 관점에서 검토했습니다.\",\"issues\":[],\"limitations\":\"제공된 두 줄만 검토했으며 실제 DB-API 호출부, user_id의 실제 출처와 검증 여부는 확인하지 못했습니다. 값이 %s 플레이스홀더로 바인딩되므로 제공된 범위에서는 주입 결함이 확인되지 않습니다.\"}",
+  "input_tokens": 4955,
+  "output_tokens": 113,
+  "seconds": 1.516
+}

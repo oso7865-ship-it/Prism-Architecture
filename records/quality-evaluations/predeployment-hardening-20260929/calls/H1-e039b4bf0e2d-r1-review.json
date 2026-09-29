@@ -1,0 +1,12 @@
+{
+  "key": "H1-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:51.924701+00:00",
+  "input_hash": "f48c2b86205d43bbe17d3bbd76d833a995476d146e4e5252dda72b45a04f2dd8",
+  "system_hash": "7f86864500727e391921ead9a569d47d2006c154f391957be13578a6f3db9b1e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings 10줄 변경으로 빈 CA 번들 환경변수 처리와 관련된 계약 위반이 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE(또는 REQUESTS_CA_BUNDLE)가 빈 문자열로 존재하고 verify가 True일 때\",\"consequence\":\"10줄의 or 연산이 빈 문자열을 falsy로 평가해 verify가 빈 문자열로 덮어써지고, merge_setting이 이를 그대로 반환하여 명시적 검증 True가 유지되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 값이 명시적 verify=True를 덮어씁니다\",\"evidence\":\"10줄은 env.get(...) or env.get(...) 결과를 verify에 대입합니다. 테스트 15,16줄은 빈 문자열 환경변수에서도 True를 기대하지만, 빈 문자열은 or에서 falsy이므로 verify가 빈 문자열이 됩니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 or 대신 None 여부를 명시적으로 검사하여, 값이 None일 때만 verify를 대체하도록 수정하세요.\",\"contract_quote\":\"An empty CURL_CA_BUNDLE must preserve explicit verification True.\"}],\"limitations\":\"제공된 f1 범위만 정적 검토했으며 실행 결과는 확인하지 않았습니다. merge_setting의 다른 호출자와 실제 requests 통합 동작은 제공되지 않았습니다.\"}",
+  "input_tokens": 5997,
+  "output_tokens": 373,
+  "seconds": 2.64
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-4cf224cd4371-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:52.673353+00:00",
+  "input_hash": "17fb11f0a7cc7d15d2a11b09c904337647fb9089895f3d265965f5c96e792a5b",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"prepare에 \\\"한글\\\" 같은 비ASCII 문자열이 전달되면 content_length는 문자 수 2를 반환하지만 wire는 UTF-8로 6바이트가 되어, Content-Length가 실제 전송 바이트 수와 불일치합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"content_length가 str을 인코딩 전 길이로 세어 비ASCII 본문에서 Content-Length와 전송 바이트 수가 불일치합니다.\"}]}",
+  "input_tokens": 4935,
+  "output_tokens": 151,
+  "seconds": 1.406
+}

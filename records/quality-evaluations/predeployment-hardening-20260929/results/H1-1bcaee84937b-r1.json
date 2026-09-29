@@ -1,0 +1,78 @@
+{
+  "case": "1bcaee84937b",
+  "repeat": 1,
+  "arm": "H1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 소유자 확인 없이 금액이 반환됩니다",
+    "issues": [
+      {
+        "line": 3,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2,
+          3
+        ],
+        "trigger": "actor가 item.owner와 다른 값(예: actor=\"bob\", id=7)으로 invoice를 호출할 때",
+        "consequence": "actor가 item.owner와 다른 값(예: actor=\"bob\", id=7)으로 호출하면 Error 없이 item.amount(40)가 그대로 반환되어 소유자가 아닌 actor에게 금액이 노출됩니다.",
+        "assumptions": [],
+        "title": "소유자 확인 없이 금액이 반환됩니다",
+        "evidence": "f1:2에서 load(id)로 항목을 가져온 뒤 f1:3에서 item.amount를 반환합니다. 제공된 계약은 소유자에게만 반환하고 다른 actor에게는 Error를 던지라고 요구하며, related_implementation의 load는 owner와 amount를 담은 객체를 반환하지만 변경된 코드에는 actor와 owner를 비교하는 검사가 없습니다.",
+        "suggestion": "f1:3에서 amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지세요.",
+        "file_path": "invoice.ts",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "9a241b863f9e208f100101b0becfe0e6ad4ef515eaf06263b19fd6c393eb2fe2"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "invoice.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "f1:2에서 load(id) 결과를 받아 f1:3에서 item.amount를 반환하지만, 계약이 요구하는 actor와 item.owner 비교/Error 발생이 없어 비소유자에게 금액이 노출됩니다.",
+          "file_path": "invoice.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b"
+}

@@ -1,0 +1,77 @@
+{
+  "case": "0c543f7d32dd",
+  "repeat": 3,
+  "arm": "H1",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 2,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 문자열 접두사 비교로 root 밖 경로가 허용됩니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          2
+        ],
+        "trigger": "root가 '/srv/data'이고 resolved가 '/srv/database/secret'처럼 root 문자열로 시작하지만 root 디렉터리 밖인 경로일 때",
+        "consequence": "root가 '/srv/data'이고 resolved가 '/srv/database/secret'일 때 permitted는 True를 반환하여 root 디렉터리 밖 경로가 허용됩니다.",
+        "assumptions": [],
+        "title": "문자열 접두사 비교로 root 밖 경로가 허용됩니다",
+        "evidence": "2줄의 startswith(root)는 디렉터리 경계를 확인하지 않으므로 '/srv/data'가 '/srv/database/...'의 접두사가 되어 통과합니다. 계약상 root와 그 하위만 허용되어야 합니다.",
+        "suggestion": "root와 같거나 root + '/'로 시작하는 경우만 허용하도록 경계를 포함해 비교하세요.",
+        "file_path": "paths.py",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "ba0598a6578358b155de7d53a731da2657dd94c64e46a0b5fe9c19e518e84349"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "paths.py",
+          "provided_lines": 2
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 2,
+          "outcome": "FINDING",
+          "observation": "startswith(root)는 디렉터리 경계를 확인하지 않아 '/srv/data'가 '/srv/database/...'의 접두사로 통과합니다. 계약상 root와 그 하위만 허용되어야 합니다.",
+          "file_path": "paths.py"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76"
+}

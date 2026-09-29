@@ -1,0 +1,12 @@
+{
+  "key": "H1-6a3397085914-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:20.811737+00:00",
+  "input_hash": "66b110ff208462064bdfbac17a63da1fb91aa301df7409e33dca59a6a2e21b59",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비ASCII 문자를 포함한 str을 전달하면 len(body)가 문자 수를 반환하여 UTF-8 전송 바이트 수와 달라집니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"wire_size가 str에 대해 len(body)를 반환하여 UTF-8 바이트 수 계약과 불일치합니다.\"}]}",
+  "input_tokens": 4603,
+  "output_tokens": 138,
+  "seconds": 1.359
+}

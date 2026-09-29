@@ -1,0 +1,12 @@
+{
+  "key": "H2-0e12161a3613-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:05.063759+00:00",
+  "input_hash": "2edc551a461befc6a54a421024d2455c8b8c296e327ffc47f83ddd6cdf865537",
+  "system_hash": "ae56199f6cb16412ffcf0b8ae2ccf2b34b4f74043633d001189ef1e30eefe1d2",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 파일 f1의 compare 메서드는 Integer.compare(left, right)를 반환하며, 이는 left < right일 때 음수, 같을 때 0, 그 외 양수를 반환한다는 제공된 계약을 그대로 만족한다. 제공된 컨텍스트에서 지원 가능한 결함이나 추가 확인이 필요한 지점이 없다.\", \"issues\": [], \"limitations\": \"제공된 것은 단일 파일의 5줄뿐이며, 호출자나 실제 사용 경로는 확인할 수 없다. 정적 분석 경고도 제공되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 left<right일 때 음수, 동일할 때 0, 그 외 양수를 요구한다. Integer.compare(left, right)는 정확히 이 부호 규약을 따르므로 반환값이 계약을 위반하지 않는다.\"}]}",
+  "input_tokens": 3670,
+  "output_tokens": 222,
+  "seconds": 1.828
+}

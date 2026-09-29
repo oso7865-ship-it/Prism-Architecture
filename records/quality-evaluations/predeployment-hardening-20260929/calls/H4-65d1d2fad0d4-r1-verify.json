@@ -1,0 +1,12 @@
+{
+  "key": "H4-65d1d2fad0d4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:00.971920+00:00",
+  "input_hash": "04e8df68bd8ce293a483a287aa023ebd559da09956e7d99ca114d9effe857df0",
+  "system_hash": "09b193779b22df8c7f6b2ae9f176c3f749c7b0cbe43624d24e1192eabe93578b",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left = Integer.MIN_VALUE, right = 1일 때 left - right는 int 오버플로로 양수가 반환되어, left < right인데도 비교기 부호 계약(음수)을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"compare가 int 뺄셈을 반환해 극단값에서 오버플로로 부호가 뒤집히며, 제공된 비교기 부호 계약을 위반할 수 있습니다.\"}]}",
+  "input_tokens": 4686,
+  "output_tokens": 171,
+  "seconds": 1.343
+}

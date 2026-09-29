@@ -1,0 +1,78 @@
+{
+  "case": "381b3006774b",
+  "repeat": 1,
+  "arm": "H2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 음수 입력에서 보정값 대신 원래 값이 반환됩니다",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          3,
+          4
+        ],
+        "trigger": "normalize에 음수 int value가 전달될 때",
+        "consequence": "음수 value가 전달되면 adjusted는 0으로 계산되지만 4줄이 원래 value를 반환하므로 계약이 요구하는 Math.max(value, 0) 결과가 반환되지 않습니다.",
+        "assumptions": [],
+        "title": "음수 입력에서 보정값 대신 원래 값이 반환됩니다",
+        "evidence": "f1:3은 Math.max(value, 0)으로 adjusted를 계산하지만 f1:4는 adjusted가 아닌 value를 반환합니다. 제공된 behavior_contract는 모든 int value에 대해 Math.max(value, 0)을 반환하도록 요구합니다.",
+        "suggestion": "4줄의 반환식을 adjusted로 바꿔 계산된 보정값을 반환하도록 하세요.",
+        "file_path": "Normalize.java",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "f6cb654f74c801e1aed885afaddf1fd1f60e06344d341f61077f555fccfe407e"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "Normalize.java",
+          "provided_lines": 6
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "3줄에서 Math.max(value, 0)으로 adjusted를 계산하지만 4줄이 value를 반환해 음수 입력에서 계약(모든 int value에 대해 Math.max(value, 0) 반환)을 위반합니다.",
+          "file_path": "Normalize.java"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "36c0d23b0e4d1089afd5d9e0f8f6ff5ea2dd3f88e67a89c4848cc4318f2f7b90"
+}

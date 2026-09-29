@@ -1,0 +1,12 @@
+{
+  "key": "H1-4a06b424f621-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:06.163901+00:00",
+  "input_hash": "52dafe3b28344b1a018733c2d82b8c9a74ac381acc466ad9716ce68584b4ac8d",
+  "system_hash": "6fd7084d3b5269cf67fa6751c21eaf23ed06f7779409ba3c5e23a8d55d572204",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"호출자가 전달한 배열이 제자리에서 정렬되어 호출자의 배열 순서가 변경되므로 '호출자 배열을 수정하지 않는다'는 계약을 위반합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"values.sort(...)가 원본 배열을 제자리에서 정렬해 반환하므로 호출자 배열을 수정하지 말라는 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4583,
+  "output_tokens": 143,
+  "seconds": 1.453
+}

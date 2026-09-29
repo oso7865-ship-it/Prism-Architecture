@@ -1,0 +1,12 @@
+{
+  "key": "H2-6197edcf876e-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:09.104336+00:00",
+  "input_hash": "4095aeb3f5eaca8009664f610be1ad0977290be857c0c12cc6140895af4fc9fa",
+  "system_hash": "16df5b4e84dd48a9e856056d144e6992f406c5c081dbb7973b341bfa992b5c30",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 한 줄은 `user.profile?.name ?? 'Unknown'`으로, profile이 없으면 'Unknown'을 반환하고 profile.name이 빈 문자열이면 그대로 보존한다. 제공된 계약(누락 시 Unknown, 빈 이름 보존)과 일치하며, 타입상 profile이 옵셔널이므로 옵셔널 체이닝이 적절하다. 지원되는 결함은 없다.\", \"issues\": [], \"limitations\": \"name 함수의 호출자와 user 인자가 실제로 null일 수 있는지는 제공되지 않았다. 타입 선언상 user는 필수이며 profile만 옵셔널이므로, user 자체가 null인 경우는 계약 범위 밖으로 판단했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 profile 누락 시 'Unknown', 빈 이름은 보존을 요구한다. `user.profile?.name ?? 'Unknown'`은 profile이 undefined면 'Unknown'을, name이 ''이면 ''을 반환하므로 두 조건을 모두 만족한다.\"}]}",
+  "input_tokens": 3548,
+  "output_tokens": 263,
+  "seconds": 2.281
+}

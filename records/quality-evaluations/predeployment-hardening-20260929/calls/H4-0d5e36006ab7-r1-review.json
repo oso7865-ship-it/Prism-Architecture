@@ -1,0 +1,12 @@
+{
+  "key": "H4-0d5e36006ab7-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:01.956187+00:00",
+  "input_hash": "ee281f8800657c42620ec6614af470707f6d378e8336dc06dad8ceafdd3ff7b2",
+  "system_hash": "e74e3c078873a5805e694f55486aee49d2c64df86ecc16529a777193ff062837",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"access 함수에서 async check의 반환값을 await 없이 조건으로 사용하는 변경이 확인됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"check가 async이고 boolean으로 resolve되는 계약대로 호출될 때\",\"consequence\":\"check()가 Promise 객체를 반환하므로 조건이 항상 truthy가 되어 check가 false로 resolve되어도 'allowed'가 반환됩니다.\",\"assumptions\":[],\"title\":\"async check를 await하지 않아 항상 허용됩니다\",\"evidence\":\"2줄은 check()의 반환값을 조건으로 사용하지만, 계약상 check는 boolean으로 resolve되는 async 함수이므로 Promise 자체가 평가됩니다.\",\"suggestion\":\"2줄을 `if (await check()) return 'allowed';`로 수정해 resolve된 boolean을 검사하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 check의 실제 구현과 호출자는 확인하지 못했습니다.\"}",
+  "input_tokens": 4955,
+  "output_tokens": 232,
+  "seconds": 2.391
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-65d1d2fad0d4-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:06.320775+00:00",
+  "input_hash": "eca9e098f27b90d0fd57dc22d6ebe4561408228d0644f88c801bddb934569e14",
+  "system_hash": "03191a451d7eed8720465290a39cd6ecbcad40e63c5625389aef6ed66f8b5c53",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"left = Integer.MIN_VALUE, right = 1일 때 int 뺄셈이 오버플로하여 left < right인데도 양수가 반환되어 비교 계약의 부호가 뒤집힙니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"compare가 left - right를 int로 반환하여 MIN_VALUE/1 같은 입력에서 오버플로로 부호가 뒤집힙니다.\"}]}",
+  "input_tokens": 4565,
+  "output_tokens": 157,
+  "seconds": 1.062
+}

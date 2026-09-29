@@ -1,0 +1,12 @@
+{
+  "key": "H1-81c5bd8c7f71-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:46.599530+00:00",
+  "input_hash": "e4f8db6b64dc59f6c22413b2a436c9758f74367916b293ada862223b6528da7c",
+  "system_hash": "3c6457167f7f927046cfa7859cc82d3883e868fa6fb83ee11140f23220767a8d",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"profile 속성이 없는 User로 name(user)를 호출하면 user.profile!.name에서 TypeError가 발생하며, 계약이 요구한 'Unknown' 표시가 이루어지지 않습니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"profile?: 선언과 user.profile!.name 비단언 접근이 충돌하여, profile 누락 시 계약의 'Unknown' 대신 TypeError가 발생합니다.\"}]}",
+  "input_tokens": 4561,
+  "output_tokens": 141,
+  "seconds": 1.375
+}

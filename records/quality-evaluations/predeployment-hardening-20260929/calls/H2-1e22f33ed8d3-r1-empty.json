@@ -1,0 +1,12 @@
+{
+  "key": "H2-1e22f33ed8d3-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:15.498570+00:00",
+  "input_hash": "266994e7df68b5c9f12a171aa24470728d056cc5946bcf65ef65d4f5ac59fd4b",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"content_length는 str이면 UTF-8 인코딩 후 바이트 수를, bytes이면 그대로의 길이를 반환하여 'Content-Length는 전송되는 UTF-8 바이트 수와 같아야 하고 bytes는 재인코딩하지 않는다'는 계약을 만족합니다. prepare와 테스트도 동일한 인코딩 규칙을 사용하므로 변경된 라인에서 지원 가능한 결함이 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"content_length/prepare의 외부 호출자와 실제 전송 계층은 제공되지 않아, 반환된 Content-Length가 실제 소켓 전송과 일치하는지는 이 코드만으로 검증할 수 없습니다. 테스트는 실행되지 않았고 제공된 정적 라인만 검토했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 Content-Length는 전송 UTF-8 바이트 수여야 하며 bytes는 재인코딩 금지입니다. line 2는 str만 encode하고 bytes는 그대로 len을 취해 계약을 만족하며, line 5-6의 prepare도 같은 규칙을 사용합니다.\"}]}",
+  "input_tokens": 3755,
+  "output_tokens": 285,
+  "seconds": 1.828
+}

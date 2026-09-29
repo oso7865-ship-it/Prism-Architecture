@@ -29,6 +29,8 @@ frontend/src/
 
 PENDING/RUNNING 중에는 3초 간격 상태 조회를 기본으로 하고 오류/대기 장기화 시 backoff한다. 탭이 숨겨지거나 terminal 상태가 되면 멈춘다. 서버를 깨워두기 위한 인위적 상시 polling은 만들지 않는다. WebSocket/SSE는 MVP 필수 기능이 아니다.
 
+리뷰 이력 또는 팀이 바뀌면 열려 있던 파일별 코드 선택을 초기화한다. 문서 인용은 팀/저장소/문서/버전/섹션을 하나의 요청 키로 취급하고, 키 변경이나 컴포넌트 종료 후 늦게 도착한 응답은 버린다. 문서 본문을 편집하면 이전 섹션 연결을 무효화하되 규칙 값은 보존하고, 새 미리보기의 섹션에 명시적으로 다시 연결해야 저장할 수 있다.
+
 ## API 프록시
 
 브라우저는 동일 출처 `/api/v1/...`를 호출하고 Vercel external rewrite가 AWS 백엔드의 `/api/v1/...`로 전달하는 구성을 제안한다. Vercel은 외부 origin으로 요청을 프록시하는 rewrite를 제공한다. [S-VERCEL-REWRITE](../reference/SOURCES.md#s-vercel-rewrite)

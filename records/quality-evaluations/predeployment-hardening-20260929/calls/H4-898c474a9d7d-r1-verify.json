@@ -1,0 +1,12 @@
+{
+  "key": "H4-898c474a9d7d-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:01.214344+00:00",
+  "input_hash": "506db82b2c7358a59331d19079688c9b3f959c336c660a6c0806159c538d2b37",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"DROP\", \"reason\": \"MISSING_CONTRACT\", \"revised\": null, \"checked_consequence\": null}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"2줄에서 base['nested']를 별도 복사해 원본 중첩 딕셔너리 변이를 피하고, 4줄은 원본 limit을 반환합니다. 제공된 계약('Preserve the caller's base without mutation')을 위반하는 경로는 보이지 않습니다.\"}]}",
+  "input_tokens": 4732,
+  "output_tokens": 150,
+  "seconds": 1.281
+}

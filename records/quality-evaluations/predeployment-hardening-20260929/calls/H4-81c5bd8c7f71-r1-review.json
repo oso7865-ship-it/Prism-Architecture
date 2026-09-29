@@ -1,0 +1,12 @@
+{
+  "key": "H4-81c5bd8c7f71-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:02.542097+00:00",
+  "input_hash": "e6c8c67002d1e8143748092bd0ef57184d59ce5357d276c2cb1ba543ed9dad1f",
+  "system_hash": "f6c76fcfd68c841036ed116a46cbc33b0c1cdc5d6e1c862b58dd4bef7102dac8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 3줄에서 선택적 profile에 비-널 단언(!)을 적용해 반환하도록 변경되었습니다. 제공된 동작 계약은 profile이 없을 때 'Unknown'을 표시해야 함을 요구하므로, 해당 경로에서 단언 실패가 발생합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"profile 속성이 없는 User 객체로 name(user)을 호출할 때\",\"consequence\":\"user.profile이 undefined이므로 user.profile!.name 평가에서 TypeError가 발생하고, 계약이 요구하는 'Unknown' 표시가 이루어지지 않습니다.\",\"assumptions\":[],\"title\":\"profile이 없을 때 'Unknown' 대신 TypeError가 발생합니다\",\"evidence\":\"1줄에서 profile은 선택적 속성으로 선언되어 없을 수 있고, 3줄은 비-널 단언으로 profile을 강제 역참조합니다. 계약은 profile 부재 시 'Unknown'을 요구합니다.\",\"suggestion\":\"profile 존재 여부를 확인해 없으면 'Unknown'을 반환하고, 있을 때만 name을 반환하도록 3줄을 수정하세요.\",\"contract_quote\":\"Missing profile must display Unknown; an existing empty name is preserved.\",\"citations\":[],\"expression_repair\":{\"line\":3,\"before\":\"return user.profile!.name;\",\"after\":\"return user.profile ? user.profile.name : 'Unknown';\"}}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 다른 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4616,
+  "output_tokens": 372,
+  "seconds": 2.297
+}

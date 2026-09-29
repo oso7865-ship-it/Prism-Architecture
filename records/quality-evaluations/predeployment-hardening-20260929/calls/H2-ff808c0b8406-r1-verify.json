@@ -1,0 +1,12 @@
+{
+  "key": "H2-ff808c0b8406-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:21.952434+00:00",
+  "input_hash": "5ae344d95c6f63279ccdf3369aa290a694926d82b20399ae72567c649acb92f6",
+  "system_hash": "9f27f64aede51ed6c32d4d7b69969d1c53c3bf2bc934c19ada0be74983865ad5",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"store.save(value)가 Promise를 반환하는 상태에서 submit을 호출하면, save의 완료를 기다리지 않고 3줄에서 true가 반환되어 영속화 완료 전에 호출자가 성공으로 처리할 수 있습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 Promise를 반환하는 save를 await하지 않고 3줄에서 즉시 true를 반환하여, 제공된 계약(반환 전 영속화 완료)을 위반합니다.\"}]}",
+  "input_tokens": 4411,
+  "output_tokens": 178,
+  "seconds": 1.313
+}

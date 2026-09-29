@@ -1,0 +1,12 @@
+{
+  "key": "H2-4a06b424f621-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:26.680342+00:00",
+  "input_hash": "260281e964e53cdc2ef7542f67b98751ec5fe1d8ac82a64df544bea2bd4a8c72",
+  "system_hash": "74f694018ca9111bfaa4940e3f678feb28bbcdb518603dd2980c278b9cd9aa88",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"ordered 함수가 values.sort로 배열을 정렬해 반환하는 변경을 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"호출자가 넘긴 배열을 ordered 호출 후에도 그대로 사용할 때\",\"consequence\":\"Array.prototype.sort는 배열을 제자리에서 정렬하므로 호출자의 배열 순서가 변경되어, 제공된 계약의 '호출자 배열을 수정하지 않는다' 조건을 위반합니다.\",\"assumptions\":[],\"title\":\"호출자 배열을 제자리에서 수정합니다\",\"evidence\":\"f1:2의 values.sort는 원본 배열을 직접 정렬하며, 계약은 호출자 배열을 수정하지 않아야 한다고 명시합니다.\",\"suggestion\":\"정렬 전에 values를 복사(예: values.slice().sort(...) 또는 [...values].sort(...))하여 원본을 보존하세요.\"}],\"limitations\":\"제공된 3줄만 검토했으며 실행 결과나 호출자 코드는 확인하지 않았습니다.\"}",
+  "input_tokens": 4593,
+  "output_tokens": 254,
+  "seconds": 2.062
+}

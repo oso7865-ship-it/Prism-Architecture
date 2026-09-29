@@ -1,0 +1,12 @@
+{
+  "key": "H4-09820d36b31f-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:46.539273+00:00",
+  "input_hash": "74a357d6a9ab2d0cf835ad5d56620cd18bd23e2a2ba249956dcb410ed77d3464",
+  "system_hash": "f6c76fcfd68c841036ed116a46cbc33b0c1cdc5d6e1c862b58dd4bef7102dac8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"scale 함수가 입력을 두 배로 반환해야 한다는 계약과 달리 원래 값을 반환하는 변경입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"scale에 유한한 숫자(예: 5)를 전달할 때\",\"consequence\":\"2줄에서 계산한 두 배 값(scaled)을 버리고 3줄에서 원래 value를 반환하므로, 계약이 요구하는 두 배 결과 대신 입력값이 그대로 반환됩니다.\",\"assumptions\":[],\"title\":\"scale이 두 배 대신 원래 값을 반환합니다\",\"evidence\":\"2줄은 value * 2를 scaled에 저장하지만, 3줄은 scaled가 아닌 value를 반환합니다. 계약은 'Return double the input'을 요구합니다.\",\"suggestion\":\"3줄의 반환식을 scaled로 바꿔 계산된 두 배 값을 반환하세요.\"}],\"limitations\":\"제공된 단일 함수만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+  "input_tokens": 4611,
+  "output_tokens": 258,
+  "seconds": 2.172
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H2-62086f7d4408-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:11.217639+00:00",
+  "input_hash": "686444d79a9f8d1279ce6c049bc9a9cfcb672325aeb32e281ed6cba54899b89d",
+  "system_hash": "3d109637548fa649bd859a517c788a4407aa1d5f8d4fa70a832cd408bb370987",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 handle 함수에서 ValueError를 포착해 None을 반환하도록 변경된 부분을 팀 표준(오류 처리)과 대조 검토했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4,5],\"trigger\":\"operation()이 ValueError를 발생시키는 경우(제공된 동작 계약에 명시됨)\",\"consequence\":\"4줄에서 예외를 포착한 뒤 5줄에서 None을 반환하므로, 실패가 정상 반환값으로 숨겨져 호출자가 오류를 구분할 수 없습니다.\",\"assumptions\":[],\"title\":\"ValueError를 삼키고 None을 반환해 실패를 숨깁니다\",\"evidence\":\"f1:4-5는 ValueError를 포착해 None을 반환합니다. 이는 '기록한 뒤 같은 예외를 다시 던진다. 실패를 정상 반환으로 숨기지 않는다'는 s1 규칙과 직접 충돌합니다.\",\"suggestion\":\"except 블록에서 logger.error로 오류를 기록한 뒤 raise로 동일한 ValueError를 다시 던지도록 변경하세요.\",\"citations\":[\"00000000-0000-0000-0000-000000000001:s1\"],\"contract_quote\":\"입력 오류는 호출자가 처리하도록 기록한 뒤 같은 예외를 다시 던진다. 실패를 정상 반환으로 숨기지 않는다.\"}],\"limitations\":\"제공된 f1의 5줄만 검토했으며, handle의 호출자와 operation의 실제 구현은 제공되지 않아 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 5163,
+  "output_tokens": 391,
+  "seconds": 2.516
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-1bcaee84937b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:46.482534+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "5b9f49264cfefe5b6cad51987da7f7027520cf5852a2a65396548a3d01ffd0d8",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 invoice 함수는 load(id)로 항목을 읽은 뒤 actor를 전혀 사용하지 않고 amount를 반환합니다. 제공된 동작 계약은 소유자에게만 금액을 반환하고 다른 actor에게는 Error를 던지라고 요구하므로, 소유권 검사가 누락된 것으로 보입니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"actor가 항목 소유자(\\\"alice\\\")가 아닌 값으로 invoice(id, actor)를 호출할 때\",\"consequence\":\"소유권 확인 없이 item.amount가 반환되어 비소유자에게 금액이 노출됩니다.\",\"assumptions\":[],\"title\":\"소유권 검사 없이 금액이 반환됩니다\",\"evidence\":\"f1:1은 actor 매개변수를 받지만 f1:2~3에서 load(id) 결과의 owner와 비교하는 검사가 없고 곧바로 item.amount를 반환합니다. 제공된 동작 계약은 소유자 외 actor에게 Error를 요구합니다.\",\"suggestion\":\"item.amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지세요.\",\"citations\":[],\"contract_quote\":\"Return the amount only to its owner; throw Error for other actors.\"}],\"limitations\":\"load의 정의는 관련 구현으로 제공되었으나 invoice의 호출자와 actor 값의 출처는 제공되지 않아 실제 도달 경로는 확인하지 못했습니다.\"}",
+  "input_tokens": 4986,
+  "output_tokens": 366,
+  "seconds": 2.437
+}

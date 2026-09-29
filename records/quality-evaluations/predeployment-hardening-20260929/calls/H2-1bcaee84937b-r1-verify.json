@@ -1,0 +1,12 @@
+{
+  "key": "H2-1bcaee84937b-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:04:54.703749+00:00",
+  "input_hash": "707e7fa0bc15508b41da72c6810189046b1654d4201512dc51fe90cac8cc7531",
+  "system_hash": "8485f7e27c46e978dd3f9639a1ccdcc22c02c7bfa26a86155354fe9af255cec2",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"actor가 \\\"alice\\\"가 아닌 값(예: \\\"bob\\\")으로 invoice(7, actor)를 호출하면, actor 검사 없이 item.amount(40)가 반환되어 계약이 요구하는 Error 대신 금액이 노출됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"변경된 invoice가 actor를 확인하지 않고 load(id).amount를 반환하여, 계약이 요구하는 소유자 외 actor에 대한 Error 대신 금액이 노출됩니다.\"}]}",
+  "input_tokens": 4902,
+  "output_tokens": 179,
+  "seconds": 1.421
+}

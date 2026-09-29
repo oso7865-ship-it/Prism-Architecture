@@ -1,0 +1,12 @@
+{
+  "key": "H2-44af6707b4e8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:04:43.047042+00:00",
+  "input_hash": "d45e82564b736876ff2935dbb2017eb141d392097e05769371659ab621f36755",
+  "system_hash": "93be5e42a34eaec1e22a310768fd1d342cb6f9a7e53867487f11212c9f3c73f4",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"value가 0, \\\"\\\", False처럼 None이 아닌 falsy 값이면 `value or default`가 그 값을 default로 대체해 명시적으로 제공된 값이 보존되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄 `value or default`는 truthiness로 분기하여 계약('Only None means absent')과 달리 0, \\\"\\\", False를 default로 대체합니다.\"}]}",
+  "input_tokens": 4582,
+  "output_tokens": 159,
+  "seconds": 1.328
+}

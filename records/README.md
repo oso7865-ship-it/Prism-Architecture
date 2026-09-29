@@ -3,6 +3,8 @@
 개발 문서는 이 아키텍처 저장소에서만 게시한다. backend/와 frontend/는 원래 구현 저장소의 상대 경로를 유지한 사본이며 내용은 manifest.json의 SHA-256으로 보존 검증한다. 과거 완료/미완료·경로·커밋은 당시 사실이다. 과거 상대 링크는 로컬 복원 후 원래 구현 저장소 기준으로 읽는다. 현재 설계는 docs/architecture가 소유한다.
 
 - [백엔드 현황](backend/docs/PROJECT_STATUS.md)
+- [현재 완성도 Gate와 보수 결과](2026-09-29_predeployment-hardening.md)
+- [EC2 배포 전 실행 안내](2026-09-29_ec2-release-runbook.md)
 - [백엔드 최신 보고서](backend/reports/_LATEST.md)
 - [프론트 최신 보고서](frontend/reports/_LATEST.md)
 - [AI 품질 실패와 후속 조치](backend/reports/2026-09-28_recall-repair_report.md)

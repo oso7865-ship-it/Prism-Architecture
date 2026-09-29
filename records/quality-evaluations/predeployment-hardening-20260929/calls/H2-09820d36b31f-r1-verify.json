@@ -1,0 +1,12 @@
+{
+  "key": "H2-09820d36b31f-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:51.688894+00:00",
+  "input_hash": "2894280eea163b3da30a2e33a258db661cc0d16505c2ee5b98d37748474d3423",
+  "system_hash": "18db865f97fc14fafd6b1333405341957d2ddc0544cbfc180d6916f39e01b6ad",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scale에 절댓값 100 미만의 유한한 수를 전달하면 두 배 값이 아닌 원래 입력값이 반환되어, 'Return double the input' 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"f1:2에서 value * 2를 scaled에 저장하지만 f1:3은 value를 반환하여 제공된 계약('Return double the input')과 불일치합니다.\"}]}",
+  "input_tokens": 4466,
+  "output_tokens": 164,
+  "seconds": 1.282
+}

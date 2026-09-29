@@ -1,0 +1,12 @@
+{
+  "key": "H1-0c543f7d32dd-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T13:58:35.297181+00:00",
+  "input_hash": "26d8e3a9917aca339c1d1761bad9f840daf0214918926364ee21975c2fa0bc76",
+  "system_hash": "673ab329ef260e3d8d1a1ead67ac0aa2a7824fee65cc6eafdc6e71c3af7421cf",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"경로 포함 여부를 문자열 접두사로 판정하는 변경을 검토했습니다. 계약상 root 자신과 하위 경로만 허용해야 하는데, 접두사 비교는 디렉터리 경계를 구분하지 못합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"root가 '/srv/data'이고 resolved가 '/srv/database/secret'인 경우\",\"consequence\":\"resolved가 root로 시작하므로 permitted가 True를 반환하여 root 외부 경로가 허용됩니다.\",\"assumptions\":[],\"title\":\"접두사 비교로 root 외부 경로가 허용됩니다\",\"evidence\":\"2줄은 resolved.startswith(root)만 검사하므로 '/srv/database/secret'이 '/srv/data' 접두사를 만족합니다. 계약은 root와 그 하위만 허용한다고 명시합니다.\",\"suggestion\":\"root 자신은 허용하되 그 외에는 경계 문자를 요구하도록 비교하세요. 예를 들어 resolved == root 이거나 resolved.startswith(root + '/')인 경우만 True를 반환하면 계약의 root 및 하위 경로 허용을 유지하면서 '/srv/database' 같은 형제 경로를 배제할 수 있습니다.\",\"contract_quote\":\"Only root and its descendants are allowed.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 호출자, root의 실제 값, 경로 정규화 수행 여부는 확인하지 못했습니다. 실행 결과는 미확인입니다.\"}",
+  "input_tokens": 5079,
+  "output_tokens": 359,
+  "seconds": 2.906
+}

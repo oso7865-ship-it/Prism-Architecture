@@ -1,0 +1,12 @@
+{
+  "key": "H2-54ae24d8d95c-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:17.026123+00:00",
+  "input_hash": "98a016d1a8706f2a08be80d73404ebb89a68bf32c3af443c3b08235cbaa5d96a",
+  "system_hash": "e242871ac3883758bf4b416740061b5903399d34b3e1c654aa7f4f45e12a90a5",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"변경된 라인은 environment_settings의 verify 기본값 처리 한 줄입니다. 제공된 계약(빈 CURL_CA_BUNDLE은 명시적 True를 보존, 누락 값은 None이 될 수 있으나 세션 병합이 True를 복원, 명시적 False와 비어 있지 않은 경로는 유효)과 정적 투영 결과를 비교했을 때, 모든 제공 테스트 케이스가 계약을 만족하며 위반 사례가 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"merge_setting의 호출자, session_verify의 실제 전달 값, env 사전의 실제 출처는 제공되지 않았습니다. 정적 투영은 실행된 테스트가 아니며 제공된 5개 케이스만 다룹니다. 변경 라인 외의 코드는 컨텍스트로만 참조했습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 빈 CURL_CA_BUNDLE은 True를 보존해야 하며, 라인 10의 or 체인은 빈 문자열을 건너뛰어 verify=True를 유지합니다. 제공된 5개 테스트 투영이 모두 계약과 일치하고 위반 경로가 보이지 않습니다.\"}]}",
+  "input_tokens": 4770,
+  "output_tokens": 308,
+  "seconds": 2.578
+}

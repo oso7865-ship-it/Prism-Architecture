@@ -1,0 +1,12 @@
+{
+  "key": "H1-964c0700fd59-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:24.728305+00:00",
+  "input_hash": "ac8422ff472e2184e24466e5bfe99ff03d7dcf12654bfb02f4bd8e3676526a52",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"value=-1로 호출하면 2줄에서 adjusted=0이 계산되지만 3줄이 원래 value인 -1을 반환하여 계약이 요구하는 max(value, 0)=0과 다른 값이 반환됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄에서 max(value, 0)을 계산하지만 3줄이 value를 반환하여 음수 입력에서 계약과 다른 값이 반환됩니다.\"}]}",
+  "input_tokens": 4752,
+  "output_tokens": 153,
+  "seconds": 1.469
+}

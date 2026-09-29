@@ -1,0 +1,12 @@
+{
+  "key": "H2-c5e97ef54254-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:05:31.087799+00:00",
+  "input_hash": "d05f92043b6f01e13ae4e2cf3fbbb476773bafb3a49c9b17cd7a4f561e5c1cf9",
+  "system_hash": "67cf3177275c8cf46631bf373550498322ac27ba5a3c34ae250577c8bb32c4b4",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"adjust 함수가 settings의 limits를 복사해 scratch를 만들지만, 반환값은 복사본이 아니라 원본 settings['limits']['cap']을 읽습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"settings['limits']에 'cap' 키가 있는 정수 값을 가진 딕셔너리를 전달해 adjust를 호출할 때\",\"consequence\":\"2~3줄에서 scratch['limits']['cap']을 12로 설정해도 반환값은 원본 settings['limits']['cap']이므로, 호출자가 기대하는 조정된 값 12가 반환되지 않고 원래 값이 그대로 반환됩니다.\",\"assumptions\":[],\"title\":\"복사본에 적용한 cap 변경이 반환값에 반영되지 않습니다\",\"evidence\":\"2줄은 settings를 얕은 복사하고 limits를 별도로 복사해 scratch를 만들고, 3줄은 scratch['limits']['cap']만 12로 바꿉니다. 4줄은 scratch가 아니라 원본 settings['limits']['cap']을 반환하므로 3줄의 변경이 반환값에 영향을 주지 않습니다.\",\"suggestion\":\"반환값이 조정된 값을 나타내야 한다면 4줄을 scratch['limits']['cap']을 반환하도록 바꾸세요. 원본 값을 반환하는 것이 의도라면 2~3줄의 복사·변경이 불필요하므로 제거하는 편이 명확합니다.\"}],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다. 반환값에 대한 명시적 계약이 없어 4줄이 원본 값을 반환해야 하는 의도인지는 제공 범위에서 판단할 수 없습니다.\"}",
+  "input_tokens": 4650,
+  "output_tokens": 432,
+  "seconds": 2.625
+}

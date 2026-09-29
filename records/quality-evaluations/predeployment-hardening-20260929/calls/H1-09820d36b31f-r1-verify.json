@@ -1,0 +1,12 @@
+{
+  "key": "H1-09820d36b31f-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:01:28.379496+00:00",
+  "input_hash": "e9e4c7aa9ba3bbc41dfa28f97367a707b2e45d9b9bcee2c7a490cbb6d4ee22c8",
+  "system_hash": "3c6457167f7f927046cfa7859cc82d3883e868fa6fb83ee11140f23220767a8d",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"유한한 수 value로 호출하면 2줄에서 계산한 두 배 값이 버려지고 3줄이 원래 value를 반환하므로 두 배가 아닌 입력값이 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 value * 2를 계산하지만 3줄이 value를 반환하여 'Return double the input' 계약을 위반합니다.\"}]}",
+  "input_tokens": 4523,
+  "output_tokens": 160,
+  "seconds": 1.407
+}

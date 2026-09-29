@@ -1,0 +1,12 @@
+{
+  "key": "H4-d848633407e8-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:24.182961+00:00",
+  "input_hash": "bb6f952a8fc656c2d818209379172ef1749aed8df619ca2c2c93805b3f88a9b1",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"read()가 예외를 던지면 그 예외가 전파되어 stream.close()가 실행되지 않으므로 스트림이 닫히지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"read() 예외 시 close()에 도달하지 못해 계약의 'read raises 시에도 close' 요구를 위반합니다.\"}]}",
+  "input_tokens": 4771,
+  "output_tokens": 143,
+  "seconds": 1.344
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H4-e039b4bf0e2d-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:10.119591+00:00",
+  "input_hash": "f48c2b86205d43bbe17d3bbd76d833a995476d146e4e5252dda72b45a04f2dd8",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 environment_settings에서 환경 변수 CA 번들 조회가 `or` 연산으로 바뀌어, 빈 문자열 환경 변수가 None 대신 그대로 반환되는 동작 변경이 확인됩니다. 제공된 테스트 계약(line 15, 16)은 빈 CURL_CA_BUNDLE/REQUESTS_CA_BUNDLE에서 명시적 verify=True가 유지되어야 한다고 명시하지만, 정적 관측상 빈 문자열이 반환되어 두 단언이 실패합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":10,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[10,15,16],\"trigger\":\"env에 CURL_CA_BUNDLE 또는 REQUESTS_CA_BUNDLE이 빈 문자열로 존재하고 verify가 True(또는 None)일 때\",\"consequence\":\"`or` 연산이 빈 문자열을 falsy로 평가해 다음 후보가 없으면 빈 문자열이 그대로 verify에 할당되고, merge_setting은 session_value가 True여도 request_value(빈 문자열)를 반환하므로 environment_settings의 결과가 True가 아닌 \\\"\\\"가 됩니다. 이는 line 15, 16의 `is True` 단언을 실패시킵니다.\",\"assumptions\":[],\"title\":\"빈 CA 번들 환경 변수가 명시적 verify=True를 덮어씁니다\",\"evidence\":\"line 10은 `env.get(...) or env.get(...)`로 빈 문자열을 건너뛰지 못하고 그대로 반환합니다. path_observations에서 line 15/16 호출의 값이 \\\"\\\"로 계산되어 asserted_value True와 불일치합니다. line 2~6의 merge_setting은 request_value가 None이 아닌 한 request_value를 반환하므로 빈 문자열이 최종 결과가 됩니다.\",\"suggestion\":\"빈 문자열을 미설정으로 취급하려면 조회 결과가 falsy일 때 None을 반환하도록(예: `env.get(\\\"REQUESTS_CA_BUNDLE\\\") or env.get(\\\"CURL_CA_BUNDLE\\\") or None`) 바꾸어 merge_setting이 session_verify로 복원하게 하세요. 비어 있지 않은 경로(line 17)와 명시적 False(line 18) 동작은 그대로 유지됩니다.\"}],\"limitations\":\"제공된 파일 f1만 검토했으며 실제 테스트 실행 결과는 확인하지 않았습니다. merge_setting의 호출자나 session_verify의 실제 값 분포는 제공되지 않았습니다.\"}",
+  "input_tokens": 5871,
+  "output_tokens": 585,
+  "seconds": 3.844
+}

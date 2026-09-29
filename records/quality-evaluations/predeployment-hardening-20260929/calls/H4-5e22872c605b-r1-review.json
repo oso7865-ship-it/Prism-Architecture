@@ -1,0 +1,12 @@
+{
+  "key": "H4-5e22872c605b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:38.183190+00:00",
+  "input_hash": "82bc528534860756aba27cbb0be73b337f2365c4225843d1d1debe2478c4c39d",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 indices 함수는 range의 step을 max(n, 1)로 지정해 n이 양수일 때 [0]을 반환하고 n=0일 때 []를 반환합니다. 제공된 계약(n은 음이 아닌 정수, n=0이면 [], 양수면 [0])을 만족합니다.\",\"issues\":[],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과는 확인하지 않았습니다. n이 음수인 경우는 계약상 유효 입력이 아니므로 별도 판정하지 않았습니다.\"}",
+  "input_tokens": 4716,
+  "output_tokens": 129,
+  "seconds": 1.282
+}

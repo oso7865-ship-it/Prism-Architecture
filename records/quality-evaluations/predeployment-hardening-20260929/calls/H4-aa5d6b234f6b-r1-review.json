@@ -1,0 +1,12 @@
+{
+  "key": "H4-aa5d6b234f6b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:38.516620+00:00",
+  "input_hash": "98f6ec45542d20354bb1020149d64b19fc1bd0221df1b8d0d1f62da3a39fd164",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 collect 함수는 기본 인자 bucket=[]을 사용해 호출 간 상태를 공유합니다. 명시적 bucket을 전달하면 해당 객체를 그대로 수정해 반환하는 동작은 계약과 일치하지만, bucket을 생략한 호출은 매번 새 리스트를 받아야 한다는 계약과 충돌합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":1,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"bucket을 생략한 채 collect를 두 번 이상 호출할 때\",\"consequence\":\"기본 인자 리스트가 함수 정의 시 한 번만 생성되어 모든 생략 호출이 같은 리스트를 공유하므로, 두 번째 호출의 반환값에 이전 호출의 item이 누적됩니다. 이는 '생략 시 매번 새 bucket'이라는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"기본 인자 리스트가 호출 간 공유되어 누적됩니다\",\"evidence\":\"1줄의 bucket=[]은 함수 정의 시점에 한 번 평가되어 기본값으로 재사용되고, 2줄의 append가 그 공유 리스트를 변경한 뒤 3줄에서 반환합니다.\",\"suggestion\":\"기본값을 None으로 두고 함수 내부에서 bucket이 None이면 새 리스트를 만들도록 바꾸세요. 명시적 bucket을 받은 경우에는 그대로 append하여 in-place 수정 계약을 유지해야 합니다.\",\"contract_quote\":\"Each omitted-bucket call gets a fresh bucket. Explicit buckets are modified in place.\"}],\"limitations\":\"제공된 3줄만 검토했으며 실제 호출부나 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4762,
+  "output_tokens": 396,
+  "seconds": 2.985
+}

@@ -1,0 +1,12 @@
+{
+  "key": "H1-1bcaee84937b-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:00:29.969224+00:00",
+  "input_hash": "32c4ca532cb07af2249694db9297ac8caf3492b11e5ef15c535dccdf7aa6677b",
+  "system_hash": "d0ce5ba8793044dbf366afb6c0c943e55fb5359bc534c52990094c7f43479c55",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 변경된 invoice 함수가 load(id) 결과의 amount를 반환하기 전에 actor와 owner를 비교하는 권한 검사를 수행하는지 검토했습니다. 제공된 계약은 소유자에게만 amount를 반환하고 다른 actor에게는 Error를 던지도록 요구하지만, 변경된 코드에는 그러한 검사가 보이지 않습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"actor가 item.owner와 다른 값(예: actor=\\\"bob\\\", id=7)으로 invoice를 호출할 때\",\"consequence\":\"소유자가 아닌 actor에게도 item.amount가 그대로 반환되어, 계약이 요구하는 Error 발생 없이 금액이 노출됩니다.\",\"assumptions\":[],\"title\":\"소유자 확인 없이 금액이 반환됩니다\",\"evidence\":\"f1:2에서 load(id)로 항목을 가져온 뒤 f1:3에서 item.amount를 반환합니다. 제공된 계약은 소유자에게만 반환하고 다른 actor에게는 Error를 던지라고 요구하며, related_implementation의 load는 owner와 amount를 담은 객체를 반환하지만 변경된 코드에는 actor와 owner를 비교하는 검사가 없습니다.\",\"suggestion\":\"f1:3에서 amount를 반환하기 전에 item.owner와 actor를 비교하고, 일치하지 않으면 계약대로 Error를 던지세요.\",\"contract_quote\":\"Return the amount only to its owner; throw Error for other actors.\",\"citations\":[]}],\"limitations\":\"제공된 변경 라인과 related_implementation만 검토했으며, 실행 결과나 다른 호출자/미들웨어의 권한 처리는 확인하지 못했습니다.\"}",
+  "input_tokens": 5146,
+  "output_tokens": 406,
+  "seconds": 2.859
+}

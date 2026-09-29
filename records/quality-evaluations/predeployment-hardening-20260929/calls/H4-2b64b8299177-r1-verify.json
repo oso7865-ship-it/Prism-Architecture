@@ -1,0 +1,12 @@
+{
+  "key": "H4-2b64b8299177-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:37.444982+00:00",
+  "input_hash": "87571e5cd94017bc72edc3f8147e09d88e8d57943bb0e75e5936605307a67da5",
+  "system_hash": "95867649182e15eb7c9feceb4bf8e077549fea5710d8ea5dac58a3364170a634",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"value=0으로 호출하면 `0 or 5`가 5로 평가되어 0이 아닌 5가 반환되므로, 명시적 0을 보존하라는 계약을 위반합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"`value or 5`는 falsy 값 전반에서 5를 반환하여, 계약이 요구하는 명시적 0 보존을 위반합니다.\"}]}",
+  "input_tokens": 4705,
+  "output_tokens": 140,
+  "seconds": 1.532
+}

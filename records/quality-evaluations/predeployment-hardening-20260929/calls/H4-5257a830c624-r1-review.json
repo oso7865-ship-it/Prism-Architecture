@@ -1,0 +1,12 @@
+{
+  "key": "H4-5257a830c624-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:12:37.500525+00:00",
+  "input_hash": "798f74ad91ce16baae0c3a1c3f34a718466923956dee4362a7f793802bac194c",
+  "system_hash": "cd76257b9d2949607842355b8d9d518f3b1d894a25ebca2e5cc3bf814bd6ff90",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 allowed 함수는 check(user)의 반환값을 await 없이 조건으로 사용합니다. 계약상 check는 Promise<boolean>을 반환하므로, 이 코드는 해석된 불리언이 아니라 Promise 객체의 truthiness로 분기합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"check가 계약대로 Promise<boolean>을 반환할 때 allowed(check, user)를 호출하는 경우\",\"consequence\":\"2줄의 if 조건이 Promise 객체를 평가하므로 항상 참이 되어, check가 나중에 false로 이행되어도 2줄에서 true가 반환됩니다.\",\"assumptions\":[],\"title\":\"Promise를 await하지 않아 인가 결정이 항상 true가 됩니다\",\"evidence\":\"1줄은 allowed를 async로 선언하고, 2줄은 check(user)의 반환값을 await 없이 if 조건으로 사용합니다. 계약상 check는 Promise<boolean>을 반환하므로 조건은 이행값이 아니라 Promise 객체의 truthiness를 평가합니다.\",\"suggestion\":\"2줄을 `if (await check(user)) return true;`로 바꿔 이행된 불리언으로 분기하도록 하세요.\"}],\"limitations\":\"제공된 4줄만 검토했으며 check의 실제 구현과 호출자는 제공되지 않아 실행 결과는 확인하지 않았습니다.\"}",
+  "input_tokens": 4606,
+  "output_tokens": 334,
+  "seconds": 2.609
+}

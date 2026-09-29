@@ -1,0 +1,12 @@
+{
+  "key": "H3-cd1f9cff7b9c-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:08:51.524866+00:00",
+  "input_hash": "a82cb740fa9df696b57667a68a95aa922a96cf4307d6d08ecaafba906190a366",
+  "system_hash": "540df2fc24c262c033d0fbf2746ac1bf5121e98e008271d2b33448a5fd44ec8f",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"경로 포함 검사 함수 `permitted`는 `resolved == root` 또는 `resolved.startswith(root + '/')`로 루트와 그 하위 경로만 허용하며, 제공된 계약(정규화된 절대 POSIX 경로, 심볼릭 링크/후행 슬래시 없음)과 일치합니다. 변경된 한 줄에서 보안 관련 결함이 확인되지 않았습니다.\", \"issues\": [], \"limitations\": \"제공된 코드는 단일 함수 조각으로, 호출자·경로 정규화·심볼릭 링크 해석 여부는 확인할 수 없습니다. 계약이 입력을 정규화된 절대 경로로 한정하므로 접두사 경계 검사는 계약 범위 내에서 유효합니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 입력은 정규화된 절대 POSIX 경로이며 root와 하위 경로만 허용해야 한다. `resolved == root` 또는 `root + '/'` 접두사 검사는 루트 자체와 디렉터리 경계를 가진 하위 경로를 정확히 허용하고, 유사 접두사(예: root+'x')는 거부하므로 계약을 위반하지 않는다.\"}]}",
+  "input_tokens": 3889,
+  "output_tokens": 319,
+  "seconds": 2.469
+}

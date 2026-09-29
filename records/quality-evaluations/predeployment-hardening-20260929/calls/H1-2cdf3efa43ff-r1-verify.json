@@ -1,0 +1,12 @@
+{
+  "key": "H1-2cdf3efa43ff-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:28.316742+00:00",
+  "input_hash": "4d95fce08bd283af062ab04b4f72c2bf9096cff18a3e05fc55d3fa6566f47b37",
+  "system_hash": "4128d5b13d648c6d956190e980b4696225afbf2dd8cc1c4e921054ee4d6fb70f",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"amount=100000, count=100000처럼 곱이 int 범위를 넘지만 long 범위에는 들어오는 입력에서 32비트 int 곱셈이 먼저 수행되어 1410065408이 반환되고, 계약이 요구하는 정확한 곱 10000000000은 보존되지 않습니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3행의 amount * count는 두 int 피연산자로 32비트 곱셈을 수행한 뒤 long으로 변환되므로, 곱이 int 범위를 초과하는 유효 입력에서 계약이 요구하는 정확한 곱이 잘립니다.\"}]}",
+  "input_tokens": 4970,
+  "output_tokens": 199,
+  "seconds": 1.907
+}

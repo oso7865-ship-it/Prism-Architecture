@@ -1,0 +1,12 @@
+{
+  "key": "H2-1125fb1f397e-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:47.178251+00:00",
+  "input_hash": "bbc1e28441f82f263c7118677bbf7dde6e37806730ac001250f2b5b60a8028e8",
+  "system_hash": "03191a451d7eed8720465290a39cd6ecbcad40e63c5625389aef6ed66f8b5c53",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비어 있지 않은 배열 {1,2,3}에 대해 values[values.length]는 values[3]을 읽어 ArrayIndexOutOfBoundsException을 던지고 마지막 요소를 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"read가 values.length를 인덱스로 사용해 비어 있지 않은 배열에서도 항상 범위를 벗어난 접근을 수행합니다.\"}]}",
+  "input_tokens": 4620,
+  "output_tokens": 161,
+  "seconds": 1.265
+}

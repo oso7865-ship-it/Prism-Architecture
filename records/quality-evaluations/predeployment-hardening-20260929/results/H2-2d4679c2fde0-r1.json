@@ -1,0 +1,79 @@
+{
+  "case": "2d4679c2fde0",
+  "repeat": 1,
+  "arm": "H2",
+  "metrics": {
+    "expected_bug": true,
+    "miss": false,
+    "normal_false_positive": false,
+    "questions": 0,
+    "probe_correct": 0,
+    "probe_total": 0,
+    "valid": true,
+    "location_hit": true,
+    "semantic_explanation_verified": false
+  },
+  "result": {
+    "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: null 입력에서 조건 평가 중 TypeError가 발생합니다",
+    "issues": [
+      {
+        "line": 2,
+        "severity": "ERROR",
+        "basis": "SUPPORTED",
+        "evidence_lines": [
+          1,
+          2,
+          3
+        ],
+        "trigger": "value가 null인 상태로 size를 호출할 때",
+        "consequence": "value가 null이면 2줄의 value === null이 true가 되어 value.length가 평가되고, null에서 length 접근으로 TypeError가 발생해 0을 반환하지 못합니다.",
+        "assumptions": [],
+        "title": "null 입력에서 조건 평가 중 TypeError가 발생합니다",
+        "evidence": "1줄에서 value는 string | null입니다. 2줄은 value === null && value.length === 0으로, null일 때 왼쪽이 true이므로 오른쪽 value.length가 평가됩니다. 3줄의 반환은 이 예외로 도달하지 못합니다.",
+        "suggestion": "null 분기를 먼저 반환하도록 바꾸세요. 예: if (value === null) return 0; 이후 빈 문자열은 value.length === 0으로 처리하면 됩니다.",
+        "file_path": "length.ts",
+        "suggestion_check": {
+          "status": "NOT_VERIFIED",
+          "samples": 0
+        },
+        "key": "d45431b302c160af9e1364a4cb96058288a2f6199fed9e5b1b84414563fb6ff0"
+      }
+    ],
+    "questions": [],
+    "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+    "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+    "reviewed_files": 1,
+    "omitted_files": 0,
+    "coverage": {
+      "files": [
+        {
+          "file_id": "f1",
+          "file_path": "length.ts",
+          "provided_lines": 4
+        }
+      ],
+      "excluded": [],
+      "unfetched_files": 0
+    },
+    "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+    "verification": {
+      "status": "CHECKED",
+      "kept": 0,
+      "revised": 1,
+      "dropped": 0,
+      "added": 0,
+      "file_checks": [
+        {
+          "file_id": "f1",
+          "line": 1,
+          "outcome": "FINDING",
+          "observation": "null 분기 조건이 &&로 결합되어 null일 때 value.length를 평가하므로 TypeError가 발생하고, null에 0을 반환한다는 계약이 위반됩니다.",
+          "file_path": "length.ts"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "recovered": false,
+  "source_hash": "7d089e73985e499fa4be2342563ce0b62e8312fdd9b58eb28663236b51aa9a70"
+}

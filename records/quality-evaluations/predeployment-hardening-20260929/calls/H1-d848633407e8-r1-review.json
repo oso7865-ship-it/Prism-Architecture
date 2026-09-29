@@ -1,0 +1,12 @@
+{
+  "key": "H1-d848633407e8-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:01:01.895089+00:00",
+  "input_hash": "d3269173a10e9d30d250300a4772382c8c06f3deff9318aa939a6d168cc99f29",
+  "system_hash": "7f86864500727e391921ead9a569d47d2006c154f391957be13578a6f3db9b1e",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"read 함수가 opener()로 연 스트림을 read() 이후에만 close하므로, read()가 예외를 던지면 close가 실행되지 않습니다. 제공된 계약은 read가 예외를 던질 때도 스트림을 닫아야 한다고 명시합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"opener()가 반환한 스트림의 read() 호출이 예외를 발생시킬 때\",\"consequence\":\"3줄에서 예외가 전파되어 4줄의 stream.close()가 실행되지 않으므로 스트림이 닫히지 않습니다.\",\"assumptions\":[],\"title\":\"read() 예외 시 스트림이 닫히지 않습니다\",\"evidence\":\"2줄에서 스트림을 열고 3줄에서 read()를 호출한 뒤 4줄에서 close()를 호출합니다. 3줄이 예외를 던지면 4줄에 도달하지 못해 close가 누락됩니다.\",\"suggestion\":\"with 문으로 스트림을 열어 read() 예외 여부와 무관하게 close가 보장되도록 하세요.\",\"contract_quote\":\"Always close streams including when read raises. opener returns a standard context-managed file stream.\"}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과는 확인하지 않았습니다. opener가 반환하는 스트림의 구체 구현은 제공되지 않았습니다.\"}",
+  "input_tokens": 4916,
+  "output_tokens": 357,
+  "seconds": 2.547
+}

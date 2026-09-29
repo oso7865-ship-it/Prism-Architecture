@@ -1,0 +1,12 @@
+{
+  "key": "H1-9e475996deba-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:00:36.805080+00:00",
+  "input_hash": "06ec4fb9a4bc252723e56ec30cb556bd8266507c97959f9c1e538de827a6a9df",
+  "system_hash": "11fe9e959b2f1d9f4978a6235938684cea9ea75bce7287fd8377954874ad79be",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"values가 빈 리스트이면 len(values)가 0이므로 sum(values) / len(values)에서 ZeroDivisionError가 발생하여, 빈 입력에 0.0을 반환하라는 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"변경된 2줄이 빈 리스트에서 ZeroDivisionError를 발생시켜 'Empty input has mean 0.0' 계약과 충돌합니다.\"}]}",
+  "input_tokens": 4569,
+  "output_tokens": 166,
+  "seconds": 1.641
+}

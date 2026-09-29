@@ -1,0 +1,12 @@
+{
+  "key": "H2-52ccbd6a57a5-r1-empty",
+  "phase": "empty",
+  "at": "2026-09-29T14:05:12.132341+00:00",
+  "input_hash": "8fac76b33b83db032e3f64c150f81b62497e7af6a46ddb60d280c78557e022b2",
+  "system_hash": "ff89731dcd8e52ade3286fe5fda637a2ac77ec34b4e1d830f522ae7e762c6b64",
+  "status": "RECEIVED",
+  "raw": "{\"summary\": \"제공된 변경 라인은 `user_id`를 SQL 문자열에 직접 삽입하지 않고 `%s` 플레이스홀더와 파라미터 튜플로 분리해 반환합니다. DB-API 파라미터 바인딩을 전제로 한 계약에서 값이 SQL 구문으로 해석되는 경로가 보이지 않아 주입 취약점을 지지할 근거가 없습니다.\", \"issues\": [], \"limitations\": \"반환된 SQL과 파라미터 튜플을 실제로 실행하는 호출자(드라이버 종류, 바인딩 방식, 권한/테넌트 필터 적용 여부)는 제공되지 않아 확인하지 못했습니다. 이 파일 범위에서는 SQL 문자열 조립이나 실행 지점이 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약상 호출자가 %s 플레이스홀더와 파라미터 튜플을 DB-API 드라이버에 전달합니다. 변경 라인은 user_id를 SQL 문자열에 연결하지 않고 파라미터로 분리해 반환하므로, 값이 SQL 구문으로 해석되는 주입 경로가 확인되지 않습니다.\"}]}",
+  "input_tokens": 3865,
+  "output_tokens": 293,
+  "seconds": 2.188
+}

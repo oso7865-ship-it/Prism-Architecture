@@ -1,0 +1,12 @@
+{
+  "key": "H2-81c5bd8c7f71-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:05:09.629988+00:00",
+  "input_hash": "2fcb233375b59126e32c2b4e028568f39697f50c05b4fa83961bb9f9dc660a33",
+  "system_hash": "18db865f97fc14fafd6b1333405341957d2ddc0544cbfc180d6916f39e01b6ad",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"profile이 없는 User로 name(user)을 호출하면 user.profile이 undefined이므로 3줄에서 TypeError가 발생하고 'Unknown'이 반환되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"profile?: 선택적 속성인데 3줄에서 non-null 단언으로 접근하여, 계약이 요구한 'Unknown' 대신 TypeError가 발생합니다.\"}]}",
+  "input_tokens": 4460,
+  "output_tokens": 153,
+  "seconds": 1.516
+}

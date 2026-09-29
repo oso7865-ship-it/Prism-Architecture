@@ -1,0 +1,12 @@
+{
+  "key": "H4-9e475996deba-r1-review",
+  "phase": "review",
+  "at": "2026-09-29T14:11:53.687377+00:00",
+  "input_hash": "989b51e913a4db30cfdefcc0b7a4c3035c2baa169a3d980ca7b8bd0ceb2730b5",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"mean 함수의 변경된 한 줄을 제공된 계약과 대조했습니다. 계약은 빈 입력의 평균을 0.0으로 규정하지만 구현은 len(values)로 나누므로 빈 리스트에서 ZeroDivisionError가 발생합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"빈 리스트 values가 mean에 전달될 때\",\"consequence\":\"len(values)가 0이므로 2줄의 나눗셈에서 ZeroDivisionError가 발생하고, 계약이 요구하는 0.0이 반환되지 않습니다.\",\"assumptions\":[],\"title\":\"빈 입력에서 계약된 0.0 대신 ZeroDivisionError가 발생합니다\",\"evidence\":\"2줄은 sum(values)를 len(values)로 나눕니다. 제공된 behavior_contract는 빈 입력의 평균이 0.0이라고 명시하므로, 빈 리스트에서 분모가 0이 되어 계약된 결과에 도달하지 못합니다.\",\"suggestion\":\"나눗셈 전에 빈 입력을 처리해 계약대로 0.0을 반환하도록 하세요. 예: if not values: return 0.0 을 추가한 뒤 기존 나눗셈을 유지합니다.\",\"contract_quote\":\"Empty input has mean 0.0 by this API contract.\"}],\"limitations\":\"제공된 두 줄만 검토했으며 실행 결과는 확인하지 않았습니다. values의 실제 호출자와 원소 타입은 제공되지 않았습니다.\"}",
+  "input_tokens": 4600,
+  "output_tokens": 365,
+  "seconds": 2.61
+}

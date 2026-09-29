@@ -1,0 +1,12 @@
+{
+  "key": "H4-1125fb1f397e-r1-verify",
+  "phase": "verify",
+  "at": "2026-09-29T14:12:43.325753+00:00",
+  "input_hash": "cc9f55b56abb73c466b4dc51cb5a4871da0881e34c6553447d7c002218862062",
+  "system_hash": "09b193779b22df8c7f6b2ae9f176c3f749c7b0cbe43624d24e1192eabe93578b",
+  "status": "RECEIVED",
+  "raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"비어 있지 않은 int 배열 values로 read를 호출하면 values.length가 유효 인덱스 범위(0..length-1)를 벗어나므로 ArrayIndexOutOfBoundsException이 발생하고 마지막 요소를 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"read가 values[values.length]로 항상 범위를 벗어난 인덱스에 접근해 계약(마지막 요소 반환)을 위반합니다.\"}]}",
+  "input_tokens": 4638,
+  "output_tokens": 174,
+  "seconds": 1.312
+}

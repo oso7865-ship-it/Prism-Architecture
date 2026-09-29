@@ -1,0 +1,12 @@
+{
+  "key": "H3-898c474a9d7d-r2-review",
+  "phase": "review",
+  "at": "2026-09-29T14:08:58.500428+00:00",
+  "input_hash": "15897b3be72bdb371f2e08bc21cd80b18a563aae693ab7504a5375545086e65d",
+  "system_hash": "b76785b3fcc28a81332e4a72ced6742c5148bdec06f4d15aa94e84f5f13fbc67",
+  "status": "RECEIVED",
+  "raw": "{\"summary\":\"f1의 adjust는 base를 얕게 복사한 뒤 중첩 딕셔너리를 별도로 copy하여 result['nested']를 수정하므로, 호출자의 base['nested']는 변경되지 않습니다. 제공된 계약(호출자 base 비변경)과 4줄의 반환값이 일치하며, 제공 범위에서 지원되는 결함은 없습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 정적 검토했으며 실행 결과는 확인하지 않았습니다. base가 중첩 딕셔너리를 포함한다는 계약 외에 호출자나 다른 입력 형태는 제공되지 않았습니다.\"}",
+  "input_tokens": 4658,
+  "output_tokens": 159,
+  "seconds": 1.812
+}
