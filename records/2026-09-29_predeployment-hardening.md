@@ -32,7 +32,7 @@
 | 배포 준비 | D2 | 운영 설정/주소/TLS 누락 시 배포 준비 검사가 실패하며 프론트 경로/헤더 설정 검증 통과 | PASS(오프라인) — 누락 설정 거부·Vercel 경로/헤더 회귀 |
 | 배포 준비 | D3 | 운영 주소·TLS·실제 운영 DB·키·백업 저장소·모니터링·롤백 대상이 확정되고 대상 환경에서 검증됨 | BLOCKED: 운영 환경 미제공. 실제 배포 별도 |
 | Git/CI | C1 | 설계·테스트·기록 정합성과 아키텍처 검증 통과 | PASS — validate_docs/check_helpers/validate_records |
-| Git/CI | C2 | 승인된 브랜치에 변경을 커밋/푸시하고 정확한 커밋의 원격 CI 통과 | 진행 중 — 원격 exact-commit CI 확인 후 확정 |
+| Git/CI | C2 | 승인된 브랜치에 변경을 커밋/푸시하고 정확한 커밋의 원격 CI 통과 | PASS — backend/frontend/architecture 정확한 커밋 CI 성공 |
 
 - [x] 기능 Gate F1–F3
 - [x] 보안 Gate S1–S3
@@ -41,7 +41,7 @@
 - [x] 복구/성능 Gate R1–R3
 - [x] 배포 실행물 Gate D1–D2
 - [ ] 실제 운영 환경 Gate D3 — 외부 준비 필요
-- [ ] Git/CI Gate C1–C2
+- [x] Git/CI Gate C1–C2
 
 ## 수정 전 발견과 반복 기록
 
@@ -51,6 +51,8 @@
 4. S2/F2: Markdown 코드 블록을 불리언으로 처리해 4개 백틱 내부의 3개 백틱 또는 다른 구분자가 블록을 닫고 코드 안의 제목을 문서 제목으로 오인할 수 있다. 구분자의 종류와 길이를 추적한다.
 
 ## 결과
+
+**19개 기준 중 18개 PASS(명시한 검증 범위), D3 BLOCKED 1개.** 실패 후보를 수정하고 같은 테스트를 다시 통과했다. 운영 환경은 제공되지 않아 실제 배포 완료로 판정하지 않는다.
 
 ### 반복 결과
 
@@ -91,4 +93,14 @@
 
 ### Git 완료
 
-코드 dev / 아키텍처 main에 반영 후 정확한 원격 커밋 CI를 기록한다. 코드 main 병합은 이번 작업에 포함하지 않는다.
+Git Workflow 스킬의 브랜치/보존/실행 결과 확인 절차를 적용했다. 코드 dev / 아키텍처 main 유지, force push/충돌/기존 변경 손실 없음. 코드 main 병합과 실제 배포는 이번 작업에 포함하지 않는다.
+
+| 저장소 | 커밋 | 원격 검증 |
+|---|---|---|
+| 아키텍처 기준 | e57e034c9916a720c33dbc83ff13b2356cd5650c | [architecture-ci PASS](https://github.com/oso7865-ship-it/Prism-Architecture/actions/runs/36583078313) |
+| 프론트 dev | 95d94ae128a728aed030b92d283a3cbf26d1ac33 | [frontend-ci PASS](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36583193822) |
+| 백엔드 dev | 26646ff080c165f041a7805f077b7cae8e9299e0 | [backend-ci PASS](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36583178069) |
+
+코드의 architecture.json은 위 설계 기준 커밋을 고정한다. 이후 기록 확정 커밋은 실행 계약을 변경하지 않는다. 새 PC에서는 해당 기준으로 문서 복원 도구를 사용한다. 최신 진행 기록은 아키텍처 main의 이 보고서를 읽는다.
+
+로컬 API를 최종 코드로 재시작했다. live=ok/ready=ready, 하네스 rh1-ee9b9e100eba9cad 확인. Vite는 수정된 프론트를 제공하며 브라우저 검증용 viewport는 기본값으로 복원했다.
