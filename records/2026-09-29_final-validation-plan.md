@@ -1,6 +1,6 @@
 # Git 반영·실제 PR·팀 문서·남은 품질 보수 계획
 
-상태: 설계 후 진행. 규모 L. 사용자 승인 범위는 남은 작업1~4번이다. EC2 자원 생성·배포·main 병합·하네스 원본 동기화는 포함하지 않는다. architecture/main, backend/frontend dev를 유지한다.
+상태: 1~4번 작업 완료. 규모 L. 사용자 승인 범위는 남은 작업1~4번이다. EC2 자원 생성·배포·main 병합·하네스 원본 동기화는 포함하지 않는다. architecture/main, backend/frontend dev를 유지한다.
 
 ## 작업 계약과 근거
 
@@ -28,5 +28,5 @@ Windows pytest를 사용하지 않고 Linux Docker의 별도 테스트 DB에서 
 - [x] 실제 PR CODE/SECURITY/STANDARDS 완료·근거·출처·피드백 UI 확인
 - [x] Linux 전체 테스트·프론트 테스트/빌드·타입/형식/문서 검사
 - [x] 게시 대상 검토·비밀/문서 경계 검사
-- [ ] backend/frontend dev, architecture main 커밋·푸시·원격 CI 확인
-- [ ] 리포트·호출 원장·현재 상태 동기화
+- [x] backend/frontend dev, architecture main 커밋·푸시·원격 CI 확인
+- [x] 리포트·호출 원장·현재 상태 동기화
