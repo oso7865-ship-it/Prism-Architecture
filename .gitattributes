@@ -8,3 +8,6 @@
 # Preserve imported records byte-for-byte against the archive manifest.
 records/backend/** -text -whitespace
 records/frontend/** -text -whitespace
+
+# Evaluation summaries hash the original result bytes, including line endings.
+records/quality-evaluations/*.json -text whitespace=cr-at-eol

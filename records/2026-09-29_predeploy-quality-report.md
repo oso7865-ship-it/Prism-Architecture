@@ -58,15 +58,18 @@
 - Docker 재시작을 막던 오래된 0byte 런타임 소켓 디렉터리를 이름 변경해 보존한 후 복구했다. 기존 DB 볼륨을 삭제/초기화하지 않았다.
 - 로컬 API는 Windows SelectorEventLoop로 실행해야 DB 작업이 가능했다. uvicorn의 현재 loop factory가 Proactor를 선택하는 경로를 피하는 로컬 시작 도우미를 사용했다. EC2 Linux 제품 설정 변경은 아니다.
 - 기록·보고서는 architecture에만 위치한다. backend/frontend의 문서 차단·비밀 검사를 적용한다. 기존490개 보관 기록은 수정하지 않는다.
-- 문서 무결성94파일·392링크, 도우미90조합, 보관490기록 검사 PASS. 기존 긴 문서3개의 분리 권고는 문서 길이 경고이며 런타임 검증을 뜻하지 않는다. backend277/frontend63추적 파일의 문서 차단·비밀 패턴 검사 PASS.
+- 문서 무결성94파일, 도우미90조합, 보관490기록 검사 PASS. 기존 긴 문서3개의 분리 권고는 문서 길이 경고이며 런타임 검증을 뜻하지 않는다. backend277/frontend63/architecture609추적 파일의 비밀 패턴 검사 PASS. 코드 저장소의 문서 차단도 PASS.
+- 최초 백엔드 원격 CI는 고정 평가 `baseline-system.txt`의 Git 줄바꿈 변환으로 1개 검사 실패(381개 통과)했다. 원래 기준 해시를 바꾸지 않고 해당 파일의 바이트 보존 속성을 추가했다. 스테이징된 기준9파일 해시 일치 및 Linux 관련13개 검사 PASS. 네이티브 Windows 관련 검사 시 임시 폴더 권한 오류가 있어 Linux로 재실행했다.
+- 같은 전송 경계 문제를 평가 결과 JSON에도 확인해 architecture에서 원본 바이트 보존을 지정하고 7개 결과 해시 검사를 CI에 추가했다. 원본 응답·기준 해시를 재작성하지 않았다.
+- 최종 백엔드 원격 CI는 전체 테스트·DB migration 왕복/정합성·컨테이너 빌드/스모크·저장소 검사를 포함해 PASS. 이번에 만든 tmpfs 테스트 DB와 내부 네트워크만 식별자 확인 후 정리했다. 기존 로컬 DB는 healthy, API 준비 및 프론트 HTTP는 각각200이다.
 
 ## Git 반영과 CI
 
 | 저장소 | 브랜치 / 커밋 | 원격 검사 |
 |---|---|---|
-| Backend | dev / `04c7809b6f0c51ba098079d6c1acca08065b2bbc` | [backend-ci](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36518360055), 실행 중 |
-| Frontend | dev / `01a1172d63a15d141dd847ca79f1ade18f6caf79` | [frontend-ci](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36518366788), 실행 중 |
-| Architecture | main / 이번 설계·기록 반영 예정 | 검사 예정 |
+| Backend | dev / `14505bd23d864ec8524ad8edacfcc6d28636b269` | [backend-ci](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36518702024), PASS |
+| Frontend | dev / `01a1172d63a15d141dd847ca79f1ade18f6caf79` | [frontend-ci](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36518366788), PASS |
+| Architecture | main / 설계 반영 `edbc76383ed579559756999c67592d5de1ec22b1` | [architecture-ci](https://github.com/oso7865-ship-it/Prism-Architecture/actions/runs/36518487152), PASS. 바이트 보존·현재 보고서의 후속 커밋은 [main 실행 목록](https://github.com/oso7865-ship-it/Prism-Architecture/actions/workflows/architecture-ci.yml?query=branch%3Amain)에서 구분 |
 
 프론트 코드 보기 최초 반영은 `6f90fc1`이며 [해당 CI](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36516964173)는 성공했다. 코드 저장소 문서 추가0, 강제 푸시0, main 병합0이다.
 
