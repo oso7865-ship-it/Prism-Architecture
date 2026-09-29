@@ -1,6 +1,6 @@
 # 현재 개발 상태
 
-최신 배포 작업은 [자동 배포 구현·초기 설정 기록](2026-09-30_automatic-deployment.md)을 참조한다. private GHCR→OIDC/SSM→EC2 및 Vercel CI/CD 코드를 준비했으며 최초 외부 권한/비밀 연결과 실제 main 배포는 미완료다. Vercel Prism은 팀 이름(prism-2139)이고 프로젝트 생성은 아직 안 되어 있다. 현재 정책은 ADR-DEPLOY-006이며 AI 활성화 정책은 별도다.
+최신 배포 작업은 [자동 배포 구현·초기 설정 기록](2026-09-30_automatic-deployment.md)을 참조한다. private GHCR→OIDC/SSM→EC2 및 Vercel CI/CD를 backend dev cbad2af, frontend dev e6fdbd0에 커밋·푸시하고 원격 CI 성공을 확인했다. 설계 main0c69416이 양쪽 architecture.json의 기준이다. backend474+배포20, frontend136+배포3 테스트와 빌드/문서 CI가 통과했다. 최초 외부 권한/비밀 연결·코드 main 병합·실제 운영 배포는 미완료다. Vercel Prism은 팀 이름(prism-2139)이고 프로젝트 생성은 아직 안 되어 있다. 현재 정책은 ADR-DEPLOY-006이며 AI 활성화 정책은 별도다. backend 로컬 usage.json은 보존본과 차이를 발견해 덮어쓰지 않고 원장 해시 불변을 확인했다.
 
 2026-09-30 인프라 준비 상태는 [EC2 직접 접속 기록](2026-09-30_ec2-access-report.md)을 참조한다. 애플리케이션 검증 기준은 [배포 전 완성도 Gate](2026-09-29_predeployment-hardening.md)와 [EC2 실행 안내](2026-09-29_ec2-release-runbook.md)다. 이전 실제 문서/PR 검증은 [최종 검증 보고서](2026-09-29_final-validation-report.md)에 보존한다. 설계는 ADR-REVIEW-012~014를 따른다.
 

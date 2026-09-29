@@ -1,7 +1,7 @@
 # GitHub Actions 자동 배포 구현 기록
 
 > 작업 브랜치: backend/frontend dev, architecture main
-> 상태: 로컬 구현·검증 및 EC2 도구 설치 완료; 외부 인증 연결·main 최초 배포 미완료
+> 상태: 코드 dev·설계 main 커밋/푸시와 원격 CI 통과; EC2 도구 설치 완료, 외부 인증 연결·최초 운영 배포 미완료
 > 적용 스킬: terminal-ops
 > 범위: L / 실행 환경·배포 권한·DB 변경 순서
 
@@ -53,7 +53,7 @@ EC2 `/opt/prism-deploy` root:755에 deploy_ec2.py와 compose.ec2.yaml(root:644),
 
 배포/SSM/GHCR Linux unittest **20개**, 프론트 공개 상태 검사3개 및 기존 저장소 도구2개, 백엔드 저장소 도구2개, 프론트 타입/production build를 통과했다. actionlint 1.7.12 공식 SHA256 확인 후 두 CI 및 OIDC 진단 workflow 문법을 최종 검사했다. Ruff/format 배포 Python5개, 문서119개/ID87개/링크540개/ADR35개 무결성과 과거 기록490개·원본 평가7개 해시 보존을 통과했다. 문서 길이 경고5개는 기존 문서에 대한 안내로 실패가 아니다. 기존 Git 추적 파일의 비밀/문서 혼입 검사도 통과했다. 새 파일의 입력 제한·출력·시크릿 전달 경로를 별도로 검수했다.
 
-이 변경은 앱 기능·DB 스키마 변경이 아니므로 대규모 AI 재평가나 유료 모델 호출을 하지 않았다. Git 원격 반영·main 병합·이미지 게시·실제 앱 배포는 아직 실행하지 않았다. 실제 GHCR GITHUB_TOKEN 권한, AWS OIDC trust claim, SSM 실행 결과, Vercel 프로젝트 환경, 실제 HTTPS/cookie/login은 로컬 테스트로 대체할 수 없다.
+이 변경은 앱 기능·DB 스키마 변경이 아니므로 대규모 AI 재평가나 유료 모델 호출을 하지 않았다. 후속 사용자 승인으로 Git 원격 반영과 CI 확인까지 완료했으며 상세는 9절에 기록한다. 코드 main 병합·이미지 게시·실제 앱 배포는 아직 실행하지 않았다. 실제 GHCR GITHUB_TOKEN 권한, AWS OIDC trust claim, SSM 실행 결과, Vercel 프로젝트 환경, 실제 HTTPS/cookie/login은 로컬 테스트와 dev CI로 대체할 수 없다.
 
 ## 6. 최초 연결 순서
 
@@ -94,4 +94,19 @@ Actions의 실패 상태와 SSM command ID로 조사한다. 원격 stdout 전체
 
 ## 9. Git 반영 작업
 
-사용자가 2026-09-30 “커밋·푸시와 CI 확인까지 진행”을 승인했다. 이번 EC2 준비·자동 배포 변경을 architecture main, backend/frontend dev에 커밋하고 각 원격 CI까지 확인한다. 적용 스킬은 git-workflow와 기존 terminal-ops다. fetch 후 세 브랜치 모두 upstream과 차이0을 확인했다. 변경 파일을 명시해 stage하며 프론트/백엔드에는 문서를 올리지 않는다. 먼저 아키텍처 결정을 커밋한 뒤 양쪽 architecture.json을 해당 SHA로 고정한다. 코드 main 병합·최초 운영 배포는 이번 Git 작업의 실행 범위에 포함하지 않는다. 최종 커밋/원격 CI 결과는 완료 후 이 절에 기록한다.
+사용자가 2026-09-30 “커밋·푸시와 CI 확인까지 진행”을 승인했다. 이번 EC2 준비·자동 배포 변경을 architecture main, backend/frontend dev에 커밋하고 각 원격 CI까지 확인했다. 적용 스킬은 git-workflow와 기존 terminal-ops다. fetch 후 세 브랜치 모두 upstream과 차이0을 확인했다. 변경 파일을 명시해 stage했고 프론트/백엔드에는 문서를 올리지 않았다. 먼저 아키텍처 결정을 커밋한 뒤 양쪽 architecture.json을 해당 SHA로 고정했다. 코드 main 병합·최초 운영 배포는 이번 Git 작업의 실행 범위에 포함하지 않는다.
+
+| 저장소·브랜치 | 반영 커밋 | 원격 CI |
+|---|---|---|
+| Architecture main · 설계/EC2 준비 | `0c6941648678009a6275ab170315cdcdee1cf039` | [36609234213 성공](https://github.com/oso7865-ship-it/Prism-Architecture/actions/runs/36609234213) |
+| Backend dev | `cbad2af5b7a42f50cfacc277cb8536d3a8c99a3a` | [36609335259 성공](https://github.com/oso7865-ship-it/Prism-Backend/actions/runs/36609335259) |
+| Frontend dev | `e6fdbd0b23e5cc55e334d92552c88eb29e2af46d` | [36609340397 성공](https://github.com/oso7865-ship-it/Prism-Frontend/actions/runs/36609340397) |
+
+- Backend: Ruff/format, mypy140파일, Alembic upgrade→downgrade→upgrade/check, pytest474개, Docker build와 제한 컨테이너 검사, EC2 설정 검사, 배포 unittest20개, 저장소 검사·도구 테스트 PASS. publish/deploy job은 dev에서 skipped.
+- Frontend: 타입/production build, Vitest136개, 공개 상태 검사3개, 저장소 검사·도구 테스트 PASS. deploy job은 dev에서 skipped.
+- Architecture: 문서 무결성, helper92조합/35 ADR route/63 path route, 보존490기록·원 평가7개 해시 검사 PASS. 이번 최종 결과 기록은 별도 문서 커밋으로 후속 반영한다. 구현 저장소의 pin은 설계 커밋0c69416을 유지해 결과 기록 때문에 무한히 갱신하지 않는다.
+- 스테이징 후 검사: backend339개/frontend79개 Git 추적 파일에 금지 문서/알려진 비밀 패턴 없음. 세 저장소 diff --check PASS. 각 push 뒤 원격 SHA 일치와 clean 상태 확인. 강제 push·main 코드 병합·PR 생성은 하지 않았다.
+- backend 로컬 문서 복원 검사는 기존 reports/quality-stabilization/usage.json이 보관본과 달라 보존 보호로 중단됐다. 사용자 로컬 원장의 해시 불변을 확인하고 빈 격리 경로에서 pinned 문서291개 checksum 검사를 통과했다. frontend 기존 문서 복원 검사는 그대로 통과했다. 원본 ledger를 덮어쓰거나 보존 manifest를 바꾸지 않았다.
+- 원격 CI에 기존 Actions Node20→24 전환/ubuntu-latest 이미지 변경 예고가 표시됐으나 현재 실행은 성공했다. 이번 작업에서 검증되지 않은 Actions 업그레이드로 범위를 넓히지 않았다. 운영 배포 검증은 여전히 초기 인증/설정 연결 후 수행해야 한다.
+
+Git Workflow Gate는 PASS이며 충돌은 없었다. 외부 초기 연결과 코드 main 반영 전까지 실제 자동 배포는 활성화되지 않는다.
