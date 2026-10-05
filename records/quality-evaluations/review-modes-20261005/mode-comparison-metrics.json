@@ -1,0 +1,304 @@
+{
+  "BASE(legacy)|dev": {
+    "runs": 20,
+    "input_tokens": 177275,
+    "output_tokens": 9411,
+    "defect_runs": 10,
+    "location_found_relaxed": 10,
+    "location_found": 10,
+    "semantic_pass": 10,
+    "clean_runs": 10,
+    "clean_false_positives": 1,
+    "clean_questions": 0,
+    "style": {
+      "findings": 11,
+      "median_evidence_plus_suggestion_chars": 218,
+      "teaching_cue_findings": 0,
+      "teaching_cue_ratio": 0.0
+    },
+    "by_category": {
+      "ARITH_BOUNDARY": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "DEFAULT_ARG": {
+        "defect_runs": 2,
+        "location_found": 2,
+        "semantic_pass": 2
+      },
+      "DICT_GET": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "LENGTH_BOUNDARY": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "NONE_VS_FALSY": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "OR_DEFAULT": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "RANGE_STEP": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      }
+    }
+  },
+  "BASE(legacy)|holdout": {
+    "runs": 36,
+    "input_tokens": 318249,
+    "output_tokens": 15572,
+    "defect_runs": 18,
+    "location_found_relaxed": 15,
+    "location_found": 15,
+    "semantic_pass": 15,
+    "clean_runs": 18,
+    "clean_false_positives": 0,
+    "clean_questions": 0,
+    "location_missed": 3,
+    "style": {
+      "findings": 15,
+      "median_evidence_plus_suggestion_chars": 176,
+      "teaching_cue_findings": 0,
+      "teaching_cue_ratio": 0.0
+    },
+    "by_category": {
+      "BOOL_PRECEDENCE": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "DICT_GET": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "LENGTH_BOUNDARY": {
+        "defect_runs": 6,
+        "location_found": 6,
+        "semantic_pass": 6
+      },
+      "OR_DEFAULT": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "RANGE_STEP": {
+        "defect_runs": 3
+      }
+    }
+  },
+  "SENIOR|dev": {
+    "runs": 20,
+    "input_tokens": 168004,
+    "output_tokens": 7710,
+    "defect_runs": 10,
+    "location_found_relaxed": 9,
+    "location_found": 9,
+    "semantic_pass": 8,
+    "clean_runs": 10,
+    "clean_false_positives": 1,
+    "clean_questions": 0,
+    "location_missed": 1,
+    "semantic_fail_other": 1,
+    "style": {
+      "findings": 10,
+      "median_evidence_plus_suggestion_chars": 199,
+      "teaching_cue_findings": 0,
+      "teaching_cue_ratio": 0.0
+    },
+    "by_category": {
+      "ARITH_BOUNDARY": {
+        "defect_runs": 1,
+        "location_found": 1
+      },
+      "DEFAULT_ARG": {
+        "defect_runs": 2,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "DICT_GET": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "LENGTH_BOUNDARY": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "NONE_VS_FALSY": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "OR_DEFAULT": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "RANGE_STEP": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      }
+    }
+  },
+  "SENIOR|holdout": {
+    "runs": 36,
+    "input_tokens": 302150,
+    "output_tokens": 13192,
+    "defect_runs": 18,
+    "location_found_relaxed": 16,
+    "location_found": 16,
+    "semantic_pass": 15,
+    "clean_runs": 18,
+    "clean_false_positives": 0,
+    "clean_questions": 0,
+    "semantic_fail_other": 1,
+    "failed_runs": 2,
+    "style": {
+      "findings": 16,
+      "median_evidence_plus_suggestion_chars": 190,
+      "teaching_cue_findings": 0,
+      "teaching_cue_ratio": 0.0
+    },
+    "by_category": {
+      "BOOL_PRECEDENCE": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "DICT_GET": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "LENGTH_BOUNDARY": {
+        "defect_runs": 6,
+        "location_found": 6,
+        "semantic_pass": 6
+      },
+      "OR_DEFAULT": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "RANGE_STEP": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 2
+      }
+    }
+  },
+  "JUNIOR|dev": {
+    "runs": 20,
+    "input_tokens": 174943,
+    "output_tokens": 10566,
+    "defect_runs": 10,
+    "location_found_relaxed": 10,
+    "location_found": 9,
+    "semantic_pass": 7,
+    "clean_runs": 10,
+    "clean_false_positives": 1,
+    "clean_questions": 0,
+    "location_missed": 1,
+    "semantic_fail_other": 2,
+    "style": {
+      "findings": 11,
+      "median_evidence_plus_suggestion_chars": 399,
+      "teaching_cue_findings": 0,
+      "teaching_cue_ratio": 0.0
+    },
+    "by_category": {
+      "ARITH_BOUNDARY": {
+        "defect_runs": 1,
+        "location_found": 1
+      },
+      "DEFAULT_ARG": {
+        "defect_runs": 2,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "DICT_GET": {
+        "defect_runs": 1,
+        "location_found": 1
+      },
+      "LENGTH_BOUNDARY": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "NONE_VS_FALSY": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "OR_DEFAULT": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      },
+      "RANGE_STEP": {
+        "defect_runs": 1,
+        "location_found": 1,
+        "semantic_pass": 1
+      }
+    }
+  },
+  "JUNIOR|holdout": {
+    "runs": 36,
+    "input_tokens": 315784,
+    "output_tokens": 19377,
+    "defect_runs": 18,
+    "location_found_relaxed": 18,
+    "location_found": 18,
+    "semantic_pass": 18,
+    "clean_runs": 18,
+    "clean_false_positives": 1,
+    "clean_questions": 0,
+    "style": {
+      "findings": 19,
+      "median_evidence_plus_suggestion_chars": 393,
+      "teaching_cue_findings": 1,
+      "teaching_cue_ratio": 0.053
+    },
+    "by_category": {
+      "BOOL_PRECEDENCE": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "DICT_GET": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "LENGTH_BOUNDARY": {
+        "defect_runs": 6,
+        "location_found": 6,
+        "semantic_pass": 6
+      },
+      "OR_DEFAULT": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      },
+      "RANGE_STEP": {
+        "defect_runs": 3,
+        "location_found": 3,
+        "semantic_pass": 3
+      }
+    }
+  }
+}

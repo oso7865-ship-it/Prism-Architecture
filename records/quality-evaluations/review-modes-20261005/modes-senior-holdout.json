@@ -1,0 +1,2954 @@
+{
+  "campaign": "review-modes-20261005",
+  "run": "modes-senior-holdout",
+  "started_at": "2026-10-05T12:34:06.007425+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-ec06cca54856de3e",
+  "review_mode": "SENIOR",
+  "corpus": "evals\\review-accuracy-v1\\cases-holdout.json",
+  "corpus_sha256": "af9599ca2391994d6481f8636333088074d3e60b83bb4cde341ea857d10a2af2",
+  "repeats": 3,
+  "max_calls": 72,
+  "scope": "synthetic authored sources only; product path; no retries; no DB writes",
+  "cases": [
+    {
+      "id": "or-default-pagesize-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "184c6a7237d183199bbf5b17cfaaf2a31afa7a8e933569c7e4988ffa82133b24",
+      "input_tokens": 9021,
+      "output_tokens": 398,
+      "draft_raw": "{\"summary\":\"page_size가 requested or default_size로 반환하도록 변경되었습니다. docstring은 0을 유효한 요청으로 규정하지만 or 연산은 0을 falsy로 처리합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"requested=0으로 page_size를 호출할 때\",\"consequence\":\"0이 falsy이므로 default_size가 반환되어, '항목 없음'을 요청한 호출자가 기본 페이지 크기를 받습니다.\",\"assumptions\":[],\"title\":\"requested=0이 기본값으로 대체됩니다\",\"evidence\":\"f1:2-3 docstring이 '0 is a valid request meaning no items; only None selects the default'라고 명시합니다. f1:4의 `requested or default_size`는 0을 falsy로 평가해 default_size를 반환합니다.\",\"suggestion\":\"`return default_size if requested is None else requested`로 None만 기본값을 선택하도록 하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: requested=0이 기본값으로 대체됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "requested=0으로 page_size를 호출할 때",
+            "consequence": "0이 falsy이므로 default_size가 반환되어, '항목 없음'을 요청한 호출자가 기본 페이지 크기를 받습니다.",
+            "assumptions": [],
+            "title": "requested=0이 기본값으로 대체됩니다",
+            "evidence": "f1:2-3 docstring이 '0 is a valid request meaning no items; only None selects the default'라고 명시합니다. f1:4의 `requested or default_size`는 0을 falsy로 평가해 default_size를 반환합니다.",
+            "suggestion": "`return default_size if requested is None else requested`로 None만 기본값을 선택하도록 하세요.",
+            "file_path": "paging.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "58e4fa33259658e29a66d82cef97f27c77d071db5f2f26227bb06a7e7119b6af"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"requested=0이면 0이 falsy로 평가되어 default_size가 반환된다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 0을 유효한 '항목 없음' 요청으로 규정하나 line 4의 or 연산이 0을 default_size로 대체한다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: requested=0이 기본값으로 대체됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "requested=0으로 page_size를 호출할 때",
+            "consequence": "requested=0이면 0이 falsy로 평가되어 default_size가 반환된다.",
+            "assumptions": [],
+            "title": "requested=0이 기본값으로 대체됩니다",
+            "evidence": "f1:2-3 docstring이 '0 is a valid request meaning no items; only None selects the default'라고 명시합니다. f1:4의 `requested or default_size`는 0을 falsy로 평가해 default_size를 반환합니다.",
+            "suggestion": "`return default_size if requested is None else requested`로 None만 기본값을 선택하도록 하세요.",
+            "file_path": "paging.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "58e4fa33259658e29a66d82cef97f27c77d071db5f2f26227bb06a7e7119b6af"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "docstring은 0을 유효한 '항목 없음' 요청으로 규정하나 line 4의 or 연산이 0을 default_size로 대체한다.",
+              "file_path": "paging.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.844
+    },
+    {
+      "id": "or-default-pagesize-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "4611f0913588bf67825cabf99408364f7d47fddb6e6700977d97b960d27b8264",
+      "input_tokens": 7759,
+      "output_tokens": 276,
+      "draft_raw": "{\"summary\":\"page_size가 None일 때만 default_size를 반환하고 그 외 값은 그대로 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 requested의 실제 입력 범위는 확인하지 못했습니다. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"page_size는 docstring 계약(0은 유효, None만 기본값)과 정확히 일치한다. 명시적 None 분기이며 0을 기본값으로 대체하지 않으므로 결함 없음.\", \"issues\": [], \"limitations\": \"단일 함수 4줄만 제공됨. 호출자나 requested의 실제 타입/범위는 확인하지 않았으며, 테스트 실행은 하지 않음.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 0을 유효한 요청으로, None만 기본값 선택으로 규정. 코드는 `requested is None`일 때만 default_size를 반환하고 그 외에는 requested를 그대로 반환하므로 계약과 일치. 0은 그대로 반환되어 위반 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "단일 함수 4줄만 제공됨. 호출자나 requested의 실제 타입/범위는 확인하지 않았으며, 테스트 실행은 하지 않음.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 0을 유효한 요청으로, None만 기본값 선택으로 규정. 코드는 `requested is None`일 때만 default_size를 반환하고 그 외에는 requested를 그대로 반환하므로 계약과 일치. 0은 그대로 반환되어 위반 없음.",
+              "file_path": "paging.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.875
+    },
+    {
+      "id": "range-step-last-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "9af7e5082d3dcdb3e3bc3c8a49d8f028fbf5cc7d5bb5e85d518e5ff83b22d42d",
+      "input_tokens": 9322,
+      "output_tokens": 514,
+      "draft_raw": "{\"summary\":\"last_indexes가 size-1부터 감소하는 range를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4],\"trigger\":\"count가 1 이상 size 이하인 정상 입력일 때(예: count=2, size=5)\",\"consequence\":\"range의 step이 +1이라 size-1에서 시작해 size-count까지 증가하는 인덱스 목록을 반환합니다. 예: [4, 5, 6] — size를 초과하는 인덱스가 포함되고 'newest first' 순서도 아닙니다.\",\"assumptions\":[],\"title\":\"range step이 +1이라 마지막 count개 인덱스가 아닌 증가 수열을 반환합니다\",\"evidence\":\"f1:2-3의 docstring은 'last count items, newest first'를 명시합니다. f1:4는 range(size-1, size-count, 1)로 step이 +1이므로 size-1에서 size-count까지 증가하며, size-1이 최댓값이 아니라 시작값이 됩니다.\",\"suggestion\":\"step을 -1로 바꿔 range(size-1, size-count-1, -1)로 내림차순을 만들어야 합니다.\",\"expression_repair\":{\"line\":4,\"before\":\"return list(range(size - 1, size - count, 1))\",\"after\":\"return list(range(size - 1, size - count - 1, -1))\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: range step이 +1이라 마지막 count개 인덱스가 아닌 증가 수열을 반환합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "count가 1 이상 size 이하인 정상 입력일 때(예: count=2, size=5)",
+            "consequence": "range의 step이 +1이라 size-1에서 시작해 size-count까지 증가하는 인덱스 목록을 반환합니다. 예: [4, 5, 6] — size를 초과하는 인덱스가 포함되고 'newest first' 순서도 아닙니다.",
+            "assumptions": [],
+            "title": "range step이 +1이라 마지막 count개 인덱스가 아닌 증가 수열을 반환합니다",
+            "evidence": "f1:2-3의 docstring은 'last count items, newest first'를 명시합니다. f1:4는 range(size-1, size-count, 1)로 step이 +1이므로 size-1에서 size-count까지 증가하며, size-1이 최댓값이 아니라 시작값이 됩니다.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "recent.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 16,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": -1
+                  },
+                  "before": {
+                    "value": [
+                      -2,
+                      -1
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                },
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": 0
+                  },
+                  "before": {
+                    "value": [
+                      -1,
+                      0
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "361fbb4afbb02f27b05ab61a35feafe1d9a4cad5ba2d177d3f00832eaeaa0f36"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count=2, size=5일 때 [4, 5, 6]을 반환해 size를 초과하는 인덱스가 포함되고 newest-first 순서가 아니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"range step +1로 인해 docstring이 명시한 'last count items, newest first'와 달리 증가 수열을 반환한다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: range step이 +1이라 마지막 count개 인덱스가 아닌 증가 수열을 반환합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "count가 1 이상 size 이하인 정상 입력일 때(예: count=2, size=5)",
+            "consequence": "count=2, size=5일 때 [4, 5, 6]을 반환해 size를 초과하는 인덱스가 포함되고 newest-first 순서가 아니다.",
+            "assumptions": [],
+            "title": "range step이 +1이라 마지막 count개 인덱스가 아닌 증가 수열을 반환합니다",
+            "evidence": "f1:2-3의 docstring은 'last count items, newest first'를 명시합니다. f1:4는 range(size-1, size-count, 1)로 step이 +1이므로 size-1에서 size-count까지 증가하며, size-1이 최댓값이 아니라 시작값이 됩니다.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "recent.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 16,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": -1
+                  },
+                  "before": {
+                    "value": [
+                      -2,
+                      -1
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                },
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": 0
+                  },
+                  "before": {
+                    "value": [
+                      -1,
+                      0
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "361fbb4afbb02f27b05ab61a35feafe1d9a4cad5ba2d177d3f00832eaeaa0f36"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "range step +1로 인해 docstring이 명시한 'last count items, newest first'와 달리 증가 수열을 반환한다.",
+              "file_path": "recent.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.0
+    },
+    {
+      "id": "range-step-last-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "e7af280829e9a75ae77a2780ea1d830d5499c4063b5567c8205baf2702a3c52c",
+      "input_tokens": 8167,
+      "output_tokens": 350,
+      "draft_raw": "{\"summary\":\"last_indexes가 size-1부터 감소하는 range로 마지막 count개 인덱스를 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다. docstring이 count>=1, count<=size를 전제로 하므로 그 범위 내에서는 동작이 일관됩니다.\"}",
+      "checked_raw": "{\"summary\": \"docstring 계약(count ≥ 1, count ≤ size)을 만족하는 입력에서 `range(size-1, size-1-count, -1)`는 마지막 count개 인덱스를 최신순으로 정확히 반환한다. 계약 위반 입력(count ≤ 0)은 유효 입력이 아니므로 결함으로 보지 않는다. 변경 라인에서 지원되는 결함 없음.\", \"issues\": [], \"limitations\": \"size < count 이거나 count ≤ 0 인 경우의 동작은 docstring이 명시적으로 배제하므로 검토 대상에서 제외했다. 호출자 코드는 제공되지 않아 실제 전달 인자 분포는 확인하지 못했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약(count ≥ 1, count ≤ size) 하에서 range(size-1, size-1-count, -1)는 마지막 count개 인덱스를 최신순으로 반환하며 요구 동작과 일치한다. 계약 위반 입력은 유효 입력이 아니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "size < count 이거나 count ≤ 0 인 경우의 동작은 docstring이 명시적으로 배제하므로 검토 대상에서 제외했다. 호출자 코드는 제공되지 않아 실제 전달 인자 분포는 확인하지 못했다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약(count ≥ 1, count ≤ size) 하에서 range(size-1, size-1-count, -1)는 마지막 count개 인덱스를 최신순으로 반환하며 요구 동작과 일치한다. 계약 위반 입력은 유효 입력이 아니다.",
+              "file_path": "recent.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.172
+    },
+    {
+      "id": "dict-get-flag-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "388f362567068cc3630960d4096442d1c9d8007df4e83fd311d67cdbfee88786",
+      "input_tokens": 8627,
+      "output_tokens": 448,
+      "draft_raw": "{\"summary\":\"is_enabled가 누락 플래그에 대해 True를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우\",\"consequence\":\"get의 기본값 True가 반환되어, 존재하지 않는 플래그가 활성으로 판정됩니다.\",\"assumptions\":[],\"title\":\"누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다\",\"evidence\":\"2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 누락 시 기본값 True를 반환하므로 이 계약과 정반대입니다.\",\"suggestion\":\"기본값을 False로 바꾸거나, 누락을 비활성으로 처리하는 명시적 분기를 두어 2줄의 계약과 일치시키세요.\",\"contract_quote\":\"True only when the flag exists and is exactly True. A missing flag is disabled.\",\"expression_repair\":{\"line\":3,\"before\":\"    return flags.get(name, True)\",\"after\":\"    return flags.get(name, False)\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우",
+            "consequence": "get의 기본값 True가 반환되어, 존재하지 않는 플래그가 활성으로 판정됩니다.",
+            "assumptions": [],
+            "title": "누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+            "evidence": "2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 누락 시 기본값 True를 반환하므로 이 계약과 정반대입니다.",
+            "suggestion": "기본값을 False로 바꾸거나, 누락을 비활성으로 처리하는 명시적 분기를 두어 2줄의 계약과 일치시키세요.",
+            "file_path": "flags.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "8957024fea985ec910ba941e57469fe711584f97340103555eb03338f8b5f56f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"flags에 name 키가 없으면 기본값 True가 반환되어 누락 플래그가 활성으로 판정됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 누락 플래그를 비활성으로 규정하지만 line 3의 get 기본값 True가 이를 위반합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우",
+            "consequence": "flags에 name 키가 없으면 기본값 True가 반환되어 누락 플래그가 활성으로 판정됩니다.",
+            "assumptions": [],
+            "title": "누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+            "evidence": "2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 누락 시 기본값 True를 반환하므로 이 계약과 정반대입니다.",
+            "suggestion": "기본값을 False로 바꾸거나, 누락을 비활성으로 처리하는 명시적 분기를 두어 2줄의 계약과 일치시키세요.",
+            "file_path": "flags.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "8957024fea985ec910ba941e57469fe711584f97340103555eb03338f8b5f56f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "docstring은 누락 플래그를 비활성으로 규정하지만 line 3의 get 기본값 True가 이를 위반합니다.",
+              "file_path": "flags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.609
+    },
+    {
+      "id": "dict-get-flag-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "6cfd1523c0a4f7543ae2f0bd832406585b4eb767de34dcb8ceafdcdaa9c8a2a0",
+      "input_tokens": 7715,
+      "output_tokens": 304,
+      "draft_raw": "{\"summary\":\"is_enabled가 flags.get(name, False) is True로 플래그 존재와 정확한 True 여부를 판정하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했으며 flags의 실제 타입·호출자·테스트 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"단일 변경 라인은 docstring 계약과 일치한다. flags.get(name, False) is True는 플래그가 없으면 False를 반환하고, 존재하되 True가 아닌 값(truthy 포함)은 False를 반환한다. 제출된 컨텍스트에서 지원되는 결함 없음.\", \"issues\": [], \"limitations\": \"flags의 구체적 타입(dict 여부)과 호출자는 제공되지 않았다. get을 지원하지 않는 매핑이 전달되는 경우는 이 컨텍스트에서 확인할 수 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 '플래그가 존재하고 정확히 True일 때만 True, 없으면 비활성'을 요구한다. flags.get(name, False) is True는 누락 시 False, 존재하되 True가 아니면 False를 반환하므로 계약과 일치한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "flags의 구체적 타입(dict 여부)과 호출자는 제공되지 않았다. get을 지원하지 않는 매핑이 전달되는 경우는 이 컨텍스트에서 확인할 수 없다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 '플래그가 존재하고 정확히 True일 때만 True, 없으면 비활성'을 요구한다. flags.get(name, False) is True는 누락 시 False, 존재하되 True가 아니면 False를 반환하므로 계약과 일치한다.",
+              "file_path": "flags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.532
+    },
+    {
+      "id": "length-last-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "2172da6de452a82b20594f939c5738c44564b53fcd6564e5a86a7ab2d8437497",
+      "input_tokens": 8742,
+      "output_tokens": 510,
+      "draft_raw": "{\"summary\":\"last_item의 마지막 반환식이 items[len(items)]로 변경되어, 비어 있지 않은 리스트에서 항상 IndexError가 발생합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4,5],\"trigger\":\"길이가 1 이상인 items로 last_item을 호출할 때\",\"consequence\":\"len(items)가 유효 인덱스 범위를 벗어나 5줄에서 IndexError가 발생하고, docstring이 명시한 마지막 요소를 반환하지 못합니다.\",\"assumptions\":[],\"title\":\"비어 있지 않은 리스트에서 마지막 요소 접근이 IndexError를 냅니다\",\"evidence\":\"3줄의 len(items) == 0 분기가 빈 리스트를 4줄에서 None으로 처리하므로, 5줄에 도달하는 items는 길이 1 이상입니다. 5줄은 items[len(items)]를 인덱싱하는데 유효 인덱스는 0..len(items)-1이므로 항상 범위를 벗어납니다.\",\"suggestion\":\"5줄을 items[len(items) - 1] 또는 items[-1]로 바꿔 마지막 요소를 반환하세요.\",\"expression_repair\":{\"line\":5,\"before\":\"return items[len(items)]\",\"after\":\"return items[len(items) - 1]\"}}],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과는 미확인. 호출자와 테스트는 제공되지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비어 있지 않은 리스트에서 마지막 요소 접근이 IndexError를 냅니다",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4,
+              5
+            ],
+            "trigger": "길이가 1 이상인 items로 last_item을 호출할 때",
+            "consequence": "len(items)가 유효 인덱스 범위를 벗어나 5줄에서 IndexError가 발생하고, docstring이 명시한 마지막 요소를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 마지막 요소 접근이 IndexError를 냅니다",
+            "evidence": "3줄의 len(items) == 0 분기가 빈 리스트를 4줄에서 None으로 처리하므로, 5줄에 도달하는 items는 길이 1 이상입니다. 5줄은 items[len(items)]를 인덱싱하는데 유효 인덱스는 0..len(items)-1이므로 항상 범위를 벗어납니다.",
+            "suggestion": "5줄을 items[len(items) - 1] 또는 items[-1]로 바꿔 마지막 요소를 반환하세요.",
+            "file_path": "seq.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "deeca3ebaec2e29f3a22f990156e626ed98921b9d8d0a3c485ccac7ed474277b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5줄만 검토했으며 실행 결과는 미확인. 호출자와 테스트는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"길이 1 이상인 items에서 items[len(items)]는 유효 인덱스 범위(0..len(items)-1)를 벗어나 IndexError가 발생한다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"5줄 items[len(items)]는 비어 있지 않은 리스트에서 항상 범위를 벗어나 IndexError를 낸다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비어 있지 않은 리스트에서 마지막 요소 접근이 IndexError를 냅니다",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4,
+              5
+            ],
+            "trigger": "길이가 1 이상인 items로 last_item을 호출할 때",
+            "consequence": "길이 1 이상인 items에서 items[len(items)]는 유효 인덱스 범위(0..len(items)-1)를 벗어나 IndexError가 발생한다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 마지막 요소 접근이 IndexError를 냅니다",
+            "evidence": "3줄의 len(items) == 0 분기가 빈 리스트를 4줄에서 None으로 처리하므로, 5줄에 도달하는 items는 길이 1 이상입니다. 5줄은 items[len(items)]를 인덱싱하는데 유효 인덱스는 0..len(items)-1이므로 항상 범위를 벗어납니다.",
+            "suggestion": "5줄을 items[len(items) - 1] 또는 items[-1]로 바꿔 마지막 요소를 반환하세요.",
+            "file_path": "seq.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "deeca3ebaec2e29f3a22f990156e626ed98921b9d8d0a3c485ccac7ed474277b"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "FINDING",
+              "observation": "5줄 items[len(items)]는 비어 있지 않은 리스트에서 항상 범위를 벗어나 IndexError를 낸다.",
+              "file_path": "seq.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.0
+    },
+    {
+      "id": "length-last-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "7d77d50ee33d19a549b4a58f38214d1ffd8ffab7b988904d8094d3f73d858634",
+      "input_tokens": 7773,
+      "output_tokens": 278,
+      "draft_raw": "{\"summary\":\"last_item의 마지막 반환문이 items[-1]로 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"f1의 변경 라인은 `return items[-1]` 하나이며, docstring 계약(빈 리스트면 None, 그 외 마지막 요소)과 실제 동작이 일치한다. 빈 리스트는 line 3-4에서 None으로 조기 반환되고, 비어 있지 않은 리스트는 마지막 요소를 반환한다. 제출된 컨텍스트에서 지원되는 결함은 없다.\", \"issues\": [], \"limitations\": \"items의 타입/호출자와 실제 실행 결과는 제공되지 않았다. 정적 분석 결과도 없으며, 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약은 빈 리스트에 None, 그 외 마지막 요소 반환이다. line 3-4가 빈 리스트를 None으로 처리하고 line 5가 items[-1]을 반환하므로 계약과 일치한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "items의 타입/호출자와 실제 실행 결과는 제공되지 않았다. 정적 분석 결과도 없으며, 테스트 실행은 하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약은 빈 리스트에 None, 그 외 마지막 요소 반환이다. line 3-4가 빈 리스트를 None으로 처리하고 line 5가 items[-1]을 반환하므로 계약과 일치한다.",
+              "file_path": "seq.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.719
+    },
+    {
+      "id": "java-length-tag-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "b3771f848a8272a744a927ee8b61eb6af1c4555bceaa63d719f9362176b9a3cb",
+      "input_tokens": 8774,
+      "output_tokens": 318,
+      "draft_raw": "{\"summary\":\"Limits.valid가 태그 길이 상한을 검사하는 조건을 변경했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"길이가 정확히 16자인 tag로 valid를 호출할 때\",\"consequence\":\"조건이 false가 되어 유효한 태그가 무효로 판정됩니다.\",\"assumptions\":[],\"title\":\"16자 태그가 유효하지 않다고 판정됩니다\",\"evidence\":\"f1:2는 16자를 허용한다고 명시하는데, f1:4는 length() < 16으로 16자를 거부합니다.\",\"suggestion\":\"상한을 포함하도록 비교를 length() <= 16으로 바꾸세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 16자 태그가 유효하지 않다고 판정됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "길이가 정확히 16자인 tag로 valid를 호출할 때",
+            "consequence": "조건이 false가 되어 유효한 태그가 무효로 판정됩니다.",
+            "assumptions": [],
+            "title": "16자 태그가 유효하지 않다고 판정됩니다",
+            "evidence": "f1:2는 16자를 허용한다고 명시하는데, f1:4는 length() < 16으로 16자를 거부합니다.",
+            "suggestion": "상한을 포함하도록 비교를 length() <= 16으로 바꾸세요.",
+            "file_path": "Limits.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "f930d720721c8c8207c38cb5948faad662cf3a81dd59343fbd00c51dd6665926"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"길이가 정확히 16자인 tag에 대해 valid가 false를 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"f1:2의 계약(16자 허용)과 f1:4의 length() < 16 비교가 불일치하여 16자 태그가 거부됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 16자 태그가 유효하지 않다고 판정됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "길이가 정확히 16자인 tag로 valid를 호출할 때",
+            "consequence": "길이가 정확히 16자인 tag에 대해 valid가 false를 반환합니다.",
+            "assumptions": [],
+            "title": "16자 태그가 유효하지 않다고 판정됩니다",
+            "evidence": "f1:2는 16자를 허용한다고 명시하는데, f1:4는 length() < 16으로 16자를 거부합니다.",
+            "suggestion": "상한을 포함하도록 비교를 length() <= 16으로 바꾸세요.",
+            "file_path": "Limits.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "f930d720721c8c8207c38cb5948faad662cf3a81dd59343fbd00c51dd6665926"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "f1:2의 계약(16자 허용)과 f1:4의 length() < 16 비교가 불일치하여 16자 태그가 거부됩니다.",
+              "file_path": "Limits.java"
+            }
+          ]
+        }
+      },
+      "seconds": 2.703
+    },
+    {
+      "id": "java-length-tag-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "49be89507b051fa5ecc91d4c6e18ef9e35f022bb50c64e93717013ae60ce0177",
+      "input_tokens": 7981,
+      "output_tokens": 320,
+      "draft_raw": "{\"summary\":\"Limits.valid가 태그 길이 상한 검사를 `!(tag.length() > 16)`로 변경했습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했고 실행 결과는 미확인. tag가 null일 때의 계약과 호출자는 제공되지 않아 판단하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"단일 변경 라인(4)은 계약과 일치한다. 주석 계약은 '최대 16자, 정확히 16자 허용'이고 `!(tag.length() > 16)`은 16 이하에서 true를 반환하므로 위반이 없다. null 입력은 계약상 유효 입력이 아니며 가시적 nullable 생산자도 없어 결함으로 성립하지 않는다.\", \"issues\": [], \"limitations\": \"제공된 것은 단일 파일의 6개 라인뿐이다. 호출자, tag의 실제 nullable 여부, 테스트는 제공되지 않아 확인하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"주석 계약은 16자 이하 허용(16 포함)이며 `!(tag.length() > 16)`은 16 이하에서 true를 반환해 계약과 일치한다. null은 계약상 유효 입력이 아니고 가시적 nullable 생산자도 없다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 단일 파일의 6개 라인뿐이다. 호출자, tag의 실제 nullable 여부, 테스트는 제공되지 않아 확인하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "주석 계약은 16자 이하 허용(16 포함)이며 `!(tag.length() > 16)`은 16 이하에서 true를 반환해 계약과 일치한다. null은 계약상 유효 입력이 아니고 가시적 nullable 생산자도 없다.",
+              "file_path": "Limits.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.484
+    },
+    {
+      "id": "java-access-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "9006c9e9f133cf5476f7a024981d73ec111c00bfa72bebf8cc6923f633452d86",
+      "input_tokens": 8826,
+      "output_tokens": 401,
+      "draft_raw": "{\"summary\":\"allowed가 active && admin || owner로 변경되어, Java 연산자 우선순위상 (active && admin) || owner로 평가됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"active가 false이고 owner가 true인 호출\",\"consequence\":\"active && admin이 false로 평가된 뒤 || owner가 평가되어 true를 반환합니다. 즉 비활성 사용자가 owner라는 이유로 허용됩니다.\",\"assumptions\":[],\"title\":\"비활성 사용자도 owner이면 허용됩니다\",\"evidence\":\"2줄의 계약은 active AND (admin OR owner)를 요구하지만, 4줄은 &&가 ||보다 우선 결합되어 (active && admin) || owner로 평가됩니다. active=false, owner=true이면 계약은 false, 코드는 true입니다.\",\"suggestion\":\"의도한 결합을 명시적으로 묶어 active && (admin || owner)로 수정하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비활성 사용자도 owner이면 허용됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "active가 false이고 owner가 true인 호출",
+            "consequence": "active && admin이 false로 평가된 뒤 || owner가 평가되어 true를 반환합니다. 즉 비활성 사용자가 owner라는 이유로 허용됩니다.",
+            "assumptions": [],
+            "title": "비활성 사용자도 owner이면 허용됩니다",
+            "evidence": "2줄의 계약은 active AND (admin OR owner)를 요구하지만, 4줄은 &&가 ||보다 우선 결합되어 (active && admin) || owner로 평가됩니다. active=false, owner=true이면 계약은 false, 코드는 true입니다.",
+            "suggestion": "의도한 결합을 명시적으로 묶어 active && (admin || owner)로 수정하세요.",
+            "file_path": "Access.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "dd7ae2a5d1b8e01afc018d69aa4b99412bf2e4f63f69984043645346ce98e71d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"active=false, owner=true이면 (active && admin) || owner가 true로 평가되어 비활성 owner가 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"4줄의 active && admin || owner는 && 우선순위로 (active && admin) || owner로 평가되어 2줄 계약(active AND (admin OR owner))과 불일치합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비활성 사용자도 owner이면 허용됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "active가 false이고 owner가 true인 호출",
+            "consequence": "active=false, owner=true이면 (active && admin) || owner가 true로 평가되어 비활성 owner가 허용됩니다.",
+            "assumptions": [],
+            "title": "비활성 사용자도 owner이면 허용됩니다",
+            "evidence": "2줄의 계약은 active AND (admin OR owner)를 요구하지만, 4줄은 &&가 ||보다 우선 결합되어 (active && admin) || owner로 평가됩니다. active=false, owner=true이면 계약은 false, 코드는 true입니다.",
+            "suggestion": "의도한 결합을 명시적으로 묶어 active && (admin || owner)로 수정하세요.",
+            "file_path": "Access.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "dd7ae2a5d1b8e01afc018d69aa4b99412bf2e4f63f69984043645346ce98e71d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "4줄의 active && admin || owner는 && 우선순위로 (active && admin) || owner로 평가되어 2줄 계약(active AND (admin OR owner))과 불일치합니다.",
+              "file_path": "Access.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.859
+    },
+    {
+      "id": "java-access-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "80f225f7abda39eb3129b17d0681517ec6b7aa3258bf3fa98078ad39bfea2f2d",
+      "input_tokens": 7979,
+      "output_tokens": 274,
+      "draft_raw": "{\"summary\":\"allowed가 active && (owner || admin)로 권한을 판정하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 6줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다. 2줄의 계약(active AND (admin OR owner))과 4줄의 식이 일치합니다.\"}",
+      "checked_raw": "{\"summary\": \"Access.allowed는 active && (owner || admin)을 반환하며, 이는 라인 2의 계약(active AND (admin OR owner))과 논리적으로 동일하다. 변경 라인에서 지원되는 결함이 없다.\", \"issues\": [], \"limitations\": \"단일 파일, 단일 메서드만 제공되어 호출자나 실제 입력 분포는 확인하지 않았다. 정적 분석 경고 없음.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 2 계약은 active AND (admin OR owner)를 요구하고, 라인 4는 active && (owner || admin)을 반환한다. ||는 교환법칙이 성립하므로 반환값이 계약을 위반하지 않는다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "단일 파일, 단일 메서드만 제공되어 호출자나 실제 입력 분포는 확인하지 않았다. 정적 분석 경고 없음.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "라인 2 계약은 active AND (admin OR owner)를 요구하고, 라인 4는 active && (owner || admin)을 반환한다. ||는 교환법칙이 성립하므로 반환값이 계약을 위반하지 않는다.",
+              "file_path": "Access.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.125
+    },
+    {
+      "id": "or-default-pagesize-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "184c6a7237d183199bbf5b17cfaaf2a31afa7a8e933569c7e4988ffa82133b24",
+      "input_tokens": 9055,
+      "output_tokens": 448,
+      "draft_raw": "{\"summary\":\"page_size가 `requested or default_size`로 반환하도록 변경되었습니다. docstring은 0을 유효한 요청으로 규정하지만, 0은 falsy이므로 default_size가 반환됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"requested=0으로 page_size를 호출할 때\",\"consequence\":\"0이 falsy로 평가되어 default_size가 반환되므로, '항목 없음' 요청이 기본 페이지 크기로 바뀝니다.\",\"assumptions\":[],\"title\":\"requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다\",\"evidence\":\"2-3줄은 0이 유효한 요청이고 None만 기본값을 선택한다고 명시합니다. 4줄의 `requested or default_size`는 0을 falsy로 처리해 default_size를 반환합니다.\",\"suggestion\":\"None만 기본값을 선택하도록 `default_size if requested is None else requested`로 바꾸세요.\",\"contract_quote\":\"0 is a valid request meaning no items; only None selects the default.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "requested=0으로 page_size를 호출할 때",
+            "consequence": "0이 falsy로 평가되어 default_size가 반환되므로, '항목 없음' 요청이 기본 페이지 크기로 바뀝니다.",
+            "assumptions": [],
+            "title": "requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+            "evidence": "2-3줄은 0이 유효한 요청이고 None만 기본값을 선택한다고 명시합니다. 4줄의 `requested or default_size`는 0을 falsy로 처리해 default_size를 반환합니다.",
+            "suggestion": "None만 기본값을 선택하도록 `default_size if requested is None else requested`로 바꾸세요.",
+            "file_path": "paging.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "5f1b0e86825dd2bea34dd239e1bd98b5297135338cbd9cb82501f5474461be2a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"requested=0이면 0이 falsy로 평가되어 default_size가 반환되고, '항목 없음' 요청이 기본 페이지 크기로 대체됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 0을 유효한 요청으로 규정하나 `requested or default_size`가 0을 falsy로 처리해 default_size를 반환합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "requested=0으로 page_size를 호출할 때",
+            "consequence": "requested=0이면 0이 falsy로 평가되어 default_size가 반환되고, '항목 없음' 요청이 기본 페이지 크기로 대체됩니다.",
+            "assumptions": [],
+            "title": "requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+            "evidence": "2-3줄은 0이 유효한 요청이고 None만 기본값을 선택한다고 명시합니다. 4줄의 `requested or default_size`는 0을 falsy로 처리해 default_size를 반환합니다.",
+            "suggestion": "None만 기본값을 선택하도록 `default_size if requested is None else requested`로 바꾸세요.",
+            "file_path": "paging.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "5f1b0e86825dd2bea34dd239e1bd98b5297135338cbd9cb82501f5474461be2a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "docstring은 0을 유효한 요청으로 규정하나 `requested or default_size`가 0을 falsy로 처리해 default_size를 반환합니다.",
+              "file_path": "paging.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.657
+    },
+    {
+      "id": "or-default-pagesize-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "4611f0913588bf67825cabf99408364f7d47fddb6e6700977d97b960d27b8264",
+      "input_tokens": 7759,
+      "output_tokens": 248,
+      "draft_raw": "{\"summary\":\"page_size가 requested가 None일 때만 default_size를 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"page_size는 docstring 계약(0은 유효, None만 기본값)과 정확히 일치한다. 명시적 None 분기이며 0을 기본값으로 대체하지 않으므로 결함 없음.\", \"issues\": [], \"limitations\": \"단일 함수 4줄만 제공됨. 호출자나 requested의 실제 타입 범위는 확인하지 않았으며, 이는 계약 위반을 시사하지 않음.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 0을 유효한 요청, None만 기본값 선택으로 규정. 코드는 `requested is None`일 때만 default_size를 반환하고 0은 그대로 반환하므로 요구사항과 일치.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "단일 함수 4줄만 제공됨. 호출자나 requested의 실제 타입 범위는 확인하지 않았으며, 이는 계약 위반을 시사하지 않음.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 0을 유효한 요청, None만 기본값 선택으로 규정. 코드는 `requested is None`일 때만 default_size를 반환하고 0은 그대로 반환하므로 요구사항과 일치.",
+              "file_path": "paging.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.563
+    },
+    {
+      "id": "range-step-last-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "9af7e5082d3dcdb3e3bc3c8a49d8f028fbf5cc7d5bb5e85d518e5ff83b22d42d",
+      "input_tokens": 9357,
+      "output_tokens": 612,
+      "draft_raw": "{\"summary\":\"last_indexes가 range(size-1, size-count, 1)로 마지막 count개 인덱스를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4],\"trigger\":\"count가 1 이상이고 size 이하인 계약 조건에서 호출될 때(예: count=1, size=3)\",\"consequence\":\"range의 step이 1이라 size-1에서 size-count까지 증가 방향으로 생성되어, 마지막 count개가 아니라 그 반대 구간의 인덱스가 반환됩니다. count=1, size=3이면 [2] 대신 [2,3]이 나와 size 범위를 벗어난 인덱스까지 포함합니다.\",\"assumptions\":[],\"title\":\"step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다\",\"evidence\":\"2-3줄 docstring은 'newest first'로 마지막 count개를 요구하고 count>=1, count<=size를 명시합니다. 4줄은 range(size-1, size-count, 1)로 시작값이 끝값보다 크므로 step이 양수여서 빈 범위가 되거나, size-count가 더 크면 범위를 초과하는 인덱스를 생성합니다.\",\"suggestion\":\"step을 -1로 바꿔 range(size-1, size-count-1, -1)로 내림차순 생성하세요. 이러면 count=size일 때 0까지 포함되고 count=1일 때 [size-1]만 반환됩니다.\"}],\"limitations\":\"제공된 4줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "count가 1 이상이고 size 이하인 계약 조건에서 호출될 때(예: count=1, size=3)",
+            "consequence": "range의 step이 1이라 size-1에서 size-count까지 증가 방향으로 생성되어, 마지막 count개가 아니라 그 반대 구간의 인덱스가 반환됩니다. count=1, size=3이면 [2] 대신 [2,3]이 나와 size 범위를 벗어난 인덱스까지 포함합니다.",
+            "assumptions": [],
+            "title": "step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+            "evidence": "2-3줄 docstring은 'newest first'로 마지막 count개를 요구하고 count>=1, count<=size를 명시합니다. 4줄은 range(size-1, size-count, 1)로 시작값이 끝값보다 크므로 step이 양수여서 빈 범위가 되거나, size-count가 더 크면 범위를 초과하는 인덱스를 생성합니다.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "recent.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 16,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": -1
+                  },
+                  "before": {
+                    "value": [
+                      -2,
+                      -1
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                },
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": 0
+                  },
+                  "before": {
+                    "value": [
+                      -1,
+                      0
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "5a06fd103cef951463691014112e6278bfca75275c911c38dbb692e06f87ab62"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count=1, size=3이면 range(2, 2, 1)이 비어 []를 반환하고, count=1, size=1이면 range(0, 0, 1)이 비어 []를 반환해 마지막 인덱스가 누락됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"range(size-1, size-count, 1)은 시작값이 끝값보다 크거나 같아 계약(count>=1, count<=size) 하에서 항상 빈 리스트를 반환합니다. step을 -1로 하고 끝값을 size-count-1로 조정해야 합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "count가 1 이상이고 size 이하인 계약 조건에서 호출될 때(예: count=1, size=3)",
+            "consequence": "count=1, size=3이면 range(2, 2, 1)이 비어 []를 반환하고, count=1, size=1이면 range(0, 0, 1)이 비어 []를 반환해 마지막 인덱스가 누락됩니다.",
+            "assumptions": [],
+            "title": "step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+            "evidence": "2-3줄 docstring은 'newest first'로 마지막 count개를 요구하고 count>=1, count<=size를 명시합니다. 4줄은 range(size-1, size-count, 1)로 시작값이 끝값보다 크므로 step이 양수여서 빈 범위가 되거나, size-count가 더 크면 범위를 초과하는 인덱스를 생성합니다.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "recent.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 16,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": -1
+                  },
+                  "before": {
+                    "value": [
+                      -2,
+                      -1
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                },
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": 0
+                  },
+                  "before": {
+                    "value": [
+                      -1,
+                      0
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "5a06fd103cef951463691014112e6278bfca75275c911c38dbb692e06f87ab62"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "range(size-1, size-count, 1)은 시작값이 끝값보다 크거나 같아 계약(count>=1, count<=size) 하에서 항상 빈 리스트를 반환합니다. step을 -1로 하고 끝값을 size-count-1로 조정해야 합니다.",
+              "file_path": "recent.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.39
+    },
+    {
+      "id": "range-step-last-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "e7af280829e9a75ae77a2780ea1d830d5499c4063b5567c8205baf2702a3c52c",
+      "input_tokens": 8167,
+      "output_tokens": 322,
+      "draft_raw": "{\"summary\":\"last_indexes가 size-1부터 count개를 역순으로 반환하는 구현으로 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 size/count의 실제 범위는 미확인입니다. docstring이 count>=1, count<=size를 명시하므로 그 범위 밖 입력은 계약 위반으로 간주했습니다.\"}",
+      "checked_raw": "{\"summary\": \"f1의 변경된 반환식은 문서화된 계약(count ≥ 1, count ≤ size)을 만족하는 입력에서 올바른 최신순 인덱스를 반환한다. 계약 위반 입력(count ≤ 0)은 유효 입력이 아니므로 결함으로 보지 않는다. 지원되는 결함 없음.\", \"issues\": [], \"limitations\": \"count/size의 실제 호출자와 타입은 제공되지 않았으나, docstring이 유효 입력 범위를 명시하므로 경계 판단에 사용했다. 테스트는 실행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약(count≥1, count≤size)에서 range(size-1, size-1-count, -1)는 최신순 count개 인덱스를 정확히 반환한다. 계약 위반 입력은 유효 입력이 아니므로 반환 결함 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "count/size의 실제 호출자와 타입은 제공되지 않았으나, docstring이 유효 입력 범위를 명시하므로 경계 판단에 사용했다. 테스트는 실행하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약(count≥1, count≤size)에서 range(size-1, size-1-count, -1)는 최신순 count개 인덱스를 정확히 반환한다. 계약 위반 입력은 유효 입력이 아니므로 반환 결함 없음.",
+              "file_path": "recent.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.125
+    },
+    {
+      "id": "dict-get-flag-defect",
+      "repeat": 2,
+      "status": "FAILED",
+      "payload_sha256": "388f362567068cc3630960d4096442d1c9d8007df4e83fd311d67cdbfee88786",
+      "input_tokens": 8627,
+      "output_tokens": 453,
+      "draft_raw": "{\"summary\":\"is_enabled가 누락 플래그에 대해 True를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우\",\"consequence\":\"get의 기본값 True가 반환되어, 존재하지 않는 플래그가 활성으로 판정됩니다.\",\"assumptions\":[],\"title\":\"누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다\",\"evidence\":\"2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 누락 시 기본값 True를 반환하므로 이 계약과 정반대입니다.\",\"suggestion\":\"기본값을 False로 바꾸거나, 누락을 비활성으로 처리하는 명시적 분기를 두어 2줄의 계약과 일치시키세요.\",\"contract_quote\":\"True only when the flag exists and is exactly True. A missing flag is disabled.\",\"expression_repair\":{\"line\":3,\"before\":\"    return flags.get(name, True)\",\"after\":\"    return flags.get(name, False)\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우",
+            "consequence": "get의 기본값 True가 반환되어, 존재하지 않는 플래그가 활성으로 판정됩니다.",
+            "assumptions": [],
+            "title": "누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+            "evidence": "2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 누락 시 기본값 True를 반환하므로 이 계약과 정반대입니다.",
+            "suggestion": "기본값을 False로 바꾸거나, 누락을 비활성으로 처리하는 명시적 분기를 두어 2줄의 계약과 일치시키세요.",
+            "file_path": "flags.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "8957024fea985ec910ba941e57469fe711584f97340103555eb03338f8b5f56f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"type\": \"json_object\", \"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"flags에 name 키가 없으면 기본값 True가 반환되어 누락 플래그가 활성으로 판정됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 get 기본값 True가 2줄의 '누락은 비활성' 계약과 반대입니다.\"}]}",
+      "error_type": "ValidationError",
+      "error_stage": "verification",
+      "error_code": "1 validation error for VerificationOutput\ntype\n  Extra inputs are not permitted ",
+      "seconds": 3.657
+    },
+    {
+      "id": "dict-get-flag-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "6cfd1523c0a4f7543ae2f0bd832406585b4eb767de34dcb8ceafdcdaa9c8a2a0",
+      "input_tokens": 7715,
+      "output_tokens": 289,
+      "draft_raw": "{\"summary\":\"is_enabled가 flags.get(name, False) is True로 정확히 True인 경우만 활성으로 판정하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했으며 flags의 타입·호출자·실행 결과는 미확인입니다.\"}",
+      "checked_raw": "{\"summary\": \"단일 변경 라인은 docstring 계약과 일치한다. flags.get(name, False) is True는 플래그가 없으면 False를 반환하고, 존재하되 True가 아닌 값(1, \\\"true\\\", truthy 객체)도 False로 처리한다. 지원 가능한 결함 없음.\", \"issues\": [], \"limitations\": \"flags의 타입/기본값 계약과 호출자는 제공되지 않았다. get을 지원하지 않는 매핑이 전달되는 경우는 검토 범위 밖이다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 '플래그가 존재하고 정확히 True일 때만 True, 없으면 비활성'을 요구한다. flags.get(name, False) is True는 누락 시 False, True가 아닌 값도 False를 반환해 계약을 위반하지 않는다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "flags의 타입/기본값 계약과 호출자는 제공되지 않았다. get을 지원하지 않는 매핑이 전달되는 경우는 검토 범위 밖이다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 '플래그가 존재하고 정확히 True일 때만 True, 없으면 비활성'을 요구한다. flags.get(name, False) is True는 누락 시 False, True가 아닌 값도 False를 반환해 계약을 위반하지 않는다.",
+              "file_path": "flags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.953
+    },
+    {
+      "id": "length-last-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "2172da6de452a82b20594f939c5738c44564b53fcd6564e5a86a7ab2d8437497",
+      "input_tokens": 8689,
+      "output_tokens": 449,
+      "draft_raw": "{\"summary\":\"last_item이 비어 있지 않은 리스트에서 마지막 요소 대신 범위를 벗어난 인덱스로 접근하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4,5],\"trigger\":\"길이가 1 이상인 items로 last_item을 호출할 때\",\"consequence\":\"items[len(items)]가 유효 인덱스 범위(0..len-1)를 벗어나 IndexError가 발생합니다.\",\"assumptions\":[],\"title\":\"비어 있지 않은 리스트에서 IndexError 발생\",\"evidence\":\"3줄의 len(items) == 0 검사는 빈 리스트만 4줄에서 None으로 반환하므로, 5줄은 길이 1 이상인 경우 항상 실행됩니다. 이때 인덱스가 len(items)이므로 마지막 요소가 아니라 범위 밖을 가리킵니다.\",\"suggestion\":\"5줄을 items[len(items) - 1] 또는 items[-1]로 수정해 마지막 요소를 반환하세요.\",\"expression_repair\":{\"line\":5,\"before\":\"return items[len(items)]\",\"after\":\"return items[len(items) - 1]\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비어 있지 않은 리스트에서 IndexError 발생",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4,
+              5
+            ],
+            "trigger": "길이가 1 이상인 items로 last_item을 호출할 때",
+            "consequence": "items[len(items)]가 유효 인덱스 범위(0..len-1)를 벗어나 IndexError가 발생합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 IndexError 발생",
+            "evidence": "3줄의 len(items) == 0 검사는 빈 리스트만 4줄에서 None으로 반환하므로, 5줄은 길이 1 이상인 경우 항상 실행됩니다. 이때 인덱스가 len(items)이므로 마지막 요소가 아니라 범위 밖을 가리킵니다.",
+            "suggestion": "5줄을 items[len(items) - 1] 또는 items[-1]로 수정해 마지막 요소를 반환하세요.",
+            "file_path": "seq.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "6c170b8d263c3add9235c206a74d2cd4f112b3a84be37e3619de6abb3b6eace2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"길이 1 이상인 items에서 items[len(items)]가 유효 범위를 벗어나 IndexError가 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"5줄의 인덱스가 len(items)로 마지막 요소를 벗어나 비어 있지 않은 리스트에서 IndexError가 발생합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비어 있지 않은 리스트에서 IndexError 발생",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4,
+              5
+            ],
+            "trigger": "길이가 1 이상인 items로 last_item을 호출할 때",
+            "consequence": "길이 1 이상인 items에서 items[len(items)]가 유효 범위를 벗어나 IndexError가 발생합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 IndexError 발생",
+            "evidence": "3줄의 len(items) == 0 검사는 빈 리스트만 4줄에서 None으로 반환하므로, 5줄은 길이 1 이상인 경우 항상 실행됩니다. 이때 인덱스가 len(items)이므로 마지막 요소가 아니라 범위 밖을 가리킵니다.",
+            "suggestion": "5줄을 items[len(items) - 1] 또는 items[-1]로 수정해 마지막 요소를 반환하세요.",
+            "file_path": "seq.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "6c170b8d263c3add9235c206a74d2cd4f112b3a84be37e3619de6abb3b6eace2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "FINDING",
+              "observation": "5줄의 인덱스가 len(items)로 마지막 요소를 벗어나 비어 있지 않은 리스트에서 IndexError가 발생합니다.",
+              "file_path": "seq.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.234
+    },
+    {
+      "id": "length-last-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "7d77d50ee33d19a549b4a58f38214d1ffd8ffab7b988904d8094d3f73d858634",
+      "input_tokens": 7773,
+      "output_tokens": 336,
+      "draft_raw": "{\"summary\":\"last_item이 빈 리스트에 None을 반환하고, 그 외에는 items[-1]을 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. 빈 리스트 경로는 명시적으로 None을 반환하고, 비어 있지 않은 경로의 items[-1]은 유효한 인덱스이므로 제공 범위에서 지원되는 결함은 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인은 `return items[-1]` 하나이며, docstring 계약(빈 리스트면 None, 그 외 마지막 요소)과 일치한다. 빈 리스트는 line 3-4에서 None으로 처리되고, 비어 있지 않은 리스트는 마지막 요소를 반환한다. 제기할 만한 결함 없음.\", \"issues\": [], \"limitations\": \"제공된 5개 라인만 검토했다. 호출자, items의 실제 타입/불변성, 테스트 실행 여부는 확인하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약은 빈 리스트에 None, 그 외 마지막 요소 반환. line 3-4가 빈 리스트를 None으로 처리하고 line 5가 items[-1]을 반환하므로 계약과 일치한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5개 라인만 검토했다. 호출자, items의 실제 타입/불변성, 테스트 실행 여부는 확인하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약은 빈 리스트에 None, 그 외 마지막 요소 반환. line 3-4가 빈 리스트를 None으로 처리하고 line 5가 items[-1]을 반환하므로 계약과 일치한다.",
+              "file_path": "seq.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.344
+    },
+    {
+      "id": "java-length-tag-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "b3771f848a8272a744a927ee8b61eb6af1c4555bceaa63d719f9362176b9a3cb",
+      "input_tokens": 8834,
+      "output_tokens": 391,
+      "draft_raw": "{\"summary\":\"Limits.valid가 태그 길이 상한을 검사하는데, 주석 계약과 달리 16자 경계를 거부하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"길이가 정확히 16자인 tag로 valid를 호출할 때\",\"consequence\":\"tag.length() < 16이 false가 되어 유효해야 할 16자 태그가 거부됩니다.\",\"assumptions\":[],\"title\":\"16자 태그가 계약과 달리 무효 처리됩니다\",\"evidence\":\"f1:2 주석은 'at most 16 characters; exactly 16 is allowed'라고 명시합니다. f1:4는 엄격한 미만 비교라 16을 배제합니다.\",\"suggestion\":\"경계를 포함하도록 비교를 tag.length() <= 16으로 바꾸세요.\",\"contract_quote\":\"A tag is valid when it has at most 16 characters; exactly 16 is allowed.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 16자 태그가 계약과 달리 무효 처리됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "길이가 정확히 16자인 tag로 valid를 호출할 때",
+            "consequence": "tag.length() < 16이 false가 되어 유효해야 할 16자 태그가 거부됩니다.",
+            "assumptions": [],
+            "title": "16자 태그가 계약과 달리 무효 처리됩니다",
+            "evidence": "f1:2 주석은 'at most 16 characters; exactly 16 is allowed'라고 명시합니다. f1:4는 엄격한 미만 비교라 16을 배제합니다.",
+            "suggestion": "경계를 포함하도록 비교를 tag.length() <= 16으로 바꾸세요.",
+            "file_path": "Limits.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "16769f30189609b70c0e54580e472d0af1d1f453949e67c6b538f5f880859b28"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"길이가 정확히 16인 tag에 대해 valid가 false를 반환해 유효한 태그가 거부됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"f1:4의 tag.length() < 16이 f1:2 계약의 16자 경계를 배제합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 16자 태그가 계약과 달리 무효 처리됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "길이가 정확히 16자인 tag로 valid를 호출할 때",
+            "consequence": "길이가 정확히 16인 tag에 대해 valid가 false를 반환해 유효한 태그가 거부됩니다.",
+            "assumptions": [],
+            "title": "16자 태그가 계약과 달리 무효 처리됩니다",
+            "evidence": "f1:2 주석은 'at most 16 characters; exactly 16 is allowed'라고 명시합니다. f1:4는 엄격한 미만 비교라 16을 배제합니다.",
+            "suggestion": "경계를 포함하도록 비교를 tag.length() <= 16으로 바꾸세요.",
+            "file_path": "Limits.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "16769f30189609b70c0e54580e472d0af1d1f453949e67c6b538f5f880859b28"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "f1:4의 tag.length() < 16이 f1:2 계약의 16자 경계를 배제합니다.",
+              "file_path": "Limits.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.563
+    },
+    {
+      "id": "java-length-tag-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "49be89507b051fa5ecc91d4c6e18ef9e35f022bb50c64e93717013ae60ce0177",
+      "input_tokens": 7981,
+      "output_tokens": 220,
+      "draft_raw": "{\"summary\":\"Limits.valid가 tag 길이 16 초과 여부를 부정해 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"Limits.valid는 계약(최대 16자, 16자 허용)과 일치하는 경계 처리를 한다. 변경 라인에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"tag가 null인 경우는 계약상 유효 입력이 아니며, 호출자 코드가 제공되지 않아 null 전달 여부는 판단 범위 밖이다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: 16자까지 유효, 16자 포함. tag.length() > 16을 부정하므로 16은 true, 17은 false로 계약과 일치한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "tag가 null인 경우는 계약상 유효 입력이 아니며, 호출자 코드가 제공되지 않아 null 전달 여부는 판단 범위 밖이다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "계약: 16자까지 유효, 16자 포함. tag.length() > 16을 부정하므로 16은 true, 17은 false로 계약과 일치한다.",
+              "file_path": "Limits.java"
+            }
+          ]
+        }
+      },
+      "seconds": 2.922
+    },
+    {
+      "id": "java-access-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "9006c9e9f133cf5476f7a024981d73ec111c00bfa72bebf8cc6923f633452d86",
+      "input_tokens": 8788,
+      "output_tokens": 361,
+      "draft_raw": "{\"summary\":\"allowed가 active && admin || owner로 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"active=false, owner=true인 사용자에 대해 allowed를 호출하는 경우\",\"consequence\":\"연산자 우선순위상 (active && admin) || owner로 평가되어 owner가 true이므로 true를 반환합니다.\",\"assumptions\":[],\"title\":\"owner 단독으로 active 조건이 우회됩니다\",\"evidence\":\"2줄의 계약은 active AND (admin OR owner)를 요구하지만, 4줄은 &&가 ||보다 우선하므로 owner가 active와 무관하게 통과시킵니다.\",\"suggestion\":\"active && (admin || owner)로 괄호를 추가해 계약과 일치시키세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: owner 단독으로 active 조건이 우회됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "active=false, owner=true인 사용자에 대해 allowed를 호출하는 경우",
+            "consequence": "연산자 우선순위상 (active && admin) || owner로 평가되어 owner가 true이므로 true를 반환합니다.",
+            "assumptions": [],
+            "title": "owner 단독으로 active 조건이 우회됩니다",
+            "evidence": "2줄의 계약은 active AND (admin OR owner)를 요구하지만, 4줄은 &&가 ||보다 우선하므로 owner가 active와 무관하게 통과시킵니다.",
+            "suggestion": "active && (admin || owner)로 괄호를 추가해 계약과 일치시키세요.",
+            "file_path": "Access.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "7b1a81e0987646884c3474a7efeee21d7c9b9fffa9345686597f24b05ee16a10"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"active=false, owner=true이면 (active && admin) || owner가 true로 평가되어 allowed가 true를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"4줄의 active && admin || owner는 && 우선순위로 인해 2줄 계약(active AND (admin OR owner))과 달리 owner 단독 통과를 허용합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: owner 단독으로 active 조건이 우회됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "active=false, owner=true인 사용자에 대해 allowed를 호출하는 경우",
+            "consequence": "active=false, owner=true이면 (active && admin) || owner가 true로 평가되어 allowed가 true를 반환합니다.",
+            "assumptions": [],
+            "title": "owner 단독으로 active 조건이 우회됩니다",
+            "evidence": "2줄의 계약은 active AND (admin OR owner)를 요구하지만, 4줄은 &&가 ||보다 우선하므로 owner가 active와 무관하게 통과시킵니다.",
+            "suggestion": "active && (admin || owner)로 괄호를 추가해 계약과 일치시키세요.",
+            "file_path": "Access.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "7b1a81e0987646884c3474a7efeee21d7c9b9fffa9345686597f24b05ee16a10"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "4줄의 active && admin || owner는 && 우선순위로 인해 2줄 계약(active AND (admin OR owner))과 달리 owner 단독 통과를 허용합니다.",
+              "file_path": "Access.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.36
+    },
+    {
+      "id": "java-access-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "80f225f7abda39eb3129b17d0681517ec6b7aa3258bf3fa98078ad39bfea2f2d",
+      "input_tokens": 7979,
+      "output_tokens": 239,
+      "draft_raw": "{\"summary\":\"allowed가 active && (owner || admin)로 권한을 판정하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"Access.allowed는 active && (owner || admin)로, 문서화된 계약(active AND (admin OR owner))과 논리적으로 동일하다. OR 교환법칙에 따라 결과가 같으므로 동작 결함은 없다.\", \"issues\": [], \"limitations\": \"제공된 단일 파일의 6줄만 검토했다. 호출자나 테스트는 제공되지 않아 실제 사용 맥락은 확인하지 못했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 active AND (admin OR owner)를 요구하고, 반환식 active && (owner || admin)는 OR 교환법칙으로 동일한 진리값을 낸다. 모든 입력 조합에서 계약을 위반하지 않는다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 파일의 6줄만 검토했다. 호출자나 테스트는 제공되지 않아 실제 사용 맥락은 확인하지 못했다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "계약은 active AND (admin OR owner)를 요구하고, 반환식 active && (owner || admin)는 OR 교환법칙으로 동일한 진리값을 낸다. 모든 입력 조합에서 계약을 위반하지 않는다.",
+              "file_path": "Access.java"
+            }
+          ]
+        }
+      },
+      "seconds": 2.812
+    },
+    {
+      "id": "or-default-pagesize-defect",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "184c6a7237d183199bbf5b17cfaaf2a31afa7a8e933569c7e4988ffa82133b24",
+      "input_tokens": 9039,
+      "output_tokens": 432,
+      "draft_raw": "{\"summary\":\"page_size가 `requested or default_size`로 반환하도록 변경되었습니다. docstring은 0을 유효한 요청으로 규정하지만, 0은 falsy이므로 default_size가 반환됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"requested=0으로 page_size를 호출할 때(0은 docstring상 유효한 요청)\",\"consequence\":\"`0 or default_size`가 default_size를 반환해, 0개 항목 요청이 기본 페이지 크기로 대체됩니다.\",\"assumptions\":[],\"title\":\"requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다\",\"evidence\":\"f1:2-3은 0을 유효한 요청, None만 기본값 선택으로 명시합니다. f1:4의 `requested or default_size`는 0이 falsy이므로 default_size를 반환합니다.\",\"suggestion\":\"None만 기본값으로 처리하도록 `default_size if requested is None else requested`로 바꾸세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "requested=0으로 page_size를 호출할 때(0은 docstring상 유효한 요청)",
+            "consequence": "`0 or default_size`가 default_size를 반환해, 0개 항목 요청이 기본 페이지 크기로 대체됩니다.",
+            "assumptions": [],
+            "title": "requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+            "evidence": "f1:2-3은 0을 유효한 요청, None만 기본값 선택으로 명시합니다. f1:4의 `requested or default_size`는 0이 falsy이므로 default_size를 반환합니다.",
+            "suggestion": "None만 기본값으로 처리하도록 `default_size if requested is None else requested`로 바꾸세요.",
+            "file_path": "paging.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "5f1b0e86825dd2bea34dd239e1bd98b5297135338cbd9cb82501f5474461be2a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"requested=0이면 `0 or default_size`가 default_size를 반환해, 0개 항목 요청이 기본 페이지 크기로 대체됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 0을 유효한 요청으로 규정하나 `requested or default_size`는 0을 falsy로 처리해 default_size를 반환한다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "requested=0으로 page_size를 호출할 때(0은 docstring상 유효한 요청)",
+            "consequence": "requested=0이면 `0 or default_size`가 default_size를 반환해, 0개 항목 요청이 기본 페이지 크기로 대체됩니다.",
+            "assumptions": [],
+            "title": "requested=0이 기본값으로 대체되어 docstring 계약을 위반합니다",
+            "evidence": "f1:2-3은 0을 유효한 요청, None만 기본값 선택으로 명시합니다. f1:4의 `requested or default_size`는 0이 falsy이므로 default_size를 반환합니다.",
+            "suggestion": "None만 기본값으로 처리하도록 `default_size if requested is None else requested`로 바꾸세요.",
+            "file_path": "paging.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "5f1b0e86825dd2bea34dd239e1bd98b5297135338cbd9cb82501f5474461be2a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "docstring은 0을 유효한 요청으로 규정하나 `requested or default_size`는 0을 falsy로 처리해 default_size를 반환한다.",
+              "file_path": "paging.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.781
+    },
+    {
+      "id": "or-default-pagesize-clean",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "4611f0913588bf67825cabf99408364f7d47fddb6e6700977d97b960d27b8264",
+      "input_tokens": 7759,
+      "output_tokens": 243,
+      "draft_raw": "{\"summary\":\"page_size가 requested가 None일 때만 default_size를 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 단일 함수만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"page_size는 docstring 계약(0은 유효, None만 기본값)과 정확히 일치한다. 명시적 None 검사로 0을 보존하므로 결함 없음.\", \"issues\": [], \"limitations\": \"제공된 4줄 외 호출자나 default_size 값 검증은 확인 범위 밖.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 0을 유효한 요청으로, None만 기본값 선택으로 규정. line 4는 `requested is None`일 때만 default_size를 반환하고 그 외에는 requested를 그대로 반환하므로 계약과 일치. 0/음수 등 유효 입력도 그대로 전달됨.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄 외 호출자나 default_size 값 검증은 확인 범위 밖.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "paging.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 0을 유효한 요청으로, None만 기본값 선택으로 규정. line 4는 `requested is None`일 때만 default_size를 반환하고 그 외에는 requested를 그대로 반환하므로 계약과 일치. 0/음수 등 유효 입력도 그대로 전달됨.",
+              "file_path": "paging.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.766
+    },
+    {
+      "id": "range-step-last-defect",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "9af7e5082d3dcdb3e3bc3c8a49d8f028fbf5cc7d5bb5e85d518e5ff83b22d42d",
+      "input_tokens": 9374,
+      "output_tokens": 614,
+      "draft_raw": "{\"summary\":\"last_indexes가 range(size-1, size-count, 1)로 마지막 count개 인덱스를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[4],\"trigger\":\"count가 1 이상이고 size 이하인 계약 조건에서 호출될 때(예: count=1, size=3)\",\"consequence\":\"range의 step이 1이라 size-1에서 size-count까지 증가 방향으로 생성되어, 마지막 count개가 아니라 그 반대 구간의 인덱스가 반환됩니다. count=1, size=3이면 [2] 대신 [2,3]이 나와 size 범위를 벗어난 인덱스까지 포함합니다.\",\"assumptions\":[],\"title\":\"step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다\",\"evidence\":\"2-3줄 docstring은 'newest first'로 마지막 count개를 요구하고 count>=1, count<=size를 명시합니다. 4줄은 range(size-1, size-count, 1)로 시작값이 끝값보다 크므로 step이 양수여서 빈 범위가 되거나, size-count가 더 크면 범위를 초과하는 오름차순 인덱스를 만듭니다.\",\"suggestion\":\"step을 -1로 바꿔 range(size-1, size-count-1, -1)로 내림차순 생성하세요. 이러면 count=size일 때 0까지 포함되고 count=1일 때 [size-1]만 반환됩니다.\"}],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인입니다. 호출자와 실제 count/size 값 분포는 제공되지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "count가 1 이상이고 size 이하인 계약 조건에서 호출될 때(예: count=1, size=3)",
+            "consequence": "range의 step이 1이라 size-1에서 size-count까지 증가 방향으로 생성되어, 마지막 count개가 아니라 그 반대 구간의 인덱스가 반환됩니다. count=1, size=3이면 [2] 대신 [2,3]이 나와 size 범위를 벗어난 인덱스까지 포함합니다.",
+            "assumptions": [],
+            "title": "step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+            "evidence": "2-3줄 docstring은 'newest first'로 마지막 count개를 요구하고 count>=1, count<=size를 명시합니다. 4줄은 range(size-1, size-count, 1)로 시작값이 끝값보다 크므로 step이 양수여서 빈 범위가 되거나, size-count가 더 크면 범위를 초과하는 오름차순 인덱스를 만듭니다.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "recent.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 16,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": -1
+                  },
+                  "before": {
+                    "value": [
+                      -2,
+                      -1
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                },
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": 0
+                  },
+                  "before": {
+                    "value": [
+                      -1,
+                      0
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "5a06fd103cef951463691014112e6278bfca75275c911c38dbb692e06f87ab62"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토했으며 실행 결과는 미확인입니다. 호출자와 실제 count/size 값 분포는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count=1, size=3이면 range(2, 2, 1)이 비어 []를 반환하고, count=2, size=3이면 range(2, 1, 1)이 비어 []를 반환하는 등 마지막 count개 인덱스를 반환하지 못합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"range(size-1, size-count, 1)은 시작값이 끝값보다 크거나 같아 계약(count>=1, count<=size) 하에서 항상 빈 리스트를 반환합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              4
+            ],
+            "trigger": "count가 1 이상이고 size 이하인 계약 조건에서 호출될 때(예: count=1, size=3)",
+            "consequence": "count=1, size=3이면 range(2, 2, 1)이 비어 []를 반환하고, count=2, size=3이면 range(2, 1, 1)이 비어 []를 반환하는 등 마지막 count개 인덱스를 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "step 부호가 반대라 마지막 count개가 아닌 잘못된 인덱스를 반환합니다",
+            "evidence": "2-3줄 docstring은 'newest first'로 마지막 count개를 요구하고 count>=1, count<=size를 명시합니다. 4줄은 range(size-1, size-count, 1)로 시작값이 끝값보다 크므로 step이 양수여서 빈 범위가 되거나, size-count가 더 크면 범위를 초과하는 오름차순 인덱스를 만듭니다.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "recent.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 16,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": -1
+                  },
+                  "before": {
+                    "value": [
+                      -2,
+                      -1
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                },
+                {
+                  "inputs": {
+                    "count": -1,
+                    "size": 0
+                  },
+                  "before": {
+                    "value": [
+                      -1,
+                      0
+                    ]
+                  },
+                  "after": {
+                    "value": []
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "5a06fd103cef951463691014112e6278bfca75275c911c38dbb692e06f87ab62"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "range(size-1, size-count, 1)은 시작값이 끝값보다 크거나 같아 계약(count>=1, count<=size) 하에서 항상 빈 리스트를 반환합니다.",
+              "file_path": "recent.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.656
+    },
+    {
+      "id": "range-step-last-clean",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "e7af280829e9a75ae77a2780ea1d830d5499c4063b5567c8205baf2702a3c52c",
+      "input_tokens": 8167,
+      "output_tokens": 333,
+      "draft_raw": "{\"summary\":\"last_indexes가 size-1부터 count개를 역순으로 반환하는 구현으로 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했으며 호출자와 size/count의 실제 범위는 미확인입니다. docstring이 count>=1, count<=size를 명시하므로 그 범위 밖 입력은 계약 위반으로 간주했습니다.\"}",
+      "checked_raw": "{\"summary\": \"f1의 변경된 반환식은 문서화된 계약(count ≥ 1, count ≤ size)을 만족하는 입력에서 올바른 최신순 인덱스를 반환한다. 계약 위반 입력(count ≤ 0)은 유효 입력이 아니므로 결함으로 성립하지 않는다. 제출된 범위에서 지원되는 결함은 없다.\", \"issues\": [], \"limitations\": \"size < 0 또는 count > size 같은 계약 외 입력의 처리는 명세되지 않았고, 호출자 측 검증 여부는 제공되지 않아 확인하지 않았다. 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약(count ≥ 1, count ≤ size)에서 range(size-1, size-1-count, -1)는 정확히 count개의 최신순 인덱스를 반환한다. 계약 위반 입력은 유효 입력이 아니므로 반환 결함 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "size < 0 또는 count > size 같은 계약 외 입력의 처리는 명세되지 않았고, 호출자 측 검증 여부는 제공되지 않아 확인하지 않았다. 테스트 실행은 하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "recent.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약(count ≥ 1, count ≤ size)에서 range(size-1, size-1-count, -1)는 정확히 count개의 최신순 인덱스를 반환한다. 계약 위반 입력은 유효 입력이 아니므로 반환 결함 없음.",
+              "file_path": "recent.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.391
+    },
+    {
+      "id": "dict-get-flag-defect",
+      "repeat": 3,
+      "status": "FAILED",
+      "payload_sha256": "388f362567068cc3630960d4096442d1c9d8007df4e83fd311d67cdbfee88786",
+      "input_tokens": 8612,
+      "output_tokens": 442,
+      "draft_raw": "{\"summary\":\"is_enabled가 누락 플래그에 대해 True를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우\",\"consequence\":\"get의 기본값 True가 반환되어, 존재하지 않는 플래그가 활성으로 판정됩니다.\",\"assumptions\":[],\"title\":\"누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다\",\"evidence\":\"2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 flags.get(name, True)로 누락 시 True를 반환합니다.\",\"suggestion\":\"기본값을 False로 바꾸거나 누락을 명시적으로 처리해 문서화된 계약과 일치시키세요.\",\"contract_quote\":\"True only when the flag exists and is exactly True. A missing flag is disabled.\",\"expression_repair\":{\"line\":3,\"before\":\"    return flags.get(name, True)\",\"after\":\"    return flags.get(name, False)\"}}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "flags에 name 키가 없을 때 is_enabled(flags, name)를 호출하는 경우",
+            "consequence": "get의 기본값 True가 반환되어, 존재하지 않는 플래그가 활성으로 판정됩니다.",
+            "assumptions": [],
+            "title": "누락 플래그가 활성으로 반환되어 문서화된 계약과 반대입니다",
+            "evidence": "2줄은 '플래그가 존재하고 정확히 True일 때만 True, 누락은 비활성'을 명시합니다. 3줄은 flags.get(name, True)로 누락 시 True를 반환합니다.",
+            "suggestion": "기본값을 False로 바꾸거나 누락을 명시적으로 처리해 문서화된 계약과 일치시키세요.",
+            "file_path": "flags.py",
+            "suggestion_check": {
+              "status": "SOURCE_MISMATCH",
+              "samples": 0
+            },
+            "key": "8957024fea985ec910ba941e57469fe711584f97340103555eb03338f8b5f56f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"type\": \"json_object\", \"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"flags에 name 키가 없으면 flags.get(name, True)가 True를 반환해 누락 플래그가 활성으로 판정됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 기본값 True가 2줄의 '누락은 비활성' 계약과 반대입니다.\"}]}",
+      "error_type": "ValidationError",
+      "error_stage": "verification",
+      "error_code": "1 validation error for VerificationOutput\ntype\n  Extra inputs are not permitted ",
+      "seconds": 3.39
+    },
+    {
+      "id": "dict-get-flag-clean",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "6cfd1523c0a4f7543ae2f0bd832406585b4eb767de34dcb8ceafdcdaa9c8a2a0",
+      "input_tokens": 7715,
+      "output_tokens": 292,
+      "draft_raw": "{\"summary\":\"is_enabled가 flags.get(name, False) is True로 플래그 존재와 정확한 True 여부를 판정하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했으며 flags의 실제 타입·호출자·테스트 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"단일 변경 라인은 docstring 계약과 일치한다. flags.get(name, False) is True는 플래그가 없으면 False를 반환하고, 존재하되 True가 아닌 값(1, \\\"true\\\", truthy 객체)도 False로 처리한다. 지원 가능한 결함 없음.\", \"issues\": [], \"limitations\": \"flags의 타입/기본값 계약과 실제 호출자는 제공되지 않았다. get을 지원하지 않는 매핑이 전달되는 경우는 검토 범위 밖이다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 '플래그가 존재하고 정확히 True일 때만 True, 없으면 비활성'을 요구한다. get(name, False) is True는 누락 시 False, True가 아닌 값도 False를 반환해 계약과 일치한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "flags의 타입/기본값 계약과 실제 호출자는 제공되지 않았다. get을 지원하지 않는 매핑이 전달되는 경우는 검토 범위 밖이다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "flags.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 '플래그가 존재하고 정확히 True일 때만 True, 없으면 비활성'을 요구한다. get(name, False) is True는 누락 시 False, True가 아닌 값도 False를 반환해 계약과 일치한다.",
+              "file_path": "flags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.359
+    },
+    {
+      "id": "length-last-defect",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "2172da6de452a82b20594f939c5738c44564b53fcd6564e5a86a7ab2d8437497",
+      "input_tokens": 8664,
+      "output_tokens": 433,
+      "draft_raw": "{\"summary\":\"last_item이 비어 있지 않은 리스트에서 마지막 요소 대신 범위를 벗어난 인덱스로 접근하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3,4,5],\"trigger\":\"길이가 1 이상인 items로 last_item을 호출할 때\",\"consequence\":\"items[len(items)]가 유효 인덱스 범위를 벗어나 IndexError가 발생합니다.\",\"assumptions\":[],\"title\":\"비어 있지 않은 리스트에서 IndexError 발생\",\"evidence\":\"3줄의 len(items) == 0 검사는 빈 리스트만 4줄에서 None으로 반환하므로, 5줄은 길이 1 이상인 리스트에서 항상 items[len(items)]를 평가합니다. 이는 마지막 유효 인덱스 len(items)-1보다 하나 큰 값입니다.\",\"suggestion\":\"5줄을 items[len(items) - 1] 또는 items[-1]로 바꿔 마지막 요소를 반환하세요. 빈 리스트의 None 반환 경로는 그대로 유지됩니다.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비어 있지 않은 리스트에서 IndexError 발생",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4,
+              5
+            ],
+            "trigger": "길이가 1 이상인 items로 last_item을 호출할 때",
+            "consequence": "items[len(items)]가 유효 인덱스 범위를 벗어나 IndexError가 발생합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 IndexError 발생",
+            "evidence": "3줄의 len(items) == 0 검사는 빈 리스트만 4줄에서 None으로 반환하므로, 5줄은 길이 1 이상인 리스트에서 항상 items[len(items)]를 평가합니다. 이는 마지막 유효 인덱스 len(items)-1보다 하나 큰 값입니다.",
+            "suggestion": "5줄을 items[len(items) - 1] 또는 items[-1]로 바꿔 마지막 요소를 반환하세요. 빈 리스트의 None 반환 경로는 그대로 유지됩니다.",
+            "file_path": "seq.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "6c170b8d263c3add9235c206a74d2cd4f112b3a84be37e3619de6abb3b6eace2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"길이 1 이상인 items에서 items[len(items)]가 범위를 벗어나 IndexError가 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"5줄이 items[len(items)]로 마지막 유효 인덱스보다 1 큰 위치를 참조해 비어 있지 않은 리스트에서 IndexError가 발생합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 비어 있지 않은 리스트에서 IndexError 발생",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3,
+              4,
+              5
+            ],
+            "trigger": "길이가 1 이상인 items로 last_item을 호출할 때",
+            "consequence": "길이 1 이상인 items에서 items[len(items)]가 범위를 벗어나 IndexError가 발생합니다.",
+            "assumptions": [],
+            "title": "비어 있지 않은 리스트에서 IndexError 발생",
+            "evidence": "3줄의 len(items) == 0 검사는 빈 리스트만 4줄에서 None으로 반환하므로, 5줄은 길이 1 이상인 리스트에서 항상 items[len(items)]를 평가합니다. 이는 마지막 유효 인덱스 len(items)-1보다 하나 큰 값입니다.",
+            "suggestion": "5줄을 items[len(items) - 1] 또는 items[-1]로 바꿔 마지막 요소를 반환하세요. 빈 리스트의 None 반환 경로는 그대로 유지됩니다.",
+            "file_path": "seq.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "6c170b8d263c3add9235c206a74d2cd4f112b3a84be37e3619de6abb3b6eace2"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "FINDING",
+              "observation": "5줄이 items[len(items)]로 마지막 유효 인덱스보다 1 큰 위치를 참조해 비어 있지 않은 리스트에서 IndexError가 발생합니다.",
+              "file_path": "seq.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.484
+    },
+    {
+      "id": "length-last-clean",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "7d77d50ee33d19a549b4a58f38214d1ffd8ffab7b988904d8094d3f73d858634",
+      "input_tokens": 7773,
+      "output_tokens": 336,
+      "draft_raw": "{\"summary\":\"last_item이 빈 리스트에 None을 반환하고, 그 외에는 items[-1]을 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 5줄만 검토했으며 실행 결과나 호출자는 확인하지 않았습니다. 빈 리스트 경로는 명시적으로 None을 반환하고, 비어 있지 않은 경로의 items[-1]은 유효한 인덱스이므로 제공 범위에서 지원되는 결함은 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인은 `return items[-1]` 하나이며, docstring 계약(빈 리스트면 None, 그 외 마지막 요소)과 일치한다. 빈 리스트는 line 3-4에서 None으로 처리되고, 비어 있지 않은 리스트는 마지막 요소를 반환한다. 제기할 만한 결함 없음.\", \"issues\": [], \"limitations\": \"제공된 5개 라인만 검토했다. 호출자, items의 실제 타입/불변성, 테스트 실행 여부는 확인하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약은 빈 리스트에 None, 그 외 마지막 요소 반환. line 3-4가 빈 리스트를 None으로 처리하고 line 5가 items[-1]을 반환하므로 계약 위반 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 5개 라인만 검토했다. 호출자, items의 실제 타입/불변성, 테스트 실행 여부는 확인하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "seq.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약은 빈 리스트에 None, 그 외 마지막 요소 반환. line 3-4가 빈 리스트를 None으로 처리하고 line 5가 items[-1]을 반환하므로 계약 위반 없음.",
+              "file_path": "seq.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.375
+    },
+    {
+      "id": "java-length-tag-defect",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "b3771f848a8272a744a927ee8b61eb6af1c4555bceaa63d719f9362176b9a3cb",
+      "input_tokens": 8837,
+      "output_tokens": 408,
+      "draft_raw": "{\"summary\":\"Limits.valid가 태그 길이 상한을 검사하는데, 주석 계약과 달리 16자 경계를 거부하도록 비교가 바뀌었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"길이가 정확히 16인 tag로 valid를 호출할 때\",\"consequence\":\"tag.length() < 16이 false가 되어 유효해야 할 16자 태그가 거부됩니다.\",\"assumptions\":[],\"title\":\"16자 태그가 상한 경계에서 거부됩니다\",\"evidence\":\"f1:2 주석은 'at most 16 characters; exactly 16 is allowed'라고 명시합니다. f1:4는 length() < 16으로 비교해 16을 배제합니다.\",\"suggestion\":\"경계를 포함하도록 비교를 length() <= 16으로 바꾸세요.\",\"contract_quote\":\"A tag is valid when it has at most 16 characters; exactly 16 is allowed.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 16자 태그가 상한 경계에서 거부됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "길이가 정확히 16인 tag로 valid를 호출할 때",
+            "consequence": "tag.length() < 16이 false가 되어 유효해야 할 16자 태그가 거부됩니다.",
+            "assumptions": [],
+            "title": "16자 태그가 상한 경계에서 거부됩니다",
+            "evidence": "f1:2 주석은 'at most 16 characters; exactly 16 is allowed'라고 명시합니다. f1:4는 length() < 16으로 비교해 16을 배제합니다.",
+            "suggestion": "경계를 포함하도록 비교를 length() <= 16으로 바꾸세요.",
+            "file_path": "Limits.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "598519f7ce70b414970fbb1cb4371f7a9be3905d8d2a04343d863614ceee0a67"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"길이가 정확히 16인 tag에 대해 valid가 false를 반환해, 계약상 유효한 16자 태그가 거부됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"f1:4의 length() < 16이 f1:2 계약('exactly 16 is allowed')의 16자 경계를 배제합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 16자 태그가 상한 경계에서 거부됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "길이가 정확히 16인 tag로 valid를 호출할 때",
+            "consequence": "길이가 정확히 16인 tag에 대해 valid가 false를 반환해, 계약상 유효한 16자 태그가 거부됩니다.",
+            "assumptions": [],
+            "title": "16자 태그가 상한 경계에서 거부됩니다",
+            "evidence": "f1:2 주석은 'at most 16 characters; exactly 16 is allowed'라고 명시합니다. f1:4는 length() < 16으로 비교해 16을 배제합니다.",
+            "suggestion": "경계를 포함하도록 비교를 length() <= 16으로 바꾸세요.",
+            "file_path": "Limits.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "598519f7ce70b414970fbb1cb4371f7a9be3905d8d2a04343d863614ceee0a67"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "f1:4의 length() < 16이 f1:2 계약('exactly 16 is allowed')의 16자 경계를 배제합니다.",
+              "file_path": "Limits.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.218
+    },
+    {
+      "id": "java-length-tag-clean",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "49be89507b051fa5ecc91d4c6e18ef9e35f022bb50c64e93717013ae60ce0177",
+      "input_tokens": 7981,
+      "output_tokens": 215,
+      "draft_raw": "{\"summary\":\"valid가 tag.length() > 16의 부정으로 16자 허용 규칙을 구현하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"Limits.valid는 16자 경계를 포함해 계약대로 동작한다. 변경 라인에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"tag가 null인 경우는 계약상 유효 입력이 아니며, 호출자 코드가 제공되지 않아 null 전달 여부는 판단하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"주석 계약은 '최대 16자, 16자 허용'. tag.length() > 16을 부정하므로 16은 true, 17은 false를 반환해 계약과 일치한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "tag가 null인 경우는 계약상 유효 입력이 아니며, 호출자 코드가 제공되지 않아 null 전달 여부는 판단하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Limits.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "주석 계약은 '최대 16자, 16자 허용'. tag.length() > 16을 부정하므로 16은 true, 17은 false를 반환해 계약과 일치한다.",
+              "file_path": "Limits.java"
+            }
+          ]
+        }
+      },
+      "seconds": 2.594
+    },
+    {
+      "id": "java-access-defect",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "9006c9e9f133cf5476f7a024981d73ec111c00bfa72bebf8cc6923f633452d86",
+      "input_tokens": 8840,
+      "output_tokens": 402,
+      "draft_raw": "{\"summary\":\"allowed가 active && admin || owner로 반환되어, 문서화된 계약(active AND (admin OR owner))과 달리 owner가 true면 active와 무관하게 허용됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"active=false, owner=true인 호출(admin 값 무관)\",\"consequence\":\"allowed가 true를 반환해 비활성 사용자가 소유자라는 이유로 허용됩니다.\",\"assumptions\":[],\"title\":\"연산자 우선순위로 인해 active 조건이 우회됩니다\",\"evidence\":\"f1:2의 계약은 active AND (admin OR owner)입니다. f1:4는 &&가 ||보다 우선 결합하므로 (active && admin) || owner로 평가되어, owner=true면 active=false여도 true가 됩니다.\",\"suggestion\":\"f1:4를 active && (admin || owner)로 괄호를 추가해 계약과 일치시키세요.\"}],\"limitations\":\"제공된 단일 파일만 검토했으며 실행 결과나 호출자 컨텍스트는 확인하지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 연산자 우선순위로 인해 active 조건이 우회됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "active=false, owner=true인 호출(admin 값 무관)",
+            "consequence": "allowed가 true를 반환해 비활성 사용자가 소유자라는 이유로 허용됩니다.",
+            "assumptions": [],
+            "title": "연산자 우선순위로 인해 active 조건이 우회됩니다",
+            "evidence": "f1:2의 계약은 active AND (admin OR owner)입니다. f1:4는 &&가 ||보다 우선 결합하므로 (active && admin) || owner로 평가되어, owner=true면 active=false여도 true가 됩니다.",
+            "suggestion": "f1:4를 active && (admin || owner)로 괄호를 추가해 계약과 일치시키세요.",
+            "file_path": "Access.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "369822868aaf08ed989f30453c7e00a17326b4c44b005a61f661911d7ba90696"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 단일 파일만 검토했으며 실행 결과나 호출자 컨텍스트는 확인하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"active=false, owner=true이면 allowed가 true를 반환해 비활성 사용자가 허용됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"f1:4의 &&/|| 우선순위로 owner=true면 active=false여도 true를 반환해 f1:2 계약과 불일치합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 연산자 우선순위로 인해 active 조건이 우회됩니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "active=false, owner=true인 호출(admin 값 무관)",
+            "consequence": "active=false, owner=true이면 allowed가 true를 반환해 비활성 사용자가 허용됩니다.",
+            "assumptions": [],
+            "title": "연산자 우선순위로 인해 active 조건이 우회됩니다",
+            "evidence": "f1:2의 계약은 active AND (admin OR owner)입니다. f1:4는 &&가 ||보다 우선 결합하므로 (active && admin) || owner로 평가되어, owner=true면 active=false여도 true가 됩니다.",
+            "suggestion": "f1:4를 active && (admin || owner)로 괄호를 추가해 계약과 일치시키세요.",
+            "file_path": "Access.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "369822868aaf08ed989f30453c7e00a17326b4c44b005a61f661911d7ba90696"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "f1:4의 &&/|| 우선순위로 owner=true면 active=false여도 true를 반환해 f1:2 계약과 불일치합니다.",
+              "file_path": "Access.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.141
+    },
+    {
+      "id": "java-access-clean",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "80f225f7abda39eb3129b17d0681517ec6b7aa3258bf3fa98078ad39bfea2f2d",
+      "input_tokens": 7979,
+      "output_tokens": 283,
+      "draft_raw": "{\"summary\":\"allowed가 active && (owner || admin)로 권한을 판정하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인 4의 `active && (owner || admin)`는 라인 2의 계약(active AND (admin OR owner))과 논리적으로 동일하다. OR는 교환법칙이 성립하므로 동작 차이가 없고, 단락 평가 순서만 달라진다. 제출된 범위에서 지원되는 결함은 없다.\", \"issues\": [], \"limitations\": \"단일 파일, 단일 변경 라인만 제공됨. 호출자나 테스트는 제공되지 않아 실행 검증은 하지 않았고, 정적 분석 결과도 비어 있다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"라인 2 계약은 active AND (admin OR owner). 라인 4는 active && (owner || admin)로 OR 피연산자 순서만 다르고 진리표가 동일하다. active=false면 단락되어 false, true면 owner||admin 평가. 위반 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "단일 파일, 단일 변경 라인만 제공됨. 호출자나 테스트는 제공되지 않아 실행 검증은 하지 않았고, 정적 분석 결과도 비어 있다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Access.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "라인 2 계약은 active AND (admin OR owner). 라인 4는 active && (owner || admin)로 OR 피연산자 순서만 다르고 진리표가 동일하다. active=false면 단락되어 false, true면 owner||admin 평가. 위반 없음.",
+              "file_path": "Access.java"
+            }
+          ]
+        }
+      },
+      "seconds": 2.875
+    }
+  ],
+  "finished_at": "2026-10-05T12:36:06.845391+00:00",
+  "summary": {
+    "reviews": 36,
+    "completed": 34,
+    "attempts_this_run": 72,
+    "campaign_attempts_total": 112,
+    "input_tokens": 302150,
+    "output_tokens": 13192
+  }
+}

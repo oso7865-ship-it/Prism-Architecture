@@ -1,0 +1,1741 @@
+{
+  "campaign": "review-modes-20261005",
+  "run": "modes-junior-dev-r1",
+  "started_at": "2026-10-05T12:36:12.698708+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-ec06cca54856de3e",
+  "review_mode": "JUNIOR",
+  "corpus": "evals\\review-accuracy-v1\\cases-dev.json",
+  "corpus_sha256": "178d8311b435d3641e471e57a25ab8eefdebd35434c49447e43c7e07347f2332",
+  "repeats": 1,
+  "max_calls": 40,
+  "scope": "synthetic authored sources only; product path; no retries; no DB writes",
+  "cases": [
+    {
+      "id": "or-default-name-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "031d0e76809341edecd714f125b261489484c27821f9eed324351975b9de1479",
+      "input_tokens": 9495,
+      "output_tokens": 679,
+      "draft_raw": "{\"summary\":\"label_for는 저장된 이름을 돌려주는 함수인데, 독스트링은 빈 문자열(\\\"\\\")은 그대로 반환하고 None일 때만 fallback을 쓰라고 명시하고 있어요. 그런데 4줄은 `name or fallback`이라 빈 문자열도 fallback으로 바뀝니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"name에 빈 문자열 \\\"\\\"을 넘겨 label_for(\\\"\\\", \\\"기본값\\\")을 호출하면\",\"consequence\":\"독스트링이 요구한 대로 \\\"\\\"가 그대로 반환되지 않고 fallback인 \\\"기본값\\\"이 반환됩니다.\",\"assumptions\":[],\"title\":\"빈 문자열이 fallback으로 바뀌어 독스트링과 어긋나요\",\"evidence\":\"2~3줄 독스트링은 \\\"빈 문자열은 의도된 값이라 그대로 반환하고, None일 때만 fallback을 쓴다\\\"고 계약을 정해요. 그런데 4줄 `name or fallback`에서 `or`는 왼쪽 값이 거짓(falsy)이면 오른쪽을 택해요. 파이썬에서 \\\"\\\"는 거짓으로 취급되므로 name=\\\"\\\"일 때 fallback이 반환돼요. 즉 None뿐 아니라 빈 문자열도 fallback으로 처리되어 계약과 다릅니다.\",\"suggestion\":\"None만 걸러내도록 명시적으로 비교하세요. 예를 들어 `return fallback if name is None else name`처럼 쓰면 name이 \\\"\\\"일 때는 \\\"\\\"가 그대로 반환되고, None일 때만 fallback이 나와요. 고친 뒤 name=\\\"\\\", name=None, name=\\\"값\\\" 세 경우를 모두 확인해 보세요.\"}],\"limitations\":\"제공된 4줄만 검토했고 실행 결과는 확인하지 않았어요. label_for의 실제 호출부는 제공되지 않아 어떤 값이 들어오는지는 알 수 없습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열이 fallback으로 바뀌어 독스트링과 어긋나요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "name에 빈 문자열 \"\"을 넘겨 label_for(\"\", \"기본값\")을 호출하면",
+            "consequence": "독스트링이 요구한 대로 \"\"가 그대로 반환되지 않고 fallback인 \"기본값\"이 반환됩니다.",
+            "assumptions": [],
+            "title": "빈 문자열이 fallback으로 바뀌어 독스트링과 어긋나요",
+            "evidence": "2~3줄 독스트링은 \"빈 문자열은 의도된 값이라 그대로 반환하고, None일 때만 fallback을 쓴다\"고 계약을 정해요. 그런데 4줄 `name or fallback`에서 `or`는 왼쪽 값이 거짓(falsy)이면 오른쪽을 택해요. 파이썬에서 \"\"는 거짓으로 취급되므로 name=\"\"일 때 fallback이 반환돼요. 즉 None뿐 아니라 빈 문자열도 fallback으로 처리되어 계약과 다릅니다.",
+            "suggestion": "None만 걸러내도록 명시적으로 비교하세요. 예를 들어 `return fallback if name is None else name`처럼 쓰면 name이 \"\"일 때는 \"\"가 그대로 반환되고, None일 때만 fallback이 나와요. 고친 뒤 name=\"\", name=None, name=\"값\" 세 경우를 모두 확인해 보세요.",
+            "file_path": "labels.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "521c259a726702923ece367dad6130c17c620e98ea01087ac8a8dd12bf3cb364"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄만 검토했고 실행 결과는 확인하지 않았어요. label_for의 실제 호출부는 제공되지 않아 어떤 값이 들어오는지는 알 수 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "labels.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"label_for(\\\"\\\", \\\"기본값\\\")을 호출하면 name이 빈 문자열이라 `or`가 거짓으로 보고 fallback인 \\\"기본값\\\"을 반환합니다. 독스트링이 요구한 \\\"\\\" 그대로의 반환과 어긋납니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"4줄 `name or fallback`은 빈 문자열도 거짓으로 처리해 독스트링의 \\\"빈 문자열은 그대로 반환\\\" 계약과 어긋납니다. None만 fallback으로 보내도록 명시적 비교가 필요합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열이 fallback으로 바뀌어 독스트링과 어긋나요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "name에 빈 문자열 \"\"을 넘겨 label_for(\"\", \"기본값\")을 호출하면",
+            "consequence": "label_for(\"\", \"기본값\")을 호출하면 name이 빈 문자열이라 `or`가 거짓으로 보고 fallback인 \"기본값\"을 반환합니다. 독스트링이 요구한 \"\" 그대로의 반환과 어긋납니다.",
+            "assumptions": [],
+            "title": "빈 문자열이 fallback으로 바뀌어 독스트링과 어긋나요",
+            "evidence": "2~3줄 독스트링은 \"빈 문자열은 의도된 값이라 그대로 반환하고, None일 때만 fallback을 쓴다\"고 계약을 정해요. 그런데 4줄 `name or fallback`에서 `or`는 왼쪽 값이 거짓(falsy)이면 오른쪽을 택해요. 파이썬에서 \"\"는 거짓으로 취급되므로 name=\"\"일 때 fallback이 반환돼요. 즉 None뿐 아니라 빈 문자열도 fallback으로 처리되어 계약과 다릅니다.",
+            "suggestion": "None만 걸러내도록 명시적으로 비교하세요. 예를 들어 `return fallback if name is None else name`처럼 쓰면 name이 \"\"일 때는 \"\"가 그대로 반환되고, None일 때만 fallback이 나와요. 고친 뒤 name=\"\", name=None, name=\"값\" 세 경우를 모두 확인해 보세요.",
+            "file_path": "labels.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "521c259a726702923ece367dad6130c17c620e98ea01087ac8a8dd12bf3cb364"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "labels.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "4줄 `name or fallback`은 빈 문자열도 거짓으로 처리해 독스트링의 \"빈 문자열은 그대로 반환\" 계약과 어긋납니다. None만 fallback으로 보내도록 명시적 비교가 필요합니다.",
+              "file_path": "labels.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.484
+    },
+    {
+      "id": "or-default-name-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "6cd51b46d641b3a120ac2c5998fb4fd0549088c3ac66879e9f88c3c77d22eb4b",
+      "input_tokens": 8000,
+      "output_tokens": 356,
+      "draft_raw": "{\"summary\":\"name이 None일 때만 fallback을 쓰고, 빈 문자열은 그대로 돌려주는 함수입니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했고 실행 결과나 호출자는 확인하지 않았습니다.\",\"context_requests\":[]}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인(4번)을 확인했습니다. 독스트링 계약은 'None일 때만 fallback, 빈 문자열은 그대로 반환'이며, 실제 반환식 `fallback if name is None else name`은 이 계약과 정확히 일치합니다. name이 None이면 fallback, 그 외(빈 문자열 포함)에는 name을 반환하므로 계약 위반이 없습니다. 제기할 만한 근거 있는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"제공된 것은 f1의 4개 라인뿐이며, 호출자나 name/fallback의 실제 타입·값 분포는 확인하지 않았습니다. 정적 분석 경고도 없습니다. 이 파일 범위에서는 추가로 검토할 변경 라인이 없습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"독스트링 계약은 None일 때만 fallback, 빈 문자열은 그대로 반환하라고 요구합니다. 반환식 `fallback if name is None else name`은 None이면 fallback, 그 외에는 name을 반환하므로 계약을 위반하지 않습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 f1의 4개 라인뿐이며, 호출자나 name/fallback의 실제 타입·값 분포는 확인하지 않았습니다. 정적 분석 경고도 없습니다. 이 파일 범위에서는 추가로 검토할 변경 라인이 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "labels.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "독스트링 계약은 None일 때만 fallback, 빈 문자열은 그대로 반환하라고 요구합니다. 반환식 `fallback if name is None else name`은 None이면 fallback, 그 외에는 name을 반환하므로 계약을 위반하지 않습니다.",
+              "file_path": "labels.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.625
+    },
+    {
+      "id": "default-arg-notify-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "53a0170ab9f20c9e78fdc80d5b0d57155fe4592b160b1bf2380a4fe8326a17c6",
+      "input_tokens": 9477,
+      "output_tokens": 649,
+      "draft_raw": "{\"summary\":\"알림 여부를 판단하는 should_notify 함수의 반환식을 변경했어요. 문서화된 계약과 반환식이 서로 다르게 동작합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"인자 없이 should_notify()를 호출하면 (기본값 enabled=True, urgent=False)\",\"consequence\":\"4줄의 `enabled and urgent`가 True and False를 평가해 False를 반환하므로, '인자 없이 호출하면 알림을 보내야 한다'는 계약을 위반합니다.\",\"assumptions\":[],\"title\":\"인자 없이 호출하면 알림을 보내야 한다는 계약과 반환식이 어긋나요\",\"evidence\":\"2~3줄의 docstring은 '알림이 켜져 있거나 이벤트가 긴급할 때 알린다' 그리고 '인자 없이 호출하면 반드시 알린다'고 명시해요. 그런데 4줄은 `and`를 써서 두 조건이 모두 참일 때만 True를 돌려줘요. 기본값은 enabled=True, urgent=False이므로 True and False → False가 되어, 계약이 요구하는 True가 나오지 않아요. '또는'을 뜻할 때는 `or`를 써야 두 조건 중 하나만 참이어도 True가 됩니다.\",\"suggestion\":\"4줄을 `return enabled or urgent`로 바꾸세요. 그러면 enabled=True, urgent=False인 기본 호출에서 True가 나와 계약을 만족하고, enabled=False, urgent=True인 긴급 상황에서도 True가 나와요. 수정 후 기본 호출, enabled=False만 준 경우, urgent=True만 준 경우를 각각 확인해 보세요.\"}],\"limitations\":\"제공된 파일 한 개와 그 안의 반환식만 검토했어요. 실제 호출부나 실행 결과는 확인하지 못했습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 인자 없이 호출하면 알림을 보내야 한다는 계약과 반환식이 어긋나요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "인자 없이 should_notify()를 호출하면 (기본값 enabled=True, urgent=False)",
+            "consequence": "4줄의 `enabled and urgent`가 True and False를 평가해 False를 반환하므로, '인자 없이 호출하면 알림을 보내야 한다'는 계약을 위반합니다.",
+            "assumptions": [],
+            "title": "인자 없이 호출하면 알림을 보내야 한다는 계약과 반환식이 어긋나요",
+            "evidence": "2~3줄의 docstring은 '알림이 켜져 있거나 이벤트가 긴급할 때 알린다' 그리고 '인자 없이 호출하면 반드시 알린다'고 명시해요. 그런데 4줄은 `and`를 써서 두 조건이 모두 참일 때만 True를 돌려줘요. 기본값은 enabled=True, urgent=False이므로 True and False → False가 되어, 계약이 요구하는 True가 나오지 않아요. '또는'을 뜻할 때는 `or`를 써야 두 조건 중 하나만 참이어도 True가 됩니다.",
+            "suggestion": "4줄을 `return enabled or urgent`로 바꾸세요. 그러면 enabled=True, urgent=False인 기본 호출에서 True가 나와 계약을 만족하고, enabled=False, urgent=True인 긴급 상황에서도 True가 나와요. 수정 후 기본 호출, enabled=False만 준 경우, urgent=True만 준 경우를 각각 확인해 보세요.",
+            "file_path": "notify.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "aa163885fe8d0e26126a16825158b8ee2eb209a67f1faed88b984a020981252a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 한 개와 그 안의 반환식만 검토했어요. 실제 호출부나 실행 결과는 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "notify.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"인자 없이 should_notify()를 호출하면 enabled=True, urgent=False가 되어 `enabled and urgent`는 False를 반환합니다. docstring이 요구하는 '인자 없이 호출하면 알린다(True)'와 어긋납니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring의 '인자 없이 호출하면 알린다' 계약과 4줄 `enabled and urgent` 반환식이 불일치합니다(기본 호출 시 False).\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 인자 없이 호출하면 알림을 보내야 한다는 계약과 반환식이 어긋나요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "인자 없이 should_notify()를 호출하면 (기본값 enabled=True, urgent=False)",
+            "consequence": "인자 없이 should_notify()를 호출하면 enabled=True, urgent=False가 되어 `enabled and urgent`는 False를 반환합니다. docstring이 요구하는 '인자 없이 호출하면 알린다(True)'와 어긋납니다.",
+            "assumptions": [],
+            "title": "인자 없이 호출하면 알림을 보내야 한다는 계약과 반환식이 어긋나요",
+            "evidence": "2~3줄의 docstring은 '알림이 켜져 있거나 이벤트가 긴급할 때 알린다' 그리고 '인자 없이 호출하면 반드시 알린다'고 명시해요. 그런데 4줄은 `and`를 써서 두 조건이 모두 참일 때만 True를 돌려줘요. 기본값은 enabled=True, urgent=False이므로 True and False → False가 되어, 계약이 요구하는 True가 나오지 않아요. '또는'을 뜻할 때는 `or`를 써야 두 조건 중 하나만 참이어도 True가 됩니다.",
+            "suggestion": "4줄을 `return enabled or urgent`로 바꾸세요. 그러면 enabled=True, urgent=False인 기본 호출에서 True가 나와 계약을 만족하고, enabled=False, urgent=True인 긴급 상황에서도 True가 나와요. 수정 후 기본 호출, enabled=False만 준 경우, urgent=True만 준 경우를 각각 확인해 보세요.",
+            "file_path": "notify.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "aa163885fe8d0e26126a16825158b8ee2eb209a67f1faed88b984a020981252a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "notify.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "docstring의 '인자 없이 호출하면 알린다' 계약과 4줄 `enabled and urgent` 반환식이 불일치합니다(기본 호출 시 False).",
+              "file_path": "notify.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.922
+    },
+    {
+      "id": "default-arg-notify-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "5afacf18c24febf1cee3de974d207b89f183723bfb491958b571a7c1d4652e62",
+      "input_tokens": 8388,
+      "output_tokens": 422,
+      "draft_raw": "{\"summary\":\"알림 여부를 판단하는 should_notify 함수의 반환식을 urgent or enabled로 바꾼 변경입니다. 기본값(enabled=True, urgent=False)으로 호출하면 True를 돌려주어 문서화된 요구를 만족합니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했고 실행 결과는 확인하지 않았습니다. enabled/urgent에 불리언이 아닌 값이 들어오는 호출자는 제공되지 않아 그 경우의 의도는 판단할 수 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인은 `return urgent or enabled`입니다. 문서화된 계약은 '인자 없이 호출하면 알림을 보내야 한다'이고, 기본값 enabled=True, urgent=False에서 이 식은 True를 반환하므로 계약을 만족합니다. 제공된 범위에서 지원되는 결함은 없습니다.\", \"issues\": [], \"limitations\": \"f1의 4번 라인만 변경되었고 나머지 라인은 컨텍스트입니다. 이 함수의 호출자나 실제 사용처는 제공되지 않아 호출 빈도나 반환값 사용 방식은 확인하지 못했습니다. semantic_observations는 정수/불리언 입력에 대한 식의 값만 보여줄 뿐, 이 값이 잘못이라는 계약은 제공되지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: '인자 없이 호출하면 알림을 보내야 한다'. 기본값 enabled=True, urgent=False에서 `urgent or enabled`는 True를 반환해 계약을 만족합니다. 제공된 범위에서 반환값이 요구사항을 위반하는 경로는 보이지 않습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "f1의 4번 라인만 변경되었고 나머지 라인은 컨텍스트입니다. 이 함수의 호출자나 실제 사용처는 제공되지 않아 호출 빈도나 반환값 사용 방식은 확인하지 못했습니다. semantic_observations는 정수/불리언 입력에 대한 식의 값만 보여줄 뿐, 이 값이 잘못이라는 계약은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "notify.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "계약: '인자 없이 호출하면 알림을 보내야 한다'. 기본값 enabled=True, urgent=False에서 `urgent or enabled`는 True를 반환해 계약을 만족합니다. 제공된 범위에서 반환값이 요구사항을 위반하는 경로는 보이지 않습니다.",
+              "file_path": "notify.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.625
+    },
+    {
+      "id": "default-arg-retries-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "a29cee5681c7684ff9edb90fd7d7a802dc5ea408a1ff9d699a4f7b154b74c694",
+      "input_tokens": 9031,
+      "output_tokens": 637,
+      "draft_raw": "{\"summary\":\"재시도 가능 횟수를 계산하는 함수의 기본 인자와 반환식을 추가한 변경입니다. 기본값(max_retries=3, used=1)으로 호출하면 3 - 1 = 2를 반환합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"인자를 주지 않고 retries_left()를 호출하면\",\"consequence\":\"3줄이 3 - 1을 계산해 2를 반환합니다. 문서에 적힌 기대값 3과 다릅니다.\",\"assumptions\":[],\"title\":\"기본 인자로 호출하면 문서에 적힌 값(3)이 아니라 2가 나와요\",\"evidence\":\"2줄의 docstring(문서화 문자열)은 \\\"기본 인자로 호출하면 결과가 3\\\"이라고 명시하고 있어요. 그런데 1줄의 기본값은 max_retries=3, used=1이고, 3줄은 max_retries - used를 반환하므로 retries_left()는 3 - 1 = 2를 돌려줘요. 문서가 계약(이 함수가 지켜야 할 약속)이라면 기본값이나 반환식 중 하나가 어긋난 상태예요.\",\"suggestion\":\"의도한 값을 먼저 정하세요. 기본 호출에서 3을 원한다면 used의 기본값을 0으로 두거나 반환식을 max_retries - used + 1처럼 조정해야 하고, 2가 맞다면 2줄의 문서를 2로 고쳐야 해요. 고친 뒤 기본 호출과 used를 직접 지정한 호출을 함께 확인해 보세요.\"}],\"limitations\":\"제공 범위만 검토했고 실행 결과는 확인하지 않았습니다. 이 함수를 호출하는 코드는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 기본 인자로 호출하면 문서에 적힌 값(3)이 아니라 2가 나와요",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "인자를 주지 않고 retries_left()를 호출하면",
+            "consequence": "3줄이 3 - 1을 계산해 2를 반환합니다. 문서에 적힌 기대값 3과 다릅니다.",
+            "assumptions": [],
+            "title": "기본 인자로 호출하면 문서에 적힌 값(3)이 아니라 2가 나와요",
+            "evidence": "2줄의 docstring(문서화 문자열)은 \"기본 인자로 호출하면 결과가 3\"이라고 명시하고 있어요. 그런데 1줄의 기본값은 max_retries=3, used=1이고, 3줄은 max_retries - used를 반환하므로 retries_left()는 3 - 1 = 2를 돌려줘요. 문서가 계약(이 함수가 지켜야 할 약속)이라면 기본값이나 반환식 중 하나가 어긋난 상태예요.",
+            "suggestion": "의도한 값을 먼저 정하세요. 기본 호출에서 3을 원한다면 used의 기본값을 0으로 두거나 반환식을 max_retries - used + 1처럼 조정해야 하고, 2가 맞다면 2줄의 문서를 2로 고쳐야 해요. 고친 뒤 기본 호출과 used를 직접 지정한 호출을 함께 확인해 보세요.",
+            "file_path": "retry.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "9604a33277c84cf76c4f57668d108ca01fcfd50fe896d04115a0942bf03abfe6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토했고 실행 결과는 확인하지 않았습니다. 이 함수를 호출하는 코드는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "retry.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"인자 없이 retries_left()를 호출하면 max_retries=3, used=1이 적용되어 3 - 1 = 2가 반환됩니다. 이는 docstring에 적힌 기대값 3과 다릅니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 기본 호출 결과가 3이라고 명시하지만 기본값(3, 1)과 반환식(max_retries - used)은 2를 반환해 문서와 동작이 어긋납니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 기본 인자로 호출하면 문서에 적힌 값(3)이 아니라 2가 나와요",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "인자를 주지 않고 retries_left()를 호출하면",
+            "consequence": "인자 없이 retries_left()를 호출하면 max_retries=3, used=1이 적용되어 3 - 1 = 2가 반환됩니다. 이는 docstring에 적힌 기대값 3과 다릅니다.",
+            "assumptions": [],
+            "title": "기본 인자로 호출하면 문서에 적힌 값(3)이 아니라 2가 나와요",
+            "evidence": "2줄의 docstring(문서화 문자열)은 \"기본 인자로 호출하면 결과가 3\"이라고 명시하고 있어요. 그런데 1줄의 기본값은 max_retries=3, used=1이고, 3줄은 max_retries - used를 반환하므로 retries_left()는 3 - 1 = 2를 돌려줘요. 문서가 계약(이 함수가 지켜야 할 약속)이라면 기본값이나 반환식 중 하나가 어긋난 상태예요.",
+            "suggestion": "의도한 값을 먼저 정하세요. 기본 호출에서 3을 원한다면 used의 기본값을 0으로 두거나 반환식을 max_retries - used + 1처럼 조정해야 하고, 2가 맞다면 2줄의 문서를 2로 고쳐야 해요. 고친 뒤 기본 호출과 used를 직접 지정한 호출을 함께 확인해 보세요.",
+            "file_path": "retry.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "9604a33277c84cf76c4f57668d108ca01fcfd50fe896d04115a0942bf03abfe6"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "retry.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 1,
+              "outcome": "FINDING",
+              "observation": "docstring은 기본 호출 결과가 3이라고 명시하지만 기본값(3, 1)과 반환식(max_retries - used)은 2를 반환해 문서와 동작이 어긋납니다.",
+              "file_path": "retry.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.235
+    },
+    {
+      "id": "default-arg-retries-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "e30bc858175fce041298a49de4fa098a4f7124d2daacb8a9f09015985c6deb74",
+      "input_tokens": 7968,
+      "output_tokens": 358,
+      "draft_raw": "{\"summary\":\"재시도 가능 횟수를 계산하는 함수를 추가했어요. 기본 인자로 호출하면 3을 돌려준다는 설명과 코드가 일치합니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했고 실행 결과는 확인하지 않았습니다. 호출부가 없어 실제 사용 값의 범위는 알 수 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1은 `retries_left` 함수 한 개이며, 기본 인자(3, 0)로 호출하면 3을 반환합니다. 문서화된 계약과 실제 반환값이 일치하고, 제공된 코드 안에서 구체적인 실패 경로가 보이지 않아 보고할 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 것은 함수 정의 3줄뿐입니다. 호출자, `used`가 `max_retries`보다 큰 경우의 기대 동작, 음수 입력 허용 여부에 대한 계약이 없어 그런 입력에 대한 판단은 보류했습니다. 테스트 실행이나 미제공 코드 확인은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"문서화된 계약은 기본 인자에서 결과 3을 요구하고, `max_retries - used`는 3 - 0 = 3을 반환하므로 요구사항과 일치합니다. 제공된 범위에서 구체적 실패 경로가 보이지 않습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 함수 정의 3줄뿐입니다. 호출자, `used`가 `max_retries`보다 큰 경우의 기대 동작, 음수 입력 허용 여부에 대한 계약이 없어 그런 입력에 대한 판단은 보류했습니다. 테스트 실행이나 미제공 코드 확인은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "retry.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 1,
+              "outcome": "NO_FINDING",
+              "observation": "문서화된 계약은 기본 인자에서 결과 3을 요구하고, `max_retries - used`는 3 - 0 = 3을 반환하므로 요구사항과 일치합니다. 제공된 범위에서 구체적 실패 경로가 보이지 않습니다.",
+              "file_path": "retry.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.218
+    },
+    {
+      "id": "range-step-offsets-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "bfcccc9960eba9fc95d9d2a0b9a603e6921daa6b9675281faadb7aae3e235f56",
+      "input_tokens": 9548,
+      "output_tokens": 599,
+      "draft_raw": "{\"summary\":\"total 미만의 시작 오프셋 0, step, 2*step ... 목록을 반환하려는 함수입니다. 문서에는 step이 항상 1 이상이라고 되어 있는데, 실제 range 호출에는 step이 아니라 step - 1이 전달되고 있어요.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"문서대로 step=1, total=5로 window_starts(5, 1)를 호출하면\",\"consequence\":\"range(0, 5, 0)이 되어 ValueError: range() arg 3 must not be zero가 발생합니다.\",\"assumptions\":[],\"title\":\"step이 1일 때 range의 간격이 0이 되어 오류가 나요\",\"evidence\":\"2줄은 step이 항상 1 이상이라고 약속하고, 3줄은 간격으로 step - 1을 넘겨요. step=1이면 간격이 0이 되는데, 파이썬 range의 세 번째 인자(간격)는 0일 수 없어서 ValueError가 납니다. 간격을 step - 1로 계산한 탓에 약속된 가장 작은 값에서 바로 실패하는 거예요.\",\"suggestion\":\"간격은 step 자체를 넘기세요: range(0, total, step). 그러면 step=1일 때 0,1,2,... 가 나오고 step=2일 때 0,2,4,... 가 나와 문서의 0, step, 2*step 규칙과 맞아요. 고친 뒤 step=1과 step=2, total이 step의 배수인 경우를 확인해 보세요.\"}],\"limitations\":\"제공된 3줄만 검토했고 실행 결과는 확인하지 않았습니다. 호출부와 total/step의 실제 전달 값은 제공 범위에 없습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: step이 1일 때 range의 간격이 0이 되어 오류가 나요",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "문서대로 step=1, total=5로 window_starts(5, 1)를 호출하면",
+            "consequence": "range(0, 5, 0)이 되어 ValueError: range() arg 3 must not be zero가 발생합니다.",
+            "assumptions": [],
+            "title": "step이 1일 때 range의 간격이 0이 되어 오류가 나요",
+            "evidence": "2줄은 step이 항상 1 이상이라고 약속하고, 3줄은 간격으로 step - 1을 넘겨요. step=1이면 간격이 0이 되는데, 파이썬 range의 세 번째 인자(간격)는 0일 수 없어서 ValueError가 납니다. 간격을 step - 1로 계산한 탓에 약속된 가장 작은 값에서 바로 실패하는 거예요.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "windows.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 12,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "step": 0,
+                    "total": -1
+                  },
+                  "before": {
+                    "value": [
+                      0
+                    ]
+                  },
+                  "after": {
+                    "exception": "ValueError"
+                  }
+                },
+                {
+                  "inputs": {
+                    "step": 0,
+                    "total": 0
+                  },
+                  "before": {
+                    "value": []
+                  },
+                  "after": {
+                    "exception": "ValueError"
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "a6b057c726a3e51e2b574f9023434e376a9f9be0125abc42db88c7cf361ac289"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄만 검토했고 실행 결과는 확인하지 않았습니다. 호출부와 total/step의 실제 전달 값은 제공 범위에 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "windows.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"문서가 보장하는 step=1, total=5로 호출하면 range(0, 5, 0)이 되어 ValueError: range() arg 3 must not be zero가 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"문서는 step >= 1을 보장하지만 3줄은 간격으로 step - 1을 넘겨 step=1에서 range 간격이 0이 되어 ValueError가 납니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: step이 1일 때 range의 간격이 0이 되어 오류가 나요",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "문서대로 step=1, total=5로 window_starts(5, 1)를 호출하면",
+            "consequence": "문서가 보장하는 step=1, total=5로 호출하면 range(0, 5, 0)이 되어 ValueError: range() arg 3 must not be zero가 발생합니다.",
+            "assumptions": [],
+            "title": "step이 1일 때 range의 간격이 0이 되어 오류가 나요",
+            "evidence": "2줄은 step이 항상 1 이상이라고 약속하고, 3줄은 간격으로 step - 1을 넘겨요. step=1이면 간격이 0이 되는데, 파이썬 range의 세 번째 인자(간격)는 0일 수 없어서 ValueError가 납니다. 간격을 step - 1로 계산한 탓에 약속된 가장 작은 값에서 바로 실패하는 거예요.",
+            "suggestion": "제시된 수정안은 제한된 예시에서 기존 반환값까지 바꾸어 표시하지 않았어요. 아래 반례와 실제 입력 조건을 확인하고, 문제가 발생하는 조건을 처리하면서 유지해야 할 기존 동작을 테스트로 확인해 주세요.",
+            "file_path": "windows.py",
+            "suggestion_check": {
+              "status": "CHANGES_SUCCESSFUL_SAMPLES",
+              "samples": 12,
+              "counterexamples": [
+                {
+                  "inputs": {
+                    "step": 0,
+                    "total": -1
+                  },
+                  "before": {
+                    "value": [
+                      0
+                    ]
+                  },
+                  "after": {
+                    "exception": "ValueError"
+                  }
+                },
+                {
+                  "inputs": {
+                    "step": 0,
+                    "total": 0
+                  },
+                  "before": {
+                    "value": []
+                  },
+                  "after": {
+                    "exception": "ValueError"
+                  }
+                }
+              ],
+              "scope": "EXPRESSION_ONLY_ASSUMING_BUILTINS",
+              "inferred_from_text": true,
+              "withheld": true
+            },
+            "key": "a6b057c726a3e51e2b574f9023434e376a9f9be0125abc42db88c7cf361ac289"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "windows.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "문서는 step >= 1을 보장하지만 3줄은 간격으로 step - 1을 넘겨 step=1에서 range 간격이 0이 되어 ValueError가 납니다.",
+              "file_path": "windows.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.078
+    },
+    {
+      "id": "range-step-offsets-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "d8b9a37325de0cf44d503404ccacea561ea0c3f14cddcac376a9a33d32a27f3b",
+      "input_tokens": 8350,
+      "output_tokens": 454,
+      "draft_raw": "{\"summary\":\"total 미만의 시작 오프셋(0, step, 2*step ...) 목록을 range로 만들어 돌려주는 함수입니다. 문서에 step은 항상 1 이상이라고 적혀 있어, 그 계약을 기준으로 보면 동작이 맞습니다.\",\"issues\":[],\"limitations\":\"제공된 범위(3줄)만 검토했고 실행 결과는 확인하지 않았습니다. 호출자가 step에 0이나 음수를 넘기는지는 제공된 코드에 없어 판단할 수 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1은 `window_starts(total, step)`가 `range(0, total, step)`로 시작 오프셋 목록을 반환하는 한 줄짜리 함수입니다. 문서화된 계약은 \\\"step은 항상 1 이상\\\"이므로, step=0이나 음수는 계약 밖 입력입니다. 계약을 만족하는 입력(step >= 1)에서는 반환값이 요구사항과 일치하며, 제공된 코드 안에서 실제 결함 경로는 보이지 않습니다.\", \"issues\": [], \"limitations\": \"제공된 것은 f1의 3줄뿐이며, 호출자나 total/step의 실제 전달 방식은 확인할 수 없습니다. 문서화된 계약(step >= 1)을 벗어난 입력(step=0, 음수)은 검토 대상 계약 밖이므로 결함으로 보고하지 않았습니다. 테스트 실행이나 미제공 코드 검사는 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약은 \\\"step은 항상 1 이상\\\"이고, step >= 1인 모든 입력에서 range(0, total, step)는 0, step, 2*step ... 의 시작 오프셋을 정확히 반환합니다. 제공된 코드에서 계약 위반 경로는 보이지 않습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 f1의 3줄뿐이며, 호출자나 total/step의 실제 전달 방식은 확인할 수 없습니다. 문서화된 계약(step >= 1)을 벗어난 입력(step=0, 음수)은 검토 대상 계약 밖이므로 결함으로 보고하지 않았습니다. 테스트 실행이나 미제공 코드 검사는 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "windows.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "계약은 \"step은 항상 1 이상\"이고, step >= 1인 모든 입력에서 range(0, total, step)는 0, step, 2*step ... 의 시작 오프셋을 정확히 반환합니다. 제공된 코드에서 계약 위반 경로는 보이지 않습니다.",
+              "file_path": "windows.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.657
+    },
+    {
+      "id": "dict-get-timeout-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "76739b8b850a1f2946a599b4107d65d1d03241bc8630d9e9175fdbea13a4886b",
+      "input_tokens": 9103,
+      "output_tokens": 650,
+      "draft_raw": "{\"summary\":\"설정에서 timeout 값을 읽어오는 함수입니다. 문서에는 설정된 0을 그대로 0으로 돌려준다고 적혀 있지만, 실제 코드는 0을 30으로 바꿔 돌려줍니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"config가 {\\\"timeout\\\": 0}인 경우 read_timeout(config)를 호출하면\",\"consequence\":\"0이 거짓으로 취급되어 or 연산자가 30을 선택하므로, 30이 반환됩니다. 문서가 약속한 0이 나오지 않습니다.\",\"assumptions\":[],\"title\":\"설정된 0이 30으로 바뀌어 반환돼요\",\"evidence\":\"2~3줄 주석은 \\\"설정된 0은 타임아웃 없음을 뜻하며 0으로 반환되고, 키가 없을 때만 30으로 대체한다\\\"고 명시합니다. 그런데 4줄의 `config.get(\\\"timeout\\\") or 30`에서 or는 왼쪽 값이 거짓이면 오른쪽을 택합니다. 파이썬에서 0은 거짓이므로, {\\\"timeout\\\": 0}을 넣으면 0 대신 30이 반환됩니다. 즉 '값이 없음'과 '값이 0'을 구분하지 못하는 것이 원인입니다.\",\"suggestion\":\"키의 존재 여부로 분기하세요. 예를 들어 값이 None인지 확인해 None일 때만 30을 쓰면, 설정된 0은 그대로 0으로 반환되고 키가 없을 때만 기본값이 적용됩니다. 고친 뒤 {\\\"timeout\\\": 0}, {\\\"timeout\\\": 5}, {} 세 경우를 확인해 보세요.\"}],\"limitations\":\"제공된 4줄만 검토했고 실행 결과는 확인하지 않았습니다. config의 실제 출처와 호출부는 제공되지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 설정된 0이 30으로 바뀌어 반환돼요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "config가 {\"timeout\": 0}인 경우 read_timeout(config)를 호출하면",
+            "consequence": "0이 거짓으로 취급되어 or 연산자가 30을 선택하므로, 30이 반환됩니다. 문서가 약속한 0이 나오지 않습니다.",
+            "assumptions": [],
+            "title": "설정된 0이 30으로 바뀌어 반환돼요",
+            "evidence": "2~3줄 주석은 \"설정된 0은 타임아웃 없음을 뜻하며 0으로 반환되고, 키가 없을 때만 30으로 대체한다\"고 명시합니다. 그런데 4줄의 `config.get(\"timeout\") or 30`에서 or는 왼쪽 값이 거짓이면 오른쪽을 택합니다. 파이썬에서 0은 거짓이므로, {\"timeout\": 0}을 넣으면 0 대신 30이 반환됩니다. 즉 '값이 없음'과 '값이 0'을 구분하지 못하는 것이 원인입니다.",
+            "suggestion": "키의 존재 여부로 분기하세요. 예를 들어 값이 None인지 확인해 None일 때만 30을 쓰면, 설정된 0은 그대로 0으로 반환되고 키가 없을 때만 기본값이 적용됩니다. 고친 뒤 {\"timeout\": 0}, {\"timeout\": 5}, {} 세 경우를 확인해 보세요.",
+            "file_path": "settings.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "aaccb54be1537ab67d8ac504adac805711a716c704c7d174ae8932827ae5f3d0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄만 검토했고 실행 결과는 확인하지 않았습니다. config의 실제 출처와 호출부는 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"config가 {\\\"timeout\\\": 0}일 때 config.get(\\\"timeout\\\")이 0을 돌려주고, 0은 거짓이라 or가 30을 선택해 30이 반환됩니다. 문서가 약속한 0이 나오지 않습니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2~3줄 주석은 설정된 0을 0으로 반환한다고 명시하지만, 4줄의 `or 30`이 0을 거짓으로 보아 30으로 대체합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 설정된 0이 30으로 바뀌어 반환돼요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "config가 {\"timeout\": 0}인 경우 read_timeout(config)를 호출하면",
+            "consequence": "config가 {\"timeout\": 0}일 때 config.get(\"timeout\")이 0을 돌려주고, 0은 거짓이라 or가 30을 선택해 30이 반환됩니다. 문서가 약속한 0이 나오지 않습니다.",
+            "assumptions": [],
+            "title": "설정된 0이 30으로 바뀌어 반환돼요",
+            "evidence": "2~3줄 주석은 \"설정된 0은 타임아웃 없음을 뜻하며 0으로 반환되고, 키가 없을 때만 30으로 대체한다\"고 명시합니다. 그런데 4줄의 `config.get(\"timeout\") or 30`에서 or는 왼쪽 값이 거짓이면 오른쪽을 택합니다. 파이썬에서 0은 거짓이므로, {\"timeout\": 0}을 넣으면 0 대신 30이 반환됩니다. 즉 '값이 없음'과 '값이 0'을 구분하지 못하는 것이 원인입니다.",
+            "suggestion": "키의 존재 여부로 분기하세요. 예를 들어 값이 None인지 확인해 None일 때만 30을 쓰면, 설정된 0은 그대로 0으로 반환되고 키가 없을 때만 기본값이 적용됩니다. 고친 뒤 {\"timeout\": 0}, {\"timeout\": 5}, {} 세 경우를 확인해 보세요.",
+            "file_path": "settings.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "aaccb54be1537ab67d8ac504adac805711a716c704c7d174ae8932827ae5f3d0"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "2~3줄 주석은 설정된 0을 0으로 반환한다고 명시하지만, 4줄의 `or 30`이 0을 거짓으로 보아 30으로 대체합니다.",
+              "file_path": "settings.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.516
+    },
+    {
+      "id": "dict-get-timeout-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "5cb800acf09902b79284b6c82e6455add0e7f84abd86d347bf8f174baac53834",
+      "input_tokens": 7998,
+      "output_tokens": 391,
+      "draft_raw": "{\"summary\":\"config에서 timeout 값을 읽어오는 함수입니다. 설정된 0은 그대로 0으로 돌려주고, 키가 없을 때만 30을 기본값으로 씁니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했고 실행 결과는 확인하지 않았습니다. config의 타입과 호출부는 제공되지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인(4번)을 확인했습니다. 문서화된 계약은 '설정된 0은 타임아웃 없음을 의미하며 0으로 반환되고, 키가 없을 때만 30으로 대체된다'입니다. `config.get(\\\"timeout\\\", 30)`은 키가 없을 때만 30을 반환하고, 키가 존재하면 그 값(0 포함)을 그대로 반환하므로 계약과 일치합니다. 제가 확인한 범위에서는 지원되는 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 변경 라인과 문서 문자열만 검토했습니다. `config`의 실제 타입/출처, 호출자, 테스트는 제공되지 않아 실행 검증은 하지 않았습니다. 이는 결함이 아니라 검토 경계입니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: 설정된 0은 0으로 반환, 키가 없을 때만 30. `config.get(\\\"timeout\\\", 30)`은 키 부재 시에만 30을 반환하고 존재하는 값(0 포함)은 그대로 반환하므로 계약을 위반하지 않습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경 라인과 문서 문자열만 검토했습니다. `config`의 실제 타입/출처, 호출자, 테스트는 제공되지 않아 실행 검증은 하지 않았습니다. 이는 결함이 아니라 검토 경계입니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "settings.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "계약: 설정된 0은 0으로 반환, 키가 없을 때만 30. `config.get(\"timeout\", 30)`은 키 부재 시에만 30을 반환하고 존재하는 값(0 포함)은 그대로 반환하므로 계약을 위반하지 않습니다.",
+              "file_path": "settings.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.312
+    },
+    {
+      "id": "none-vs-falsy-items-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "bc60ccae9bdbafa4b4ac7405a28603bc6115329e3c721d286e72b2aefbde7109",
+      "input_tokens": 8997,
+      "output_tokens": 564,
+      "draft_raw": "{\"summary\":\"items가 제공되었는지 확인하는 함수입니다. 문서 주석은 None만 '제공되지 않음'으로 본다고 설명하지만, 실제 반환은 bool(items)이라 빈 리스트도 False가 됩니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4],\"trigger\":\"has_value([])처럼 빈 리스트를 넘기면\",\"consequence\":\"4줄의 bool([])이 False를 반환해, 빈 리스트가 '제공되지 않음'으로 취급됩니다.\",\"assumptions\":[],\"title\":\"빈 리스트도 '제공되지 않음'으로 처리돼요\",\"evidence\":\"2~3줄 주석은 'items가 제공되면 True, 빈 리스트여도 True'이고 'None만 제공되지 않음'이라고 명시합니다. 그런데 4줄은 bool(items)를 반환합니다. bool은 값의 참/거짓을 판단하는 함수로, 빈 리스트 []는 거짓으로 분류되어 False가 됩니다. 즉 None과 []가 같은 결과가 되어 주석이 말한 구분이 사라집니다.\",\"suggestion\":\"'제공되었는지'를 판단하려면 값의 참/거짓이 아니라 None 여부를 직접 비교하세요. items is not None으로 쓰면 None일 때만 False, 빈 리스트를 포함한 나머지는 True가 되어 주석의 의도와 맞습니다. 고친 뒤 None, [], [1] 세 경우를 확인해 보세요.\"}],\"limitations\":\"제공된 4줄만 검토했고 실행 결과는 확인하지 않았습니다. 호출부는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트도 '제공되지 않음'으로 처리돼요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "has_value([])처럼 빈 리스트를 넘기면",
+            "consequence": "4줄의 bool([])이 False를 반환해, 빈 리스트가 '제공되지 않음'으로 취급됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트도 '제공되지 않음'으로 처리돼요",
+            "evidence": "2~3줄 주석은 'items가 제공되면 True, 빈 리스트여도 True'이고 'None만 제공되지 않음'이라고 명시합니다. 그런데 4줄은 bool(items)를 반환합니다. bool은 값의 참/거짓을 판단하는 함수로, 빈 리스트 []는 거짓으로 분류되어 False가 됩니다. 즉 None과 []가 같은 결과가 되어 주석이 말한 구분이 사라집니다.",
+            "suggestion": "'제공되었는지'를 판단하려면 값의 참/거짓이 아니라 None 여부를 직접 비교하세요. items is not None으로 쓰면 None일 때만 False, 빈 리스트를 포함한 나머지는 True가 되어 주석의 의도와 맞습니다. 고친 뒤 None, [], [1] 세 경우를 확인해 보세요.",
+            "file_path": "inputs.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "5fe7a2dc05c5444d9452f06f6547cce3bb70193cdfcbfb161d60e2aede152096"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 4줄만 검토했고 실행 결과는 확인하지 않았습니다. 호출부는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "inputs.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"has_value([])를 호출하면 bool([])이 False를 반환해, 빈 리스트가 '제공되지 않음'으로 취급됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2~3줄 주석은 None만 '제공되지 않음'으로 본다고 명시하지만 4줄은 bool(items)를 반환해 빈 리스트도 False가 됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트도 '제공되지 않음'으로 처리돼요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4
+            ],
+            "trigger": "has_value([])처럼 빈 리스트를 넘기면",
+            "consequence": "has_value([])를 호출하면 bool([])이 False를 반환해, 빈 리스트가 '제공되지 않음'으로 취급됩니다.",
+            "assumptions": [],
+            "title": "빈 리스트도 '제공되지 않음'으로 처리돼요",
+            "evidence": "2~3줄 주석은 'items가 제공되면 True, 빈 리스트여도 True'이고 'None만 제공되지 않음'이라고 명시합니다. 그런데 4줄은 bool(items)를 반환합니다. bool은 값의 참/거짓을 판단하는 함수로, 빈 리스트 []는 거짓으로 분류되어 False가 됩니다. 즉 None과 []가 같은 결과가 되어 주석이 말한 구분이 사라집니다.",
+            "suggestion": "'제공되었는지'를 판단하려면 값의 참/거짓이 아니라 None 여부를 직접 비교하세요. items is not None으로 쓰면 None일 때만 False, 빈 리스트를 포함한 나머지는 True가 되어 주석의 의도와 맞습니다. 고친 뒤 None, [], [1] 세 경우를 확인해 보세요.",
+            "file_path": "inputs.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "5fe7a2dc05c5444d9452f06f6547cce3bb70193cdfcbfb161d60e2aede152096"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "inputs.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "2~3줄 주석은 None만 '제공되지 않음'으로 본다고 명시하지만 4줄은 bool(items)를 반환해 빈 리스트도 False가 됩니다.",
+              "file_path": "inputs.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.984
+    },
+    {
+      "id": "none-vs-falsy-items-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "8536edaa7a91d519c1be72936bf7fa1e59d666eeb9b808fed337eb55fa0a0077",
+      "input_tokens": 7970,
+      "output_tokens": 318,
+      "draft_raw": "{\"summary\":\"items가 제공되었는지(None이 아닌지)를 확인하는 함수입니다. 제공된 계약과 구현이 일치해 별도 문제는 보이지 않아요.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했고 실행 결과나 호출부는 확인하지 않았습니다.\",\"context_requests\":[]}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1은 `has_value`가 None만 '미제공'으로 보고, 빈 리스트는 제공된 것으로 취급하도록 하는 함수입니다. 반환식 `not (items is None)`은 docstring의 요구사항과 정확히 일치하며, 제공된 문맥에서 확인 가능한 결함은 없습니다.\", \"issues\": [], \"limitations\": \"제공된 것은 f1의 4줄뿐이며, 이 함수를 호출하는 코드나 실제 입력 유형은 확인할 수 없습니다. 테스트를 실행하지 않았고, 제공되지 않은 코드는 검토하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring은 'None만 미제공, 빈 리스트는 제공됨'을 요구합니다. `not (items is None)`은 None일 때 False, 빈 리스트일 때 True를 반환하므로 요구사항과 일치합니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 f1의 4줄뿐이며, 이 함수를 호출하는 코드나 실제 입력 유형은 확인할 수 없습니다. 테스트를 실행하지 않았고, 제공되지 않은 코드는 검토하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "inputs.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring은 'None만 미제공, 빈 리스트는 제공됨'을 요구합니다. `not (items is None)`은 None일 때 False, 빈 리스트일 때 True를 반환하므로 요구사항과 일치합니다.",
+              "file_path": "inputs.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.25
+    },
+    {
+      "id": "none-vs-falsy-text-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "c99367c6bccb5e3f8214dca643a3527853aeca8ef037716adc2a4a0d33d5b957",
+      "input_tokens": 9178,
+      "output_tokens": 684,
+      "draft_raw": "{\"summary\":\"normalize 함수의 입력 검사 조건이 `if not text:`로 바뀌었어요. 이 함수는 주변 공백을 제거하고, None은 None으로, 빈 문자열은 빈 문자열로 유지한다고 문서에 적혀 있어요.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,4,5],\"trigger\":\"normalize(\\\"\\\")를 호출하면\",\"consequence\":\"4줄의 `not \\\"\\\"`가 True가 되어 5줄에서 None이 반환돼요. 문서에 적힌 대로 빈 문자열이 유지되지 않고 None으로 바뀝니다.\",\"assumptions\":[],\"title\":\"빈 문자열이 None으로 바뀌어 문서와 달라요\",\"evidence\":\"2~3줄 문서는 \\\"None stays None and an empty string stays an empty string\\\"이라고 명시해요. 그런데 4줄 `if not text:`는 None뿐 아니라 빈 문자열(\\\"\\\")과 공백만 있는 문자열(\\\"   \\\")처럼 비어 있다고 판단되는(truthy가 아닌) 값도 모두 True로 처리해요. 그래서 normalize(\\\"\\\")는 5줄에서 None을 돌려주고, normalize(\\\"   \\\")도 strip 결과인 \\\"\\\" 대신 None을 돌려줘요. 반면 None을 명시적으로 비교하는 `if text is None:`은 None만 걸러 내므로 빈 문자열은 6줄까지 내려가 strip()을 거쳐 \\\"\\\"로 유지돼요.\",\"suggestion\":\"None만 특별 취급하려면 4줄을 `if text is None:`으로 바꾸세요. 그러면 None은 그대로 None이고, 빈 문자열과 공백 문자열은 6줄에서 strip()을 거쳐 빈 문자열로 남아 문서와 일치해요. 고친 뒤 None, \\\"\\\", \\\"   \\\", \\\"  hi  \\\" 네 가지를 확인해 보세요.\"}],\"limitations\":\"제공된 6줄만 검토했고 실행 결과는 확인하지 않았어요. normalize를 호출하는 쪽의 기대값은 제공되지 않아 문서 설명을 기준으로 판단했어요.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열이 None으로 바뀌어 문서와 달라요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "trigger": "normalize(\"\")를 호출하면",
+            "consequence": "4줄의 `not \"\"`가 True가 되어 5줄에서 None이 반환돼요. 문서에 적힌 대로 빈 문자열이 유지되지 않고 None으로 바뀝니다.",
+            "assumptions": [],
+            "title": "빈 문자열이 None으로 바뀌어 문서와 달라요",
+            "evidence": "2~3줄 문서는 \"None stays None and an empty string stays an empty string\"이라고 명시해요. 그런데 4줄 `if not text:`는 None뿐 아니라 빈 문자열(\"\")과 공백만 있는 문자열(\"   \")처럼 비어 있다고 판단되는(truthy가 아닌) 값도 모두 True로 처리해요. 그래서 normalize(\"\")는 5줄에서 None을 돌려주고, normalize(\"   \")도 strip 결과인 \"\" 대신 None을 돌려줘요. 반면 None을 명시적으로 비교하는 `if text is None:`은 None만 걸러 내므로 빈 문자열은 6줄까지 내려가 strip()을 거쳐 \"\"로 유지돼요.",
+            "suggestion": "None만 특별 취급하려면 4줄을 `if text is None:`으로 바꾸세요. 그러면 None은 그대로 None이고, 빈 문자열과 공백 문자열은 6줄에서 strip()을 거쳐 빈 문자열로 남아 문서와 일치해요. 고친 뒤 None, \"\", \"   \", \"  hi  \" 네 가지를 확인해 보세요.",
+            "file_path": "text.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "4f04cc656c88e70bc766716effe697efba24ffea363a47abad28d71f9c0ae735"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 6줄만 검토했고 실행 결과는 확인하지 않았어요. normalize를 호출하는 쪽의 기대값은 제공되지 않아 문서 설명을 기준으로 판단했어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "text.py",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"normalize(\\\"\\\")를 호출하면 4줄의 `not \\\"\\\"`가 True가 되어 5줄에서 None이 반환됩니다. 문서가 말한 \\\"빈 문자열은 빈 문자열로 유지\\\"와 달라집니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"4줄 `if not text:`가 None뿐 아니라 빈 문자열과 공백 문자열까지 None으로 반환해 2~3줄 문서와 어긋납니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열이 None으로 바뀌어 문서와 달라요",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "trigger": "normalize(\"\")를 호출하면",
+            "consequence": "normalize(\"\")를 호출하면 4줄의 `not \"\"`가 True가 되어 5줄에서 None이 반환됩니다. 문서가 말한 \"빈 문자열은 빈 문자열로 유지\"와 달라집니다.",
+            "assumptions": [],
+            "title": "빈 문자열이 None으로 바뀌어 문서와 달라요",
+            "evidence": "2~3줄 문서는 \"None stays None and an empty string stays an empty string\"이라고 명시해요. 그런데 4줄 `if not text:`는 None뿐 아니라 빈 문자열(\"\")과 공백만 있는 문자열(\"   \")처럼 비어 있다고 판단되는(truthy가 아닌) 값도 모두 True로 처리해요. 그래서 normalize(\"\")는 5줄에서 None을 돌려주고, normalize(\"   \")도 strip 결과인 \"\" 대신 None을 돌려줘요. 반면 None을 명시적으로 비교하는 `if text is None:`은 None만 걸러 내므로 빈 문자열은 6줄까지 내려가 strip()을 거쳐 \"\"로 유지돼요.",
+            "suggestion": "None만 특별 취급하려면 4줄을 `if text is None:`으로 바꾸세요. 그러면 None은 그대로 None이고, 빈 문자열과 공백 문자열은 6줄에서 strip()을 거쳐 빈 문자열로 남아 문서와 일치해요. 고친 뒤 None, \"\", \"   \", \"  hi  \" 네 가지를 확인해 보세요.",
+            "file_path": "text.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "4f04cc656c88e70bc766716effe697efba24ffea363a47abad28d71f9c0ae735"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "text.py",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "4줄 `if not text:`가 None뿐 아니라 빈 문자열과 공백 문자열까지 None으로 반환해 2~3줄 문서와 어긋납니다.",
+              "file_path": "text.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.531
+    },
+    {
+      "id": "none-vs-falsy-text-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "9ec6303f3c8ec711ba24a9eafd5011d7567c67abf04890eecfc001736a597841",
+      "input_tokens": 7972,
+      "output_tokens": 364,
+      "draft_raw": "{\"summary\":\"normalize 함수의 반환식을 None을 그대로 유지하고 나머지는 strip() 하는 조건식으로 바꾼 변경입니다.\",\"issues\":[],\"limitations\":\"제공된 4줄만 검토했고 실행 결과나 호출부는 확인하지 않았습니다. None과 빈 문자열 처리는 문서화된 의도와 일치해 보입니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인(4번)을 확인했습니다. docstring 계약은 '주변 공백 제거, None은 None 유지, 빈 문자열은 빈 문자열 유지'이고, 실제 반환값 `None if text is None else text.strip()`은 이 계약을 그대로 만족합니다. None은 그대로 None, 빈 문자열은 `''.strip()`으로 `''`, 일반 문자열은 앞뒤 공백만 제거됩니다. 제기할 만한 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 것은 f1의 4줄뿐이며, 이 함수를 호출하는 코드나 실제 입력 유형(문자열이 아닌 값 전달 여부)은 확인할 수 없습니다. 테스트 실행은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약(공백 제거, None 유지, 빈 문자열 유지)과 반환식이 일치합니다. None→None, ''→'', ' a '→'a'로 모두 계약을 만족하며 결함이 없습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 것은 f1의 4줄뿐이며, 이 함수를 호출하는 코드나 실제 입력 유형(문자열이 아닌 값 전달 여부)은 확인할 수 없습니다. 테스트 실행은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "text.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약(공백 제거, None 유지, 빈 문자열 유지)과 반환식이 일치합니다. None→None, ''→'', ' a '→'a'로 모두 계약을 만족하며 결함이 없습니다.",
+              "file_path": "text.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.515
+    },
+    {
+      "id": "length-fits-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "d7890c4e46ee2351ed185d567b5d6d3e53b5af70cc2c5f9d99d710cea04c0d46",
+      "input_tokens": 8938,
+      "output_tokens": 556,
+      "draft_raw": "{\"summary\":\"이름이 8자 이하일 때 통과하는지 검사하는 함수입니다. 문서에는 8자도 허용된다고 적혀 있지만 실제 비교는 8자를 거부합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"길이가 정확히 8자인 이름, 예를 들어 fits(\\\"abcdefgh\\\")를 호출하면\",\"consequence\":\"len(\\\"abcdefgh\\\")는 8이고 8 < 8은 거짓이므로 False가 반환되어, 문서상 허용되어야 할 8자 이름이 거부됩니다.\",\"assumptions\":[],\"title\":\"8자 이름이 문서와 달리 거부돼요\",\"evidence\":\"2줄 주석은 \\\"exactly 8 is allowed\\\", 즉 8자도 허용한다고 명시합니다. 그런데 3줄은 len(name) < 8로 비교해서 8자일 때 False를 돌려줘요. 경계값(허용되는 가장 큰 값)을 포함하려면 <가 아니라 <=를 써야 합니다.\",\"suggestion\":\"3줄을 len(name) <= 8로 바꾸면 8자 이름도 통과하고, 9자 이상은 그대로 거부되어 문서와 동작이 일치합니다. 고친 뒤 7자, 8자, 9자를 각각 넣어 경계 동작을 확인해 보세요.\"}],\"limitations\":\"제공된 파일 한 곳만 검토했고 실행 결과는 확인하지 않았습니다. 호출부나 다른 제약은 제공되지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 8자 이름이 문서와 달리 거부돼요",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "길이가 정확히 8자인 이름, 예를 들어 fits(\"abcdefgh\")를 호출하면",
+            "consequence": "len(\"abcdefgh\")는 8이고 8 < 8은 거짓이므로 False가 반환되어, 문서상 허용되어야 할 8자 이름이 거부됩니다.",
+            "assumptions": [],
+            "title": "8자 이름이 문서와 달리 거부돼요",
+            "evidence": "2줄 주석은 \"exactly 8 is allowed\", 즉 8자도 허용한다고 명시합니다. 그런데 3줄은 len(name) < 8로 비교해서 8자일 때 False를 돌려줘요. 경계값(허용되는 가장 큰 값)을 포함하려면 <가 아니라 <=를 써야 합니다.",
+            "suggestion": "3줄을 len(name) <= 8로 바꾸면 8자 이름도 통과하고, 9자 이상은 그대로 거부되어 문서와 동작이 일치합니다. 고친 뒤 7자, 8자, 9자를 각각 넣어 경계 동작을 확인해 보세요.",
+            "file_path": "names.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "c47e311bf985ee5751129c6d77a611410f985bbcbf42334bb63f5a331dd4042a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 한 곳만 검토했고 실행 결과는 확인하지 않았습니다. 호출부나 다른 제약은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "names.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"fits(\\\"abcdefgh\\\")처럼 길이가 정확히 8인 이름을 넣으면 len은 8이고 8 < 8은 거짓이라 False가 반환되어, 문서상 허용되는 8자 이름이 거부됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄 docstring은 8자를 허용한다고 명시하지만 3줄은 len(name) < 8로 비교해 정확히 8자인 입력에서 False를 반환합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 8자 이름이 문서와 달리 거부돼요",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "길이가 정확히 8자인 이름, 예를 들어 fits(\"abcdefgh\")를 호출하면",
+            "consequence": "fits(\"abcdefgh\")처럼 길이가 정확히 8인 이름을 넣으면 len은 8이고 8 < 8은 거짓이라 False가 반환되어, 문서상 허용되는 8자 이름이 거부됩니다.",
+            "assumptions": [],
+            "title": "8자 이름이 문서와 달리 거부돼요",
+            "evidence": "2줄 주석은 \"exactly 8 is allowed\", 즉 8자도 허용한다고 명시합니다. 그런데 3줄은 len(name) < 8로 비교해서 8자일 때 False를 돌려줘요. 경계값(허용되는 가장 큰 값)을 포함하려면 <가 아니라 <=를 써야 합니다.",
+            "suggestion": "3줄을 len(name) <= 8로 바꾸면 8자 이름도 통과하고, 9자 이상은 그대로 거부되어 문서와 동작이 일치합니다. 고친 뒤 7자, 8자, 9자를 각각 넣어 경계 동작을 확인해 보세요.",
+            "file_path": "names.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "c47e311bf985ee5751129c6d77a611410f985bbcbf42334bb63f5a331dd4042a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "names.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "2줄 docstring은 8자를 허용한다고 명시하지만 3줄은 len(name) < 8로 비교해 정확히 8자인 입력에서 False를 반환합니다.",
+              "file_path": "names.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.156
+    },
+    {
+      "id": "length-fits-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "e05210e102b39f7968a1a5d35443e50c622035d990675d0ab3d26a45fdbbab49",
+      "input_tokens": 7936,
+      "output_tokens": 386,
+      "draft_raw": "{\"summary\":\"이름 길이가 8자 이하인지 판단하는 함수입니다. 3줄에서 `not len(name) > 8`로 조건을 뒤집어 반환해요.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했고 실행 결과는 확인하지 않았습니다. name의 출처와 타입은 제공 범위 밖이라 판단하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인(3번)을 확인했습니다. 문서화된 계약은 '이름이 8자 이하면 통과, 정확히 8자도 허용'이며, `not len(name) > 8`은 `len(name) <= 8`과 동일한 결과를 냅니다. 경계값 8을 포함해 계약과 일치하므로 보고할 결함이 없습니다.\", \"issues\": [], \"limitations\": \"제공된 3개 라인만 검토했습니다. `name`의 실제 타입(문자열 여부)이나 호출자는 제공되지 않았으나, 이는 계약 위반을 보여주는 증거가 아니므로 결함으로 다루지 않았습니다. 테스트 실행이나 미제공 코드 확인은 하지 않았습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"계약: 8자 이하 통과, 정확히 8자 허용. `not len(name) > 8`은 `len(name) <= 8`과 같아 8자에서 True를 반환하므로 계약을 만족합니다. 위반 증거 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3개 라인만 검토했습니다. `name`의 실제 타입(문자열 여부)이나 호출자는 제공되지 않았으나, 이는 계약 위반을 보여주는 증거가 아니므로 결함으로 다루지 않았습니다. 테스트 실행이나 미제공 코드 확인은 하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "names.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "계약: 8자 이하 통과, 정확히 8자 허용. `not len(name) > 8`은 `len(name) <= 8`과 같아 8자에서 True를 반환하므로 계약을 만족합니다. 위반 증거 없음.",
+              "file_path": "names.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.734
+    },
+    {
+      "id": "java-null-empty-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "1a48455944796ec7b85af30a2647600f90f2b24969e72db7460eaa7597f6172f",
+      "input_tokens": 9477,
+      "output_tokens": 650,
+      "draft_raw": "{\"summary\":\"이름이 비어 있을 때 대체값을 돌려주는 display 메서드의 조건을 수정한 변경입니다. 주석에 적힌 의도와 실제 조건이 어긋나는지 확인했어요.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,5],\"trigger\":\"display(\\\"\\\", \\\"익명\\\")처럼 빈 문자열 name과 fallback을 넘기면\",\"consequence\":\"5줄의 name.isEmpty()가 참이 되어 6줄에서 fallback인 \\\"익명\\\"이 반환됩니다. 주석이 말한 대로 빈 문자열을 그대로 돌려주지 않아요.\",\"assumptions\":[],\"title\":\"빈 문자열도 fallback으로 바뀌어 주석의 약속과 달라요\",\"evidence\":\"2~3줄 주석은 \\\"빈 문자열은 의도된 값이라 그대로 반환하고 null만 fallback을 쓴다\\\"고 명시해요. 그런데 5줄 조건은 name == null || name.isEmpty()라서 빈 문자열도 참이 되고, 6줄에서 fallback이 반환돼요. ||는 왼쪽이 거짓일 때 오른쪽을 평가하는데, 빈 문자열은 왼쪽(name == null)이 거짓이라 오른쪽 isEmpty()가 평가되어 참이 되는 경로예요. 즉 빈 문자열이 대체값으로 덮여 주석의 계약과 결과가 달라집니다.\",\"suggestion\":\"빈 문자열을 그대로 반환하려면 5줄 조건을 name == null만 남기세요. 그러면 null일 때만 fallback이 쓰이고 빈 문자열은 8줄에서 그대로 반환돼요. 고친 뒤 null, 빈 문자열, 일반 문자열 세 경우를 각각 확인해 보세요.\"}],\"limitations\":\"제공된 파일 한 개만 검토했고 실행 결과는 확인하지 않았습니다. display의 호출부는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열도 fallback으로 바뀌어 주석의 약속과 달라요",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              5
+            ],
+            "trigger": "display(\"\", \"익명\")처럼 빈 문자열 name과 fallback을 넘기면",
+            "consequence": "5줄의 name.isEmpty()가 참이 되어 6줄에서 fallback인 \"익명\"이 반환됩니다. 주석이 말한 대로 빈 문자열을 그대로 돌려주지 않아요.",
+            "assumptions": [],
+            "title": "빈 문자열도 fallback으로 바뀌어 주석의 약속과 달라요",
+            "evidence": "2~3줄 주석은 \"빈 문자열은 의도된 값이라 그대로 반환하고 null만 fallback을 쓴다\"고 명시해요. 그런데 5줄 조건은 name == null || name.isEmpty()라서 빈 문자열도 참이 되고, 6줄에서 fallback이 반환돼요. ||는 왼쪽이 거짓일 때 오른쪽을 평가하는데, 빈 문자열은 왼쪽(name == null)이 거짓이라 오른쪽 isEmpty()가 평가되어 참이 되는 경로예요. 즉 빈 문자열이 대체값으로 덮여 주석의 계약과 결과가 달라집니다.",
+            "suggestion": "빈 문자열을 그대로 반환하려면 5줄 조건을 name == null만 남기세요. 그러면 null일 때만 fallback이 쓰이고 빈 문자열은 8줄에서 그대로 반환돼요. 고친 뒤 null, 빈 문자열, 일반 문자열 세 경우를 각각 확인해 보세요.",
+            "file_path": "Names.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "b23f6c9d2862bea208cd2fcdc60238102c6996077d82af5897a4255d25561325"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 한 개만 검토했고 실행 결과는 확인하지 않았습니다. display의 호출부는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Names.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"display(\\\"\\\", \\\"익명\\\")을 호출하면 5줄의 name.isEmpty()가 참이 되어 6줄에서 fallback인 \\\"익명\\\"이 반환되고, 빈 문자열은 그대로 반환되지 않습니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2~3줄 주석은 빈 문자열을 그대로 반환한다고 명시하지만, 5줄 조건의 name.isEmpty() 때문에 빈 문자열이 fallback으로 대체됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 문자열도 fallback으로 바뀌어 주석의 약속과 달라요",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              5
+            ],
+            "trigger": "display(\"\", \"익명\")처럼 빈 문자열 name과 fallback을 넘기면",
+            "consequence": "display(\"\", \"익명\")을 호출하면 5줄의 name.isEmpty()가 참이 되어 6줄에서 fallback인 \"익명\"이 반환되고, 빈 문자열은 그대로 반환되지 않습니다.",
+            "assumptions": [],
+            "title": "빈 문자열도 fallback으로 바뀌어 주석의 약속과 달라요",
+            "evidence": "2~3줄 주석은 \"빈 문자열은 의도된 값이라 그대로 반환하고 null만 fallback을 쓴다\"고 명시해요. 그런데 5줄 조건은 name == null || name.isEmpty()라서 빈 문자열도 참이 되고, 6줄에서 fallback이 반환돼요. ||는 왼쪽이 거짓일 때 오른쪽을 평가하는데, 빈 문자열은 왼쪽(name == null)이 거짓이라 오른쪽 isEmpty()가 평가되어 참이 되는 경로예요. 즉 빈 문자열이 대체값으로 덮여 주석의 계약과 결과가 달라집니다.",
+            "suggestion": "빈 문자열을 그대로 반환하려면 5줄 조건을 name == null만 남기세요. 그러면 null일 때만 fallback이 쓰이고 빈 문자열은 8줄에서 그대로 반환돼요. 고친 뒤 null, 빈 문자열, 일반 문자열 세 경우를 각각 확인해 보세요.",
+            "file_path": "Names.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "b23f6c9d2862bea208cd2fcdc60238102c6996077d82af5897a4255d25561325"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Names.java",
+              "provided_lines": 10
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "FINDING",
+              "observation": "2~3줄 주석은 빈 문자열을 그대로 반환한다고 명시하지만, 5줄 조건의 name.isEmpty() 때문에 빈 문자열이 fallback으로 대체됩니다.",
+              "file_path": "Names.java"
+            }
+          ]
+        }
+      },
+      "seconds": 4.985
+    },
+    {
+      "id": "java-null-empty-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "1ad81e2b97c01e3fcdfa34d86f34cf182d9493c2dfcfe843b424491898ecdee3",
+      "input_tokens": 8256,
+      "output_tokens": 381,
+      "draft_raw": "{\"summary\":\"null일 때만 fallback을 쓰고, 빈 문자열은 그대로 돌려주는 display 메서드를 구현했어요.\",\"issues\":[],\"limitations\":\"제공된 범위만 검토했고 실행 결과는 확인하지 않았습니다. 호출부는 제공되지 않아 실제 사용 맥락은 알 수 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1의 유일한 변경 라인(5번)을 검토했습니다. 주석에 명시된 계약(빈 문자열은 그대로 반환, null만 fallback 사용)과 실제 반환 로직이 일치하며, null 처리도 삼항 연산자로 안전하게 되어 있습니다. 지원할 만한 결함이 보이지 않아 별도 이슈는 보고하지 않습니다.\", \"issues\": [], \"limitations\": \"제공된 코드는 단일 정적 메서드 한 개이며, 호출자나 테스트, 다른 파일은 제공되지 않았습니다. 따라서 이 메서드가 실제로 어떤 입력으로 호출되는지, 반환값이 어디에서 사용되는지는 확인하지 못했습니다. 다만 변경 라인 자체의 로직과 주석 계약 비교만으로는 결함이 확인되지 않습니다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"주석 계약은 '빈 문자열은 그대로 반환, null만 fallback'입니다. 5번 라인은 name == null일 때만 fallback을, 그 외(빈 문자열 포함)에는 name을 반환하므로 계약과 일치합니다. null 역참조나 경계 오류도 없습니다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 코드는 단일 정적 메서드 한 개이며, 호출자나 테스트, 다른 파일은 제공되지 않았습니다. 따라서 이 메서드가 실제로 어떤 입력으로 호출되는지, 반환값이 어디에서 사용되는지는 확인하지 못했습니다. 다만 변경 라인 자체의 로직과 주석 계약 비교만으로는 결함이 확인되지 않습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Names.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "NO_FINDING",
+              "observation": "주석 계약은 '빈 문자열은 그대로 반환, null만 fallback'입니다. 5번 라인은 name == null일 때만 fallback을, 그 외(빈 문자열 포함)에는 name을 반환하므로 계약과 일치합니다. null 역참조나 경계 오류도 없습니다.",
+              "file_path": "Names.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.875
+    },
+    {
+      "id": "java-pages-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "b15364f3b78efa4d1eb6987bc790eb72f7f477bae134b458c08963412a132170",
+      "input_tokens": 9388,
+      "output_tokens": 689,
+      "draft_raw": "{\"summary\":\"항목 수와 페이지 크기로 필요한 페이지 수를 계산하는 pages 메서드에서, 올림 처리 없이 정수 나눗셈만 하고 있어요.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[5,2,3],\"trigger\":\"count=10, pageSize=3처럼 나누어떨어지지 않는 값을 넘기면\",\"consequence\":\"10/3은 정수 나눗셈이라 3이 반환되지만, 3페이지에는 9개만 들어가므로 10개를 담으려면 4페이지가 필요합니다. 즉 필요한 페이지 수보다 1 적게 돌려줘요.\",\"assumptions\":[],\"title\":\"나누어떨어지지 않을 때 페이지 수가 1 부족해요\",\"evidence\":\"2~3줄 주석은 'rounded up'(올림)과 count >= 0, pageSize >= 1을 계약으로 명시해요. 그런데 5줄은 count / pageSize 정수 나눗셈만 해요. Java 정수 나눗셈은 몫의 소수 부분을 버리므로(내림), 10/3 = 3이 됩니다. 3페이지 × 3개 = 9개라 10번째 항목이 들어갈 자리가 없어요. 올림이 필요하면 나머지가 0이 아닐 때 1을 더해야 해요.\",\"suggestion\":\"나머지가 있을 때만 한 페이지를 더하는 패턴을 쓰세요. 예를 들어 count / pageSize + (count % pageSize == 0 ? 0 : 1)로 계산하면 나누어떨어지는 경우(9,3 → 3)는 그대로 두고 나머지가 있는 경우(10,3 → 4)만 올림이 됩니다. count=0일 때 0페이지가 나오는지, pageSize=1일 때 count와 같은지도 함께 확인해 보세요.\"}],\"limitations\":\"제공된 파일 한 개만 검토했고 실행 결과는 확인하지 않았어요. 이 메서드를 호출하는 쪽의 기대값은 제공되지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 나누어떨어지지 않을 때 페이지 수가 1 부족해요",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              5,
+              2,
+              3
+            ],
+            "trigger": "count=10, pageSize=3처럼 나누어떨어지지 않는 값을 넘기면",
+            "consequence": "10/3은 정수 나눗셈이라 3이 반환되지만, 3페이지에는 9개만 들어가므로 10개를 담으려면 4페이지가 필요합니다. 즉 필요한 페이지 수보다 1 적게 돌려줘요.",
+            "assumptions": [],
+            "title": "나누어떨어지지 않을 때 페이지 수가 1 부족해요",
+            "evidence": "2~3줄 주석은 'rounded up'(올림)과 count >= 0, pageSize >= 1을 계약으로 명시해요. 그런데 5줄은 count / pageSize 정수 나눗셈만 해요. Java 정수 나눗셈은 몫의 소수 부분을 버리므로(내림), 10/3 = 3이 됩니다. 3페이지 × 3개 = 9개라 10번째 항목이 들어갈 자리가 없어요. 올림이 필요하면 나머지가 0이 아닐 때 1을 더해야 해요.",
+            "suggestion": "나머지가 있을 때만 한 페이지를 더하는 패턴을 쓰세요. 예를 들어 count / pageSize + (count % pageSize == 0 ? 0 : 1)로 계산하면 나누어떨어지는 경우(9,3 → 3)는 그대로 두고 나머지가 있는 경우(10,3 → 4)만 올림이 됩니다. count=0일 때 0페이지가 나오는지, pageSize=1일 때 count와 같은지도 함께 확인해 보세요.",
+            "file_path": "Pages.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "edd56aa4383833f5990e6f1d0fa568c91e780a85e6b4164680670bf77f166506"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 파일 한 개만 검토했고 실행 결과는 확인하지 않았어요. 이 메서드를 호출하는 쪽의 기대값은 제공되지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Pages.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count=10, pageSize=3을 넘기면 10/3 정수 나눗셈으로 3이 반환됩니다. 하지만 3페이지에는 9개만 들어가므로 10개를 담기에는 1페이지가 부족합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2~3줄 주석은 올림(rounded up)을 계약으로 명시하지만 5줄은 내림 정수 나눗셈만 수행해 나머지가 있는 경우 페이지 수가 1 부족합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 나누어떨어지지 않을 때 페이지 수가 1 부족해요",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              5,
+              2,
+              3
+            ],
+            "trigger": "count=10, pageSize=3처럼 나누어떨어지지 않는 값을 넘기면",
+            "consequence": "count=10, pageSize=3을 넘기면 10/3 정수 나눗셈으로 3이 반환됩니다. 하지만 3페이지에는 9개만 들어가므로 10개를 담기에는 1페이지가 부족합니다.",
+            "assumptions": [],
+            "title": "나누어떨어지지 않을 때 페이지 수가 1 부족해요",
+            "evidence": "2~3줄 주석은 'rounded up'(올림)과 count >= 0, pageSize >= 1을 계약으로 명시해요. 그런데 5줄은 count / pageSize 정수 나눗셈만 해요. Java 정수 나눗셈은 몫의 소수 부분을 버리므로(내림), 10/3 = 3이 됩니다. 3페이지 × 3개 = 9개라 10번째 항목이 들어갈 자리가 없어요. 올림이 필요하면 나머지가 0이 아닐 때 1을 더해야 해요.",
+            "suggestion": "나머지가 있을 때만 한 페이지를 더하는 패턴을 쓰세요. 예를 들어 count / pageSize + (count % pageSize == 0 ? 0 : 1)로 계산하면 나누어떨어지는 경우(9,3 → 3)는 그대로 두고 나머지가 있는 경우(10,3 → 4)만 올림이 됩니다. count=0일 때 0페이지가 나오는지, pageSize=1일 때 count와 같은지도 함께 확인해 보세요.",
+            "file_path": "Pages.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "edd56aa4383833f5990e6f1d0fa568c91e780a85e6b4164680670bf77f166506"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Pages.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "FINDING",
+              "observation": "2~3줄 주석은 올림(rounded up)을 계약으로 명시하지만 5줄은 내림 정수 나눗셈만 수행해 나머지가 있는 경우 페이지 수가 1 부족합니다.",
+              "file_path": "Pages.java"
+            }
+          ]
+        }
+      },
+      "seconds": 5.219
+    },
+    {
+      "id": "java-pages-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "cdd134992518142ab7c0553885d879c790f5203521cb03a34eae69699f0d948e",
+      "input_tokens": 9473,
+      "output_tokens": 779,
+      "draft_raw": "{\"summary\":\"count개의 항목을 pageSize개씩 나눌 때 필요한 페이지 수를 올림 계산으로 구하는 함수입니다. 5번 줄에서 (count + pageSize - 1) / pageSize 방식으로 올림 나눗셈을 구현했어요.\",\"issues\":[{\"file_id\":\"f1\",\"line\":5,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[5],\"trigger\":\"count가 int 최댓값(2147483647)이고 pageSize가 2 이상인 값(예: 2)으로 pages(2147483647, 2)를 호출하면\",\"consequence\":\"count + pageSize - 1이 int 범위를 넘어 음수로 넘쳐서(오버플로) 결과가 음수 페이지 수로 반환됩니다.\",\"assumptions\":[],\"title\":\"큰 count에서 int 오버플로로 페이지 수가 음수가 될 수 있어요\",\"evidence\":\"3줄 주석은 count >= 0, pageSize >= 1을 전제로 하므로 count = 2147483647은 유효한 입력이에요. 5줄에서 count + pageSize - 1을 먼저 계산하는데, 이 덧셈은 int로 수행돼요. 2147483647 + 2 - 1 = 2147483648은 int 최댓값을 1 넘어서 -2147483648로 넘어가고, Math.floorDiv(-2147483648, 2)는 -1073741824를 돌려줘요. 자바에서 int 덧셈은 결과를 담는 타입과 무관하게 int 범위 안에서만 계산되는 점이 원인이에요.\",\"suggestion\":\"오버플로를 피하려면 나눗셈을 두 번 쓰는 패턴이 안전해요: count / pageSize에 나머지가 있을 때만 1을 더하는 방식(예: count / pageSize + (count % pageSize == 0 ? 0 : 1))이면 중간 덧셈이 int 범위를 넘지 않아요. 고친 뒤 count = 0, count = pageSize, count = 2147483647, pageSize = 1 같은 경계값도 확인해 보세요.\"}],\"limitations\":\"제공된 7줄만 검토했고 실행 결과는 확인하지 않았습니다. 실제 호출부에서 count가 int 최댓값에 가까운 값으로 들어오는지는 알 수 없어 발생 빈도는 판단하지 않았습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 큰 count에서 int 오버플로로 페이지 수가 음수가 될 수 있어요",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              5
+            ],
+            "trigger": "count가 int 최댓값(2147483647)이고 pageSize가 2 이상인 값(예: 2)으로 pages(2147483647, 2)를 호출하면",
+            "consequence": "count + pageSize - 1이 int 범위를 넘어 음수로 넘쳐서(오버플로) 결과가 음수 페이지 수로 반환됩니다.",
+            "assumptions": [],
+            "title": "큰 count에서 int 오버플로로 페이지 수가 음수가 될 수 있어요",
+            "evidence": "3줄 주석은 count >= 0, pageSize >= 1을 전제로 하므로 count = 2147483647은 유효한 입력이에요. 5줄에서 count + pageSize - 1을 먼저 계산하는데, 이 덧셈은 int로 수행돼요. 2147483647 + 2 - 1 = 2147483648은 int 최댓값을 1 넘어서 -2147483648로 넘어가고, Math.floorDiv(-2147483648, 2)는 -1073741824를 돌려줘요. 자바에서 int 덧셈은 결과를 담는 타입과 무관하게 int 범위 안에서만 계산되는 점이 원인이에요.",
+            "suggestion": "오버플로를 피하려면 나눗셈을 두 번 쓰는 패턴이 안전해요: count / pageSize에 나머지가 있을 때만 1을 더하는 방식(예: count / pageSize + (count % pageSize == 0 ? 0 : 1))이면 중간 덧셈이 int 범위를 넘지 않아요. 고친 뒤 count = 0, count = pageSize, count = 2147483647, pageSize = 1 같은 경계값도 확인해 보세요.",
+            "file_path": "Pages.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "51fdf39ad8afe1b7d467b5b5da25ddc9d71da3984668e9e115edb3f10308067c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 7줄만 검토했고 실행 결과는 확인하지 않았습니다. 실제 호출부에서 count가 int 최댓값에 가까운 값으로 들어오는지는 알 수 없어 발생 빈도는 판단하지 않았습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Pages.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"count=2147483647, pageSize=2로 호출하면 count + pageSize - 1이 int 범위를 넘어 -2147483648이 되고, Math.floorDiv(-2147483648, 2)가 -1073741824를 반환해 음수 페이지 수가 나옵니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"5번 줄의 (count + pageSize - 1) 덧셈이 int로 수행되어 큰 count에서 오버플로가 발생합니다. 주석이 count >= 0, pageSize >= 1을 허용하므로 int 최댓값도 유효한 입력입니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 큰 count에서 int 오버플로로 페이지 수가 음수가 될 수 있어요",
+        "issues": [
+          {
+            "line": 5,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              5
+            ],
+            "trigger": "count가 int 최댓값(2147483647)이고 pageSize가 2 이상인 값(예: 2)으로 pages(2147483647, 2)를 호출하면",
+            "consequence": "count=2147483647, pageSize=2로 호출하면 count + pageSize - 1이 int 범위를 넘어 -2147483648이 되고, Math.floorDiv(-2147483648, 2)가 -1073741824를 반환해 음수 페이지 수가 나옵니다.",
+            "assumptions": [],
+            "title": "큰 count에서 int 오버플로로 페이지 수가 음수가 될 수 있어요",
+            "evidence": "3줄 주석은 count >= 0, pageSize >= 1을 전제로 하므로 count = 2147483647은 유효한 입력이에요. 5줄에서 count + pageSize - 1을 먼저 계산하는데, 이 덧셈은 int로 수행돼요. 2147483647 + 2 - 1 = 2147483648은 int 최댓값을 1 넘어서 -2147483648로 넘어가고, Math.floorDiv(-2147483648, 2)는 -1073741824를 돌려줘요. 자바에서 int 덧셈은 결과를 담는 타입과 무관하게 int 범위 안에서만 계산되는 점이 원인이에요.",
+            "suggestion": "오버플로를 피하려면 나눗셈을 두 번 쓰는 패턴이 안전해요: count / pageSize에 나머지가 있을 때만 1을 더하는 방식(예: count / pageSize + (count % pageSize == 0 ? 0 : 1))이면 중간 덧셈이 int 범위를 넘지 않아요. 고친 뒤 count = 0, count = pageSize, count = 2147483647, pageSize = 1 같은 경계값도 확인해 보세요.",
+            "file_path": "Pages.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "51fdf39ad8afe1b7d467b5b5da25ddc9d71da3984668e9e115edb3f10308067c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Pages.java",
+              "provided_lines": 7
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 5,
+              "outcome": "FINDING",
+              "observation": "5번 줄의 (count + pageSize - 1) 덧셈이 int로 수행되어 큰 count에서 오버플로가 발생합니다. 주석이 count >= 0, pageSize >= 1을 허용하므로 int 최댓값도 유효한 입력입니다.",
+              "file_path": "Pages.java"
+            }
+          ]
+        }
+      },
+      "seconds": 5.343
+    }
+  ],
+  "finished_at": "2026-10-05T12:37:35.106867+00:00",
+  "summary": {
+    "reviews": 20,
+    "completed": 20,
+    "attempts_this_run": 40,
+    "campaign_attempts_total": 152,
+    "input_tokens": 174943,
+    "output_tokens": 10566
+  }
+}

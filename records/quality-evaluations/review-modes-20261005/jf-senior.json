@@ -1,0 +1,2498 @@
+{
+  "campaign": "review-modes-20261005",
+  "run": "jf-senior",
+  "started_at": "2026-10-05T14:41:57.489545+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-655db827c5db45b1",
+  "review_mode": "SENIOR",
+  "corpus": "evals\\review-modes-v1\\cases-junior-friendly.json",
+  "corpus_sha256": "ba62a826664b0b9b0fe655dc122c42a5ae93afa43ed928ffa8548a99d5d26ddf",
+  "repeats": 2,
+  "max_calls": 56,
+  "scope": "synthetic authored sources only; product path; no retries; no DB writes",
+  "cases": [
+    {
+      "id": "py-mutable-default-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "c09752a78ba2428d52f810dfdec780cd171be9f14ce8252720c5acf068895c71",
+      "input_tokens": 8657,
+      "output_tokens": 349,
+      "draft_raw": "{\"summary\":\"add_tag의 기본 인자로 가변 리스트 []를 사용하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"tags 인자를 생략한 채 add_tag를 두 번 이상 호출할 때\",\"consequence\":\"기본 리스트 객체가 호출 간에 공유되어 이전 호출의 tag가 누적된 리스트가 반환됩니다.\",\"assumptions\":[],\"title\":\"가변 기본 인자가 호출 간에 공유됩니다\",\"evidence\":\"2줄의 기본값 []는 함수 정의 시 한 번만 생성되고, 3줄의 append가 그 동일 객체를 변경합니다.\",\"suggestion\":\"기본값을 None으로 두고 함수 내부에서 tags가 None이면 새 리스트를 만들도록 하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 가변 기본 인자가 호출 간에 공유됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "tags 인자를 생략한 채 add_tag를 두 번 이상 호출할 때",
+            "consequence": "기본 리스트 객체가 호출 간에 공유되어 이전 호출의 tag가 누적된 리스트가 반환됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자가 호출 간에 공유됩니다",
+            "evidence": "2줄의 기본값 []는 함수 정의 시 한 번만 생성되고, 3줄의 append가 그 동일 객체를 변경합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 tags가 None이면 새 리스트를 만들도록 하세요.",
+            "file_path": "tags.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "3986024bc4a01fdf048aa0df8ce9cfe8d3c4e48318448fb45d7dc195709be96d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "tags.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"tags를 생략한 두 번째 호출은 첫 호출에서 append된 tag가 남아 있는 동일 리스트를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 가변 기본 인자 []가 호출 간 공유되어 3줄 append 결과가 누적됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 가변 기본 인자가 호출 간에 공유됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "tags 인자를 생략한 채 add_tag를 두 번 이상 호출할 때",
+            "consequence": "tags를 생략한 두 번째 호출은 첫 호출에서 append된 tag가 남아 있는 동일 리스트를 반환합니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자가 호출 간에 공유됩니다",
+            "evidence": "2줄의 기본값 []는 함수 정의 시 한 번만 생성되고, 3줄의 append가 그 동일 객체를 변경합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 tags가 None이면 새 리스트를 만들도록 하세요.",
+            "file_path": "tags.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "3986024bc4a01fdf048aa0df8ce9cfe8d3c4e48318448fb45d7dc195709be96d"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "tags.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "2줄의 가변 기본 인자 []가 호출 간 공유되어 3줄 append 결과가 누적됩니다.",
+              "file_path": "tags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.265
+    },
+    {
+      "id": "py-mutable-default-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "63031666caf31f6b78f3bf7e4f022d9b404c16b0466c34df341fb7ac86b5a3de",
+      "input_tokens": 7842,
+      "output_tokens": 234,
+      "draft_raw": "{\"summary\":\"add_tag가 tags 기본값을 None으로 두고 호출 시 새 리스트를 만들어 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 6줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"add_tag는 tags가 None일 때 새 리스트를 만들어 append하므로 mutable default 인자 문제가 없다. 변경된 라인에서 지원 가능한 결함이 보이지 않는다.\", \"issues\": [], \"limitations\": \"add_tag의 호출자와 tag 값의 계약(예: None 허용 여부)은 제공되지 않아 검토 범위 밖이다. 제공된 6개 라인만 검토했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"tags=None 기본값에 대해 None 검사 후 새 리스트를 생성하므로 호출 간 공유 mutable default가 없다. append 후 반환하는 동작에 결함 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "add_tag의 호출자와 tag 값의 계약(예: None 허용 여부)은 제공되지 않아 검토 범위 밖이다. 제공된 6개 라인만 검토했다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "tags.py",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "tags=None 기본값에 대해 None 검사 후 새 리스트를 생성하므로 호출 간 공유 mutable default가 없다. append 후 반환하는 동작에 결함 없음.",
+              "file_path": "tags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.985
+    },
+    {
+      "id": "py-off-by-one-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "b09efb014193aa791cbd462e96ae22a9d14f6f38fa2bd7cef7f8b4f5e18098e8",
+      "input_tokens": 8678,
+      "output_tokens": 403,
+      "draft_raw": "{\"summary\":\"print_rows의 루프 범위가 len(rows) + 1로 변경되어 마지막 인덱스에서 범위를 벗어납니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"비어 있지 않은 rows로 print_rows를 호출할 때\",\"consequence\":\"i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.\",\"assumptions\":[],\"title\":\"루프 상한이 1 초과하여 IndexError 발생\",\"evidence\":\"2줄의 range(len(rows) + 1)은 i를 0부터 len(rows)까지 생성하고, 3줄이 rows[i]를 인덱싱하므로 마지막 i=len(rows)는 유효 범위를 벗어납니다.\",\"suggestion\":\"range(len(rows))로 상한을 되돌리거나, 인덱스 대신 enumerate(rows)를 사용하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 루프 상한이 1 초과하여 IndexError 발생",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "비어 있지 않은 rows로 print_rows를 호출할 때",
+            "consequence": "i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.",
+            "assumptions": [],
+            "title": "루프 상한이 1 초과하여 IndexError 발생",
+            "evidence": "2줄의 range(len(rows) + 1)은 i를 0부터 len(rows)까지 생성하고, 3줄이 rows[i]를 인덱싱하므로 마지막 i=len(rows)는 유효 범위를 벗어납니다.",
+            "suggestion": "range(len(rows))로 상한을 되돌리거나, 인덱스 대신 enumerate(rows)를 사용하세요.",
+            "file_path": "report.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "4419bd2c45a7505609111c0b8f627d6357f99809d788d29c89dd3bb09aaaf10e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "report.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"range(len(rows) + 1)이 i=len(rows)까지 생성하고 rows[i] 인덱싱에서 IndexError가 발생합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 루프 상한이 1 초과하여 IndexError 발생",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "비어 있지 않은 rows로 print_rows를 호출할 때",
+            "consequence": "i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.",
+            "assumptions": [],
+            "title": "루프 상한이 1 초과하여 IndexError 발생",
+            "evidence": "2줄의 range(len(rows) + 1)은 i를 0부터 len(rows)까지 생성하고, 3줄이 rows[i]를 인덱싱하므로 마지막 i=len(rows)는 유효 범위를 벗어납니다.",
+            "suggestion": "range(len(rows))로 상한을 되돌리거나, 인덱스 대신 enumerate(rows)를 사용하세요.",
+            "file_path": "report.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "4419bd2c45a7505609111c0b8f627d6357f99809d788d29c89dd3bb09aaaf10e"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "report.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "range(len(rows) + 1)이 i=len(rows)까지 생성하고 rows[i] 인덱싱에서 IndexError가 발생합니다.",
+              "file_path": "report.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.546
+    },
+    {
+      "id": "py-string-is-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "e03d136daf8b570474a62f9e272784d7b82f26eff223aacf946971a0988e0cd5",
+      "input_tokens": 8689,
+      "output_tokens": 403,
+      "draft_raw": "{\"summary\":\"is_finished가 status를 'done'과 is 연산자로 비교하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"status가 'done'과 값은 같지만 동일 객체가 아닌 문자열일 때(예: 런타임에 조립된 'done')\",\"consequence\":\"is 비교가 False가 되어 완료 상태인데도 4줄에서 False를 반환합니다.\",\"assumptions\":[],\"title\":\"문자열 비교에 is를 사용해 값이 같은 비동일 객체를 놓칩니다\",\"evidence\":\"2줄이 'done' 리터럴과 is로 비교합니다. is는 값 동등성이 아니라 객체 동일성을 검사하므로, 값이 같은 다른 문자열 객체는 이 분기를 타지 않습니다.\",\"suggestion\":\"값 비교가 의도라면 ==로 바꾸세요. 싱글턴 상태 객체 비교가 의도라면 그 계약을 명시하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 문자열 비교에 is를 사용해 값이 같은 비동일 객체를 놓칩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "status가 'done'과 값은 같지만 동일 객체가 아닌 문자열일 때(예: 런타임에 조립된 'done')",
+            "consequence": "is 비교가 False가 되어 완료 상태인데도 4줄에서 False를 반환합니다.",
+            "assumptions": [],
+            "title": "문자열 비교에 is를 사용해 값이 같은 비동일 객체를 놓칩니다",
+            "evidence": "2줄이 'done' 리터럴과 is로 비교합니다. is는 값 동등성이 아니라 객체 동일성을 검사하므로, 값이 같은 다른 문자열 객체는 이 분기를 타지 않습니다.",
+            "suggestion": "값 비교가 의도라면 ==로 바꾸세요. 싱글턴 상태 객체 비교가 의도라면 그 계약을 명시하세요.",
+            "file_path": "state.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "77964ab5ec45671fb004769973e5d59759186cfc30dd21bd047b6ca56a396041"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "state.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"status가 'done'과 값은 같지만 동일 객체가 아닌 문자열이면 is 비교가 False가 되어 4줄에서 False를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 'done' 리터럴과 is로 비교해 값이 같은 비동일 문자열을 완료로 인식하지 못합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 문자열 비교에 is를 사용해 값이 같은 비동일 객체를 놓칩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "status가 'done'과 값은 같지만 동일 객체가 아닌 문자열일 때(예: 런타임에 조립된 'done')",
+            "consequence": "status가 'done'과 값은 같지만 동일 객체가 아닌 문자열이면 is 비교가 False가 되어 4줄에서 False를 반환합니다.",
+            "assumptions": [],
+            "title": "문자열 비교에 is를 사용해 값이 같은 비동일 객체를 놓칩니다",
+            "evidence": "2줄이 'done' 리터럴과 is로 비교합니다. is는 값 동등성이 아니라 객체 동일성을 검사하므로, 값이 같은 다른 문자열 객체는 이 분기를 타지 않습니다.",
+            "suggestion": "값 비교가 의도라면 ==로 바꾸세요. 싱글턴 상태 객체 비교가 의도라면 그 계약을 명시하세요.",
+            "file_path": "state.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "77964ab5ec45671fb004769973e5d59759186cfc30dd21bd047b6ca56a396041"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "state.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "2줄에서 'done' 리터럴과 is로 비교해 값이 같은 비동일 문자열을 완료로 인식하지 못합니다.",
+              "file_path": "state.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.829
+    },
+    {
+      "id": "py-average-empty-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "55dc58d4af31800bcd89e983ef8b64b18d02e9f5208bc1f6aa5103350349001b",
+      "input_tokens": 8663,
+      "output_tokens": 369,
+      "draft_raw": "{\"summary\":\"average가 scores 합계를 len(scores)로 나누는 한 줄로 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"아무도 플레이하지 않아 scores가 빈 리스트일 때 average(scores)를 호출하는 경우\",\"consequence\":\"len(scores)가 0이라 3줄에서 ZeroDivisionError가 발생합니다.\",\"assumptions\":[],\"title\":\"빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다\",\"evidence\":\"2줄 docstring이 빈 리스트가 정상 상태임을 명시하고, 3줄은 그 길이로 나눕니다.\",\"suggestion\":\"빈 리스트일 때의 반환값(예: 0 또는 None)을 정하고 나눗셈 전에 분기하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "아무도 플레이하지 않아 scores가 빈 리스트일 때 average(scores)를 호출하는 경우",
+            "consequence": "len(scores)가 0이라 3줄에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+            "evidence": "2줄 docstring이 빈 리스트가 정상 상태임을 명시하고, 3줄은 그 길이로 나눕니다.",
+            "suggestion": "빈 리스트일 때의 반환값(예: 0 또는 None)을 정하고 나눗셈 전에 분기하세요.",
+            "file_path": "stats.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "7d67c6d393bcf5f1999fc7989719c1fe244c8efcd86a86ba179dcfe098589e30"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "stats.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scores가 빈 리스트이면 len(scores)가 0이므로 3줄에서 ZeroDivisionError가 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring이 빈 리스트를 정상 상태로 명시하나 3줄이 len(scores)로 나눠 ZeroDivisionError가 발생합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "아무도 플레이하지 않아 scores가 빈 리스트일 때 average(scores)를 호출하는 경우",
+            "consequence": "scores가 빈 리스트이면 len(scores)가 0이므로 3줄에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+            "evidence": "2줄 docstring이 빈 리스트가 정상 상태임을 명시하고, 3줄은 그 길이로 나눕니다.",
+            "suggestion": "빈 리스트일 때의 반환값(예: 0 또는 None)을 정하고 나눗셈 전에 분기하세요.",
+            "file_path": "stats.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "7d67c6d393bcf5f1999fc7989719c1fe244c8efcd86a86ba179dcfe098589e30"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "stats.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "docstring이 빈 리스트를 정상 상태로 명시하나 3줄이 len(scores)로 나눠 ZeroDivisionError가 발생합니다.",
+              "file_path": "stats.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.171
+    },
+    {
+      "id": "py-average-empty-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "9d041ea3c2155ad592bed0e5c0e9f002e9f9ca609578e2ee5e8a25b73f0bca5d",
+      "input_tokens": 7840,
+      "output_tokens": 277,
+      "draft_raw": "{\"summary\":\"average에 빈 리스트 가드가 추가되어 0.0을 반환합니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"average()는 빈 리스트에 대해 0.0을 반환하도록 가드가 추가되었고, 비어 있지 않은 경우 sum/len으로 평균을 계산한다. 문서화된 계약(빈 리스트 = 아직 아무도 플레이하지 않음)과 일치하며, 제공된 범위에서 동작상 결함은 보이지 않는다.\", \"issues\": [], \"limitations\": \"scores의 원소 타입(예: None 포함 여부)과 호출자 측 계약은 제공되지 않아 검증 범위 밖이다. 테스트는 실행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"빈 리스트는 0.0을 반환하고, 그 외에는 sum(scores)/len(scores)를 반환한다. docstring의 빈 리스트 계약과 일치하며 제공된 라인에서 실패 경로가 보이지 않는다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "scores의 원소 타입(예: None 포함 여부)과 호출자 측 계약은 제공되지 않아 검증 범위 밖이다. 테스트는 실행하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "stats.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "빈 리스트는 0.0을 반환하고, 그 외에는 sum(scores)/len(scores)를 반환한다. docstring의 빈 리스트 계약과 일치하며 제공된 라인에서 실패 경로가 보이지 않는다.",
+              "file_path": "stats.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.375
+    },
+    {
+      "id": "js-foreach-async-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "50323246eebdca5f392f7e64f9ff1cb3d83147ee60a47fbb337431a80bee7d88",
+      "input_tokens": 8761,
+      "output_tokens": 442,
+      "draft_raw": "{\"summary\":\"saveAll이 items.forEach에 async 콜백을 넘겨 각 save(item)의 완료를 기다리지 않고 'all saved'를 출력합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,5],\"trigger\":\"items에 항목이 하나 이상 있을 때 saveAll을 호출하는 경우\",\"consequence\":\"forEach는 반환된 Promise를 무시하므로 5줄의 'all saved'가 save(item) 완료 전에 실행되고, saveAll 자체는 저장 작업이 끝나기 전에 resolve합니다.\",\"assumptions\":[],\"title\":\"forEach async 콜백으로 저장 완료를 기다리지 않습니다\",\"evidence\":\"2줄의 forEach 콜백이 async이고 3줄에서 await save(item)을 하지만 forEach는 콜백의 Promise를 수집하지 않습니다. 따라서 5줄 로그는 저장 완료와 순서가 보장되지 않습니다.\",\"suggestion\":\"for (const item of items) await save(item) 또는 await Promise.all(items.map(...))로 바꿔 완료를 기다린 뒤 로그를 출력하세요.\"}],\"limitations\":\"save의 실패/재시도 동작과 호출자의 완료 대기 여부는 제공되지 않아 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              5
+            ],
+            "trigger": "items에 항목이 하나 이상 있을 때 saveAll을 호출하는 경우",
+            "consequence": "forEach는 반환된 Promise를 무시하므로 5줄의 'all saved'가 save(item) 완료 전에 실행되고, saveAll 자체는 저장 작업이 끝나기 전에 resolve합니다.",
+            "assumptions": [],
+            "title": "forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+            "evidence": "2줄의 forEach 콜백이 async이고 3줄에서 await save(item)을 하지만 forEach는 콜백의 Promise를 수집하지 않습니다. 따라서 5줄 로그는 저장 완료와 순서가 보장되지 않습니다.",
+            "suggestion": "for (const item of items) await save(item) 또는 await Promise.all(items.map(...))로 바꿔 완료를 기다린 뒤 로그를 출력하세요.",
+            "file_path": "save.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "a7386b4caf8a62f8757491e02627b5e771695148891230a3ff40aa165e3f903a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "save의 실패/재시도 동작과 호출자의 완료 대기 여부는 제공되지 않아 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "save.js",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"forEach가 async 콜백의 Promise를 무시하므로 'all saved'가 save(item) 완료 전에 출력되고 saveAll은 저장 완료 전에 resolve한다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"forEach에 async 콜백을 넘겨 저장 완료를 기다리지 않고 로그를 출력한다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              5
+            ],
+            "trigger": "items에 항목이 하나 이상 있을 때 saveAll을 호출하는 경우",
+            "consequence": "forEach가 async 콜백의 Promise를 무시하므로 'all saved'가 save(item) 완료 전에 출력되고 saveAll은 저장 완료 전에 resolve한다.",
+            "assumptions": [],
+            "title": "forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+            "evidence": "2줄의 forEach 콜백이 async이고 3줄에서 await save(item)을 하지만 forEach는 콜백의 Promise를 수집하지 않습니다. 따라서 5줄 로그는 저장 완료와 순서가 보장되지 않습니다.",
+            "suggestion": "for (const item of items) await save(item) 또는 await Promise.all(items.map(...))로 바꿔 완료를 기다린 뒤 로그를 출력하세요.",
+            "file_path": "save.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "a7386b4caf8a62f8757491e02627b5e771695148891230a3ff40aa165e3f903a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "save.js",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "forEach에 async 콜백을 넘겨 저장 완료를 기다리지 않고 로그를 출력한다.",
+              "file_path": "save.js"
+            }
+          ]
+        }
+      },
+      "seconds": 3.734
+    },
+    {
+      "id": "js-foreach-async-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "b9ea0d2af25aec0d9d353d925ed70fb025ad99b4176f085bf775be4d41a4bdd7",
+      "input_tokens": 7774,
+      "output_tokens": 311,
+      "draft_raw": "{\"summary\":\"saveAll이 items를 순차 for...of로 돌며 각 항목을 await save(item)로 저장하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"save의 정의와 실패 계약, items의 출처가 제공되지 않아 저장 실패 시 동작(중단/부분 저장)은 판단하지 않았습니다. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인은 items를 순회하며 각 항목을 순차적으로 await save(item)하는 루프뿐이다. 제공된 코드만으로는 실패 경로나 계약 위반이 확인되지 않는다.\", \"issues\": [], \"limitations\": \"save()의 구현과 계약(반환값, 예외 처리, 멱등성), items의 출처와 원소 유효성, 호출자의 기대 동작이 제공되지 않아 순차 실행의 적절성이나 실패 시 부분 저장 여부는 판단할 수 없다. 테스트는 실행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"items를 순회하며 각 원소를 await save(item)로 저장하는 순차 루프. 제공된 라인에서 null 역참조, 경계 위반, 자원 누수 등 관찰 가능한 실패 경로가 없다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "save()의 구현과 계약(반환값, 예외 처리, 멱등성), items의 출처와 원소 유효성, 호출자의 기대 동작이 제공되지 않아 순차 실행의 적절성이나 실패 시 부분 저장 여부는 판단할 수 없다. 테스트는 실행하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "save.js",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "items를 순회하며 각 원소를 await save(item)로 저장하는 순차 루프. 제공된 라인에서 null 역참조, 경계 위반, 자원 누수 등 관찰 가능한 실패 경로가 없다.",
+              "file_path": "save.js"
+            }
+          ]
+        }
+      },
+      "seconds": 3.188
+    },
+    {
+      "id": "js-var-closure-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "0fb879073a5f7a56602c63b2346821f743c386cdecd587dac81366aabddb4d90",
+      "input_tokens": 8657,
+      "output_tokens": 371,
+      "draft_raw": "{\"summary\":\"var로 선언된 루프 변수를 setTimeout 콜백이 참조하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"루프가 동기적으로 완료된 뒤 타이머 콜백이 실행될 때\",\"consequence\":\"모든 콜백이 최종 값 3을 출력하여 0, 1, 2가 출력되지 않습니다.\",\"assumptions\":[],\"title\":\"var 캡처로 인해 3이 세 번 출력됩니다\",\"evidence\":\"1줄은 0, 1, 2를 요구합니다. 2줄의 var는 함수 스코프이므로 3줄의 화살표 함수가 동일한 i를 공유합니다.\",\"suggestion\":\"2줄의 var를 let으로 바꿔 반복마다 바인딩을 생성하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: var 캡처로 인해 3이 세 번 출력됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "루프가 동기적으로 완료된 뒤 타이머 콜백이 실행될 때",
+            "consequence": "모든 콜백이 최종 값 3을 출력하여 0, 1, 2가 출력되지 않습니다.",
+            "assumptions": [],
+            "title": "var 캡처로 인해 3이 세 번 출력됩니다",
+            "evidence": "1줄은 0, 1, 2를 요구합니다. 2줄의 var는 함수 스코프이므로 3줄의 화살표 함수가 동일한 i를 공유합니다.",
+            "suggestion": "2줄의 var를 let으로 바꿔 반복마다 바인딩을 생성하세요.",
+            "file_path": "timers.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "775b8c442a33c0a85f7d73fada2a661d113bd029c151394a1c446d8ab0a0159c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "timers.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"세 콜백 모두 루프 종료 후 i의 최종 값 3을 출력해 0, 1, 2가 출력되지 않습니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"var 함수 스코프 공유로 setTimeout 콜백이 최종 값 3을 세 번 출력하며, 1줄의 0,1,2 요구와 불일치.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: var 캡처로 인해 3이 세 번 출력됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "루프가 동기적으로 완료된 뒤 타이머 콜백이 실행될 때",
+            "consequence": "세 콜백 모두 루프 종료 후 i의 최종 값 3을 출력해 0, 1, 2가 출력되지 않습니다.",
+            "assumptions": [],
+            "title": "var 캡처로 인해 3이 세 번 출력됩니다",
+            "evidence": "1줄은 0, 1, 2를 요구합니다. 2줄의 var는 함수 스코프이므로 3줄의 화살표 함수가 동일한 i를 공유합니다.",
+            "suggestion": "2줄의 var를 let으로 바꿔 반복마다 바인딩을 생성하세요.",
+            "file_path": "timers.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "775b8c442a33c0a85f7d73fada2a661d113bd029c151394a1c446d8ab0a0159c"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "timers.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "var 함수 스코프 공유로 setTimeout 콜백이 최종 값 3을 세 번 출력하며, 1줄의 0,1,2 요구와 불일치.",
+              "file_path": "timers.js"
+            }
+          ]
+        }
+      },
+      "seconds": 3.171
+    },
+    {
+      "id": "ts-reduce-empty-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "a09bb722c79278772b664b4c1b4aa91eda6ab6a2f6b5fc1508d688a41ca3a7ad",
+      "input_tokens": 8660,
+      "output_tokens": 375,
+      "draft_raw": "{\"summary\":\"total이 reduce에 초기값 없이 호출되어 빈 배열에서 예외가 발생합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"prices가 빈 배열일 때 total(prices) 호출\",\"consequence\":\"reduce가 초기값 없이 호출되어 TypeError: Reduce of empty array with no initial value가 발생하고, 0을 반환하지 못합니다.\",\"assumptions\":[],\"title\":\"빈 장바구니에서 total이 예외를 던져 0을 반환하지 못합니다\",\"evidence\":\"1줄은 빈 장바구니가 유효하며 합계가 0이어야 한다고 명시합니다. 3줄은 초기값 없이 reduce를 호출하므로 빈 배열에서 예외가 발생합니다.\",\"suggestion\":\"reduce의 두 번째 인자로 0을 전달해 빈 배열에서 0을 반환하도록 하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 장바구니에서 total이 예외를 던져 0을 반환하지 못합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              3
+            ],
+            "trigger": "prices가 빈 배열일 때 total(prices) 호출",
+            "consequence": "reduce가 초기값 없이 호출되어 TypeError: Reduce of empty array with no initial value가 발생하고, 0을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "빈 장바구니에서 total이 예외를 던져 0을 반환하지 못합니다",
+            "evidence": "1줄은 빈 장바구니가 유효하며 합계가 0이어야 한다고 명시합니다. 3줄은 초기값 없이 reduce를 호출하므로 빈 배열에서 예외가 발생합니다.",
+            "suggestion": "reduce의 두 번째 인자로 0을 전달해 빈 배열에서 0을 반환하도록 하세요.",
+            "file_path": "cart.ts",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "942c1966679a0d0ab0aba410b0e2daa20e4588eaf939c99a7dc9e9d41588ef8a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "cart.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"prices가 빈 배열이면 reduce가 초기값 없이 호출되어 TypeError가 발생하고 0을 반환하지 못합니다.\"}],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"1줄의 빈 장바구니 합계 0 요구와 달리 3줄의 초기값 없는 reduce는 빈 배열에서 TypeError를 던집니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 장바구니에서 total이 예외를 던져 0을 반환하지 못합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              3
+            ],
+            "trigger": "prices가 빈 배열일 때 total(prices) 호출",
+            "consequence": "prices가 빈 배열이면 reduce가 초기값 없이 호출되어 TypeError가 발생하고 0을 반환하지 못합니다.",
+            "assumptions": [],
+            "title": "빈 장바구니에서 total이 예외를 던져 0을 반환하지 못합니다",
+            "evidence": "1줄은 빈 장바구니가 유효하며 합계가 0이어야 한다고 명시합니다. 3줄은 초기값 없이 reduce를 호출하므로 빈 배열에서 예외가 발생합니다.",
+            "suggestion": "reduce의 두 번째 인자로 0을 전달해 빈 배열에서 0을 반환하도록 하세요.",
+            "file_path": "cart.ts",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "942c1966679a0d0ab0aba410b0e2daa20e4588eaf939c99a7dc9e9d41588ef8a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "cart.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "1줄의 빈 장바구니 합계 0 요구와 달리 3줄의 초기값 없는 reduce는 빈 배열에서 TypeError를 던집니다.",
+              "file_path": "cart.ts"
+            }
+          ]
+        }
+      },
+      "seconds": 3.469
+    },
+    {
+      "id": "java-string-equals-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "6486793a3149a9523e1b9a0e5a0a7250f049d8b19219fad81c0d364c350f0a7c",
+      "input_tokens": 8923,
+      "output_tokens": 381,
+      "draft_raw": "{\"summary\":\"isAdmin에서 역할 비교가 == 참조 비교로 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"getRole()가 리터럴 \\\"admin\\\"과 동일한 내용이지만 다른 String 인스턴스를 반환할 때\",\"consequence\":\"== 비교가 false가 되어 관리자 사용자에게 isAdmin이 false를 반환합니다.\",\"assumptions\":[],\"title\":\"String 역할 비교에 == 사용으로 관리자 판별이 실패합니다\",\"evidence\":\"3줄이 String을 == 로 비교합니다. Java에서 ==는 참조 동일성을 비교하므로 내용이 같은 비인터닝 String은 false가 됩니다.\",\"suggestion\":\"user.getRole() != null && user.getRole().equals(\\\"admin\\\") 또는 \\\"admin\\\".equals(user.getRole())로 내용 비교하세요.\"}],\"limitations\":\"제공 범위만 검토. getRole()의 반환 값 생성 방식과 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: String 역할 비교에 == 사용으로 관리자 판별이 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "getRole()가 리터럴 \"admin\"과 동일한 내용이지만 다른 String 인스턴스를 반환할 때",
+            "consequence": "== 비교가 false가 되어 관리자 사용자에게 isAdmin이 false를 반환합니다.",
+            "assumptions": [],
+            "title": "String 역할 비교에 == 사용으로 관리자 판별이 실패합니다",
+            "evidence": "3줄이 String을 == 로 비교합니다. Java에서 ==는 참조 동일성을 비교하므로 내용이 같은 비인터닝 String은 false가 됩니다.",
+            "suggestion": "user.getRole() != null && user.getRole().equals(\"admin\") 또는 \"admin\".equals(user.getRole())로 내용 비교하세요.",
+            "file_path": "Login.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "b7b1d2d1309f7a51cc01fa455b087b94ec12d8bd3210245b44e29541f28ab9f9"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. getRole()의 반환 값 생성 방식과 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Login.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"getRole()가 내용은 \\\"admin\\\"이지만 인터닝되지 않은 다른 String 인스턴스를 반환하면 == 비교가 false가 되어 isAdmin이 false를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3행에서 String 역할을 == 로 비교해 비인터닝 동일 내용 String에 대해 관리자 판별이 false가 됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: String 역할 비교에 == 사용으로 관리자 판별이 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "getRole()가 리터럴 \"admin\"과 동일한 내용이지만 다른 String 인스턴스를 반환할 때",
+            "consequence": "getRole()가 내용은 \"admin\"이지만 인터닝되지 않은 다른 String 인스턴스를 반환하면 == 비교가 false가 되어 isAdmin이 false를 반환합니다.",
+            "assumptions": [],
+            "title": "String 역할 비교에 == 사용으로 관리자 판별이 실패합니다",
+            "evidence": "3줄이 String을 == 로 비교합니다. Java에서 ==는 참조 동일성을 비교하므로 내용이 같은 비인터닝 String은 false가 됩니다.",
+            "suggestion": "user.getRole() != null && user.getRole().equals(\"admin\") 또는 \"admin\".equals(user.getRole())로 내용 비교하세요.",
+            "file_path": "Login.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "b7b1d2d1309f7a51cc01fa455b087b94ec12d8bd3210245b44e29541f28ab9f9"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Login.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "3행에서 String 역할을 == 로 비교해 비인터닝 동일 내용 String에 대해 관리자 판별이 false가 됩니다.",
+              "file_path": "Login.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.344
+    },
+    {
+      "id": "java-string-equals-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "ede1fd30cc36a737de09e51ed66f58782df369be5242c566c9da9b6e99a9a8ec",
+      "input_tokens": 8010,
+      "output_tokens": 268,
+      "draft_raw": "{\"summary\":\"isAdmin이 user.getRole() 결과를 \\\"admin\\\"과 비교하는 조건으로 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 6줄만 검토했으며 User.getRole()의 반환 계약과 호출자는 확인할 수 없습니다. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인은 `\\\"admin\\\".equals(user.getRole())`로, 리터럴을 수신자로 두어 role이 null이어도 NPE 없이 false를 반환한다. 제공된 컨텍스트에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"User.getRole()의 반환 계약과 호출자, 권한 판정의 상위 흐름은 제공되지 않아 확인하지 못했다. 정적 분석 결과도 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"role 비교가 리터럴 수신자 equals로 되어 있어 null role에서도 NPE 없이 false를 반환한다. 제공된 범위에서 잘못된 반환/예외 경로는 보이지 않는다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "User.getRole()의 반환 계약과 호출자, 권한 판정의 상위 흐름은 제공되지 않아 확인하지 못했다. 정적 분석 결과도 없다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Login.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "role 비교가 리터럴 수신자 equals로 되어 있어 null role에서도 NPE 없이 false를 반환한다. 제공된 범위에서 잘못된 반환/예외 경로는 보이지 않는다.",
+              "file_path": "Login.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.25
+    },
+    {
+      "id": "java-int-division-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "f2619de143dea95479b08c447d26637639aefa350acd5c8b191698824ecfaf24",
+      "input_tokens": 8978,
+      "output_tokens": 416,
+      "draft_raw": "{\"summary\":\"average가 total / count를 int 나눗셈으로 수행하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"total=7, count=2로 average를 호출하는 경우\",\"consequence\":\"int끼리의 나눗셈이 먼저 수행되어 3이 계산된 뒤 double로 변환되므로 3.5가 아니라 3.0이 반환됩니다.\",\"assumptions\":[],\"title\":\"int 나눗셈으로 인해 소수부가 버려집니다\",\"evidence\":\"2줄은 7/2가 3.5라고 명시하고, 4줄은 두 int 피연산자를 나눈 뒤에야 double로 변환합니다. Java에서 int/int는 소수부를 버립니다.\",\"suggestion\":\"피연산자 중 하나를 double로 승격하세요. 예: return (double) total / count;\",\"contract_quote\":\"Returns the average, for example 7 points over 2 games is 3.5.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 나눗셈으로 인해 소수부가 버려집니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "total=7, count=2로 average를 호출하는 경우",
+            "consequence": "int끼리의 나눗셈이 먼저 수행되어 3이 계산된 뒤 double로 변환되므로 3.5가 아니라 3.0이 반환됩니다.",
+            "assumptions": [],
+            "title": "int 나눗셈으로 인해 소수부가 버려집니다",
+            "evidence": "2줄은 7/2가 3.5라고 명시하고, 4줄은 두 int 피연산자를 나눈 뒤에야 double로 변환합니다. Java에서 int/int는 소수부를 버립니다.",
+            "suggestion": "피연산자 중 하나를 double로 승격하세요. 예: return (double) total / count;",
+            "file_path": "Score.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "92f6bc896ca1870f2be5da88ca540572264513dc7b591bb426c897f1687c77e7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Score.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"total=7, count=2일 때 int 나눗셈이 먼저 수행되어 3.0이 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"4줄의 total / count는 int 나눗셈으로 소수부를 버려 2줄의 3.5 계약과 불일치합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 나눗셈으로 인해 소수부가 버려집니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "total=7, count=2로 average를 호출하는 경우",
+            "consequence": "total=7, count=2일 때 int 나눗셈이 먼저 수행되어 3.0이 반환됩니다.",
+            "assumptions": [],
+            "title": "int 나눗셈으로 인해 소수부가 버려집니다",
+            "evidence": "2줄은 7/2가 3.5라고 명시하고, 4줄은 두 int 피연산자를 나눈 뒤에야 double로 변환합니다. Java에서 int/int는 소수부를 버립니다.",
+            "suggestion": "피연산자 중 하나를 double로 승격하세요. 예: return (double) total / count;",
+            "file_path": "Score.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "92f6bc896ca1870f2be5da88ca540572264513dc7b591bb426c897f1687c77e7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Score.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "4줄의 total / count는 int 나눗셈으로 소수부를 버려 2줄의 3.5 계약과 불일치합니다.",
+              "file_path": "Score.java"
+            }
+          ]
+        }
+      },
+      "seconds": 4.063
+    },
+    {
+      "id": "java-int-division-clean",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "5aff1fbdffbb49d4a7aac7e216953b634cd3e44310bcfc8d0b5392c8910b8afd",
+      "input_tokens": 8030,
+      "output_tokens": 354,
+      "draft_raw": "{\"summary\":\"average가 (double) total / count로 나눗셈을 수행하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했으며 실행 결과는 미확인. count가 0인 호출 경로는 제공되지 않아 판단 근거가 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"average(int,int)의 반환식이 (double) total / count로 변경되어 정수 나눗셈 문제는 해결됐다. count가 0일 때 double 나눗셈은 예외 없이 Infinity/NaN을 반환하지만, 제공된 계약(주석)은 count>0인 예시만 제시하고 0에 대한 요구사항이 없어 결함으로 단정할 근거가 없다. 변경 라인에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"average의 호출자와 count==0 입력의 허용 여부가 제공되지 않아, 0으로 나누는 경로가 실제로 도달 가능한지 또는 계약 위반인지 판단할 수 없다. 테스트는 실행하지 않았고 제공된 라인만 검토했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"주석 계약은 평균값 반환을 요구하며 (double) total / count는 이를 충족한다. count==0 시 Infinity/NaN이 되지만 0 입력에 대한 계약·호출자가 제공되지 않아 결함으로 확정할 수 없다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "average의 호출자와 count==0 입력의 허용 여부가 제공되지 않아, 0으로 나누는 경로가 실제로 도달 가능한지 또는 계약 위반인지 판단할 수 없다. 테스트는 실행하지 않았고 제공된 라인만 검토했다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Score.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "주석 계약은 평균값 반환을 요구하며 (double) total / count는 이를 충족한다. count==0 시 Infinity/NaN이 되지만 0 입력에 대한 계약·호출자가 제공되지 않아 결함으로 확정할 수 없다.",
+              "file_path": "Score.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.422
+    },
+    {
+      "id": "py-mutable-default-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "c09752a78ba2428d52f810dfdec780cd171be9f14ce8252720c5acf068895c71",
+      "input_tokens": 8670,
+      "output_tokens": 360,
+      "draft_raw": "{\"summary\":\"add_tag가 기본 인자로 가변 리스트 tags=[]를 사용하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"tags를 생략한 채 add_tag를 두 번 이상 호출할 때\",\"consequence\":\"기본 리스트 객체가 호출 간 공유되어 이전 호출의 tag가 누적된 리스트가 반환됩니다.\",\"assumptions\":[],\"title\":\"가변 기본 인자로 호출 간 상태가 누적됩니다\",\"evidence\":\"2줄의 기본값 []는 함수 정의 시 한 번 생성되어 이후 모든 호출이 같은 객체를 참조하고, 3줄의 append가 그 객체를 직접 변경합니다.\",\"suggestion\":\"기본값을 None으로 두고 함수 내부에서 tags가 None이면 새 리스트를 만들도록 바꾸세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 가변 기본 인자로 호출 간 상태가 누적됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "tags를 생략한 채 add_tag를 두 번 이상 호출할 때",
+            "consequence": "기본 리스트 객체가 호출 간 공유되어 이전 호출의 tag가 누적된 리스트가 반환됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 호출 간 상태가 누적됩니다",
+            "evidence": "2줄의 기본값 []는 함수 정의 시 한 번 생성되어 이후 모든 호출이 같은 객체를 참조하고, 3줄의 append가 그 객체를 직접 변경합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 tags가 None이면 새 리스트를 만들도록 바꾸세요.",
+            "file_path": "tags.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "ab92384dc0d83ecc2dee9cfde7d5e72aa06436a5a52da189f17297954f9ad72f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "tags.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"tags를 생략한 두 번째 이후 호출에서 이전 호출의 tag가 누적된 리스트가 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄의 가변 기본 인자 []가 호출 간 공유되어 3줄 append 결과가 누적됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 가변 기본 인자로 호출 간 상태가 누적됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "tags를 생략한 채 add_tag를 두 번 이상 호출할 때",
+            "consequence": "tags를 생략한 두 번째 이후 호출에서 이전 호출의 tag가 누적된 리스트가 반환됩니다.",
+            "assumptions": [],
+            "title": "가변 기본 인자로 호출 간 상태가 누적됩니다",
+            "evidence": "2줄의 기본값 []는 함수 정의 시 한 번 생성되어 이후 모든 호출이 같은 객체를 참조하고, 3줄의 append가 그 객체를 직접 변경합니다.",
+            "suggestion": "기본값을 None으로 두고 함수 내부에서 tags가 None이면 새 리스트를 만들도록 바꾸세요.",
+            "file_path": "tags.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "ab92384dc0d83ecc2dee9cfde7d5e72aa06436a5a52da189f17297954f9ad72f"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "tags.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "2줄의 가변 기본 인자 []가 호출 간 공유되어 3줄 append 결과가 누적됩니다.",
+              "file_path": "tags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.078
+    },
+    {
+      "id": "py-mutable-default-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "63031666caf31f6b78f3bf7e4f022d9b404c16b0466c34df341fb7ac86b5a3de",
+      "input_tokens": 7842,
+      "output_tokens": 214,
+      "draft_raw": "{\"summary\":\"add_tag가 tags 기본값을 None으로 두고 호출 시 새 리스트를 만들어 반환하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"add_tag는 tags=None일 때 새 리스트를 만들어 반환하므로 mutable default 인자 문제가 없다. 변경된 라인에서 지원 가능한 결함이 보이지 않는다.\", \"issues\": [], \"limitations\": \"add_tag 호출자와 tag 값의 유효성 계약은 제공되지 않아 검토 범위 밖이다. 제공된 6개 라인만 검토했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"tags 기본값이 None이고 None일 때 새 리스트를 생성하므로 호출 간 공유 mutable default가 없다. append 후 반환 동작도 정상이다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "add_tag 호출자와 tag 값의 유효성 계약은 제공되지 않아 검토 범위 밖이다. 제공된 6개 라인만 검토했다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "tags.py",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "tags 기본값이 None이고 None일 때 새 리스트를 생성하므로 호출 간 공유 mutable default가 없다. append 후 반환 동작도 정상이다.",
+              "file_path": "tags.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.844
+    },
+    {
+      "id": "py-off-by-one-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "b09efb014193aa791cbd462e96ae22a9d14f6f38fa2bd7cef7f8b4f5e18098e8",
+      "input_tokens": 8667,
+      "output_tokens": 392,
+      "draft_raw": "{\"summary\":\"print_rows의 루프 범위가 len(rows) + 1로 변경되어 마지막 인덱스에서 범위를 벗어납니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"비어 있지 않은 rows로 print_rows를 호출할 때\",\"consequence\":\"i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.\",\"assumptions\":[],\"title\":\"루프가 마지막에 범위를 벗어난 인덱스를 참조합니다\",\"evidence\":\"2줄의 range(len(rows) + 1)은 i를 0부터 len(rows)까지 만들고, 3줄이 rows[i]를 인덱싱하므로 유효 범위를 한 칸 초과합니다.\",\"suggestion\":\"range(len(rows))로 되돌리거나 enumerate(rows)를 사용하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 루프가 마지막에 범위를 벗어난 인덱스를 참조합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "비어 있지 않은 rows로 print_rows를 호출할 때",
+            "consequence": "i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.",
+            "assumptions": [],
+            "title": "루프가 마지막에 범위를 벗어난 인덱스를 참조합니다",
+            "evidence": "2줄의 range(len(rows) + 1)은 i를 0부터 len(rows)까지 만들고, 3줄이 rows[i]를 인덱싱하므로 유효 범위를 한 칸 초과합니다.",
+            "suggestion": "range(len(rows))로 되돌리거나 enumerate(rows)를 사용하세요.",
+            "file_path": "report.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "4c9b83e653e09dfec1be3c06f4c1712318964cc47cd62c13b3a40ce6ab3ab094"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "report.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"range(len(rows) + 1)이 마지막 반복에서 rows[len(rows)]를 인덱싱해 IndexError가 발생합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 루프가 마지막에 범위를 벗어난 인덱스를 참조합니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "비어 있지 않은 rows로 print_rows를 호출할 때",
+            "consequence": "i가 len(rows)에 도달하는 마지막 반복에서 rows[i]가 IndexError를 발생시킵니다.",
+            "assumptions": [],
+            "title": "루프가 마지막에 범위를 벗어난 인덱스를 참조합니다",
+            "evidence": "2줄의 range(len(rows) + 1)은 i를 0부터 len(rows)까지 만들고, 3줄이 rows[i]를 인덱싱하므로 유효 범위를 한 칸 초과합니다.",
+            "suggestion": "range(len(rows))로 되돌리거나 enumerate(rows)를 사용하세요.",
+            "file_path": "report.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "4c9b83e653e09dfec1be3c06f4c1712318964cc47cd62c13b3a40ce6ab3ab094"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "report.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 1,
+          "revised": 0,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "range(len(rows) + 1)이 마지막 반복에서 rows[len(rows)]를 인덱싱해 IndexError가 발생합니다.",
+              "file_path": "report.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.359
+    },
+    {
+      "id": "py-string-is-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "e03d136daf8b570474a62f9e272784d7b82f26eff223aacf946971a0988e0cd5",
+      "input_tokens": 8688,
+      "output_tokens": 396,
+      "draft_raw": "{\"summary\":\"is_finished의 status 비교가 `is` 연산자로 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2],\"trigger\":\"status가 'done'과 값은 같지만 동일 객체가 아닌 문자열일 때(예: 런타임에 조립되거나 다른 곳에서 생성된 문자열)\",\"consequence\":\"비교가 False가 되어 4줄에서 False를 반환합니다. CPython에서 리터럴 'done'은 인터닝되어 우연히 True가 나올 수 있지만 이는 구현 세부사항이라 보장되지 않습니다.\",\"assumptions\":[],\"title\":\"문자열 비교에 `is`를 사용해 값이 같은 'done'도 False가 될 수 있습니다\",\"evidence\":\"2줄이 `status is 'done'`으로 동일성 비교를 수행합니다. 문자열 값 비교에는 `==`가 필요합니다.\",\"suggestion\":\"`status == 'done'`으로 값 비교로 바꾸세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 문자열 비교에 `is`를 사용해 값이 같은 'done'도 False가 될 수 있습니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "status가 'done'과 값은 같지만 동일 객체가 아닌 문자열일 때(예: 런타임에 조립되거나 다른 곳에서 생성된 문자열)",
+            "consequence": "비교가 False가 되어 4줄에서 False를 반환합니다. CPython에서 리터럴 'done'은 인터닝되어 우연히 True가 나올 수 있지만 이는 구현 세부사항이라 보장되지 않습니다.",
+            "assumptions": [],
+            "title": "문자열 비교에 `is`를 사용해 값이 같은 'done'도 False가 될 수 있습니다",
+            "evidence": "2줄이 `status is 'done'`으로 동일성 비교를 수행합니다. 문자열 값 비교에는 `==`가 필요합니다.",
+            "suggestion": "`status == 'done'`으로 값 비교로 바꾸세요.",
+            "file_path": "state.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "bc70c2c9036174f8b3bb3a3f4cbb60726445be64443f1cce5546177665663086"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "state.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"status가 값은 'done'이지만 동일 객체가 아닌 문자열이면 비교가 False가 되어 함수가 False를 반환합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄에서 문자열 동일성 비교(`is`)를 사용해 값이 같은 비동일 객체 문자열에 대해 False를 반환합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 문자열 비교에 `is`를 사용해 값이 같은 'done'도 False가 될 수 있습니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2
+            ],
+            "trigger": "status가 'done'과 값은 같지만 동일 객체가 아닌 문자열일 때(예: 런타임에 조립되거나 다른 곳에서 생성된 문자열)",
+            "consequence": "status가 값은 'done'이지만 동일 객체가 아닌 문자열이면 비교가 False가 되어 함수가 False를 반환합니다.",
+            "assumptions": [],
+            "title": "문자열 비교에 `is`를 사용해 값이 같은 'done'도 False가 될 수 있습니다",
+            "evidence": "2줄이 `status is 'done'`으로 동일성 비교를 수행합니다. 문자열 값 비교에는 `==`가 필요합니다.",
+            "suggestion": "`status == 'done'`으로 값 비교로 바꾸세요.",
+            "file_path": "state.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "bc70c2c9036174f8b3bb3a3f4cbb60726445be64443f1cce5546177665663086"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "state.py",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "2줄에서 문자열 동일성 비교(`is`)를 사용해 값이 같은 비동일 객체 문자열에 대해 False를 반환합니다.",
+              "file_path": "state.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.343
+    },
+    {
+      "id": "py-average-empty-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "55dc58d4af31800bcd89e983ef8b64b18d02e9f5208bc1f6aa5103350349001b",
+      "input_tokens": 8662,
+      "output_tokens": 367,
+      "draft_raw": "{\"summary\":\"average가 scores 합계를 len(scores)로 나누는 한 줄을 변경했습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3],\"trigger\":\"아무도 플레이하지 않아 scores가 빈 리스트일 때 average(scores)를 호출하는 경우\",\"consequence\":\"len(scores)가 0이라 3줄에서 ZeroDivisionError가 발생합니다.\",\"assumptions\":[],\"title\":\"빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다\",\"evidence\":\"2줄 docstring이 빈 리스트가 정상 상태임을 명시하고, 3줄은 그 길이로 나눕니다.\",\"suggestion\":\"빈 리스트일 때의 반환값(예: 0 또는 None)을 정하고 나눗셈 전에 분기하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "아무도 플레이하지 않아 scores가 빈 리스트일 때 average(scores)를 호출하는 경우",
+            "consequence": "len(scores)가 0이라 3줄에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+            "evidence": "2줄 docstring이 빈 리스트가 정상 상태임을 명시하고, 3줄은 그 길이로 나눕니다.",
+            "suggestion": "빈 리스트일 때의 반환값(예: 0 또는 None)을 정하고 나눗셈 전에 분기하세요.",
+            "file_path": "stats.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "7d67c6d393bcf5f1999fc7989719c1fe244c8efcd86a86ba179dcfe098589e30"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "stats.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"scores가 빈 리스트이면 len(scores)가 0이라 3줄에서 ZeroDivisionError가 발생합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring이 빈 리스트를 정상 상태로 명시하지만 3줄이 len(scores)로 나눠 ZeroDivisionError가 발생합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3
+            ],
+            "trigger": "아무도 플레이하지 않아 scores가 빈 리스트일 때 average(scores)를 호출하는 경우",
+            "consequence": "scores가 빈 리스트이면 len(scores)가 0이라 3줄에서 ZeroDivisionError가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 리스트에서 평균 계산이 ZeroDivisionError로 실패합니다",
+            "evidence": "2줄 docstring이 빈 리스트가 정상 상태임을 명시하고, 3줄은 그 길이로 나눕니다.",
+            "suggestion": "빈 리스트일 때의 반환값(예: 0 또는 None)을 정하고 나눗셈 전에 분기하세요.",
+            "file_path": "stats.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "7d67c6d393bcf5f1999fc7989719c1fe244c8efcd86a86ba179dcfe098589e30"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "stats.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "docstring이 빈 리스트를 정상 상태로 명시하지만 3줄이 len(scores)로 나눠 ZeroDivisionError가 발생합니다.",
+              "file_path": "stats.py"
+            }
+          ]
+        }
+      },
+      "seconds": 3.328
+    },
+    {
+      "id": "py-average-empty-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "9d041ea3c2155ad592bed0e5c0e9f002e9f9ca609578e2ee5e8a25b73f0bca5d",
+      "input_tokens": 7840,
+      "output_tokens": 265,
+      "draft_raw": "{\"summary\":\"average에 빈 리스트 가드가 추가되어 0.0을 반환합니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"빈 리스트에 대한 가드가 추가되어 ZeroDivisionError 경로가 제거되었고, 반환값 0.0은 문서화된 빈 입력 계약과 일치한다. 변경 라인에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"scores의 원소 타입(비수치 값 포함 여부)과 호출자 측 계약은 제공되지 않아 검증 범위 밖이다. 테스트 실행은 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring이 빈 리스트를 유효 입력으로 명시하고, line 3의 가드가 빈 입력에서 0.0을 반환해 line 5의 len(scores) 0 나눗셈에 도달하지 않는다. 비어 있지 않은 입력은 기존 평균 계산을 그대로 수행한다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "scores의 원소 타입(비수치 값 포함 여부)과 호출자 측 계약은 제공되지 않아 검증 범위 밖이다. 테스트 실행은 하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "stats.py",
+              "provided_lines": 5
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "docstring이 빈 리스트를 유효 입력으로 명시하고, line 3의 가드가 빈 입력에서 0.0을 반환해 line 5의 len(scores) 0 나눗셈에 도달하지 않는다. 비어 있지 않은 입력은 기존 평균 계산을 그대로 수행한다.",
+              "file_path": "stats.py"
+            }
+          ]
+        }
+      },
+      "seconds": 2.672
+    },
+    {
+      "id": "js-foreach-async-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "50323246eebdca5f392f7e64f9ff1cb3d83147ee60a47fbb337431a80bee7d88",
+      "input_tokens": 8754,
+      "output_tokens": 460,
+      "draft_raw": "{\"summary\":\"saveAll이 items.forEach에 async 콜백을 넘겨 각 save(item)의 완료를 기다리지 않고 'all saved'를 출력합니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,3,5],\"trigger\":\"items에 항목이 하나 이상 있을 때 saveAll을 호출하는 경우\",\"consequence\":\"forEach는 반환된 Promise를 무시하므로 5줄의 'all saved'가 save(item) 완료 전에 실행되고, saveAll 자체도 저장 완료를 기다리지 않고 반환합니다.\",\"assumptions\":[],\"title\":\"forEach async 콜백으로 저장 완료를 기다리지 않습니다\",\"evidence\":\"2줄의 async 화살표 함수는 Promise를 반환하지만 forEach는 이를 수집하지 않습니다. 3줄의 await는 콜백 내부만 지연시키고 5줄은 그 완료와 무관하게 진행됩니다.\",\"suggestion\":\"for...of로 순차 await하거나 Promise.all(items.map(...))로 await해 모든 save 완료 후 5줄이 실행되도록 하세요.\"}],\"limitations\":\"save의 정의와 호출자는 제공되지 않아 개별 저장 실패 전파 방식은 확인하지 못했습니다.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              5
+            ],
+            "trigger": "items에 항목이 하나 이상 있을 때 saveAll을 호출하는 경우",
+            "consequence": "forEach는 반환된 Promise를 무시하므로 5줄의 'all saved'가 save(item) 완료 전에 실행되고, saveAll 자체도 저장 완료를 기다리지 않고 반환합니다.",
+            "assumptions": [],
+            "title": "forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+            "evidence": "2줄의 async 화살표 함수는 Promise를 반환하지만 forEach는 이를 수집하지 않습니다. 3줄의 await는 콜백 내부만 지연시키고 5줄은 그 완료와 무관하게 진행됩니다.",
+            "suggestion": "for...of로 순차 await하거나 Promise.all(items.map(...))로 await해 모든 save 완료 후 5줄이 실행되도록 하세요.",
+            "file_path": "save.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "a7386b4caf8a62f8757491e02627b5e771695148891230a3ff40aa165e3f903a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "save의 정의와 호출자는 제공되지 않아 개별 저장 실패 전파 방식은 확인하지 못했습니다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "save.js",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"items가 비어 있지 않으면 forEach가 async 콜백의 Promise를 수집하지 않으므로 5줄의 'all saved'가 save(item) 완료 전에 실행되고 saveAll도 저장 완료를 기다리지 않고 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄 forEach에 async 콜백을 넘겨 반환된 Promise가 무시되고, 5줄 로그와 함수 반환이 save 완료를 기다리지 않습니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              3,
+              5
+            ],
+            "trigger": "items에 항목이 하나 이상 있을 때 saveAll을 호출하는 경우",
+            "consequence": "items가 비어 있지 않으면 forEach가 async 콜백의 Promise를 수집하지 않으므로 5줄의 'all saved'가 save(item) 완료 전에 실행되고 saveAll도 저장 완료를 기다리지 않고 반환합니다.",
+            "assumptions": [],
+            "title": "forEach async 콜백으로 저장 완료를 기다리지 않습니다",
+            "evidence": "2줄의 async 화살표 함수는 Promise를 반환하지만 forEach는 이를 수집하지 않습니다. 3줄의 await는 콜백 내부만 지연시키고 5줄은 그 완료와 무관하게 진행됩니다.",
+            "suggestion": "for...of로 순차 await하거나 Promise.all(items.map(...))로 await해 모든 save 완료 후 5줄이 실행되도록 하세요.",
+            "file_path": "save.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "a7386b4caf8a62f8757491e02627b5e771695148891230a3ff40aa165e3f903a"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "save.js",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "2줄 forEach에 async 콜백을 넘겨 반환된 Promise가 무시되고, 5줄 로그와 함수 반환이 save 완료를 기다리지 않습니다.",
+              "file_path": "save.js"
+            }
+          ]
+        }
+      },
+      "seconds": 3.672
+    },
+    {
+      "id": "js-foreach-async-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "b9ea0d2af25aec0d9d353d925ed70fb025ad99b4176f085bf775be4d41a4bdd7",
+      "input_tokens": 7774,
+      "output_tokens": 323,
+      "draft_raw": "{\"summary\":\"saveAll이 items를 순차 for...of로 돌며 각 항목을 await save(item)로 저장하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"save의 정의·실패 계약과 items의 출처가 제공되지 않아 저장 실패 시 동작(중단/부분 저장)은 판단 범위 밖입니다. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인은 `for...of` 루프 구조뿐이며, `await save(item)` 순차 실행과 완료 로그는 기존 동작 그대로다. 제공된 컨텍스트에서 구체적 실패 경로가 보이지 않아 보고할 결함이 없다.\", \"issues\": [], \"limitations\": \"`save`의 구현, `items`의 실제 타입/호출자, 에러 전파 경계는 제공되지 않아 검토 범위 밖이다. 순차 실행이 성능 문제인지 판단할 워크로드 정보도 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"변경 라인은 for...of 루프 구조로, 각 item에 대해 await save(item)를 순차 실행하고 완료 후 로그를 남긴다. 제공된 코드만으로는 null/경계 입력이나 예외 처리 결함이 드러나지 않는다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "`save`의 구현, `items`의 실제 타입/호출자, 에러 전파 경계는 제공되지 않아 검토 범위 밖이다. 순차 실행이 성능 문제인지 판단할 워크로드 정보도 없다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "save.js",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "NO_FINDING",
+              "observation": "변경 라인은 for...of 루프 구조로, 각 item에 대해 await save(item)를 순차 실행하고 완료 후 로그를 남긴다. 제공된 코드만으로는 null/경계 입력이나 예외 처리 결함이 드러나지 않는다.",
+              "file_path": "save.js"
+            }
+          ]
+        }
+      },
+      "seconds": 3.765
+    },
+    {
+      "id": "js-var-closure-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "0fb879073a5f7a56602c63b2346821f743c386cdecd587dac81366aabddb4d90",
+      "input_tokens": 8702,
+      "output_tokens": 434,
+      "draft_raw": "{\"summary\":\"for 루프에서 var i를 사용해 setTimeout 콜백이 i를 캡처하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":2,\"severity\":\"WARNING\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,2,3],\"trigger\":\"루프가 동기적으로 완료된 뒤 setTimeout 콜백이 실행될 때\",\"consequence\":\"var는 함수 스코프라 모든 콜백이 최종값 3을 공유해 0,1,2 대신 3이 세 번 출력됩니다.\",\"assumptions\":[],\"title\":\"var 캡처로 인해 0,1,2 대신 3이 세 번 출력됩니다\",\"evidence\":\"1줄은 0,1,2를 1초 간격으로 출력하라고 명시합니다. 2줄의 var i는 함수 스코프이므로 3줄의 화살표 함수가 각 반복의 값을 캡처하지 않고 동일한 i를 참조합니다.\",\"suggestion\":\"2줄의 var를 let으로 바꿔 반복마다 새 바인딩을 만들면 0,1,2가 출력됩니다.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: var 캡처로 인해 0,1,2 대신 3이 세 번 출력됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "루프가 동기적으로 완료된 뒤 setTimeout 콜백이 실행될 때",
+            "consequence": "var는 함수 스코프라 모든 콜백이 최종값 3을 공유해 0,1,2 대신 3이 세 번 출력됩니다.",
+            "assumptions": [],
+            "title": "var 캡처로 인해 0,1,2 대신 3이 세 번 출력됩니다",
+            "evidence": "1줄은 0,1,2를 1초 간격으로 출력하라고 명시합니다. 2줄의 var i는 함수 스코프이므로 3줄의 화살표 함수가 각 반복의 값을 캡처하지 않고 동일한 i를 참조합니다.",
+            "suggestion": "2줄의 var를 let으로 바꿔 반복마다 새 바인딩을 만들면 0,1,2가 출력됩니다.",
+            "file_path": "timers.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "11c2451930d77193e8ca493e56e124c0d23c9765bf1df2443b9c7819bec52da5"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "timers.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"모든 setTimeout 콜백이 동일한 함수 스코프 i를 참조하고, 루프 종료 후 i가 3이므로 3이 세 번 출력됩니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"2줄의 var i는 함수 스코프라 3줄 콜백들이 최종값 3을 공유해 1줄의 0,1,2 출력 요구를 위반합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: var 캡처로 인해 0,1,2 대신 3이 세 번 출력됩니다",
+        "issues": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "루프가 동기적으로 완료된 뒤 setTimeout 콜백이 실행될 때",
+            "consequence": "모든 setTimeout 콜백이 동일한 함수 스코프 i를 참조하고, 루프 종료 후 i가 3이므로 3이 세 번 출력됩니다.",
+            "assumptions": [],
+            "title": "var 캡처로 인해 0,1,2 대신 3이 세 번 출력됩니다",
+            "evidence": "1줄은 0,1,2를 1초 간격으로 출력하라고 명시합니다. 2줄의 var i는 함수 스코프이므로 3줄의 화살표 함수가 각 반복의 값을 캡처하지 않고 동일한 i를 참조합니다.",
+            "suggestion": "2줄의 var를 let으로 바꿔 반복마다 새 바인딩을 만들면 0,1,2가 출력됩니다.",
+            "file_path": "timers.js",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "11c2451930d77193e8ca493e56e124c0d23c9765bf1df2443b9c7819bec52da5"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "timers.js",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 2,
+              "outcome": "FINDING",
+              "observation": "2줄의 var i는 함수 스코프라 3줄 콜백들이 최종값 3을 공유해 1줄의 0,1,2 출력 요구를 위반합니다.",
+              "file_path": "timers.js"
+            }
+          ]
+        }
+      },
+      "seconds": 3.906
+    },
+    {
+      "id": "ts-reduce-empty-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "a09bb722c79278772b664b4c1b4aa91eda6ab6a2f6b5fc1508d688a41ca3a7ad",
+      "input_tokens": 8640,
+      "output_tokens": 396,
+      "draft_raw": "{\"summary\":\"total이 prices.reduce에 초기값 없이 호출하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[1,3],\"trigger\":\"prices가 빈 배열일 때 total을 호출하는 경우\",\"consequence\":\"reduce가 초기값 없이 호출되어 TypeError: Reduce of empty array with no initial value가 발생합니다.\",\"assumptions\":[],\"title\":\"빈 배열에서 total이 예외를 던져 계약을 위반합니다\",\"evidence\":\"1줄은 빈 카트가 유효하며 합계가 0이어야 한다고 명시합니다. 3줄은 초기값 없이 reduce를 호출하므로 빈 배열에서 예외가 발생합니다.\",\"suggestion\":\"reduce의 두 번째 인자로 0을 전달해 빈 배열에서 0을 반환하도록 하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 total이 예외를 던져 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              3
+            ],
+            "trigger": "prices가 빈 배열일 때 total을 호출하는 경우",
+            "consequence": "reduce가 초기값 없이 호출되어 TypeError: Reduce of empty array with no initial value가 발생합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 total이 예외를 던져 계약을 위반합니다",
+            "evidence": "1줄은 빈 카트가 유효하며 합계가 0이어야 한다고 명시합니다. 3줄은 초기값 없이 reduce를 호출하므로 빈 배열에서 예외가 발생합니다.",
+            "suggestion": "reduce의 두 번째 인자로 0을 전달해 빈 배열에서 0을 반환하도록 하세요.",
+            "file_path": "cart.ts",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "fa2c1c55948dece13ad8f08ebcf950c2cce62dd3234c8f5ddc630b992ce28220"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "cart.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"prices가 빈 배열이면 reduce가 초기값 없이 호출되어 TypeError가 발생하고, 0을 반환해야 한다는 1줄의 계약을 위반합니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"3줄의 reduce가 초기값 없이 호출되어 빈 배열 입력 시 예외가 발생하며, 1줄의 '빈 카트는 0' 계약과 충돌합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 빈 배열에서 total이 예외를 던져 계약을 위반합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              3
+            ],
+            "trigger": "prices가 빈 배열일 때 total을 호출하는 경우",
+            "consequence": "prices가 빈 배열이면 reduce가 초기값 없이 호출되어 TypeError가 발생하고, 0을 반환해야 한다는 1줄의 계약을 위반합니다.",
+            "assumptions": [],
+            "title": "빈 배열에서 total이 예외를 던져 계약을 위반합니다",
+            "evidence": "1줄은 빈 카트가 유효하며 합계가 0이어야 한다고 명시합니다. 3줄은 초기값 없이 reduce를 호출하므로 빈 배열에서 예외가 발생합니다.",
+            "suggestion": "reduce의 두 번째 인자로 0을 전달해 빈 배열에서 0을 반환하도록 하세요.",
+            "file_path": "cart.ts",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "fa2c1c55948dece13ad8f08ebcf950c2cce62dd3234c8f5ddc630b992ce28220"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "cart.ts",
+              "provided_lines": 4
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "3줄의 reduce가 초기값 없이 호출되어 빈 배열 입력 시 예외가 발생하며, 1줄의 '빈 카트는 0' 계약과 충돌합니다.",
+              "file_path": "cart.ts"
+            }
+          ]
+        }
+      },
+      "seconds": 3.172
+    },
+    {
+      "id": "java-string-equals-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "6486793a3149a9523e1b9a0e5a0a7250f049d8b19219fad81c0d364c350f0a7c",
+      "input_tokens": 8936,
+      "output_tokens": 364,
+      "draft_raw": "{\"summary\":\"isAdmin이 role 문자열을 == 로 비교하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":3,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[3],\"trigger\":\"user.getRole()가 리터럴 \\\"admin\\\"과 내용은 같지만 서로 다른 String 인스턴스를 반환할 때\",\"consequence\":\"== 는 참조 동일성을 비교하므로 조건이 false가 되어 관리자에게 false가 반환됩니다.\",\"assumptions\":[],\"title\":\"role 비교가 참조 동일성 비교라 관리자 판별이 실패합니다\",\"evidence\":\"3줄이 String을 == 로 비교합니다. Java에서 == 는 String 내용이 아니라 참조를 비교하므로, intern되지 않은 동일 내용 문자열은 false가 됩니다.\",\"suggestion\":\"equals 비교로 바꾸고, role이 null일 수 있다면 상수 쪽에서 \\\"admin\\\".equals(user.getRole()) 형태로 호출하세요.\"}],\"limitations\":\"제공 범위만 검토. 실행 결과와 getRole()의 실제 반환 방식은 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: role 비교가 참조 동일성 비교라 관리자 판별이 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "user.getRole()가 리터럴 \"admin\"과 내용은 같지만 서로 다른 String 인스턴스를 반환할 때",
+            "consequence": "== 는 참조 동일성을 비교하므로 조건이 false가 되어 관리자에게 false가 반환됩니다.",
+            "assumptions": [],
+            "title": "role 비교가 참조 동일성 비교라 관리자 판별이 실패합니다",
+            "evidence": "3줄이 String을 == 로 비교합니다. Java에서 == 는 String 내용이 아니라 참조를 비교하므로, intern되지 않은 동일 내용 문자열은 false가 됩니다.",
+            "suggestion": "equals 비교로 바꾸고, role이 null일 수 있다면 상수 쪽에서 \"admin\".equals(user.getRole()) 형태로 호출하세요.",
+            "file_path": "Login.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "e7db124e86b61507871458eb0be1eb061994e9417ebe1e3eb2e05915065f9304"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과와 getRole()의 실제 반환 방식은 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Login.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\":[{\"index\":0,\"action\":\"KEEP\",\"reason\":\"CONFIRMED\",\"revised\":null,\"checked_consequence\":\"user.getRole()가 내용은 \\\"admin\\\"이지만 intern되지 않은 별도 String 인스턴스면 조건이 false가 되어 isAdmin은 false를 반환합니다.\"}],\"new_findings\":[],\"file_checks\":[{\"file_id\":\"f1\",\"outcome\":\"FINDING\",\"observation\":\"3행에서 String role을 == 로 비교해 참조 동일성 비교가 됩니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: role 비교가 참조 동일성 비교라 관리자 판별이 실패합니다",
+        "issues": [
+          {
+            "line": 3,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              3
+            ],
+            "trigger": "user.getRole()가 리터럴 \"admin\"과 내용은 같지만 서로 다른 String 인스턴스를 반환할 때",
+            "consequence": "user.getRole()가 내용은 \"admin\"이지만 intern되지 않은 별도 String 인스턴스면 조건이 false가 되어 isAdmin은 false를 반환합니다.",
+            "assumptions": [],
+            "title": "role 비교가 참조 동일성 비교라 관리자 판별이 실패합니다",
+            "evidence": "3줄이 String을 == 로 비교합니다. Java에서 == 는 String 내용이 아니라 참조를 비교하므로, intern되지 않은 동일 내용 문자열은 false가 됩니다.",
+            "suggestion": "equals 비교로 바꾸고, role이 null일 수 있다면 상수 쪽에서 \"admin\".equals(user.getRole()) 형태로 호출하세요.",
+            "file_path": "Login.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "e7db124e86b61507871458eb0be1eb061994e9417ebe1e3eb2e05915065f9304"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Login.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "FINDING",
+              "observation": "3행에서 String role을 == 로 비교해 참조 동일성 비교가 됩니다.",
+              "file_path": "Login.java"
+            }
+          ]
+        }
+      },
+      "seconds": 4.016
+    },
+    {
+      "id": "java-string-equals-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "ede1fd30cc36a737de09e51ed66f58782df369be5242c566c9da9b6e99a9a8ec",
+      "input_tokens": 8010,
+      "output_tokens": 278,
+      "draft_raw": "{\"summary\":\"isAdmin이 user.getRole() 결과를 \\\"admin\\\"과 비교하는 조건으로 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공된 6줄만 검토했으며 User.getRole()의 반환 계약과 호출자 정보는 없습니다. 실행 결과는 미확인.\"}",
+      "checked_raw": "{\"summary\": \"변경된 라인은 `\\\"admin\\\".equals(user.getRole())`로, 리터럴이 수신자이므로 `user.getRole()`이 null이어도 NPE 없이 false를 반환한다. 제공된 범위에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"User.getRole()의 반환 계약과 호출자 정보는 제공되지 않았으나, 리터럴 equals 사용으로 null 안전성은 확보되어 있다. 테스트 실행이나 미제공 코드 검사는 하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"권한 판정이 리터럴 수신자 equals로 변경되어 role이 null이어도 NPE 없이 false를 반환한다. 제공된 코드에서 잘못된 효과를 보이는 경로가 없다.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "User.getRole()의 반환 계약과 호출자 정보는 제공되지 않았으나, 리터럴 equals 사용으로 null 안전성은 확보되어 있다. 테스트 실행이나 미제공 코드 검사는 하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Login.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 3,
+              "outcome": "NO_FINDING",
+              "observation": "권한 판정이 리터럴 수신자 equals로 변경되어 role이 null이어도 NPE 없이 false를 반환한다. 제공된 코드에서 잘못된 효과를 보이는 경로가 없다.",
+              "file_path": "Login.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.516
+    },
+    {
+      "id": "java-int-division-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "f2619de143dea95479b08c447d26637639aefa350acd5c8b191698824ecfaf24",
+      "input_tokens": 8950,
+      "output_tokens": 398,
+      "draft_raw": "{\"summary\":\"average(int total, int count)가 total / count를 반환하도록 변경되었습니다.\",\"issues\":[{\"file_id\":\"f1\",\"line\":4,\"severity\":\"ERROR\",\"basis\":\"SUPPORTED\",\"evidence_lines\":[2,4],\"trigger\":\"total=7, count=2로 average를 호출하는 경우\",\"consequence\":\"int 나눗셈이 먼저 수행되어 3이 계산되고, double로 변환되어 3.0이 반환됩니다.\",\"assumptions\":[],\"title\":\"int 나눗셈으로 인해 소수부가 버려집니다\",\"evidence\":\"2줄은 7/2가 3.5가 되어야 함을 명시하지만, 4줄은 두 int 피연산자에 대해 /를 수행하므로 double 변환 전에 정수 나눗셈이 일어납니다.\",\"suggestion\":\"나눗셈 전에 피연산자를 double로 승격하세요(예: (double) total / count).\"}],\"limitations\":\"제공 범위만 검토. 실행 결과는 미확인.\"}",
+      "draft_result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 나눗셈으로 인해 소수부가 버려집니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "total=7, count=2로 average를 호출하는 경우",
+            "consequence": "int 나눗셈이 먼저 수행되어 3이 계산되고, double로 변환되어 3.0이 반환됩니다.",
+            "assumptions": [],
+            "title": "int 나눗셈으로 인해 소수부가 버려집니다",
+            "evidence": "2줄은 7/2가 3.5가 되어야 함을 명시하지만, 4줄은 두 int 피연산자에 대해 /를 수행하므로 double 변환 전에 정수 나눗셈이 일어납니다.",
+            "suggestion": "나눗셈 전에 피연산자를 double로 승격하세요(예: (double) total / count).",
+            "file_path": "Score.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "92f6bc896ca1870f2be5da88ca540572264513dc7b591bb426c897f1687c77e7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공 범위만 검토. 실행 결과는 미확인.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Score.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증."
+      },
+      "checked_raw": "{\"decisions\": [{\"index\": 0, \"action\": \"KEEP\", \"reason\": \"CONFIRMED\", \"revised\": null, \"checked_consequence\": \"total=7, count=2일 때 int 나눗셈으로 3이 계산되고 double로 변환되어 3.0이 반환됩니다.\"}], \"new_findings\": [], \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"2줄 주석은 7/2=3.5를 기대하지만 4줄은 int/int 나눗셈으로 3.0을 반환합니다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: int 나눗셈으로 인해 소수부가 버려집니다",
+        "issues": [
+          {
+            "line": 4,
+            "severity": "ERROR",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              2,
+              4
+            ],
+            "trigger": "total=7, count=2로 average를 호출하는 경우",
+            "consequence": "total=7, count=2일 때 int 나눗셈으로 3이 계산되고 double로 변환되어 3.0이 반환됩니다.",
+            "assumptions": [],
+            "title": "int 나눗셈으로 인해 소수부가 버려집니다",
+            "evidence": "2줄은 7/2가 3.5가 되어야 함을 명시하지만, 4줄은 두 int 피연산자에 대해 /를 수행하므로 double 변환 전에 정수 나눗셈이 일어납니다.",
+            "suggestion": "나눗셈 전에 피연산자를 double로 승격하세요(예: (double) total / count).",
+            "file_path": "Score.java",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "92f6bc896ca1870f2be5da88ca540572264513dc7b591bb426c897f1687c77e7"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 변경·관련 코드 범위에서 AI가 근거를 다시 검토했어요. 전체 호출 경로와 실행 결과는 확인하지 않았으며 잘못된 판단이나 누락이 있을 수 있어요.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Score.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "CHECKED",
+          "kept": 0,
+          "revised": 1,
+          "dropped": 0,
+          "added": 0,
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "FINDING",
+              "observation": "2줄 주석은 7/2=3.5를 기대하지만 4줄은 int/int 나눗셈으로 3.0을 반환합니다.",
+              "file_path": "Score.java"
+            }
+          ]
+        }
+      },
+      "seconds": 3.438
+    },
+    {
+      "id": "java-int-division-clean",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "5aff1fbdffbb49d4a7aac7e216953b634cd3e44310bcfc8d0b5392c8910b8afd",
+      "input_tokens": 8030,
+      "output_tokens": 390,
+      "draft_raw": "{\"summary\":\"average가 (double) total / count로 나눗셈을 수행하도록 변경되었습니다.\",\"issues\":[],\"limitations\":\"제공 범위만 검토했고 실행 결과는 미확인. count가 0인 호출 경로는 제공되지 않아 판단 근거가 없습니다.\"}",
+      "checked_raw": "{\"summary\": \"average(int,int)의 변경된 반환식 (double) total / count를 계약과 대조했다. 주석은 '7점/2경기 = 3.5'를 요구하고, 피연산자 하나를 double로 캐스팅해 부동소수점 나눗셈이 수행되므로 7/2는 3.5를 반환한다. count == 0은 int 파라미터의 유효 범위 안에 있으나 제공된 계약이 0을 유효 입력으로 규정하지 않으므로 결함으로 성립하지 않는다. 제출된 변경 라인에서 지원되는 문제는 없다.\", \"issues\": [], \"limitations\": \"average의 호출자와 count == 0에 대한 계약이 제공되지 않아 0 입력의 기대 동작은 판단 범위 밖이다. 테스트는 실행하지 않았고 제공된 라인만 정적으로 검토했다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"주석 계약은 7/2 → 3.5를 요구한다. (double) total / count는 피연산자를 double로 승격해 7/2 = 3.5를 반환하므로 계약을 충족한다. count == 0은 유효 입력으로 규정되지 않아 결함 아님.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "average의 호출자와 count == 0에 대한 계약이 제공되지 않아 0 입력의 기대 동작은 판단 범위 밖이다. 테스트는 실행하지 않았고 제공된 라인만 정적으로 검토했다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "Score.java",
+              "provided_lines": 6
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 4,
+              "outcome": "NO_FINDING",
+              "observation": "주석 계약은 7/2 → 3.5를 요구한다. (double) total / count는 피연산자를 double로 승격해 7/2 = 3.5를 반환하므로 계약을 충족한다. count == 0은 유효 입력으로 규정되지 않아 결함 아님.",
+              "file_path": "Score.java"
+            }
+          ]
+        }
+      },
+      "seconds": 4.157
+    }
+  ],
+  "finished_at": "2026-10-05T14:43:33.767328+00:00",
+  "summary": {
+    "reviews": 28,
+    "completed": 28,
+    "attempts_this_run": 56,
+    "campaign_attempts_total": 448,
+    "input_tokens": 236327,
+    "output_tokens": 9990
+  }
+}

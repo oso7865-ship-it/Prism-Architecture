@@ -1,0 +1,202 @@
+{
+  "campaign": "review-modes-20261005",
+  "run": "retries-senior-recheck",
+  "started_at": "2026-10-05T14:56:33.599782+00:00",
+  "model": "deepseek-flash",
+  "prompt_version": "rh1-7f5120ed8a333599",
+  "review_mode": "SENIOR",
+  "corpus": "C:\\Users\\82109\\AppData\\Local\\Temp\\one-case.json",
+  "corpus_sha256": "314c584ed4bc32378d824a78adf32ac6f1678951bac80a7e0224ff3f68cedae2",
+  "repeats": 3,
+  "max_calls": 6,
+  "scope": "synthetic authored sources only; product path; no retries; no DB writes",
+  "cases": [
+    {
+      "id": "default-arg-retries-defect",
+      "repeat": 1,
+      "status": "COMPLETED",
+      "payload_sha256": "49ebae70c7bb0cbfd26c3f3d0061887ce30c6e47e91441161c65d737ed52c17b",
+      "input_tokens": 7859,
+      "output_tokens": 593,
+      "draft_raw": "{\"summary\":\"retries_left가 max_retries에서 used를 뺀 값을 반환하는 함수가 추가되었습니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1은 `retries_left`의 시그니처 한 줄만 변경되었고, 본문은 `max_retries - used`를 그대로 반환한다. 문서화된 계약(기본 인자에서 결과 3)과 실제 반환값(3 - 1 = 2)이 일치하지 않는다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 1, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [1, 2, 3], \"trigger\": \"인자 없이 `retries_left()`를 호출하면 기본값 max_retries=3, used=1이 적용된다.\", \"consequence\": \"3 - 1 = 2를 반환하므로 docstring이 명시한 결과 3과 불일치한다.\", \"assumptions\": [], \"title\": \"기본 인자 호출 시 docstring이 명시한 반환값 3과 실제 반환값 2가 불일치\", \"evidence\": \"docstring은 \\\"With default arguments the result is 3\\\"이라고 명시하지만, 기본값 max_retries=3, used=1로 계산하면 2가 반환된다. 반환식 자체는 변경되지 않았으나 기본값이 결과를 결정하므로 계약 위반이 성립한다.\", \"suggestion\": \"의도한 계약이 '기본 인자에서 3'이라면 기본값을 max_retries=3, used=0으로 맞추거나 docstring의 기대값을 실제 동작에 맞게 수정한다. 어느 쪽이 의도인지 확인이 필요하다.\", \"contract_quote\": \"With default arguments the result is 3.\"}], \"limitations\": \"변경된 라인은 시그니처 한 줄뿐이며 호출자나 테스트는 제공되지 않았다. docstring과 실제 반환값 중 어느 쪽이 의도된 계약인지는 제공된 정보만으로 단정할 수 없다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 기본 인자에서 결과 3을 요구하지만, 기본값 max_retries=3, used=1로 3-1=2를 반환해 계약과 불일치한다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 기본 인자 호출 시 docstring이 명시한 반환값 3과 실제 반환값 2가 불일치",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "인자 없이 `retries_left()`를 호출하면 기본값 max_retries=3, used=1이 적용된다.",
+            "consequence": "3 - 1 = 2를 반환하므로 docstring이 명시한 결과 3과 불일치한다.",
+            "assumptions": [],
+            "title": "기본 인자 호출 시 docstring이 명시한 반환값 3과 실제 반환값 2가 불일치",
+            "evidence": "docstring은 \"With default arguments the result is 3\"이라고 명시하지만, 기본값 max_retries=3, used=1로 계산하면 2가 반환된다. 반환식 자체는 변경되지 않았으나 기본값이 결과를 결정하므로 계약 위반이 성립한다.",
+            "suggestion": "의도한 계약이 '기본 인자에서 3'이라면 기본값을 max_retries=3, used=0으로 맞추거나 docstring의 기대값을 실제 동작에 맞게 수정한다. 어느 쪽이 의도인지 확인이 필요하다.",
+            "file_path": "retry.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "b04add2408942301b90602c68ceac87ffc99029aaa418441c3e0c2d26d14b466"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "변경된 라인은 시그니처 한 줄뿐이며 호출자나 테스트는 제공되지 않았다. docstring과 실제 반환값 중 어느 쪽이 의도된 계약인지는 제공된 정보만으로 단정할 수 없다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "retry.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 1,
+              "outcome": "FINDING",
+              "observation": "docstring은 기본 인자에서 결과 3을 요구하지만, 기본값 max_retries=3, used=1로 3-1=2를 반환해 계약과 불일치한다.",
+              "file_path": "retry.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.687
+    },
+    {
+      "id": "default-arg-retries-defect",
+      "repeat": 2,
+      "status": "COMPLETED",
+      "payload_sha256": "49ebae70c7bb0cbfd26c3f3d0061887ce30c6e47e91441161c65d737ed52c17b",
+      "input_tokens": 7859,
+      "output_tokens": 582,
+      "draft_raw": "{\"summary\":\"retries_left가 max_retries - used를 반환하는 함수가 추가되었습니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1은 `retries_left`의 시그니처 한 줄만 변경되었고, 본문은 `max_retries - used`를 그대로 반환한다. 문서화된 계약(기본 인자에서 3)과 실제 반환값(3 - 1 = 2)이 일치하지 않는다.\", \"issues\": [{\"file_id\": \"f1\", \"line\": 1, \"severity\": \"WARNING\", \"basis\": \"SUPPORTED\", \"evidence_lines\": [1, 2, 3], \"trigger\": \"인자 없이 `retries_left()`를 호출하면 max_retries=3, used=1이 적용된다.\", \"consequence\": \"반환값은 2이며, docstring이 명시한 3과 다르다.\", \"assumptions\": [], \"title\": \"기본 인자 호출 시 docstring이 명시한 값(3)과 실제 반환값(2)이 불일치\", \"evidence\": \"docstring은 \\\"With default arguments the result is 3\\\"이라고 명시하지만, 기본값 max_retries=3, used=1로 `max_retries - used`를 계산하면 2가 반환된다. 계약과 관측된 반환값이 어긋난다.\", \"suggestion\": \"의도가 '남은 재시도 횟수'라면 기본 used를 0으로 두거나 docstring의 기대값을 2로 수정해 계약과 반환값을 일치시켜야 한다.\", \"contract_quote\": \"With default arguments the result is 3.\", \"expression_repair\": null}], \"limitations\": \"제공된 3줄 외 호출자나 테스트가 없어, docstring과 본문 중 어느 쪽이 실제 의도인지는 이 컨텍스트만으로 확정할 수 없다. 변경 라인은 시그니처(1행)뿐이며 본문 로직 자체는 변경되지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"FINDING\", \"observation\": \"docstring은 기본 인자에서 결과가 3이라 명시하나, 기본값(3, 1)으로 계산하면 2가 반환되어 계약과 불일치한다.\"}]}",
+      "result": {
+        "summary": "개선 제안 1건이 있어요.\n먼저 검토할 제안: 기본 인자 호출 시 docstring이 명시한 값(3)과 실제 반환값(2)이 불일치",
+        "issues": [
+          {
+            "line": 1,
+            "severity": "WARNING",
+            "basis": "SUPPORTED",
+            "evidence_lines": [
+              1,
+              2,
+              3
+            ],
+            "trigger": "인자 없이 `retries_left()`를 호출하면 max_retries=3, used=1이 적용된다.",
+            "consequence": "반환값은 2이며, docstring이 명시한 3과 다르다.",
+            "assumptions": [],
+            "title": "기본 인자 호출 시 docstring이 명시한 값(3)과 실제 반환값(2)이 불일치",
+            "evidence": "docstring은 \"With default arguments the result is 3\"이라고 명시하지만, 기본값 max_retries=3, used=1로 `max_retries - used`를 계산하면 2가 반환된다. 계약과 관측된 반환값이 어긋난다.",
+            "suggestion": "의도가 '남은 재시도 횟수'라면 기본 used를 0으로 두거나 docstring의 기대값을 2로 수정해 계약과 반환값을 일치시켜야 한다.",
+            "file_path": "retry.py",
+            "suggestion_check": {
+              "status": "NOT_VERIFIED",
+              "samples": 0
+            },
+            "key": "71bf3e69df8688763aac3a924f6754202d4929b54c0e227fa4a4433ff000db69"
+          }
+        ],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "제공된 3줄 외 호출자나 테스트가 없어, docstring과 본문 중 어느 쪽이 실제 의도인지는 이 컨텍스트만으로 확정할 수 없다. 변경 라인은 시그니처(1행)뿐이며 본문 로직 자체는 변경되지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "retry.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 1,
+              "outcome": "FINDING",
+              "observation": "docstring은 기본 인자에서 결과가 3이라 명시하나, 기본값(3, 1)으로 계산하면 2가 반환되어 계약과 불일치한다.",
+              "file_path": "retry.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.329
+    },
+    {
+      "id": "default-arg-retries-defect",
+      "repeat": 3,
+      "status": "COMPLETED",
+      "payload_sha256": "49ebae70c7bb0cbfd26c3f3d0061887ce30c6e47e91441161c65d737ed52c17b",
+      "input_tokens": 7859,
+      "output_tokens": 432,
+      "draft_raw": "{\"summary\":\"retries_left가 max_retries - used를 반환하는 함수가 추가되었습니다.\",\"issues\":[],\"limitations\":\"제공된 3줄만 검토했으며 호출자와 실행 결과는 확인하지 않았습니다. 문서화된 기본 인자(3, 1)에서는 2가 반환되어 docstring의 '결과는 3'과 불일치하지만, 이는 코드 동작 결함이 아니라 docstring 서술 오류이므로 항목으로 올리지 않았습니다.\"}",
+      "checked_raw": "{\"summary\": \"변경된 파일 f1은 `retries_left`의 시그니처 기본값(`max_retries=3, used=1`)만 바뀐 상태다. 문서화된 계약(기본 인자로 호출 시 3)과 실제 반환값 `max_retries - used` = 3이 일치하므로 반환 결함은 없다. 다만 `used`의 기본값이 1로 바뀌면서 기본 호출 결과가 3에서 2로 달라졌는데, 이는 문서와 코드가 함께 갱신되어 있어 내부 일관성은 유지된다. 제공된 범위에서 지원 가능한 결함은 없다.\", \"issues\": [], \"limitations\": \"호출자 코드가 제공되지 않아 기본값 변경(used=1)이 실제 사용처의 기대값에 영향을 주는지, 그리고 `used > max_retries` 같은 경계 입력이 실제로 전달되는지는 확인할 수 없다. 테스트는 실행하지 않았다.\", \"file_checks\": [{\"file_id\": \"f1\", \"outcome\": \"NO_FINDING\", \"observation\": \"docstring 계약은 기본 인자 호출 시 3을 요구하고, 실제 반환 `max_retries - used`도 3 - 1 = 3으로 계약을 만족한다. 반환 결함 없음.\"}]}",
+      "result": {
+        "summary": "제공된 코드 범위에서 지적할 항목을 찾지 못했어요. 검토 범위와 확인하지 못한 내용을 함께 살펴보세요.",
+        "issues": [],
+        "questions": [],
+        "classification": "SUPPORTED_FINDINGS_AND_CONTEXT_QUESTIONS",
+        "limitations": "호출자 코드가 제공되지 않아 기본값 변경(used=1)이 실제 사용처의 기대값에 영향을 주는지, 그리고 `used > max_retries` 같은 경계 입력이 실제로 전달되는지는 확인할 수 없다. 테스트는 실행하지 않았다.",
+        "reviewed_files": 1,
+        "omitted_files": 0,
+        "coverage": {
+          "files": [
+            {
+              "file_id": "f1",
+              "file_path": "retry.py",
+              "provided_lines": 3
+            }
+          ],
+          "excluded": [],
+          "unfetched_files": 0
+        },
+        "scope": "고정 HEAD의 제공 줄과 제한된 관련 문맥만 검토. 전체 호출 경로·실행 결과는 미검증.",
+        "verification": {
+          "status": "EMPTY_RECHECKED",
+          "file_checks": [
+            {
+              "file_id": "f1",
+              "line": 1,
+              "outcome": "NO_FINDING",
+              "observation": "docstring 계약은 기본 인자 호출 시 3을 요구하고, 실제 반환 `max_retries - used`도 3 - 1 = 3으로 계약을 만족한다. 반환 결함 없음.",
+              "file_path": "retry.py"
+            }
+          ]
+        }
+      },
+      "seconds": 4.312
+    }
+  ],
+  "finished_at": "2026-10-05T14:56:46.948501+00:00",
+  "summary": {
+    "reviews": 3,
+    "completed": 3,
+    "attempts_this_run": 6,
+    "campaign_attempts_total": 590,
+    "input_tokens": 23577,
+    "output_tokens": 1607
+  }
+}
