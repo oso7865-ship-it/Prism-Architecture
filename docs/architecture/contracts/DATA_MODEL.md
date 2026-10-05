@@ -54,4 +54,4 @@ Job aggregate_id는 기술 참조이고 처리 의미는 handler가 정한다. �
 
 테이블별 인덱스 정의는 물리 스키마의 [인증·팀](schema/IDENTITY.md), [GitHub·PR](schema/GITHUB.md), [분석·AI](schema/RESULTS.md), [실행·웹훅](schema/EXECUTION.md)에 있다. 실제 query plan/데이터 분포 검증은 구현 단계에 수행한다. 위 관계선은 논리 관계이며 DB FK가 아니다.
 
-2026-09-29 migration0009 기준 실제 테이블은19개(기존17+standard_documents/standard_versions)다. 신규 테이블의 모든 컬럼·관계·보관/삭제는 [팀 문서 스키마](../domain/standards/README.md)가 소유한다. 물리 FK 없이 Workspace 잠금과 논리 참조를 검사한다. ReviewRun 목적·문서 버전 스냅샷은 [결과 스키마](schema/RESULTS.md)를 따른다.
+2026-10-06 migration0011 기준 실제 테이블은20개(0009 기준 19개 + 연결 후보 임시 목록 repository_candidate_sets, [GitHub·PR 스키마](schema/GITHUB.md#table-repository_candidate_sets))다. 2026-09-29 migration0009 기준 실제 테이블은19개(기존17+standard_documents/standard_versions)다. 신규 테이블의 모든 컬럼·관계·보관/삭제는 [팀 문서 스키마](../domain/standards/README.md)가 소유한다. 물리 FK 없이 Workspace 잠금과 논리 참조를 검사한다. ReviewRun 목적·문서 버전 스냅샷은 [결과 스키마](schema/RESULTS.md)를 따른다.

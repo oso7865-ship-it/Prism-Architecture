@@ -51,3 +51,7 @@ MVP에서는 하나의 GitHub repository ID를 하나의 활성 Workspace 연결
 ## 연결 흐름 구체화
 
 [ADR-INTEGRATION-002](../../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md): GitHub App은 Metadata·Contents·Pull requests·Issues 읽기 권한을 사용한다. Issues read는 일반 PR 대화 코멘트 조회용이다. 설치 후 owner/repository 입력→App OAuth state/PKCE→사용자 ID·admin 권한·설치 허용 목록 검증→팀 권한 재검증→연결 및 첫 sync 접수를 수행한다.
+
+## 목록에서 골라 연결 — ADR-INTEGRATION-003
+
+연결 버튼은 본문 없이 GitHub 인증을 시작하고, 콜백이 사용자의 앱 설치와 허용 저장소를 가져와 `repository_candidate_sets`에 15분 보관한다(연결은 하지 않는다). 사용자는 목록에서 체크한 저장소(1~20개)만 `connect-selected`로 연결하며 저장소마다 별도 트랜잭션으로 연결과 첫 sync 접수를 한다. 서버는 저장된 목록·저장된 admin 값·팀 `manage` 권한만으로 판단한다. owner/name 직접 입력 연결은 없다. 체크하지 않은 저장소는 연결 행도 sync도 만들지 않는다. 설치·저장소 수집 상한과 상태 값은 ADR을 따른다.

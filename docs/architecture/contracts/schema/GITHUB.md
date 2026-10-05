@@ -108,3 +108,20 @@ UQ(repository_connection_id,pr_number), UQ(repository_connection_id,github_pr_id
 UQ(repository_connection_id) WHERE status IN ('PENDING','RUNNING'). IDX(workspace_id,repository_connection_id,created_at DESC,id DESC), IDX(finished_at) WHERE finished_at IS NOT NULL. actor와 요청 모드별 NULL 조건은 CHECK, terminal 상태와 finished_at 동치 CHECK.
 
 같은 연결의 **같은 모드·대상·cursor·세대** 요청만 기존 활성 run으로 합친다. 다른 범위 요청은 409 SYNC_IN_PROGRESS로 재시도를 안내해 조용히 누락시키지 않는다. run+Job을 같은 transaction에 생성한다. 성공 시 연결의 last_sync_success_at도 함께 갱신하고 실패 시 이전 성공 시각·PR 목록을 유지한다.
+
+<a id="table-repository_candidate_sets"></a>
+
+## repository_candidate_sets
+
+ADR-INTEGRATION-003, migration 0011. GitHub에서 가져온 연결 후보를 15분만 보관하는 임시 목록이다. 물리 FK 없음.
+
+| 컬럼 | 타입 | NULL | 기본값·의미 |
+|---|---|---|---|
+| id / created_at | uuid / timestamptz | N | 공통, created_at 기본 now() |
+| workspace_id / user_id | uuid | N | 팀·요청 사용자 논리 참조 |
+| expires_at | timestamptz | N | 생성 후 15분 |
+| truncated | boolean | N | false 기본, 상한 초과 여부 |
+| skipped_installations | integer | N | 0 기본, 건너뛴 앱 설치 수 |
+| items | jsonb | N | 배열 ≤300. {github_repository_id, installation_id, owner_login, repository_name, is_private, default_branch, admin} |
+
+UQ(workspace_id,user_id), IDX(expires_at), CHECK expires_at > created_at, CHECK items가 배열이고 길이 ≤ 300. 새 콜백이 같은 (팀,사용자)의 목록을 교체하고 만료분은 저장·조회 시 삭제한다. 사용자 토큰·설치 토큰은 저장하지 않는다. downgrade는 테이블을 삭제하며 잃는 영속 데이터는 없다. 운영 DB에는 적용하지 않았다.

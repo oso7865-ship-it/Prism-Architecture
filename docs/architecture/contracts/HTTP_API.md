@@ -17,7 +17,8 @@ Base path는 `/api/v1`. JSON은 snake_case, ID는 문자열 UUID, 시각은 UTC 
 | GET /auth/github/callback | auth, 로그인 완료 | 302 |
 | POST /auth/refresh | auth, rotation | 200 |
 | POST /auth/logout | auth, 세션 철회 | 204 |
-| GET /users/me | user | 200 |
+| GET /users/me | user, 프로필과 review_mode | 200 |
+| PATCH /users/me/preferences | user, 본문 `review_mode`(SENIOR/JUNIOR)만·추가 필드 422 | 200 |
 | POST /workspaces | workspace | 201 |
 | GET /workspaces | 내 멤버십에 속한 팀만 | 200 |
 | GET /workspaces/{w}/members | workspace | 200 |
@@ -29,8 +30,10 @@ Base path는 `/api/v1`. JSON은 snake_case, ID는 문자열 UUID, 시각은 UTC 
 | PATCH /workspaces/{w}/members/{u} | workspace, 역할 변경 | 200 |
 | POST /workspaces/{w}/transfer-ownership | workspace | 200 |
 | GET /github-app | App 설정 상태·설치 링크 | 200 |
-| POST /workspaces/{w}/repositories/connect | 인증된 팀 관리자 연결 시작, state/PKCE 쿠키·GitHub 인증 URL | 200 |
-| GET /github-app/callback | 검증 후 연결 + 최초 sync 원자적 접수, SPA 복귀 | 302 |
+| POST /workspaces/{w}/repositories/connect | 본문 없음. 인증된 팀 관리자 연결 시작, state/PKCE 쿠키·GitHub 인증 URL | 200 |
+| GET /github-app/callback | 사용자 토큰으로 허용 저장소 목록을 가져와 15분 보관(연결하지 않음), `repository_result=choose&team={w}`로 SPA 복귀 | 302 |
+| GET /workspaces/{w}/repositories/candidates | 호출자 본인의 가져온 목록과 상태(AVAILABLE/CONNECTED/ADMIN_REQUIRED/OTHER_TEAM), 없거나 만료되면 404 CANDIDATES_NOT_FOUND | 200 |
+| POST /workspaces/{w}/repositories/connect-selected | `github_repository_ids` 1~20개만 연결 + 최초 sync 접수, 저장소별 결과 | 200 |
 | GET /workspaces/{w}/repositories | repository | 200 |
 | PATCH /workspaces/{w}/repositories/{r}/settings | 설정 새 버전 | 200 |
 | DELETE /workspaces/{w}/repositories/{r} | 논리적 연결 해제 | 204 |

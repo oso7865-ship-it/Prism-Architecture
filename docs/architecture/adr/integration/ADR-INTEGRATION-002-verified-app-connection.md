@@ -3,11 +3,11 @@
 > ID: `ADR-INTEGRATION-002` · 소유: `INTEGRATION` · 기준: `2026-09-26`
 > 읽는 때: GitHub App 연결·콜백·PR 조회 구현을 변경할 때
 
-- 상태: `ACCEPTED`
+- 상태: `SUPERSEDED`
 - 기록일: `2026-09-26`
 - 근거: 사용자 팀·저장소 연결 묶음 구현 위임과 기존 테넌트/설치 검증 계약
 - 대체하는 ADR: 없음
-- 대체한 ADR: 없음
+- 대체한 ADR: [ADR-INTEGRATION-003](ADR-INTEGRATION-003-choose-repositories-from-github.md)(연결 시작·검증 절차만. 아래 PR 조회·권한 범위 결정은 유지)
 
 ## 배경
 로그인 OAuth App과 GitHub App 설치 권한은 다르다. installation_id 또는 공개 저장소 조회 성공만으로 팀 연결을 승인할 수 없다. 실제 키 등록 전에도 거부 경계와 작업 복구를 검증해야 한다.
