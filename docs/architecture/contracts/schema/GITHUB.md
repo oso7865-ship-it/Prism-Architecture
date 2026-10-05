@@ -124,4 +124,4 @@ ADR-INTEGRATION-003, migration 0011. GitHub에서 가져온 연결 후보를 15�
 | skipped_installations | integer | N | 0 기본, 건너뛴 앱 설치 수 |
 | items | jsonb | N | 배열 ≤300. {github_repository_id, installation_id, owner_login, repository_name, is_private, default_branch, admin} |
 
-UQ(workspace_id,user_id), IDX(expires_at), CHECK expires_at > created_at, CHECK items가 배열이고 길이 ≤ 300. 새 콜백이 같은 (팀,사용자)의 목록을 교체하고 만료분은 저장·조회 시 삭제한다. 사용자 토큰·설치 토큰은 저장하지 않는다. downgrade는 테이블을 삭제하며 잃는 영속 데이터는 없다. 운영 DB에는 적용하지 않았다.
+UQ(workspace_id,user_id), IDX(expires_at), CHECK expires_at > created_at, CHECK items가 배열이고 길이 ≤ 300. 새 콜백이 같은 (팀,사용자)의 목록을 교체하고 만료분은 저장·조회 시 삭제한다. 사용자 토큰·설치 토큰은 저장하지 않는다. downgrade는 테이블을 삭제하며 잃는 영속 데이터는 없다. 0011은 0010과 함께 2026-10-06 운영 배포로 적용됐다(배포 도구 성공, 사용자 확인).

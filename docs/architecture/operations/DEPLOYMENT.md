@@ -7,7 +7,7 @@
 
 [ADR-DEPLOY-004](../adr/deployment/ADR-DEPLOY-004-ec2-runtime.md)에 따라 백엔드 실행 서비스는 AWS EC2다. [ADR-DEPLOY-005](../adr/deployment/ADR-DEPLOY-005-rds-initial-runtime.md)로 서울 ap-northeast-2, EC2 t3.small/Ubuntu 24.04.4 LTS, 별도 RDS PostgreSQL 17.11/db.t4g.micro/20GiB gp2/저장 암호화를 확정했다. 앱 DB prism과 전용 역할 prism_app은 TLS verify-full로 연결한다. 서버 비밀은 ubuntu 소유 700 디렉터리/600 파일에서 주입한다. 프론트·백엔드 배포, 실제 GitHub 로그인, GitHub ping 수신, 공개 GHCR/OIDC/SSM 자동배포, 논리 백업과 격리 DB 복원을 완료했다. 알림/예산·정기 백업 운영·상한 부하와 재해 복구 검증은 남아 있다.
 
-[ADR-DEPLOY-009](../adr/deployment/ADR-DEPLOY-009-public-images.md)에 따라 Vue 프론트도 기존 EC2/Caddy에서 제공한다. 두 도메인 prismquest.p-e.kr/api-prismquest.p-e.kr은 같은 탄력적 IP 52.79.50.98을 쓴다. 운영 Alembic head는 0009이며 두 도메인의 ready=200과 공개 프론트 로그인 성공을 확인했다. 실제 운영 PR의 전체 분석·AI 리뷰는 이번 배포 검증에 포함하지 않았다. [전체 출시 기록](../../../records/2026-09-30_full-ec2-release.md)이 최종 커밋·실행 결과·검증 한계를 소유한다.
+[ADR-DEPLOY-009](../adr/deployment/ADR-DEPLOY-009-public-images.md)에 따라 Vue 프론트도 기존 EC2/Caddy에서 제공한다. 두 도메인 prismquest.p-e.kr/api-prismquest.p-e.kr은 같은 탄력적 IP 52.79.50.98을 쓴다. 운영 Alembic head는 0011(2026-10-06 리뷰 모드 0010과 저장소 후보 목록 0011 적용, 이전에는 0009)이며 두 도메인의 ready=200과 공개 프론트 로그인 성공을 확인했다. 실제 운영 PR의 전체 분석·AI 리뷰는 이번 배포 검증에 포함하지 않았다. [전체 출시 기록](../../../records/2026-09-30_full-ec2-release.md)이 최종 커밋·실행 결과·검증 한계를 소유한다.
 
 [ADR-DEPLOY-007](../adr/deployment/ADR-DEPLOY-007-caddy-https.md)에 따라 Caddy가 TCP 80/443과 자동 인증서 발급·갱신을 담당한다. `/etc/caddy/Caddyfile`에서 `127.0.0.1:8000`으로 전달하며 관리 포트는 localhost 전용이다. 서비스는 비루트·부팅 자동 시작, 인증서 상태는 호스트의 영속 디렉터리에 유지한다. 오류 로그에서 request 필드를 제외한다. HTTP→HTTPS 308과 두 인증서의 신뢰 체인을 확인했다. 실제 만료 전 갱신과 호스트 재부팅 시험은 수행하지 않았다. [초기 HTTPS 기록](../../../records/2026-09-30_ec2-https.md)은 앱 기동 전 시점의 이력이다.
 

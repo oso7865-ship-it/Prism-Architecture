@@ -176,4 +176,4 @@ issue.origin=STATIC_PROJECTION은 제공된 순수 코드와 단언의 제한 �
 
 ## ADR-REVIEW-015 — 설명 모드, migration 0010
 
-review_runs.mode는 접수 시 고정되며 리뷰 응답·이력에 mode로 노출된다. result.harness.mode에 생성에 쓴 하네스 모드를 남긴다. prompt_version은 두 모드 지침 전체의 해시다. 출력 스키마와 result 필드는 두 모드가 같고 구형 결과(mode 없음)는 SENIOR로 읽는다. 추가형 DDL이며 기존 행은 기본값을 갖는다. 0010 downgrade는 JUNIOR 데이터가 있으면 거부한다. 이 migration은 파일 작성만 완료했고 어떤 DB에도 적용하지 않았다.
+review_runs.mode는 접수 시 고정되며 리뷰 응답·이력에 mode로 노출된다. result.harness.mode에 생성에 쓴 하네스 모드를 남긴다. prompt_version은 두 모드 지침 전체의 해시다. 출력 스키마와 result 필드는 두 모드가 같고 구형 결과(mode 없음)는 SENIOR로 읽는다. 추가형 DDL이며 기존 행은 기본값을 갖는다. 0010 downgrade는 JUNIOR 데이터가 있으면 거부한다. 이 migration은 0011과 함께 2026-10-06 운영 배포로 적용됐다(배포 도구 성공, 사용자 확인).
