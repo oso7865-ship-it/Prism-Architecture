@@ -1,0 +1,42 @@
+{
+  "runs": 60,
+  "input_tokens": 518254,
+  "output_tokens": 33154,
+  "failed_runs": 13,
+  "defect_runs": 30,
+  "clean_runs": 30,
+  "clean_false_positives": 3,
+  "clean_questions": 0,
+  "location_found": 14,
+  "semantic_pass": 14,
+  "location_missed": 3,
+  "by_category": {
+    "ARITH_BOUNDARY": {
+      "defect_runs": 3,
+      "location_found": 3,
+      "semantic_pass": 3
+    },
+    "DEFAULT_ARG": {
+      "defect_runs": 6,
+      "location_found": 3,
+      "semantic_pass": 3
+    },
+    "DICT_GET": {
+      "defect_runs": 2,
+      "location_found": 2,
+      "semantic_pass": 2
+    },
+    "LENGTH_BOUNDARY": {
+      "defect_runs": 3,
+      "location_found": 3,
+      "semantic_pass": 3
+    },
+    "NONE_VS_FALSY": {},
+    "OR_DEFAULT": {},
+    "RANGE_STEP": {
+      "defect_runs": 3,
+      "location_found": 3,
+      "semantic_pass": 3
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "arm": "senior2 (tuned)",
+  "prompt_version": "rh1-655db827c5db45b1",
+  "runs": 56,
+  "format_failures": 0,
+  "defects_found": "28/28",
+  "value_claim_errors_manual": 0,
+  "clean_false_positives": 1,
+  "clean_fp_cases": [
+    "java-pages-clean (int overflow, same as earlier arms)"
+  ],
+  "grader_misses_checked_manually": [
+    "java-pages-defect r1",
+    "length-last-defect r3"
+  ],
+  "input_tokens": 474353,
+  "output_tokens": 20662,
+  "style": {
+    "findings": 29,
+    "median_evidence_plus_suggestion_chars": 181,
+    "teaching_cue_findings": 8,
+    "teaching_cue_ratio": 0.276
+  }
+}
