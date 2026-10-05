@@ -19,11 +19,13 @@ user/
 └─ schema/response.py
 ```
 
-`User(id, github_user_id, login, display_name, avatar_url, status, created_at, updated_at)`를 기본 모델로 한다. `github_user_id`에 UNIQUE 제약을 둔다. 동시 첫 로그인 시 select-then-insert만 믿지 않고 DB 충돌을 처리한다. GitHub login 변경 시 새로운 계정을 만들지 않는다.
+`User(id, github_user_id, login, display_name, avatar_url, status, review_mode, created_at, updated_at)`를 기본 모델로 한다. `github_user_id`에 UNIQUE 제약을 둔다. 동시 첫 로그인 시 select-then-insert만 믿지 않고 DB 충돌을 처리한다. GitHub login 변경 시 새로운 계정을 만들지 않는다.
 
 외부에는 필요한 프로필만 반환한다. 이메일은 필수로 수집하지 않는다. URL·이름은 신뢰하지 않는 표시 데이터다. 임의 avatar URL을 서버가 대신 가져오는 프록시를 만들지 않는다.
 
 공개 계약은 `get_active_user(user_id)`와 `upsert_github_identity(identity)`다. ORM 객체를 다른 도메인에 반환하지 않는다. `CurrentPrincipal` 구성은 auth의 책임이다.
+
+review_mode(SENIOR 기본/JUNIOR)는 AI 리뷰 설명 모드 선호이며 `PATCH /users/me/preferences`로만 바꾸고 공개 계약 `UserAPI.set_review_mode`와 `UserSnapshot.review_mode`로 review가 읽는다. 결정은 [ADR-REVIEW-015](../../adr/review/ADR-REVIEW-015-review-modes.md)다.
 
 ## 제외와 테스트
 

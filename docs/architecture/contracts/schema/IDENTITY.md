@@ -16,6 +16,7 @@
 | display_name | varchar(255) | Y | 표시 이름 |
 | avatar_url | text | Y | 표시 전용, 서버 대리 취득 금지 |
 | status | varchar(16) | N | ACTIVE 기본, ACTIVE/INACTIVE CHECK |
+| review_mode | varchar(8) | N | 'SENIOR' 기본, SENIOR/JUNIOR CHECK(ck_users_review_mode). AI 리뷰 설명 모드, migration 0010 |
 | updated_at | timestamptz | N | now() |
 
 UQ(github_user_id). 프로필 upsert는 외부 숫자 ID 충돌을 처리한다. 이메일·GitHub token 컬럼은 없다. 비활성화는 세션과 실행 권한을 차단하되 감사 관계를 위해 행은 유지한다.

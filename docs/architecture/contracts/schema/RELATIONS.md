@@ -25,6 +25,7 @@
 | [workspace_members](IDENTITY.md#table-workspace_members) | 사용자 한 명의 특정 팀 가입 관계 | workspace_id/user_id: 소속 관계, role: OWNER·ADMIN·MEMBER, status: 가입·탈퇴·제거 상태 |
 | [invitations](IDENTITY.md#table-invitations) | 특정 GitHub 사용자를 팀에 초대한 기록 | target_github_user_id: 초대 대상, invited_by: 초대한 사람, token_hash: 초대 링크 검증, accepted_by: 수락한 사용자 |
 | [repository_connections](GITHUB.md#table-repository_connections) | 팀에 연결한 GitHub 저장소 | github_repository_id: 외부 저장소, installation_id: App 설치, connection_generation: 재연결 세대, current_config_version_id: 현재 설정 |
+| [repository_candidate_sets](GITHUB.md#table-repository_candidate_sets) | 연결 전 GitHub에서 가져온 후보 저장소의 임시 목록 | workspace_id/user_id: 가져온 팀·사용자, expires_at: 15분 만료, items: 후보 목록 |
 | [rule_config_versions](GITHUB.md#table-rule_config_versions) | 저장소 분석 설정의 특정 버전 | version: 버전 번호, rules/layer_mappings/ignored_paths: 설정, config_digest: 설정 내용 지문 |
 | [pull_requests](GITHUB.md#table-pull_requests) | 연결 저장소의 PR 한 개 | pr_number: 저장소 내 PR 번호, base_sha/head_sha: 비교할 commit, github_updated_at: 외부 갱신 시각 |
 | [pull_request_sync_runs](GITHUB.md#table-pull_request_sync_runs) | PR 목록·단건 동기화 요청 한 번 | mode: 동기화 범위, status: 실행 상태, cursor: 페이지 식별 정보, fetched_count: 반영 조회 수 |

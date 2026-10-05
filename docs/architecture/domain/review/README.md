@@ -5,7 +5,7 @@
 
 ## 실행과 소유권
 
-현재 계약은 [ADR-REVIEW-014](../../adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md)와 목적별 ADR-REVIEW-012다. 아래 과거 변경 설명보다 마지막 ADR-REVIEW-014 보강 절이 우선한다. 빈 초안은 변경 파일별로 재검토하며 검토 파일은 사이트에서 열람한다. 문맥 선택과 입력 예산을 V4로 확대하고, 지적이 있는 초안에 별도 근거 검증 호출을 추가한다.009의 서버 요약 조합은 유지한다. 과거 결과 불변이며 모델 판단을 실행으로 확인한 결과로 표현하지 않는다. 실제 품질·비용 기록은 architecture의 records에서 관리한다.
+현재 계약은 [ADR-REVIEW-015](../../adr/review/ADR-REVIEW-015-review-modes.md)(설명 모드)와 [ADR-REVIEW-014](../../adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md)와 목적별 ADR-REVIEW-012다. 아래 과거 변경 설명보다 마지막 ADR-REVIEW-014 보강 절이 우선한다. 빈 초안은 변경 파일별로 재검토하며 검토 파일은 사이트에서 열람한다. 문맥 선택과 입력 예산을 V4로 확대하고, 지적이 있는 초안에 별도 근거 검증 호출을 추가한다.009의 서버 요약 조합은 유지한다. 과거 결과 불변이며 모델 판단을 실행으로 확인한 결과로 표현하지 않는다. 실제 품질·비용 기록은 architecture의 records에서 관리한다.
 
 [ADR-REVIEW-003](../../adr/review/ADR-REVIEW-003-bounded-manual-code-review.md)이 초기 FINDINGS_ONLY 설계를 대체한다. 정적 Finding은 변경하지 않는다. `review`가 router/service/models/policy/provider/worker를 소유하며 analysis/repository/pull_request/workspace의 공개 API만 사용한다. LangChain ChatDeepSeek의 JSON mode와 Pydantic strict 검증을 사용한다. 서버 기본 OFF이며 로컬 검증 설정에서만 명시적으로 켠다. 기본 모델은 deepseek-flash, API 모델 목록에서 가용성을 확인한다.
 
@@ -134,3 +134,7 @@ DeepSeek Responses json_schema와 높은 추론은 평가용 어댑터만 준비
 작은 순수 Python 함수의 리터럴 단언과 기본값·분기·반환값, 완전한 단일 Java 산술 반환식의 유한 관측을 제공한다. 코드 생성·eval/exec/import·프로젝트 런타임 실행은 없고 지원 밖은 계산하지 않는다. Python의16KiB/500 AST노드·160단계·깊이4·인자4·관측6개/파일·4파일 한도를 적용한다. 정확한 세부 구문은 구현의 허용 목록과 회귀 테스트가 소유한다.
 
 CODE에서 제공 단언과 계산의 불일치가 변경 경로에 있으면 서버 소유 설명을 최대4개 후보로 만든다. 같은 파일/대표 줄의 모델 설명만 교체하고 나머지는 유지한다. 전체10개 결과가 가득 차면 추가하지 않고 누락 수를 알린다. origin=STATIC_PROJECTION은 계산된 차이이며 실행 테스트나 전체 결함 증명이 아니다. 이 기능은 유효한 모델 응답 후 적용하고 모델 실패를 성공으로 치환하지 않는다. 최신 수치·오탐·제한은 [최종 검증 보고서](../../../../records/2026-09-29_final-validation-report.md)가 기준이다.
+
+## 설명 모드 — ADR-REVIEW-015
+
+사용자 프로필의 SENIOR(기본)/JUNIOR 모드를 시작 시 review_runs.mode로 고정하고 서비스가 실행 키에 포함한다. 워커는 모드를 payload의 review_mode로 넣고, harness는 `senior/`·`junior/`의 서버 소유 지침 11개 중 하나만 조합한다. 초안·검증·빈 결과 재검토가 같은 모드를 쓴다. 두 모드는 출력 스키마·admission(`checks` 바이트 동일)·호출 한도·입력 예산(24,576byte)이 같고 설명 방식만 다르다. 주니어는 이유·구체 입력·올바른 패턴·확인 항목을, 시니어는 직접적이고 간결한 설명을 낸다. 이전 지침은 evals/review-modes-v1/legacy-current에 동결 보관한다. 팀 구성원은 소유자(시작한 사용자) 모드의 결과를 본다. 두 모드는 심각도 기준 문구도 같고(교육 효과로 올리지 않음), 주니어의 모든 필드는 ~요체 한 가지로 쓴다. 모델이 답에 싣는 `"type":"json_object"` 플래그만 서버가 제거하고(`model_output.strip_api_metadata`) 나머지는 strict 검증한다.

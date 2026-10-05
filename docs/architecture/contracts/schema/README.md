@@ -10,7 +10,7 @@
 | 문서 | 테이블 | 수 | 구현 순서 |
 |---|---|---:|---|
 | [인증·팀](IDENTITY.md) | users, login_attempts, refresh_sessions, workspaces, workspace_members, invitations | 6 | 첫 로그인·Workspace 수직 기능 |
-| [GitHub·PR](GITHUB.md) | repository_connections, rule_config_versions, pull_requests, pull_request_sync_runs | 4 | 저장소 연결·PR 동기화 |
+| [GitHub·PR](GITHUB.md) | repository_connections, repository_candidate_sets, rule_config_versions, pull_requests, pull_request_sync_runs | 5 | 저장소 연결·연결 후보 임시 목록·PR 동기화 |
 | [분석·AI](RESULTS.md) | analysis_runs, findings, analysis_file_results, review_runs, review_feedback | 5 | 정적 분석 후 선택적 AI |
 | [실행·웹훅](EXECUTION.md) | jobs, webhook_deliveries | 2 | PR 동기화 시 jobs, 자동 접수 시 webhook |
 

@@ -42,8 +42,10 @@
 | [ADR-REVIEW-011](../adr/review/ADR-REVIEW-011-empty-recheck-and-source-view.md) | 빈 초안 파일별 재검토·사이트 내 코드 열람 | SUPERSEDED | REVIEW-010 대체, 최대2회·과거 결과 불변 유지 |
 | [ADR-REVIEW-013](../adr/review/ADR-REVIEW-013-recovery-and-evidence-checks.md) | 누락 복구·출력 복구·제한 연산·독립 보안 근거 | SUPERSEDED | REVIEW-011 대체, 코드 열람·한도 유지 |
 | [ADR-REVIEW-014](../adr/review/ADR-REVIEW-014-grounded-claims-and-repair-guards.md) | 제한 계산 설명·출력 조건·수정안 반례 차단 | ACCEPTED | REVIEW-013 대체, 호출·권한·원문 비저장 유지 |
+| [ADR-REVIEW-015](../adr/review/ADR-REVIEW-015-review-modes.md) | 주니어/시니어 설명 모드·모드별 하네스 | ACCEPTED | REVIEW-014 계약 유지·모드 축 추가 |
 | [ADR-INTEGRATION-001](../adr/integration/ADR-INTEGRATION-001-github-pr-sync.md) | 실제 GitHub 연동과 PR 동기화 | ACCEPTED | D-004, C-003, D-010 |
-| [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | ACCEPTED | — |
+| [ADR-INTEGRATION-002](../adr/integration/ADR-INTEGRATION-002-verified-app-connection.md) | 사용자·App 권한 검증 연결과 단계별 PR 조회 | SUPERSEDED | 연결 시작·검증은 INTEGRATION-003이 대체, PR 조회 계약 유지 |
+| [ADR-INTEGRATION-003](../adr/integration/ADR-INTEGRATION-003-choose-repositories-from-github.md) | GitHub 허용 저장소 목록에서 골라 연결 | ACCEPTED | INTEGRATION-002 일부 대체, 호출·권한 기준 유지 |
 | [ADR-RUNTIME-001](../adr/runtime/ADR-RUNTIME-001-durable-jobs.md) | PostgreSQL 영속 Job과 복구 | BASELINE | C-002 |
 | [ADR-DEPLOY-001](../adr/deployment/ADR-DEPLOY-001-render-real-deployment.md) | Render 배포와 실제 주소 사용 | SUPERSEDED | D-002, D-010 → DEPLOY-003 |
 | [ADR-DEPLOY-002](../adr/deployment/ADR-DEPLOY-002-production-boundary.md) | Production 설정·배포 전 검증 경계 | SUPERSEDED | DEPLOY-003에 운영 계약 유지 |

@@ -95,6 +95,7 @@ ADR-REVIEW-003에 따른 0006 구현 계약. 공통 id/created_at 및 updated_at
 | model | varchar(80) | N | 실제 DeepSeek 모델 |
 | prompt_version / policy_version | varchar(32) | N | rh1-16hex 하네스 digest / 신규 BOUNDED_CODE_V2 (과거 V1 보존) |
 | generation | integer | N | 0 기본, 명시 재실행 세대 >=0 |
+| mode | varchar(8) | N | 'SENIOR' 기본, SENIOR/JUNIOR CHECK(ck_review_mode). 접수 시 요청자 프로필 모드를 고정하며 execution_key에 포함, migration 0010 |
 | execution_key | varchar(64) | N | 실행 입력 digest UNIQUE |
 | status | varchar(16) | N | PENDING 기본; RUNNING/COMPLETED/FAILED/CANCELED |
 | consented_at | timestamptz | N | 소유자의 이번 요청 동의 시각 |
@@ -172,3 +173,7 @@ coverage.context_supplement는 file_id/symbol/status(ADDED/ALREADY_PROVIDED/UNAV
 issue.suggestion_check.withheld=true는 제한 예시에서 기존 성공값 변경을 찾아 suggestion을 안전한 확인 안내로 바꿨음을 뜻한다. 반례/결함은 보존한다. 필드가 없다고 제안이 검증된 것은 아니다.
 
 issue.origin=STATIC_PROJECTION은 제공된 순수 코드와 단언의 제한 계산 차이를 서버가 설명한 항목이다. 일반 AI 항목에는 이 필드가 없다. result.grounding은 status=BOUNDED, findings(추가/교체한 항목 수), omitted(결과 공간 부족으로 표시하지 못한 후보 수)다. 이는 전체 파일·입력의 검사율이 아니며 계산의 다른 상한에서 제외한 범위를 모두 세지는 않는다. verification의 kept/revised/dropped/added는 모델 검증 단계 집계이고 grounding과 별개다. 코드 원문·단언 인자·비어 있지 않은 문자열 값은 저장하지 않고 값의 유형/빈 값/정수·불리언과 줄·분기만 표시한다. 과거 결과 필드 부재를 그대로 허용한다.
+
+## ADR-REVIEW-015 — 설명 모드, migration 0010
+
+review_runs.mode는 접수 시 고정되며 리뷰 응답·이력에 mode로 노출된다. result.harness.mode에 생성에 쓴 하네스 모드를 남긴다. prompt_version은 두 모드 지침 전체의 해시다. 출력 스키마와 result 필드는 두 모드가 같고 구형 결과(mode 없음)는 SENIOR로 읽는다. 추가형 DDL이며 기존 행은 기본값을 갖는다. 0010 downgrade는 JUNIOR 데이터가 있으면 거부한다. 이 migration은 파일 작성만 완료했고 어떤 DB에도 적용하지 않았다.
