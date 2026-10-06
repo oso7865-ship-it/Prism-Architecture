@@ -479,6 +479,12 @@
       "read_when": "문서 저장소 경계·하네스 복원 변경 시"
     },
     {
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-004-repository-readme-exception.md",
+      "id": "ADR-ARCH-004",
+      "owner": "ARCH",
+      "read_when": "구현 저장소 README 게시·문서 유입 검사 변경 시"
+    },
+    {
       "path": "docs/architecture/operations/DEPLOYMENT.md",
       "id": "DEPLOYMENT",
       "owner": "deployment",
@@ -803,7 +809,8 @@
         "docs/architecture/PACKAGE_RULES.md",
         "docs/architecture/adr/architecture/ADR-ARCH-001-python-domain-boundaries.md",
         "docs/architecture/adr/architecture/ADR-ARCH-002-independent-repositories.md",
-        "docs/architecture/adr/architecture/ADR-ARCH-003-central-documentation.md"
+        "docs/architecture/adr/architecture/ADR-ARCH-003-central-documentation.md",
+        "docs/architecture/adr/architecture/ADR-ARCH-004-repository-readme-exception.md"
       ]
     },
     "adr-docs": {
@@ -1601,6 +1608,15 @@
       "supersedes": [
         "ADR-ARCH-002"
       ],
+      "superseded_by": []
+    },
+    {
+      "id": "ADR-ARCH-004",
+      "area": "ARCH",
+      "path": "docs/architecture/adr/architecture/ADR-ARCH-004-repository-readme-exception.md",
+      "status": "ACCEPTED",
+      "legacy_ids": [],
+      "supersedes": [],
       "superseded_by": []
     },
     {

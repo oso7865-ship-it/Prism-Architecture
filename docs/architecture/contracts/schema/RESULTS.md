@@ -33,7 +33,7 @@
 
 UQ(execution_key). IDX(workspace_id,pr_id,created_at DESC,id DESC), IDX(repository_connection_id,status,id), IDX(config_version_id), IDX(finished_at) WHERE finished_at IS NOT NULL. CHECK actor/requested_by 대응, status/coverage 허용 목록, terminal↔finished_at, COMPLETED이면 coverage_status NOT NULL.
 
-실행 키에는 workspace·연결 ID/세대·PR·base/head·nullable merge_base·rule_set·config ID/digest·analyzer digest·scope·generation을 포함한다. actor는 제외한다. 자동/일반 요청의 generation=0, 명시적 재분석은 Workspace 잠금 아래 같은 기본 입력의 최대 generation+1을 배정한다. run/Job 재시도는 같은 행을 사용한다. HTTP idempotency key별 별도 매핑은 이번 17개 설계에 포함하지 않으며 지원한다고 광고하지 않는다.
+실행 키에는 workspace·연결 ID/세대·PR·base/head·nullable merge_base·rule_set·config ID/digest·analyzer digest·scope·generation을 포함한다. actor는 제외한다. 자동/일반 요청의 generation=0, 명시적 재분석은 Workspace 잠금 아래 같은 기본 입력의 최대 generation+1을 배정한다. run/Job 재시도는 같은 행을 사용한다. HTTP idempotency key별 별도 매핑은 이번 설계에 포함하지 않으며 지원한다고 광고하지 않는다.
 
 완료 결과 묶음은 한 transaction에 저장하고 terminal 전이와 Job fence를 함께 검사한다. 기본 통계 분할은 included+excluded+failed=total이며 source/parse/limit 실패는 failed에 집계한다. 규칙 평가 실패 수는 파일 실패 수와 별도다. 소스/AST/diff 컬럼은 없다.
 
@@ -115,18 +115,6 @@ terminal↔finished_at, COMPLETED이면 result 존재, SHA/digest 형식 CHECK. 
 
 ADR-REVIEW-003에서 검증된 review_runs.result JSON으로 대체했다. 별도 테이블이나 Finding 외래 참조를 만들지 않는다. 정적 findings는 불변이며 AI 실패와 독립적이다.
 
-## 검토 범위 metadata — 2026-09-26
-
-새 성공 결과의 result.coverage는 서버가 files(file_id,file_path,provided_lines), excluded(file_path 또는 null,reason), unfetched_files(수 또는 null)를 기록한다. 모델 입력에는 경로/coverage를 추가하지 않는다. 비밀 의심 내용이나 원문 patch는 보관하지 않으며 유효하지 않거나 민감 패턴이 있는 경로는 null로 숨긴다. 제외 사유와 첫100개 밖 미취득 수를 구분한다. 과거 결과는 coverage 필드가 없고 상세 미기록 안내만 표시한다. 기존 결과 역추정·수정과 DB migration은 없다. UI는 고정 HEAD 파일 링크와 텍스트 사유를 표시한다.
-
-ADR-REVIEW-004: 새 result.harness는 version/modules/system_digest를 포함한다. issues.basis는 SUPPORTED/NEEDS_CONTEXT이며 서버 schema와 중요도 조합을 검증한다. 기존 JSON에는 없을 수 있다. prompt_version에 하네스 패키지+schema digest를 사용하므로 DB 컬럼 추가는 없다.
-
-ADR-REVIEW-009: 새 result.summary는 검증된 issues/questions 건수와 우선 제목 최대3개로 서버가 조합하는 문자열이다. 모델 자유 요약은 strict 검증 후 사용하지 않으며 별도 저장하지 않는다. 질문을 확정 결함으로 바꾸지 않고0건은 제공 범위의 지적 없음으로 표시한다. 기존 문자열 타입/1600자 상한과 과거 결과는 유지하며 migration은 없다.
-
-## AI 근거 계약 보강 (2026-09-26)
-
-ADR-REVIEW-005: 새 issue는 evidence_lines(제공 줄 1~8개, 중복 금지·대표 line과 변경 줄 포함), trigger/consequence(각1~400자), assumptions(최대3개, 각1~400자)를 포함한다. SUPPORTED는 빈 assumptions, NEEDS_CONTEXT는 명시한 미확인 전제가 필요하다. 구조 위반은 응답 전체를 거부하며 지적을 조용히 제거하지 않는다. 구조 검증이 자연어 근거의 진실성을 보장하지 않는다. 과거 결과는 그대로 읽고 신규 UI 필드는 선택적이다. 원문 소스 인용 필드는 없으며 DB migration은 없다.
-
 <a id="table-review_feedback"></a>
 
 ## review_feedback — 0007
@@ -145,35 +133,19 @@ ADR-REVIEW-005: 새 issue는 evidence_lines(제공 줄 1~8개, 중복 금지·�
 
 UNIQUE(review_id,user_id,issue_key), CHECK state 및 64자리 소문자 hex. INDEX(workspace_id,user_id,updated_at). Workspace와 review 잠금 아래 부모·팀·작성자·key를 검증한다. 물리 FK 없음. 자신의 상태를 언제든 덮어쓸 수 있으며 동일 회차 동시 쓰기는 직렬화한다. 결과 JSON은 수정하지 않는다. Review/사용자 영구 삭제 시 보관 정책에 따라 먼저 이 자식 기록을 명시적으로 삭제한다. MVP에 영구 삭제 API는 없다. 금액/수량 컬럼 없음.
 
-ADR-REVIEW-006 이후 result는 issues/questions/classification 및 확장 coverage를 제공한다. 원문 코드는 DB에 저장하지 않는다.
+## result JSON 확장 이력 (DDL 변경 없는 것은 명시)
 
-ADR-REVIEW-010: call_attempts CHECK를0..2로 완화하는 migration0008. result.verification은 CHECKED/NO_CANDIDATES와 kept/revised/dropped 집계다. 검증 장애는 FAILED, 초안은 미보관. 관측 사용량은 두 호출 합계이며 실패 시 첫 호출의 관측값을 보존한다. 이전 결과에 필드가 없으면 재검증으로 표시하지 않는다.
+review_runs.result는 아래 필드를 추가형으로 확장해 왔다. 과거 결과는 필드가 없을 수 있고 소급 수정하지 않으며 신규 UI 필드는 선택적이다. 코드·diff·prompt·응답 원문은 저장하지 않는다. 결정 배경은 각 ADR을 따른다. 압축 전 상세 원문: [legacy](../../../../legacy/pre-compression-2026-10-06/schema/RESULTS.md).
 
-ADR-REVIEW-011: 신규 빈 초안은 두 번째 호출을 필수로 하며 result.verification.status=EMPTY_RECHECKED와 file_checks 배열을 보관한다. 각 항목은 file_id/file_path/line/outcome(FINDING/NO_FINDING/LIMITED)/observation(최대240자)다. 이는 간단한 검토 결과이며 소스나 숨은 추론은 보관하지 않는다. CHECKED의 집계는 유지하고 과거 NO_CANDIDATES는 소급 변경하지 않는다. DB DDL 변경은 없다.
+| ADR | 추가된 result 필드와 규칙 |
+|---|---|
+| REVIEW-003/004 | coverage(files·excluded·unfetched_files, 경로가 유효하지 않거나 민감하면 null), harness(version·modules·system_digest), issues.basis(SUPPORTED/NEEDS_CONTEXT). prompt_version은 하네스+스키마 digest |
+| REVIEW-005 | issue.evidence_lines(1~8줄), trigger/consequence(각 1~400자), assumptions(최대 3개). SUPPORTED는 assumptions 비어야 함. 구조 위반은 응답 전체 거부 |
+| REVIEW-009 | summary는 검증된 issues/questions 건수와 우선 제목 최대 3개로 서버가 조합(모델 요약 미사용). 0건은 "제공 범위의 지적 없음" |
+| REVIEW-010 | verification(CHECKED/NO_CANDIDATES, kept/revised/dropped). call_attempts CHECK 0..2(migration 0008). 검증 장애는 FAILED, 초안 미보관 |
+| REVIEW-011 | 빈 초안은 두 번째 호출 필수. verification.status=EMPTY_RECHECKED, file_checks(file_id·path·line·outcome FINDING/NO_FINDING/LIMITED·observation ≤240자) |
+| REVIEW-012 (0009) | purpose CODE/SECURITY/STANDARDS(기본 CODE), standard_versions JSONB(고정 버전 UUID 목록), 실행 키에 포함. 결과에 standards/standard_sources/standard_checks, citations는 문서·버전·섹션 제목 메타데이터만. downgrade는 CODE 외 리뷰가 있으면 거부 |
+| REVIEW-013 | verification.added·file_checks, OUTPUT_RECOVERED, issue.suggestion_check(status·samples·counterexamples ≤2·scope), coverage.context_supplement, 독립 security_evidence. AI 실패 시 FAILED와 별도 보안 신호 부분 결과 가능, 실패를 정상 0건으로 표시 금지 |
+| REVIEW-014 | contract_quote(≤240자)는 제공 입력과 대조 후 저장 전 제거, suggestion_check.withheld, issue.origin=STATIC_PROJECTION, result.grounding(status=BOUNDED·findings·omitted). 값 원문·문자열 값 미저장 |
+| REVIEW-015 (0010) | review_runs.mode(SENIOR 기본/JUNIOR, 실행 키 포함), result.harness.mode. 출력 스키마는 두 모드 동일, 구형은 SENIOR로 읽음. downgrade는 JUNIOR 데이터가 있으면 거부. 0011과 함께 2026-10-06 운영 적용 |
 
-## 목적별 리뷰 — migration0009
-
-ReviewRun.purpose varchar16 NOT NULL DEFAULT CODE, CHECK(CODE/SECURITY/STANDARDS). ReviewRun.standard_versions JSONB NOT NULL DEFAULT []는 고정한 StandardVersion UUID 문자열 목록이며 물리 FK는 없다. 목적/문서 버전 목록을 실행 키에 포함한다. 과거 row/result의 내용은 변경하지 않고 CODE 기본값만 제공한다. 새 결과는 purpose, 팀 규칙 결과는 standards/standard_sources/standard_checks를 추가한다. AI 항목 citations는 허용된 문서/버전/섹션 제목 메타데이터이며 원문은 넣지 않는다.
-
-[팀 문서](../../domain/standards/README.md)의 스키마가 신규 두 테이블을 정의한다. 다운그레이드는 새 문서나 CODE 이외의 리뷰가 남으면 원자적으로 거부하여 데이터 손실을 막는다.
-
-
-## ADR-REVIEW-013 — 결과 보강, DDL 변경 없음
-
-verification.CHECKED는 added와 file_checks를 추가한다. 첫 출력 형식 실패를 독립 재검토로 복구하면 OUTPUT_RECOVERED, 빈 초안 재검토는 EMPTY_RECHECKED다. file_checks.line은 서버가 선택한 대표 변경 줄이며 issue.evidence_lines와 별개다. 구형 필드는 그대로 읽고 결과를 소급 변경하지 않는다.
-
-issue.suggestion_check는 status(NOT_VERIFIED/SOURCE_MISMATCH/PRESERVES_SAMPLES/CHANGES_SUCCESSFUL_SAMPLES), samples, 선택 counterexamples(inputs/before/after 최대2개), scope, inferred_from_text를 갖는다. 이는 서버가 작성한 제한 예시의 값 비교이며 대상 프로그램 실행 결과가 아니다. 파일 원문과 before/after 소스 식은 저장하지 않는다.
-
-coverage.context_supplement는 file_id/symbol/status(ADDED/ALREADY_PROVIDED/UNAVAILABLE/SYMBOL_NOT_PROVIDED/SOURCE_MISMATCH/FILE_TOO_LARGE/BUDGET_LIMIT)다. 독립 security_evidence는 rule_id/file_id/file_path/line/source_line/evidence_lines/severity/title/detail. AI 실패 시에도 권한이 유지되면 FAILED 상태와 별도 보안 신호 부분 결과를 제공할 수 있다. 부분 결과의 summary·limitations는 AI 미완료를 명시한다. UI가 실패를 정상0건으로 표현하면 안 된다.
-
-## ADR-REVIEW-014 — 설명 출처와 제안 차단, DDL 변경 없음
-
-공급자 출력의 선택적 contract_quote(최대240자)는 제공된 코드/문서/평가 계약과 정확히 대조하며 result 저장 전에 제거한다. SUPPORTED/NEEDS_CONTEXT와 assumptions·severity 관계는 기존 런타임 검증 외에 JSON Schema 조건으로도 게시한다.
-
-issue.suggestion_check.withheld=true는 제한 예시에서 기존 성공값 변경을 찾아 suggestion을 안전한 확인 안내로 바꿨음을 뜻한다. 반례/결함은 보존한다. 필드가 없다고 제안이 검증된 것은 아니다.
-
-issue.origin=STATIC_PROJECTION은 제공된 순수 코드와 단언의 제한 계산 차이를 서버가 설명한 항목이다. 일반 AI 항목에는 이 필드가 없다. result.grounding은 status=BOUNDED, findings(추가/교체한 항목 수), omitted(결과 공간 부족으로 표시하지 못한 후보 수)다. 이는 전체 파일·입력의 검사율이 아니며 계산의 다른 상한에서 제외한 범위를 모두 세지는 않는다. verification의 kept/revised/dropped/added는 모델 검증 단계 집계이고 grounding과 별개다. 코드 원문·단언 인자·비어 있지 않은 문자열 값은 저장하지 않고 값의 유형/빈 값/정수·불리언과 줄·분기만 표시한다. 과거 결과 필드 부재를 그대로 허용한다.
-
-## ADR-REVIEW-015 — 설명 모드, migration 0010
-
-review_runs.mode는 접수 시 고정되며 리뷰 응답·이력에 mode로 노출된다. result.harness.mode에 생성에 쓴 하네스 모드를 남긴다. prompt_version은 두 모드 지침 전체의 해시다. 출력 스키마와 result 필드는 두 모드가 같고 구형 결과(mode 없음)는 SENIOR로 읽는다. 추가형 DDL이며 기존 행은 기본값을 갖는다. 0010 downgrade는 JUNIOR 데이터가 있으면 거부한다. 이 migration은 0011과 함께 2026-10-06 운영 배포로 적용됐다(배포 도구 성공, 사용자 확인).

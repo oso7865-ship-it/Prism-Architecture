@@ -13,3 +13,6 @@ records/frontend/** -text -whitespace
 records/quality-evaluations/*.json -text whitespace=cr-at-eol
 # Preserve nested frozen experiment artifacts when cloning on another OS.
 records/quality-evaluations/** -text whitespace=cr-at-eol
+
+# Pre-compression originals are kept byte-for-byte.
+legacy/** -text -whitespace

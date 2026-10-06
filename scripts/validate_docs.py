@@ -127,7 +127,7 @@ def main() -> int:
         # Imported records retain original repository-relative links and IDs.
         # Their byte preservation is checked by validate_records.py.
         markdown = sorted(p for p in ROOT.rglob('*.md')
-                          if not p.relative_to(ROOT).as_posix().startswith(('records/backend/', 'records/frontend/')))
+                          if not p.relative_to(ROOT).as_posix().startswith(('records/backend/', 'records/frontend/', 'legacy/')))
         text_by_path = {p.resolve(): p.read_text(encoding='utf-8') for p in markdown}
         ids: dict[str, str] = {}
         references = 0

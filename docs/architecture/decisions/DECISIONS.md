@@ -63,6 +63,7 @@
 | [ADR-DOCS-002](../adr/documentation/ADR-DOCS-002-area-adrs.md) | 영역별 ADR과 변경 이력 관리 | ACCEPTED | — |
 | [ADR-ARCH-002](../adr/architecture/ADR-ARCH-002-independent-repositories.md) | 독립 저장소와 프로젝트별 하네스 | SUPERSEDED | — |
 | [ADR-ARCH-003](../adr/architecture/ADR-ARCH-003-central-documentation.md) | 문서 중앙 관리·로컬 복원 | ACCEPTED | ARCH-002 대체 |
+| [ADR-ARCH-004](../adr/architecture/ADR-ARCH-004-repository-readme-exception.md) | 구현 저장소 README 게시 예외 | ACCEPTED | ARCH-003 보완 |
 | [ADR-DATA-002](../adr/data/ADR-DATA-002-local-postgres-foundation.md) | PostgreSQL 17 로컬 개발 기반 | ACCEPTED | — |
 | [ADR-DATA-003](../adr/data/ADR-DATA-003-logical-relations-schema.md) | 물리 FK 없는 17개 테이블·애플리케이션 무결성 | ACCEPTED | — |
 
